@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="../global_files/normalize.css">
+	<link rel="stylesheet" href="../global_files/skeleton.css">
+	<link rel="stylesheet" href="popup.css">
+	<meta charset="UTF-8"> 
+</head>
+<body>
+	<div class="container">
+			<div id="top">
+				<div class="row">
+					<span><b>Host Website:</b></span>
+
+					<img src="../icons/settings.png" id="settings" class="u-pull-right">
+				</div>			
+			
+				<div class="row">
+					<div id="hostwebsite"></div>
+				</div>
+			</div>
+			<div class="row lineBreak"></div>
+
+			<div class="row">
+				<label id="cookieCleanup" for="cookieCleanup">
+						<span class="userAction">Cookie Cleanup</span>
+				</label>
+			</div>
+
+
+			<div class="row lineBreak"></div>
+			
+			<div class="row">
+				<label for="switchToWhiteList">
+						<input type="checkbox" id="switchToWhiteList">
+						<span class="userAction">Add to WhiteList?</span>
+				</label>
+			</div>
+
+	</div>
+	<script type="text/javascript" src="../global_files/browser-polyfill.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
+	
+</body>
+</html>

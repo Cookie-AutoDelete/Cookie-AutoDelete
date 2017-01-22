@@ -1,0 +1,44 @@
+{
+  "background": {
+    "scripts": [
+	"browser-polyfill.js",
+	"background.js"
+	]
+  },
+  "description": "Control your Cookies!",
+  "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
+  "browser_action": {
+    "default_icon": {
+      "24": "icons/history_24.png",
+      "32": "icons/history_32.png",      
+      "48": "icons/history_48.png"     
+    },
+    "default_title": "Cookie AutoDelete",
+    "default_popup": "popup/popup.html"
+  },
+  "icons": {
+    "48": "icons/history_48.png",     
+    "128": "icons/history_128.png"
+  },
+  
+  "applications": {
+    "gecko": {
+      "id": "mrdokenny@gmail.com"
+    }
+  },
+  "options_ui": {
+  	"page": "settings/settings.html",
+  	"open_in_tab" : true
+  },
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "<all_urls>",
+    "tabs",
+    "storage",
+    "alarms"
+  ],
+  "manifest_version": 2,
+  "name": "Cookie AutoDelete",
+  "version": "0.5.0"
+}

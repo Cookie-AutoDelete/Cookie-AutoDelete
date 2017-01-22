@@ -1,0 +1,203 @@
+h1 {
+    border-bottom: 1px solid grey;
+    padding-bottom: 4px;
+	text-align: center;
+}
+
+td {
+	margin: 5px;
+	border-collapse: collapse;
+  	max-height: 10px;
+}
+
+table {
+	width: 100%;
+}
+
+input {
+	margin-top: 5px;
+	margin-bottom: 2px;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+#tableContainer {
+	margin-top: 2em;
+	margin-bottom: 2em;
+	height: 15em;
+	overflow: auto;
+	border: 1px solid black;	
+}
+
+.removeIcon {
+	margin-left: .5em;
+	margin-right: 1em;
+}
+.removeIcon:hover {
+	cursor: pointer;
+	opacity: 0.5;
+	transition-duration: 0.15s;
+}
+.content {
+	padding-left: 12em;
+	width: 40em;
+}
+#welcomeContent h2 {
+	font-size: 3rem;
+}
+
+#welcomeContent span {
+	font-weight: bold;
+}
+
+input[type="number"] {
+    width: 5em;
+}
+.file-upload {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;	
+}
+
+input[type="file"] {
+    display: none;
+}
+#menu {
+	width: 10em;
+	background-color: #26292E;
+	height: 100%;
+	position: fixed;
+}
+
+.pure-menu {
+	padding-top: 2em;
+}
+
+.pure-menu-item {
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-bottom: 1em;
+}
+
+.pure-menu-item:hover {
+	cursor: pointer;
+	transition: background-color;
+	transition-duration: 0.15s;
+	background-color: grey;
+}
+.pure-menu-item span {
+	color: #C1C1B4;
+	font: message-box;
+}
+
+.pure-menu-selected {
+	background: grey !important;
+	background-color: grey;
+	border-style: none none none solid;
+	border-left-color: #0288D1;
+}
+
+ /* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    animation-duration: 1s;
+}
+
+.alert.success {
+	background-color: #4CAF50;
+}
+.alert.info {
+	background-color: #2196F3;
+}
+.alert.warning {
+	background-color: #ff9800;
+}
+/* The close button */
+.removeButton {
+    /*
+    color: white;
+    float: right;
+    */
+    font-weight: bold;
+    font-size: 2em;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-sizing: border-box;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* When moving the mouse over the close button */
+.removeButton:hover {
+    color: grey;
+}
+
+.fadeOut {
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+}
+@keyframes fadeOut {
+   0% {opacity: 1;}
+   100% {opacity: 0;} 
+} 
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    background-color: #757575;
+    display: inline-block;
+    border-radius: 30px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-size: 16px;
+	font-weight: 700;
+	color: #F9F9F9;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+
+    max-width: 10em;
+    min-height: 5em;
+    background-color: grey;
+    color: #F9F9F9;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+    font-size: 80%;
+ 	position: fixed;
+
+    margin-left: -3em;
+    z-index: 2;
+}
+.tooltip:hover {
+    cursor: help;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<title>History AutoDelete Settings</title>
+	<meta charset="UTF-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../icons/history_24.png">
+	<link rel="stylesheet" href="side-menu.css">	
+	<link rel="stylesheet" href="../global_files/normalize.css">
+	<link rel="stylesheet" href="../global_files/skeleton.css">
+	<link rel="stylesheet" href="settings.css">
+	<script type="text/javascript" src="../global_files/layout.engine.min.js"></script>
+</head>
+
+<body>
+	<div id="layout">
+		<!-- Menu toggle -->
+		<a href="#menu" id="menuLink" class="menu-link">
+			<!-- Hamburger icon -->
+			<span></span>
+		</a>
+
+		<div id="menu">
+			<div class="pure-menu">
+				<div id="tabWelcome" class="pure-menu-item"><span>Welcome</span></div>
+				<div id="tabSettings" class="pure-menu-item"><span>Cookie Settings</span></div>
+				<div id="tabWhiteList" class="pure-menu-item"><span>Cookie WhiteList</span></div>
+				<div id="tabAbout" class="pure-menu-item"><span>About</span></div>
+			</div>
+		</div>
+
+
+		<div class="container">
+
+			<div id="welcomeContent">
+				<h1>Welcome</h1>
+
+				<p>Hi there! During this session, Cookie AutoDelete has deleted <b id="sessionDeleted">0</b> cookies and in total <b id="totalDeleted">0</b> cookies. 
+					By the way, this settings page is responsive. Try resizing your browser.</p>
+
+					<h2>Release Notes</h2>
+					<div class="row">
+						<div class="six columns">
+							<span>0.5.0</span>
+							<ul>
+								<li>First Release Woo!</li>
+							</ul>
+						</div>
+
+						<div class="six columns">
+
+							
+						</div>
+					</div>
+
+				</div>
+
+				<div id="cookieSettingsContent">
+					<h1>Cookie Settings</h1>
+					<div class="row">
+						<input type="checkbox" id="activeModeSwitch">
+						<span>Enable Active Mode? Delay Before Cleaning: </span>
+						<input id="delayBeforeCleanInput" type="number" min="1">
+						<span>Minute(s)</span>
+						<div class="tooltip">?
+						  <span class="tooltiptext">History is cleared on startup and for every hour the browser is open. Does a manual cleanup when turning on for the first time.</span>
+						</div>
+
+					</div>	
+
+					<br>
+
+					<div class="row">
+						<div class="nine columns">
+							<input type="checkbox" id="statLoggingSwitch">
+							<span>Log Total Number Of Cookies Deleted</span>
+							<div class="tooltip">?
+							  <span class="tooltiptext">Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen.</span>
+							</div>
+						</div>
+						<div class="three columns">	
+							<button id="resetCounter">
+								<span>Reset Counter</span>
+							</button>
+						</div>
+						<br>
+					</div>
+
+					<div class="row">
+						<input type="checkbox" id="showRecentlyCleanedInIconSwitch">
+						<span>Show Number of Recently Deleted Cookies In Browser Icon</span>
+						<div class="tooltip">?
+						  <span class="tooltiptext">Shows how many history entries that domain has in your history. Numbers will fluctuate if you have have older history automatically deleted.</span>
+						</div>	
+					</div>
+
+					<br><br>
+					<div class="row">			
+						<button id="saveSettings" class="button-primary">
+							<span>Save</span>
+						</button>
+						<button id="cancelSettings">
+							<span>Cancel</span>
+						</button>
+
+						<div id="saveConfirm" class="alert success" style="display: none;">
+							<strong>Saved!</strong>
+						</div>
+						<div id="cancelConfirm" class="alert warning" style="display: none;"> 
+							<strong>Restored Settings!</strong>
+						</div>
+						<div id="resetCounterConfirm" class="alert success" style="display: none;">
+							<strong>Cleared Counter!</strong>
+						</div>
+					</div>					
+
+				</div>
+
+				<div id="listOfURLSContent">
+					<h1>
+						Cookie WhiteList
+					</h1>
+					
+					<input id="URLForm" class="u-full-width" type="url">
+					<br>
+
+					<button id="add">
+						<span>Add URL</span>
+					</button>		
+					<button id="clear">
+						<span>Remove All</span>
+					</button>
+					<div class="tooltip">?
+				 		 <span class="tooltiptext">Enter URLS without the "www." part, then press "Enter" or "Add URL". Alternatively go to the site and add it from the blue icon.</span>
+					</div>
+					<div id="tableContainer">
+
+					</div>
+
+					<span>Export URLS:</span><br>
+					<button id="exportURLS">
+						<span>Export URLS</span>
+					</button>
+					<div id="saveAs"></div>
+					<br><br>
+					<span>Import URLS:</span><br>
+					<label class="file-upload">
+						<input id="importURLS" type="file"/>
+						Upload File
+					</label>
+				</div>
+
+				<div id="aboutContent">
+					<h1>
+						About
+					</h1>
+					<p>Report issues and suggest features <a href="https://github.com/mrdokenny/History-AutoDelete/issues">here</a></p>
+					<p><br><br>Extension created by Kenny Do<br>
+						Frameworks Used: <a href="http://getskeleton.com/">Skeleton</a> and <a href="http://purecss.io/layouts/side-menu/#">Side Menu</a></p>
+						<p><a href="https://chrome.google.com/webstore/detail/history-autodelete/bhfakmaiadhflpjloimlagikhodjiefj">Get the Chrome version here</a><br>
+						<a href="https://addons.mozilla.org/en-US/firefox/addon/history-autodelete">Get the Firefox version here</a>
+						</p>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../global_files/browser-polyfill.js"></script>
+		<script type="text/javascript" src="ui.js"></script>		
+		<script type="text/javascript" src="settings.js"></script>	
+	</body>
+
+
+
+	</html>
