@@ -42,25 +42,33 @@ function onRemoved(cookie) {
 function cleanCookies() {
 	console.log("Cleaning");
 	let setOfTabURLS = new Set();
+	let regularExpressionList = new Array();;
 	recentlyCleaned = 0;
 	browser.tabs.query({})
 	.then(function(tabs) {
 		for(let i = 0; i < tabs.length; i++) {
 			setOfTabURLS.add(getHostname(tabs[i].url));
+			let regexr = new RegExp("([a-z0-9]+[.])*"  + getHostname(tabs[i].url));
+			regularExpressionList.push(regexr);
 		}
 		console.log(setOfTabURLS);
+		console.log(regularExpressionList);
 		return browser.cookies.getAll({});
 	})
 	.then(function(cookies) {
 		for(let i = 0; i < cookies.length; i++) {
 			let cookieDomain = cookies[i].domain;
+			let hasSubDomain = false;
 			if(cookieDomain.charAt(0) == ".") {
 				cookieDomain = cookieDomain.slice(1);
 			}
-			if(!hasHost(cookieDomain) && !setOfTabURLS.has(cookieDomain)) {
-				cookieDomain = cookies[i].secure ? "https://" + cookieDomain : "http://" + cookieDomain;
+			cookieDomain = cookies[i].secure ? "https://" + cookieDomain : "http://" + cookieDomain;
+			let cookieDomainHost = getHostname(cookieDomain);
+			if(!hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieDomainHost)) {
 				cookieDomain = cookieDomain + cookies[i].path;
-				console.log(cookieDomain);
+				console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainHost: " + cookieDomainHost);
+				// url: "http://domain.com" + cookies[i].path
+				// ([a-z0-9]+[.])*cms.csulb.edu
 				browser.cookies.remove({
 					url: cookieDomain,
 					name: cookies[i].name
@@ -214,7 +222,7 @@ onStartUp();
 
 function showRecentlyCleanedInBadge() {
 	browser.browserAction.setBadgeText({text: recentlyCleaned.toString()});
-	browser.browserAction.setBadgeBackgroundColor({color: "yellow"});
+	browser.browserAction.setBadgeBackgroundColor({color: "blue"});
 } 
 
 //Logic that controls when to disable the browser action
