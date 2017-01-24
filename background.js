@@ -51,8 +51,18 @@ function splitSubDomain(domain) {
 
 function extractMainDomain(domain) {
 	let re = new RegExp('[a-z0-9|-]+\.[a-z]+$');
-	//let t
 	return re.exec(domain)[0];
+}
+
+
+//Puts the domain in the right format for browser.cookies.clean() 
+function prepareCookieDomain(cookie) {
+	let cookieDomain = cookie.domain;
+	if(cookieDomain.charAt(0) == ".") {
+		cookieDomain = cookieDomain.slice(1);
+	}
+	cookieDomain = cookie.secure ? "https://" + cookieDomain : "http://" + cookieDomain;
+	return cookieDomain;
 }
 
 function cleanCookies() {
@@ -73,14 +83,11 @@ function cleanCookies() {
 	})
 	.then(function(cookies) {
 		for(let i = 0; i < cookies.length; i++) {
-			let cookieDomain = cookies[i].domain;
-			if(cookieDomain.charAt(0) == ".") {
-				cookieDomain = cookieDomain.slice(1);
-			}
-			cookieDomain = cookies[i].secure ? "https://" + cookieDomain : "http://" + cookieDomain;
+			let cookieDomain = prepareCookieDomain(cookies[i]);
 			let cookieDomainHost = getHostname(cookieDomain);
 			cookieDomainHost = extractMainDomain(cookieDomainHost);
 			if(!hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieDomainHost)) {
+				//Append the path to cookie
 				cookieDomain = cookieDomain + cookies[i].path;
 				console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainHost: " + cookieDomainHost);
 				// url: "http://domain.com" + cookies[i].path
@@ -92,7 +99,6 @@ function cleanCookies() {
 				recentlyCleaned++;
 			}
 		}
-		showRecentlyCleanedInBadge();
 	});
 
 }
@@ -204,8 +210,8 @@ function onStartUp() {
 			browser.storage.local.set({statLoggingSetting: true});
 		}
 
-		if(items.showRecentlyCleanedInIconSetting == null) {
-			browser.storage.local.set({showRecentlyCleanedInIconSetting: true});
+		if(items.showNumberOfCookiesInIconSetting == null) {
+			browser.storage.local.set({showNumberOfCookiesInIconSetting: true});
 		}
 
 		//Create objects based on settings
@@ -229,15 +235,21 @@ function setDefaults() {
 var cookieWhiteList;
 
 var cookieDeletedCounterTotal;
-var recentlyCleaned;
+var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
 
 onStartUp();
 
 
-function showRecentlyCleanedInBadge() {
-	browser.browserAction.setBadgeText({text: recentlyCleaned.toString()});
-	browser.browserAction.setBadgeBackgroundColor({color: "blue"});
+function showNumberOfCookiesInIcon(tabURL,tabID) {
+	browser.cookies.getAll({
+		domain: getHostname(tabURL)
+	})
+	.then(function(cookies) {
+		browser.browserAction.setBadgeText({text: cookies.length.toString(), tabId: tabID});
+		browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tabID});
+	});
+	
 } 
 
 //Logic that controls when to disable the browser action
@@ -251,13 +263,13 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 				browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
 			} else {
 				browser.browserAction.enable(tab.id);
-				//browser.browserAction.setBadgeText({text: "", tabId: tab.id});
-				// browser.storage.local.get("showRecentlyCleanedInIconSetting")
-				// .then(function(items) {
-				// 	if(items.showRecentlyCleanedInIconSetting == true) {
-				// 		showRecentlyCleanedInBadge(tab.url, tab.id);
-				// 	}	
-				// });
+				browser.browserAction.setBadgeText({text: "", tabId: tab.id});
+				browser.storage.local.get("showNumberOfCookiesInIconSetting")
+				.then(function(items) {
+					if(items.showNumberOfCookiesInIconSetting == true) {
+						showNumberOfCookiesInIcon(tab.url, tab.id);
+					} 
+				});
 			}
 		}).catch(onError);
 	}

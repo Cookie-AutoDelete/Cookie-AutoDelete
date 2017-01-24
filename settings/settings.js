@@ -65,7 +65,7 @@ function restoreSettingValues() {
         document.getElementById("delayBeforeCleanInput").value = items.delayBeforeClean;
         document.getElementById("activeModeSwitch").checked = items.activeMode;
 		document.getElementById("statLoggingSwitch").checked = items.statLoggingSetting;
-        document.getElementById("showRecentlyCleanedInIconSwitch").checked = items.showRecentlyCleanedInIconSetting;
+        document.getElementById("showNumberOfCookiesInIconSwitch").checked = items.showNumberOfCookiesInIconSetting;
 
     });
 }
@@ -77,7 +77,7 @@ function saveSettingsValues() {
 
     browser.storage.local.set({statLoggingSetting: document.getElementById("statLoggingSwitch").checked});
 
-    browser.storage.local.set({showRecentlyCleanedInIconSetting: document.getElementById("showRecentlyCleanedInIconSwitch").checked});
+    browser.storage.local.set({showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked});
 
     page.onStartUp();
 }
