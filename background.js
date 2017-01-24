@@ -251,7 +251,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 				browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
 			} else {
 				browser.browserAction.enable(tab.id);
-				browser.browserAction.setBadgeText({text: "", tabId: tab.id});
+				//browser.browserAction.setBadgeText({text: "", tabId: tab.id});
 				// browser.storage.local.get("showRecentlyCleanedInIconSetting")
 				// .then(function(items) {
 				// 	if(items.showRecentlyCleanedInIconSetting == true) {
