@@ -35,6 +35,19 @@ function createActiveModeAlarm() {
 }
 // ([a-z0-9]+[.])*example.com
 
+function splitSubDomain(domain) {
+	let relatedDomains = new Array();
+	let splited = domain.split(".");
+	relatedDomains.push(splited[splited.length - 2] + "." + splited[splited.length - 1])
+	let j = 0;
+	for(let i = splited.length - 3; i >= 0; i--) {
+		let combined = splited[i] + "." +relatedDomains[j];
+		relatedDomains.push(combined);
+		j++;
+	}
+  
+	return relatedDomains;
+}
 
 function extractMainDomain(domain) {
 	let re = new RegExp('[a-z0-9|-]+\.[a-z]+$');
