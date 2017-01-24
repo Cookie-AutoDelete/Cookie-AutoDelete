@@ -83,13 +83,19 @@ function cleanCookies() {
 	})
 	.then(function(cookies) {
 		for(let i = 0; i < cookies.length; i++) {
+			//https://domain.com or http://domain.com
 			let cookieDomain = prepareCookieDomain(cookies[i]);
+			//sub.sub.domain.com
 			let cookieDomainHost = getHostname(cookieDomain);
-			cookieDomainHost = extractMainDomain(cookieDomainHost);
-			if(!hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieDomainHost)) {
+			//domain.com
+			let cookieMainDomainHost = extractMainDomain(cookieDomainHost);
+			
+			//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
+			//while setOfTabURLS is not (sub.sub.domain.com will match to domain.com if in host url in tab)
+			if(!hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost)) {
 				//Append the path to cookie
 				cookieDomain = cookieDomain + cookies[i].path;
-				console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainHost: " + cookieDomainHost);
+				console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
 				// url: "http://domain.com" + cookies[i].path
 				browser.cookies.remove({
 					url: cookieDomain,

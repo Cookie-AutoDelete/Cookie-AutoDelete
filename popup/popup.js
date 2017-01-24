@@ -19,7 +19,7 @@ function fillPopup(tabs) {
     	return;
     }
 	hostUrl = page.getHostname(activeTab.url);
-	hostUrl = page.extractMainDomain(hostUrl);
+	//hostUrl = page.extractMainDomain(hostUrl);
 	var hostPlaceholder = document.getElementById("hostwebsite");
 
 	//Append the favicon image of the host site to the beggining of the URL
