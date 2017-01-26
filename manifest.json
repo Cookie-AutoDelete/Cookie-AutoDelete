@@ -2,6 +2,7 @@
   "background": {
     "scripts": [
 	"global_files/browser-polyfill.js",
+	"global_files/layout.engine.min.js",
 	"background.js"
 	]
   },

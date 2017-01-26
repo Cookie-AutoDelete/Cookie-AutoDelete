@@ -47,6 +47,10 @@ function fillPopup(tabs) {
 		document.getElementById("activeModeSwitch").checked = items.activeMode;
 	});
 	
+	if(page.notifyMessage != "") {
+		document.getElementById("notify").appendChild(document.createTextNode(page.notifyMessage));
+	}
+	
 }
 
 

@@ -3,10 +3,15 @@ const MINUTE = 60 * SECOND;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
 
-function onTabRemoved() {
+function onTabRemoved(tabId, removeInfo) {
 	browser.alarms.get("activeModeAlarm")
 	.then(function(alarm) {
-		if(!alarm) {
+		console.log(layoutEngine.vendor);
+		//This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
+		//in chrome, it returns an array
+		if(layoutEngine.vendor == "mozilla" && !alarm) {
+			createActiveModeAlarm();
+		} else if(alarm.name != "activeModeAlarm") {
 			createActiveModeAlarm();
 		}
 	});
@@ -107,17 +112,25 @@ function cleanCookies() {
 				recentlyCleaned++;
 			}
 		}
-		var stringOfDomains;
-		setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
-			stringOfDomains = stringOfDomains + value2 + ", ";
-			console.log(stringOfDomains);
-		}); 
-		return browser.notifications.create(cookieNotifyDone, {
-			    "type": "basic",
-			    "iconUrl": browser.extension.getURL("icons/icon_48.png"),
-			    "title": "Cookies were Deleted!",
-			    "message": "Cookies from " + stringOfDomains + " deleted"
-			});
+		if(setOfDeletedDomainCookies.size > 0) {
+			let stringOfDomains = "";
+			let commaAppendIndex = 0;
+			setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
+				stringOfDomains = stringOfDomains + value2;
+				commaAppendIndex++;
+				if(commaAppendIndex < setOfDeletedDomainCookies.size) {
+					stringOfDomains = stringOfDomains + ", ";
+				}
+				
+			}); 
+			notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+			return browser.notifications.create(cookieNotifyDone, {
+					"type": "basic",
+					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
+					"title": "Cookie AutoDelete: Cookies were Deleted!",
+					"message": notifyMessage
+				});
+		}
 	});
 
 }
@@ -253,6 +266,8 @@ function setDefaults() {
 //The set of urls
 var cookieWhiteList;
 var cookieNotifyDone = "cookieNotifyDone";
+var notifyMessage = "";
+
 var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
