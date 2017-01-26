@@ -68,6 +68,7 @@ function prepareCookieDomain(cookie) {
 function cleanCookies() {
 	console.log("Cleaning");
 	let setOfTabURLS = new Set();
+	let setOfDeletedDomainCookies = new Set();
 	recentlyCleaned = 0;
 	browser.tabs.query({})
 	.then(function(tabs) {
@@ -96,6 +97,7 @@ function cleanCookies() {
 				//Append the path to cookie
 				cookieDomain = cookieDomain + cookies[i].path;
 				console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
+				setOfDeletedDomainCookies.add(cookieDomainHost);
 				// url: "http://domain.com" + cookies[i].path
 				browser.cookies.remove({
 					url: cookieDomain,
@@ -105,6 +107,17 @@ function cleanCookies() {
 				recentlyCleaned++;
 			}
 		}
+		var stringOfDomains;
+		setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
+			stringOfDomains = stringOfDomains + value2 + ", ";
+			console.log(stringOfDomains);
+		}); 
+		return browser.notifications.create(cookieNotifyDone, {
+			    "type": "basic",
+			    "iconUrl": browser.extension.getURL("icons/icon_48.png"),
+			    "title": "Cookies were Deleted!",
+			    "message": "Cookies from " + stringOfDomains + " deleted"
+			});
 	});
 
 }
@@ -239,7 +252,7 @@ function setDefaults() {
 
 //The set of urls
 var cookieWhiteList;
-
+var cookieNotifyDone = "cookieNotifyDone";
 var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
