@@ -48,6 +48,10 @@ img {
   filter: invert(50%);
 }
 
+#notify {
+	padding: 2px;
+}
+
 @keyframes successAnimation {
   0%   { background-color: #4CAF50; }
   50%  { background-color: #4CAF50; }

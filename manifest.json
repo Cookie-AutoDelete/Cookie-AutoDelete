@@ -2,6 +2,7 @@
   "background": {
     "scripts": [
 	"global_files/browser-polyfill.js",
+	"global_files/layout.engine.min.js",
 	"background.js"
 	]
   },
@@ -9,16 +10,16 @@
   "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
   "browser_action": {
     "default_icon": {
-      "24": "icons/history_24.png",
-      "32": "icons/history_32.png",      
-      "48": "icons/history_48.png"     
+      "24": "icons/icon_24.png",
+      "32": "icons/icon_32.png",      
+      "48": "icons/icon_48.png"     
     },
     "default_title": "Cookie AutoDelete",
     "default_popup": "popup/popup.html"
   },
   "icons": {
-    "48": "icons/history_48.png",     
-    "128": "icons/history_128.png"
+    "48": "icons/icon_48.png",     
+    "128": "icons/icon_128.png"
   },
   
   "applications": {
@@ -36,7 +37,8 @@
     "<all_urls>",
     "tabs",
     "storage",
-    "alarms"
+    "alarms",
+    "notifications"
   ],
   "manifest_version": 2,
   "name": "Cookie AutoDelete",

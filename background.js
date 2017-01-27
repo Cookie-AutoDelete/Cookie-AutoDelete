@@ -3,10 +3,15 @@ const MINUTE = 60 * SECOND;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
 
-function onTabRemoved() {
+function onTabRemoved(tabId, removeInfo) {
 	browser.alarms.get("activeModeAlarm")
 	.then(function(alarm) {
-		if(!alarm) {
+		console.log(layoutEngine.vendor);
+		//This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
+		//in chrome, it returns an array
+		if(layoutEngine.vendor == "mozilla" && !alarm) {
+			createActiveModeAlarm();
+		} else if(alarm.name != "activeModeAlarm") {
 			createActiveModeAlarm();
 		}
 	});
@@ -68,6 +73,7 @@ function prepareCookieDomain(cookie) {
 function cleanCookies() {
 	console.log("Cleaning");
 	let setOfTabURLS = new Set();
+	let setOfDeletedDomainCookies = new Set();
 	recentlyCleaned = 0;
 	browser.tabs.query({})
 	.then(function(tabs) {
@@ -96,6 +102,7 @@ function cleanCookies() {
 				//Append the path to cookie
 				cookieDomain = cookieDomain + cookies[i].path;
 				console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
+				setOfDeletedDomainCookies.add(cookieDomainHost);
 				// url: "http://domain.com" + cookies[i].path
 				browser.cookies.remove({
 					url: cookieDomain,
@@ -104,6 +111,25 @@ function cleanCookies() {
 				incrementCounter();
 				recentlyCleaned++;
 			}
+		}
+		if(setOfDeletedDomainCookies.size > 0) {
+			let stringOfDomains = "";
+			let commaAppendIndex = 0;
+			setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
+				stringOfDomains = stringOfDomains + value2;
+				commaAppendIndex++;
+				if(commaAppendIndex < setOfDeletedDomainCookies.size) {
+					stringOfDomains = stringOfDomains + ", ";
+				}
+				
+			}); 
+			notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+			return browser.notifications.create(cookieNotifyDone, {
+					"type": "basic",
+					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
+					"title": "Cookie AutoDelete: Cookies were Deleted!",
+					"message": notifyMessage
+				});
 		}
 	});
 
@@ -239,6 +265,8 @@ function setDefaults() {
 
 //The set of urls
 var cookieWhiteList;
+var cookieNotifyDone = "cookieNotifyDone";
+var notifyMessage = "";
 
 var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
