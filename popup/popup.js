@@ -74,7 +74,7 @@ document.getElementById("settings").addEventListener("click", function() {
 //Clear all history for a domain
 document.getElementById('cookieCleanup').addEventListener("click", function() {
 
-	page.cleanCookies();
+	page.cleanCookiesOperation();
 	animateSuccess(this);
 	
 });

@@ -70,7 +70,37 @@ function prepareCookieDomain(cookie) {
 	return cookieDomain;
 }
 
-function cleanCookies() {
+function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
+	for(let i = 0; i < cookies.length; i++) {
+		//https://domain.com or http://domain.com
+		let cookieDomain = prepareCookieDomain(cookies[i]);
+		//sub.sub.domain.com
+		let cookieDomainHost = getHostname(cookieDomain);
+		//domain.com
+		let cookieMainDomainHost = extractMainDomain(cookieDomainHost);
+		
+		//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
+		//while setOfTabURLS is not (sub.sub.domain.com will match to domain.com if in host url in tab)
+		if(!hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost)) {
+			//Append the path to cookie
+			cookieDomain = cookieDomain + cookies[i].path;
+			//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
+			console.log("CookieDomain: " + cookieDomain + " ID: " + cookies[i].storeId);
+			setOfDeletedDomainCookies.add(cookieDomainHost);
+			// url: "http://domain.com" + cookies[i].path
+			browser.cookies.remove({
+				url: cookieDomain,
+				name: cookies[i].name,
+				storeId: cookies[i].storeId
+			});
+			incrementCounter();
+			recentlyCleaned++;
+		}
+	}
+	
+}
+
+function cleanCookiesOperation() {
 	console.log("Cleaning");
 	let setOfTabURLS = new Set();
 	let setOfDeletedDomainCookies = new Set();
@@ -85,56 +115,49 @@ function cleanCookies() {
 			}
 		}
 		console.log(setOfTabURLS);
-		return browser.cookies.getAll({});
-	})
-	.then(function(cookies) {
-		for(let i = 0; i < cookies.length; i++) {
-			//https://domain.com or http://domain.com
-			let cookieDomain = prepareCookieDomain(cookies[i]);
-			//sub.sub.domain.com
-			let cookieDomainHost = getHostname(cookieDomain);
-			//domain.com
-			let cookieMainDomainHost = extractMainDomain(cookieDomainHost);
-			
-			//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
-			//while setOfTabURLS is not (sub.sub.domain.com will match to domain.com if in host url in tab)
-			if(!hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost)) {
-				//Append the path to cookie
-				cookieDomain = cookieDomain + cookies[i].path;
-				console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
-				setOfDeletedDomainCookies.add(cookieDomainHost);
-				// url: "http://domain.com" + cookies[i].path
-				browser.cookies.remove({
-					url: cookieDomain,
-					name: cookies[i].name
+		if(contextualIdentitiesEnabled) {
+			browser.contextualIdentities.query({})
+			.then(function(containers) {
+				containers.forEach(function(currentValue, index, array) {
+					browser.cookies.getAll({storeId: currentValue.cookieStoreId})
+					.then(function(cookies) {
+						cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies);
+					});
 				});
-				incrementCounter();
-				recentlyCleaned++;
-			}
-		}
-		if(setOfDeletedDomainCookies.size > 0) {
-			let stringOfDomains = "";
-			let commaAppendIndex = 0;
-			setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
-				stringOfDomains = stringOfDomains + value2;
-				commaAppendIndex++;
-				if(commaAppendIndex < setOfDeletedDomainCookies.size) {
-					stringOfDomains = stringOfDomains + ", ";
-				}
 				
-			}); 
-			notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
-			return browser.notifications.create(cookieNotifyDone, {
-					"type": "basic",
-					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
-					"title": "Cookie AutoDelete: Cookies were Deleted!",
-					"message": notifyMessage
-				});
-		}
-	});
+			});
 
+		} 
+		browser.cookies.getAll({})
+		.then(function(cookies) {
+			cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies);
+			notifyCookieCleanUp(setOfDeletedDomainCookies);
+		});
+	});
 }
 
+function notifyCookieCleanUp(setOfDeletedDomainCookies) {
+	if(setOfDeletedDomainCookies.size > 0) {
+		let stringOfDomains = "";
+		let commaAppendIndex = 0;
+		setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
+			stringOfDomains = stringOfDomains + value2;
+			commaAppendIndex++;
+			if(commaAppendIndex < setOfDeletedDomainCookies.size) {
+				stringOfDomains = stringOfDomains + ", ";
+			}
+			
+		}); 
+		let notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+		return browser.notifications.create(cookieNotifyDone, {
+				"type": "basic",
+				"iconUrl": browser.extension.getURL("icons/icon_48.png"),
+				"title": "Cookie AutoDelete: Cookies were Deleted!",
+				"message": notifyMessage
+			});
+	}
+
+}
 
 //Logs the error
 function onError(error) {
@@ -268,6 +291,7 @@ var cookieWhiteList;
 var cookieNotifyDone = "cookieNotifyDone";
 var notifyMessage = "";
 
+var contextualIdentitiesEnabled = true;
 var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
@@ -315,7 +339,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 browser.alarms.onAlarm.addListener(function (alarmInfo) {
 	console.log(alarmInfo.name);
 	if(alarmInfo.name === "activeModeAlarm") {
-		cleanCookies();
+		cleanCookiesOperation();
 		browser.alarms.clear(alarmInfo.name);
 
 	}
