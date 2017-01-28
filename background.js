@@ -6,7 +6,7 @@ const DAY = 24 * HOUR;
 function onTabRemoved(tabId, removeInfo) {
 	browser.alarms.get("activeModeAlarm")
 	.then(function(alarm) {
-		console.log(layoutEngine.vendor);
+		//console.log(layoutEngine.vendor);
 		//This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
 		//in chrome, it returns an array
 		if(layoutEngine.vendor === "mozilla" && !alarm) {
@@ -86,7 +86,12 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 			cookieDomain = cookieDomain + cookies[i].path;
 			//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
 			console.log("CookieDomain: " + cookieDomain + " ID: " + cookies[i].storeId);
-			setOfDeletedDomainCookies.add(cookieDomainHost);
+			if(contextualIdentitiesEnabled) {
+				setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
+			} else {
+				setOfDeletedDomainCookies.add(cookieDomainHost);
+			}
+
 			// url: "http://domain.com" + cookies[i].path
 			browser.cookies.remove({
 				url: cookieDomain,
@@ -97,7 +102,7 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 			recentlyCleaned++;
 		}
 	}
-	
+	return Promise.resolve(setOfDeletedDomainCookies);
 }
 
 function cleanCookiesOperation() {
@@ -115,28 +120,41 @@ function cleanCookiesOperation() {
 			}
 		}
 		console.log(setOfTabURLS);
+
 		if(contextualIdentitiesEnabled) {
+			let promiseContainers = [];
 			browser.contextualIdentities.query({})
 			.then(function(containers) {
 				containers.forEach(function(currentValue, index, array) {
 					browser.cookies.getAll({storeId: currentValue.cookieStoreId})
 					.then(function(cookies) {
-						cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies);
+						promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
 					});
 				});
-				
+
+				return browser.cookies.getAll({});
+			})
+			.then(function(cookies) {
+				promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
+				Promise.all(promiseContainers)
+				.then(notifyCookieCleanUp(setOfDeletedDomainCookies));
 			});
 
-		} 
-		browser.cookies.getAll({})
-		.then(function(cookies) {
-			cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies);
-			notifyCookieCleanUp(setOfDeletedDomainCookies);
-		});
+		} else {
+			browser.cookies.getAll({})
+			.then(function(cookies) {
+				console.log("1");
+				cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies)
+				.then(notifyCookieCleanUp(setOfDeletedDomainCookies));
+			});
+		}
+		
+		
 	});
 }
 
 function notifyCookieCleanUp(setOfDeletedDomainCookies) {
+	console.log("2");
 	if(setOfDeletedDomainCookies.size > 0) {
 		let stringOfDomains = "";
 		let commaAppendIndex = 0;
@@ -148,7 +166,7 @@ function notifyCookieCleanUp(setOfDeletedDomainCookies) {
 			}
 			
 		}); 
-		let notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+		notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
 		return browser.notifications.create(cookieNotifyDone, {
 				"type": "basic",
 				"iconUrl": browser.extension.getURL("icons/icon_48.png"),
@@ -291,7 +309,7 @@ var cookieWhiteList;
 var cookieNotifyDone = "cookieNotifyDone";
 var notifyMessage = "";
 
-var contextualIdentitiesEnabled = true;
+var contextualIdentitiesEnabled = false;
 var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
