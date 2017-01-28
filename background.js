@@ -9,9 +9,9 @@ function onTabRemoved(tabId, removeInfo) {
 		console.log(layoutEngine.vendor);
 		//This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
 		//in chrome, it returns an array
-		if(layoutEngine.vendor == "mozilla" && !alarm) {
+		if(layoutEngine.vendor === "mozilla" && !alarm) {
 			createActiveModeAlarm();
-		} else if(alarm.name != "activeModeAlarm") {
+		} else if(alarm.name !== "activeModeAlarm") {
 			createActiveModeAlarm();
 		}
 	});
@@ -63,7 +63,7 @@ function extractMainDomain(domain) {
 //Puts the domain in the right format for browser.cookies.clean() 
 function prepareCookieDomain(cookie) {
 	let cookieDomain = cookie.domain;
-	if(cookieDomain.charAt(0) == ".") {
+	if(cookieDomain.charAt(0) === ".") {
 		cookieDomain = cookieDomain.slice(1);
 	}
 	cookieDomain = cookie.secure ? "https://" + cookieDomain : "http://" + cookieDomain;
@@ -151,7 +151,7 @@ function getHostname(url) {
 }
 
 function isAWebpage(URL) {
-	if(URL.match(/^http:/) || URL.match(/^https:/)) {
+	if(URL.match(/^http:/) || URL.match(/^https:/) || URL.match(/^moz-extension:/)) {
 		return true;
 	}
 	return false;
@@ -196,7 +196,7 @@ function clearURL() {
 function incrementCounter() {
 	browser.storage.local.get("statLoggingSetting")
 	.then(function(items) {
-		if(items.statLoggingSetting == true) {
+		if(items.statLoggingSetting === true) {
 			cookieDeletedCounterTotal++;
 			cookieDeletedCounter++;
 			browser.alarms.create("storeCounterToLocalAlarm", {
@@ -224,30 +224,30 @@ function onStartUp() {
 	.then(function(items) {
 		cookieWhiteList = new Set(items.WhiteListURLS);
 		//Checks to see if these settings are in storage, if not create and set the default
-		if(items.delayBeforeClean == null) {
+		if(items.delayBeforeClean === null) {
 			browser.storage.local.set({delayBeforeClean: 1});
 		} 	
 		
-		if(items.cookieDeletedCounterTotal == null) {
+		if(items.cookieDeletedCounterTotal === null) {
 			resetCounter();
 		} else {
 			cookieDeletedCounterTotal = items.cookieDeletedCounterTotal;
 		}		
 		
-		if(items.activeMode == null) {
+		if(items.activeMode === null) {
 			browser.storage.local.set({activeMode: false});
 		} 	
 		
-		if(items.statLoggingSetting == null) {
+		if(items.statLoggingSetting === null) {
 			browser.storage.local.set({statLoggingSetting: true});
 		}
 
-		if(items.showNumberOfCookiesInIconSetting == null) {
+		if(items.showNumberOfCookiesInIconSetting === null) {
 			browser.storage.local.set({showNumberOfCookiesInIconSetting: true});
 		}
 
 		//Create objects based on settings
-		if(items.activeMode == true) {
+		if(items.activeMode === true) {
 			enableActiveMode();
 		} else {
 			disableActiveMode();
@@ -288,7 +288,7 @@ function showNumberOfCookiesInIcon(tabURL,tabID) {
 
 //Logic that controls when to disable the browser action
 browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	if (tab.status == "complete") {
+	if (tab.status === "complete") {
 		browser.windows.getCurrent()
 		.then(function(windowInfo) {
 			if (!isAWebpage(tab.url) || windowInfo.incognito) {
@@ -300,7 +300,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 				browser.browserAction.setBadgeText({text: "", tabId: tab.id});
 				browser.storage.local.get("showNumberOfCookiesInIconSetting")
 				.then(function(items) {
-					if(items.showNumberOfCookiesInIconSetting == true) {
+					if(items.showNumberOfCookiesInIconSetting === true) {
 						showNumberOfCookiesInIcon(tab.url, tab.id);
 					} 
 				});
@@ -314,12 +314,12 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 //Alarm event handler
 browser.alarms.onAlarm.addListener(function (alarmInfo) {
 	console.log(alarmInfo.name);
-	if(alarmInfo.name == "activeModeAlarm") {
+	if(alarmInfo.name === "activeModeAlarm") {
 		cleanCookies();
 		browser.alarms.clear(alarmInfo.name);
 
 	}
-	if(alarmInfo.name == "storeCounterToLocalAlarm") {
+	if(alarmInfo.name === "storeCounterToLocalAlarm") {
 		storeCounterToLocal();
 	}
 

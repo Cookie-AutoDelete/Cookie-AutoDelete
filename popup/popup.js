@@ -14,6 +14,24 @@ function animateFailure(element) {
 
 //Fills the popup page
 function fillPopup(tabs) {
+
+	//Sets the checkbox depending on the if it exists in the set
+	if(page.hasHost(hostUrl)) {
+		document.getElementById("switchToWhiteList").checked = true; 
+	} else {
+		document.getElementById("switchToWhiteList").checked = false; 
+	}
+
+	browser.storage.local.get("activeMode")
+	.then(function(items) {
+		document.getElementById("activeModeSwitch").checked = items.activeMode;
+	});
+	
+	if(page.notifyMessage !== "") {
+		document.getElementById("notify").appendChild(document.createTextNode(page.notifyMessage));
+	}
+
+	//Fill the host site placeholder if it exists
     var activeTab = tabs[0];
     if(!page.isAWebpage(activeTab.url)) {
     	return;
@@ -35,21 +53,7 @@ function fillPopup(tabs) {
 	//Sets the Host site placeholder
 	hostPlaceholder.appendChild(document.createTextNode(hostUrl));
 
-	//Sets the checkbox depending on the if it exists in the set
-	if(page.hasHost(hostUrl)) {
-		document.getElementById("switchToWhiteList").checked = true; 
-	} else {
-		document.getElementById("switchToWhiteList").checked = false; 
-	}
 
-	browser.storage.local.get("activeMode")
-	.then(function(items) {
-		document.getElementById("activeModeSwitch").checked = items.activeMode;
-	});
-	
-	if(page.notifyMessage != "") {
-		document.getElementById("notify").appendChild(document.createTextNode(page.notifyMessage));
-	}
 	
 }
 

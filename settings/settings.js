@@ -23,7 +23,7 @@ function sideBarSwitch(event) {
     var element = event.currentTarget;
     if(sideBarTabToContentMap.has(element)) {
         sideBarTabToContentMap.forEach(function(value, key, map) {         
-            if(element == key) {
+            if(element === key) {
                 key.classList.add("pure-menu-selected");
                 value.style.display = 'block';
             } else {
@@ -145,7 +145,7 @@ function downloadTextFile(arr) {
 
     //Firefox just opens the text rather than downloading it. In Chrome the "else" block of code works.
     //So this is a work around.
-    if(layoutEngine.vendor == "mozilla") {
+    if(layoutEngine.vendor === "mozilla") {
         hiddenElement.appendChild(document.createTextNode("Right click to save as"));
         if(document.getElementById("saveAs").hasChildNodes()) {
             document.getElementById("saveAs").firstChild.replaceWith(hiddenElement);

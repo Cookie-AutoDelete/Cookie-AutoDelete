@@ -6,7 +6,7 @@
 	"background.js"
 	]
   },
-  "description": "Control your Cookies!",
+  "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want.",
   "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
   "browser_action": {
     "default_icon": {
