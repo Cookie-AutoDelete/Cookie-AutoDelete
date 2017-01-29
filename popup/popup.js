@@ -15,13 +15,6 @@ function animateFailure(element) {
 //Fills the popup page
 function fillPopup(tabs) {
 
-	//Sets the checkbox depending on the if it exists in the set
-	if(page.hasHost(hostUrl)) {
-		document.getElementById("switchToWhiteList").checked = true; 
-	} else {
-		document.getElementById("switchToWhiteList").checked = false; 
-	}
-
 	browser.storage.local.get("activeMode")
 	.then(function(items) {
 		document.getElementById("activeModeSwitch").checked = items.activeMode;
@@ -37,6 +30,15 @@ function fillPopup(tabs) {
     	return;
     }
 	hostUrl = page.getHostname(activeTab.url);
+
+	//Sets the checkbox depending on the if it exists in the set
+	if(page.contextualIdentitiesEnabled) {
+		cookieStoreId = tabs[0].cookieStoreId;
+		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl, cookieStoreId); 
+	} else {
+		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl); 
+	}
+
 	//hostUrl = page.extractMainDomain(hostUrl);
 	var hostPlaceholder = document.getElementById("hostwebsite");
 
@@ -52,6 +54,9 @@ function fillPopup(tabs) {
 
 	//Sets the Host site placeholder
 	hostPlaceholder.appendChild(document.createTextNode(hostUrl));
+	if(page.contextualIdentitiesEnabled) {
+		hostPlaceholder.appendChild(document.createTextNode("\n" + cookieStoreId));
+	}
 
 
 	
@@ -60,6 +65,7 @@ function fillPopup(tabs) {
 
 //Initialize variables
 var hostUrl;
+var cookieStoreId;
 var page = browser.extension.getBackgroundPage();
 browser.tabs.query({currentWindow: true, active: true})
 .then(fillPopup);
@@ -113,10 +119,18 @@ document.getElementById("activeModeSwitch").addEventListener("click", function()
 
 //Checkbox Event Handling
 document.getElementById("switchToWhiteList").addEventListener("click", function() {
-	if(document.getElementById("switchToWhiteList").checked) {
-		page.addURL(hostUrl);
+	if(page.contextualIdentitiesEnabled) {
+		if(document.getElementById("switchToWhiteList").checked) {
+			page.addURL(hostUrl, cookieStoreId);
+		} else {
+			page.removeURL(hostUrl, cookieStoreId);
+		}
 	} else {
-		page.removeURL(hostUrl);
-		
+		if(document.getElementById("switchToWhiteList").checked) {
+			page.addURL(hostUrl);
+		} else {
+			page.removeURL(hostUrl);
+		}
 	}
+	
 });

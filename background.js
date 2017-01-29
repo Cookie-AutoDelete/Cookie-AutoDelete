@@ -81,7 +81,7 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 		
 		//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
 		//while setOfTabURLS is not (sub.sub.domain.com will match to domain.com if in host url in tab)
-		if(!hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost)) {
+		if(!hasHost(cookieDomainHost, cookies[i].storeId) && !setOfTabURLS.has(cookieMainDomainHost)) {
 			//Append the path to cookie
 			cookieDomain = cookieDomain + cookies[i].path;
 			//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
@@ -199,36 +199,46 @@ function isAWebpage(URL) {
 }
 
 //See if the set has the url
-function hasHost(url) {
-	return cookieWhiteList.has(url);
+function hasHost(url, cookieStoreId = defaultWhiteList) {
+	if(!cookieWhiteList.has(cookieStoreId)) {
+		cookieWhiteList.set(cookieStoreId, new Set());
+		return false;
+	}
+	return cookieWhiteList.get(cookieStoreId).has(url);
 }
 
 //Stores the set in the local storage of the browser as an array
 function storeLocal() {
-	var urlArray = Array.from(cookieWhiteList);
-	browser.storage.local.set({WhiteListURLS: urlArray});
+	browser.storage.local.set({WhiteListURLS: cookieWhiteList});
+	browser.storage.local.get("WhiteListURLS")
+	.then(function(items) {
+		console.log(cookieWhiteList);
+		console.log(items.WhiteListURLS);
+	});
 }
 
 //Add the url to the set
-function addURL(url) {
-	if(!hasHost(url)) {
-		cookieWhiteList.add(url);
-		storeLocal();
-	} else {
-		//console.log("Already have " + url);
+function addURL(url, cookieStoreId = defaultWhiteList) {
+	if(!cookieWhiteList.has(cookieStoreId)) {
+		cookieWhiteList.set(cookieStoreId, new Set());
 	}
-
+	cookieWhiteList.get(cookieStoreId).add(url);
+	storeLocal();
 }
 
 //Remove the url from the set
-function removeURL(url) {
-	cookieWhiteList.delete(url);
+function removeURL(url, cookieStoreId = defaultWhiteList) {
+	if(!cookieWhiteList.has(cookieStoreId)) {
+		cookieWhiteList.set(cookieStoreId, new Set());
+		return;
+	}
+	cookieWhiteList.get(cookieStoreId).delete(url);
 	storeLocal();
 }
 
 //Clears the set
-function clearURL() {
-	cookieWhiteList.clear();
+function clearURL(cookieStoreId = defaultWhiteList) {
+	cookieWhiteList.get(cookieStoreId).clear();
 	storeLocal();
 }
 
@@ -263,7 +273,13 @@ function storeCounterToLocal() {
 function onStartUp() {
 	browser.storage.local.get()
 	.then(function(items) {
-		cookieWhiteList = new Set(items.WhiteListURLS);
+		if(items.WhiteListURLS === null) {
+			cookieWhiteList = items.WhiteListURLS;
+		} else {
+			console.log("new map");
+			cookieWhiteList = new Map();
+		}
+
 		//Checks to see if these settings are in storage, if not create and set the default
 		if(items.delayBeforeClean === null) {
 			browser.storage.local.set({delayBeforeClean: 1});
@@ -309,12 +325,14 @@ var cookieWhiteList;
 var cookieNotifyDone = "cookieNotifyDone";
 var notifyMessage = "";
 
-var contextualIdentitiesEnabled = false;
+var contextualIdentitiesEnabled = true;
+const defaultWhiteList = "defaultWhiteList";
 var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
 
-onStartUp();
+setDefaults();
+//onStartUp();
 
 
 function showNumberOfCookiesInIcon(tabURL,tabID) {
