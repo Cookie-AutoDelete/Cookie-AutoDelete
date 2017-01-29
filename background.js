@@ -208,12 +208,14 @@ function hasHost(url, cookieStoreId = defaultWhiteList) {
 }
 
 //Stores the set in the local storage of the browser as an array
-function storeLocal() {
-	browser.storage.local.set({WhiteListURLS: cookieWhiteList});
-	browser.storage.local.get("WhiteListURLS")
+function storeLocal(cookieStoreId = defaultWhiteList) {
+	browser.storage.local.set({
+		[cookieStoreId]: Array.from(cookieWhiteList.get(cookieStoreId))
+	});
+	browser.storage.local.get(cookieStoreId)
 	.then(function(items) {
-		console.log(cookieWhiteList);
-		console.log(items.WhiteListURLS);
+		
+		console.log(items[cookieStoreId]);
 	});
 }
 
@@ -223,7 +225,7 @@ function addURL(url, cookieStoreId = defaultWhiteList) {
 		cookieWhiteList.set(cookieStoreId, new Set());
 	}
 	cookieWhiteList.get(cookieStoreId).add(url);
-	storeLocal();
+	storeLocal(cookieStoreId);
 }
 
 //Remove the url from the set
@@ -233,13 +235,13 @@ function removeURL(url, cookieStoreId = defaultWhiteList) {
 		return;
 	}
 	cookieWhiteList.get(cookieStoreId).delete(url);
-	storeLocal();
+	storeLocal(cookieStoreId);
 }
 
 //Clears the set
 function clearURL(cookieStoreId = defaultWhiteList) {
 	cookieWhiteList.get(cookieStoreId).clear();
-	storeLocal();
+	storeLocal(cookieStoreId);
 }
 
 
@@ -264,7 +266,7 @@ function resetCounter() {
 	cookieDeletedCounter = 0;
 }
 
-//Stores the total history entries deleted to local
+//Stores the total cookie entries deleted to local
 function storeCounterToLocal() {
 	browser.storage.local.set({cookieDeletedCounterTotal: cookieDeletedCounterTotal});
 }
@@ -273,13 +275,36 @@ function storeCounterToLocal() {
 function onStartUp() {
 	browser.storage.local.get()
 	.then(function(items) {
-		if(items.WhiteListURLS === null) {
-			cookieWhiteList = items.WhiteListURLS;
-		} else {
-			console.log("new map");
-			cookieWhiteList = new Map();
-		}
+		console.log(items);
+		cookieWhiteList = new Map();
 
+		if(contextualIdentitiesEnabled) {
+			browser.contextualIdentities.query({})
+			.then(function(containers) {
+				containers.forEach(function(currentValue, index, array) {
+					if(items[currentValue.cookieStoreId] !== null) {
+						cookieWhiteList.set(currentValue.cookieStoreId, new Set(items[currentValue.cookieStoreId]));
+					} else {
+						cookieWhiteList.set(currentValue.cookieStoreId, new Set());
+					}
+				});
+				let firefoxDefault = "firefox-default";
+				if(firefoxDefault !== null) {
+					cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
+				} else {
+					cookieWhiteList.set(firefoxDefault, new Set());
+				}
+			});
+		} else {
+		
+			if(items[defaultWhiteList] !== null) {
+				cookieWhiteList.set(defaultWhiteList, new Set(items[defaultWhiteList]));
+			} else {
+				cookieWhiteList.set(defaultWhiteList, new Set());
+			}
+
+		}
+		//console.log(cookieWhiteList);
 		//Checks to see if these settings are in storage, if not create and set the default
 		if(items.delayBeforeClean === null) {
 			browser.storage.local.set({delayBeforeClean: 1});
@@ -331,8 +356,8 @@ var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
 
-setDefaults();
-//onStartUp();
+//setDefaults();
+onStartUp();
 
 
 function showNumberOfCookiesInIcon(tabURL,tabID) {
