@@ -160,39 +160,91 @@ function downloadTextFile(arr) {
 
 }  
 
+function generateTableFromArray(array) {
+    var arrayLength = array.length;
+    var theTable = document.createElement('table');
 
+    for (var i = 0, tr, td; i < arrayLength; i++) {
+        tr = document.createElement('tr');
+        td = document.createElement('td');
+        var removeButton = document.createElement("span");
+        removeButton.classList.add("removeButton");
+        removeButton.addEventListener("click", clickRemoved);
+        removeButton.innerHTML = "&times";
+        td.appendChild(removeButton);
+        td.appendChild(document.createTextNode(array[i]));
+        tr.appendChild(td);
+        theTable.appendChild(tr);
+    }
+    return theTable;
+}
+function openTab(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 //Generate the url table
 function generateTableOfURLS() {
     var tableContainerNode = document.getElementById('tableContainer');
+    console.log(page.cookieWhiteList);
+    if(page.contextualIdentitiesEnabled) {
+        let theTables = document.createElement("div");
+        let tabNav = document.createElement("ul");
+        tabNav.classList.add("tab");
+            page.cookieWhiteList.forEach(function(value, key, map) {
+                let tabContent = generateTableFromArray(Array.from(value));
+                tabContent.classList.add("tabcontent");
+                tabContent.id = key;
+                theTables.appendChild(tabContent);
 
-    browser.storage.local.get("WhiteListURLS")
-	.then(function (result) {
-		if(!result.WhiteListURLS) {
-			return;
-		}
-        var array = result.WhiteListURLS;
-        var arrayLength = array.length;
-        var theTable = document.createElement('table');
+                let tab = document.createElement("li");
+                let aTag = document.createElement("a");
+                aTag.textContent = key;
+                aTag.classList.add("tablinks");
+                aTag.addEventListener("click", function(event) {
+                    openTab(event, key);
+                });
+                tab.appendChild(aTag);
+                tabNav.appendChild(tab);
 
-        for (var i = 0, tr, td; i < arrayLength; i++) {
-            tr = document.createElement('tr');
-            td = document.createElement('td');
-            var removeButton = document.createElement("span");
-            removeButton.classList.add("removeButton");
-            removeButton.addEventListener("click", clickRemoved);
-            removeButton.innerHTML = "&times";
-            td.appendChild(removeButton);
-            td.appendChild(document.createTextNode(array[i]));
-            tr.appendChild(td);
-            theTable.appendChild(tr);
+            });
+
+        tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
+
+        if(document.getElementById('tableContainer').hasChildNodes()) {
+            document.getElementById('tableContainer').firstChild.replaceWith(theTables);
+        } else {
+            document.getElementById('tableContainer').appendChild(theTables);            
         }
-		if(document.getElementById('tableContainer').hasChildNodes()) {
-			document.getElementById('tableContainer').firstChild.replaceWith(theTable);
-		} else {
-			document.getElementById('tableContainer').appendChild(theTable);			
-		}
+    } else {
+        let theTable = generateTableFromArray(page.returnList());
+        if(document.getElementById('tableContainer').hasChildNodes()) {
+            document.getElementById('tableContainer').firstChild.replaceWith(theTable);
+        } else {
+            document.getElementById('tableContainer').appendChild(theTable);            
+        }
+        
+    }
+    
+       
+		
 
-    });
+
 }
 
 generateTableOfURLS();

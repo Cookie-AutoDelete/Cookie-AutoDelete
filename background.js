@@ -192,7 +192,7 @@ function getHostname(url) {
 }
 
 function isAWebpage(URL) {
-	if(URL.match(/^http:/) || URL.match(/^https:/) || URL.match(/^moz-extension:/)) {
+	if(URL.match(/^http:/) || URL.match(/^https:/)) {
 		return true;
 	}
 	return false;
@@ -205,6 +205,13 @@ function hasHost(url, cookieStoreId = defaultWhiteList) {
 		return false;
 	}
 	return cookieWhiteList.get(cookieStoreId).has(url);
+}
+
+function returnList(cookieStoreId = defaultWhiteList) {
+	if(!cookieWhiteList.has(cookieStoreId)) {
+		cookieWhiteList.set(cookieStoreId, new Set());
+	}
+	return Array.from(cookieWhiteList.get(cookieStoreId));
 }
 
 //Stores the set in the local storage of the browser as an array
@@ -282,14 +289,14 @@ function onStartUp() {
 			browser.contextualIdentities.query({})
 			.then(function(containers) {
 				containers.forEach(function(currentValue, index, array) {
-					if(items[currentValue.cookieStoreId] !== null) {
+					if(items[currentValue.cookieStoreId] !== undefined) {
 						cookieWhiteList.set(currentValue.cookieStoreId, new Set(items[currentValue.cookieStoreId]));
 					} else {
 						cookieWhiteList.set(currentValue.cookieStoreId, new Set());
 					}
 				});
 				let firefoxDefault = "firefox-default";
-				if(firefoxDefault !== null) {
+				if(firefoxDefault !== undefined) {
 					cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
 				} else {
 					cookieWhiteList.set(firefoxDefault, new Set());
@@ -297,34 +304,34 @@ function onStartUp() {
 			});
 		} else {
 		
-			if(items[defaultWhiteList] !== null) {
+			if(items[defaultWhiteList] !== undefined) {
 				cookieWhiteList.set(defaultWhiteList, new Set(items[defaultWhiteList]));
 			} else {
 				cookieWhiteList.set(defaultWhiteList, new Set());
 			}
 
 		}
-		//console.log(cookieWhiteList);
+		//console.log();
 		//Checks to see if these settings are in storage, if not create and set the default
-		if(items.delayBeforeClean === null) {
+		if(items.delayBeforeClean === undefined) {
 			browser.storage.local.set({delayBeforeClean: 1});
 		} 	
 		
-		if(items.cookieDeletedCounterTotal === null) {
+		if(items.cookieDeletedCounterTotal === undefined) {
 			resetCounter();
 		} else {
 			cookieDeletedCounterTotal = items.cookieDeletedCounterTotal;
 		}		
 		
-		if(items.activeMode === null) {
+		if(items.activeMode === undefined) {
 			browser.storage.local.set({activeMode: false});
 		} 	
 		
-		if(items.statLoggingSetting === null) {
+		if(items.statLoggingSetting === undefined) {
 			browser.storage.local.set({statLoggingSetting: true});
 		}
 
-		if(items.showNumberOfCookiesInIconSetting === null) {
+		if(items.showNumberOfCookiesInIconSetting === undefined) {
 			browser.storage.local.set({showNumberOfCookiesInIconSetting: true});
 		}
 
