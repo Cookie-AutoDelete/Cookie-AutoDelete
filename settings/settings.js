@@ -100,7 +100,14 @@ document.getElementById("resetCounter").addEventListener("click", function() {
     toggleAlert(document.getElementById("resetCounterConfirm"));
 });
 
-
+document.getElementById("defaultSettings").addEventListener("click", function() {
+    page.setDefaults()
+    setTimeout(function() {
+        restoreSettingValues();
+        generateTableOfURLS();
+        toggleAlert(document.getElementById("defaultConfirm"));
+    }, 500);
+});
 /*
     Cookie WhiteList Logic
 */
@@ -112,9 +119,20 @@ function clickRemoved(event) {
         URL = URL.slice(1);
         URL = URL.trim();
         //console.log(URL);
-        page.removeURL(URL);
+        if(page.contextualIdentitiesEnabled) {
+            page.removeURL(URL, getActiveTabName());
+        } else {
+            page.removeURL(URL);
+        }
 		generateTableOfURLS();
     }
+}
+
+function getActiveTabName() {
+    if(document.getElementsByClassName("active").length === 0) {
+        return "";
+    }
+    return document.getElementsByClassName("active")[0].textContent;
 }
 
 //Add URL by keyboard input
@@ -122,7 +140,12 @@ function addURLFromInput() {
     var input = document.getElementById("URLForm").value;
     if(input) {
         var URL = "http://www." + input;
-        page.addURL(page.getHostname(URL));
+        if(page.contextualIdentitiesEnabled) {
+            console.log();
+            page.addURL(page.getHostname(URL), getActiveTabName());
+        } else {
+            page.addURL(page.getHostname(URL));
+        }
         document.getElementById("URLForm").value = "";
         document.getElementById("URLForm").focus();  
         generateTableOfURLS();   
@@ -178,7 +201,7 @@ function generateTableFromArray(array) {
     }
     return theTable;
 }
-function openTab(evt, cityName) {
+function openTab(evt, tabContent) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -191,46 +214,64 @@ function openTab(evt, cityName) {
     // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].classList.remove("active");
     }
 
     // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    document.getElementById(tabContent).style.display = "block";
+    evt.currentTarget.classList.add("active");
 }
+
+function generateTabNav() {
+    let tableContainerNode = document.getElementById("tableContainer");
+    let tabNav = document.createElement("ul");
+
+    tabNav.id = "containerTabs";
+    tabNav.classList.add("tab");
+        page.cookieWhiteList.forEach(function(value, key, map) {
+        //Creates the tabbed navigation above the table
+        let tab = document.createElement("li");
+        let aTag = document.createElement("a");
+        aTag.textContent = key;
+        aTag.classList.add("tablinks");
+        aTag.addEventListener("click", function(event) {
+            openTab(event, key);
+        });
+        tab.appendChild(aTag);
+        tabNav.appendChild(tab);
+
+
+    });
+
+    tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
+    
+}
+
 //Generate the url table
 function generateTableOfURLS() {
-    var tableContainerNode = document.getElementById('tableContainer');
+    let tableContainerNode = document.getElementById("tableContainer");
     console.log(page.cookieWhiteList);
     if(page.contextualIdentitiesEnabled) {
+        let activeTabName = getActiveTabName();
         let theTables = document.createElement("div");
-        let tabNav = document.createElement("ul");
-        tabNav.classList.add("tab");
             page.cookieWhiteList.forEach(function(value, key, map) {
+                //Creates a table based on the Cookie ID
                 let tabContent = generateTableFromArray(Array.from(value));
                 tabContent.classList.add("tabcontent");
                 tabContent.id = key;
                 theTables.appendChild(tabContent);
-
-                let tab = document.createElement("li");
-                let aTag = document.createElement("a");
-                aTag.textContent = key;
-                aTag.classList.add("tablinks");
-                aTag.addEventListener("click", function(event) {
-                    openTab(event, key);
-                });
-                tab.appendChild(aTag);
-                tabNav.appendChild(tab);
-
+                if(activeTabName !== "" && key !== activeTabName) {
+                    tabContent.style.display = "none";
+                }
             });
 
-        tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
 
         if(document.getElementById('tableContainer').hasChildNodes()) {
             document.getElementById('tableContainer').firstChild.replaceWith(theTables);
         } else {
             document.getElementById('tableContainer').appendChild(theTables);            
         }
+
     } else {
         let theTable = generateTableFromArray(page.returnList());
         if(document.getElementById('tableContainer').hasChildNodes()) {
@@ -241,17 +282,22 @@ function generateTableOfURLS() {
         
     }
     
-       
-		
-
 
 }
 
+if(page.contextualIdentitiesEnabled) {
+    generateTabNav();
+    
+}
 generateTableOfURLS();
-
+document.getElementsByClassName("tablinks")[0].click();
 //Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", function() {
-    page.clearURL();
+    if(page.contextualIdentitiesEnabled) {
+        page.clearURL(getActiveTabName());
+    } else {
+        page.clearURL();
+    }
     generateTableOfURLS();
 });
 

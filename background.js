@@ -348,8 +348,10 @@ function onStartUp() {
 
 //Set the defaults 
 function setDefaults() {
-	browser.storage.local.clear();
-	onStartUp();
+	browser.storage.local.clear()
+	.then(function() {
+		onStartUp();
+	});
 }
 
 //The set of urls
