@@ -152,13 +152,17 @@ function addURLFromInput() {
     }   
 }
 
-//Export the list of URLS as a text file
-function downloadTextFile(arr) {
+function returnLinesFromArray(arr) {
     var txt = "";
     arr.forEach(function(row) {
         txt += row;
         txt += "\n";
     });
+    return txt;
+}
+
+//Export the list of URLS as a text file
+function downloadTextFile(txt) {
  
     //console.log(txt);
     var hiddenElement = document.createElement('a');
@@ -182,6 +186,17 @@ function downloadTextFile(arr) {
     }
 
 }  
+
+function exportMapToTxt() {
+    let txtFile = "";
+    page.cookieWhiteList.forEach(function(value, key, map) {
+        txtFile += "#" + key + "\n";
+        txtFile += returnLinesFromArray(Array.from(value));
+        txtFile += "\n"
+
+    });
+    downloadTextFile(txtFile);
+}
 
 function generateTableFromArray(array) {
     var arrayLength = array.length;
@@ -314,10 +329,7 @@ document.getElementById("URLForm").addEventListener("keypress", function (e) {
 
 //Exports urls to a text file
 document.getElementById("exportURLS").addEventListener("click", function() {
-    browser.storage.local.get("WhiteListURLS")
-	.then(function(items) {
-        downloadTextFile(items.WhiteListURLS);
-    });
+        exportMapToTxt();
 });
 
 //Import URLS by text
@@ -331,10 +343,14 @@ document.getElementById("importURLS").addEventListener("change", function() {
 
 	// By lines
 	var lines = this.result.split('\n');
+    let cookieID = "";
 	for(var line = 0; line < lines.length; line++){
-	  //console.log(lines[line]);
+	  if(lines[line].charAt(0) == "#") {
+        cookieID = lines[line].slice(1);
+        line++;
+      }
 	  if(lines[line] != "") {
-	  	page.addURL(lines[line]);
+	  	page.addURL(lines[line], cookieID);
 	  }
 	}
 	generateTableOfURLS();
