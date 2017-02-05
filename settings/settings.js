@@ -66,6 +66,8 @@ function restoreSettingValues() {
         document.getElementById("activeModeSwitch").checked = items.activeMode;
 		document.getElementById("statLoggingSwitch").checked = items.statLoggingSetting;
         document.getElementById("showNumberOfCookiesInIconSwitch").checked = items.showNumberOfCookiesInIconSetting;
+        document.getElementById("notifyCookieCleanUpSwitch").checked = items.notifyCookieCleanUpSetting;
+        document.getElementById("contextualIdentitiesEnabledSwitch").checked = items.contextualIdentitiesEnabledSetting;
 
     });
 }
@@ -79,10 +81,18 @@ function saveSettingsValues() {
 
     browser.storage.local.set({showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked});
 
+    browser.storage.local.set({notifyCookieCleanUpSetting: document.getElementById("notifyCookieCleanUpSwitch").checked});
+
+    browser.storage.local.set({contextualIdentitiesEnabledSetting: document.getElementById("contextualIdentitiesEnabledSwitch").checked});
+
     page.onStartUp();
 }
 
 restoreSettingValues();
+
+if(page.layoutEngine.vendor !== "mozilla") {
+    document.getElementById("contextualIdentitiesRow").style.display = "none";
+}
 
 //Event handlers for the buttons
 document.getElementById("saveSettings").addEventListener("click", function() {
@@ -305,7 +315,9 @@ if(page.contextualIdentitiesEnabled) {
     
 }
 generateTableOfURLS();
-document.getElementsByClassName("tablinks")[0].click();
+if(page.contextualIdentitiesEnabled) {
+    document.getElementsByClassName("tablinks")[0].click();
+}
 //Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", function() {
     if(page.contextualIdentitiesEnabled) {

@@ -1,8 +1,3 @@
-const SECOND = 1000;
-const MINUTE = 60 * SECOND;
-const HOUR = 60 * MINUTE;
-const DAY = 24 * HOUR;
-
 function onTabRemoved(tabId, removeInfo) {
 	browser.alarms.get("activeModeAlarm")
 	.then(function(alarm) {
@@ -38,8 +33,8 @@ function createActiveModeAlarm() {
 		});
 	}).catch(onError);
 }
-// ([a-z0-9]+[.])*example.com
 
+//Returns an array of domains and subdomains (sub.sub.domain.com becomes [sub.sub.domain.com, sub.domain.com, domain.com])
 function splitSubDomain(domain) {
 	let relatedDomains = new Array();
 	let splited = domain.split(".");
@@ -54,6 +49,7 @@ function splitSubDomain(domain) {
 	return relatedDomains;
 }
 
+//extract the main domain from sub domains (sub.sub.domain.com becomes domain.com)
 function extractMainDomain(domain) {
 	let re = new RegExp('[a-z0-9|-]+\.[a-z]+$');
 	return re.exec(domain)[0];
@@ -80,8 +76,14 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 		let cookieMainDomainHost = extractMainDomain(cookieDomainHost);
 		
 		//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
-		//while setOfTabURLS is not (sub.sub.domain.com will match to domain.com if in host url in tab)
-		if(!hasHost(cookieDomainHost, cookies[i].storeId) && !setOfTabURLS.has(cookieMainDomainHost)) {
+		//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
+		let safeToClean;
+		if(contextualIdentitiesEnabled) {
+			safeToClean = !hasHost(cookieDomainHost, cookies[i].storeId) && !setOfTabURLS.has(cookieMainDomainHost);
+		} else {
+			safeToClean = !hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost);
+		}
+		if(safeToClean) {
 			//Append the path to cookie
 			cookieDomain = cookieDomain + cookies[i].path;
 			//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
@@ -110,6 +112,7 @@ function cleanCookiesOperation() {
 	let setOfTabURLS = new Set();
 	let setOfDeletedDomainCookies = new Set();
 	recentlyCleaned = 0;
+	//Store all tabs' host domains to prevent cookie deletion from those domains
 	browser.tabs.query({})
 	.then(function(tabs) {
 		for(let i = 0; i < tabs.length; i++) {
@@ -122,6 +125,7 @@ function cleanCookiesOperation() {
 		console.log(setOfTabURLS);
 
 		if(contextualIdentitiesEnabled) {
+			//Clean cookies in different cookie ids using the contextual identities api
 			let promiseContainers = [];
 			browser.contextualIdentities.query({})
 			.then(function(containers) {
@@ -135,15 +139,16 @@ function cleanCookiesOperation() {
 				return browser.cookies.getAll({});
 			})
 			.then(function(cookies) {
+				//Clean the default cookie id container
 				promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
 				Promise.all(promiseContainers)
 				.then(notifyCookieCleanUp(setOfDeletedDomainCookies));
 			});
 
 		} else {
+			//Clean the default cookie id container
 			browser.cookies.getAll({})
 			.then(function(cookies) {
-				console.log("1");
 				cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies)
 				.then(notifyCookieCleanUp(setOfDeletedDomainCookies));
 			});
@@ -153,10 +158,9 @@ function cleanCookiesOperation() {
 	});
 }
 
+//Creates a notification of what cookies were cleaned and how many
 function notifyCookieCleanUp(setOfDeletedDomainCookies) {
-	console.log("2");
-	if(setOfDeletedDomainCookies.size > 0) {
-		let stringOfDomains = "";
+	let stringOfDomains = "";
 		let commaAppendIndex = 0;
 		setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
 			stringOfDomains = stringOfDomains + value2;
@@ -167,14 +171,18 @@ function notifyCookieCleanUp(setOfDeletedDomainCookies) {
 			
 		}); 
 		notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+	browser.storage.local.get("notifyCookieCleanUpSetting")
+	.then(function(items) {
+		if(setOfDeletedDomainCookies.size > 0 && items.notifyCookieCleanUpSetting) {
 		return browser.notifications.create(cookieNotifyDone, {
 				"type": "basic",
 				"iconUrl": browser.extension.getURL("icons/icon_48.png"),
 				"title": "Cookie AutoDelete: Cookies were Deleted!",
 				"message": notifyMessage
 			});
-	}
-
+		}
+	});
+	
 }
 
 //Logs the error
@@ -282,19 +290,32 @@ function storeCounterToLocal() {
 function onStartUp() {
 	browser.storage.local.get()
 	.then(function(items) {
+
+		if(layoutEngine.vendor !== "mozilla" ) {
+			contextualIdentitiesEnabled = false;
+			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
+		} else if(items.contextualIdentitiesEnabledSetting === undefined) {
+			contextualIdentitiesEnabled = false;
+			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
+		} else {
+			contextualIdentitiesEnabled = items.contextualIdentitiesEnabledSetting;
+		}
+
 		console.log(items);
 		cookieWhiteList = new Map();
-
+		//Sets up the whitelist for the map
 		if(contextualIdentitiesEnabled) {
 			browser.contextualIdentities.query({})
 			.then(function(containers) {
 				containers.forEach(function(currentValue, index, array) {
+
 					if(items[currentValue.cookieStoreId] !== undefined) {
 						cookieWhiteList.set(currentValue.cookieStoreId, new Set(items[currentValue.cookieStoreId]));
 					} else {
 						cookieWhiteList.set(currentValue.cookieStoreId, new Set());
 					}
 				});
+
 				let firefoxDefault = "firefox-default";
 				if(firefoxDefault !== undefined) {
 					cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
@@ -335,6 +356,10 @@ function onStartUp() {
 			browser.storage.local.set({showNumberOfCookiesInIconSetting: true});
 		}
 
+		if(items.notifyCookieCleanUpSetting === undefined) {
+			browser.storage.local.set({notifyCookieCleanUpSetting: true});
+		}
+
 		//Create objects based on settings
 		if(items.activeMode === true) {
 			enableActiveMode();
@@ -354,7 +379,7 @@ function setDefaults() {
 	});
 }
 
-//The set of urls
+//A map that maps cookieStoreID to a Set of whitelist 
 var cookieWhiteList;
 var cookieNotifyDone = "cookieNotifyDone";
 var notifyMessage = "";
