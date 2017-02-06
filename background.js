@@ -89,7 +89,9 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 			//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
 			console.log("CookieDomain: " + cookieDomain + " ID: " + cookies[i].storeId);
 			if(contextualIdentitiesEnabled) {
-				setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
+				
+				//setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
+				setOfDeletedDomainCookies.add(`${cookieMainDomainHost} (${cookies[i].storeId})`);
 			} else {
 				setOfDeletedDomainCookies.add(cookieDomainHost);
 			}
@@ -160,7 +162,8 @@ function cleanCookiesOperation() {
 
 //Creates a notification of what cookies were cleaned and how many
 function notifyCookieCleanUp(setOfDeletedDomainCookies) {
-	let stringOfDomains = "";
+	if(setOfDeletedDomainCookies.size > 0) {
+		let stringOfDomains = "";
 		let commaAppendIndex = 0;
 		setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
 			stringOfDomains = stringOfDomains + value2;
@@ -171,6 +174,8 @@ function notifyCookieCleanUp(setOfDeletedDomainCookies) {
 			
 		}); 
 		notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+	}
+	
 	browser.storage.local.get("notifyCookieCleanUpSetting")
 	.then(function(items) {
 		if(setOfDeletedDomainCookies.size > 0 && items.notifyCookieCleanUpSetting) {
