@@ -243,7 +243,7 @@ function openTab(evt, tabContent) {
     }
 
     // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(tabContent).style.display = "block";
+    document.getElementById(tabContent).style.display = "";
     evt.currentTarget.classList.add("active");
 }
 
