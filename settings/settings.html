@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="../global_files/normalize.css">
 	<link rel="stylesheet" href="../global_files/skeleton.css">
 	<link rel="stylesheet" href="settings.css">
-	<script type="text/javascript" src="../global_files/layout.engine.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +42,7 @@
 					<h2>Release Notes</h2>
 					<div class="row">
 						<div class="six columns">
-							<span>0.5.0</span>
+							<span>1.0.0</span>
 							<ul>
 								<li>First Release Woo!</li>
 							</ul>
@@ -90,9 +89,25 @@
 
 					<div class="row">
 						<input type="checkbox" id="showNumberOfCookiesInIconSwitch">
-						<span>Show Number of Recently Deleted Cookies In Browser Icon</span>
+						<span>Show Number of Cookies for that Domain</span>
 						<div class="tooltip">?
 						  <span class="tooltiptext">Shows how many cookies for that domain.</span>
+						</div>	
+					</div>
+
+					<div class="row">
+						<input type="checkbox" id="notifyCookieCleanUpSwitch">
+						<span>Show Notification After Cookie CleanUp</span>
+						<div class="tooltip">?
+						  <span class="tooltiptext">Shows how manu cookies were cleaned and for which domain.</span>
+						</div>	
+					</div>
+
+					<div class="row" id="contextualIdentitiesRow">
+						<input type="checkbox" id="contextualIdentitiesEnabledSwitch">
+						<span>Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)</span>
+						<div class="tooltip">?
+						  <span class="tooltiptext">Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these.</span>
 						</div>	
 					</div>
 
@@ -104,12 +119,21 @@
 						<button id="cancelSettings">
 							<span>Cancel</span>
 						</button>
+						<button id="defaultSettings">
+							<span>Default Settings</span>
+						</button>
+						<div class="tooltip">?
+							  <span class="tooltiptext">WARNING: This will also clear your URLS as well. So make a backup of them!</span>
+						</div>
 
 						<div id="saveConfirm" class="alert success" style="display: none;">
 							<strong>Saved!</strong>
 						</div>
 						<div id="cancelConfirm" class="alert warning" style="display: none;"> 
 							<strong>Restored Settings!</strong>
+						</div>
+						<div id="defaultConfirm" class="alert warning" style="display: none;"> 
+							<strong>Restored Default Settings!</strong>
 						</div>
 						<div id="resetCounterConfirm" class="alert success" style="display: none;">
 							<strong>Cleared Counter!</strong>
@@ -119,9 +143,7 @@
 				</div>
 
 				<div id="listOfURLSContent">
-					<h1>
-						Cookie WhiteList
-					</h1>
+					<h1>Cookie WhiteList</h1>
 					
 					<input id="URLForm" class="u-full-width" type="url">
 					<br>
@@ -153,9 +175,7 @@
 				</div>
 
 				<div id="aboutContent">
-					<h1>
-						About
-					</h1>
+					<h1>About</h1>
 					<p>Report issues and suggest features <a href="https://github.com/mrdokenny/History-AutoDelete/issues">here</a></p>
 					<p><br><br>Extension created by Kenny Do<br>
 						Frameworks Used: <a href="http://getskeleton.com/">Skeleton</a> and <a href="http://purecss.io/layouts/side-menu/#">Side Menu</a></p>

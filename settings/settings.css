@@ -22,7 +22,56 @@ input {
 button:hover {
 	cursor: pointer;
 }
+/* Table tabs */
+ /* Style the list */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
 
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent {
+    
+    width: 100%;
+    /*
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    */
+}
+
+.tabcontent tr{
+   width: 100%;
+}
+
+/* Table container */
 #tableContainer {
 	margin-top: 2em;
 	margin-bottom: 2em;
@@ -40,6 +89,8 @@ button:hover {
 	opacity: 0.5;
 	transition-duration: 0.15s;
 }
+
+/* Content Container */
 .content {
 	padding-left: 12em;
 	width: 40em;
@@ -52,6 +103,7 @@ button:hover {
 	font-weight: bold;
 }
 
+/* Upload button */
 input[type="number"] {
     width: 5em;
 }
@@ -78,6 +130,8 @@ input[type="number"] {
 input[type="file"] {
     display: none;
 }
+
+/* Sidebar */
 #menu {
 	width: 10em;
 	background-color: #26292E;
@@ -113,6 +167,7 @@ input[type="file"] {
 	border-left-color: #0288D1;
 }
 
+/* Alerts */
  /* The alert message box */
 .alert {
     padding: 20px;
@@ -162,7 +217,7 @@ input[type="file"] {
    0% {opacity: 1;}
    100% {opacity: 0;} 
 } 
-
+/* Tooltips */
 /* Tooltip container */
 .tooltip {
     position: relative;

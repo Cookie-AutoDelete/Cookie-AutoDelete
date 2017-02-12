@@ -66,6 +66,8 @@ function restoreSettingValues() {
         document.getElementById("activeModeSwitch").checked = items.activeMode;
 		document.getElementById("statLoggingSwitch").checked = items.statLoggingSetting;
         document.getElementById("showNumberOfCookiesInIconSwitch").checked = items.showNumberOfCookiesInIconSetting;
+        document.getElementById("notifyCookieCleanUpSwitch").checked = items.notifyCookieCleanUpSetting;
+        document.getElementById("contextualIdentitiesEnabledSwitch").checked = items.contextualIdentitiesEnabledSetting;
 
     });
 }
@@ -79,10 +81,18 @@ function saveSettingsValues() {
 
     browser.storage.local.set({showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked});
 
+    browser.storage.local.set({notifyCookieCleanUpSetting: document.getElementById("notifyCookieCleanUpSwitch").checked});
+
+    browser.storage.local.set({contextualIdentitiesEnabledSetting: document.getElementById("contextualIdentitiesEnabledSwitch").checked});
+
     page.onStartUp();
 }
 
 restoreSettingValues();
+
+if(page.layoutEngine.vendor !== "mozilla") {
+    document.getElementById("contextualIdentitiesRow").style.display = "none";
+}
 
 //Event handlers for the buttons
 document.getElementById("saveSettings").addEventListener("click", function() {
@@ -100,7 +110,14 @@ document.getElementById("resetCounter").addEventListener("click", function() {
     toggleAlert(document.getElementById("resetCounterConfirm"));
 });
 
-
+document.getElementById("defaultSettings").addEventListener("click", function() {
+    page.setDefaults()
+    setTimeout(function() {
+        restoreSettingValues();
+        generateTableOfURLS();
+        toggleAlert(document.getElementById("defaultConfirm"));
+    }, 500);
+});
 /*
     Cookie WhiteList Logic
 */
@@ -112,9 +129,20 @@ function clickRemoved(event) {
         URL = URL.slice(1);
         URL = URL.trim();
         //console.log(URL);
-        page.removeURL(URL);
+        if(page.contextualIdentitiesEnabled) {
+            page.removeURL(URL, getActiveTabName());
+        } else {
+            page.removeURL(URL);
+        }
 		generateTableOfURLS();
     }
+}
+
+function getActiveTabName() {
+    if(document.getElementsByClassName("active").length === 0) {
+        return "";
+    }
+    return document.getElementsByClassName("active")[0].textContent;
 }
 
 //Add URL by keyboard input
@@ -122,20 +150,29 @@ function addURLFromInput() {
     var input = document.getElementById("URLForm").value;
     if(input) {
         var URL = "http://www." + input;
-        page.addURL(page.getHostname(URL));
+        if(page.contextualIdentitiesEnabled) {
+            console.log();
+            page.addURL(page.getHostname(URL), getActiveTabName());
+        } else {
+            page.addURL(page.getHostname(URL));
+        }
         document.getElementById("URLForm").value = "";
         document.getElementById("URLForm").focus();  
         generateTableOfURLS();   
     }   
 }
 
-//Export the list of URLS as a text file
-function downloadTextFile(arr) {
+function returnLinesFromArray(arr) {
     var txt = "";
     arr.forEach(function(row) {
         txt += row;
         txt += "\n";
     });
+    return txt;
+}
+
+//Export the list of URLS as a text file
+function downloadTextFile(txt) {
  
     //console.log(txt);
     var hiddenElement = document.createElement('a');
@@ -145,7 +182,7 @@ function downloadTextFile(arr) {
 
     //Firefox just opens the text rather than downloading it. In Chrome the "else" block of code works.
     //So this is a work around.
-    if(layoutEngine.vendor === "mozilla") {
+    if(page.layoutEngine.vendor === "mozilla") {
         hiddenElement.appendChild(document.createTextNode("Right click to save as"));
         if(document.getElementById("saveAs").hasChildNodes()) {
             document.getElementById("saveAs").firstChild.replaceWith(hiddenElement);
@@ -160,46 +197,134 @@ function downloadTextFile(arr) {
 
 }  
 
+function exportMapToTxt() {
+    let txtFile = "";
+    page.cookieWhiteList.forEach(function(value, key, map) {
+        txtFile += "#" + key + "\n";
+        txtFile += returnLinesFromArray(Array.from(value));
+        txtFile += "\n"
+
+    });
+    downloadTextFile(txtFile);
+}
+
+function generateTableFromArray(array) {
+    var arrayLength = array.length;
+    var theTable = document.createElement('table');
+
+    for (var i = 0, tr, td; i < arrayLength; i++) {
+        tr = document.createElement('tr');
+        td = document.createElement('td');
+        var removeButton = document.createElement("span");
+        removeButton.classList.add("removeButton");
+        removeButton.addEventListener("click", clickRemoved);
+        removeButton.appendChild(document.createTextNode("\u00D7"));
+        td.appendChild(removeButton);
+        td.appendChild(document.createTextNode(array[i]));
+        tr.appendChild(td);
+        theTable.appendChild(tr);
+    }
+    return theTable;
+}
+function openTab(evt, tabContent) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(tabContent).style.display = "block";
+    evt.currentTarget.classList.add("active");
+}
+
+function generateTabNav() {
+    let tableContainerNode = document.getElementById("tableContainer");
+    let tabNav = document.createElement("ul");
+
+    tabNav.id = "containerTabs";
+    tabNav.classList.add("tab");
+        page.cookieWhiteList.forEach(function(value, key, map) {
+        //Creates the tabbed navigation above the table
+        let tab = document.createElement("li");
+        let aTag = document.createElement("a");
+        aTag.textContent = key;
+        aTag.classList.add("tablinks");
+        aTag.addEventListener("click", function(event) {
+            openTab(event, key);
+        });
+        tab.appendChild(aTag);
+        tabNav.appendChild(tab);
+
+
+    });
+
+    tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
+    
+}
 
 //Generate the url table
 function generateTableOfURLS() {
-    var tableContainerNode = document.getElementById('tableContainer');
+    let tableContainerNode = document.getElementById("tableContainer");
+    console.log(page.cookieWhiteList);
+    if(page.contextualIdentitiesEnabled) {
+        let activeTabName = getActiveTabName();
+        let theTables = document.createElement("div");
+            page.cookieWhiteList.forEach(function(value, key, map) {
+                //Creates a table based on the Cookie ID
+                let tabContent = generateTableFromArray(Array.from(value));
+                tabContent.classList.add("tabcontent");
+                tabContent.id = key;
+                theTables.appendChild(tabContent);
+                if(activeTabName !== "" && key !== activeTabName) {
+                    tabContent.style.display = "none";
+                }
+            });
 
-    browser.storage.local.get("WhiteListURLS")
-	.then(function (result) {
-		if(!result.WhiteListURLS) {
-			return;
-		}
-        var array = result.WhiteListURLS;
-        var arrayLength = array.length;
-        var theTable = document.createElement('table');
 
-        for (var i = 0, tr, td; i < arrayLength; i++) {
-            tr = document.createElement('tr');
-            td = document.createElement('td');
-            var removeButton = document.createElement("span");
-            removeButton.classList.add("removeButton");
-            removeButton.addEventListener("click", clickRemoved);
-            removeButton.innerHTML = "&times";
-            td.appendChild(removeButton);
-            td.appendChild(document.createTextNode(array[i]));
-            tr.appendChild(td);
-            theTable.appendChild(tr);
+        if(document.getElementById('tableContainer').hasChildNodes()) {
+            document.getElementById('tableContainer').firstChild.replaceWith(theTables);
+        } else {
+            document.getElementById('tableContainer').appendChild(theTables);            
         }
-		if(document.getElementById('tableContainer').hasChildNodes()) {
-			document.getElementById('tableContainer').firstChild.replaceWith(theTable);
-		} else {
-			document.getElementById('tableContainer').appendChild(theTable);			
-		}
 
-    });
+    } else {
+        let theTable = generateTableFromArray(page.returnList());
+        if(document.getElementById('tableContainer').hasChildNodes()) {
+            document.getElementById('tableContainer').firstChild.replaceWith(theTable);
+        } else {
+            document.getElementById('tableContainer').appendChild(theTable);            
+        }
+        
+    }
+    
+
 }
 
+if(page.contextualIdentitiesEnabled) {
+    generateTabNav();
+    
+}
 generateTableOfURLS();
-
+if(page.contextualIdentitiesEnabled) {
+    document.getElementsByClassName("tablinks")[0].click();
+}
 //Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", function() {
-    page.clearURL();
+    if(page.contextualIdentitiesEnabled) {
+        page.clearURL(getActiveTabName());
+    } else {
+        page.clearURL();
+    }
     generateTableOfURLS();
 });
 
@@ -216,10 +341,7 @@ document.getElementById("URLForm").addEventListener("keypress", function (e) {
 
 //Exports urls to a text file
 document.getElementById("exportURLS").addEventListener("click", function() {
-    browser.storage.local.get("WhiteListURLS")
-	.then(function(items) {
-        downloadTextFile(items.WhiteListURLS);
-    });
+        exportMapToTxt();
 });
 
 //Import URLS by text
@@ -233,10 +355,14 @@ document.getElementById("importURLS").addEventListener("change", function() {
 
 	// By lines
 	var lines = this.result.split('\n');
+    let cookieID = "";
 	for(var line = 0; line < lines.length; line++){
-	  //console.log(lines[line]);
+	  if(lines[line].charAt(0) == "#") {
+        cookieID = lines[line].slice(1);
+        line++;
+      }
 	  if(lines[line] != "") {
-	  	page.addURL(lines[line]);
+	  	page.addURL(lines[line], cookieID);
 	  }
 	}
 	generateTableOfURLS();
