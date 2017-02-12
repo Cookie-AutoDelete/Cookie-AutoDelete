@@ -305,7 +305,7 @@ function onStartUp() {
 	browser.storage.local.get()
 	.then(function(items) {
 		//Disable contextualIdentities features if not Firefox
-		if(layoutEngine.vendor !== "mozilla" ) {
+		if(layoutEngine.vendor !== "mozilla" || browser.contextualIdentities === undefined) {
 			contextualIdentitiesEnabled = false;
 			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
 		} else if(items.contextualIdentitiesEnabledSetting === undefined) {

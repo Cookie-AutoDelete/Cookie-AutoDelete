@@ -90,7 +90,7 @@ function saveSettingsValues() {
 
 restoreSettingValues();
 
-if(page.layoutEngine.vendor !== "mozilla") {
+if(page.layoutEngine.vendor !== "mozilla" || browser.contextualIdentities === undefined) {
     document.getElementById("contextualIdentitiesRow").style.display = "none";
 }
 
