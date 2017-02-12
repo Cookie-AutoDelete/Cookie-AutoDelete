@@ -1,3 +1,4 @@
+//Create an alarm when a tab is closed
 function onTabRemoved(tabId, removeInfo) {
 	browser.alarms.get("activeModeAlarm")
 	.then(function(alarm) {
@@ -12,17 +13,19 @@ function onTabRemoved(tabId, removeInfo) {
 	});
 }
 
-
+//Enable automatic cookie cleanup
 function enableActiveMode() {
 	browser.tabs.onRemoved.addListener(onTabRemoved);
 	console.log("ActiveMode");
 }
 
+//Disable automatic cookie cleanup
 function disableActiveMode() {
 	browser.tabs.onRemoved.removeListener(onTabRemoved);
 	console.log("DisabledMode");
 }
 
+//Create an alarm delay before cookie cleanup
 function createActiveModeAlarm() {
 	browser.storage.local.get("delayBeforeClean")
 	.then(function(items) {
@@ -66,6 +69,7 @@ function prepareCookieDomain(cookie) {
 	return cookieDomain;
 }
 
+//Deletes cookies if there is no existing cookie's host main url in an open tab
 function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 	for(let i = 0; i < cookies.length; i++) {
 		//https://domain.com or http://domain.com
@@ -109,9 +113,12 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 	return Promise.resolve(setOfDeletedDomainCookies);
 }
 
+//Main function for cookie cleanup 
 function cleanCookiesOperation() {
-	console.log("Cleaning");
+	//console.log("Cleaning");
+	//Stores all tabs' host domains
 	let setOfTabURLS = new Set();
+	//Stores the deleted domains (for notification)
 	let setOfDeletedDomainCookies = new Set();
 	recentlyCleaned = 0;
 	//Store all tabs' host domains to prevent cookie deletion from those domains
@@ -204,6 +211,7 @@ function getHostname(url) {
     return hostname;
 }
 
+//Returns true if it is a webpage
 function isAWebpage(URL) {
 	if(URL.match(/^http:/) || URL.match(/^https:/)) {
 		return true;
@@ -211,7 +219,7 @@ function isAWebpage(URL) {
 	return false;
 }
 
-//See if the set has the url
+//See if the set has the url depending on the cookieStoreId
 function hasHost(url, cookieStoreId = defaultWhiteList) {
 	if(!cookieWhiteList.has(cookieStoreId)) {
 		cookieWhiteList.set(cookieStoreId, new Set());
@@ -220,6 +228,7 @@ function hasHost(url, cookieStoreId = defaultWhiteList) {
 	return cookieWhiteList.get(cookieStoreId).has(url);
 }
 
+//Return the Set as an array
 function returnList(cookieStoreId = defaultWhiteList) {
 	if(!cookieWhiteList.has(cookieStoreId)) {
 		cookieWhiteList.set(cookieStoreId, new Set());
@@ -227,7 +236,7 @@ function returnList(cookieStoreId = defaultWhiteList) {
 	return Array.from(cookieWhiteList.get(cookieStoreId));
 }
 
-//Stores the set in the local storage of the browser as an array
+//Stores the set in the local storage of the browser as an array depending on the cookieStoreId
 function storeLocal(cookieStoreId = defaultWhiteList) {
 	browser.storage.local.set({
 		[cookieStoreId]: Array.from(cookieWhiteList.get(cookieStoreId))
@@ -239,7 +248,7 @@ function storeLocal(cookieStoreId = defaultWhiteList) {
 	});
 }
 
-//Add the url to the set
+//Add the url to the set depending on the cookieStoreId
 function addURL(url, cookieStoreId = defaultWhiteList) {
 	if(!cookieWhiteList.has(cookieStoreId)) {
 		cookieWhiteList.set(cookieStoreId, new Set());
@@ -248,7 +257,7 @@ function addURL(url, cookieStoreId = defaultWhiteList) {
 	storeLocal(cookieStoreId);
 }
 
-//Remove the url from the set
+//Remove the url from the set depending on the cookieStoreId
 function removeURL(url, cookieStoreId = defaultWhiteList) {
 	if(!cookieWhiteList.has(cookieStoreId)) {
 		cookieWhiteList.set(cookieStoreId, new Set());
@@ -258,7 +267,7 @@ function removeURL(url, cookieStoreId = defaultWhiteList) {
 	storeLocal(cookieStoreId);
 }
 
-//Clears the set
+//Clears the set depending on the cookieStoreId
 function clearURL(cookieStoreId = defaultWhiteList) {
 	cookieWhiteList.get(cookieStoreId).clear();
 	storeLocal(cookieStoreId);
@@ -295,7 +304,7 @@ function storeCounterToLocal() {
 function onStartUp() {
 	browser.storage.local.get()
 	.then(function(items) {
-
+		//Disable contextualIdentities features if not Firefox
 		if(layoutEngine.vendor !== "mozilla" ) {
 			contextualIdentitiesEnabled = false;
 			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
@@ -386,11 +395,15 @@ function setDefaults() {
 
 //A map that maps cookieStoreID to a Set of whitelist 
 var cookieWhiteList;
-var cookieNotifyDone = "cookieNotifyDone";
+//Notification ID
+const cookieNotifyDone = "cookieNotifyDone";
 var notifyMessage = "";
 
-var contextualIdentitiesEnabled = true;
+var contextualIdentitiesEnabled = false;
+
+//Default whitelist when contextualIdentitiesEnabled is false
 const defaultWhiteList = "defaultWhiteList";
+
 var cookieDeletedCounterTotal;
 var recentlyCleaned = 0;
 var cookieDeletedCounter = 0;
@@ -398,7 +411,7 @@ var cookieDeletedCounter = 0;
 //setDefaults();
 onStartUp();
 
-
+//Show the # of cookies in icon
 function showNumberOfCookiesInIcon(tabURL,tabID) {
 	browser.cookies.getAll({
 		domain: getHostname(tabURL)

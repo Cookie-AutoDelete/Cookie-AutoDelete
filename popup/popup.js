@@ -55,7 +55,7 @@ function fillPopup(tabs) {
 	//Sets the Host site placeholder
 	hostPlaceholder.appendChild(document.createTextNode(hostUrl));
 	if(page.contextualIdentitiesEnabled) {
-		hostPlaceholder.appendChild(document.createTextNode("\n" + cookieStoreId));
+		hostPlaceholder.appendChild(document.createTextNode("\n" + `(${cookieStoreId})`));
 	}
 
 

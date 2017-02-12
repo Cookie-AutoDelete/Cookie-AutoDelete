@@ -182,7 +182,7 @@ function downloadTextFile(txt) {
 
     //Firefox just opens the text rather than downloading it. In Chrome the "else" block of code works.
     //So this is a work around.
-    if(layoutEngine.vendor === "mozilla") {
+    if(page.layoutEngine.vendor === "mozilla") {
         hiddenElement.appendChild(document.createTextNode("Right click to save as"));
         if(document.getElementById("saveAs").hasChildNodes()) {
             document.getElementById("saveAs").firstChild.replaceWith(hiddenElement);
@@ -218,7 +218,7 @@ function generateTableFromArray(array) {
         var removeButton = document.createElement("span");
         removeButton.classList.add("removeButton");
         removeButton.addEventListener("click", clickRemoved);
-        removeButton.innerHTML = "&times";
+        removeButton.appendChild(document.createTextNode("\u00D7"));
         td.appendChild(removeButton);
         td.appendChild(document.createTextNode(array[i]));
         tr.appendChild(td);
