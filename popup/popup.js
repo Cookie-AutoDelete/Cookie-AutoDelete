@@ -86,6 +86,7 @@ document.getElementById('cookieCleanup').addEventListener("click", function() {
 	
 });
 
+//Clear all cookies for that domain
 document.getElementById("clearCookiesForDomain").addEventListener("click", function() {
 	browser.cookies.getAll({
 		domain: hostUrl
@@ -108,6 +109,7 @@ document.getElementById("clearCookiesForDomain").addEventListener("click", funct
 	
 });
 
+//Turns on or off active mode cookie cleaning
 document.getElementById("activeModeSwitch").addEventListener("click", function() {
 	if(document.getElementById("activeModeSwitch").checked) {
 		browser.storage.local.set({activeMode: true});

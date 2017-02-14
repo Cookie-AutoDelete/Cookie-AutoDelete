@@ -138,11 +138,13 @@ function clickRemoved(event) {
     }
 }
 
+//Gets the active tab name for Containers
 function getActiveTabName() {
-    if(document.getElementsByClassName("active").length === 0) {
+    if(document.getElementsByClassName("activeTab").length === 0) {
         return "";
     }
-    return document.getElementsByClassName("active")[0].textContent;
+    //Returns the second class name
+    return document.getElementsByClassName("activeTab")[0].className.split(' ')[1];
 }
 
 //Add URL by keyboard input
@@ -151,7 +153,6 @@ function addURLFromInput() {
     if(input) {
         var URL = "http://www." + input;
         if(page.contextualIdentitiesEnabled) {
-            console.log();
             page.addURL(page.getHostname(URL), getActiveTabName());
         } else {
             page.addURL(page.getHostname(URL));
@@ -162,6 +163,7 @@ function addURLFromInput() {
     }   
 }
 
+//Returns a txt string of lines from array
 function returnLinesFromArray(arr) {
     var txt = "";
     arr.forEach(function(row) {
@@ -197,6 +199,7 @@ function downloadTextFile(txt) {
 
 }  
 
+//Exports the container whitelist
 function exportMapToTxt() {
     let txtFile = "";
     page.cookieWhiteList.forEach(function(value, key, map) {
@@ -208,6 +211,7 @@ function exportMapToTxt() {
     downloadTextFile(txtFile);
 }
 
+//Creates a html table from an array
 function generateTableFromArray(array) {
     var arrayLength = array.length;
     var theTable = document.createElement('table');
@@ -226,6 +230,8 @@ function generateTableFromArray(array) {
     }
     return theTable;
 }
+
+//When the user clicks on a tab container
 function openTab(evt, tabContent) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -247,6 +253,7 @@ function openTab(evt, tabContent) {
     evt.currentTarget.classList.add("activeTab");
 }
 
+//Generates the nav above the url table
 function generateTabNav() {
     let tableContainerNode = document.getElementById("tableContainer");
     let tabNav = document.createElement("ul");
@@ -259,6 +266,7 @@ function generateTabNav() {
         let aTag = document.createElement("a");
         aTag.textContent = page.getNameFromCookieID(key);
         aTag.classList.add("tablinks");
+        aTag.classList.add(key);
         aTag.addEventListener("click", function(event) {
             openTab(event, key);
         });
@@ -275,7 +283,7 @@ function generateTabNav() {
 //Generate the url table
 function generateTableOfURLS() {
     let tableContainerNode = document.getElementById("tableContainer");
-    console.log(page.cookieWhiteList);
+    //console.log(page.cookieWhiteList);
     if(page.contextualIdentitiesEnabled) {
         let activeTabName = getActiveTabName();
         let theTables = document.createElement("div");

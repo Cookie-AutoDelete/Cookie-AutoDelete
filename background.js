@@ -16,13 +16,13 @@ function onTabRemoved(tabId, removeInfo) {
 //Enable automatic cookie cleanup
 function enableActiveMode() {
 	browser.tabs.onRemoved.addListener(onTabRemoved);
-	console.log("ActiveMode");
+	//console.log("ActiveMode");
 }
 
 //Disable automatic cookie cleanup
 function disableActiveMode() {
 	browser.tabs.onRemoved.removeListener(onTabRemoved);
-	console.log("DisabledMode");
+	//console.log("DisabledMode");
 }
 
 //Create an alarm delay before cookie cleanup
@@ -30,7 +30,7 @@ function createActiveModeAlarm() {
 	browser.storage.local.get("delayBeforeClean")
 	.then(function(items) {
 		let minutes = parseInt(items.delayBeforeClean, 10);
-		console.log("Create Active Alarm: " + minutes);
+		//console.log("Create Active Alarm: " + minutes);
 		browser.alarms.create("activeModeAlarm",{
 			delayInMinutes: minutes
 		});
@@ -91,7 +91,7 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 			//Append the path to cookie
 			cookieDomain = cookieDomain + cookies[i].path;
 			//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
-			console.log("CookieDomain: " + cookieDomain + " ID: " + cookies[i].storeId);
+			//console.log("CookieDomain: " + cookieDomain + " ID: " + cookies[i].storeId);
 			if(contextualIdentitiesEnabled) {
 				
 				//setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
@@ -132,7 +132,7 @@ function cleanCookiesOperation() {
 				setOfTabURLS.add(hostURL);
 			}
 		}
-		console.log(setOfTabURLS);
+		//console.log(setOfTabURLS);
 
 		if(contextualIdentitiesEnabled) {
 			//Clean cookies in different cookie ids using the contextual identities api
@@ -241,11 +241,6 @@ function returnList(cookieStoreId = defaultWhiteList) {
 function storeLocal(cookieStoreId = defaultWhiteList) {
 	browser.storage.local.set({
 		[cookieStoreId]: Array.from(cookieWhiteList.get(cookieStoreId))
-	});
-	browser.storage.local.get(cookieStoreId)
-	.then(function(items) {
-		
-		console.log(items[cookieStoreId]);
 	});
 }
 
@@ -467,7 +462,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 //Alarm event handler
 browser.alarms.onAlarm.addListener(function (alarmInfo) {
-	console.log(alarmInfo.name);
+	//console.log(alarmInfo.name);
 	if(alarmInfo.name === "activeModeAlarm") {
 		cleanCookiesOperation();
 		browser.alarms.clear(alarmInfo.name);
