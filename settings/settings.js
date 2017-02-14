@@ -239,12 +239,12 @@ function openTab(evt, tabContent) {
     // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
+        tablinks[i].classList.remove("activeTab");
     }
 
     // Show the current tab, and add an "active" class to the link that opened the tab
     document.getElementById(tabContent).style.display = "";
-    evt.currentTarget.classList.add("active");
+    evt.currentTarget.classList.add("activeTab");
 }
 
 function generateTabNav() {

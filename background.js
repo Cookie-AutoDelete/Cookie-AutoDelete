@@ -331,7 +331,7 @@ function onStartUp() {
 			contextualIdentitiesEnabled = items.contextualIdentitiesEnabledSetting;
 		}
 
-		console.log(items);
+		//console.log(items);
 		cookieWhiteList = new Map();
 		//Sets up the whitelist for the map
 		if(contextualIdentitiesEnabled) {
