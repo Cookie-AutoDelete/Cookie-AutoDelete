@@ -95,7 +95,8 @@ function cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 			if(contextualIdentitiesEnabled) {
 				
 				//setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
-				setOfDeletedDomainCookies.add(`${cookieMainDomainHost} (${cookies[i].storeId})`);
+				let name = getNameFromCookieID(cookies[i].storeId);
+				setOfDeletedDomainCookies.add(`${cookieMainDomainHost} (${name})`);
 			} else {
 				setOfDeletedDomainCookies.add(cookieDomainHost);
 			}
@@ -300,6 +301,21 @@ function storeCounterToLocal() {
 	browser.storage.local.set({cookieDeletedCounterTotal: cookieDeletedCounterTotal});
 }
 
+var nameCacheMap = new Map();
+function getNameFromCookieID(id) {
+	if(nameCacheMap.has(id)) {
+		return nameCacheMap.get(id);
+	} else {
+		browser.contextualIdentities.query({})
+		.then(function(containers) {
+			containers.forEach(function(currentValue, index, array) {
+				nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
+			});
+			return nameCacheMap.get(id);
+		});
+	}
+}
+
 //Sets up the background page on startup
 function onStartUp() {
 	browser.storage.local.get()
@@ -321,8 +337,9 @@ function onStartUp() {
 		if(contextualIdentitiesEnabled) {
 			browser.contextualIdentities.query({})
 			.then(function(containers) {
+				nameCacheMap.set("firefox-default", "Default");
 				containers.forEach(function(currentValue, index, array) {
-
+					nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
 					if(items[currentValue.cookieStoreId] !== undefined) {
 						cookieWhiteList.set(currentValue.cookieStoreId, new Set(items[currentValue.cookieStoreId]));
 					} else {

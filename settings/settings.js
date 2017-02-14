@@ -257,7 +257,7 @@ function generateTabNav() {
         //Creates the tabbed navigation above the table
         let tab = document.createElement("li");
         let aTag = document.createElement("a");
-        aTag.textContent = key;
+        aTag.textContent = page.getNameFromCookieID(key);
         aTag.classList.add("tablinks");
         aTag.addEventListener("click", function(event) {
             openTab(event, key);
