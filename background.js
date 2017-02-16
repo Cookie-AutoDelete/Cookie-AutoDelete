@@ -137,7 +137,9 @@ function cleanCookiesOperation() {
 		if(contextualIdentitiesEnabled) {
 			//Clean cookies in different cookie ids using the contextual identities api
 			let promiseContainers = [];
-			browser.contextualIdentities.query({})
+			browser.contextualIdentities.query({
+				"windowType": "normal"
+			})
 			.then(function(containers) {
 				containers.forEach(function(currentValue, index, array) {
 					browser.cookies.getAll({storeId: currentValue.cookieStoreId})
