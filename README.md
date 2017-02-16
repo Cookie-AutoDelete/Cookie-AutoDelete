@@ -6,3 +6,7 @@ Control your cookies! This extension is inspired by Self Destructing Cookies. Wh
 - WhiteList Support for Sites you want to keep Cookies
 - Easily Export/Import your Whitelist
 - Clear All Cookies for a Domain
+
+[Chrome](https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh)
+
+[Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
