@@ -123,7 +123,9 @@ function cleanCookiesOperation() {
 	let setOfDeletedDomainCookies = new Set();
 	recentlyCleaned = 0;
 	//Store all tabs' host domains to prevent cookie deletion from those domains
-	browser.tabs.query({})
+	browser.tabs.query({
+		"windowType": "normal"
+	})
 	.then(function(tabs) {
 		for(let i = 0; i < tabs.length; i++) {
 			if (isAWebpage(tabs[i].url)) {
@@ -137,9 +139,7 @@ function cleanCookiesOperation() {
 		if(contextualIdentitiesEnabled) {
 			//Clean cookies in different cookie ids using the contextual identities api
 			let promiseContainers = [];
-			browser.contextualIdentities.query({
-				"windowType": "normal"
-			})
+			browser.contextualIdentities.query({})
 			.then(function(containers) {
 				containers.forEach(function(currentValue, index, array) {
 					browser.cookies.getAll({storeId: currentValue.cookieStoreId})
