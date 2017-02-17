@@ -54,6 +54,11 @@ function splitSubDomain(domain) {
 
 //extract the main domain from sub domains (sub.sub.domain.com becomes domain.com)
 function extractMainDomain(domain) {
+	//Return the domain if it is an ip address
+	let reIP = new RegExp('[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+');
+	if(reIP.test(domain)) {
+		return domain;
+	}
 	let re = new RegExp('[a-z0-9|-]+\.[a-z]+$');
 	return re.exec(domain)[0];
 }
