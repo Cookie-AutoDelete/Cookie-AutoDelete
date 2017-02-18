@@ -54,9 +54,9 @@ document.getElementById("tabWelcome").click();
 page.storeCounterToLocal();
 document.getElementById("sessionDeleted").textContent = page.cookieDeletedCounter;
 document.getElementById("totalDeleted").textContent = page.cookieDeletedCounterTotal;
-if(layoutEngine.vendor === "mozilla") {
+if(page.layoutEngine.vendor === "mozilla") {
     document.getElementById("reviewLink").href = "https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/";
-} else if(layoutEngine.vendor === "webkit") {
+} else if(page.layoutEngine.vendor === "webkit") {
     document.getElementById("reviewLink").href = "https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews";
 }
 /*
