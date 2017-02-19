@@ -32,8 +32,8 @@ function fillPopup(tabs) {
 	hostUrl = page.getHostname(activeTab.url);
 
 	//Sets the checkbox depending on the if it exists in the set
+	cookieStoreId = tabs[0].cookieStoreId;
 	if(page.contextualIdentitiesEnabled) {
-		cookieStoreId = tabs[0].cookieStoreId;
 		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl, cookieStoreId); 
 	} else {
 		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl); 
@@ -89,7 +89,8 @@ document.getElementById('cookieCleanup').addEventListener("click", function() {
 //Clear all cookies for that domain
 document.getElementById("clearCookiesForDomain").addEventListener("click", function() {
 	browser.cookies.getAll({
-		domain: hostUrl
+		domain: hostUrl,
+		storeId: cookieStoreId
 	})
 	.then(function(cookies) {
 		if(cookies.length > 0) {
@@ -97,7 +98,8 @@ document.getElementById("clearCookiesForDomain").addEventListener("click", funct
 				let cookieDomain = page.prepareCookieDomain(cookies[i])  + cookies[i].path;
 				browser.cookies.remove({
 					url: cookieDomain,
-					name: cookies[i].name
+					name: cookies[i].name,
+					storeId: cookieStoreId
 				});
 			}
 			page.recentlyCleaned = cookies.length;
