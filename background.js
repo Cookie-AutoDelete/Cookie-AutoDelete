@@ -59,6 +59,10 @@ function extractMainDomain(domain) {
 	if(reIP.test(domain)) {
 		return domain;
 	}
+	//Delete a '.' if domain contains it at the end
+	if(domain.charAt(domain.length - 1) === ".") {
+		domain = domain.slice(0, domain.length - 1);
+	}
 	let re = new RegExp('[a-z0-9|-]+\.[a-z]+$');
 	return re.exec(domain)[0];
 }
