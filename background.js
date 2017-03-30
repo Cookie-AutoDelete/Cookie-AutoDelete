@@ -442,20 +442,25 @@ function showNumberOfCookiesInIcon(tabURL,tabID) {
 	})
 	.then(function(cookies) {
 		browser.browserAction.setBadgeText({text: cookies.length.toString(), tabId: tabID});
-		browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tabID});
+		
 	});
 	
-} 
+}
+ 
+//Set background icon to red
 function setIconRed(tab) {
 	browser.browserAction.setIcon({
 	    tabId: tab.id, path: {48:"icons/icon_red_48.png"}
 	  });
+	browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
 }
 
+//Set background icon to blue
 function setIconDefault(tab) {
 	browser.browserAction.setIcon({
 	    tabId: tab.id, path: {48:"icons/icon_48.png"}
 	  });
+	browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tab.id});
 }
 
 //Logic that controls when to disable the browser action
