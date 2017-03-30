@@ -54,9 +54,9 @@ document.getElementById("tabWelcome").click();
 page.storeCounterToLocal();
 document.getElementById("sessionDeleted").textContent = page.cookieDeletedCounter;
 document.getElementById("totalDeleted").textContent = page.cookieDeletedCounterTotal;
-if(page.layoutEngine.vendor === "mozilla") {
+if(page.browserDetect() === "Firefox") {
     document.getElementById("reviewLink").href = "https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/";
-} else if(page.layoutEngine.vendor === "webkit") {
+} else if(page.browserDetect() === "Chrome") {
     document.getElementById("reviewLink").href = "https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews";
 }
 /*
@@ -94,7 +94,7 @@ function saveSettingsValues() {
 
 restoreSettingValues();
 
-if(page.layoutEngine.vendor !== "mozilla" || browser.contextualIdentities === undefined) {
+if(page.browserDetect() !== "Firefox" || browser.contextualIdentities === undefined) {
     document.getElementById("contextualIdentitiesRow").style.display = "none";
 }
 
@@ -188,7 +188,7 @@ function downloadTextFile(txt) {
 
     //Firefox just opens the text rather than downloading it. In Chrome the "else" block of code works.
     //So this is a work around.
-    if(page.layoutEngine.vendor === "mozilla") {
+    if(page.browserDetect() === "Firefox") {
         hiddenElement.appendChild(document.createTextNode("Right click to save as"));
         if(document.getElementById("saveAs").hasChildNodes()) {
             document.getElementById("saveAs").firstChild.replaceWith(hiddenElement);
