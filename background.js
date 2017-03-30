@@ -445,6 +445,17 @@ function showNumberOfCookiesInIcon(tabURL,tabID) {
 	});
 	
 } 
+function setIconRed(tab) {
+	browser.browserAction.setIcon({
+	    tabId: tab.id, path: {48:"icons/icon_red_48.png"}
+	  });
+}
+
+function setIconDefault(tab) {
+	browser.browserAction.setIcon({
+	    tabId: tab.id, path: {48:"icons/icon_48.png"}
+	  });
+}
 
 //Logic that controls when to disable the browser action
 browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -455,6 +466,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 				browser.browserAction.disable(tab.id);
 				browser.browserAction.setBadgeText({text: "X", tabId: tab.id});
 				browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
+				setIconRed(tab);
 			} else {
 				browser.browserAction.enable(tab.id);
 				browser.browserAction.setBadgeText({text: "", tabId: tab.id});
@@ -466,6 +478,20 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 				});
 			}
 		}).catch(onError);
+
+		if(contextualIdentitiesEnabled) {
+			if(hasHost(getHostname(tab.url), cookieStoreId)) {
+				setIconDefault(tab);
+			} else {
+				setIconRed(tab);
+			}
+		} else {
+			if(hasHost(getHostname(tab.url))) {
+				setIconDefault(tab);
+			} else {
+				setIconRed(tab);
+			}
+		}
 	}
 
 

@@ -25,7 +25,7 @@ function fillPopup(tabs) {
 	}
 
 	//Fill the host site placeholder if it exists
-    var activeTab = tabs[0];
+    activeTab = tabs[0];
     if(!page.isAWebpage(activeTab.url)) {
     	return;
     }
@@ -66,6 +66,7 @@ function fillPopup(tabs) {
 
 //Initialize variables
 var hostUrl;
+var activeTab;
 var cookieStoreId;
 var page = browser.extension.getBackgroundPage();
 browser.tabs.query({currentWindow: true, active: true})
@@ -128,14 +129,18 @@ document.getElementById("switchToWhiteList").addEventListener("click", function(
 		if(page.contextualIdentitiesEnabled) {
 			if(document.getElementById("switchToWhiteList").checked) {
 				page.addURL(hostUrl, cookieStoreId);
+				page.setIconDefault(activeTab);
 			} else {
 				page.removeURL(hostUrl, cookieStoreId);
+				page.setIconRed(activeTab);
 			}
 		} else {
 			if(document.getElementById("switchToWhiteList").checked) {
 				page.addURL(hostUrl);
+				page.setIconDefault(activeTab);
 			} else {
 				page.removeURL(hostUrl);
+				page.setIconRed(activeTab);
 			}
 		}
 	}
