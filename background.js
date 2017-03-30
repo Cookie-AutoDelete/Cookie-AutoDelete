@@ -451,7 +451,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	if (tab.status === "complete") {
 		browser.windows.getCurrent()
 		.then(function(windowInfo) {
-			if (!isAWebpage(tab.url) || windowInfo.incognito) {
+			if (windowInfo.incognito) {
 				browser.browserAction.disable(tab.id);
 				browser.browserAction.setBadgeText({text: "X", tabId: tab.id});
 				browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});

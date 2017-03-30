@@ -9,9 +9,7 @@
   "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want.",
   "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
   "browser_action": {
-    "default_icon": {
-      "24": "icons/icon_24.png",
-      "32": "icons/icon_32.png",      
+    "default_icon": {    
       "48": "icons/icon_48.png"     
     },
     "default_title": "Cookie AutoDelete",
@@ -43,5 +41,5 @@
   ],
   "manifest_version": 2,
   "name": "Cookie AutoDelete",
-  "version": "1.0.4"
+  "version": "1.1.0"
 }

@@ -124,18 +124,19 @@ document.getElementById("activeModeSwitch").addEventListener("click", function()
 
 //Checkbox Event Handling
 document.getElementById("switchToWhiteList").addEventListener("click", function() {
-	if(page.contextualIdentitiesEnabled) {
-		if(document.getElementById("switchToWhiteList").checked) {
-			page.addURL(hostUrl, cookieStoreId);
+	if(hostUrl !== undefined) {
+		if(page.contextualIdentitiesEnabled) {
+			if(document.getElementById("switchToWhiteList").checked) {
+				page.addURL(hostUrl, cookieStoreId);
+			} else {
+				page.removeURL(hostUrl, cookieStoreId);
+			}
 		} else {
-			page.removeURL(hostUrl, cookieStoreId);
-		}
-	} else {
-		if(document.getElementById("switchToWhiteList").checked) {
-			page.addURL(hostUrl);
-		} else {
-			page.removeURL(hostUrl);
+			if(document.getElementById("switchToWhiteList").checked) {
+				page.addURL(hostUrl);
+			} else {
+				page.removeURL(hostUrl);
+			}
 		}
 	}
-	
 });
