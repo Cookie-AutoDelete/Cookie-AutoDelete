@@ -480,7 +480,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		}).catch(onError);
 
 		if(contextualIdentitiesEnabled) {
-			if(hasHost(getHostname(tab.url), cookieStoreId)) {
+			if(hasHost(getHostname(tab.url), tab.cookieStoreId)) {
 				setIconDefault(tab);
 			} else {
 				setIconRed(tab);
