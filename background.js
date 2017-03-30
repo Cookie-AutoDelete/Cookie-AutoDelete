@@ -5,7 +5,7 @@ function onTabRemoved(tabId, removeInfo) {
 	.then(function(alarm) {
 		//This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
 		//in chrome, it returns an array
-		if(browserDetect() !== "Firefox" && !alarm) {
+		if(browserDetect() === "Firefox" && !alarm) {
 			createActiveModeAlarm();
 		} else if(alarm.name !== "activeModeAlarm") {
 			createActiveModeAlarm();
@@ -327,7 +327,7 @@ function onStartUp() {
 	browser.storage.local.get()
 	.then(function(items) {
 		//Disable contextualIdentities features if not Firefox
-		console.log(browserDetect());
+		//console.log(browserDetect());
 		if(browserDetect() !== "Firefox" || browser.contextualIdentities === undefined) {
 			contextualIdentitiesEnabled = false;
 			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
