@@ -148,31 +148,23 @@ function cleanCookiesOperation() {
 		if(contextualIdentitiesEnabled) {
 			//Clean cookies in different cookie ids using the contextual identities api
 			let promiseContainers = [];
-			browser.contextualIdentities.query({})
-			.then(function(containers) {
-				containers.forEach(function(currentValue, index, array) {
-					browser.cookies.getAll({storeId: currentValue.cookieStoreId})
-					.then(function(cookies) {
-						promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
-					});
+
+			nameCacheMap.forEach(function(value, key, map) {
+				browser.cookies.getAll({storeId: key})
+				.then(function(cookies) {
+					promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
 				});
-
-				return browser.cookies.getAll({});
-			})
-			.then(function(cookies) {
-				//Clean the default cookie id container
-				promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
-				Promise.all(promiseContainers)
-				.then(notifyCookieCleanUp(setOfDeletedDomainCookies));
 			});
-
+			
+			Promise.all(promiseContainers)
+			.then(notifyCookieCleanUp(setOfDeletedDomainCookies));
 		} else {
 			//Clean the default cookie id container
 			browser.cookies.getAll({})
 			.then(function(cookies) {
 				cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies)
 				.then(notifyCookieCleanUp(setOfDeletedDomainCookies));
-			});
+			}).catch(onError);
 		}
 		
 		
@@ -307,7 +299,7 @@ function storeCounterToLocal() {
 	browser.storage.local.set({cookieDeletedCounterTotal: cookieDeletedCounterTotal});
 }
 
-var nameCacheMap = new Map();
+var nameCacheMap;
 function getNameFromCookieID(id) {
 	if(nameCacheMap.has(id)) {
 		return nameCacheMap.get(id);
@@ -342,6 +334,7 @@ function onStartUp() {
 		cookieWhiteList = new Map();
 		//Sets up the whitelist for the map
 		if(contextualIdentitiesEnabled) {
+			nameCacheMap = new Map();
 			browser.contextualIdentities.query({})
 			.then(function(containers) {
 				nameCacheMap.set("firefox-default", "Default");
