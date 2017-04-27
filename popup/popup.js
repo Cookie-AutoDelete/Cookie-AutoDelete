@@ -82,7 +82,7 @@ document.getElementById("settings").addEventListener("click", function() {
 //Clear all history for a domain
 document.getElementById('cookieCleanup').addEventListener("click", function() {
 
-	page.cleanCookiesOperation();
+	page.cleanup.cleanCookiesOperation();
 	animateSuccess(this);
 	
 });

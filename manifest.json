@@ -3,6 +3,10 @@
     "scripts": [
   "global_files/browserDetect.js",
   "global_files/browser-polyfill.js",
+  "services/UsefulFunctions.js",
+  "services/WhiteListService.js",
+  "services/NotificationService.js",
+  "services/CleanupService.js",
 	"background.js"
 	]
   },
