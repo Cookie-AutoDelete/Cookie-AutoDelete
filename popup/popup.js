@@ -20,8 +20,8 @@ function fillPopup(tabs) {
 		document.getElementById("activeModeSwitch").checked = items.activeMode;
 	});
 	
-	if(page.notifyMessage !== "") {
-		document.getElementById("notify").appendChild(document.createTextNode(page.notifyMessage));
+	if(page.notifyCleanup.notifyMessage !== "") {
+		document.getElementById("notify").appendChild(document.createTextNode(page.notifyCleanup.notifyMessage));
 	}
 
 	//Fill the host site placeholder if it exists
