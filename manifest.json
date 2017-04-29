@@ -1,13 +1,14 @@
 {
   "background": {
     "scripts": [
-  "global_files/browserDetect.js",
-  "global_files/browser-polyfill.js",
-  "services/UsefulFunctions.js",
-  "services/WhiteListService.js",
-  "services/NotificationService.js",
-  "services/CleanupService.js",
-	"background.js"
+      "global_files/browserDetect.js",
+      "global_files/browser-polyfill.js",
+      "services/UsefulFunctions.js",
+      "services/CacheService.js",
+      "services/WhiteListService.js",
+      "services/NotificationService.js",
+      "services/CleanupService.js",
+    	"background.js"
 	]
   },
   "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want.",

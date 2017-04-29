@@ -1,4 +1,13 @@
+var cache = new CacheService();
 var cleanup = new CleanupService();
+var notifyCleanup = new NotificationService();
+var whiteList;
+var contextualIdentitiesEnabled = false;
+
+var cookieDeletedCounterTotal;
+var recentlyCleaned = 0;
+var cookieDeletedCounter = 0;
+
 //Create an alarm when a tab is closed
 function onTabRemoved(tabId, removeInfo) {
 	browser.alarms.get("activeModeAlarm")
@@ -65,23 +74,10 @@ function storeCounterToLocal() {
 	browser.storage.local.set({cookieDeletedCounterTotal: cookieDeletedCounterTotal});
 }
 
-var nameCacheMap;
-function getNameFromCookieID(id) {
-	if(nameCacheMap.has(id)) {
-		return nameCacheMap.get(id);
-	} else {
-		browser.contextualIdentities.query({})
-		.then(function(containers) {
-			containers.forEach(function(currentValue, index, array) {
-				nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
-			});
-			return nameCacheMap.get(id);
-		});
-	}
-}
 
 //Sets up the background page on startup
 function onStartUp() {
+	whiteList = new WhiteListService()
 	browser.storage.local.get()
 	.then(function(items) {
 		//Disable contextualIdentities features if not Firefox
@@ -144,11 +140,7 @@ function setDefaults() {
 
 
 
-var contextualIdentitiesEnabled = false;
 
-var cookieDeletedCounterTotal;
-var recentlyCleaned = 0;
-var cookieDeletedCounter = 0;
 
 //setDefaults();
 onStartUp();
@@ -204,13 +196,13 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		}).catch(onError);
 
 		if(contextualIdentitiesEnabled) {
-			if(hasHost(getHostname(tab.url), tab.cookieStoreId)) {
+			if(whiteList.hasHost(getHostname(tab.url), tab.cookieStoreId)) {
 				setIconDefault(tab);
 			} else {
 				setIconRed(tab);
 			}
 		} else {
-			if(hasHost(getHostname(tab.url))) {
+			if(whiteList.hasHost(getHostname(tab.url))) {
 				setIconDefault(tab);
 			} else {
 				setIconRed(tab);

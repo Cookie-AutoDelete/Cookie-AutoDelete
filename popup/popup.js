@@ -34,9 +34,9 @@ function fillPopup(tabs) {
 	//Sets the checkbox depending on the if it exists in the set
 	cookieStoreId = tabs[0].cookieStoreId;
 	if(page.contextualIdentitiesEnabled) {
-		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl, cookieStoreId); 
+		document.getElementById("switchToWhiteList").checked = page.whiteList.hasHost(hostUrl, cookieStoreId); 
 	} else {
-		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl); 
+		document.getElementById("switchToWhiteList").checked = page.whiteList.hasHost(hostUrl); 
 	}
 
 	//hostUrl = page.extractMainDomain(hostUrl);
@@ -128,18 +128,18 @@ document.getElementById("switchToWhiteList").addEventListener("click", function(
 	if(hostUrl !== undefined) {
 		if(page.contextualIdentitiesEnabled) {
 			if(document.getElementById("switchToWhiteList").checked) {
-				page.addURL(hostUrl, cookieStoreId);
+				page.whiteList.addURL(hostUrl, cookieStoreId);
 				page.setIconDefault(activeTab);
 			} else {
-				page.removeURL(hostUrl, cookieStoreId);
+				page.whiteList.removeURL(hostUrl, cookieStoreId);
 				page.setIconRed(activeTab);
 			}
 		} else {
 			if(document.getElementById("switchToWhiteList").checked) {
-				page.addURL(hostUrl);
+				page.whiteList.addURL(hostUrl);
 				page.setIconDefault(activeTab);
 			} else {
-				page.removeURL(hostUrl);
+				page.whiteList.removeURL(hostUrl);
 				page.setIconRed(activeTab);
 			}
 		}

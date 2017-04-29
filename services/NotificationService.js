@@ -1,5 +1,3 @@
-
-
 class NotificationService {
 	constructor() {
 		this.notifyMessage = "";
@@ -7,7 +5,7 @@ class NotificationService {
 	}
 
 	//Creates a notification of what cookies were cleaned and how many
-	notifyCookieCleanUp (setOfDeletedDomainCookies) {
+	notifyCookieCleanUp (recentlyCleaned, setOfDeletedDomainCookies) {
 		if(setOfDeletedDomainCookies.size > 0) {
 			let stringOfDomains = "";
 			let commaAppendIndex = 0;
@@ -21,17 +19,16 @@ class NotificationService {
 			}); 
 			this.notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
 		}
-		
-		var that = this;
+	
 
 		browser.storage.local.get("notifyCookieCleanUpSetting")
-		.then(function(items) {
+		.then((items) => {
 			if(setOfDeletedDomainCookies.size > 0 && items.notifyCookieCleanUpSetting) {
-			return browser.notifications.create(that.cookieNotifyDone, {
+			return browser.notifications.create(this.cookieNotifyDone, {
 					"type": "basic",
 					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
 					"title": "Cookie AutoDelete: Cookies were Deleted!",
-					"message": that.notifyMessage
+					"message": this.notifyMessage
 				});
 			}
 		});
