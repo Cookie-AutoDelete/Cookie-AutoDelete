@@ -1,8 +1,8 @@
-var cache = new CacheService();
 var cleanup = new CleanupService();
 var notifyCleanup = new NotificationService();
 var whiteList;
 var statLog;
+var cache;
 var contextualIdentitiesEnabled = false;
 
 //Create an alarm when a tab is closed
@@ -59,6 +59,10 @@ function onStartUp() {
 			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
 		} else {
 			contextualIdentitiesEnabled = items.contextualIdentitiesEnabledSetting;
+		}
+
+		if(contextualIdentitiesEnabled) {
+			cache = new CacheService();
 		}
 
 		whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
