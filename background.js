@@ -2,11 +2,8 @@ var cache = new CacheService();
 var cleanup = new CleanupService();
 var notifyCleanup = new NotificationService();
 var whiteList;
+var statLog;
 var contextualIdentitiesEnabled = false;
-
-var cookieDeletedCounterTotal;
-var recentlyCleaned = 0;
-var cookieDeletedCounter = 0;
 
 //Create an alarm when a tab is closed
 function onTabRemoved(tabId, removeInfo) {
@@ -38,8 +35,8 @@ function disableActiveMode() {
 function createActiveModeAlarm() {
 	browser.storage.local.get("delayBeforeClean")
 	.then(function(items) {
-		//let minutes = parseInt(items.delayBeforeClean, 10);
-		let minutes = .1;
+		let minutes = parseInt(items.delayBeforeClean, 10);
+		//let minutes = .1;
 		//console.log("Create Active Alarm: " + minutes);
 		browser.alarms.create("activeModeAlarm",{
 			delayInMinutes: minutes
@@ -48,41 +45,13 @@ function createActiveModeAlarm() {
 }
 
 
-//Increment the counter and store the counter to local after 1 minute
-function incrementCounter() {
-	browser.storage.local.get("statLoggingSetting")
-	.then(function(items) {
-		if(items.statLoggingSetting === true) {
-			cookieDeletedCounterTotal++;
-			cookieDeletedCounter++;
-			browser.alarms.create("storeCounterToLocalAlarm", {
-				delayInMinutes: 1
-			});
-		}
-	}).catch(onError);
-}
-
-//Resets the counter
-function resetCounter() {
-	browser.storage.local.set({cookieDeletedCounterTotal: 0});
-	cookieDeletedCounterTotal = 0;
-	cookieDeletedCounter = 0;
-}
-
-//Stores the total cookie entries deleted to local
-function storeCounterToLocal() {
-	browser.storage.local.set({cookieDeletedCounterTotal: cookieDeletedCounterTotal});
-}
-
-
 //Sets up the background page on startup
 function onStartUp() {
-	whiteList = new WhiteListService()
 	browser.storage.local.get()
 	.then(function(items) {
 		//Disable contextualIdentities features if not Firefox
 		//console.log(browserDetect());
-		if(browserDetect() !== "Firefox" || browser.contextualIdentities === undefined) {
+		if(browserDetect() !== "Firefox") {
 			contextualIdentitiesEnabled = false;
 			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
 		} else if(items.contextualIdentitiesEnabledSetting === undefined) {
@@ -92,16 +61,15 @@ function onStartUp() {
 			contextualIdentitiesEnabled = items.contextualIdentitiesEnabledSetting;
 		}
 
+		whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
+		statLog = new StatsService(items);
+		
+
 		//Checks to see if these settings are in storage, if not create and set the default
 		if(items.delayBeforeClean === undefined) {
 			browser.storage.local.set({delayBeforeClean: 1});
 		} 	
 		
-		if(items.cookieDeletedCounterTotal === undefined) {
-			resetCounter();
-		} else {
-			cookieDeletedCounterTotal = items.cookieDeletedCounterTotal;
-		}		
 		
 		if(items.activeMode === undefined) {
 			browser.storage.local.set({activeMode: false});
@@ -137,10 +105,6 @@ function setDefaults() {
 		onStartUp();
 	});
 }
-
-
-
-
 
 //setDefaults();
 onStartUp();
@@ -220,9 +184,6 @@ browser.alarms.onAlarm.addListener(function (alarmInfo) {
 		cleanup.cleanCookiesOperation();
 		browser.alarms.clear(alarmInfo.name);
 
-	}
-	if(alarmInfo.name === "storeCounterToLocalAlarm") {
-		storeCounterToLocal();
 	}
 
 });

@@ -51,9 +51,8 @@ document.getElementById("tabWelcome").click();
     Welcome Logic
 */
 
-page.storeCounterToLocal();
-document.getElementById("sessionDeleted").textContent = page.cookieDeletedCounter;
-document.getElementById("totalDeleted").textContent = page.cookieDeletedCounterTotal;
+document.getElementById("sessionDeleted").textContent = page.statLog.cookieDeletedCounter;
+document.getElementById("totalDeleted").textContent = page.statLog.cookieDeletedCounterTotal;
 if(page.browserDetect() === "Firefox") {
     document.getElementById("reviewLink").href = "https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/";
 } else if(page.browserDetect() === "Chrome") {
@@ -110,7 +109,7 @@ document.getElementById("cancelSettings").addEventListener("click", function() {
 });
 
 document.getElementById("resetCounter").addEventListener("click", function() {
-    page.resetCounter();
+    page.statLog.resetCounter();
     toggleAlert(document.getElementById("resetCounterConfirm"));
 });
 
@@ -134,9 +133,9 @@ function clickRemoved(event) {
         URL = URL.trim();
         //console.log(URL);
         if(page.contextualIdentitiesEnabled) {
-            page.removeURL(URL, getActiveTabName());
+            page.whiteList.removeURL(URL, getActiveTabName());
         } else {
-            page.removeURL(URL);
+            page.whiteList.removeURL(URL);
         }
 		generateTableOfURLS();
     }
@@ -157,9 +156,9 @@ function addURLFromInput() {
     if(input) {
         var URL = "http://www." + input;
         if(page.contextualIdentitiesEnabled) {
-            page.addURL(page.getHostname(URL), getActiveTabName());
+            page.whiteList.addURL(page.getHostname(URL), getActiveTabName());
         } else {
-            page.addURL(page.getHostname(URL));
+            page.whiteList.addURL(page.getHostname(URL));
         }
         document.getElementById("URLForm").value = "";
         document.getElementById("URLForm").focus();  
@@ -206,7 +205,7 @@ function downloadTextFile(txt) {
 //Exports the container whitelist
 function exportMapToTxt() {
     let txtFile = "";
-    page.cookieWhiteList.forEach(function(value, key, map) {
+    page.whiteList.cookieWhiteList.forEach(function(value, key, map) {
         txtFile += "#" + key + "\n";
         txtFile += returnLinesFromArray(Array.from(value));
         txtFile += "\n"
@@ -264,11 +263,11 @@ function generateTabNav() {
 
     tabNav.id = "containerTabs";
     tabNav.classList.add("tab");
-        page.cookieWhiteList.forEach(function(value, key, map) {
+        page.whiteList.cookieWhiteList.forEach(function(value, key, map) {
         //Creates the tabbed navigation above the table
         let tab = document.createElement("li");
         let aTag = document.createElement("a");
-        aTag.textContent = page.getNameFromCookieID(key);
+        aTag.textContent = page.cache.getNameFromCookieID(key);
         aTag.classList.add("tablinks");
         aTag.classList.add(key);
         aTag.addEventListener("click", function(event) {
@@ -291,7 +290,7 @@ function generateTableOfURLS() {
     if(page.contextualIdentitiesEnabled) {
         let activeTabName = getActiveTabName();
         let theTables = document.createElement("div");
-            page.cookieWhiteList.forEach(function(value, key, map) {
+            page.whiteList.cookieWhiteList.forEach(function(value, key, map) {
                 //Creates a table based on the Cookie ID
                 let tabContent = generateTableFromArray(Array.from(value));
                 tabContent.classList.add("tabcontent");
@@ -310,7 +309,7 @@ function generateTableOfURLS() {
         }
 
     } else {
-        let theTable = generateTableFromArray(page.returnList());
+        let theTable = generateTableFromArray(page.whiteList.returnList());
         if(document.getElementById('tableContainer').hasChildNodes()) {
             document.getElementById('tableContainer').firstChild.replaceWith(theTable);
         } else {
@@ -333,9 +332,9 @@ if(page.contextualIdentitiesEnabled) {
 //Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", function() {
     if(page.contextualIdentitiesEnabled) {
-        page.clearURL(getActiveTabName());
+        page.whiteList.clearURL(getActiveTabName());
     } else {
-        page.clearURL();
+        page.whiteList.clearURL();
     }
     generateTableOfURLS();
 });
@@ -374,7 +373,7 @@ document.getElementById("importURLS").addEventListener("change", function() {
         line++;
       }
 	  if(lines[line] != "") {
-	  	page.addURL(lines[line], cookieID);
+	  	page.whiteList.addURL(lines[line], cookieID);
 	  }
 	}
 	generateTableOfURLS();

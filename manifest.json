@@ -5,6 +5,7 @@
       "global_files/browser-polyfill.js",
       "services/UsefulFunctions.js",
       "services/CacheService.js",
+      "services/StatsService.js",
       "services/WhiteListService.js",
       "services/NotificationService.js",
       "services/CleanupService.js",
@@ -47,5 +48,5 @@
   ],
   "manifest_version": 2,
   "name": "Cookie AutoDelete",
-  "version": "1.1.1rc1"
+  "version": "1.2.0"
 }

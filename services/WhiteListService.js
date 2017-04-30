@@ -1,42 +1,38 @@
 const defaultWhiteList = "defaultWhiteList";
 
 class WhiteListService {
-	constructor(contextualIdentitiesEnabled = false) {
-		//var that = this;
+	constructor(items, contextualIdentitiesEnabled = false) {
 		this.cookieWhiteList = new Map();
-		browser.storage.local.get()
-		.then((items) => {
-			//Sets up the whitelist for the map
-			if(contextualIdentitiesEnabled) {
-				browser.contextualIdentities.query({})
-				.then((containers) => {
-					containers.forEach(function(currentValue, index, array) {
-						//nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
-						if(items[currentValue.cookieStoreId] !== undefined) {
-							this.cookieWhiteList.set(currentValue.cookieStoreId, new Set(items[currentValue.cookieStoreId]));
-						} else {
-							this.cookieWhiteList.set(currentValue.cookieStoreId, new Set());
-						}
-					});
-
-					let firefoxDefault = "firefox-default";
-					if(firefoxDefault !== undefined) {
-						this.cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
+		//Sets up the whitelist for the map
+		if(contextualIdentitiesEnabled) {
+			browser.contextualIdentities.query({})
+			.then((containers) => {
+				containers.forEach(function(currentValue, index, array) {
+					//nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
+					if(items[currentValue.cookieStoreId] !== undefined) {
+						this.cookieWhiteList.set(currentValue.cookieStoreId, new Set(items[currentValue.cookieStoreId]));
 					} else {
-						this.cookieWhiteList.set(firefoxDefault, new Set());
+						this.cookieWhiteList.set(currentValue.cookieStoreId, new Set());
 					}
 				});
-			} else {
-			
-				if(items[defaultWhiteList] !== undefined) {
-					this.cookieWhiteList.set(defaultWhiteList, new Set(items[defaultWhiteList]));
-				} else {
-					this.cookieWhiteList.set(defaultWhiteList, new Set());
-				}
 
+				let firefoxDefault = "firefox-default";
+				if(firefoxDefault !== undefined) {
+					this.cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
+				} else {
+					this.cookieWhiteList.set(firefoxDefault, new Set());
+				}
+			});
+		} else {
+		
+			if(items[defaultWhiteList] !== undefined) {
+				this.cookieWhiteList.set(defaultWhiteList, new Set(items[defaultWhiteList]));
+			} else {
+				this.cookieWhiteList.set(defaultWhiteList, new Set());
 			}
 
-		});		
+		}
+	
 	}
 
 	//See if the set has the url depending on the cookieStoreId
@@ -69,7 +65,7 @@ class WhiteListService {
 			this.cookieWhiteList.set(cookieStoreId, new Set());
 		}
 		this.cookieWhiteList.get(cookieStoreId).add(url);
-		storeLocal(cookieStoreId);
+		this.storeLocal(cookieStoreId);
 	}
 
 	//Remove the url from the set depending on the cookieStoreId
@@ -79,13 +75,13 @@ class WhiteListService {
 			return;
 		}
 		this.cookieWhiteList.get(cookieStoreId).delete(url);
-		storeLocal(cookieStoreId);
+		this.storeLocal(cookieStoreId);
 	}
 
 	//Clears the set depending on the cookieStoreId
 	clearURL (cookieStoreId = defaultWhiteList) {
 		this.cookieWhiteList.get(cookieStoreId).clear();
-		storeLocal(cookieStoreId);
+		this.storeLocal(cookieStoreId);
 	}
 
 }

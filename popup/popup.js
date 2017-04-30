@@ -55,7 +55,7 @@ function fillPopup(tabs) {
 	//Sets the Host site placeholder
 	hostPlaceholder.appendChild(document.createTextNode(hostUrl));
 	if(page.contextualIdentitiesEnabled) {
-		let name = page.getNameFromCookieID(cookieStoreId);
+		let name = page.cache.getNameFromCookieID(cookieStoreId);
 		hostPlaceholder.appendChild(document.createTextNode("\n" + `(${name})`));
 	}
 
@@ -96,14 +96,14 @@ document.getElementById("clearCookiesForDomain").addEventListener("click", funct
 	.then(function(cookies) {
 		if(cookies.length > 0) {
 			for(let i = 0; i < cookies.length; i++) {
-				let cookieDomain = page.prepareCookieDomain(cookies[i])  + cookies[i].path;
+				let cookieDomain = page.cleanup.prepareCookieDomain(cookies[i])  + cookies[i].path;
 				browser.cookies.remove({
 					url: cookieDomain,
 					name: cookies[i].name,
 					storeId: cookieStoreId
 				});
 			}
-			page.recentlyCleaned = cookies.length;
+			page.statLog.incrementCounter(cookies.length);
 			animateSuccess(document.getElementById("clearCookiesForDomain"));
 		} else {
 			animateFailure(document.getElementById("clearCookiesForDomain"));

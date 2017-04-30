@@ -32,6 +32,8 @@ class CleanupService {
 			} else {
 				safeToClean = !whiteList.hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost);
 			}
+
+
 			if(safeToClean) {
 				//Append the path to cookie
 				cookieDomain = cookieDomain + cookies[i].path;
@@ -52,7 +54,6 @@ class CleanupService {
 					name: cookies[i].name,
 					storeId: cookies[i].storeId
 				});
-				incrementCounter();
 				this.recentlyCleaned++;
 			}
 		}
@@ -85,7 +86,7 @@ class CleanupService {
 				//Clean cookies in different cookie ids using the contextual identities api
 				let promiseContainers = [];
 
-				nameCacheMap.forEach(function(value, key, map) {
+				cache.nameCacheMap.forEach(function(value, key, map) {
 					browser.cookies.getAll({storeId: key})
 					.then((cookies) => {
 						promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
@@ -93,19 +94,24 @@ class CleanupService {
 				});
 				
 				Promise.all(promiseContainers)
-				.then(notifyCleanup.notifyCookieCleanUp(this.recentlyCleaned, setOfDeletedDomainCookies));
+				.then(this.afterCleanup(setOfDeletedDomainCookies));
 			} else {
 				//Clean the default cookie id container
 				browser.cookies.getAll({})
 				.then((cookies) => {
 					this.cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies)
-					.then(notifyCleanup.notifyCookieCleanUp(this.recentlyCleaned, setOfDeletedDomainCookies));
+					.then(this.afterCleanup(setOfDeletedDomainCookies));
 				});
 			}
 			
 			
 		});
 
+	}
+
+	afterCleanup(setOfDeletedDomainCookies) {
+		notifyCleanup.notifyCookieCleanUp(this.recentlyCleaned, setOfDeletedDomainCookies);
+		statLog.incrementCounter(this.recentlyCleaned);
 	}
 
 }
