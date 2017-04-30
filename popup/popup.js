@@ -81,11 +81,15 @@ document.getElementById("settings").addEventListener("click", function() {
 
 //Clear all history for a domain
 document.getElementById('cookieCleanup').addEventListener("click", function() {
-
 	page.cleanup.cleanCookiesOperation();
 	animateSuccess(this);
-	
 });
+
+document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", function() {
+	page.cleanup.cleanCookiesOperation(true);
+	animateSuccess(this);
+});
+
 
 //Clear all cookies for that domain
 document.getElementById("clearCookiesForDomain").addEventListener("click", function() {
