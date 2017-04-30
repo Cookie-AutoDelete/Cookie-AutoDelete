@@ -5,24 +5,23 @@ class WhiteListService {
 		this.cookieWhiteList = new Map();
 		//Sets up the whitelist for the map
 		if(contextualIdentitiesEnabled) {
-			browser.contextualIdentities.query({})
-			.then((containers) => {
-				containers.forEach(function(currentValue, index, array) {
-					//nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
-					if(items[currentValue.cookieStoreId] !== undefined) {
-						this.cookieWhiteList.set(currentValue.cookieStoreId, new Set(items[currentValue.cookieStoreId]));
-					} else {
-						this.cookieWhiteList.set(currentValue.cookieStoreId, new Set());
-					}
-				});
 
-				let firefoxDefault = "firefox-default";
-				if(firefoxDefault !== undefined) {
-					this.cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
+			cache.nameCacheMap.forEach((value, key, map) => {
+				let cookieStoreId = key;
+				if(items[cookieStoreId] !== undefined) {
+					this.cookieWhiteList.set(cookieStoreId, new Set(items[key]));
 				} else {
-					this.cookieWhiteList.set(firefoxDefault, new Set());
+					this.cookieWhiteList.set(cookieStoreId, new Set());
 				}
 			});
+
+			let firefoxDefault = "firefox-default";
+			if(items[firefoxDefault] !== undefined) {
+				this.cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
+			} else {
+				this.cookieWhiteList.set(firefoxDefault, new Set());
+			}
+
 		} else {
 		
 			if(items[defaultWhiteList] !== undefined) {

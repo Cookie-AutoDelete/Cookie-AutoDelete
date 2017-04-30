@@ -9,7 +9,7 @@ class NotificationService {
 		if(setOfDeletedDomainCookies.size > 0) {
 			let stringOfDomains = "";
 			let commaAppendIndex = 0;
-			setOfDeletedDomainCookies.forEach(function(value1, value2, set) {
+			setOfDeletedDomainCookies.forEach((value1, value2, set) => {
 				stringOfDomains = stringOfDomains + value2;
 				commaAppendIndex++;
 				if(commaAppendIndex < setOfDeletedDomainCookies.size) {

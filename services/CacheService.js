@@ -1,18 +1,30 @@
 class CacheService {
 	constructor() {
 		this.nameCacheMap = new Map();
-		this.cacheContextualIdentityNames();
+		this.nameCacheMap.set("firefox-default", "Default");
 	}
 
 	cacheContextualIdentityNames() {
-		browser.contextualIdentities.query({})
+		return browser.contextualIdentities.query({})
 		.then((containers) => {
-			containers.forEach(function(currentValue, index, array) {
+			browser.storage.local.set({containerCache: containers});
+			containers.forEach((currentValue, index, array) => {
 				this.nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
-				console.log(currentValue);
 			});
+
 		});
-		return Promise.resolve();
+		
+	}
+
+	cacheContextualIdentityNamesFromStorage(items) {
+		if(items.containerCache === undefined) {
+			return this.cacheContextualIdentityNames();
+		} else {
+			items.containerCache.forEach((currentValue, index, array) => {
+				this.nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
+			});
+			return Promise.resolve();
+		}
 	}
 
 	getNameFromCookieID(id) {

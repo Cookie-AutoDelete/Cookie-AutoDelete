@@ -7,6 +7,7 @@ class CleanupService {
 	//Puts the domain in the right format for browser.cookies.clean() 
 	prepareCookieDomain(cookie) {
 		let cookieDomain = cookie.domain;
+		//console.log(cookie);
 		if(cookieDomain.charAt(0) === ".") {
 			cookieDomain = cookieDomain.slice(1);
 		}
@@ -42,12 +43,13 @@ class CleanupService {
 				if(contextualIdentitiesEnabled) {
 					
 					//setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
-					let name = getNameFromCookieID(cookies[i].storeId);
+					let name = cache.getNameFromCookieID(cookies[i].storeId);
 					setOfDeletedDomainCookies.add(`${cookieMainDomainHost} (${name})`);
+
 				} else {
 					setOfDeletedDomainCookies.add(cookieDomainHost);
 				}
-
+				
 				// url: "http://domain.com" + cookies[i].path
 				browser.cookies.remove({
 					url: cookieDomain,
@@ -61,7 +63,7 @@ class CleanupService {
 	}
 
 	//Main function for cookie cleanup 
-	cleanCookiesOperation() {
+	cleanCookiesOperation(ignoreOpenTabs = false) {
 		//console.log("Cleaning");
 		//Stores all tabs' host domains
 		let setOfTabURLS = new Set();
@@ -73,11 +75,13 @@ class CleanupService {
 			"windowType": "normal"
 		})
 		.then((tabs) => {
-			for(let i = 0; i < tabs.length; i++) {
-				if (isAWebpage(tabs[i].url)) {
-					let hostURL = getHostname(tabs[i].url);
-					hostURL = extractMainDomain(hostURL);
-					setOfTabURLS.add(hostURL);
+			if(!ignoreOpenTabs) {
+				for(let i = 0; i < tabs.length; i++) {
+					if (isAWebpage(tabs[i].url)) {
+						let hostURL = getHostname(tabs[i].url);
+						hostURL = extractMainDomain(hostURL);
+						setOfTabURLS.add(hostURL);
+					}
 				}
 			}
 			//console.log(setOfTabURLS);
@@ -85,16 +89,20 @@ class CleanupService {
 			if(contextualIdentitiesEnabled) {
 				//Clean cookies in different cookie ids using the contextual identities api
 				let promiseContainers = [];
-
-				cache.nameCacheMap.forEach(function(value, key, map) {
+				let index = 1;
+				cache.nameCacheMap.forEach((value, key, map) => {
 					browser.cookies.getAll({storeId: key})
 					.then((cookies) => {
-						promiseContainers.push(cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
-					});
+						promiseContainers.push(this.cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
+						index++;
+						if(index === cache.nameCacheMap.size) {
+							Promise.all(promiseContainers)
+							.then(this.afterCleanup(setOfDeletedDomainCookies));
+						}
+					});	
 				});
 				
-				Promise.all(promiseContainers)
-				.then(this.afterCleanup(setOfDeletedDomainCookies));
+				
 			} else {
 				//Clean the default cookie id container
 				browser.cookies.getAll({})

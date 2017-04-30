@@ -8,7 +8,7 @@ var contextualIdentitiesEnabled = false;
 //Create an alarm when a tab is closed
 function onTabRemoved(tabId, removeInfo) {
 	browser.alarms.get("activeModeAlarm")
-	.then(function(alarm) {
+	.then((alarm) => {
 		//This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
 		//in chrome, it returns an array
 		if(browserDetect() === "Firefox" && !alarm) {
@@ -34,7 +34,7 @@ function disableActiveMode() {
 //Create an alarm delay before cookie cleanup
 function createActiveModeAlarm() {
 	browser.storage.local.get("delayBeforeClean")
-	.then(function(items) {
+	.then((items) => {
 		let minutes = parseInt(items.delayBeforeClean, 10);
 		//let minutes = .1;
 		//console.log("Create Active Alarm: " + minutes);
@@ -48,7 +48,7 @@ function createActiveModeAlarm() {
 //Sets up the background page on startup
 function onStartUp() {
 	browser.storage.local.get()
-	.then(function(items) {
+	.then((items) => {
 		//Disable contextualIdentities features if not Firefox
 		//console.log(browserDetect());
 		if(browserDetect() !== "Firefox") {
@@ -60,14 +60,6 @@ function onStartUp() {
 		} else {
 			contextualIdentitiesEnabled = items.contextualIdentitiesEnabledSetting;
 		}
-
-		if(contextualIdentitiesEnabled) {
-			cache = new CacheService();
-		}
-
-		whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
-		statLog = new StatsService(items);
-		
 
 		//Checks to see if these settings are in storage, if not create and set the default
 		if(items.delayBeforeClean === undefined) {
@@ -97,6 +89,20 @@ function onStartUp() {
 		} else {
 			disableActiveMode();
 		}
+		
+		if(contextualIdentitiesEnabled) {
+			cache = new CacheService();
+			cache.cacheContextualIdentityNamesFromStorage(items)
+			.then(() => {
+				whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
+			});
+			
+		} else {
+			whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
+		}
+
+		
+		statLog = new StatsService(items);
 
 	}).catch(onError);
 }
