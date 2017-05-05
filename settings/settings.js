@@ -1,4 +1,3 @@
-var page = browser.extension.getBackgroundPage();
 
 //Show an alert and then fade out
 function toggleAlert(alert) {
@@ -51,12 +50,10 @@ document.getElementById("tabWelcome").click();
     Welcome Logic
 */
 
-document.getElementById("sessionDeleted").textContent = page.statLog.cookieDeletedCounter;
-document.getElementById("totalDeleted").textContent = page.statLog.cookieDeletedCounterTotal;
 if(page.browserDetect() === "Firefox") {
-    document.getElementById("reviewLink").href = "https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/";
+    document.getElementById("reviewLinkMessage").href = "https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/";
 } else if(page.browserDetect() === "Chrome") {
-    document.getElementById("reviewLink").href = "https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews";
+    document.getElementById("reviewLinkMessage").href = "https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews";
 }
 /*
     History Settings Logic
@@ -188,7 +185,8 @@ function downloadTextFile(txt) {
     //Firefox just opens the text rather than downloading it. In Chrome the "else" block of code works.
     //So this is a work around.
     if(page.browserDetect() === "Firefox") {
-        hiddenElement.appendChild(document.createTextNode("Right click to save as"));
+        let text = browser.i18n.getMessage("rightClickToSave");
+        hiddenElement.appendChild(document.createTextNode(text));
         if(document.getElementById("saveAs").hasChildNodes()) {
             document.getElementById("saveAs").firstChild.replaceWith(hiddenElement);
         } else {
