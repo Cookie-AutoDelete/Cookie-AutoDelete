@@ -17,7 +17,8 @@ class NotificationService {
 				}
 				
 			}); 
-			this.notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+			//this.notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
+			this.notifyMessage =  browser.i18n.getMessage("notificationContent", [recentlyCleaned, stringOfDomains]);
 		}
 	
 
@@ -27,7 +28,7 @@ class NotificationService {
 			return browser.notifications.create(this.cookieNotifyDone, {
 					"type": "basic",
 					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
-					"title": "Cookie AutoDelete: Cookies were Deleted!",
+					"title": browser.i18n.getMessage("notificationTitle"),
 					"message": this.notifyMessage
 				});
 			}

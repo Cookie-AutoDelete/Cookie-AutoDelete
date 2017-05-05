@@ -2,6 +2,7 @@
 
 <html>
 <head>
+	<script type="text/javascript" src="popupLocalization.js"></script>
 	<link rel="stylesheet" href="../global_files/normalize.css">
 	<link rel="stylesheet" href="../global_files/skeleton.css">
 	<link rel="stylesheet" href="popup.css">
@@ -11,7 +12,7 @@
 	<div class="container">
 			<div id="top">
 				<div class="row">
-					<span><b>Host Website:</b></span>
+					<span><b id="hostWebsiteText">Host Website:</b></span>
 
 					<img src="../icons/settings.png" id="settings" class="u-pull-right">
 				</div>			
@@ -29,7 +30,7 @@
 			</div>
 
 			<div class="row">
-				<label id="cookieCleanupIgnoreOpenTabs" for="cookieCleanup">
+				<label id="cookieCleanupIgnoreOpenTabs" for="cookieCleanupIgnoreOpenTabs">
 						<span class="userAction">Cookie Cleanup (Ignore Open Tabs)</span>
 				</label>
 			</div>
@@ -45,14 +46,14 @@
 			<div class="row">
 				<label for="activeModeSwitch">
 						<input type="checkbox" id="activeModeSwitch">
-						<span class="userAction">Active Mode</span>
+						<span id="activeModeSwitchText" class="userAction">Active Mode</span>
 				</label>
 			</div>
 			
 			<div class="row">
 				<label for="switchToWhiteList">
 						<input type="checkbox" id="switchToWhiteList">
-						<span class="userAction">Add to WhiteList?</span>
+						<span id="switchToWhiteListText" class="userAction">Add to WhiteList?</span>
 				</label>
 			</div>
 			

@@ -1,0 +1,81 @@
+{
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want.",
+    "description": "Description of the extension."
+  },
+
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: Cookies were Deleted!",
+    "description": "Notification that appears after cleanup."
+  },
+
+  "notificationContent": {
+    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "websites" : {
+        "content" : "$2",
+        "example" : "google.com, facebook.com"
+      }
+    }
+  },
+
+  "hostWebsiteText": {
+    "message": "Host Website:",
+    "description": "Host Website title that appears at the top of the popup"
+  },
+
+  "cookieCleanupText": {
+    "message": "Cookie Cleanup",
+    "description": "Cookie Cleanup Selection Choice."
+  },
+
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Cookie Cleanup (Ignore Open Tabs)",
+    "description": "Cookie Cleanup that ignores open tabs Selection Choice."
+  },
+
+  "clearCookiesForDomainText": {
+    "message": "Clear All Cookies For This Domain",
+    "description": "Clear All Cookies For This Domain Selection Choice."
+  },
+
+  "activeModeSwitchText": {
+    "message": "Active Mode",
+    "description": "Active Mode Switch."
+  },
+
+  "switchToWhiteListText": {
+    "message": "Add to WhiteList?",
+    "description": "Switch whether to add a site to a whitelist or not."
+  },
+
+  "welcomeText": {
+    "message": "Welcome",
+    "description": "Cookie Cleanup that ignores open tabs Selection Choice."
+  },
+
+  "settingsText": {
+    "message": "Cookie Settings",
+    "description": "Clear All Cookies For This Domain Selection Choice."
+  },
+
+  "whiteListText": {
+    "message": "Cookie WhiteListsada",
+    "description": "Active Mode Switch."
+  },
+
+  "aboutText": {
+    "message": "About",
+    "description": "Switch whether to add a site to a whitelist or not."
+  }
+}
