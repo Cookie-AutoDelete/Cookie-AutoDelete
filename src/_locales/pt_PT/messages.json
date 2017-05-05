@@ -5,7 +5,7 @@
   },
 
   "extensionDescription": {
-    "message": "Controle os seus cookies! Apague automaticamente cookies n„o utilizados dos seus separadores fechados, enquanto mantÈm os que pretende.",
+    "message": "Controle os seus cookies! Apague automaticamente cookies n√£o utilizados dos seus separadores fechados, enquanto mant√©m os que pretende.",
     "description": "Description of the extension."
   },
 
@@ -45,7 +45,7 @@
   },
 
   "clearCookiesForDomainText": {
-    "message": "Limpar todos os cookies para este domÌnio",
+    "message": "Limpar todos os cookies para este dom√≠nio",
     "description": "Clear All Cookies For This Domain"
   },
 
@@ -55,7 +55,7 @@
   },
 
   "switchToWhiteListText": {
-    "message": "Adicionar ‡ lista branca?",
+    "message": "Adicionar √† lista branca?",
     "description": "Add to WhiteList?"
   },
 
@@ -65,12 +65,12 @@
   },
 
   "settingsText": {
-    "message": "DefiniÁıes dos cookies",
+    "message": "Defini√ß√µes dos cookies",
     "description": "Cookie Settings"
   },
 
   "whiteListText": {
-    "message": "Lista branca dos cookies",
+    "message": "Lista branca de cookies",
     "description": "Cookie WhiteList"
   },
 
@@ -80,7 +80,7 @@
   },
 
   "welcomeMessage": {
-    "message": "Ol·! Durante esta sess„o, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
+    "message": "Ol√°! Durante esta sess√£o, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted" : {
@@ -95,12 +95,12 @@
   },
 
   "reviewLinkMessage": {
-    "message": "Obrigado por experimentar Cookie AutoDelete. Se gostou, ent„o por favor deixe uma an·lise.",
+    "message": "Obrigado por experimentar o Cookie AutoDelete. Se gostou, ent√£o por favor deixe uma an√°lise.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
   },
 
   "releaseNotesText": {
-    "message": "Notas de lanÁamento",
+    "message": "Notas de lan√ßamento",
     "description": "Release Notes"
   },
 
@@ -115,17 +115,17 @@
   },
 
 "activeModeTooltipText": {
-    "message": "Quando o modo ativo est· ativado, a limpeza de cookies È desencadeada no fecho de separadores.",
+    "message": "Quando o modo ativo est√° ativado, a limpeza de cookies √© desencadeada no fecho de separadores.",
     "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
   },
 
 "statLoggingText": {
-    "message": "Registar n˙mero total de cookies apagados",
+    "message": "Registar n√∫mero total de cookies apagados",
     "description": "Log Total Number Of Cookies Deleted"
   },
 
 "statLoggingTooltipText": {
-    "message": "Conta o n˙mero de cookies apagados durante esta sess„o e no total. Isto È mostrado no ecr„ de boas vindas.",
+    "message": "Conta o n√∫mero de cookies apagados durante esta sess√£o e no total. Isto √© mostrado no ecr√£ de boas vindas.",
     "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
@@ -135,22 +135,22 @@
   },
 
 "showNumberOfCookiesInIconText": {
-    "message": "Mostrar n˙mero de cookies para esse domÌnio",
+    "message": "Mostrar n√∫mero de cookies para esse dom√≠nio",
     "description": "Show Number of Cookies for that Domain"
   },
 
 "showNumberOfCookiesInIconTooltipText": {
-    "message": "Mostrar n˙mero de cookies para esse domÌnio",
+    "message": "Mostrar n√∫mero de cookies para esse dom√≠nio",
     "description": "Show Number of Cookies for that Domain"
   },
 
 "notifyCookieCleanUpText": {
-    "message": "Mostrar notificaÁ„o apÛs limpeza de cookies",
+    "message": "Mostrar notifica√ß√£o ap√≥s limpeza de cookies",
     "description": "Show Notification After Cookie CleanUp"
   },
 
 "notifyCookieCleanUpTooltipText": {
-    "message": "Mostrar quantos cookies foram limpos e para que domÌnio.",
+    "message": "Mostrar quantos cookies foram limpos e para que dom√≠nio.",
     "description": "Shows how many cookies were cleaned and for which domain."
   },
 
@@ -160,7 +160,7 @@
   },
 
 "contextualIdentitiesTooltipText": {
-    "message": "N√O ativar a menos que esteja no Firefox 53+. Isto ir· adicionar uma lista branca diferente para CADA contentor que utilizar. A sua lista branca predefinida È separada destas.",
+    "message": "N√ÉO ativar a menos que esteja no Firefox 53+. Isto ir√° adicionar uma lista branca diferente para CADA contentor que utilizar. A sua lista branca predefinida √© separada destas.",
     "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
@@ -175,12 +175,12 @@
   },
 
 "defaultSettingsText": {
-    "message": "DefiniÁıes predefinidas",
+    "message": "Defini√ß√µes predefinidas",
     "description": "Default Settings"
   },
 
 "defaultSettingsTooltipText": {
-    "message": "AVISO: Isto ir· tambÈm limpar os seus URLS. Por isso faÁa uma cÛpia de seguranÁa dos mesmos!",
+    "message": "AVISO: Isto ir√° tamb√©m limpar os seus URLS. Por isso fa√ßa uma c√≥pia de seguran√ßa dos mesmos!",
     "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
   },
 
@@ -190,12 +190,12 @@
   },
 
 "cancelConfirmText": {
-    "message": "DefiniÁıes restauradas!",
+    "message": "Defini√ß√µes restauradas!",
     "description": "Restored Settings!"
   },
 
 "defaultConfirmText": {
-    "message": "DefiniÁıes predefinidas restauradas!",
+    "message": "Defini√ß√µes predefinidas restauradas!",
     "description": "Restored Default Settings!"
   },
 
@@ -215,7 +215,7 @@
   },
 
 "enterURLTooltipText": {
-    "message": "Digite URLS sem a parte 'www.', depois pressione 'Enter' ou 'Adicionar URL'. Alternativamente v· ao site e adicione-o a partir do Ìcone azul.",
+    "message": "Digite URLS sem a parte 'www.', depois pressione 'Enter' ou 'Adicionar URL'. Alternativamente v√° ao site e adicione-o a partir do √≠cone azul.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
   },
 
@@ -225,7 +225,7 @@
   },
 
 "rightClickToSave": {
-    "message": "Clique com o lado direito para guardar ligaÁ„o como",
+    "message": "Clique com o lado direito para guardar liga√ß√£o como",
     "description": "Right Click to Save Link As"
   },
 
@@ -240,7 +240,7 @@
   },  
 
 "versionText": {
-    "message": "vers„o",
+    "message": "vers√£o",
     "description": "version"
   },
 
