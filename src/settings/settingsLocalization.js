@@ -7,8 +7,8 @@ document.getElementById("tabAboutText").textContent = browser.i18n.getMessage("a
 
 document.getElementById("sectionWelcome").textContent = browser.i18n.getMessage("welcomeText");
 document.getElementById("welcomeMessage").textContent = browser.i18n.getMessage("welcomeMessage",[page.statLog.cookieDeletedCounter, page.statLog.cookieDeletedCounterTotal]);
-document.getElementById("reviewLinkMessage").textContent = browser.i18n.getMessage("reviewLinkMessage" );
-
+document.getElementById("reviewLinkMessage").textContent = browser.i18n.getMessage("reviewLinkMessage");
+document.getElementById("releaseNotesText").textContent = browser.i18n.getMessage("releaseNotesText");
 
 document.getElementById("sectionSettings").textContent = browser.i18n.getMessage("settingsText");
 document.getElementById("activeModeText").textContent = browser.i18n.getMessage("activeModeText");
@@ -17,7 +17,6 @@ document.getElementById("activeModeTooltipText").textContent = browser.i18n.getM
 document.getElementById("statLoggingText").textContent = browser.i18n.getMessage("statLoggingText");
 document.getElementById("statLoggingTooltipText").textContent = browser.i18n.getMessage("statLoggingTooltipText");
 document.getElementById("resetCounterText").textContent = browser.i18n.getMessage("resetCounterText");
-
 document.getElementById("showNumberOfCookiesInIconText").textContent = browser.i18n.getMessage("showNumberOfCookiesInIconText");
 document.getElementById("showNumberOfCookiesInIconTooltipText").textContent = browser.i18n.getMessage("showNumberOfCookiesInIconTooltipText");
 document.getElementById("notifyCookieCleanUpText").textContent = browser.i18n.getMessage("notifyCookieCleanUpText");
