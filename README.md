@@ -8,7 +8,7 @@ Control your cookies! This extension is inspired by Self Destructing Cookies. Wh
 - Clear All Cookies for a Domain
 - Support for Container Tabs (Firefox 53+ Only)
 
-# Usage
+### Usage
 1. Add the sites you want to keep cookies in the whitelist
 2. Enable "Active Mode" in the popup or settings
 3. Watch those unused cookies disappear :)
