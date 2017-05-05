@@ -1,13 +1,21 @@
 {
   "background": {
     "scripts": [
-  "global_files/browserDetect.js",
-  "global_files/browser-polyfill.js",
-	"background.js"
+      "global_files/browserDetect.js",
+      "global_files/browser-polyfill.js",
+      "services/UsefulFunctions.js",
+      "services/CacheService.js",
+      "services/StatsService.js",
+      "services/WhiteListService.js",
+      "services/NotificationService.js",
+      "services/CleanupService.js",
+    	"background.js"
 	]
   },
-  "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want.",
+  "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
+  "author": "Kenny Do",
+  "default_locale": "en",
   "browser_action": {
     "default_icon": {    
       "48": "icons/icon_48.png"     
@@ -41,6 +49,6 @@
     "notifications"
   ],
   "manifest_version": 2,
-  "name": "Cookie AutoDelete",
-  "version": "1.1.0"
+  "name": "__MSG_extensionName__",
+  "version": "1.2.0"
 }

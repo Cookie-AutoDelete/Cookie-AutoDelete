@@ -261,3 +261,7 @@ input[type="file"] {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+span#welcomeMessage {
+  font-weight: normal;
+}

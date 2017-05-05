@@ -20,8 +20,8 @@ function fillPopup(tabs) {
 		document.getElementById("activeModeSwitch").checked = items.activeMode;
 	});
 	
-	if(page.notifyMessage !== "") {
-		document.getElementById("notify").appendChild(document.createTextNode(page.notifyMessage));
+	if(page.notifyCleanup.notifyMessage !== "") {
+		document.getElementById("notify").appendChild(document.createTextNode(page.notifyCleanup.notifyMessage));
 	}
 
 	//Fill the host site placeholder if it exists
@@ -34,9 +34,9 @@ function fillPopup(tabs) {
 	//Sets the checkbox depending on the if it exists in the set
 	cookieStoreId = tabs[0].cookieStoreId;
 	if(page.contextualIdentitiesEnabled) {
-		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl, cookieStoreId); 
+		document.getElementById("switchToWhiteList").checked = page.whiteList.hasHost(hostUrl, cookieStoreId); 
 	} else {
-		document.getElementById("switchToWhiteList").checked = page.hasHost(hostUrl); 
+		document.getElementById("switchToWhiteList").checked = page.whiteList.hasHost(hostUrl); 
 	}
 
 	//hostUrl = page.extractMainDomain(hostUrl);
@@ -55,7 +55,7 @@ function fillPopup(tabs) {
 	//Sets the Host site placeholder
 	hostPlaceholder.appendChild(document.createTextNode(hostUrl));
 	if(page.contextualIdentitiesEnabled) {
-		let name = page.getNameFromCookieID(cookieStoreId);
+		let name = page.cache.getNameFromCookieID(cookieStoreId);
 		hostPlaceholder.appendChild(document.createTextNode("\n" + `(${name})`));
 	}
 
@@ -81,11 +81,15 @@ document.getElementById("settings").addEventListener("click", function() {
 
 //Clear all history for a domain
 document.getElementById('cookieCleanup').addEventListener("click", function() {
-
-	page.cleanCookiesOperation();
+	page.cleanup.cleanCookiesOperation();
 	animateSuccess(this);
-	
 });
+
+document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", function() {
+	page.cleanup.cleanCookiesOperation(true);
+	animateSuccess(this);
+});
+
 
 //Clear all cookies for that domain
 document.getElementById("clearCookiesForDomain").addEventListener("click", function() {
@@ -96,14 +100,14 @@ document.getElementById("clearCookiesForDomain").addEventListener("click", funct
 	.then(function(cookies) {
 		if(cookies.length > 0) {
 			for(let i = 0; i < cookies.length; i++) {
-				let cookieDomain = page.prepareCookieDomain(cookies[i])  + cookies[i].path;
+				let cookieDomain = page.cleanup.prepareCookieDomain(cookies[i])  + cookies[i].path;
 				browser.cookies.remove({
 					url: cookieDomain,
 					name: cookies[i].name,
 					storeId: cookieStoreId
 				});
 			}
-			page.recentlyCleaned = cookies.length;
+			page.statLog.incrementCounter(cookies.length);
 			animateSuccess(document.getElementById("clearCookiesForDomain"));
 		} else {
 			animateFailure(document.getElementById("clearCookiesForDomain"));
@@ -128,18 +132,18 @@ document.getElementById("switchToWhiteList").addEventListener("click", function(
 	if(hostUrl !== undefined) {
 		if(page.contextualIdentitiesEnabled) {
 			if(document.getElementById("switchToWhiteList").checked) {
-				page.addURL(hostUrl, cookieStoreId);
+				page.whiteList.addURL(hostUrl, cookieStoreId);
 				page.setIconDefault(activeTab);
 			} else {
-				page.removeURL(hostUrl, cookieStoreId);
+				page.whiteList.removeURL(hostUrl, cookieStoreId);
 				page.setIconRed(activeTab);
 			}
 		} else {
 			if(document.getElementById("switchToWhiteList").checked) {
-				page.addURL(hostUrl);
+				page.whiteList.addURL(hostUrl);
 				page.setIconDefault(activeTab);
 			} else {
-				page.removeURL(hostUrl);
+				page.whiteList.removeURL(hostUrl);
 				page.setIconRed(activeTab);
 			}
 		}

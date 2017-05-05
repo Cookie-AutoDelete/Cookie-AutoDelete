@@ -11,7 +11,7 @@
 	<div class="container">
 			<div id="top">
 				<div class="row">
-					<span><b>Host Website:</b></span>
+					<span><b id="hostWebsiteText">Host Website:</b></span>
 
 					<img src="../icons/settings.png" id="settings" class="u-pull-right">
 				</div>			
@@ -24,13 +24,19 @@
 
 			<div class="row">
 				<label id="cookieCleanup" for="cookieCleanup">
-						<span class="userAction">Cookie Cleanup</span>
+						<span id="cookieCleanupText" class="userAction">Cookie Cleanup</span>
+				</label>
+			</div>
+
+			<div class="row">
+				<label id="cookieCleanupIgnoreOpenTabs" for="cookieCleanupIgnoreOpenTabs">
+						<span id="cookieCleanupIgnoreOpenTabsText" class="userAction">Cookie Cleanup (Ignore Open Tabs)</span>
 				</label>
 			</div>
 			
 			<div class="row">
 				<label id="clearCookiesForDomain" for="clearCookiesForDomain">
-						<span class="userAction">Clear All Cookies For This Domain</span>
+						<span id="clearCookiesForDomainText" class="userAction">Clear All Cookies For This Domain</span>
 				</label>
 			</div>
 
@@ -39,14 +45,14 @@
 			<div class="row">
 				<label for="activeModeSwitch">
 						<input type="checkbox" id="activeModeSwitch">
-						<span class="userAction">Active Mode</span>
+						<span id="activeModeSwitchText" class="userAction">Active Mode</span>
 				</label>
 			</div>
 			
 			<div class="row">
 				<label for="switchToWhiteList">
 						<input type="checkbox" id="switchToWhiteList">
-						<span class="userAction">Add to WhiteList?</span>
+						<span id="switchToWhiteListText" class="userAction">Add to WhiteList?</span>
 				</label>
 			</div>
 			
@@ -58,6 +64,7 @@
 			
 
 	</div>
+	<script type="text/javascript" src="popupLocalization.js"></script>
 	<script type="text/javascript" src="../global_files/browser-polyfill.js"></script>
 	<script type="text/javascript" src="popup.js"></script>
 	
