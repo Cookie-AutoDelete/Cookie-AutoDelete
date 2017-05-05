@@ -1,0 +1,254 @@
+{
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Controle os seus cookies! Apague automaticamente cookies não utilizados dos seus separadores fechados, enquanto mantém os que pretende.",
+    "description": "Description of the extension."
+  },
+
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: Cookies foram apagados!",
+    "description": "Cookie AutoDelete: Cookies were Deleted!"
+  },
+
+  "notificationContent": {
+    "message": "$Num$ cookies apagados de: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "websites" : {
+        "content" : "$2",
+        "example" : "google.com, facebook.com"
+      }
+    }
+  },
+
+  "hostWebsiteText": {
+    "message": "Servidor do website:",
+    "description": "Host Website:"
+  },
+
+  "cookieCleanupText": {
+    "message": "Limpeza de cookies",
+    "description": "Cookie Cleanup"
+  },
+
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Limpeza de cookies (ignorar separadores abertos)",
+    "description": "Cookie Cleanup (Ignore Open Tabs)"
+  },
+
+  "clearCookiesForDomainText": {
+    "message": "Limpar todos os cookies para este domínio",
+    "description": "Clear All Cookies For This Domain"
+  },
+
+  "activeModeSwitchText": {
+    "message": "Modo ativo",
+    "description": "Active Mode"
+  },
+
+  "switchToWhiteListText": {
+    "message": "Adicionar à lista branca?",
+    "description": "Add to WhiteList?"
+  },
+
+  "welcomeText": {
+    "message": "Boas vindas",
+    "description": "Welcome"
+  },
+
+  "settingsText": {
+    "message": "Definições dos cookies",
+    "description": "Cookie Settings"
+  },
+
+  "whiteListText": {
+    "message": "Lista branca dos cookies",
+    "description": "Cookie WhiteList"
+  },
+
+  "aboutText": {
+    "message": "Acerca",
+    "description": "About"
+  },
+
+  "welcomeMessage": {
+    "message": "Olá! Durante esta sessão, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "totalDeleted" : {
+        "content" : "$2",
+        "example" : "456"
+      }
+    }
+  },
+
+  "reviewLinkMessage": {
+    "message": "Obrigado por experimentar Cookie AutoDelete. Se gostou, então por favor deixe uma análise.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
+  },
+
+  "releaseNotesText": {
+    "message": "Notas de lançamento",
+    "description": "Release Notes"
+  },
+
+"activeModeText": {
+    "message": "Ativar modo ativo? Atraso antes da limpeza:",
+    "description": "Enable Active Mode? Delay Before Cleaning:"
+  },
+
+"minutesText": {
+    "message": "Minuto(s)",
+    "description": "Minute(s)"
+  },
+
+"activeModeTooltipText": {
+    "message": "Quando o modo ativo está ativado, a limpeza de cookies é desencadeada no fecho de separadores.",
+    "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
+  },
+
+"statLoggingText": {
+    "message": "Registar número total de cookies apagados",
+    "description": "Log Total Number Of Cookies Deleted"
+  },
+
+"statLoggingTooltipText": {
+    "message": "Conta o número de cookies apagados durante esta sessão e no total. Isto é mostrado no ecrã de boas vindas.",
+    "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
+  },
+
+"resetCounterText": {
+    "message": "Repor contador",
+    "description": "Reset Counter"
+  },
+
+"showNumberOfCookiesInIconText": {
+    "message": "Mostrar número de cookies para esse domínio",
+    "description": "Show Number of Cookies for that Domain"
+  },
+
+"showNumberOfCookiesInIconTooltipText": {
+    "message": "Mostrar número de cookies para esse domínio",
+    "description": "Show Number of Cookies for that Domain"
+  },
+
+"notifyCookieCleanUpText": {
+    "message": "Mostrar notificação após limpeza de cookies",
+    "description": "Show Notification After Cookie CleanUp"
+  },
+
+"notifyCookieCleanUpTooltipText": {
+    "message": "Mostrar quantos cookies foram limpos e para que domínio.",
+    "description": "Shows how many cookies were cleaned and for which domain."
+  },
+
+"contextualIdentitiesEnabledText": {
+    "message": "Ativar suporte para as identidades contextuais do Firefox (EXPERIMENTAL Firefox 53+)",
+    "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
+  },
+
+"contextualIdentitiesTooltipText": {
+    "message": "NÃO ativar a menos que esteja no Firefox 53+. Isto irá adicionar uma lista branca diferente para CADA contentor que utilizar. A sua lista branca predefinida é separada destas.",
+    "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
+  },
+
+"saveText": {
+    "message": "Guardar",
+    "description": "Save"
+  },
+
+"cancelText": {
+    "message": "Cancelar",
+    "description": "Cancel"
+  },
+
+"defaultSettingsText": {
+    "message": "Definições predefinidas",
+    "description": "Default Settings"
+  },
+
+"defaultSettingsTooltipText": {
+    "message": "AVISO: Isto irá também limpar os seus URLS. Por isso faça uma cópia de segurança dos mesmos!",
+    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
+  },
+
+"saveConfirmText": {
+    "message": "Guardado!",
+    "description": "Saved!"
+  },
+
+"cancelConfirmText": {
+    "message": "Definições restauradas!",
+    "description": "Restored Settings!"
+  },
+
+"defaultConfirmText": {
+    "message": "Definições predefinidas restauradas!",
+    "description": "Restored Default Settings!"
+  },
+
+"resetCounterConfirmText": {
+    "message": "Contador limpo!",
+    "description": "Cleared Counter!"
+  },
+
+ "addURLText": {
+    "message": "Adicionar URL",
+    "description": "Add URL"
+  }, 
+
+"clearURLText": {
+    "message": "Remover todos",
+    "description": "Remove All"
+  },
+
+"enterURLTooltipText": {
+    "message": "Digite URLS sem a parte 'www.', depois pressione 'Enter' ou 'Adicionar URL'. Alternativamente vá ao site e adicione-o a partir do ícone azul.",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
+  },
+
+"exportURLSText": {
+    "message": "Exportar URLS",
+    "description": "Export URLS"
+  },
+
+"rightClickToSave": {
+    "message": "Clique com o lado direito para guardar ligação como",
+    "description": "Right Click to Save Link As"
+  },
+
+"importURLSText": {
+    "message": "Carregar ficheiro",
+    "description": "Upload File"
+  },
+
+"reportIssuesText": {
+    "message": "Reporte problemas e sugira funcionalidades",
+    "description": "Report issues and suggest features"
+  },  
+
+"versionText": {
+    "message": "versão",
+    "description": "version"
+  },
+
+"contributorsText": {
+    "message": "Contribuidores:",
+    "description": "Contributors:"
+  }    
+
+
+
+}
