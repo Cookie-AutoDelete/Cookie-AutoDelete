@@ -2,7 +2,6 @@
 
 <html>
 <head>
-	<script type="text/javascript" src="popupLocalization.js"></script>
 	<link rel="stylesheet" href="../global_files/normalize.css">
 	<link rel="stylesheet" href="../global_files/skeleton.css">
 	<link rel="stylesheet" href="popup.css">
@@ -25,19 +24,19 @@
 
 			<div class="row">
 				<label id="cookieCleanup" for="cookieCleanup">
-						<span class="userAction">Cookie Cleanup</span>
+						<span id="cookieCleanupText" class="userAction">Cookie Cleanup</span>
 				</label>
 			</div>
 
 			<div class="row">
 				<label id="cookieCleanupIgnoreOpenTabs" for="cookieCleanupIgnoreOpenTabs">
-						<span class="userAction">Cookie Cleanup (Ignore Open Tabs)</span>
+						<span id="cookieCleanupIgnoreOpenTabsText" class="userAction">Cookie Cleanup (Ignore Open Tabs)</span>
 				</label>
 			</div>
 			
 			<div class="row">
 				<label id="clearCookiesForDomain" for="clearCookiesForDomain">
-						<span class="userAction">Clear All Cookies For This Domain</span>
+						<span id="clearCookiesForDomainText" class="userAction">Clear All Cookies For This Domain</span>
 				</label>
 			</div>
 
@@ -65,6 +64,7 @@
 			
 
 	</div>
+	<script type="text/javascript" src="popupLocalization.js"></script>
 	<script type="text/javascript" src="../global_files/browser-polyfill.js"></script>
 	<script type="text/javascript" src="popup.js"></script>
 	
