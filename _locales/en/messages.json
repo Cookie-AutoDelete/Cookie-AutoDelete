@@ -150,8 +150,8 @@
   },
 
 "notifyCookieCleanUpTooltipText": {
-    "message": "Shows how manu cookies were cleaned and for which domain.",
-    "description": "Shows how manu cookies were cleaned and for which domain."
+    "message": "Shows how many cookies were cleaned and for which domain.",
+    "description": "Shows how many cookies were cleaned and for which domain."
   },
 
 "contextualIdentitiesEnabledText": {
