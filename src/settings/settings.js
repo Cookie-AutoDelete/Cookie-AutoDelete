@@ -112,11 +112,11 @@ document.getElementById("resetCounter").addEventListener("click", () => {
 
 document.getElementById("defaultSettings").addEventListener("click", () => {
     page.setDefaults()
-    setTimeout(() => {
+    .then(() => {
         restoreSettingValues();
         generateTableOfURLS();
         toggleAlert(document.getElementById("defaultConfirm"));
-    }, 500);
+    });
 });
 /*
     Cookie WhiteList Logic

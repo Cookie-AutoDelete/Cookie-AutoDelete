@@ -47,7 +47,7 @@ function createActiveModeAlarm() {
 
 //Sets up the background page on startup
 function onStartUp() {
-	browser.storage.local.get()
+	return browser.storage.local.get()
 	.then((items) => {
 		//Disable contextualIdentities features if not Firefox
 		//console.log(browserDetect());
@@ -110,9 +110,9 @@ function onStartUp() {
 
 //Set the defaults 
 function setDefaults() {
-	browser.storage.local.clear()
+	return browser.storage.local.clear()
 	.then(() => {
-		onStartUp();
+		return onStartUp();
 	});
 }
 
