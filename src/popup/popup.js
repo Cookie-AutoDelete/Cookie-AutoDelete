@@ -16,7 +16,7 @@ function animateFailure(element) {
 function fillPopup(tabs) {
 
 	browser.storage.local.get("activeMode")
-	.then((items) => {
+	.then(function(items) {
 		document.getElementById("activeModeSwitch").checked = items.activeMode;
 	});
 	
@@ -75,29 +75,29 @@ browser.tabs.query({currentWindow: true, active: true})
 
 
 //Setting Click Handling
-document.getElementById("settings").addEventListener("click", () => {
+document.getElementById("settings").addEventListener("click", function() {
 	browser.runtime.openOptionsPage();
 });
 
 //Clear all history for a domain
-document.getElementById('cookieCleanup').addEventListener("click", () => {
+document.getElementById('cookieCleanup').addEventListener("click", function() {
 	page.cleanup.cleanCookiesOperation();
 	animateSuccess(document.getElementById('cookieCleanup'));
 });
 
-document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", () => {
+document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", function() {
 	page.cleanup.cleanCookiesOperation(true);
 	animateSuccess(document.getElementById('cookieCleanupIgnoreOpenTabs'));
 });
 
 
 //Clear all cookies for that domain
-document.getElementById("clearCookiesForDomain").addEventListener("click", () => {
+document.getElementById("clearCookiesForDomain").addEventListener("click", function() {
 	browser.cookies.getAll({
 		domain: hostUrl,
 		storeId: cookieStoreId
 	})
-	.then((cookies) => {
+	.then(function(cookies) {
 		if(cookies.length > 0) {
 			for(let i = 0; i < cookies.length; i++) {
 				let cookieDomain = page.cleanup.prepareCookieDomain(cookies[i])  + cookies[i].path;
@@ -117,7 +117,7 @@ document.getElementById("clearCookiesForDomain").addEventListener("click", () =>
 });
 
 //Turns on or off active mode cookie cleaning
-document.getElementById("activeModeSwitch").addEventListener("click", () => {
+document.getElementById("activeModeSwitch").addEventListener("click", function() {
 	if(document.getElementById("activeModeSwitch").checked) {
 		browser.storage.local.set({activeMode: true});
 		page.enableActiveMode();
@@ -128,7 +128,7 @@ document.getElementById("activeModeSwitch").addEventListener("click", () => {
 });
 
 //Checkbox Event Handling
-document.getElementById("switchToWhiteList").addEventListener("click", () => {
+document.getElementById("switchToWhiteList").addEventListener("click", function() {
 	if(hostUrl !== undefined) {
 		if(page.contextualIdentitiesEnabled) {
 			if(document.getElementById("switchToWhiteList").checked) {

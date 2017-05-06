@@ -21,7 +21,7 @@ function toggleAlert(alert) {
 function sideBarSwitch(event) {
     var element = event.currentTarget;
     if(sideBarTabToContentMap.has(element)) {
-        sideBarTabToContentMap.forEach((value, key, map) => {         
+        sideBarTabToContentMap.forEach(function(value, key, map) {         
             if(element === key) {
                 key.classList.add("pure-menu-selected");
                 value.style.display = 'block';
@@ -41,7 +41,7 @@ sideBarTabToContentMap.set(document.getElementById("tabWhiteList"), document.get
 sideBarTabToContentMap.set(document.getElementById("tabAbout"), document.getElementById("aboutContent"));
 
 //Set a click event for each tab in the Map
-sideBarTabToContentMap.forEach((value, key, map) => {
+sideBarTabToContentMap.forEach(function(value, key, map) {
     key.addEventListener("click", sideBarSwitch);
 });
 document.getElementById("tabWelcome").click();
@@ -61,7 +61,7 @@ if(page.browserDetect() === "Firefox") {
 //Setting the values from local storage
 function restoreSettingValues() {
     browser.storage.local.get()
-    .then((items) => {
+    .then(function(items) {
         document.getElementById("delayBeforeCleanInput").value = items.delayBeforeClean;
         document.getElementById("activeModeSwitch").checked = items.activeMode;
 		document.getElementById("statLoggingSwitch").checked = items.statLoggingSetting;
@@ -95,22 +95,22 @@ if(page.browserDetect() !== "Firefox" || browser.contextualIdentities === undefi
 }
 
 //Event handlers for the buttons
-document.getElementById("saveSettings").addEventListener("click", () => {
+document.getElementById("saveSettings").addEventListener("click", function() {
     saveSettingsValues();
     toggleAlert(document.getElementById("saveConfirm"));
 });
 
-document.getElementById("cancelSettings").addEventListener("click", () => {
+document.getElementById("cancelSettings").addEventListener("click", function() {
     restoreSettingValues();
     toggleAlert(document.getElementById("cancelConfirm"));
 });
 
-document.getElementById("resetCounter").addEventListener("click", () => {
+document.getElementById("resetCounter").addEventListener("click", function() {
     page.statLog.resetCounter();
     toggleAlert(document.getElementById("resetCounterConfirm"));
 });
 
-document.getElementById("defaultSettings").addEventListener("click", () => {
+document.getElementById("defaultSettings").addEventListener("click", function() {
     page.setDefaults()
     .then(() => {
         restoreSettingValues();
@@ -166,7 +166,7 @@ function addURLFromInput() {
 //Returns a txt string of lines from array
 function returnLinesFromArray(arr) {
     var txt = "";
-    arr.forEach((row) => {
+    arr.forEach(function(row) {
         txt += row;
         txt += "\n";
     });
@@ -203,7 +203,7 @@ function downloadTextFile(txt) {
 //Exports the container whitelist
 function exportMapToTxt() {
     let txtFile = "";
-    page.whiteList.cookieWhiteList.forEach((value, key, map) => {
+    page.whiteList.cookieWhiteList.forEach(function(value, key, map) {
         txtFile += "#" + key + "\n";
         txtFile += returnLinesFromArray(Array.from(value));
         txtFile += "\n"
@@ -261,14 +261,14 @@ function generateTabNav() {
 
     tabNav.id = "containerTabs";
     tabNav.classList.add("tab");
-        page.whiteList.cookieWhiteList.forEach((value, key, map) => {
+        page.whiteList.cookieWhiteList.forEach(function(value, key, map) {
         //Creates the tabbed navigation above the table
         let tab = document.createElement("li");
         let aTag = document.createElement("a");
         aTag.textContent = page.cache.getNameFromCookieID(key);
         aTag.classList.add("tablinks");
         aTag.classList.add(key);
-        aTag.addEventListener("click", (event) => {
+        aTag.addEventListener("click", function(event) {
             openTab(event, key);
         });
         tab.appendChild(aTag);
@@ -288,7 +288,7 @@ function generateTableOfURLS() {
     if(page.contextualIdentitiesEnabled) {
         let activeTabName = getActiveTabName();
         let theTables = document.createElement("div");
-            page.whiteList.cookieWhiteList.forEach((value, key, map) => {
+            page.whiteList.cookieWhiteList.forEach(function(value, key, map) {
                 //Creates a table based on the Cookie ID
                 let tabContent = generateTableFromArray(Array.from(value));
                 tabContent.classList.add("tabcontent");
@@ -328,7 +328,7 @@ if(page.contextualIdentitiesEnabled) {
     document.getElementsByClassName("tablinks")[0].click();
 }
 //Event handler for the Remove All button
-document.getElementById("clear").addEventListener("click", () => {
+document.getElementById("clear").addEventListener("click", function() {
     if(page.contextualIdentitiesEnabled) {
         page.whiteList.clearURL(getActiveTabName());
     } else {
@@ -341,7 +341,7 @@ document.getElementById("clear").addEventListener("click", () => {
 document.getElementById("add").addEventListener("click", addURLFromInput);
 
 //Event handler when the user press "Enter" on a keyboard on the URL Form
-document.getElementById("URLForm").addEventListener("keypress", (e) => {
+document.getElementById("URLForm").addEventListener("keypress", function (e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
       addURLFromInput();
@@ -349,16 +349,16 @@ document.getElementById("URLForm").addEventListener("keypress", (e) => {
 });
 
 //Exports urls to a text file
-document.getElementById("exportURLS").addEventListener("click", () => {
+document.getElementById("exportURLS").addEventListener("click", function() {
         exportMapToTxt();
 });
 
 //Import URLS by text
-document.getElementById("importURLS").addEventListener("change", () => {
+document.getElementById("importURLS").addEventListener("change", function() {
 	var file = this.files[0];
 
 	var reader = new FileReader();
-	reader.onload = (progressEvent) => {
+	reader.onload = function(progressEvent){
 	// Entire file
 	//console.log(this.result);
 
