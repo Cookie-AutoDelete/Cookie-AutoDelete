@@ -4,6 +4,7 @@ class CacheService {
 		this.nameCacheMap.set("firefox-default", "Default");
 	}
 
+	//Store contenxtual identity names in storage
 	cacheContextualIdentityNames() {
 		return browser.contextualIdentities.query({})
 		.then((containers) => {
@@ -16,6 +17,7 @@ class CacheService {
 		
 	}
 
+	//Populate the map from storage
 	cacheContextualIdentityNamesFromStorage(items) {
 		if(items.containerCache === undefined) {
 			return this.cacheContextualIdentityNames();
@@ -27,6 +29,7 @@ class CacheService {
 		}
 	}
 
+	//Returns the name of the contexual identity name from the cookie store id
 	getNameFromCookieID(id) {
 		if(this.nameCacheMap.has(id)) {
 			return this.nameCacheMap.get(id);
