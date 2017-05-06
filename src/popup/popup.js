@@ -1,13 +1,13 @@
 function animateSuccess(element) {
 	element.classList.add("successAnimated");
-	setTimeout(function() {
+	setTimeout(() => {
 		element.classList.remove("successAnimated");
 	},1500);
 }
 
 function animateFailure(element) {
 	element.classList.add("failureAnimated");
-	setTimeout(function() {
+	setTimeout(() => {
 		element.classList.remove("failureAnimated");
 	},1500);	
 }
@@ -82,12 +82,12 @@ document.getElementById("settings").addEventListener("click", () => {
 //Clear all history for a domain
 document.getElementById('cookieCleanup').addEventListener("click", () => {
 	page.cleanup.cleanCookiesOperation();
-	animateSuccess(document.getElementById('cookieCleanup'));
+	animateSuccess(this);
 });
 
 document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", () => {
 	page.cleanup.cleanCookiesOperation(true);
-	animateSuccess(document.getElementById('cookieCleanupIgnoreOpenTabs'));
+	animateSuccess(this);
 });
 
 
