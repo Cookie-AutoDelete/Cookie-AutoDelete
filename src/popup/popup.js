@@ -1,13 +1,13 @@
 function animateSuccess(element) {
 	element.classList.add("successAnimated");
-	setTimeout(function() {
+	setTimeout(() => {
 		element.classList.remove("successAnimated");
 	},1500);
 }
 
 function animateFailure(element) {
 	element.classList.add("failureAnimated");
-	setTimeout(function() {
+	setTimeout(() => {
 		element.classList.remove("failureAnimated");
 	},1500);	
 }
@@ -16,7 +16,7 @@ function animateFailure(element) {
 function fillPopup(tabs) {
 
 	browser.storage.local.get("activeMode")
-	.then(function(items) {
+	.then((items) => {
 		document.getElementById("activeModeSwitch").checked = items.activeMode;
 	});
 	
@@ -75,29 +75,29 @@ browser.tabs.query({currentWindow: true, active: true})
 
 
 //Setting Click Handling
-document.getElementById("settings").addEventListener("click", function() {
+document.getElementById("settings").addEventListener("click", () => {
 	browser.runtime.openOptionsPage();
 });
 
 //Clear all history for a domain
-document.getElementById('cookieCleanup').addEventListener("click", function() {
+document.getElementById('cookieCleanup').addEventListener("click", () => {
 	page.cleanup.cleanCookiesOperation();
 	animateSuccess(this);
 });
 
-document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", function() {
+document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", () => {
 	page.cleanup.cleanCookiesOperation(true);
 	animateSuccess(this);
 });
 
 
 //Clear all cookies for that domain
-document.getElementById("clearCookiesForDomain").addEventListener("click", function() {
+document.getElementById("clearCookiesForDomain").addEventListener("click", () => {
 	browser.cookies.getAll({
 		domain: hostUrl,
 		storeId: cookieStoreId
 	})
-	.then(function(cookies) {
+	.then((cookies) => {
 		if(cookies.length > 0) {
 			for(let i = 0; i < cookies.length; i++) {
 				let cookieDomain = page.cleanup.prepareCookieDomain(cookies[i])  + cookies[i].path;
@@ -117,7 +117,7 @@ document.getElementById("clearCookiesForDomain").addEventListener("click", funct
 });
 
 //Turns on or off active mode cookie cleaning
-document.getElementById("activeModeSwitch").addEventListener("click", function() {
+document.getElementById("activeModeSwitch").addEventListener("click", () => {
 	if(document.getElementById("activeModeSwitch").checked) {
 		browser.storage.local.set({activeMode: true});
 		page.enableActiveMode();
@@ -128,7 +128,7 @@ document.getElementById("activeModeSwitch").addEventListener("click", function()
 });
 
 //Checkbox Event Handling
-document.getElementById("switchToWhiteList").addEventListener("click", function() {
+document.getElementById("switchToWhiteList").addEventListener("click", () => {
 	if(hostUrl !== undefined) {
 		if(page.contextualIdentitiesEnabled) {
 			if(document.getElementById("switchToWhiteList").checked) {

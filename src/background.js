@@ -111,7 +111,7 @@ function onStartUp() {
 //Set the defaults 
 function setDefaults() {
 	browser.storage.local.clear()
-	.then(function() {
+	.then(() => {
 		onStartUp();
 	});
 }
@@ -124,7 +124,7 @@ function showNumberOfCookiesInIcon(tabURL,tabID) {
 	browser.cookies.getAll({
 		domain: getHostname(tabURL)
 	})
-	.then(function(cookies) {
+	.then((cookies) => {
 		browser.browserAction.setBadgeText({text: cookies.length.toString(), tabId: tabID});
 		
 	});
@@ -148,10 +148,10 @@ function setIconDefault(tab) {
 }
 
 //Logic that controls when to disable the browser action
-browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	if (tab.status === "complete") {
 		browser.windows.getCurrent()
-		.then(function(windowInfo) {
+		.then((windowInfo) => {
 			if (windowInfo.incognito) {
 				browser.browserAction.disable(tab.id);
 				browser.browserAction.setBadgeText({text: "X", tabId: tab.id});
@@ -161,7 +161,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 				browser.browserAction.enable(tab.id);
 				browser.browserAction.setBadgeText({text: "", tabId: tab.id});
 				browser.storage.local.get("showNumberOfCookiesInIconSetting")
-				.then(function(items) {
+				.then((items) => {
 					if(items.showNumberOfCookiesInIconSetting === true) {
 						showNumberOfCookiesInIcon(tab.url, tab.id);
 					} 
@@ -188,7 +188,7 @@ browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 });
 
 //Alarm event handler
-browser.alarms.onAlarm.addListener(function (alarmInfo) {
+browser.alarms.onAlarm.addListener((alarmInfo) => {
 	//console.log(alarmInfo.name);
 	if(alarmInfo.name === "activeModeAlarm") {
 		cleanup.cleanCookiesOperation();
