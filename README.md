@@ -20,7 +20,7 @@ Control your cookies! This extension is inspired by Self Destructing Cookies. Wh
 
 ## Internationalization (i18n)
 
-Translate Cookie AutoDelete in your language!
+Translate Cookie AutoDelete in your language or help fix a translation!
 
 1. Copy and paste the "/src/_locales/en" folder.
 2. Rename the newly copied folder to the language codes found [here](https://developer.chrome.com/webstore/i18n?csw=1#localeTable)
