@@ -1,0 +1,254 @@
+{
+  "extensionName": {
+    "message": "Автоматично изтриване на бисквитки",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Поемете контрол над бисквитките! Автоматично изтривайте неизползваните бисквитки и запазете само тези, които искате.",
+    "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
+  },
+
+  "notificationTitle": {
+    "message": "Бисквитките са изтрити!",
+    "description": "Cookie AutoDelete: Cookies were Deleted!"
+  },
+
+  "notificationContent": {
+    "message": "Изтрити са $Num$ бисквитки от: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "websites" : {
+        "content" : "$2",
+        "example" : "google.com, facebook.com"
+      }
+    }
+  },
+
+  "hostWebsiteText": {
+    "message": "Сайт:",
+    "description": "Host Website:"
+  },
+
+  "cookieCleanupText": {
+    "message": "Изчистване",
+    "description": "Cookie Cleanup"
+  },
+
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Изчистване (Без отворените подпрозорци)",
+    "description": "Cookie Cleanup (Ignore Open Tabs)"
+  },
+
+  "clearCookiesForDomainText": {
+    "message": "Изчистване на всички бисквитки за домейна",
+    "description": "Clear All Cookies For This Domain"
+  },
+
+  "activeModeSwitchText": {
+    "message": "Активен режим",
+    "description": "Active Mode"
+  },
+
+  "switchToWhiteListText": {
+    "message": "Добавяне към белия списък",
+    "description": "Add to WhiteList?"
+  },
+
+  "welcomeText": {
+    "message": "Добре дошли",
+    "description": "Welcome"
+  },
+
+  "settingsText": {
+    "message": "Настройки",
+    "description": "Cookie Settings"
+  },
+
+  "whiteListText": {
+    "message": "Бял списък",
+    "description": "Cookie WhiteList"
+  },
+
+  "aboutText": {
+    "message": "Относно",
+    "description": "About"
+  },
+
+  "welcomeMessage": {
+    "message": "Привет! По време на сесията са изтрити $sessionDeleted$ бисквитки, а общо $totalDeleted$ бисквитки.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "totalDeleted" : {
+        "content" : "$2",
+        "example" : "456"
+      }
+    }
+  },
+
+  "reviewLinkMessage": {
+    "message": "Благодарим ви, че пробвахте разширението. Ако го харесвате, моля, напишете отзив.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
+  },
+
+  "releaseNotesText": {
+    "message": "Списък с промени",
+    "description": "Release Notes"
+  },
+
+"activeModeText": {
+    "message": "Да се включи ли активния режим? Забавяне преди изчистване:",
+    "description": "Enable Active Mode? Delay Before Cleaning:"
+  },
+
+"minutesText": {
+    "message": "минута(и)",
+    "description": "Minute(s)"
+  },
+
+"activeModeTooltipText": {
+    "message": "В активния режим бисквитките се изчистват при затваряне на подпрозорец.",
+    "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
+  },
+
+"statLoggingText": {
+    "message": "Записване на общия брой на изтрити бисквитки",
+    "description": "Log Total Number Of Cookies Deleted"
+  },
+
+"statLoggingTooltipText": {
+    "message": "Брои изтритите бисквитки по време на сесията и общо. Показва се на приветстващия екран.",
+    "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
+  },
+
+"resetCounterText": {
+    "message": "Зануляване на брояча",
+    "description": "Reset Counter"
+  },
+
+"showNumberOfCookiesInIconText": {
+    "message": "Показване на броя на бисквитките за домейна",
+    "description": "Show Number of Cookies for that Domain"
+  },
+
+"showNumberOfCookiesInIconTooltipText": {
+    "message": "Показване на броя на бисквитките за домейна",
+    "description": "Show Number of Cookies for that Domain"
+  },
+
+"notifyCookieCleanUpText": {
+    "message": "Показване на уведомления след изчистване на бисквитки",
+    "description": "Show Notification After Cookie CleanUp"
+  },
+
+"notifyCookieCleanUpTooltipText": {
+    "message": "Показва броя на изтритите бисквитки от съответни домейни.",
+    "description": "Shows how many cookies were cleaned and for which domain."
+  },
+
+"contextualIdentitiesEnabledText": {
+    "message": "Поддръжка за контекстуални самоличности (Експериментално - Файърфокс 53+)",
+    "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
+  },
+
+"contextualIdentitiesTooltipText": {
+    "message": "Не включвайте, освен ако не сте поне на версия 53 на Файърфокс. Функцията добавя отделен бял списък за всеки контейнер. Първоначалният списък остава отделно.",
+    "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
+  },
+
+"saveText": {
+    "message": "Запазване",
+    "description": "Save"
+  },
+
+"cancelText": {
+    "message": "Отказ",
+    "description": "Cancel"
+  },
+
+"defaultSettingsText": {
+    "message": "Първоначални настройки",
+    "description": "Default Settings"
+  },
+
+"defaultSettingsTooltipText": {
+    "message": "ВНИМАНИЕ: Това ще изчисти и адресите, затова си направете резервно копие!",
+    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
+  },
+
+"saveConfirmText": {
+    "message": "Запазено!",
+    "description": "Saved!"
+  },
+
+"cancelConfirmText": {
+    "message": "Настройките са възстановени!",
+    "description": "Restored Settings!"
+  },
+
+"defaultConfirmText": {
+    "message": "Първоначалните настройки са възстановени!",
+    "description": "Restored Default Settings!"
+  },
+
+"resetCounterConfirmText": {
+    "message": "Броячът е занулен!",
+    "description": "Cleared Counter!"
+  },
+
+ "addURLText": {
+    "message": "Добавяне на адрес",
+    "description": "Add URL"
+  }, 
+
+"clearURLText": {
+    "message": "Премахване на всички",
+    "description": "Remove All"
+  },
+
+"enterURLTooltipText": {
+    "message": "Въведете адресите без да изписвате 'www.', натиснете 'Enter' или 'Добавяне на адрес'. Можете и да посетите сайта и да го добавите от синята иконка.",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
+  },
+
+"exportURLSText": {
+    "message": "Изнасяне на адреси",
+    "description": "Export URLS"
+  },
+
+"rightClickToSave": {
+    "message": "Щракнете с дясното копче за запазване на препратката",
+    "description": "Right Click to Save Link As"
+  },
+
+"importURLSText": {
+    "message": "Качване на файл",
+    "description": "Upload File"
+  },
+
+"reportIssuesText": {
+    "message": "Докладване за проблеми и предлагане на функции",
+    "description": "Report issues and suggest features"
+  },  
+
+"versionText": {
+    "message": "версия",
+    "description": "version"
+  },
+
+"contributorsText": {
+    "message": "Допринесли:",
+    "description": "Contributors:"
+  }    
+
+
+
+}
