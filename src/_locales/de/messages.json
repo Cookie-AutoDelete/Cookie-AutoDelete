@@ -45,7 +45,7 @@
   },
 
   "clearCookiesForDomainText": {
-    "message": "Lösche alle Cookies dieser Domain",
+    "message": "Alle Cookies dieser Domain löschen",
     "description": "Clear All Cookies For This Domain"
   },
 
@@ -105,7 +105,7 @@
   },
 
 "activeModeText": {
-    "message": "Aktiven Modus aktivieren? Verzögerung bis zum Aufräumen:",
+    "message": "Aktiven Modus einschalten? Verzögerung bis zum Aufräumen:",
     "description": "Enable Active Mode? Delay Before Cleaning:"
   },
 
@@ -115,7 +115,7 @@
   },
 
 "activeModeTooltipText": {
-    "message": "Wenn der aktive Modus aktiviert ist wird das Aufräumen der Cookies wird beim Schließen eines Tabs ausgeführt.",
+    "message": "Wenn der aktive Modus eingeschaltet ist wird das Aufräumen der Cookies beim Schließen eines Tabs ausgeführt",
     "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
   },
 
@@ -125,7 +125,7 @@
   },
 
 "statLoggingTooltipText": {
-    "message": "Zählt die Anzahl der gelöschten Cookies, wird im Willkommensbildschirm angezeigt.",
+    "message": "Zählt die Anzahl der gelöschten Cookies, wird im Willkommensbildschirm angezeigt",
     "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
@@ -225,7 +225,7 @@
   },
 
 "rightClickToSave": {
-    "message": "Right Click to Save Link As",
+    "message": "Klicke mit der rechten Maustaste auf diesen Link und wähle \"Ziel speichern unter...\"",
     "description": "Right Click to Save Link As"
   },
 
