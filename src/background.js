@@ -28,6 +28,10 @@ function enableActiveMode() {
 //Disable automatic cookie cleanup
 function disableActiveMode() {
 	browser.tabs.onRemoved.removeListener(onTabRemoved);
+	browser.alarms.clear("activeModeAlarm")
+	.then((wasCleared) => {
+		//console.log(wasCleared);
+	});
 	//console.log("DisabledMode");
 }
 
