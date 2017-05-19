@@ -35,8 +35,9 @@ function disableActiveMode() {
 function createActiveModeAlarm() {
 	browser.storage.local.get("delayBeforeClean")
 	.then((items) => {
-		let minutes = parseInt(items.delayBeforeClean, 10);
-		//let minutes = .1;
+		let minutes = parseFloat(items.delayBeforeClean);
+		//console.log(minutes);
+		//minutes = .1;
 		//console.log("Create Active Alarm: " + minutes);
 		browser.alarms.create("activeModeAlarm",{
 			delayInMinutes: minutes
