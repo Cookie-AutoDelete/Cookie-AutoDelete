@@ -141,7 +141,7 @@
 
 "showNumberOfCookiesInIconTooltipText": {
     "message": "Show Number of Cookies for that Domain",
-    "description": "Show Number of Cookies for that Domain"
+    "description": "Shows which cookies can be detected in the popup badge."
   },
 
 "notifyCookieCleanUpText": {
@@ -175,13 +175,13 @@
   },
 
 "defaultSettingsText": {
-    "message": "Default Settings",
-    "description": "Default Settings"
+    "message": "Restore Default Settings",
+    "description": "Restore Default Settings"
   },
 
 "defaultSettingsTooltipText": {
-    "message": "WARNING: This will also clear your URLS as well. So make a backup of them!",
-    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
+    "message": "WARNING: This will also clear your WhiteList as well. So make a backup of them!",
+    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
 "saveConfirmText": {
@@ -220,8 +220,8 @@
   },
 
 "exportURLSText": {
-    "message": "Export URLS",
-    "description": "Export URLS"
+    "message": "Export WhiteList",
+    "description": "Export WhiteList"
   },
 
 "rightClickToSave": {
