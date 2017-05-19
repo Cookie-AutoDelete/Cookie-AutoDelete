@@ -67,6 +67,7 @@ function restoreSettingValues() {
 		document.getElementById("statLoggingSwitch").checked = items.statLoggingSetting;
         document.getElementById("showNumberOfCookiesInIconSwitch").checked = items.showNumberOfCookiesInIconSetting;
         document.getElementById("notifyCookieCleanUpSwitch").checked = items.notifyCookieCleanUpSetting;
+        document.getElementById("cookieCleanUpOnStartSwitch").checked = items.cookieCleanUpOnStartSetting;
         document.getElementById("contextualIdentitiesEnabledSwitch").checked = items.contextualIdentitiesEnabledSetting;
 
     });
@@ -82,6 +83,8 @@ function saveSettingsValues() {
     browser.storage.local.set({showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked});
 
     browser.storage.local.set({notifyCookieCleanUpSetting: document.getElementById("notifyCookieCleanUpSwitch").checked});
+
+    browser.storage.local.set({cookieCleanUpOnStartSetting: document.getElementById("cookieCleanUpOnStartSwitch").checked});
 
     browser.storage.local.set({contextualIdentitiesEnabledSetting: document.getElementById("contextualIdentitiesEnabledSwitch").checked});
 

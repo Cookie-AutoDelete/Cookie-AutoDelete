@@ -154,6 +154,16 @@
     "description": "Shows how many cookies were cleaned and for which domain."
   },
 
+"cookieCleanUpOnStartText": {
+    "message": "Enable Cookie Cleanup on Startup",
+    "description": "Enable Cookie Cleanup on Startup"
+  },
+
+"cookieCleanUpOnStartTooltipText": {
+    "message": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted.",
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
+  },
+
 "contextualIdentitiesEnabledText": {
     "message": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"

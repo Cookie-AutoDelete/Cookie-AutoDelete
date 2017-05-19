@@ -88,6 +88,10 @@ function onStartUp() {
 			browser.storage.local.set({notifyCookieCleanUpSetting: true});
 		}
 
+		if(items.cookieCleanUpOnStartSetting === undefined) {
+			browser.storage.local.set({cookieCleanUpOnStartSetting: false});
+		}
+
 		//Create objects based on settings
 		if(items.activeMode === true) {
 			enableActiveMode();
@@ -112,7 +116,6 @@ function onStartUp() {
 	}).catch(onError);
 }
 
-
 //Set the defaults 
 function setDefaults() {
 	return browser.storage.local.clear()
@@ -121,8 +124,21 @@ function setDefaults() {
 	});
 }
 
+//Does a cookie cleanup on startup if the user chooses
+function cookieCleanUpOnStart(items) {
+	return browser.storage.local.get()
+	.then((items) => {
+		if(items.cookieCleanUpOnStartSetting === true) {
+			console.log("Startup Cleanup")
+			cleanup.cleanCookiesOperation(true);
+		}
+	});
+}
+
 //setDefaults();
-onStartUp();
+onStartUp()
+.then(cookieCleanUpOnStart);
+
 
 //Show the # of cookies in icon
 function showNumberOfCookiesInIcon(tabURL,tabID) {
