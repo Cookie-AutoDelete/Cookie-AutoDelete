@@ -1,7 +1,7 @@
 #language: node_js
 script: 
-  bash tools/replaceVersionNumber.sh
-  bash tools/buildFilesDev.sh  
+  - bash tools/replaceVersionNumber.sh
+  - bash tools/buildFilesDev.sh  
 deploy:
   provider: releases
   prerelease: true
