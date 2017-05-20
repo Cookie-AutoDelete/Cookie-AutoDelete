@@ -140,8 +140,8 @@
   },
 
 "showNumberOfCookiesInIconTooltipText": {
-    "message": "Afficher le nombre de cookies pour ce domaine",
-    "description": "Show Number of Cookies for that Domain"
+    "message": "Afficher quels cookies peuvent être détectés dans le badge",
+    "description": "Shows which cookies can be detected in the popup badge"
   },
 
 "notifyCookieCleanUpText": {
@@ -175,13 +175,13 @@
   },
 
 "defaultSettingsText": {
-    "message": "Paramètres par défaut",
-    "description": "Default Settings"
+    "message": "Restaurer les paramètres par défaut",
+    "description": "Restore Default Settings"
   },
 
 "defaultSettingsTooltipText": {
-    "message": "ATTENTION : ceci effacera également vos URLs. Alors faites d'abord une sauvegarde !",
-    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
+    "message": "ATTENTION : ceci effacera également votre liste blanche, alors faites d'abord une sauvegarde",
+    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
 "saveConfirmText": {
@@ -215,13 +215,13 @@
   },
 
 "enterURLTooltipText": {
-    "message": "Saisir des URLS sans la partie 'www.' puis appuyer sur 'Entrée' ou 'Ajouter URL'. Sinon, aller sur le site et l'ajouter depuis l'icône bleu.",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
+    "message": "Saisir des URLS sans la partie 'www.' puis appuyer sur 'Entrée' ou 'Ajouter URL'. Sinon, aller sur le site et l'ajouter depuis l'icône.",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
   },
 
 "exportURLSText": {
-    "message": "Exporter URLS",
-    "description": "Export URLS"
+    "message": "Exporter votre liste blanche",
+    "description": "Export WhiteList"
   },
 
 "rightClickToSave": {
@@ -247,5 +247,15 @@
 "contributorsText": {
     "message": "Contributeurs:",
     "description": "Contributors:"
+  },
+
+"cookieCleanUpOnStartText": {
+    "message": "Activer le nettoyage des cookies au démarrage",
+    "description": "Enable Cookie Cleanup on Startup"
+  },
+
+"cookieCleanUpOnStartTooltipText": {
+    "message": "Cela nettoiera vos cookies (onglets ouverts ignorés), donc tous les cookies non présents dans la liste blanche seront supprimés.",
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   }
 }
