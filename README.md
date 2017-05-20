@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mrdokenny/Cookie-AutoDelete.svg?branch=master)](https://travis-ci.org/mrdokenny/Cookie-AutoDelete)
 # Cookie-AutoDelete
 Control your cookies! This extension is inspired by Self Destructing Cookies. When a tab closes, any cookies not being used are automatically deleted. Prevent tracking by other cookies and add only the ones you trust. Easily import and export your Cookie Whitelist.
 
