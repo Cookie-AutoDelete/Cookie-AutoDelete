@@ -2,9 +2,12 @@ echo "Building"
 
 EXTENSIONNAME="Cookie-AutoDelete"
 DES=builds
-DATETIME=$(date +"%m%d%y"_%H%M)
-FIREFOXFILENAME=${EXTENSIONNAME}_Firefox_Dev_${DATETIME}
-CHROMEFILENAME=${EXTENSIONNAME}_Chrome_Dev_${DATETIME}
+if [ -z "$TRAVIS_TAG" ]
+ then TRAVIS_TAG=$(date +"%m%d%y"_%H%M)
+ fi
+
+FIREFOXFILENAME=${EXTENSIONNAME}_Firefox_Dev_${TRAVIS_TAG}
+CHROMEFILENAME=${EXTENSIONNAME}_Chrome_Dev_${TRAVIS_TAG}
 
 rmdir -rf $DES
 mkdir -p $DES
