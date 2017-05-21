@@ -74,21 +74,15 @@ function restoreSettingValues() {
 }
 //Saving the values to local storage
 function saveSettingsValues() {
-    browser.storage.local.set({delayBeforeClean: document.getElementById("delayBeforeCleanInput").value});
-
-    browser.storage.local.set({activeMode: document.getElementById("activeModeSwitch").checked});
-
-    browser.storage.local.set({statLoggingSetting: document.getElementById("statLoggingSwitch").checked});
-
-    browser.storage.local.set({showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked});
-
-    browser.storage.local.set({notifyCookieCleanUpSetting: document.getElementById("notifyCookieCleanUpSwitch").checked});
-
-    browser.storage.local.set({cookieCleanUpOnStartSetting: document.getElementById("cookieCleanUpOnStartSwitch").checked});
-
-    browser.storage.local.set({contextualIdentitiesEnabledSetting: document.getElementById("contextualIdentitiesEnabledSwitch").checked});
-
-    page.onStartUp();
+    return browser.storage.local.set({
+        delayBeforeClean: document.getElementById("delayBeforeCleanInput").value,
+        activeMode: document.getElementById("activeModeSwitch").checked,
+        statLoggingSetting: document.getElementById("statLoggingSwitch").checked,
+        showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked,
+        notifyCookieCleanUpSetting: document.getElementById("notifyCookieCleanUpSwitch").checked,
+        cookieCleanUpOnStartSetting: document.getElementById("cookieCleanUpOnStartSwitch").checked,    
+        contextualIdentitiesEnabledSetting: document.getElementById("contextualIdentitiesEnabledSwitch").checked          
+    }).then(page.onStartUp);
 }
 
 restoreSettingValues();
@@ -99,7 +93,8 @@ if(page.browserDetect() !== "Firefox" || browser.contextualIdentities === undefi
 
 //Event handlers for the buttons
 document.getElementById("saveSettings").addEventListener("click", function() {
-    saveSettingsValues();
+    saveSettingsValues()
+    .then(generateTable);
     toggleAlert(document.getElementById("saveConfirm"));
 });
 
@@ -322,14 +317,22 @@ function generateTableOfURLS() {
 
 }
 
-if(page.contextualIdentitiesEnabled) {
-    generateTabNav();
+function generateTable() {
+    if(document.contains(document.getElementById("containerTabs"))) {
+        document.getElementById("containerTabs").remove();
+    }
+    if(page.contextualIdentitiesEnabled) {
+        generateTabNav();
     
+    }
+    generateTableOfURLS();
+    if(page.contextualIdentitiesEnabled) {
+        document.getElementsByClassName("tablinks")[0].click();
+    }
 }
-generateTableOfURLS();
-if(page.contextualIdentitiesEnabled) {
-    document.getElementsByClassName("tablinks")[0].click();
-}
+
+generateTable();
+
 //Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", function() {
     if(page.contextualIdentitiesEnabled) {
