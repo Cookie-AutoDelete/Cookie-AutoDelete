@@ -28,6 +28,10 @@ function enableActiveMode() {
 //Disable automatic cookie cleanup
 function disableActiveMode() {
 	browser.tabs.onRemoved.removeListener(onTabRemoved);
+	browser.alarms.clear("activeModeAlarm")
+	.then((wasCleared) => {
+		//console.log(wasCleared);
+	});
 	//console.log("DisabledMode");
 }
 
@@ -35,8 +39,9 @@ function disableActiveMode() {
 function createActiveModeAlarm() {
 	browser.storage.local.get("delayBeforeClean")
 	.then((items) => {
-		let minutes = parseInt(items.delayBeforeClean, 10);
-		//let minutes = .1;
+		let minutes = parseFloat(items.delayBeforeClean);
+		//console.log(minutes);
+		//minutes = .1;
 		//console.log("Create Active Alarm: " + minutes);
 		browser.alarms.create("activeModeAlarm",{
 			delayInMinutes: minutes
@@ -83,6 +88,10 @@ function onStartUp() {
 			browser.storage.local.set({notifyCookieCleanUpSetting: true});
 		}
 
+		if(items.cookieCleanUpOnStartSetting === undefined) {
+			browser.storage.local.set({cookieCleanUpOnStartSetting: false});
+		}
+
 		//Create objects based on settings
 		if(items.activeMode === true) {
 			enableActiveMode();
@@ -107,7 +116,6 @@ function onStartUp() {
 	}).catch(onError);
 }
 
-
 //Set the defaults 
 function setDefaults() {
 	return browser.storage.local.clear()
@@ -116,8 +124,21 @@ function setDefaults() {
 	});
 }
 
+//Does a cookie cleanup on startup if the user chooses
+function cookieCleanUpOnStart(items) {
+	return browser.storage.local.get()
+	.then((items) => {
+		if(items.cookieCleanUpOnStartSetting === true) {
+			console.log("Startup Cleanup")
+			cleanup.cleanCookiesOperation(true);
+		}
+	});
+}
+
 //setDefaults();
-onStartUp();
+onStartUp()
+.then(cookieCleanUpOnStart);
+
 
 //Show the # of cookies in icon
 function showNumberOfCookiesInIcon(tabURL,tabID) {
