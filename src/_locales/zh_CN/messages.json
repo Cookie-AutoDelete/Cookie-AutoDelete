@@ -5,17 +5,17 @@
   },
 
   "extensionDescription": {
-    "message": "Controler vos Cookies! Supprimer automatiquement les cookies non utilsiés de vos onglets fermés tout en gardant ceux que vous voulez.",
+    "message": "掌控你的 Cookie！关闭标签页后自动删除未想保留的 Cookie。您可以设置想要保留的白名单。",
     "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
   },
 
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Les cookies ont été supprimés !",
+    "message": "Cookie AutoDelete：Cookie 已删除！",
     "description": "Cookie AutoDelete: Cookies were Deleted!"
   },
 
   "notificationContent": {
-    "message": "$Num$ cookies supprimés depuis : $Websites$",
+    "message": "已删除 $Num$ 个下列网站的 Cookie：$Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num" : {
@@ -30,57 +30,57 @@
   },
 
   "hostWebsiteText": {
-    "message": "Hôte du site web:",
+    "message": "网站：",
     "description": "Host Website:"
   },
 
   "cookieCleanupText": {
-    "message": "Nettoyage de cookies",
+    "message": "清理所有 Cookie",
     "description": "Cookie Cleanup"
   },
 
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Nettoyage de cookies (Ignorer onglets ouverts)",
+    "message": "清理所有 Cookie（忽略打开的标签页）",
     "description": "Cookie Cleanup (Ignore Open Tabs)"
   },
 
   "clearCookiesForDomainText": {
-    "message": "Supprimer tous les cookies pour ce domaine",
+    "message": "清除此域名的所有 Cookie",
     "description": "Clear All Cookies For This Domain"
   },
 
   "activeModeSwitchText": {
-    "message": "Mode Actif",
+    "message": "主动模式",
     "description": "Active Mode"
   },
 
   "switchToWhiteListText": {
-    "message": "Ajouter à la liste blance?",
+    "message": "添加到白名单？",
     "description": "Add to WhiteList?"
   },
 
   "welcomeText": {
-    "message": "Bienvenue",
+    "message": "欢迎使用",
     "description": "Welcome"
   },
 
   "settingsText": {
-    "message": "Paramètres cookies",
+    "message": "Cookie 设置",
     "description": "Cookie Settings"
   },
 
   "whiteListText": {
-    "message": "Liste blanche des cookies",
+    "message": "Cookie 白名单",
     "description": "Cookie WhiteList"
   },
 
   "aboutText": {
-    "message": "À propos",
+    "message": "关于",
     "description": "About"
   },
 
   "welcomeMessage": {
-    "message": "Salut ! Lors de cette session, Cookie AutoDelete a supprimé $sessionDeleted$ cookies et $totalDeleted$ cookies au total.",
+    "message": "Cookie AutoDelete 在本次会话期间已删除 $sessionDeleted$ 个 Cookie；累计已删除 $totalDeleted$ 个 Cookie。",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted" : {
@@ -95,167 +95,160 @@
   },
 
   "reviewLinkMessage": {
-    "message": "Merci d'essayer Cookie AutoDelete. Si vous l'appréciez, merci de laisser un commentaire.",
+    "message": "感谢您尝试 Cookie AutoDelete。如果您喜欢，请来评价吧。",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
   },
 
   "releaseNotesText": {
-    "message": "Notes de version",
+    "message": "发行日志",
     "description": "Release Notes"
   },
 
 "activeModeText": {
-    "message": "Activer le Mode Actif ? Délai avant suppression :",
+    "message": "启用主动模式？清理前延迟：",
     "description": "Enable Active Mode? Delay Before Cleaning:"
   },
 
 "minutesText": {
-    "message": "Minute(s)",
+    "message": "分钟",
     "description": "Minute(s)"
   },
 
 "activeModeTooltipText": {
-    "message": "Quand le mode actif est activé, le nettoyage des cookies est déclenché à la fermeture de l'onglet.",
+    "message": "主动模式启用时，将在标签页关闭时清理 Cookie。",
     "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
   },
 
 "statLoggingText": {
-    "message": "Enregistrer le nombre total de cookies supprimés",
+    "message": "记录已删除 Cookie 的总数",
     "description": "Log Total Number Of Cookies Deleted"
   },
 
 "statLoggingTooltipText": {
-    "message": "Compte le nombre de cookies supprimés lors de cette session et au total. C'est affiché sur l'écran de bienvenue.",
+    "message": "记录本次会话期间删除的 Cookie 数量，以及总计数量。此数字将在本扩展“选项”的欢迎信息中显示。",
     "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
 "resetCounterText": {
-    "message": "Réinitialiser le compteur",
+    "message": "重置计数器",
     "description": "Reset Counter"
   },
 
 "showNumberOfCookiesInIconText": {
-    "message": "Afficher le nombre de cookies pour ce domaine",
+    "message": "显示该域名的 Cookie 数量",
     "description": "Show Number of Cookies for that Domain"
   },
 
 "showNumberOfCookiesInIconTooltipText": {
-    "message": "Afficher quels cookies peuvent être détectés dans le badge",
-    "description": "Shows which cookies can be detected in the popup badge"
+    "message": "显示该域名的 Cookie 数量",
+    "description": "Show Number of Cookies for that Domain"
   },
 
 "notifyCookieCleanUpText": {
-    "message": "Afficher une notification après le nettoyage des cookies",
+    "message": "清理 Cookie 后显示通知",
     "description": "Show Notification After Cookie CleanUp"
   },
 
 "notifyCookieCleanUpTooltipText": {
-    "message": "Affiche combien de cookies ont été supprimés et pour quels domaines.",
+    "message": "显示已清除哪个域的多少个 Cookie。",
     "description": "Shows how many cookies were cleaned and for which domain."
   },
 
 "contextualIdentitiesEnabledText": {
-    "message": "Activer le support pour les identités contextuelles de Firefox (EXPÉRIMENTAL Firefox 53+)",
+    "message": "启用 Firefox 的身份（容器）支持（实验性，Firefox 53+）",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
   },
 
 "contextualIdentitiesTooltipText": {
-    "message": "Ne PAS activer sauf si vous avez Firefox 53+. Ceci ajoutera une liste blanche différente pour CHAQUE conteneur utilisé. Votre liste blanche par défaut n'est pas impactée.",
+    "message": "如非 Firefox 53+ 版本，请勿启用。这将为您使用的每个容器添加不同的白名单。您的默认白名单与此不同。",
     "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
 "saveText": {
-    "message": "Enregistrer",
+    "message": "保存",
     "description": "Save"
   },
 
 "cancelText": {
-    "message": "Annuler",
+    "message": "取消",
     "description": "Cancel"
   },
 
 "defaultSettingsText": {
-    "message": "Restaurer les paramètres par défaut",
-    "description": "Restore Default Settings"
+    "message": "默认设置",
+    "description": "Default Settings"
   },
 
 "defaultSettingsTooltipText": {
-    "message": "ATTENTION : ceci effacera également votre liste blanche, alors faites d'abord une sauvegarde",
-    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
+    "message": "警告：这也将清除您的网址设置。请先注意备份它们！",
+    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
   },
 
 "saveConfirmText": {
-    "message": "Enregistré !",
+    "message": "已保存！",
     "description": "Saved!"
   },
 
 "cancelConfirmText": {
-    "message": "Paramètres restaurés !",
+    "message": "已恢复原有设置！",
     "description": "Restored Settings!"
   },
 
 "defaultConfirmText": {
-    "message": "Paramètres par défaut restaurés !",
+    "message": "已恢复默认设置！",
     "description": "Restored Default Settings!"
   },
 
 "resetCounterConfirmText": {
-    "message": "Compteur effacé !",
+    "message": "计数器已清除！",
     "description": "Cleared Counter!"
   },
 
  "addURLText": {
-    "message": "Ajouter URL",
+    "message": "添加网址",
     "description": "Add URL"
   }, 
 
 "clearURLText": {
-    "message": "Tout supprimer",
+    "message": "全部移除",
     "description": "Remove All"
   },
 
 "enterURLTooltipText": {
-    "message": "Saisir des URLS sans la partie 'www.' puis appuyer sur 'Entrée' ou 'Ajouter URL'. Sinon, aller sur le site et l'ajouter depuis l'icône.",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
+    "message": "输入网址，无需 'www.' 部分。输入后按回车（Enter）键或单击“添加网址”。您也可以先访问所需网站，然后点击工具栏上的蓝色图标来添加白名单。",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
   },
 
 "exportURLSText": {
-    "message": "Exporter votre liste blanche",
-    "description": "Export WhiteList"
+    "message": "导出网址",
+    "description": "Export URLS"
   },
 
 "rightClickToSave": {
-    "message": "Clic droit pour Enregsitrer le lien en tant que",
+    "message": "右击以链接另存为",
     "description": "Right Click to Save Link As"
   },
 
 "importURLSText": {
-    "message": "Charger fichier",
+    "message": "上传文件",
     "description": "Upload File"
   },
 
 "reportIssuesText": {
-    "message": "Reporter les problèmes et suggérer des fonctionnalités",
+    "message": "报告问题和建议功能",
     "description": "Report issues and suggest features"
   },  
 
 "versionText": {
-    "message": "version",
+    "message": "版本",
     "description": "version"
   },
 
 "contributorsText": {
-    "message": "Contributeurs:",
+    "message": "贡献者：",
     "description": "Contributors:"
-  },
+  }    
 
-"cookieCleanUpOnStartText": {
-    "message": "Activer le nettoyage des cookies au démarrage",
-    "description": "Enable Cookie Cleanup on Startup"
-  },
 
-"cookieCleanUpOnStartTooltipText": {
-    "message": "Cela nettoiera vos cookies (onglets ouverts ignorés), donc tous les cookies non présents dans la liste blanche seront supprimés.",
-    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
-  }
+
 }

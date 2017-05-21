@@ -141,7 +141,7 @@
 
 "showNumberOfCookiesInIconTooltipText": {
     "message": "Mostrar número de cookies para esse domínio",
-    "description": "Show Number of Cookies for that Domain"
+    "description": "Shows which cookies can be detected in the popup badge."
   },
 
 "notifyCookieCleanUpText": {
@@ -153,7 +153,16 @@
     "message": "Mostrar quantos cookies foram limpos e para que domínio.",
     "description": "Shows how many cookies were cleaned and for which domain."
   },
+ 
+"cookieCleanUpOnStartText": {
+    "message": "Ativar limpeza de cookies no arranque",
+    "description": "Enable Cookie Cleanup on Startup"
+  },
 
+"cookieCleanUpOnStartTooltipText": {
+    "message": "Isto basicamente faz uma limpeza de cookies (ignorar separadores abertos), o que significa que todos os cookies que não estão na lista branca são apagados.",
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
+  },
 "contextualIdentitiesEnabledText": {
     "message": "Ativar suporte para as identidades contextuais do Firefox (EXPERIMENTAL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
@@ -175,13 +184,13 @@
   },
 
 "defaultSettingsText": {
-    "message": "Definições predefinidas",
-    "description": "Default Settings"
+    "message": "Restaurar predefinições",
+    "description": "Restore Default Settings"
   },
 
 "defaultSettingsTooltipText": {
-    "message": "AVISO: Isto irá também limpar os seus URLS. Por isso faça uma cópia de segurança dos mesmos!",
-    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
+    "message": "AVISO: Isto irá também limpar a sua lista branca, por isso certifique-se de que tem uma cópia de segurança",
+    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
 "saveConfirmText": {
@@ -215,13 +224,13 @@
   },
 
 "enterURLTooltipText": {
-    "message": "Digite URLS sem a parte 'www.', depois pressione 'Enter' ou 'Adicionar URL'. Alternativamente vá ao site e adicione-o a partir do ícone azul.",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
+    "message": "Digite URLS sem a parte 'www.', depois pressione 'Enter' ou 'Adicionar URL'. Alternativamente vá ao site e adicione-o a partir do ícone.",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
   },
 
 "exportURLSText": {
-    "message": "Exportar URLS",
-    "description": "Export URLS"
+    "message": "Exportar lista branca",
+    "description": "Export WhiteList"
   },
 
 "rightClickToSave": {
