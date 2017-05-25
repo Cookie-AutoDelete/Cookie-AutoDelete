@@ -3,11 +3,9 @@ var usefulFunctions = require("../src/services/UsefulFunctions");
 
 describe("splitSubDomain()", () => {
 
-	it("should return a set [sub.sub.domain.com, sub.domain.com, domain.com] from sub.sub.domain.com", () => {
+	it("should return size 3 of [sub.sub.domain.com, sub.domain.com, domain.com] from sub.sub.domain.com", () => {
 		var results = usefulFunctions.splitSubDomain("sub.sub.domain.com");
-		assert(results.has("domain.com"), "domain.com in set");
-		assert(results.has("sub.domain.com"), "sub.domain.com in set");
-		assert(results.has("sub.sub.domain.com"), "sub.sub.domain.com in set");
+		assert(results.length === 3);
 	});
 
 });
@@ -54,22 +52,22 @@ describe("isAWebpage()", () => {
 
 	it("should return true from https://en.wikipedia.org/wiki/Cat", () => {
 		var results = usefulFunctions.isAWebpage("https://en.wikipedia.org/wiki/Cat");
-		assert(results === true);
+		assert.isTrue(results);
 	});
 
 	it("should return true from http://yahoo.com", () => {
 		var results = usefulFunctions.isAWebpage("http://yahoo.com");
-		assert(results === true);
+		assert.isTrue(results);
 	});
 
 	it("should return false from random", () => {
 		var results = usefulFunctions.isAWebpage("random");
-		assert(results === false);
+		assert.isFalse(results);
 	});
 
 	it("should return false from extension page", () => {
 		var results = usefulFunctions.isAWebpage("moz-extension://test/settings/settings.html");
-		assert(results === false);
+		assert.isFalse(results);
 	});
 
 });

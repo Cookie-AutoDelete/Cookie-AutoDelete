@@ -13,7 +13,7 @@ module.exports = {
 			j++;
 		}
 	  
-		return new Set(relatedDomains);
+		return relatedDomains;
 	},
 
 	//extract the main domain from sub domains (sub.sub.domain.com becomes domain.com)
