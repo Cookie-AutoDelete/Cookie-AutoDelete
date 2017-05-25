@@ -84,3 +84,5 @@ class WhiteListService {
 	}
 
 }
+
+module.exports = WhiteListService;
