@@ -17,17 +17,17 @@ describe("StatsService class with no items", () => {
 	});
 
 	it("returns 0 for cookieDeletedCounterTotal", () => {
-		assert.equal(statsService.cookieDeletedCounterTotal, 0);
+		assert.strictEqual(statsService.cookieDeletedCounterTotal, 0);
 	});
 
 	it("returns 0 for cookieDeletedCounter", () => {
-		assert.equal(statsService.cookieDeletedCounter, 0);
+		assert.strictEqual(statsService.cookieDeletedCounter, 0);
 	});
 
 	it("returns 20 for cookieDeletedCounter for incrementCounter(20)", () => {
 		return statsService.incrementCounter(20)
 		.then(() => {
-			assert.equal(statsService.cookieDeletedCounter, 20);
+			assert.strictEqual(statsService.cookieDeletedCounter, 20);
 		});
 		
 	});
@@ -35,7 +35,7 @@ describe("StatsService class with no items", () => {
 	it("returns 20 for cookieDeletedCounterTotal for incrementCounter(20)", () => {
 		return statsService.incrementCounter(20)
 		.then(() => {
-			assert.equal(statsService.cookieDeletedCounterTotal, 20);
+			assert.strictEqual(statsService.cookieDeletedCounterTotal, 20);
 		});
 		
 	});
@@ -64,18 +64,18 @@ describe("StatsService class with items", () => {
 
 
 	it("returns 10 for cookieDeletedCounterTotal", () => {
-		assert.equal(statsService.cookieDeletedCounterTotal, 10);
+		assert.strictEqual(statsService.cookieDeletedCounterTotal, 10);
 	});
 
 	it("returns 0 for cookieDeletedCounter", () => {
-		assert.equal(statsService.cookieDeletedCounter, 0);
+		assert.strictEqual(statsService.cookieDeletedCounter, 0);
 	});
 
 
 	it("returns 20 for cookieDeletedCounter for incrementCounter(20)", () => {
 		return statsService.incrementCounter(20)
 		.then(() => {
-			assert.equal(statsService.cookieDeletedCounter, 20);
+			assert.strictEqual(statsService.cookieDeletedCounter, 20);
 		});
 		
 	});
@@ -83,7 +83,7 @@ describe("StatsService class with items", () => {
 	it("returns 30 for cookieDeletedCounterTotal for incrementCounter(20)", () => {
 		return statsService.incrementCounter(20)
 		.then(() => {
-			assert.equal(statsService.cookieDeletedCounterTotal, 30);
+			assert.strictEqual(statsService.cookieDeletedCounterTotal, 30);
 		});
 		
 	});

@@ -11,26 +11,26 @@ describe("WhiteListService with Contextual Identities Off", () => {
 		whiteListService = new WhiteListService(items);
 	});
 
-	it("hasHost() for youtube.com", () => {
+	it("hasHost() should return true for youtube.com", () => {
 		assert.isTrue(whiteListService.hasHost("youtube.com"));
 	});
 
-	it("hasHost() for a site not in the whitelist", () => {
+	it("hasHost() should return false for foo.com", () => {
 		assert.isFalse(whiteListService.hasHost("foo.com"));
 	});
 
 
-	it("returns array length 3 for returnList()", () => {
-		assert.equal(whiteListService.returnList().length, 3);
+	it("returns [youtube.com, google.com, facebook.com] for returnList()", () => {
+		assert.sameMembers(whiteListService.returnList(), ["youtube.com", "google.com", "facebook.com"]);
 	});
 
-	it("addURL() for yahoo.com and see if it exists", () => {
+	it("addURL() for yahoo.com and it should exist", () => {
 		whiteListService.addURL("yahoo.com");
 		assert.isTrue(whiteListService.hasHost("yahoo.com"));
 		assert.isTrue(browser.storage.local.set.calledOnce);
 	});
 
-	it("removeURL() for google.com and see if it exists", () => {
+	it("removeURL() for google.com and it should not exist", () => {
 		whiteListService.removeURL("google.com");
 		assert.isFalse(whiteListService.hasHost("google.com"));
 		assert.isTrue(browser.storage.local.set.calledOnce);
@@ -41,6 +41,7 @@ describe("WhiteListService with Contextual Identities Off", () => {
 		assert.isFalse(whiteListService.hasHost("youtube.com"));
 		assert.isFalse(whiteListService.hasHost("google.com"));
 		assert.isFalse(whiteListService.hasHost("facebook.com"));
+		assert.isTrue(browser.storage.local.set.calledOnce);
 	});
 
 	afterEach(() => {
@@ -67,47 +68,48 @@ describe("WhiteListService with Contextual Identities On", () => {
 		whiteListService = new WhiteListService(items, true);
 	});
 
-	it("hasHost() for youtube.com in Personal", () => {
+	it("hasHost() should return true for youtube.com in Personal", () => {
 		assert.isTrue(whiteListService.hasHost("youtube.com", "firefox_container_1"));
 	});
 
-	it("hasHost() for github.com in Work", () => {
+	it("hasHost() should return true for github.com in Work", () => {
 		assert.isTrue(whiteListService.hasHost("github.com", "firefox_container_2"));
 	});
 
-	it("hasHost() for youtube.com in Work", () => {
+	it("hasHost() should return false for youtube.com in Work", () => {
 		assert.isFalse(whiteListService.hasHost("youtube.com", "firefox_container_2"));
 	});
 
 
-	it("returns array length 3 for returnList() in Personal", () => {
-		assert.equal(whiteListService.returnList("firefox_container_1").length, 3);
+	it("returns [youtube.com, google.com, facebook.com] for returnList() in Personal", () => {
+		assert.sameMembers(whiteListService.returnList("firefox_container_1"), ["youtube.com", "google.com", "facebook.com"]);
 	});
 
-	it("returns array length 1 for returnList() in Work", () => {
-		assert.equal(whiteListService.returnList("firefox_container_2").length, 1);
+	it("returns [github.com] for returnList() in Work", () => {
+		assert.sameMembers(whiteListService.returnList("firefox_container_2"), ["github.com"]);
 	});
 
-	it("addURL() for yahoo.com and see if it exists in Work", () => {
+	it("addURL() for yahoo.com and it should exist in Work but not Personal", () => {
 		whiteListService.addURL("yahoo.com", "firefox_container_2");
 		assert.isTrue(whiteListService.hasHost("yahoo.com", "firefox_container_2"));
 		assert.isFalse(whiteListService.hasHost("yahoo.com", "firefox_container_1"));
 		assert.isTrue(browser.storage.local.set.calledOnce);
 	});
 
-	it("removeURL() for google.com and see if it exists", () => {
+	it("removeURL() for google.com and it should return false for Personal and Work", () => {
 		whiteListService.removeURL("google.com", "firefox_container_1");
 		assert.isFalse(whiteListService.hasHost("google.com", "firefox_container_1"));
 		assert.isFalse(whiteListService.hasHost("google.com", "firefox_container_2"));
 		assert.isTrue(browser.storage.local.set.calledOnce);
 	});
 
-	it("clearURL() should not have anything in the whitelist", () => {
+	it("clearURL() should not have anything in the whitelist in Personal but not affect Work", () => {
 		whiteListService.clearURL("firefox_container_1");
 		assert.isFalse(whiteListService.hasHost("youtube.com", "firefox_container_1"));
 		assert.isFalse(whiteListService.hasHost("google.com", "firefox_container_1"));
 		assert.isFalse(whiteListService.hasHost("facebook.com", "firefox_container_1"));
 		assert.isTrue(whiteListService.hasHost("github.com", "firefox_container_2"));
+		assert.isTrue(browser.storage.local.set.calledOnce);
 	});
 
 	afterEach(() => {
