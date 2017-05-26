@@ -1,3 +1,5 @@
+const UsefulFunctions = require("./UsefulFunctions");
+
 class CleanupService {
  	constructor() {
  		this.recentlyCleaned = 0;
@@ -15,6 +17,18 @@ class CleanupService {
 		return cookieDomain;
 	}
 
+	isSafeToClean(whiteList, cookieDomainHost, cookieMainDomainHost, setOfTabURLS) {
+		//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
+		//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
+		let safeToClean;
+		if(contextualIdentitiesEnabled) {	
+			safeToClean = !whiteList.hasHost(cookieDomainHost, cookies[i].storeId) && !setOfTabURLS.has(cookieMainDomainHost);
+		} else {
+			safeToClean = !whiteList.hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost);
+		}
+		return safeToClean;
+	}
+
 	//Deletes cookies if there is no existing cookie's host main url in an open tab
 	cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
 		for(let i = 0; i < cookies.length; i++) {
@@ -25,17 +39,8 @@ class CleanupService {
 			//domain.com
 			let cookieMainDomainHost = extractMainDomain(cookieDomainHost);
 			
-			//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
-			//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
-			let safeToClean;
-			if(contextualIdentitiesEnabled) {
-				safeToClean = !whiteList.hasHost(cookieDomainHost, cookies[i].storeId) && !setOfTabURLS.has(cookieMainDomainHost);
-			} else {
-				safeToClean = !whiteList.hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost);
-			}
 
-
-			if(safeToClean) {
+			if(this.isSafeToClean(whiteList, cookieDomainHost, cookieMainDomainHost, setOfTabURLS)) {
 				//Append the path to cookie
 				cookieDomain = cookieDomain + cookies[i].path;
 				//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
@@ -62,29 +67,36 @@ class CleanupService {
 		return Promise.resolve(setOfDeletedDomainCookies);
 	}
 
-	//Main function for cookie cleanup 
-	cleanCookiesOperation(ignoreOpenTabs = false) {
-		//console.log("Cleaning");
-		//Stores all tabs' host domains
-		let setOfTabURLS = new Set();
-		//Stores the deleted domains (for notification)
-		let setOfDeletedDomainCookies = new Set();
-		this.recentlyCleaned = 0;
-		//Store all tabs' host domains to prevent cookie deletion from those domains
-		browser.tabs.query({
+	//Store all tabs' host domains to prevent cookie deletion from those domains
+	returnSetOfOpenTabDomains() {
+		return browser.tabs.query({
 			"windowType": "normal"
 		})
 		.then((tabs) => {
-			if(!ignoreOpenTabs) {
-				for(let i = 0; i < tabs.length; i++) {
-					if (isAWebpage(tabs[i].url)) {
-						let hostURL = getHostname(tabs[i].url);
-						hostURL = extractMainDomain(hostURL);
-						setOfTabURLS.add(hostURL);
-					}
+			let setOfTabURLS = new Set();
+			tabs.forEach((currentValue, index, array) => {
+				if (UsefulFunctions.isAWebpage(currentValue.url)) {
+					let hostURL = UsefulFunctions.getHostname(currentValue.url);
+					hostURL = UsefulFunctions.extractMainDomain(hostURL);
+					setOfTabURLS.add(hostURL);
 				}
-			}
-			//console.log(setOfTabURLS);
+			});
+			return Promise.resolve(setOfTabURLS);
+		});
+	}
+
+	//Main function for cookie cleanup 
+	cleanCookiesOperation(ignoreOpenTabs = false) {
+		//Stores the deleted domains (for notification)
+		let setOfDeletedDomainCookies = new Set();
+		this.recentlyCleaned = 0;
+		
+		let setOfTabURLS;
+		if(!ignoreOpenTabs) {
+			setOfTabURLS = returnSetOfOpenTabDomains();
+		} else {
+			setOfTabURLS = new Set();
+		}
 
 			if(contextualIdentitiesEnabled) {
 				//Clean cookies in different cookie ids using the contextual identities api
@@ -112,10 +124,9 @@ class CleanupService {
 				});
 			}
 			
-			
-		});
-
 	}
+
+
 
 	afterCleanup(setOfDeletedDomainCookies) {
 		notifyCleanup.notifyCookieCleanUp(this.recentlyCleaned, setOfDeletedDomainCookies);
@@ -123,3 +134,5 @@ class CleanupService {
 	}
 
 }
+
+module.exports = CleanupService;
