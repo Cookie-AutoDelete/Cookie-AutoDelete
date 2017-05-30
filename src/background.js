@@ -160,9 +160,10 @@ module.exports = {
 	},
 
 	cleanupOperation(ignoreOpenTabs = false) {
-		cleanup.cleanCookiesOperation(ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache)
+		return cleanup.cleanCookiesOperation(ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache)
 		.then((setOfDeletedDomainCookies) => {
-			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies)
+			statLog.incrementCounter(cleanup.recentlyCleaned);
+			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies);
 		});
 	},
 	getNotifyMessage() {
@@ -215,7 +216,7 @@ module.exports = {
 		    tabId: tab.id, path: {48:"icons/icon_48.png"}
 		  });
 		browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tab.id});
-	}
+	},
 	
 }
 

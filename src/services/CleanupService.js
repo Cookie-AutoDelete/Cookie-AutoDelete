@@ -26,7 +26,7 @@ class CleanupService {
 		//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
 		let safeToClean;
 		if(cleanupProperties.contextualIdentitiesEnabled) {	
-			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.cookieStoreId) && !cleanupProperties.setOfTabURLS.has(cleanupProperties.cookieMainDomainHost);
+			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cleanupProperties.cookieMainDomainHost);
 		} else {
 			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		}
@@ -50,7 +50,7 @@ class CleanupService {
 				if(cleanupProperties.contextualIdentitiesEnabled) {
 					
 					//setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
-					let name = cleanupProperties.cache.getNameFromCookieID(cookieProperties.cookieStoreId);
+					let name = cleanupProperties.cache.getNameFromCookieID(cookieProperties.storeId);
 					this.setOfDeletedDomainCookies.add(`${cookieProperties.cookieMainDomainHost} (${name})`);
 
 				} else {
@@ -110,22 +110,19 @@ class CleanupService {
 			if(cleanupProperties.contextualIdentitiesEnabled) {
 				//Clean cookies in different cookie ids using the contextual identities api
 				let promiseContainers = [];
-				let index = 1;
 				cleanupProperties.cache.nameCacheMap.forEach((value, key, map) => {
-					browser.cookies.getAll({storeId: key})
+					let promise = browser.cookies.getAll({storeId: key})
 					.then((cookies) => {
-						promiseContainers.push(this.cleanCookies(cookies, cleanupProperties));
-						index++;
-						if(index === cleanupProperties.cache.nameCacheMap.size) {
-							return Promise.all(promiseContainers)
-							.then(() => {
-								return Promise.resolve(this.setOfDeletedDomainCookies);
-							});
-						}
-					});	
+						return this.cleanCookies(cookies, cleanupProperties);
+					});
+					promiseContainers.push(promise);
 				});
 				
-				
+				return Promise.all(promiseContainers)
+				.then((values) => {
+					return Promise.resolve(values[0]);
+				});
+
 			} else {
 				//Clean the default cookie id container
 				return browser.cookies.getAll({})
