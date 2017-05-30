@@ -11,7 +11,7 @@ CHROMEFILENAME=${EXTENSIONNAME}_Chrome_Dev_${TRAVIS_TAG}
 
 rmdir -rf $DES
 mkdir -p $DES
-cd src/
+cd extension/
 
 zip -r ${FIREFOXFILENAME}.xpi *
 mv ${FIREFOXFILENAME}.xpi ../$DES/

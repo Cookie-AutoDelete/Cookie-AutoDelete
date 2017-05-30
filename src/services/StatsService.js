@@ -10,14 +10,14 @@ class StatsService {
 
 	//Increment the counter and store the counter to local after 1 minute
 	incrementCounter(recentlyCleaned) {
-		browser.storage.local.get("statLoggingSetting")
+		return browser.storage.local.get("statLoggingSetting")
 		.then((items) => {
 			if(items.statLoggingSetting === true) {
 				this.cookieDeletedCounterTotal += recentlyCleaned;
 				this.cookieDeletedCounter += recentlyCleaned;
-				this.storeCounterToLocal();
+				return this.storeCounterToLocal();
 			}
-		}).catch(onError);
+		});
 	}
 
 	//Resets the counter
@@ -29,6 +29,8 @@ class StatsService {
 
 	//Stores the total cookie entries deleted to local
 	storeCounterToLocal() {
-		browser.storage.local.set({cookieDeletedCounterTotal: this.cookieDeletedCounterTotal});
+		return browser.storage.local.set({cookieDeletedCounterTotal: this.cookieDeletedCounterTotal});
 	}
 }
+
+module.exports = StatsService;

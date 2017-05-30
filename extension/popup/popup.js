@@ -20,10 +20,10 @@ function fillPopup(tabs) {
 		document.getElementById("activeModeSwitch").checked = items.activeMode;
 	});
 	
-	if(page.notifyCleanup.notifyMessage !== "") {
-		document.getElementById("notify").appendChild(document.createTextNode(page.notifyCleanup.notifyMessage));
+	let notifyMessage = page.getNotifyMessage();
+	if(notifyMessage !== "") {
+		document.getElementById("notify").appendChild(document.createTextNode(notifyMessage));
 	}
-
 	//Fill the host site placeholder if it exists
     activeTab = tabs[0];
     if(!page.isAWebpage(activeTab.url)) {
@@ -68,7 +68,7 @@ function fillPopup(tabs) {
 var hostUrl;
 var activeTab;
 var cookieStoreId;
-var page = browser.extension.getBackgroundPage();
+var page = browser.extension.getBackgroundPage().exposedFunctions;
 browser.tabs.query({currentWindow: true, active: true})
 .then(fillPopup);
 
@@ -81,12 +81,12 @@ document.getElementById("settings").addEventListener("click", function() {
 
 //Clear all history for a domain
 document.getElementById('cookieCleanup').addEventListener("click", function() {
-	page.cleanup.cleanCookiesOperation();
+	page.cleanupOperation();
 	animateSuccess(document.getElementById('cookieCleanup'));
 });
 
 document.getElementById('cookieCleanupIgnoreOpenTabs').addEventListener("click", function() {
-	page.cleanup.cleanCookiesOperation(true);
+	page.cleanupOperation(true);
 	animateSuccess(document.getElementById('cookieCleanupIgnoreOpenTabs'));
 });
 
@@ -100,7 +100,7 @@ document.getElementById("clearCookiesForDomain").addEventListener("click", funct
 	.then(function(cookies) {
 		if(cookies.length > 0) {
 			for(let i = 0; i < cookies.length; i++) {
-				let cookieDomain = page.cleanup.prepareCookieDomain(cookies[i])  + cookies[i].path;
+				let cookieDomain = page.prepareCookieDomain(cookies[i])  + cookies[i].path;
 				browser.cookies.remove({
 					url: cookieDomain,
 					name: cookies[i].name,
