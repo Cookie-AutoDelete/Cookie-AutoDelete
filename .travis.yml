@@ -1,5 +1,9 @@
-#language: node_js
-script: 
+language: node_js
+install:
+  - npm install
+script:
+  - npm test
+before_deploy: 
   - bash tools/replaceVersionNumber.sh
   - bash tools/buildFilesDev.sh  
 deploy:
