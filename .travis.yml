@@ -4,12 +4,12 @@ node_js:
 install:
   - npm install
 script:
-  - npm run-script test-travis
+  - npm test
 after_script: 
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy: 
   - bash tools/replaceVersionNumber.sh
-  - bash tools/buildFilesDev.sh  
+  - npm build
 deploy:
   provider: releases
   prerelease: true

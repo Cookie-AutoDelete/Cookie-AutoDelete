@@ -27,6 +27,12 @@ Translate Cookie AutoDelete in your language or help fix a translation!
 1. Copy and paste the "/src/_locales/en" folder.
 2. Rename the newly copied folder to the language codes found [here](https://developer.chrome.com/webstore/i18n?csw=1#localeTable)
 3. Open the manifest.json in your newly created folder and start translating the "message" JSON properties. The description should be left alone as a reference. Also any word with '$' surrounding it should be left alone as they are placeholders.
-4. Test the translation by zipping up the src folder and loading it in your browser. Fix any UI glitches by if possible using a shorter translation.
+4. Test the translation by building it. Fix any UI glitches by if possible using a shorter translation.
 5. Make a Pull Request and you're done!.
-6. Watch for changes in the "/src/_locales/en/messages.json" file for future updates.
+6. Watch for changes in the "/extension/_locales/en/messages.json" file for future updates.
+
+## Build Intructions
+
+1. Run `npm install`
+2. Run `npm build`
+3. The build files should be in a new folder called `/builds`

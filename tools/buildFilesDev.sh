@@ -1,5 +1,5 @@
 echo "Building"
-./node_modules/.bin/webpack --config webpack.config.js
+
 EXTENSIONNAME="Cookie-AutoDelete"
 DES=builds
 if [ -z "$TRAVIS_TAG" ]
