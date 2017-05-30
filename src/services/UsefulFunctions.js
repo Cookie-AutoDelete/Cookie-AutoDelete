@@ -1,4 +1,3 @@
-var URL = require("url").URL;
 module.exports = {
 
 	//Returns an array of domains and subdomains (sub.sub.domain.com becomes [sub.sub.domain.com, sub.domain.com, domain.com])

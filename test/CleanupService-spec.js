@@ -2,6 +2,8 @@ var assert = require("chai").assert;
 var CleanupService = require("../src/services/CleanupService");
 var browser = require("sinon-chrome");
 var sinon = require("sinon");
+var URL = require("url").URL;
+global.URL = URL;
 
 describe("CleanupService with Contextual Identities Off", () => {
 	var cleanupService;
@@ -57,9 +59,10 @@ describe("CleanupService with Contextual Identities Off", () => {
 		stub3.withArgs("http://sub.domain.com").returns(true);
 		stub3.withArgs("moz-extension://test/settings/settings.html").returns(false);
 
-		global.UsefulFunctions = UsefulFunctions;
+		
 
 		beforeEach(() => {
+			global.UsefulFunctions = UsefulFunctions;
 			browser.tabs.query.resolves([{url: "https://google.com/search"}, {url: "http://facebook.com/search"}, {url: "http://sub.domain.com"}, {url: "moz-extension://test/settings/settings.html"}]);
 		});
 
@@ -109,19 +112,97 @@ describe("CleanupService with Contextual Identities Off", () => {
 		});
 	});
 
-	// describe("isSafeToClean()", () => {
-	// 	beforeEach(() => {
+	describe("isSafeToClean()", () => {	
+		var cacheSetUp = { 
+			nameCacheMap: new Map()
+		};
+		cache.nameCacheMap.set("firefox-container-1", "Personal");
+		cache.nameCacheMap.set("firefox-container-2", "Work");
+		cache.nameCacheMap.set("firefox-container-3", "Finance");
+		cache.nameCacheMap.set("firefox-container-4", "Shopping");
+
+
+		var cleanupProperties = {
+			whiteList: {
+				hasHost: function() {}
+			},
+			contextualIdentitiesEnabled: false,
+			cache: cacheSetUp,
+			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
+			
+		}
+
+		var stub1 = sinon.stub(cleanupProperties.whiteList, "hasHost");
+		stub1.withArgs("google.com").returns(false);
+		stub1.withArgs("facebook.com").returns(true);
+		stub1.withArgs("developer.mozilla.org").returns(false);
+		stub1.withArgs("sub.domain.com").returns(true);
+		stub1.withArgs("otherSub.domain.com").returns(false);
+		beforeEach(() => {
 		
-	// 	});
+		});
 
-	// 	it("should return https://google.com", () => {
-	// 		assert.strictEqual(cleanupService.prepareCookieDomain({domain: "google.com", secure: true}), "https://google.com");
-	// 	});
+		//google.com is not in whitelist or open tabs
+		it("should return true for google.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "google.com",
+				cookieMainDomainHost: "google.com"
+			}
+			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
 
+		//youtube.com is in open tab
+		it("should return false for youtube.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//facebook.com is in whitelist
+		it("should return false for facebook.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "facebook.com",
+				cookieMainDomainHost: "facebook.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//a subdomain sharing mozilla.com in open tabs should not be deleted
+		it("should return false for developer.mozilla.org", () => {
+			var cookieProperties = {
+				cookieDomainHost: "developer.mozilla.org",
+				cookieMainDomainHost: "mozilla.org"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//sub.domain.com is in the whitelist
+		it("should return false for sub.domain.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "sub.domain.com",
+				cookieMainDomainHost: "domain.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//otherSub.domain.com can be deleted because it is not in open tabs and not in whitelist even though it shares domain.com
+		it("should return true for otherSub.domain.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "otherSub.domain.com",
+				cookieMainDomainHost: "domain.com"
+			}
+			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		after(() => {
+			stub1.restore();
+		});
 		
-	// });
+	});
 
-	// describe("cleanCookiesOperation()", () => {
+	// describe("cleanCookies()", () => {
 	// 	it("should return https://google.com", () => {
 	// 		assert.strictEqual(cleanupService.prepareCookieDomain({domain: "google.com", secure: true}), "https://google.com");
 	// 	});

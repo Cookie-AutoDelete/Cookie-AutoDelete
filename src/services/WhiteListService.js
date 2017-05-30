@@ -1,7 +1,7 @@
 const defaultWhiteList = "defaultWhiteList";
 
 class WhiteListService {
-	constructor(items, contextualIdentitiesEnabled = false) {
+	constructor(items, contextualIdentitiesEnabled = false, cache = {}) {
 		this.cookieWhiteList = new Map();
 		//Sets up the whitelist for the map
 		if(contextualIdentitiesEnabled) {

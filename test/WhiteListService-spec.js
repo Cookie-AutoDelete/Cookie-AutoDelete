@@ -61,11 +61,10 @@ describe("WhiteListService with Contextual Identities On", () => {
 	cache.nameCacheMap.set("firefox_container_1", "Personal");
 	cache.nameCacheMap.set("firefox_container_2", "Work");
 	
-	global.cache = cache;
 	global.browser = browser;
 
 	beforeEach(() => {
-		whiteListService = new WhiteListService(items, true);
+		whiteListService = new WhiteListService(items, true, cache);
 	});
 
 	it("hasHost() should return true for youtube.com in Personal", () => {
