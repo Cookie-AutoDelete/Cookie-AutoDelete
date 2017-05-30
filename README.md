@@ -34,5 +34,5 @@ Translate Cookie AutoDelete in your language or help fix a translation!
 ## Build Intructions
 
 1. Run `npm install`
-2. Run `npm build`
+2. Run `npm run-script build`
 3. The build files should be in a new folder called `/builds`
