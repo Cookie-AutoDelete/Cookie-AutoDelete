@@ -4,7 +4,9 @@ node_js:
 install:
   - npm install
 script:
-  - npm test
+  - npm run-script test-travis
+after_script: 
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy: 
   - bash tools/replaceVersionNumber.sh
   - bash tools/buildFilesDev.sh  
