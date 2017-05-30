@@ -11,7 +11,9 @@ class CleanupService {
 	//Puts the domain in the right format for browser.cookies.clean() 
 	prepareCookieDomain(cookie) {
 		let cookieDomain = cookie.domain;
-		//console.log(cookie);
+		if(cookieDomain === undefined) {
+			console.log(cookie);
+		}
 		if(cookieDomain.charAt(0) === ".") {
 			cookieDomain = cookieDomain.slice(1);
 		}

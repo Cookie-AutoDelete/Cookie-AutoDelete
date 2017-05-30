@@ -43,87 +43,94 @@ function createActiveModeAlarm() {
 	}).catch(onError);
 }
 
+//Checks to see if these settings are in storage, if not create and set the default
+function setPreferences(items) {
+	if(items.delayBeforeClean === undefined) {
+		browser.storage.local.set({delayBeforeClean: 1});
+	} 	
+	
+	
+	if(items.activeMode === undefined) {
+		browser.storage.local.set({activeMode: false});
+	} 	
+	
+	if(items.statLoggingSetting === undefined) {
+		browser.storage.local.set({statLoggingSetting: true});
+	}
+
+	if(items.showNumberOfCookiesInIconSetting === undefined) {
+		browser.storage.local.set({showNumberOfCookiesInIconSetting: true});
+	}
+
+	if(items.notifyCookieCleanUpSetting === undefined) {
+		browser.storage.local.set({notifyCookieCleanUpSetting: true});
+	}
+
+	if(items.cookieCleanUpOnStartSetting === undefined) {
+		browser.storage.local.set({cookieCleanUpOnStartSetting: false});
+	}
+	return Promise.resolve(items);
+}
+
+//Disable contextualIdentities features if not Firefox
+function contextualCheck(items) {
+	if(browserDetect() !== "Firefox") {
+		contextualIdentitiesEnabled = false;
+		browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
+	} else if(items.contextualIdentitiesEnabledSetting === undefined) {
+		contextualIdentitiesEnabled = false;
+		browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
+	} else {
+		contextualIdentitiesEnabled = items.contextualIdentitiesEnabledSetting;
+	}
+	return Promise.resolve(items);
+}
+
+//Create objects based on settings
+function createObjects(items) {
+	if(items.activeMode === true) {
+		exposedFunctions.enableActiveMode();
+	} else {
+		exposedFunctions.disableActiveMode();
+	}
+	
+	if(contextualIdentitiesEnabled) {
+		cache = new CacheService();
+		cache.cacheContextualIdentityNamesFromStorage(items)
+		.then(() => {
+			whiteList = new WhiteListService(items, contextualIdentitiesEnabled, cache);
+		});
+		
+	} else {
+		whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
+	}
+
+	statLog = new StatsService(items);
+
+	
+	return Promise.resolve(items);
+}
 
 //Sets up the background page on startup
 function onStartUp() {
 	return browser.storage.local.get()
 	.then((items) => {
-		//Disable contextualIdentities features if not Firefox
-		//console.log(browserDetect());
-		if(browserDetect() !== "Firefox") {
-			contextualIdentitiesEnabled = false;
-			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
-		} else if(items.contextualIdentitiesEnabledSetting === undefined) {
-			contextualIdentitiesEnabled = false;
-			browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
-		} else {
-			contextualIdentitiesEnabled = items.contextualIdentitiesEnabledSetting;
-		}
-
-		//Checks to see if these settings are in storage, if not create and set the default
-		if(items.delayBeforeClean === undefined) {
-			browser.storage.local.set({delayBeforeClean: 1});
-		} 	
-		
-		
-		if(items.activeMode === undefined) {
-			browser.storage.local.set({activeMode: false});
-		} 	
-		
-		if(items.statLoggingSetting === undefined) {
-			browser.storage.local.set({statLoggingSetting: true});
-		}
-
-		if(items.showNumberOfCookiesInIconSetting === undefined) {
-			browser.storage.local.set({showNumberOfCookiesInIconSetting: true});
-		}
-
-		if(items.notifyCookieCleanUpSetting === undefined) {
-			browser.storage.local.set({notifyCookieCleanUpSetting: true});
-		}
-
-		if(items.cookieCleanUpOnStartSetting === undefined) {
-			browser.storage.local.set({cookieCleanUpOnStartSetting: false});
-		}
-
-		//Create objects based on settings
-		if(items.activeMode === true) {
-			exposedFunctions.enableActiveMode();
-		} else {
-			exposedFunctions.disableActiveMode();
-		}
-		
-		if(contextualIdentitiesEnabled) {
-			cache = new CacheService();
-			cache.cacheContextualIdentityNamesFromStorage(items)
-			.then(() => {
-				whiteList = new WhiteListService(items, contextualIdentitiesEnabled, cache);
-			});
-			
-		} else {
-			whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
-		}
-
-		statLog = new StatsService(items);
-
+		return contextualCheck(items);
+	}).then((items) =>{
+		return setPreferences(items);
+	}).then((items) =>{
+		return createObjects(items);
+	}).then((items) =>{
 		module.exports.whiteList = whiteList;
 		module.exports.contextualIdentitiesEnabled = contextualIdentitiesEnabled;
 		module.exports.statLog = statLog;
-
+		module.exports.cache = cache;
 	}).catch(onError);
 }
 
 //Logs the error
 function onError(error) {
 	console.error(`Error: ${error}`);
-}
-
-//Set the defaults 
-function setDefaults() {
-	return browser.storage.local.clear()
-	.then(() => {
-		return onStartUp();
-	});
 }
 
 //Does a cookie cleanup on startup if the user chooses
@@ -137,11 +144,21 @@ function cookieCleanUpOnStart(items) {
 	});
 }
 
-//setDefaults();
 onStartUp()
 .then(cookieCleanUpOnStart);
 
 module.exports = {
+	onStartUp() {
+		return onStartUp();
+	},
+	//Set the defaults 
+	setDefaults() {
+		return browser.storage.local.clear()
+		.then(() => {
+			return onStartUp();
+		});
+	},
+
 	cleanupOperation(ignoreOpenTabs = false) {
 		cleanup.cleanCookiesOperation(ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache)
 		.then((setOfDeletedDomainCookies) => {
@@ -183,6 +200,21 @@ module.exports = {
 	},
 	prepareCookieDomain(cookie) {
 		return cleanup.prepareCookieDomain(cookie);
+	},
+	//Set background icon to red
+	setIconRed(tab) {
+		browser.browserAction.setIcon({
+		    tabId: tab.id, path: {48:"icons/icon_red_48.png"}
+		  });
+		browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
+	},
+
+	//Set background icon to blue
+	setIconDefault(tab) {
+		browser.browserAction.setIcon({
+		    tabId: tab.id, path: {48:"icons/icon_48.png"}
+		  });
+		browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tab.id});
 	}
 	
 }
@@ -203,21 +235,7 @@ function showNumberOfCookiesInIcon(tabURL,tabID) {
 	
 }
  
-//Set background icon to red
-function setIconRed(tab) {
-	browser.browserAction.setIcon({
-	    tabId: tab.id, path: {48:"icons/icon_red_48.png"}
-	  });
-	browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
-}
 
-//Set background icon to blue
-function setIconDefault(tab) {
-	browser.browserAction.setIcon({
-	    tabId: tab.id, path: {48:"icons/icon_48.png"}
-	  });
-	browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tab.id});
-}
 
 //Logic that controls when to disable the browser action
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -243,15 +261,15 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 		if(contextualIdentitiesEnabled) {
 			if(whiteList.hasHost(UsefulFunctions.getHostname(tab.url), tab.cookieStoreId)) {
-				setIconDefault(tab);
+				exposedFunctions.setIconDefault(tab);
 			} else {
-				setIconRed(tab);
+				exposedFunctions.setIconRed(tab);
 			}
 		} else {
 			if(whiteList.hasHost(UsefulFunctions.getHostname(tab.url))) {
-				setIconDefault(tab);
+				exposedFunctions.setIconDefault(tab);
 			} else {
-				setIconRed(tab);
+				exposedFunctions.setIconRed(tab);
 			}
 		}
 	}
