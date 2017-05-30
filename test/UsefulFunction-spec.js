@@ -38,6 +38,16 @@ describe("extractMainDomain()", () => {
 		var results = usefulFunctions.extractMainDomain("sub.sub.sub.domain.com");
 		assert.strictEqual(results, "domain.com");
 	});
+
+	it("should return the ip address from an ip address", () => {
+		var results = usefulFunctions.extractMainDomain("127.0.0.1");
+		assert.strictEqual(results, "127.0.0.1");
+	});
+
+	it("should return domain.com from .domain.com", () => {
+		var results = usefulFunctions.extractMainDomain("domain.com.");
+		assert.strictEqual(results, "domain.com");
+	});
 });
 
 

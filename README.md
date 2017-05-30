@@ -24,7 +24,7 @@ Control your cookies! This extension is inspired by Self Destructing Cookies. Wh
 
 Translate Cookie AutoDelete in your language or help fix a translation!
 
-1. Copy and paste the "/src/_locales/en" folder.
+1. Copy and paste the "/extension/_locales/en" folder.
 2. Rename the newly copied folder to the language codes found [here](https://developer.chrome.com/webstore/i18n?csw=1#localeTable)
 3. Open the manifest.json in your newly created folder and start translating the "message" JSON properties. The description should be left alone as a reference. Also any word with '$' surrounding it should be left alone as they are placeholders.
 4. Test the translation by building it. Fix any UI glitches by if possible using a shorter translation.
