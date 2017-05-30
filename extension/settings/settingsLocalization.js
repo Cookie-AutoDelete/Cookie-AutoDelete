@@ -1,4 +1,4 @@
-var page = browser.extension.getBackgroundPage();
+var page = browser.extension.getBackgroundPage().exposedFunctions;
 document.getElementById("tabWelcomeText").textContent = browser.i18n.getMessage("welcomeText");
 document.getElementById("tabSettingsText").textContent = browser.i18n.getMessage("settingsText");
 document.getElementById("tabWhiteListText").textContent = browser.i18n.getMessage("whiteListText");

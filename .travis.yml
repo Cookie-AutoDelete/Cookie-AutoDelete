@@ -1,7 +1,15 @@
-#language: node_js
-script: 
+language: node_js
+node_js:
+  - "7"
+install:
+  - npm install
+script:
+  - npm test
+after_script: 
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+before_deploy: 
   - bash tools/replaceVersionNumber.sh
-  - bash tools/buildFilesDev.sh  
+  - npm build
 deploy:
   provider: releases
   prerelease: true

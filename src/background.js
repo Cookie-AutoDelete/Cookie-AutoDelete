@@ -1,3 +1,11 @@
+const UsefulFunctions = require("./services/UsefulFunctions");
+
+const CacheService = require("./services/CacheService");
+const CleanupService = require("./services/CleanupService");
+const NotificationService = require("./services/NotificationService");
+const StatsService = require("./services/StatsService");
+const WhiteListService = require("./services/WhiteListService");
+
 var cleanup = new CleanupService();
 var notifyCleanup = new NotificationService();
 var whiteList;
@@ -19,21 +27,7 @@ function onTabRemoved(tabId, removeInfo) {
 	});
 }
 
-//Enable automatic cookie cleanup
-function enableActiveMode() {
-	browser.tabs.onRemoved.addListener(onTabRemoved);
-	//console.log("ActiveMode");
-}
 
-//Disable automatic cookie cleanup
-function disableActiveMode() {
-	browser.tabs.onRemoved.removeListener(onTabRemoved);
-	browser.alarms.clear("activeModeAlarm")
-	.then((wasCleared) => {
-		//console.log(wasCleared);
-	});
-	//console.log("DisabledMode");
-}
 
 //Create an alarm delay before cookie cleanup
 function createActiveModeAlarm() {
@@ -94,26 +88,34 @@ function onStartUp() {
 
 		//Create objects based on settings
 		if(items.activeMode === true) {
-			enableActiveMode();
+			exposedFunctions.enableActiveMode();
 		} else {
-			disableActiveMode();
+			exposedFunctions.disableActiveMode();
 		}
 		
 		if(contextualIdentitiesEnabled) {
 			cache = new CacheService();
 			cache.cacheContextualIdentityNamesFromStorage(items)
 			.then(() => {
-				whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
+				whiteList = new WhiteListService(items, contextualIdentitiesEnabled, cache);
 			});
 			
 		} else {
 			whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
 		}
 
-		
 		statLog = new StatsService(items);
 
+		module.exports.whiteList = whiteList;
+		module.exports.contextualIdentitiesEnabled = contextualIdentitiesEnabled;
+		module.exports.statLog = statLog;
+
 	}).catch(onError);
+}
+
+//Logs the error
+function onError(error) {
+	console.error(`Error: ${error}`);
 }
 
 //Set the defaults 
@@ -129,8 +131,8 @@ function cookieCleanUpOnStart(items) {
 	return browser.storage.local.get()
 	.then((items) => {
 		if(items.cookieCleanUpOnStartSetting === true) {
-			console.log("Startup Cleanup")
-			cleanup.cleanCookiesOperation(true);
+			console.log("Startup Cleanup");
+			exposedFunctions.cleanupOperation(true);
 		}
 	});
 }
@@ -139,11 +141,60 @@ function cookieCleanUpOnStart(items) {
 onStartUp()
 .then(cookieCleanUpOnStart);
 
+module.exports = {
+	cleanupOperation(ignoreOpenTabs = false) {
+		cleanup.cleanCookiesOperation(ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache)
+		.then((setOfDeletedDomainCookies) => {
+			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies)
+		});
+	},
+	getNotifyMessage() {
+		return notifyCleanup.notifyMessage;
+	},
+	//Enable automatic cookie cleanup
+	enableActiveMode() {
+		browser.tabs.onRemoved.addListener(onTabRemoved);
+		//console.log("ActiveMode");
+	},
+
+	//Disable automatic cookie cleanup
+	disableActiveMode() {
+		browser.tabs.onRemoved.removeListener(onTabRemoved);
+		browser.alarms.clear("activeModeAlarm")
+		.then((wasCleared) => {
+			//console.log(wasCleared);
+		});
+		//console.log("DisabledMode");
+	},
+	splitSubDomain(domain) {
+		return UsefulFunctions.splitSubDomain(domain);
+	},
+
+	extractMainDomain(domain) {
+		return UsefulFunctions.extractMainDomain(domain);
+	},
+
+	getHostname(urlToGetHostName) {
+		return UsefulFunctions.getHostname(urlToGetHostName);
+	},
+
+	isAWebpage(URL) {
+		return UsefulFunctions.isAWebpage(URL);
+	},
+	prepareCookieDomain(cookie) {
+		return cleanup.prepareCookieDomain(cookie);
+	}
+	
+}
+
+
+
+
 
 //Show the # of cookies in icon
 function showNumberOfCookiesInIcon(tabURL,tabID) {
 	browser.cookies.getAll({
-		domain: getHostname(tabURL)
+		domain: UsefulFunctions.getHostname(tabURL)
 	})
 	.then((cookies) => {
 		browser.browserAction.setBadgeText({text: cookies.length.toString(), tabId: tabID});
@@ -191,13 +242,13 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 		}).catch(onError);
 
 		if(contextualIdentitiesEnabled) {
-			if(whiteList.hasHost(getHostname(tab.url), tab.cookieStoreId)) {
+			if(whiteList.hasHost(UsefulFunctions.getHostname(tab.url), tab.cookieStoreId)) {
 				setIconDefault(tab);
 			} else {
 				setIconRed(tab);
 			}
 		} else {
-			if(whiteList.hasHost(getHostname(tab.url))) {
+			if(whiteList.hasHost(UsefulFunctions.getHostname(tab.url))) {
 				setIconDefault(tab);
 			} else {
 				setIconRed(tab);
@@ -212,7 +263,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 browser.alarms.onAlarm.addListener((alarmInfo) => {
 	//console.log(alarmInfo.name);
 	if(alarmInfo.name === "activeModeAlarm") {
-		cleanup.cleanCookiesOperation();
+		exposedFunctions.cleanupOperation();
 		browser.alarms.clear(alarmInfo.name);
 
 	}

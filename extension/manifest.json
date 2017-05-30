@@ -1,15 +1,9 @@
 {
   "background": {
     "scripts": [
-      "global_files/browserDetect.js",
-      "global_files/browser-polyfill.js",
-      "services/UsefulFunctions.js",
-      "services/CacheService.js",
-      "services/StatsService.js",
-      "services/WhiteListService.js",
-      "services/NotificationService.js",
-      "services/CleanupService.js",
-    	"background.js"
+		"global_files/browserDetect.js",
+		"global_files/browser-polyfill.js",
+		"background-webpack.js"
 	]
   },
   "description": "__MSG_extensionDescription__",

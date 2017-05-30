@@ -1,0 +1,31 @@
+{
+  "name": "cookie-autodelete",
+  "version": "1.3.0",
+  "description": "Firefox and Chrome extension that manages Cookies",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.13.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "sinon": "^2.3.1",
+    "sinon-chrome": "^2.2.1",
+    "webpack": "^2.6.1"
+  },
+  "scripts": {
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js | ./tools/buildFilesDev.sh",
+    "start": "webpack --config webpack.config.js --progress --colors --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrdokenny/Cookie-AutoDelete.git"
+  },
+  "author": "Kenny Do",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrdokenny/Cookie-AutoDelete/issues"
+  },
+  "homepage": "https://github.com/mrdokenny/Cookie-AutoDelete#readme"
+}

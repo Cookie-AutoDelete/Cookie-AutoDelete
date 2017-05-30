@@ -1,6 +1,10 @@
+const UsefulFunctions = require("./UsefulFunctions.js");
+
 class CleanupService {
+
  	constructor() {
  		this.recentlyCleaned = 0;
+ 		this.setOfDeletedDomainCookies;
  	}
 
 
@@ -15,89 +19,106 @@ class CleanupService {
 		return cookieDomain;
 	}
 
+	isSafeToClean(cleanupProperties, cookieProperties) {
+		//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
+		//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
+		let safeToClean;
+		if(cleanupProperties.contextualIdentitiesEnabled) {	
+			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.cookieStoreId) && !cleanupProperties.setOfTabURLS.has(cleanupProperties.cookieMainDomainHost);
+		} else {
+			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
+		}
+		return safeToClean;
+	}
+
 	//Deletes cookies if there is no existing cookie's host main url in an open tab
-	cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies) {
+	cleanCookies(cookies, cleanupProperties) {
 		for(let i = 0; i < cookies.length; i++) {
-			//https://domain.com or http://domain.com
-			let cookieDomain = this.prepareCookieDomain(cookies[i]);
-			//sub.sub.domain.com
-			let cookieDomainHost = getHostname(cookieDomain);
-			//domain.com
-			let cookieMainDomainHost = extractMainDomain(cookieDomainHost);
-			
-			//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
-			//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
-			let safeToClean;
-			if(contextualIdentitiesEnabled) {
-				safeToClean = !whiteList.hasHost(cookieDomainHost, cookies[i].storeId) && !setOfTabURLS.has(cookieMainDomainHost);
-			} else {
-				safeToClean = !whiteList.hasHost(cookieDomainHost) && !setOfTabURLS.has(cookieMainDomainHost);
-			}
 
 
-			if(safeToClean) {
-				//Append the path to cookie
-				cookieDomain = cookieDomain + cookies[i].path;
-				//console.log("Original: " + cookies[i].domain + " CookieDomain: " + cookieDomain + " CookieDomainMainHost: " + cookieMainDomainHost);
-				//console.log("CookieDomain: " + cookieDomain + " ID: " + cookies[i].storeId);
-				if(contextualIdentitiesEnabled) {
+			var cookieProperties = cookies[i];
+			cookieProperties.cookieDomain = this.prepareCookieDomain(cookies[i]);
+			cookieProperties.cookieDomainHost = UsefulFunctions.getHostname(cookieProperties.cookieDomain);
+			cookieProperties.cookieMainDomainHost = UsefulFunctions.extractMainDomain(cookieProperties.cookieDomainHost);
+			cookieProperties.preparedCookieDomain = cookieProperties.cookieDomain + cookies[i].path;
+
+			//console.log(cookieProperties);
+			if(this.isSafeToClean(cleanupProperties, cookieProperties)) {
+
+				if(cleanupProperties.contextualIdentitiesEnabled) {
 					
 					//setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
-					let name = cache.getNameFromCookieID(cookies[i].storeId);
-					setOfDeletedDomainCookies.add(`${cookieMainDomainHost} (${name})`);
+					let name = cleanupProperties.cache.getNameFromCookieID(cookieProperties.cookieStoreId);
+					this.setOfDeletedDomainCookies.add(`${cookieProperties.cookieMainDomainHost} (${name})`);
 
 				} else {
-					setOfDeletedDomainCookies.add(cookieDomainHost);
+					this.setOfDeletedDomainCookies.add(cookieProperties.cookieDomainHost);
 				}
 				
 				// url: "http://domain.com" + cookies[i].path
 				browser.cookies.remove({
-					url: cookieDomain,
-					name: cookies[i].name,
-					storeId: cookies[i].storeId
+					url: cookieProperties.preparedCookieDomain,
+					name: cookieProperties.name,
+					storeId: cookieProperties.storeId
 				});
 				this.recentlyCleaned++;
 			}
 		}
-		return Promise.resolve(setOfDeletedDomainCookies);
+		return Promise.resolve(this.setOfDeletedDomainCookies);
 	}
 
-	//Main function for cookie cleanup 
-	cleanCookiesOperation(ignoreOpenTabs = false) {
-		//console.log("Cleaning");
-		//Stores all tabs' host domains
-		let setOfTabURLS = new Set();
-		//Stores the deleted domains (for notification)
-		let setOfDeletedDomainCookies = new Set();
-		this.recentlyCleaned = 0;
-		//Store all tabs' host domains to prevent cookie deletion from those domains
-		browser.tabs.query({
+	//Store all tabs' host domains to prevent cookie deletion from those domains
+	returnSetOfOpenTabDomains() {
+		return browser.tabs.query({
 			"windowType": "normal"
 		})
 		.then((tabs) => {
-			if(!ignoreOpenTabs) {
-				for(let i = 0; i < tabs.length; i++) {
-					if (isAWebpage(tabs[i].url)) {
-						let hostURL = getHostname(tabs[i].url);
-						hostURL = extractMainDomain(hostURL);
-						setOfTabURLS.add(hostURL);
-					}
+			let setOfTabURLS = new Set();
+			tabs.forEach((currentValue, index, array) => {
+				if (UsefulFunctions.isAWebpage(currentValue.url)) {
+					let hostURL = UsefulFunctions.getHostname(currentValue.url);
+					hostURL = UsefulFunctions.extractMainDomain(hostURL);
+					setOfTabURLS.add(hostURL);
 				}
-			}
-			//console.log(setOfTabURLS);
+			});
+			return Promise.resolve(setOfTabURLS);
+		});
+	}
 
-			if(contextualIdentitiesEnabled) {
+	//Main function for cookie cleanup 
+	cleanCookiesOperation(ignoreOpenTabs = false, whiteListIn, contextualIdentitiesEnabledIn, cacheIn) {
+		//Stores the deleted domains (for notification)
+		this.setOfDeletedDomainCookies = new Set();
+		this.recentlyCleaned = 0;
+
+
+		return this.returnSetOfOpenTabDomains()
+		.then((setOfTabURLSIn) => {
+			if(ignoreOpenTabs) {
+				setOfTabURLSIn = new Set();
+			}
+			var cleanupProperties = {
+				whiteList: whiteListIn,
+				contextualIdentitiesEnabled: contextualIdentitiesEnabledIn,
+				cache: cacheIn,
+				setOfTabURLS: setOfTabURLSIn
+				
+			}
+			
+			if(cleanupProperties.contextualIdentitiesEnabled) {
 				//Clean cookies in different cookie ids using the contextual identities api
 				let promiseContainers = [];
 				let index = 1;
-				cache.nameCacheMap.forEach((value, key, map) => {
+				cleanupProperties.cache.nameCacheMap.forEach((value, key, map) => {
 					browser.cookies.getAll({storeId: key})
 					.then((cookies) => {
-						promiseContainers.push(this.cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies));
+						promiseContainers.push(this.cleanCookies(cookies, cleanupProperties));
 						index++;
-						if(index === cache.nameCacheMap.size) {
-							Promise.all(promiseContainers)
-							.then(this.afterCleanup(setOfDeletedDomainCookies));
+						if(index === cleanupProperties.cache.nameCacheMap.size) {
+							return Promise.all(promiseContainers)
+							.then(() => {
+								return Promise.resolve(this.setOfDeletedDomainCookies);
+							});
 						}
 					});	
 				});
@@ -105,21 +126,17 @@ class CleanupService {
 				
 			} else {
 				//Clean the default cookie id container
-				browser.cookies.getAll({})
+				return browser.cookies.getAll({})
 				.then((cookies) => {
-					this.cleanCookies(cookies, setOfTabURLS, setOfDeletedDomainCookies)
-					.then(this.afterCleanup(setOfDeletedDomainCookies));
+					return this.cleanCookies(cookies, cleanupProperties);
 				});
 			}
-			
-			
 		});
 
-	}
-
-	afterCleanup(setOfDeletedDomainCookies) {
-		notifyCleanup.notifyCookieCleanUp(this.recentlyCleaned, setOfDeletedDomainCookies);
-		statLog.incrementCounter(this.recentlyCleaned);
+			
+			
 	}
 
 }
+
+module.exports = CleanupService;
