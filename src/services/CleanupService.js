@@ -26,7 +26,7 @@ class CleanupService {
 		//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
 		let safeToClean;
 		if(cleanupProperties.contextualIdentitiesEnabled) {	
-			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cleanupProperties.cookieMainDomainHost);
+			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		} else {
 			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		}
