@@ -8,6 +8,7 @@ script:
 after_script: 
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy: 
+  - chmod +x ./tools/buildFilesDev.sh
   - bash tools/replaceVersionNumber.sh
   - npm run-script build
 deploy:
