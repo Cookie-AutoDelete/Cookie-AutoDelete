@@ -9,7 +9,7 @@ after_script:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy: 
   - bash tools/replaceVersionNumber.sh
-  - npm build
+  - npm run-script build
 deploy:
   provider: releases
   prerelease: true
