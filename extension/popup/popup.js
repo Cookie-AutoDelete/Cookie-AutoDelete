@@ -133,19 +133,16 @@ document.getElementById("switchToWhiteList").addEventListener("click", function(
 		if(page.contextualIdentitiesEnabled) {
 			if(document.getElementById("switchToWhiteList").checked) {
 				page.whiteList.addURL(hostUrl, cookieStoreId);
-				page.setIconDefault(activeTab);
 			} else {
 				page.whiteList.removeURL(hostUrl, cookieStoreId);
-				page.setIconRed(activeTab);
 			}
 		} else {
 			if(document.getElementById("switchToWhiteList").checked) {
 				page.whiteList.addURL(hostUrl);
-				page.setIconDefault(activeTab);
 			} else {
 				page.whiteList.removeURL(hostUrl);
-				page.setIconRed(activeTab);
 			}
 		}
+		page.checkIfProtected(activeTab);
 	}
 });

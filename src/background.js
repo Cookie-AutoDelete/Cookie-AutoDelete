@@ -138,7 +138,7 @@ function cookieCleanUpOnStart(items) {
 	return browser.storage.local.get()
 	.then((items) => {
 		if(items.cookieCleanUpOnStartSetting === true) {
-			console.log("Startup Cleanup");
+			//console.log("Startup Cleanup");
 			exposedFunctions.cleanupOperation(true);
 		}
 	});
@@ -202,25 +202,42 @@ module.exports = {
 	prepareCookieDomain(cookie) {
 		return cleanup.prepareCookieDomain(cookie);
 	},
-	//Set background icon to red
-	setIconRed(tab) {
-		browser.browserAction.setIcon({
-		    tabId: tab.id, path: {48:"icons/icon_red_48.png"}
-		  });
-		browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
-	},
-
-	//Set background icon to blue
-	setIconDefault(tab) {
-		browser.browserAction.setIcon({
-		    tabId: tab.id, path: {48:"icons/icon_48.png"}
-		  });
-		browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tab.id});
-	},
+	checkIfProtected(tab) {
+		let domainHost = UsefulFunctions.getHostname(tab.url);
+		let baseDomainHost = UsefulFunctions.extractBaseDomain(domainHost);
+		if(contextualIdentitiesEnabled) {
+			if(whiteList.hasHost(domainHost, tab.cookieStoreId) || whiteList.hasHost(baseDomainHost, tab.cookieStoreId)) {
+				setIconDefault(tab);
+			} else {
+				setIconRed(tab);
+			}
+		} else {
+			if(whiteList.hasHost(domainHost) || whiteList.hasHost(baseDomainHost)) {
+				setIconDefault(tab);
+			} else {
+				setIconRed(tab);
+			}
+		}
+	}
 	
 }
 
 
+//Set background icon to red
+function setIconRed(tab) {
+	browser.browserAction.setIcon({
+	    tabId: tab.id, path: {48:"icons/icon_red_48.png"}
+	  });
+	browser.browserAction.setBadgeBackgroundColor({color: "red", tabId: tab.id});
+}
+
+//Set background icon to blue
+function setIconDefault(tab) {
+	browser.browserAction.setIcon({
+	    tabId: tab.id, path: {48:"icons/icon_48.png"}
+	  });
+	browser.browserAction.setBadgeBackgroundColor({color: "blue", tabId: tab.id});
+}
 
 
 
@@ -236,7 +253,6 @@ function showNumberOfCookiesInIcon(tabURL,tabID) {
 	
 }
  
-
 
 //Logic that controls when to disable the browser action
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -260,19 +276,8 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 			}
 		}).catch(onError);
 
-		if(contextualIdentitiesEnabled) {
-			if(whiteList.hasHost(UsefulFunctions.getHostname(tab.url), tab.cookieStoreId)) {
-				exposedFunctions.setIconDefault(tab);
-			} else {
-				exposedFunctions.setIconRed(tab);
-			}
-		} else {
-			if(whiteList.hasHost(UsefulFunctions.getHostname(tab.url))) {
-				exposedFunctions.setIconDefault(tab);
-			} else {
-				exposedFunctions.setIconRed(tab);
-			}
-		}
+		exposedFunctions.checkIfProtected(tab);
+
 	}
 
 
