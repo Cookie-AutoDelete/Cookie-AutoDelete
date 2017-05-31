@@ -30,6 +30,30 @@ module.exports = {
 		return re.exec(domain)[0];
 	},
 
+	//sub.sub.domain.com becomes sub.domain.com
+	extractBaseDomain(domain) {
+		//Return the domain if it is an ip address
+		let reIP = new RegExp('[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+');
+		if(reIP.test(domain)) {
+			return domain;
+		}
+		//Delete a '.' if domain contains it at the end
+		if(domain.charAt(domain.length - 1) === ".") {
+			domain = domain.slice(0, domain.length - 1);
+		}
+		let count = domain.split(".").length - 1;
+		let regString = '\.[a-z]+$';
+		if(count === 1) {
+			regString = '[a-z0-9|-]+\.' + regString;
+		} else {
+			for(let i = 1; i < count; i++) {
+				regString = '[a-z0-9|-]+\.' + regString;
+			}
+		}
+		let re = new RegExp(regString);
+		return re.exec(domain)[0];
+	},
+
 
 	//Returns the host name of the url. Etc. "https://en.wikipedia.org/wiki/Cat" becomes en.wikipedia.org
 	getHostname(urlToGetHostName) {

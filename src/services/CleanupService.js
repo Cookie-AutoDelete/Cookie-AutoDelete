@@ -26,9 +26,13 @@ class CleanupService {
 		//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
 		let safeToClean;
 		if(cleanupProperties.contextualIdentitiesEnabled) {	
-			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
+			safeToClean = 	!(cleanupProperties.whiteList.hasHost(cookieProperties.cookieBaseDomainHost, cookieProperties.storeId) ||
+							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId)) && 
+							!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		} else {
-			safeToClean = !cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
+			safeToClean = 	!(cleanupProperties.whiteList.hasHost(cookieProperties.cookieBaseDomainHost) || 
+							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost)) && 
+							!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		}
 		return safeToClean;
 	}
@@ -41,6 +45,7 @@ class CleanupService {
 			var cookieProperties = cookies[i];
 			cookieProperties.cookieDomain = this.prepareCookieDomain(cookies[i]);
 			cookieProperties.cookieDomainHost = UsefulFunctions.getHostname(cookieProperties.cookieDomain);
+			cookieProperties.cookieBaseDomainHost = UsefulFunctions.extractBaseDomain(cookieProperties.cookieDomainHost);
 			cookieProperties.cookieMainDomainHost = UsefulFunctions.extractMainDomain(cookieProperties.cookieDomainHost);
 			cookieProperties.preparedCookieDomain = cookieProperties.cookieDomain + cookies[i].path;
 

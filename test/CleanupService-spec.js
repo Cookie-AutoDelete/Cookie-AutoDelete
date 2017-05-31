@@ -134,10 +134,26 @@ describe("CleanupService with Contextual Identities Off", () => {
 
 		var stub1 = sinon.stub(cleanupProperties.whiteList, "hasHost");
 		stub1.withArgs("google.com").returns(false);
+		stub1.withArgs("youtube.com").returns(false);
+		stub1.withArgs("sub.youtube.com").returns(false);
+
 		stub1.withArgs("facebook.com").returns(true);
 		stub1.withArgs("developer.mozilla.org").returns(false);
+
+		
+		//subdomain testing for 1.3.0 https://github.com/mrdokenny/Cookie-AutoDelete/issues/3#issuecomment-304912809
+
+		stub1.withArgs("example.com").returns(true);
+		//implied in the whitelist because of example.com
+		stub1.withArgs("sub.example.com").returns(false);
+
+
 		stub1.withArgs("sub.domain.com").returns(true);
-		stub1.withArgs("otherSub.domain.com").returns(false);
+		//implied in the whitelist because of sub.domain.com
+		stub1.withArgs("sub.sub.domain.com").returns(false);
+		stub1.withArgs("other.domain.com").returns(false);
+		stub1.withArgs("domain.com").returns(false);
+
 		beforeEach(() => {
 		
 		});
@@ -146,6 +162,7 @@ describe("CleanupService with Contextual Identities Off", () => {
 		it("should return true for google.com", () => {
 			var cookieProperties = {
 				cookieDomainHost: "google.com",
+				cookieBaseDomainHost: "google.com",
 				cookieMainDomainHost: "google.com"
 			}
 			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
@@ -155,6 +172,17 @@ describe("CleanupService with Contextual Identities Off", () => {
 		it("should return false for youtube.com", () => {
 			var cookieProperties = {
 				cookieDomainHost: "youtube.com",
+				cookieBaseDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//sub.youtube.com shares main domain of youtube.com
+		it("should return false for sub.youtube.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "sub.youtube.com",
+				cookieBaseDomainHost: "youtube.com",
 				cookieMainDomainHost: "youtube.com"
 			}
 			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
@@ -164,6 +192,7 @@ describe("CleanupService with Contextual Identities Off", () => {
 		it("should return false for facebook.com", () => {
 			var cookieProperties = {
 				cookieDomainHost: "facebook.com",
+				cookieBaseDomainHost: "facebook.com",
 				cookieMainDomainHost: "facebook.com"
 			}
 			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
@@ -178,23 +207,76 @@ describe("CleanupService with Contextual Identities Off", () => {
 			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
 		});
 
+		//subdomain testing for 1.3.0 https://github.com/mrdokenny/Cookie-AutoDelete/issues/3#issuecomment-304912809
+
+		//example 1
+		//example.com is whitelisted
+		it("should return false for example.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "example.com",
+				cookieBaseDomainHost: "example.com",
+				cookieMainDomainHost: "example.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//sub.example.com is the subdomain of example.com
+		it("should return false for sub.example.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "sub.example.com",
+				cookieBaseDomainHost: "example.com",
+				cookieMainDomainHost: "example.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//example 2
+		//domain.com is not explicitly whitelisted
+		it("should return true for domain.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "domain.com",
+				cookieBaseDomainHost: "domain.com",
+				cookieMainDomainHost: "domain.com"
+			}
+			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
 		//sub.domain.com is in the whitelist
 		it("should return false for sub.domain.com", () => {
 			var cookieProperties = {
 				cookieDomainHost: "sub.domain.com",
+				cookieBaseDomainHost: "domain.com",
 				cookieMainDomainHost: "domain.com"
 			}
 			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
 		});
 
+		//sub.sub.domain.com is part of the subdomain for sub.domain.com
+		it("should return false for sub.domain.com", () => {
+			var cookieProperties = {
+				cookieDomainHost: "sub.sub.domain.com",
+				cookieBaseDomainHost: "sub.domain.com",
+				cookieMainDomainHost: "domain.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+		
+
 		//otherSub.domain.com can be deleted because it is not in open tabs and not in whitelist even though it shares domain.com
 		it("should return true for otherSub.domain.com", () => {
 			var cookieProperties = {
 				cookieDomainHost: "otherSub.domain.com",
+				cookieBaseDomainHost: "domain.com",
 				cookieMainDomainHost: "domain.com"
 			}
 			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
 		});
+
+		
+
+		
+
+
 
 		after(() => {
 			stub1.restore();

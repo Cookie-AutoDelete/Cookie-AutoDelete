@@ -50,6 +50,40 @@ describe("extractMainDomain()", () => {
 	});
 });
 
+describe("extractBaseDomain()", () => {
+
+	it("should return domain.com from domain.com", () => {
+		var results = usefulFunctions.extractBaseDomain("domain.com");
+		assert.strictEqual(results, "domain.com");
+	});
+
+	it("should return domain.com from sub.domain.com", () => {
+		var results = usefulFunctions.extractBaseDomain("sub.domain.com");
+		assert.strictEqual(results, "domain.com");
+	});
+
+	it("should return sub.domain.com from sub.sub.domain.com", () => {
+		var results = usefulFunctions.extractBaseDomain("sub.sub.domain.com");
+		assert.strictEqual(results, "sub.domain.com");
+	});
+
+	it("should return sub.sub.domain.com from sub.sub.sub.domain.com", () => {
+		var results = usefulFunctions.extractBaseDomain("sub.sub.sub.domain.com");
+		assert.strictEqual(results, "sub.sub.domain.com");
+	});
+
+	it("should return the ip address from an ip address", () => {
+		var results = usefulFunctions.extractBaseDomain("127.0.0.1");
+		assert.strictEqual(results, "127.0.0.1");
+	});
+
+	it("should return domain.com from .domain.com", () => {
+		var results = usefulFunctions.extractBaseDomain("domain.com.");
+		assert.strictEqual(results, "domain.com");
+	});
+	
+});
+
 
 describe("getHostname()", () => {
 	it("should return en.wikipedia.org from https://en.wikipedia.org/wiki/Cat", () => {
