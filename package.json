@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
-    "build": "./node_modules/.bin/webpack --config webpack.config.js | ./tools/buildFilesDev.sh",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js && ./tools/buildFilesDev.sh",
     "start": "webpack --config webpack.config.js --progress --colors --watch"
   },
   "repository": {

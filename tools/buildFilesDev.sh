@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo "Building"
 
 EXTENSIONNAME="Cookie-AutoDelete"
@@ -9,7 +10,6 @@ if [ -z "$TRAVIS_TAG" ]
 FIREFOXFILENAME=${EXTENSIONNAME}_Firefox_Dev_${TRAVIS_TAG}
 CHROMEFILENAME=${EXTENSIONNAME}_Chrome_Dev_${TRAVIS_TAG}
 
-rmdir -rf $DES
 mkdir -p $DES
 cd extension/
 
