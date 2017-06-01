@@ -2,63 +2,55 @@ const UsefulFunctions = require("./UsefulFunctions.js");
 
 class CleanupService {
 
- 	constructor() {
- 		this.recentlyCleaned = 0;
- 		this.setOfDeletedDomainCookies;
- 	}
+	constructor() {
+		this.recentlyCleaned = 0;
+		this.setOfDeletedDomainCookies = new Set();
+	}
 
-
-	//Puts the domain in the right format for browser.cookies.clean() 
+	// Puts the domain in the right format for browser.cookies.clean()
 	prepareCookieDomain(cookie) {
 		let cookieDomain = cookie.domain;
-		if(cookieDomain.charAt(0) === ".") {
+		if (cookieDomain.charAt(0) === ".") {
 			cookieDomain = cookieDomain.slice(1);
 		}
-		cookieDomain = cookie.secure ? "https://" + cookieDomain : "http://" + cookieDomain;
+		cookieDomain = cookie.secure ? `https://${cookieDomain}` : `http://${cookieDomain}`;
 		return cookieDomain;
 	}
 
 	isSafeToClean(cleanupProperties, cookieProperties) {
-		//hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
-		//while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
+		// hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
+		// while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
 		let safeToClean;
-		if(cleanupProperties.contextualIdentitiesEnabled) {	
+		if (cleanupProperties.contextualIdentitiesEnabled) {
 			safeToClean = 	!(cleanupProperties.whiteList.hasHost(cookieProperties.cookieBaseDomainHost, cookieProperties.storeId) ||
-							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId)) && 
+							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId)) &&
 							!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		} else {
-			safeToClean = 	!(cleanupProperties.whiteList.hasHost(cookieProperties.cookieBaseDomainHost) || 
-							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost)) && 
+			safeToClean = 	!(cleanupProperties.whiteList.hasHost(cookieProperties.cookieBaseDomainHost) ||
+							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost)) &&
 							!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		}
 		return safeToClean;
 	}
 
-	//Deletes cookies if there is no existing cookie's host main url in an open tab
+	// Deletes cookies if there is no existing cookie's host main url in an open tab
 	cleanCookies(cookies, cleanupProperties) {
-		for(let i = 0; i < cookies.length; i++) {
-
-
-			var cookieProperties = cookies[i];
+		for (let i = 0; i < cookies.length; i++) {
+			let cookieProperties = cookies[i];
 			cookieProperties.cookieDomain = this.prepareCookieDomain(cookies[i]);
 			cookieProperties.cookieDomainHost = UsefulFunctions.getHostname(cookieProperties.cookieDomain);
 			cookieProperties.cookieBaseDomainHost = UsefulFunctions.extractBaseDomain(cookieProperties.cookieDomainHost);
 			cookieProperties.cookieMainDomainHost = UsefulFunctions.extractMainDomain(cookieProperties.cookieDomainHost);
 			cookieProperties.preparedCookieDomain = cookieProperties.cookieDomain + cookies[i].path;
 
-			//console.log(cookieProperties);
-			if(this.isSafeToClean(cleanupProperties, cookieProperties)) {
-
-				if(cleanupProperties.contextualIdentitiesEnabled) {
-					
-					//setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
+			if (this.isSafeToClean(cleanupProperties, cookieProperties)) {
+				if (cleanupProperties.contextualIdentitiesEnabled) {
+					// setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
 					let name = cleanupProperties.cache.getNameFromCookieID(cookieProperties.storeId);
 					this.setOfDeletedDomainCookies.add(`${cookieProperties.cookieMainDomainHost} (${name})`);
-
 				} else {
 					this.setOfDeletedDomainCookies.add(cookieProperties.cookieDomainHost);
 				}
-				
 				// url: "http://domain.com" + cookies[i].path
 				browser.cookies.remove({
 					url: cookieProperties.preparedCookieDomain,
@@ -71,11 +63,9 @@ class CleanupService {
 		return Promise.resolve(this.setOfDeletedDomainCookies);
 	}
 
-	//Store all tabs' host domains to prevent cookie deletion from those domains
+	// Store all tabs' host domains to prevent cookie deletion from those domains
 	returnSetOfOpenTabDomains() {
-		return browser.tabs.query({
-			"windowType": "normal"
-		})
+		return browser.tabs.query({"windowType": "normal"})
 		.then((tabs) => {
 			let setOfTabURLS = new Set();
 			tabs.forEach((currentValue, index, array) => {
@@ -89,28 +79,28 @@ class CleanupService {
 		});
 	}
 
-	//Main function for cookie cleanup 
+	// Main function for cookie cleanup
 	cleanCookiesOperation(ignoreOpenTabs = false, whiteListIn, contextualIdentitiesEnabledIn, cacheIn) {
-		//Stores the deleted domains (for notification)
+		// Stores the deleted domains (for notification)
 		this.setOfDeletedDomainCookies = new Set();
 		this.recentlyCleaned = 0;
 
-
 		return this.returnSetOfOpenTabDomains()
 		.then((setOfTabURLSIn) => {
-			if(ignoreOpenTabs) {
-				setOfTabURLSIn = new Set();
-			}
-			var cleanupProperties = {
+			let cleanupProperties = {
 				whiteList: whiteListIn,
 				contextualIdentitiesEnabled: contextualIdentitiesEnabledIn,
-				cache: cacheIn,
-				setOfTabURLS: setOfTabURLSIn
-				
+				cache: cacheIn
+			};
+
+			if (ignoreOpenTabs) {
+				cleanupProperties.setOfTabURLS = new Set();
+			} else {
+				cleanupProperties.setOfTabURLS = setOfTabURLSIn;
 			}
-			
-			if(cleanupProperties.contextualIdentitiesEnabled) {
-				//Clean cookies in different cookie ids using the contextual identities api
+
+			if (cleanupProperties.contextualIdentitiesEnabled) {
+				// Clean cookies in different cookie ids using the contextual identities api
 				let promiseContainers = [];
 				cleanupProperties.cache.nameCacheMap.forEach((value, key, map) => {
 					let promise = browser.cookies.getAll({storeId: key})
@@ -119,23 +109,18 @@ class CleanupService {
 					});
 					promiseContainers.push(promise);
 				});
-				
+
 				return Promise.all(promiseContainers)
 				.then((values) => {
 					return Promise.resolve(values[0]);
 				});
-
-			} else {
-				//Clean the default cookie id container
-				return browser.cookies.getAll({})
-				.then((cookies) => {
-					return this.cleanCookies(cookies, cleanupProperties);
-				});
 			}
+			// Clean the default cookie id container (Contextual identity off)
+			return browser.cookies.getAll({})
+			.then((cookies) => {
+				return this.cleanCookies(cookies, cleanupProperties);
+			});
 		});
-
-			
-			
 	}
 
 }
