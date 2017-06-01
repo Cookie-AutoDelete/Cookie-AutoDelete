@@ -5,7 +5,7 @@ var sinon = require("sinon");
 var URL = require("url").URL;
 global.URL = URL;
 
-describe("CleanupService with Contextual Identities Off", () => {
+describe("CleanupService", () => {
 	var cleanupService;
 	var items = {defaultWhiteList: ["youtube.com", "google.com", "facebook.com"]};
 	global.browser = browser;
@@ -116,10 +116,10 @@ describe("CleanupService with Contextual Identities Off", () => {
 		var cacheSetUp = { 
 			nameCacheMap: new Map()
 		};
-		cache.nameCacheMap.set("firefox-container-1", "Personal");
-		cache.nameCacheMap.set("firefox-container-2", "Work");
-		cache.nameCacheMap.set("firefox-container-3", "Finance");
-		cache.nameCacheMap.set("firefox-container-4", "Shopping");
+		cacheSetUp.nameCacheMap.set("firefox-container-1", "Personal");
+		cacheSetUp.nameCacheMap.set("firefox-container-2", "Work");
+		cacheSetUp.nameCacheMap.set("firefox-container-3", "Finance");
+		cacheSetUp.nameCacheMap.set("firefox-container-4", "Shopping");
 
 
 		var cleanupProperties = {
@@ -132,6 +132,16 @@ describe("CleanupService with Contextual Identities Off", () => {
 			
 		}
 
+		var cleanupPropertiesContextual = {
+			whiteList: {
+				hasHost: function() {}
+			},
+			contextualIdentitiesEnabled: true,
+			cache: cacheSetUp,
+			setOfTabURLS: new Set()
+			
+		}
+
 		var stub1 = sinon.stub(cleanupProperties.whiteList, "hasHost");
 		stub1.withArgs("google.com").returns(false);
 		stub1.withArgs("youtube.com").returns(false);
@@ -140,9 +150,12 @@ describe("CleanupService with Contextual Identities Off", () => {
 		stub1.withArgs("facebook.com").returns(true);
 		stub1.withArgs("developer.mozilla.org").returns(false);
 
-		
-		//subdomain testing for 1.3.0 https://github.com/mrdokenny/Cookie-AutoDelete/issues/3#issuecomment-304912809
+		//contextual identity tests
+		var stub2 = sinon.stub(cleanupPropertiesContextual.whiteList, "hasHost");
+		stub2.withArgs("youtube.com", "firefox-container-1").returns(true);
+		stub2.withArgs("youtube.com", "firefox-container-2").returns(false);
 
+		//subdomain testing for 1.3.0 https://github.com/mrdokenny/Cookie-AutoDelete/issues/3#issuecomment-304912809
 		stub1.withArgs("example.com").returns(true);
 		//implied in the whitelist because of example.com
 		stub1.withArgs("sub.example.com").returns(false);
@@ -205,6 +218,30 @@ describe("CleanupService with Contextual Identities Off", () => {
 				cookieMainDomainHost: "mozilla.org"
 			}
 			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//contextual identity tests
+
+		//youtube.com is in Personal
+		it("should return false for youtube.com Personal", () => {
+			var cookieProperties = {
+				cookieDomainHost: "youtube.com",
+				cookieBaseDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com",
+				storeId: "firefox-container-1"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupPropertiesContextual, cookieProperties));
+		});
+
+		//youtube.com is not in Work
+		it("should return true for youtube.com Work", () => {
+			var cookieProperties = {
+				cookieDomainHost: "youtube.com",
+				cookieBaseDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com",
+				storeId: "firefox-container-2"
+			}
+			assert.isTrue(cleanupService.isSafeToClean(cleanupPropertiesContextual, cookieProperties));
 		});
 
 		//subdomain testing for 1.3.0 https://github.com/mrdokenny/Cookie-AutoDelete/issues/3#issuecomment-304912809
@@ -272,29 +309,197 @@ describe("CleanupService with Contextual Identities Off", () => {
 			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
 		});
 
-		
-
-		
-
-
 
 		after(() => {
 			stub1.restore();
+			stub2.restore();
 		});
 		
 	});
 
-	// describe("cleanCookies()", () => {
-	// 	it("should return https://google.com", () => {
-	// 		assert.strictEqual(cleanupService.prepareCookieDomain({domain: "google.com", secure: true}), "https://google.com");
-	// 	});
+	describe("cleanCookies()", () => {
+		var cacheSetUp = { 
+			nameCacheMap: new Map(),
+			getNameFromCookieID: function() {}
+		};
+		cacheSetUp.nameCacheMap.set("firefox-container-1", "Personal");
+		cacheSetUp.nameCacheMap.set("firefox-container-2", "Work");
+		cacheSetUp.nameCacheMap.set("firefox-container-3", "Finance");
+		cacheSetUp.nameCacheMap.set("firefox-container-4", "Shopping");
 
-	// 	it("should return http://google.com with a removed leading .", () => {
-	// 		assert.strictEqual(cleanupService.prepareCookieDomain({domain: ".google.com", secure: false}), "http://google.com");
-	// 	});
-	// });
+
+		var cleanupProperties = {
+			whiteList: {
+				hasHost: function() {}
+			},
+			contextualIdentitiesEnabled: false,
+			cache: cacheSetUp,
+			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
+			
+		}
+
+		var cleanupPropertiesContextual = {
+			whiteList: {
+				hasHost: function() {}
+			},
+			contextualIdentitiesEnabled: true,
+			cache: cacheSetUp,
+			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
+			
+		}
+		var googleCookie = {name:"NID", domain: "google.com", secure: true, path:"/", storeId:"none"};
+		var youtubeCookie = {name:"SID", domain: "youtube.com", secure: true, path:"/", storeId:"none"};
+		var yahooCookie = {name:"BID", domain: "yahoo.com", secure: false, path:"/login", storeId:"none"};
+
+		var personalGoogleCookie = {name:"NID", domain: "google.com", secure: true, path:"/", storeId:"firefox-container-1"};
+
+		var cookies = [googleCookie, youtubeCookie, yahooCookie];
+		var stub1;
+		
+		var stub2 = sinon.stub(cleanupPropertiesContextual.cache, "getNameFromCookieID");
+		stub2.withArgs("firefox-container-1").returns("Personal");
+
+		beforeEach(() => {
+			stub1 = sinon.stub(cleanupService, "isSafeToClean");
+			stub1.withArgs(cleanupProperties,
+								{ name: 'NID',
+								  domain: 'google.com',
+								  secure: true,
+								  path: '/',
+								  storeId: 'none',
+								  cookieDomain: 'https://google.com',
+								  cookieDomainHost: 'google.com',
+								  cookieBaseDomainHost: 'google.com',
+								  cookieMainDomainHost: 'google.com',
+								  preparedCookieDomain: 'https://google.com/' }).returns(false);
+			stub1.withArgs(cleanupProperties,
+								{ name: 'SID',
+								  domain: 'youtube.com',
+								  secure: true,
+								  path: '/',
+								  storeId: 'none',
+								  cookieDomain: 'https://youtube.com',
+								  cookieDomainHost: 'youtube.com',
+								  cookieBaseDomainHost: 'youtube.com',
+								  cookieMainDomainHost: 'youtube.com',
+								  preparedCookieDomain: 'https://youtube.com/' }).returns(true);
+			stub1.withArgs(cleanupProperties,
+								{ name: 'BID',
+								  domain: 'yahoo.com',
+								  secure: false,
+								  path: '/login',
+								  storeId: 'none',
+								  cookieDomain: 'http://yahoo.com',
+								  cookieDomainHost: 'yahoo.com',
+								  cookieBaseDomainHost: 'yahoo.com',
+								  cookieMainDomainHost: 'yahoo.com',
+								  preparedCookieDomain: 'http://yahoo.com/login' }).returns(true);
+
+			stub1.withArgs(cleanupPropertiesContextual,
+								{ name: 'NID',
+								  domain: 'google.com',
+								  secure: true,
+								  path: '/',
+								  storeId: 'firefox-container-1',
+								  cookieDomain: 'https://google.com',
+								  cookieDomainHost: 'google.com',
+								  cookieBaseDomainHost: 'google.com',
+								  cookieMainDomainHost: 'google.com',
+								  preparedCookieDomain: 'https://google.com/' }).returns(true);			
+	        
+	    });
+
+		it("should be called twice for cookies.remove", () => {
+			cleanupService.setOfDeletedDomainCookies = new Set();
+			return cleanupService.cleanCookies(cookies, cleanupProperties)
+			.then((setOfDeletedDomainCookies) => {
+				assert.isTrue(browser.cookies.remove.calledTwice);
+			});	
+		});
+
+		it("should return [youtube.com, yahoo.com]", () => {
+			cleanupService.setOfDeletedDomainCookies = new Set();
+			return cleanupService.cleanCookies(cookies, cleanupProperties)
+			.then((setOfDeletedDomainCookies) => {
+				assert.sameMembers(Array.from(setOfDeletedDomainCookies), ["youtube.com", "yahoo.com"]);
+			});	
+		});
+
+		it("should return [youtube.com, yahoo.com]", () => {
+			cleanupService.setOfDeletedDomainCookies = new Set();
+			return cleanupService.cleanCookies(cookies, cleanupProperties)
+			.then((setOfDeletedDomainCookies) => {
+				assert.sameMembers(Array.from(setOfDeletedDomainCookies), ["youtube.com", "yahoo.com"]);
+			});	
+		});
+
+		it("should return [google.com (Personal)]", () => {
+			cleanupService.setOfDeletedDomainCookies = new Set();
+			return cleanupService.cleanCookies([personalGoogleCookie], cleanupPropertiesContextual)
+			.then((setOfDeletedDomainCookies) => {
+				assert.sameMembers(Array.from(setOfDeletedDomainCookies), ["google.com (Personal)"]);
+			});	
+		});
+
+		after(() => {
+			stub1.restore();
+			stub2.restore();
+		});
+
+	});
+
+	describe("cleanCookiesOperation()", () => {
+		var cache = { 
+			nameCacheMap: new Map()
+		};
+		cache.nameCacheMap.set("firefox-container-1", "Personal");
+		cache.nameCacheMap.set("firefox-container-2", "Work");
+		cache.nameCacheMap.set("firefox-container-3", "Finance");
+		cache.nameCacheMap.set("firefox-container-4", "Shopping");
 
 
+		var whiteList = {};
+		var stub1;
+		var stub2;
+
+		beforeEach(() => {
+			stub1 = sinon.stub(cleanupService, "cleanCookies");
+			stub1.resolves(new Set(["facebook.com", "amazon.com"]));
+
+			stub2 = sinon.stub(cleanupService, "returnSetOfOpenTabDomains");
+			stub2.resolves({});
+			browser.cookies.getAll.resolves({});
+	        
+	    });
+
+		it("should return [facebook.com, amazon.com] with false contextualIdentitiesEnabled", () => {
+			return cleanupService.cleanCookiesOperation(true, whiteList, false, cache)
+			.then((setOfDeletedDomainCookies) => {
+				assert.sameMembers(Array.from(setOfDeletedDomainCookies), ["facebook.com", "amazon.com"]);
+			});	
+		});
+
+		it("should return [facebook.com, amazon.com] with true contextualIdentitiesEnabled", () => {
+			return cleanupService.cleanCookiesOperation(false, whiteList, true, cache)
+			.then((setOfDeletedDomainCookies) => {
+				assert.sameMembers(Array.from(setOfDeletedDomainCookies), ["facebook.com", "amazon.com"]);
+			});	
+		});
+
+		it("should return 4 for call count of brwoser.cookies.getAll", () => {
+			return cleanupService.cleanCookiesOperation(false, whiteList, true, cache)
+			.then((setOfDeletedDomainCookies) => {
+				assert.strictEqual(browser.cookies.getAll.callCount, 4);
+			});	
+		});
+
+		
+
+		after(() => {
+			stub1.restore();
+		});
+
+	});
 
 
 	afterEach(() => {
