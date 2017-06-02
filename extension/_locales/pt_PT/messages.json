@@ -104,156 +104,156 @@
     "description": "Release Notes"
   },
 
-"activeModeText": {
+  "activeModeText": {
     "message": "Ativar modo ativo? Atraso antes da limpeza:",
     "description": "Enable Active Mode? Delay Before Cleaning:"
   },
 
-"minutesText": {
+  "minutesText": {
     "message": "Minuto(s)",
     "description": "Minute(s)"
   },
 
-"activeModeTooltipText": {
+  "activeModeTooltipText": {
     "message": "Quando o modo ativo está ativado, a limpeza de cookies é desencadeada no fecho de separadores.",
     "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
   },
 
-"statLoggingText": {
+  "statLoggingText": {
     "message": "Registar número total de cookies apagados",
     "description": "Log Total Number Of Cookies Deleted"
   },
 
-"statLoggingTooltipText": {
+  "statLoggingTooltipText": {
     "message": "Conta o número de cookies apagados durante esta sessão e no total. Isto é mostrado no ecrã de boas vindas.",
     "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
-"resetCounterText": {
+  "resetCounterText": {
     "message": "Repor contador",
     "description": "Reset Counter"
   },
 
-"showNumberOfCookiesInIconText": {
+  "showNumberOfCookiesInIconText": {
     "message": "Mostrar número de cookies para esse domínio",
     "description": "Show Number of Cookies for that Domain"
   },
 
-"showNumberOfCookiesInIconTooltipText": {
+  "showNumberOfCookiesInIconTooltipText": {
     "message": "Mostrar número de cookies para esse domínio",
     "description": "Shows which cookies can be detected in the popup badge."
   },
 
-"notifyCookieCleanUpText": {
+  "notifyCookieCleanUpText": {
     "message": "Mostrar notificação após limpeza de cookies",
     "description": "Show Notification After Cookie CleanUp"
   },
 
-"notifyCookieCleanUpTooltipText": {
+  "notifyCookieCleanUpTooltipText": {
     "message": "Mostrar quantos cookies foram limpos e para que domínio.",
     "description": "Shows how many cookies were cleaned and for which domain."
   },
- 
-"cookieCleanUpOnStartText": {
+  
+  "cookieCleanUpOnStartText": {
     "message": "Ativar limpeza de cookies no arranque",
     "description": "Enable Cookie Cleanup on Startup"
   },
 
-"cookieCleanUpOnStartTooltipText": {
+  "cookieCleanUpOnStartTooltipText": {
     "message": "Isto basicamente faz uma limpeza de cookies (ignorar separadores abertos), o que significa que todos os cookies que não estão na lista branca são apagados.",
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   },
-"contextualIdentitiesEnabledText": {
+  "contextualIdentitiesEnabledText": {
     "message": "Ativar suporte para as identidades contextuais do Firefox (EXPERIMENTAL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
   },
 
-"contextualIdentitiesTooltipText": {
+  "contextualIdentitiesTooltipText": {
     "message": "NÃO ativar a menos que esteja no Firefox 53+. Isto irá adicionar uma lista branca diferente para CADA contentor que utilizar. A sua lista branca predefinida é separada destas.",
     "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
-"saveText": {
+  "saveText": {
     "message": "Guardar",
     "description": "Save"
   },
 
-"cancelText": {
+  "cancelText": {
     "message": "Cancelar",
     "description": "Cancel"
   },
 
-"defaultSettingsText": {
+  "defaultSettingsText": {
     "message": "Restaurar predefinições",
     "description": "Restore Default Settings"
   },
 
-"defaultSettingsTooltipText": {
+  "defaultSettingsTooltipText": {
     "message": "AVISO: Isto irá também limpar a sua lista branca, por isso certifique-se de que tem uma cópia de segurança",
     "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
-"saveConfirmText": {
+  "saveConfirmText": {
     "message": "Guardado!",
     "description": "Saved!"
   },
 
-"cancelConfirmText": {
+  "cancelConfirmText": {
     "message": "Definições restauradas!",
     "description": "Restored Settings!"
   },
 
-"defaultConfirmText": {
+  "defaultConfirmText": {
     "message": "Definições predefinidas restauradas!",
     "description": "Restored Default Settings!"
   },
 
-"resetCounterConfirmText": {
+  "resetCounterConfirmText": {
     "message": "Contador limpo!",
     "description": "Cleared Counter!"
   },
 
- "addURLText": {
+  "addURLText": {
     "message": "Adicionar URL",
     "description": "Add URL"
   }, 
 
-"clearURLText": {
+  "clearURLText": {
     "message": "Remover todos",
     "description": "Remove All"
   },
 
-"enterURLTooltipText": {
+  "enterURLTooltipText": {
     "message": "Digite URLS sem a parte 'www.', depois pressione 'Enter' ou 'Adicionar URL'. Alternativamente vá ao site e adicione-o a partir do ícone.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
   },
 
-"exportURLSText": {
+  "exportURLSText": {
     "message": "Exportar lista branca",
     "description": "Export WhiteList"
   },
 
-"rightClickToSave": {
+  "rightClickToSave": {
     "message": "Clique com o lado direito para guardar ligação como",
     "description": "Right Click to Save Link As"
   },
 
-"importURLSText": {
+  "importURLSText": {
     "message": "Carregar ficheiro",
     "description": "Upload File"
   },
 
-"reportIssuesText": {
+  "reportIssuesText": {
     "message": "Reporte problemas e sugira funcionalidades",
     "description": "Report issues and suggest features"
   },  
 
-"versionText": {
+  "versionText": {
     "message": "versão",
     "description": "version"
   },
 
-"contributorsText": {
+  "contributorsText": {
     "message": "Contribuidores:",
     "description": "Contributors:"
   }    

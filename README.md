@@ -29,7 +29,7 @@ Translate Cookie AutoDelete in your language or help fix a translation!
 3. Open the manifest.json in your newly created folder and start translating the "message" JSON properties. The description should be left alone as a reference. Also any word with '$' surrounding it should be left alone as they are placeholders.
 4. Test the translation by building it. Fix any UI glitches by if possible using a shorter translation.
 5. Make a Pull Request and you're done!.
-6. Watch for changes in the "/extension/_locales/en/messages.json" file for future updates.
+6. Watch for changes in the "/extension/_locales/en/messages.json" file for future updates or if the updates somehow got lost use a [diff tool](https://www.diffchecker.com/diff).
 
 ## Build Intructions
 

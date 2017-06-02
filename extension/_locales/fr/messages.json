@@ -104,157 +104,157 @@
     "description": "Release Notes"
   },
 
-"activeModeText": {
+  "activeModeText": {
     "message": "Activer le Mode Actif ? Délai avant suppression :",
     "description": "Enable Active Mode? Delay Before Cleaning:"
   },
 
-"minutesText": {
+  "minutesText": {
     "message": "Minute(s)",
     "description": "Minute(s)"
   },
 
-"activeModeTooltipText": {
+  "activeModeTooltipText": {
     "message": "Quand le mode actif est activé, le nettoyage des cookies est déclenché à la fermeture de l'onglet.",
     "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
   },
 
-"statLoggingText": {
+  "statLoggingText": {
     "message": "Enregistrer le nombre total de cookies supprimés",
     "description": "Log Total Number Of Cookies Deleted"
   },
 
-"statLoggingTooltipText": {
+  "statLoggingTooltipText": {
     "message": "Compte le nombre de cookies supprimés lors de cette session et au total. C'est affiché sur l'écran de bienvenue.",
     "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
-"resetCounterText": {
+  "resetCounterText": {
     "message": "Réinitialiser le compteur",
     "description": "Reset Counter"
   },
 
-"showNumberOfCookiesInIconText": {
+  "showNumberOfCookiesInIconText": {
     "message": "Afficher le nombre de cookies pour ce domaine",
     "description": "Show Number of Cookies for that Domain"
   },
 
-"showNumberOfCookiesInIconTooltipText": {
+  "showNumberOfCookiesInIconTooltipText": {
     "message": "Afficher quels cookies peuvent être détectés dans le badge",
     "description": "Shows which cookies can be detected in the popup badge"
   },
 
-"notifyCookieCleanUpText": {
+  "notifyCookieCleanUpText": {
     "message": "Afficher une notification après le nettoyage des cookies",
     "description": "Show Notification After Cookie CleanUp"
   },
 
-"notifyCookieCleanUpTooltipText": {
+  "notifyCookieCleanUpTooltipText": {
     "message": "Affiche combien de cookies ont été supprimés et pour quels domaines.",
     "description": "Shows how many cookies were cleaned and for which domain."
   },
 
-"contextualIdentitiesEnabledText": {
+  "contextualIdentitiesEnabledText": {
     "message": "Activer le support pour les identités contextuelles de Firefox (EXPÉRIMENTAL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
   },
 
-"contextualIdentitiesTooltipText": {
+  "contextualIdentitiesTooltipText": {
     "message": "Ne PAS activer sauf si vous avez Firefox 53+. Ceci ajoutera une liste blanche différente pour CHAQUE conteneur utilisé. Votre liste blanche par défaut n'est pas impactée.",
     "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
-"saveText": {
+  "saveText": {
     "message": "Enregistrer",
     "description": "Save"
   },
 
-"cancelText": {
+  "cancelText": {
     "message": "Annuler",
     "description": "Cancel"
   },
 
-"defaultSettingsText": {
+  "defaultSettingsText": {
     "message": "Restaurer les paramètres par défaut",
     "description": "Restore Default Settings"
   },
 
-"defaultSettingsTooltipText": {
+  "defaultSettingsTooltipText": {
     "message": "ATTENTION : ceci effacera également votre liste blanche, alors faites d'abord une sauvegarde",
     "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
-"saveConfirmText": {
+  "saveConfirmText": {
     "message": "Enregistré !",
     "description": "Saved!"
   },
 
-"cancelConfirmText": {
+  "cancelConfirmText": {
     "message": "Paramètres restaurés !",
     "description": "Restored Settings!"
   },
 
-"defaultConfirmText": {
+  "defaultConfirmText": {
     "message": "Paramètres par défaut restaurés !",
     "description": "Restored Default Settings!"
   },
 
-"resetCounterConfirmText": {
+  "resetCounterConfirmText": {
     "message": "Compteur effacé !",
     "description": "Cleared Counter!"
   },
 
- "addURLText": {
+  "addURLText": {
     "message": "Ajouter URL",
     "description": "Add URL"
   }, 
 
-"clearURLText": {
+  "clearURLText": {
     "message": "Tout supprimer",
     "description": "Remove All"
   },
 
-"enterURLTooltipText": {
+  "enterURLTooltipText": {
     "message": "Saisir des URLS sans la partie 'www.' puis appuyer sur 'Entrée' ou 'Ajouter URL'. Sinon, aller sur le site et l'ajouter depuis l'icône.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
   },
 
-"exportURLSText": {
+  "exportURLSText": {
     "message": "Exporter votre liste blanche",
     "description": "Export WhiteList"
   },
 
-"rightClickToSave": {
+  "rightClickToSave": {
     "message": "Clic droit pour Enregsitrer le lien en tant que",
     "description": "Right Click to Save Link As"
   },
 
-"importURLSText": {
+  "importURLSText": {
     "message": "Charger fichier",
     "description": "Upload File"
   },
 
-"reportIssuesText": {
+  "reportIssuesText": {
     "message": "Reporter les problèmes et suggérer des fonctionnalités",
     "description": "Report issues and suggest features"
   },  
 
-"versionText": {
+  "versionText": {
     "message": "version",
     "description": "version"
   },
 
-"contributorsText": {
+  "contributorsText": {
     "message": "Contributeurs:",
     "description": "Contributors:"
   },
 
-"cookieCleanUpOnStartText": {
+  "cookieCleanUpOnStartText": {
     "message": "Activer le nettoyage des cookies au démarrage",
     "description": "Enable Cookie Cleanup on Startup"
   },
 
-"cookieCleanUpOnStartTooltipText": {
+  "cookieCleanUpOnStartTooltipText": {
     "message": "Cela nettoiera vos cookies (onglets ouverts ignorés), donc tous les cookies non présents dans la liste blanche seront supprimés.",
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   }
