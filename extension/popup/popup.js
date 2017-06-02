@@ -53,7 +53,7 @@ function fillPopup(tabs) {
 	hostPlaceholder.appendChild(document.createTextNode(hostUrl));
 	if (page.contextualIdentitiesEnabled) {
 		let name = page.cache.getNameFromCookieID(cookieStoreId);
-		hostPlaceholder.appendChild(document.createTextNode(`\n${name}`));
+		hostPlaceholder.appendChild(document.createTextNode(`\n(${name})`));
 	}
 	return Promise.resolve();
 }
