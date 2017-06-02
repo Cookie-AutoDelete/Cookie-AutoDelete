@@ -15,6 +15,9 @@ module.exports = {
 
 	// extract the main domain from sub domains (sub.sub.domain.com becomes domain.com)
 	extractMainDomain(domain) {
+		if(domain === "") {
+			return "";
+		}
 		// Return the domain if it is an ip address
 		let reIP = new RegExp("[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+");
 		if (reIP.test(domain)) {
@@ -31,6 +34,9 @@ module.exports = {
 
 	// sub.sub.domain.com becomes sub.domain.com
 	extractBaseDomain(domain) {
+		if(domain === "") {
+			return "";
+		}
 		// Return the domain if it is an ip address
 		let reIP = new RegExp("[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+");
 		if (reIP.test(domain)) {

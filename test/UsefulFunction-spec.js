@@ -48,6 +48,11 @@ describe("extractMainDomain()", () => {
 		var results = usefulFunctions.extractMainDomain("domain.com.");
 		assert.strictEqual(results, "domain.com");
 	});
+
+	it("should return nothing on empty string", () => {
+		var results = usefulFunctions.extractMainDomain("");
+		assert.strictEqual(results, "");
+	});
 });
 
 describe("extractBaseDomain()", () => {
@@ -80,6 +85,11 @@ describe("extractBaseDomain()", () => {
 	it("should return domain.com from .domain.com", () => {
 		var results = usefulFunctions.extractBaseDomain("domain.com.");
 		assert.strictEqual(results, "domain.com");
+	});
+
+	it("should return nothing from empty string", () => {
+		var results = usefulFunctions.extractBaseDomain("");
+		assert.strictEqual(results, "");
 	});
 	
 });
