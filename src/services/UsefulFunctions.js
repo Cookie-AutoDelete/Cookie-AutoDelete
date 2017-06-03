@@ -15,7 +15,7 @@ module.exports = {
 
 	// extract the main domain from sub domains (sub.sub.domain.com becomes domain.com)
 	extractMainDomain(domain) {
-		if(domain === "") {
+		if (domain === "") {
 			return "";
 		}
 		// Return the domain if it is an ip address
@@ -34,7 +34,7 @@ module.exports = {
 
 	// sub.sub.domain.com becomes sub.domain.com
 	extractBaseDomain(domain) {
-		if(domain === "") {
+		if (domain === "") {
 			return "";
 		}
 		// Return the domain if it is an ip address

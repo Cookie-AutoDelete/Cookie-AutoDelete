@@ -20,7 +20,8 @@
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
     "build": "./node_modules/.bin/webpack --config webpack.config.js && ./tools/buildFilesDev.sh",
-    "start": "webpack --config webpack.config.js --progress --colors --watch"
+    "start": "webpack --config webpack.config.js --progress --colors --watch",
+    "lint": "./node_modules/.bin/eslint --ext .js src/** extension/popup/popup.js extension/settings/settings.js"
   },
   "repository": {
     "type": "git",
