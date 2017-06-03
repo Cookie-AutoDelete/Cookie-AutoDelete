@@ -120,7 +120,7 @@ document.getElementById("defaultSettings").addEventListener("click", () => {
 	page.setDefaults()
     .then(() => {
 	restoreSettingValues();
-	generateTableOfURLS();
+	generateTable();
 	toggleAlert(document.getElementById("defaultConfirm"));
 	return Promise.resolve();
 }).catch(onError);

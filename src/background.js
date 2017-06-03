@@ -107,10 +107,7 @@ function setPreferences(items) {
 
 // Disable contextualIdentities features if not Firefox
 function contextualCheck(items) {
-	if (browserDetect() !== "Firefox") {
-		contextualIdentitiesEnabled = false;
-		browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
-	} else if (items.contextualIdentitiesEnabledSetting === undefined) {
+	if (browserDetect() !== "Firefox" || items.contextualIdentitiesEnabledSetting === undefined) {
 		contextualIdentitiesEnabled = false;
 		browser.storage.local.set({contextualIdentitiesEnabledSetting: false});
 	} else {
@@ -127,19 +124,17 @@ function createObjects(items) {
 		exposedFunctions.disableActiveMode();
 	}
 
-	if (contextualIdentitiesEnabled) {
-		cache = new CacheService();
-		cache.cacheContextualIdentityNamesFromStorage(items)
-		.then(() => {
-			whiteList = new WhiteListService(items, contextualIdentitiesEnabled, cache);
-			return Promise.resolve();
-		}).catch(onError);
-	} else {
-		whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
-	}
-
 	statLog = new StatsService(items);
 
+	if (contextualIdentitiesEnabled) {
+		cache = new CacheService();
+		return cache.cacheContextualIdentityNamesFromStorage(items)
+		.then(() => {
+			whiteList = new WhiteListService(items, contextualIdentitiesEnabled, cache);
+			return Promise.resolve(items);
+		}).catch(onError);
+	}
+	whiteList = new WhiteListService(items, contextualIdentitiesEnabled);
 	return Promise.resolve(items);
 }
 
