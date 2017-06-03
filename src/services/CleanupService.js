@@ -47,7 +47,7 @@ class CleanupService {
 				if (cleanupProperties.contextualIdentitiesEnabled) {
 					// setOfDeletedDomainCookies.add(cookieDomainHost + ": " + cookies[i].storeId);
 					let name = cleanupProperties.cache.getNameFromCookieID(cookieProperties.storeId);
-					this.setOfDeletedDomainCookies.add(`${cookieProperties.cookieMainDomainHost} (${name})`);
+					this.setOfDeletedDomainCookies.add(`${cookieProperties.cookieDomainHost} (${name})`);
 				} else {
 					this.setOfDeletedDomainCookies.add(cookieProperties.cookieDomainHost);
 				}
