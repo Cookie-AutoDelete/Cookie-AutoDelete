@@ -28,7 +28,7 @@ module.exports = {
 		if (editedDomain.charAt(editedDomain.length - 1) === ".") {
 			editedDomain = domain.slice(0, domain.length - 1);
 		}
-		let re = new RegExp("[a-z0-9|-]+\.[a-z]+$");
+		let re = new RegExp("[a-z0-9|-]+\.[a-z0-9|-]+$");
 		return re.exec(editedDomain)[0];
 	},
 
@@ -48,7 +48,7 @@ module.exports = {
 			editedDomain = editedDomain.slice(0, editedDomain.length - 1);
 		}
 		let count = editedDomain.split(".").length - 1;
-		let regString = "\.[a-z]+$";
+		let regString = "\.[a-z0-9|-]+$";
 		if (count === 1) {
 			regString = `[a-z0-9|-]+\.${regString}`;
 		} else {

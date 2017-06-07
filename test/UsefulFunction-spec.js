@@ -44,6 +44,16 @@ describe("extractMainDomain()", () => {
 		assert.strictEqual(results, "127.0.0.1");
 	});
 
+	it("should return the srv-test01 from an srv-test01", () => {
+		var results = usefulFunctions.extractMainDomain("srv-test01");
+		assert.strictEqual(results, "srv-test01");
+	});
+
+	it("should return the test.i2p from an test.i2p", () => {
+		var results = usefulFunctions.extractMainDomain("test.i2p");
+		assert.strictEqual(results, "test.i2p");
+	});
+	
 	it("should return domain.com from .domain.com", () => {
 		var results = usefulFunctions.extractMainDomain("domain.com.");
 		assert.strictEqual(results, "domain.com");
@@ -80,6 +90,16 @@ describe("extractBaseDomain()", () => {
 	it("should return the ip address from an ip address", () => {
 		var results = usefulFunctions.extractBaseDomain("127.0.0.1");
 		assert.strictEqual(results, "127.0.0.1");
+	});
+
+	it("should return the srv-test01 from an srv-test01", () => {
+		var results = usefulFunctions.extractBaseDomain("srv-test01");
+		assert.strictEqual(results, "srv-test01");
+	});
+
+	it("should return the test.i2p from an test.i2p", () => {
+		var results = usefulFunctions.extractBaseDomain("test.i2p");
+		assert.strictEqual(results, "test.i2p");
 	});
 
 	it("should return domain.com from .domain.com", () => {
