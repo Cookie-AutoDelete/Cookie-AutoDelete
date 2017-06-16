@@ -1,4 +1,6 @@
 // Initialize variables
+const defaultWhiteList = "defaultWhiteList";
+const greyPrefix = "-Grey";
 let hostUrl;
 let activeTab;
 let cookieStoreId;
@@ -31,10 +33,18 @@ function fillPopup(tabs) {
 	// Sets the checkbox depending on the if it exists in the set
 	cookieStoreId = tabs[0].cookieStoreId;
 	if (page.contextualIdentitiesEnabled) {
-		document.getElementById("switchToWhiteList").checked = page.whiteList.hasHost(hostUrl, cookieStoreId);
+		//document.getElementById("switchToWhiteList").checked = ;
 	} else {
-		document.getElementById("switchToWhiteList").checked = page.whiteList.hasHost(hostUrl);
+		if(page.whiteList.hasHost(hostUrl, defaultWhiteList)) {
+			document.getElementById("switchToWhiteList").checked = true;
+		} else if(page.whiteList.hasHost(hostUrl, defaultWhiteList + greyPrefix)) {
+			document.getElementById("switchToGreyList").checked = true;
+		} else {
+			document.getElementById("switchToNoList").checked = true;
+		}
 	}
+
+
 
 	// hostUrl = page.extractMainDomain(hostUrl);
 	let hostPlaceholder = document.getElementById("hostwebsite");
@@ -131,19 +141,51 @@ document.getElementById("activeModeSwitch").addEventListener("click", () => {
 	}
 });
 
-// Checkbox Event Handling
-document.getElementById("switchToWhiteList").addEventListener("click", () => {
+// Radio button event Handling
+
+document.getElementById("switchToNoList").addEventListener("click", () => {
+	console.log("Removed from list");
 	if (hostUrl !== undefined) {
 		if (page.contextualIdentitiesEnabled) {
-			if (document.getElementById("switchToWhiteList").checked) {
-				page.whiteList.addURL(hostUrl, cookieStoreId);
-			} else {
-				page.whiteList.removeURL(hostUrl, cookieStoreId);
-			}
-		} else if (document.getElementById("switchToWhiteList").checked) {
-			page.whiteList.addURL(hostUrl);
+			// if (document.getElementById("switchToWhiteList").checked) {
+			// 	page.whiteList.addURL(hostUrl, cookieStoreId);
+			// } else {
+			// 	page.whiteList.removeURL(hostUrl, cookieStoreId);
+			// }
 		} else {
-			page.whiteList.removeURL(hostUrl);
+			page.whiteList.removeURLFromLists(hostUrl, defaultWhiteList);
+		}
+		page.checkIfProtected(activeTab);
+	}
+});
+
+document.getElementById("switchToGreyList").addEventListener("click", () => {
+	console.log("Added to GreyList");
+	if (hostUrl !== undefined) {
+		if (page.contextualIdentitiesEnabled) {
+			// if (document.getElementById("switchToWhiteList").checked) {
+			// 	page.whiteList.addURL(hostUrl, cookieStoreId);
+			// } else {
+			// 	page.whiteList.removeURL(hostUrl, cookieStoreId);
+			// }
+		} else {
+			page.whiteList.addURL(hostUrl, defaultWhiteList + greyPrefix);
+		}
+		page.checkIfProtected(activeTab);
+	}
+});
+
+document.getElementById("switchToWhiteList").addEventListener("click", () => {
+	console.log("Added to WhiteList");
+	if (hostUrl !== undefined) {
+		if (page.contextualIdentitiesEnabled) {
+			// if (document.getElementById("switchToWhiteList").checked) {
+			// 	page.whiteList.addURL(hostUrl, cookieStoreId);
+			// } else {
+			// 	page.whiteList.removeURL(hostUrl, cookieStoreId);
+			// }
+		} else {
+			page.whiteList.addURL(hostUrl, defaultWhiteList);
 		}
 		page.checkIfProtected(activeTab);
 	}

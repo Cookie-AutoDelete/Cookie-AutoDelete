@@ -137,11 +137,7 @@ function clickRemoved(event) {
 		URL = URL.slice(1);
 		URL = URL.trim();
         // console.log(URL);
-		if (page.contextualIdentitiesEnabled) {
-			page.whiteList.removeURL(URL, getActiveTabName());
-		} else {
-			page.whiteList.removeURL(URL);
-		}
+		page.whiteList.removeURL(URL, getActiveTabName());
 		generateTableOfURLS();
 	}
 }
@@ -159,12 +155,9 @@ function getActiveTabName() {
 function addURLFromInput() {
 	let input = document.getElementById("URLForm").value;
 	if (input) {
+		console.log(getActiveTabName());
 		let URL = `http://www.${input}`;
-		if (page.contextualIdentitiesEnabled) {
-			page.whiteList.addURL(page.getHostname(URL), getActiveTabName());
-		} else {
-			page.whiteList.addURL(page.getHostname(URL));
-		}
+		page.whiteList.addURL(page.getHostname(URL), getActiveTabName());
 		document.getElementById("URLForm").value = "";
 		document.getElementById("URLForm").focus();
 		generateTableOfURLS();
@@ -272,7 +265,13 @@ function generateTabNav() {
         // Creates the tabbed navigation above the table
 		let tab = document.createElement("li");
 		let aTag = document.createElement("a");
-		aTag.textContent = page.cache.getNameFromCookieID(key);
+		if(page.contextualIdentitiesEnabled) {
+			aTag.textContent = page.cache.getNameFromCookieID(key);
+		} else if(key === "defaultWhiteList") {
+			aTag.textContent = "WhiteList";
+		} else if(key === "defaultWhiteList-Grey") {
+			aTag.textContent = "GreyList";
+		}
 		aTag.classList.add("tablinks");
 		aTag.classList.add(key);
 		aTag.addEventListener("click", (event) => {
@@ -289,57 +288,42 @@ function generateTabNav() {
 function generateTableOfURLS() {
 	// let tableContainerNode = document.getElementById("tableContainer");
     // console.log(page.cookieWhiteList);
-	if (page.contextualIdentitiesEnabled) {
-		let activeTabName = getActiveTabName();
-		let theTables = document.createElement("div");
-		page.whiteList.cookieWhiteList.forEach((value, key, map) => {
-                // Creates a table based on the Cookie ID
-			let tabContent = generateTableFromArray(Array.from(value));
-			tabContent.classList.add("tabcontent");
-			tabContent.id = key;
-			theTables.appendChild(tabContent);
-			if (activeTabName !== "" && key !== activeTabName) {
-				tabContent.style.display = "none";
-			}
-		});
+	let activeTabName = getActiveTabName();
+	let theTables = document.createElement("div");
+	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
+            // Creates a table based on the Cookie ID
+		let tabContent = generateTableFromArray(Array.from(value));
+		tabContent.classList.add("tabcontent");
+		tabContent.id = key;
+		theTables.appendChild(tabContent);
+		if (activeTabName !== "" && key !== activeTabName) {
+			tabContent.style.display = "none";
+		}
+	});
 
-		if (document.getElementById("tableContainer").hasChildNodes()) {
-			document.getElementById("tableContainer").firstChild.replaceWith(theTables);
-		} else {
-			document.getElementById("tableContainer").appendChild(theTables);
-		}
+	if (document.getElementById("tableContainer").hasChildNodes()) {
+		document.getElementById("tableContainer").firstChild.replaceWith(theTables);
 	} else {
-		let theTable = generateTableFromArray(page.whiteList.returnList());
-		if (document.getElementById("tableContainer").hasChildNodes()) {
-			document.getElementById("tableContainer").firstChild.replaceWith(theTable);
-		} else {
-			document.getElementById("tableContainer").appendChild(theTable);
-		}
+		document.getElementById("tableContainer").appendChild(theTables);
 	}
+	
 }
 
 function generateTable() {
 	if (document.contains(document.getElementById("containerTabs"))) {
 		document.getElementById("containerTabs").remove();
 	}
-	if (page.contextualIdentitiesEnabled) {
-		generateTabNav();
-	}
+	generateTabNav();
 	generateTableOfURLS();
-	if (page.contextualIdentitiesEnabled) {
-		document.getElementsByClassName("tablinks")[0].click();
-	}
+	document.getElementsByClassName("tablinks")[0].click();
+	
 }
 
 generateTable();
 
 // Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", () => {
-	if (page.contextualIdentitiesEnabled) {
-		page.whiteList.clearURL(getActiveTabName());
-	} else {
-		page.whiteList.clearURL();
-	}
+	page.whiteList.clearURL(getActiveTabName());
 	generateTableOfURLS();
 });
 

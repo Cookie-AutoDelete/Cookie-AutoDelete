@@ -69,6 +69,8 @@ describe("WhiteListService with Contextual Identities On", () => {
 	cache.nameCacheMap.set("firefox_container_1", "Personal");
 	cache.nameCacheMap.set("firefox_container_2", "Work");
 	cache.nameCacheMap.set("firefox_container_5", "Play");
+	cache.nameCacheMap.set("firefox-default", "Default");
+
 
 	global.browser = browser;
 

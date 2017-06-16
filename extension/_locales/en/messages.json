@@ -54,6 +54,16 @@
     "description": "Active Mode"
   },
 
+  "switchToNoListText": {
+    "message": "No List",
+    "description": "No List"
+  },  
+
+  "switchToGreyListText": {
+    "message": "Add to GreyList?",
+    "description": "Add to GreyList?"
+  },
+
   "switchToWhiteListText": {
     "message": "Add to WhiteList?",
     "description": "Add to WhiteList?"
