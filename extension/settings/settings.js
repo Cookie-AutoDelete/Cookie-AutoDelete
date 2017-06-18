@@ -1,7 +1,10 @@
 /* global page*/
 /* eslint no-use-before-define: ["error", { "functions": false }]*/
 let browserDetect = browser.extension.getBackgroundPage().browserDetect;
-
+const defaultWhiteList = "defaultWhiteList";
+const greyPrefix = "-Grey";
+const GREYLIST = "GreyList";
+const WHITELIST = "WhiteList";
 // Logs the error
 function onError(error) {
 	console.error(`Error: ${error}`);
@@ -132,11 +135,11 @@ document.getElementById("defaultSettings").addEventListener("click", () => {
 // Remove the url where the user clicked
 function clickRemoved(event) {
 	if (event.target.classList.contains("removeButton")) {
-		let URL = event.target.parentElement.textContent;
+		let URL = event.target.parentElement.classList.item(0);
         // Slice the unicode times from the URL
-		URL = URL.slice(1);
+		// URL = URL.slice(1);
 		URL = URL.trim();
-        // console.log(URL);
+        console.log(URL);
 		page.whiteList.removeURL(URL, getActiveTabName());
 		generateTableOfURLS();
 	}
@@ -210,22 +213,72 @@ function exportMapToTxt() {
 	downloadTextFile(txtFile);
 }
 
+
+function switchList(event) {
+	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
+	let targetList = event.target.textContent;
+	let currentWhiteList = getActiveTabName();
+
+	if(targetList === GREYLIST) {
+		page.whiteList.addURL(url, currentWhiteList + greyPrefix);
+	} else {
+		page.whiteList.addURL(url, currentWhiteList);
+	}
+	generateTableOfURLS();
+}
+
+function createRow(arrayItem, listType) {
+	let tr = document.createElement("tr");
+	let td = document.createElement("td");
+
+	td.classList.add(arrayItem);
+	td.classList.add(listType);
+	// console.log(td.classList.item(1));
+
+	let removeButton = document.createElement("span");
+	removeButton.classList.add("removeButton");
+	removeButton.addEventListener("click", clickRemoved);
+
+	let hoverMenu = document.createElement("div");
+	hoverMenu.classList.add("dropdown");
+	let hoverButton = document.createElement("button");
+	hoverButton.classList.add("dropbtn");
+	hoverButton.textContent = listType;
+	let hoverDropDownContent = document.createElement("div");
+	hoverDropDownContent.classList.add("dropdown-content");
+	let otherLink = document.createElement("a");
+	otherLink.href = "#";
+	otherLink.addEventListener("click", switchList);
+	if(listType === WHITELIST) {
+		otherLink.textContent = GREYLIST;
+	} else {
+		otherLink.textContent = WHITELIST;
+	}
+
+	hoverDropDownContent.appendChild(otherLink);
+	hoverMenu.appendChild(hoverButton);
+	hoverMenu.appendChild(hoverDropDownContent);
+
+	removeButton.appendChild(document.createTextNode("\u00D7"));
+	td.appendChild(removeButton);
+	td.appendChild(document.createTextNode(arrayItem));
+	td.appendChild(hoverMenu);
+	tr.appendChild(td);
+	return tr;
+}
+
 // Creates a html table from an array
-function generateTableFromArray(array) {
-	let arrayLength = array.length;
+function generateTableFromArray(whitelist, greylist) {
+	let whitelistLength = whitelist.length;
+	let greylistLength = greylist.length;
 	let theTable = document.createElement("table");
 
-	for (let i = 0; i < arrayLength; i++) {
-		let tr = document.createElement("tr");
-		let td = document.createElement("td");
-		let removeButton = document.createElement("span");
-		removeButton.classList.add("removeButton");
-		removeButton.addEventListener("click", clickRemoved);
-		removeButton.appendChild(document.createTextNode("\u00D7"));
-		td.appendChild(removeButton);
-		td.appendChild(document.createTextNode(array[i]));
-		tr.appendChild(td);
-		theTable.appendChild(tr);
+	for (let i = 0; i < whitelistLength; i++) {
+		theTable.appendChild(createRow(whitelist[i], WHITELIST));
+	}
+
+	for (let i = 0; i < greylistLength; i++) {
+		theTable.appendChild(createRow(greylist[i], GREYLIST));
 	}
 	return theTable;
 }
@@ -260,6 +313,7 @@ function generateTabNav() {
 	let tabNav = document.createElement("ul");
 
 	tabNav.id = "containerTabs";
+	//tavNav.style.display = "none";
 	tabNav.classList.add("tab");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates the tabbed navigation above the table
@@ -291,13 +345,15 @@ function generateTableOfURLS() {
 	let activeTabName = getActiveTabName();
 	let theTables = document.createElement("div");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
-            // Creates a table based on the Cookie ID
-		let tabContent = generateTableFromArray(Array.from(value));
-		tabContent.classList.add("tabcontent");
-		tabContent.id = key;
-		theTables.appendChild(tabContent);
-		if (activeTabName !== "" && key !== activeTabName) {
-			tabContent.style.display = "none";
+        // Creates a table based on the Cookie ID
+		if(!key.endsWith(greyPrefix)) {
+			let tabContent = generateTableFromArray(Array.from(value), Array.from(page.whiteList.cookieWhiteList.get(key + greyPrefix)));
+			tabContent.classList.add("tabcontent");
+			tabContent.id = key;
+			theTables.appendChild(tabContent);
+			if (activeTabName !== "" && key !== activeTabName) {
+				tabContent.style.display = "none";
+			}
 		}
 	});
 
