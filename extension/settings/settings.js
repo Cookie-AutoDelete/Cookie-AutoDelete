@@ -207,7 +207,7 @@ function exportMapToTxt() {
 	let txtFile = "";
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
 		txtFile += `#${key}\n`;
-		txtFile += returnLinesFromArray(Array.from(value));
+		txtFile += returnLinesFromArray(Array.from(value).sort());
 		txtFile += "\n";
 	});
 	downloadTextFile(txtFile);
@@ -268,18 +268,14 @@ function createRow(arrayItem, listType) {
 }
 
 // Creates a html table from an array
-function generateTableFromArray(whitelist, greylist) {
-	let whitelistLength = whitelist.length;
-	let greylistLength = greylist.length;
+function generateTableFromSet(whitelist, greylist) {
 	let theTable = document.createElement("table");
 
-	for (let i = 0; i < whitelistLength; i++) {
-		theTable.appendChild(createRow(whitelist[i], WHITELIST));
-	}
-
-	for (let i = 0; i < greylistLength; i++) {
-		theTable.appendChild(createRow(greylist[i], GREYLIST));
-	}
+	let combinedArray = [...whitelist, ...greylist].sort();
+	console.log(combinedArray); 
+	combinedArray.forEach((item) => {
+		theTable.appendChild(createRow(item, whitelist.has(item) ? WHITELIST : GREYLIST));
+	});
 	return theTable;
 }
 
@@ -347,7 +343,7 @@ function generateTableOfURLS() {
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates a table based on the Cookie ID
 		if(!key.endsWith(greyPrefix)) {
-			let tabContent = generateTableFromArray(Array.from(value), Array.from(page.whiteList.cookieWhiteList.get(key + greyPrefix)));
+			let tabContent = generateTableFromSet(value, page.whiteList.cookieWhiteList.get(key + greyPrefix));
 			tabContent.classList.add("tabcontent");
 			tabContent.id = key;
 			theTables.appendChild(tabContent);
