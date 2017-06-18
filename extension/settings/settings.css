@@ -80,7 +80,7 @@ ul.tab li a:focus, .activeTab {
 #tableContainer {
 	margin-top: 2em;
 	margin-bottom: 2em;
-	height: 15em;
+	height: 20em;
 	overflow: auto;
 	border: 1px solid black;	
 }
@@ -185,8 +185,8 @@ input[type="file"] {
 }
 
 .alert.success {
-	background-color: #4CAF50;
-}
+	background-color: #4CAF50
+;}
 .alert.info {
 	background-color: #2196F3;
 }
@@ -268,7 +268,6 @@ span#welcomeMessage {
 
 /* Hover Menu for switching between White and Grey
 
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: relative;
@@ -279,8 +278,9 @@ span#welcomeMessage {
 .dropdown-content {
     display: none;
     position: absolute;
+    text-align: center;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 130px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -291,10 +291,14 @@ span#welcomeMessage {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    overflow: visible !important;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -303,5 +307,5 @@ span#welcomeMessage {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+
 } 

@@ -241,9 +241,13 @@ function createRow(arrayItem, listType) {
 
 	let hoverMenu = document.createElement("div");
 	hoverMenu.classList.add("dropdown");
+	hoverMenu.style.float = "right";
+	hoverMenu.style.right = "1em";
+	hoverMenu.style.position = "relative";
 	let hoverButton = document.createElement("button");
 	hoverButton.classList.add("dropbtn");
-	hoverButton.textContent = listType;
+	hoverButton.textContent = `${listType} \u25BC`;
+	hoverButton.style.border = "none";
 	let hoverDropDownContent = document.createElement("div");
 	hoverDropDownContent.classList.add("dropdown-content");
 	let otherLink = document.createElement("a");
@@ -272,7 +276,7 @@ function generateTableFromSet(whitelist, greylist) {
 	let theTable = document.createElement("table");
 
 	let combinedArray = [...whitelist, ...greylist].sort();
-	console.log(combinedArray); 
+	// console.log(combinedArray); 
 	combinedArray.forEach((item) => {
 		theTable.appendChild(createRow(item, whitelist.has(item) ? WHITELIST : GREYLIST));
 	});
