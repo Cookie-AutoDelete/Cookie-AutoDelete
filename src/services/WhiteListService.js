@@ -69,6 +69,7 @@ class WhiteListService {
 	// Stores the set in the local storage of the browser as an array depending on the cookieStoreId
 	storeLocal(cookieStoreId = defaultWhiteList) {
 		let otherList = this.returnOtherList(cookieStoreId);
+		// console.log(cookieStoreId);
 		browser.storage.local.set({[cookieStoreId]: Array.from(this.cookieWhiteList.get(cookieStoreId))});
 		browser.storage.local.set({[otherList]: Array.from(this.cookieWhiteList.get(otherList))});
 	}
@@ -111,7 +112,9 @@ class WhiteListService {
 
 	// Clears the set depending on the cookieStoreId
 	clearURL(cookieStoreId = defaultWhiteList) {
+		let otherList = this.returnOtherList(cookieStoreId);
 		this.cookieWhiteList.get(cookieStoreId).clear();
+		this.cookieWhiteList.get(otherList).clear();
 		this.storeLocal(cookieStoreId);
 	}
 

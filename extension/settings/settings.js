@@ -132,14 +132,32 @@ document.getElementById("defaultSettings").addEventListener("click", () => {
 /*
     Cookie WhiteList Logic
 */
+
+
+function addURLHoverButton(event) {
+	let dropbtn = document.getElementById("dropbtnId");
+	let dropdownText = document.getElementById("dropdownText");
+	if(dropbtn.classList.item(1) === WHITELIST) {
+		dropbtn.textContent = `TO ${GREYLIST} \u25BC`;
+		dropbtn.classList.remove(WHITELIST);
+		dropbtn.classList.add(GREYLIST);
+		dropdownText.textContent = `${WHITELIST}`;
+	} else {
+		dropbtn.textContent = `TO ${WHITELIST} \u25BC`;
+		dropbtn.classList.remove(GREYLIST);
+		dropbtn.classList.add(WHITELIST);
+		dropdownText.textContent = `${GREYLIST}`;
+	}
+}
+
 // Remove the url where the user clicked
 function clickRemoved(event) {
 	if (event.target.classList.contains("removeButton")) {
 		let URL = event.target.parentElement.classList.item(0);
 		let list = event.target.parentElement.classList.item(1);
-		let currentWhiteList = getActiveTabName();
+		let currentWhiteList = page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList;
 		URL = URL.trim();
-        // console.log(URL);
+        // console.log(list);
 		page.whiteList.removeURL(URL, list === WHITELIST ? currentWhiteList : currentWhiteList + greyPrefix);
 		generateTableOfURLS();
 	}
@@ -158,9 +176,10 @@ function getActiveTabName() {
 function addURLFromInput() {
 	let input = document.getElementById("URLForm").value;
 	if (input) {
-		console.log(getActiveTabName());
 		let URL = `http://www.${input}`;
-		page.whiteList.addURL(page.getHostname(URL), getActiveTabName());
+		let list = document.getElementById("dropbtnId").classList.item(1);
+		let currentWhiteList = page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList;
+		page.whiteList.addURL(page.getHostname(URL), list === WHITELIST ? currentWhiteList : currentWhiteList + greyPrefix);
 		document.getElementById("URLForm").value = "";
 		document.getElementById("URLForm").focus();
 		generateTableOfURLS();
@@ -382,12 +401,14 @@ generateTable();
 
 // Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", () => {
-	page.whiteList.clearURL(getActiveTabName());
+	page.whiteList.clearURL(page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList);
 	generateTableOfURLS();
 });
 
 // Event handler for the user entering a URL through a form
 document.getElementById("add").addEventListener("click", addURLFromInput);
+
+document.getElementById("dropdownText").addEventListener("click", addURLHoverButton);
 
 // Event handler when the user press "Enter" on a keyboard on the URL Form
 document.getElementById("URLForm").addEventListener("keypress", (e) => {
