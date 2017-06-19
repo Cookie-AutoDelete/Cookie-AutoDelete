@@ -49,13 +49,14 @@ class WhiteListService {
 		return this.cookieWhiteList.get(cookieStoreId).has(url);
 	}
 
-	// hasHostGrey(url, cookieStoreId = defaultWhiteList + greyPrefix) {
-	// 	if (!this.cookieWhiteList.has(cookieStoreId)) {
-	// 		this.cookieWhiteList.set(cookieStoreId, new Set());
-	// 		return false;
-	// 	}
-	// 	return this.cookieWhiteList.get(cookieStoreId).has(url);
-	// }
+	hasHostSubdomain(cookieDomainHost, cookieBaseDomainHost, cookieStoreId = defaultWhiteList) {
+		return this.hasHost(cookieDomainHost, cookieStoreId) || this.hasHost(cookieBaseDomainHost, cookieStoreId);
+	}
+
+	hasHostInWhiteOrGrey(cookieDomainHost, cookieBaseDomainHost, cookieStoreId = defaultWhiteList) {
+		let otherList = this.returnOtherList(cookieStoreId);
+		return this.hasHostSubdomain(cookieDomainHost, cookieBaseDomainHost, cookieStoreId) || this.hasHostSubdomain(cookieDomainHost, cookieBaseDomainHost, otherList);
+	}
 
 	// Return the Set as an array
 	returnList(cookieStoreId = defaultWhiteList) {
@@ -95,7 +96,7 @@ class WhiteListService {
 	// Remove the url from the white and grey lists
 	removeURLFromLists(url, cookieStoreId = defaultWhiteList) {
 		let otherList = this.returnOtherList(cookieStoreId);
-		console.log(cookieStoreId);
+		// console.log(this.cookieWhiteList);
 		this.cookieWhiteList.get(cookieStoreId).delete(url);
 		this.cookieWhiteList.get(otherList).delete(url);
 	}

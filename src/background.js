@@ -102,6 +102,10 @@ function setPreferences(items) {
 	if (items.cookieCleanUpOnStartSetting === undefined) {
 		browser.storage.local.set({cookieCleanUpOnStartSetting: false});
 	}
+
+	if (items.globalSubdomainSetting === undefined) {
+		browser.storage.local.set({globalSubdomainSetting: true});
+	}
 	return Promise.resolve(items);
 }
 
@@ -164,11 +168,7 @@ function onStartUp() {
 function cookieCleanUpOnStart(items) {
 	return browser.storage.local.get()
 	.then((items) => {
-		if (items.cookieCleanUpOnStartSetting === true) {
-			// console.log("Startup Cleanup");
-			return exposedFunctions.cleanupOperation(true);
-		}
-		return Promise.resolve();
+		return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
 	});
 }
 
@@ -188,8 +188,8 @@ module.exports = {
 		});
 	},
 
-	cleanupOperation(ignoreOpenTabs = false) {
-		return cleanup.cleanCookiesOperation(ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache)
+	cleanupOperation(ignoreOpenTabs = false, startUp = false) {
+		return cleanup.cleanCookiesOperation({ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache, startUp})
 		.then((setOfDeletedDomainCookies) => {
 			statLog.incrementCounter(cleanup.recentlyCleaned);
 			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies);

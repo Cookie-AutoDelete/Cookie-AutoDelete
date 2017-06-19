@@ -96,12 +96,12 @@ document.getElementById("settings").addEventListener("click", () => {
 
 // Clear all history for a domain
 document.getElementById("cookieCleanup").addEventListener("click", () => {
-	page.cleanupOperation();
+	page.cleanupOperation(false, false);
 	animateSuccess(document.getElementById("cookieCleanup"));
 });
 
 document.getElementById("cookieCleanupIgnoreOpenTabs").addEventListener("click", () => {
-	page.cleanupOperation(true);
+	page.cleanupOperation(true, false);
 	animateSuccess(document.getElementById("cookieCleanupIgnoreOpenTabs"));
 });
 
