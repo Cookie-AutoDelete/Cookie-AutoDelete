@@ -6,6 +6,9 @@ const NotificationService = require("./services/NotificationService");
 const StatsService = require("./services/StatsService");
 const WhiteListService = require("./services/WhiteListService");
 
+const greyPrefix = "-Grey";
+const defaultWhiteList = "defaultWhiteList";
+
 let cleanup = new CleanupService();
 let notifyCleanup = new NotificationService();
 let whiteList;
@@ -43,6 +46,16 @@ function onTabRemoved(tabId, removeInfo) {
 			return createActiveModeAlarm();
 		}
 		return Promise.resolve();
+	});
+}
+
+// Set background icon to orange 
+function setIconOrange(tab) {
+	browser.browserAction.setIcon({
+		tabId: tab.id, path: {48: "icons/icon_yellow_48.png"}
+	});
+	browser.browserAction.setBadgeBackgroundColor({
+		color: "#e6a32e", tabId: tab.id
 	});
 }
 
@@ -236,15 +249,21 @@ module.exports = {
 		let domainHost = UsefulFunctions.getHostname(tab.url);
 		let baseDomainHost = UsefulFunctions.extractBaseDomain(domainHost);
 		if (contextualIdentitiesEnabled) {
-			if (whiteList.hasHost(domainHost, tab.cookieStoreId) || whiteList.hasHost(baseDomainHost, tab.cookieStoreId)) {
+			if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId)) {
 				setIconDefault(tab);
+			} else if(whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId + greyPrefix)){
+				setIconOrange(tab);
 			} else {
 				setIconRed(tab);
 			}
-		} else if (whiteList.hasHost(domainHost) || whiteList.hasHost(baseDomainHost)) {
-			setIconDefault(tab);
 		} else {
-			setIconRed(tab);
+			if (whiteList.hasHostSubdomain(domainHost, baseDomainHost)) {
+				setIconDefault(tab);
+			} else if(whiteList.hasHostSubdomain(domainHost, baseDomainHost, defaultWhiteList + greyPrefix)){
+				setIconOrange(tab);
+			} else {
+				setIconRed(tab);
+			}
 		}
 	}
 
