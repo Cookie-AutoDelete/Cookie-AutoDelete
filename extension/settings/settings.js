@@ -136,11 +136,11 @@ document.getElementById("defaultSettings").addEventListener("click", () => {
 function clickRemoved(event) {
 	if (event.target.classList.contains("removeButton")) {
 		let URL = event.target.parentElement.classList.item(0);
-        // Slice the unicode times from the URL
-		// URL = URL.slice(1);
+		let list = event.target.parentElement.classList.item(1);
+		let currentWhiteList = getActiveTabName();
 		URL = URL.trim();
-        console.log(URL);
-		page.whiteList.removeURL(URL, getActiveTabName());
+        // console.log(URL);
+		page.whiteList.removeURL(URL, list === WHITELIST ? currentWhiteList : currentWhiteList + greyPrefix);
 		generateTableOfURLS();
 	}
 }
@@ -217,7 +217,10 @@ function exportMapToTxt() {
 function switchList(event) {
 	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
 	let targetList = event.target.textContent;
-	let currentWhiteList = getActiveTabName();
+	let currentWhiteList = "defaultWhiteList";
+	if(page.contextualIdentitiesEnabled) {
+		currentWhiteList = getActiveTabName();
+	}
 
 	if(targetList === GREYLIST) {
 		page.whiteList.addURL(url, currentWhiteList + greyPrefix);
@@ -274,7 +277,8 @@ function createRow(arrayItem, listType) {
 // Creates a html table from an array
 function generateTableFromSet(whitelist, greylist) {
 	let theTable = document.createElement("table");
-
+	// console.log(whitelist);
+	// console.log(greylist);
 	let combinedArray = [...whitelist, ...greylist].sort();
 	// console.log(combinedArray); 
 	combinedArray.forEach((item) => {
@@ -313,26 +317,21 @@ function generateTabNav() {
 	let tabNav = document.createElement("ul");
 
 	tabNav.id = "containerTabs";
-	//tavNav.style.display = "none";
 	tabNav.classList.add("tab");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates the tabbed navigation above the table
-		let tab = document.createElement("li");
-		let aTag = document.createElement("a");
-		if(page.contextualIdentitiesEnabled) {
+		if(!key.endsWith(greyPrefix)) {
+			let tab = document.createElement("li");
+			let aTag = document.createElement("a");
 			aTag.textContent = page.cache.getNameFromCookieID(key);
-		} else if(key === "defaultWhiteList") {
-			aTag.textContent = "WhiteList";
-		} else if(key === "defaultWhiteList-Grey") {
-			aTag.textContent = "GreyList";
+			aTag.classList.add("tablinks");
+			aTag.classList.add(key);
+			aTag.addEventListener("click", (event) => {
+				openTab(event, key);
+			});
+			tab.appendChild(aTag);
+			tabNav.appendChild(tab);
 		}
-		aTag.classList.add("tablinks");
-		aTag.classList.add(key);
-		aTag.addEventListener("click", (event) => {
-			openTab(event, key);
-		});
-		tab.appendChild(aTag);
-		tabNav.appendChild(tab);
 	});
 
 	tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
@@ -369,9 +368,13 @@ function generateTable() {
 	if (document.contains(document.getElementById("containerTabs"))) {
 		document.getElementById("containerTabs").remove();
 	}
-	generateTabNav();
+	if(page.contextualIdentitiesEnabled) {
+		generateTabNav();
+	}
 	generateTableOfURLS();
-	document.getElementsByClassName("tablinks")[0].click();
+	if(page.contextualIdentitiesEnabled) {
+		document.getElementsByClassName("tablinks")[0].click();
+	}
 	
 }
 

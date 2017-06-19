@@ -67,7 +67,9 @@ class WhiteListService {
 
 	// Stores the set in the local storage of the browser as an array depending on the cookieStoreId
 	storeLocal(cookieStoreId = defaultWhiteList) {
+		let otherList = this.returnOtherList(cookieStoreId);
 		browser.storage.local.set({[cookieStoreId]: Array.from(this.cookieWhiteList.get(cookieStoreId))});
+		browser.storage.local.set({[otherList]: Array.from(this.cookieWhiteList.get(otherList))});
 	}
 
 	// Add the url to the set depending on the cookieStoreId
@@ -92,15 +94,18 @@ class WhiteListService {
 
 	// Remove the url from the white and grey lists
 	removeURLFromLists(url, cookieStoreId = defaultWhiteList) {
-		let otherList;
-		if(cookieStoreId.endsWith(greyPrefix)) {
-			otherList = cookieStoreId.replace(greyPrefix, "");
-		} else {
-			otherList = cookieStoreId + greyPrefix;
-		}
+		let otherList = this.returnOtherList(cookieStoreId);
+		console.log(cookieStoreId);
 		this.cookieWhiteList.get(cookieStoreId).delete(url);
 		this.cookieWhiteList.get(otherList).delete(url);
-		this.storeLocal(cookieStoreId);
+	}
+
+	// returns the id of the other list depending if it was greylist or whitelist
+	returnOtherList(list) {
+		if(list.endsWith(greyPrefix)) {
+			return list.replace(greyPrefix, "");
+		}
+		return list + greyPrefix;
 	}
 
 	// Clears the set depending on the cookieStoreId
