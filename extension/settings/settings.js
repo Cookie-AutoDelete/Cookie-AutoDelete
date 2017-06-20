@@ -135,20 +135,20 @@ document.getElementById("defaultSettings").addEventListener("click", () => {
     Cookie WhiteList Logic
 */
 
-
+// Event handler for the add to WhiteList or GreyList hover button
 function addURLHoverButton(event) {
 	let dropbtn = document.getElementById("dropbtnId");
 	let dropdownText = document.getElementById("dropdownText");
 	if(dropbtn.classList.item(1) === WHITELIST) {
-		dropbtn.textContent = `TO ${GREYLIST} \u25BC`;
+		dropbtn.textContent = `${browser.i18n.getMessage("toGreyListText")} \u25BC`;
 		dropbtn.classList.remove(WHITELIST);
 		dropbtn.classList.add(GREYLIST);
-		dropdownText.textContent = `${WHITELIST}`;
+		dropdownText.textContent = `${browser.i18n.getMessage("whiteListWordText")}`;
 	} else {
-		dropbtn.textContent = `TO ${WHITELIST} \u25BC`;
+		dropbtn.textContent = `${browser.i18n.getMessage("toWhiteListText")} \u25BC`;
 		dropbtn.classList.remove(GREYLIST);
 		dropbtn.classList.add(WHITELIST);
-		dropdownText.textContent = `${GREYLIST}`;
+		dropdownText.textContent = `${browser.i18n.getMessage("greyListWordText")}`;
 	}
 }
 
@@ -238,7 +238,7 @@ function exportMapToTxt() {
 function switchList(event) {
 	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
 	let targetList = event.target.textContent;
-	let currentWhiteList = "defaultWhiteList";
+	let currentWhiteList = defaultWhiteList;
 	if(page.contextualIdentitiesEnabled) {
 		currentWhiteList = getActiveTabName();
 	}
@@ -270,7 +270,7 @@ function createRow(arrayItem, listType) {
 	hoverMenu.style.position = "relative";
 	let hoverButton = document.createElement("button");
 	hoverButton.classList.add("dropbtn");
-	hoverButton.textContent = `${listType} \u25BC`;
+	hoverButton.textContent = `${listType === WHITELIST ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")} \u25BC`;
 	hoverButton.style.border = "none";
 	let hoverDropDownContent = document.createElement("div");
 	hoverDropDownContent.classList.add("dropdown-content");
