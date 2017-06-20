@@ -24,6 +24,8 @@ document.getElementById("notifyCookieCleanUpTooltipText").textContent = browser.
 
 document.getElementById("cookieCleanUpOnStartText").textContent = browser.i18n.getMessage("cookieCleanUpOnStartText");
 document.getElementById("cookieCleanUpOnStartTooltipText").textContent = browser.i18n.getMessage("cookieCleanUpOnStartTooltipText");
+document.getElementById("enableGlobalSubdomainText").textContent = browser.i18n.getMessage("enableGlobalSubdomainText");
+document.getElementById("enableGlobalSubdomainTooltipText").textContent = browser.i18n.getMessage("enableGlobalSubdomainTooltipText");
 
 document.getElementById("contextualIdentitiesEnabledText").textContent = browser.i18n.getMessage("contextualIdentitiesEnabledText");
 document.getElementById("contextualIdentitiesTooltipText").textContent = browser.i18n.getMessage("contextualIdentitiesTooltipText");

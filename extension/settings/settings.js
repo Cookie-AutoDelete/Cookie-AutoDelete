@@ -77,6 +77,7 @@ function restoreSettingValues() {
 	document.getElementById("showNumberOfCookiesInIconSwitch").checked = items.showNumberOfCookiesInIconSetting;
 	document.getElementById("notifyCookieCleanUpSwitch").checked = items.notifyCookieCleanUpSetting;
 	document.getElementById("cookieCleanUpOnStartSwitch").checked = items.cookieCleanUpOnStartSetting;
+	document.getElementById("enableGlobalSubdomainSwitch").checked = items.enableGlobalSubdomainSetting;
 	document.getElementById("contextualIdentitiesEnabledSwitch").checked = items.contextualIdentitiesEnabledSetting;
 	return Promise.resolve();
 });
@@ -91,6 +92,7 @@ function saveSettingsValues() {
 		showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked,
 		notifyCookieCleanUpSetting: document.getElementById("notifyCookieCleanUpSwitch").checked,
 		cookieCleanUpOnStartSetting: document.getElementById("cookieCleanUpOnStartSwitch").checked,
+		enableGlobalSubdomainSetting: document.getElementById("enableGlobalSubdomainSwitch").checked,
 		contextualIdentitiesEnabledSetting: document.getElementById("contextualIdentitiesEnabledSwitch").checked
 	}).then(page.onStartUp);
 }

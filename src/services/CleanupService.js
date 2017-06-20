@@ -18,20 +18,22 @@ class CleanupService {
 	}
 
 	isSafeToClean(cleanupProperties, cookieProperties) {
+		let cookieBaseDomainHost = cookieProperties.globalSubdomainEnabled ? cookieProperties.cookieBaseDomainHost : cookieProperties.cookieDomainHost;
+
 		if (cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
-			return  !cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieProperties.cookieBaseDomainHost, cookieProperties.storeId) &&
+			return  !cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) &&
 					!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 
 		} else if(!cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
-			return 	!cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieProperties.cookieBaseDomainHost) &&
+			return 	!cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost) &&
 		 			!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 
 		} else if (cleanupProperties.contextualIdentitiesEnabled && cleanupProperties.startUp) {
-			return  !cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieProperties.cookieBaseDomainHost, cookieProperties.storeId) &&
+			return  !cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) &&
 					!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 
 		} else if(!cleanupProperties.contextualIdentitiesEnabled && cleanupProperties.startUp) {
-			return 	!cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieProperties.cookieBaseDomainHost) &&
+			return 	!cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost) &&
 		 			!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 
 		} 

@@ -15,6 +15,7 @@ let whiteList;
 let statLog;
 let cache;
 let contextualIdentitiesEnabled = false;
+let globalSubdomainEnabled;
 
 // Logs the error
 function onError(error) {
@@ -116,9 +117,9 @@ function setPreferences(items) {
 		browser.storage.local.set({cookieCleanUpOnStartSetting: false});
 	}
 
-	if (items.globalSubdomainSetting === undefined) {
-		browser.storage.local.set({globalSubdomainSetting: true});
-	}
+	if (items.enableGlobalSubdomainSetting === undefined) {
+		browser.storage.local.set({enableGlobalSubdomainSetting: true});
+	} 
 	return Promise.resolve(items);
 }
 
@@ -135,6 +136,8 @@ function contextualCheck(items) {
 
 // Create objects based on settings
 function createObjects(items) {
+	globalSubdomainEnabled = items.enableGlobalSubdomainSetting;
+
 	if (items.activeMode === true) {
 		exposedFunctions.enableActiveMode();
 	} else {
@@ -202,7 +205,7 @@ module.exports = {
 	},
 
 	cleanupOperation(ignoreOpenTabs = false, startUp = false) {
-		return cleanup.cleanCookiesOperation({ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache, startUp})
+		return cleanup.cleanCookiesOperation({ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache, startUp, globalSubdomainEnabled})
 		.then((setOfDeletedDomainCookies) => {
 			statLog.incrementCounter(cleanup.recentlyCleaned);
 			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies);
@@ -247,7 +250,7 @@ module.exports = {
 	},
 	checkIfProtected(tab) {
 		let domainHost = UsefulFunctions.getHostname(tab.url);
-		let baseDomainHost = UsefulFunctions.extractBaseDomain(domainHost);
+		let baseDomainHost = globalSubdomainEnabled ? UsefulFunctions.extractBaseDomain(domainHost) : domainHost;
 		if (contextualIdentitiesEnabled) {
 			if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId)) {
 				setIconDefault(tab);
