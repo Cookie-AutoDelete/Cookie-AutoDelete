@@ -55,18 +55,18 @@
   },
 
   "switchToNoListText": {
-    "message": "No List",
-    "description": "No List"
+    "message": "Clean After Tab Close",
+    "description": "Clean After Tab Close"
   },  
 
   "switchToGreyListText": {
-    "message": "Add to GreyList?",
-    "description": "Add to GreyList?"
+    "message": "Clean on Browser Restart (GreyList)",
+    "description": "Clean on Browser Restart (GreyList)"
   },
 
   "switchToWhiteListText": {
-    "message": "Add to WhiteList?",
-    "description": "Add to WhiteList?"
+    "message": "Never Clean (WhiteList)",
+    "description": "Never Clean (WhiteList)"
   },
 
   "welcomeText": {
@@ -150,7 +150,7 @@
   },
 
   "showNumberOfCookiesInIconTooltipText": {
-    "message": "Show Number of Cookies for that Domain",
+    "message": "Shows which cookies can be detected in the popup badge.",
     "description": "Shows which cookies can be detected in the popup badge."
   },
 
@@ -165,8 +165,8 @@
   },
 
   "cookieCleanUpOnStartText": {
-    "message": "Enable Cookie Cleanup on Startup",
-    "description": "Enable Cookie Cleanup on Startup"
+    "message": "Clean Cookies from Open Tabs on StartUp",
+    "description": "Clean Cookies from Open Tabs on StartUp"
   },
 
   "cookieCleanUpOnStartTooltipText": {
@@ -224,6 +224,26 @@
     "description": "Cleared Counter!"
   },
 
+  "whiteListWordText": {
+    "message": "WhiteList",
+    "description": "WhiteList"
+  }, 
+
+  "greyListWordText": {
+    "message": "GreyList",
+    "description": "GreyList"
+  }, 
+
+  "toWhiteListText": {
+    "message": "To WhiteList",
+    "description": "To WhiteList"
+  }, 
+
+  "toGreyListText": {
+    "message": "To GreyList",
+    "description": "To GreyList"
+  }, 
+
   "addURLText": {
     "message": "Add URL",
     "description": "Add URL"
@@ -237,6 +257,11 @@
   "enterURLTooltipText": {
     "message": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
+  },
+
+  "hoverButtonTooltipText": {
+    "message": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently.",
+    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
   },
 
   "exportURLSText": {
