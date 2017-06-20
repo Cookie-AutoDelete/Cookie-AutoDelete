@@ -152,7 +152,11 @@ document.getElementById("activeModeSwitch").addEventListener("click", () => {
 document.getElementById("switchToNoList").addEventListener("click", () => {
 	console.log("Removed from list");
 	if (hostUrl !== undefined) {
-		page.whiteList.removeURLFromLists(hostUrl, cookieStoreId);
+		if(page.contextualIdentitiesEnabled) {
+			page.whiteList.removeURLFromLists(hostUrl, cookieStoreId);
+		} else {
+			page.whiteList.removeURLFromLists(hostUrl, defaultWhiteList);
+		}
 		page.checkIfProtected(activeTab);
 	}
 });

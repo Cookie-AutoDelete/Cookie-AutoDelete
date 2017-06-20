@@ -98,6 +98,8 @@ class WhiteListService {
 	removeURLFromLists(url, cookieStoreId = defaultWhiteList) {
 		let otherList = this.returnOtherList(cookieStoreId);
 		// console.log(this.cookieWhiteList);
+		// console.log(url);
+		// console.log(cookieStoreId + " " + otherList);
 		this.cookieWhiteList.get(cookieStoreId).delete(url);
 		this.cookieWhiteList.get(otherList).delete(url);
 	}
