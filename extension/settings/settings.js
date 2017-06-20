@@ -237,7 +237,7 @@ function exportMapToTxt() {
 
 function switchList(event) {
 	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
-	let targetList = event.target.textContent;
+	let targetList = event.target.classList.item(0);
 	let currentWhiteList = defaultWhiteList;
 	if(page.contextualIdentitiesEnabled) {
 		currentWhiteList = getActiveTabName();
@@ -278,9 +278,13 @@ function createRow(arrayItem, listType) {
 	otherLink.href = "#";
 	otherLink.addEventListener("click", switchList);
 	if(listType === WHITELIST) {
-		otherLink.textContent = GREYLIST;
+		otherLink.textContent = browser.i18n.getMessage("greyListWordText");
+		otherLink.classList.remove(WHITELIST);
+		otherLink.classList.add(GREYLIST);
 	} else {
-		otherLink.textContent = WHITELIST;
+		otherLink.textContent = browser.i18n.getMessage("whiteListWordText");
+		otherLink.classList.remove(GREYLIST);
+		otherLink.classList.add(WHITELIST);
 	}
 
 	hoverDropDownContent.appendChild(otherLink);
