@@ -124,48 +124,50 @@ describe("CleanupService", () => {
 
 		var cleanupProperties = {
 			whiteList: {
-				hasHost: function() {}
+				hasHostInWhiteOrGrey: function() {}
 			},
 			contextualIdentitiesEnabled: false,
 			cache: cacheSetUp,
+			globalSubdomainEnabled: true,
 			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
 			
 		}
 
 		var cleanupPropertiesContextual = {
 			whiteList: {
-				hasHost: function() {}
+				hasHostInWhiteOrGrey: function() {}
 			},
 			contextualIdentitiesEnabled: true,
 			cache: cacheSetUp,
+			globalSubdomainEnabled: true,
 			setOfTabURLS: new Set()
 			
 		}
 
-		var stub1 = sinon.stub(cleanupProperties.whiteList, "hasHost");
-		stub1.withArgs("google.com").returns(false);
-		stub1.withArgs("youtube.com").returns(false);
-		stub1.withArgs("sub.youtube.com").returns(false);
+		var stub1 = sinon.stub(cleanupProperties.whiteList, "hasHostInWhiteOrGrey");
+		stub1.withArgs("google.com", "google.com").returns(false);
+		stub1.withArgs("youtube.com", "youtube.com").returns(false);
+		stub1.withArgs("sub.youtube.com", "sub.youtube.com").returns(false);
 
-		stub1.withArgs("facebook.com").returns(true);
-		stub1.withArgs("developer.mozilla.org").returns(false);
+		stub1.withArgs("facebook.com", "facebook.com").returns(true);
+		stub1.withArgs("developer.mozilla.org", "mozilla.org").returns(false);
 
 		//contextual identity tests
-		var stub2 = sinon.stub(cleanupPropertiesContextual.whiteList, "hasHost");
-		stub2.withArgs("youtube.com", "firefox-container-1").returns(true);
-		stub2.withArgs("youtube.com", "firefox-container-2").returns(false);
+		var stub2 = sinon.stub(cleanupPropertiesContextual.whiteList, "hasHostInWhiteOrGrey");
+		stub2.withArgs("youtube.com", "youtube.com", "firefox-container-1").returns(true);
+		stub2.withArgs("youtube.com", "youtube.com", "firefox-container-2").returns(false);
 
 		//subdomain testing for 1.3.0 https://github.com/mrdokenny/Cookie-AutoDelete/issues/3#issuecomment-304912809
-		stub1.withArgs("example.com").returns(true);
+		stub1.withArgs("example.com", "example.com").returns(true);
 		//implied in the whitelist because of example.com
-		stub1.withArgs("sub.example.com").returns(false);
+		stub1.withArgs("sub.example.com", "example.com").returns(true);
 
 
-		stub1.withArgs("sub.domain.com").returns(true);
+		stub1.withArgs("sub.domain.com", "domain.com").returns(true);
 		//implied in the whitelist because of sub.domain.com
-		stub1.withArgs("sub.sub.domain.com").returns(false);
-		stub1.withArgs("other.domain.com").returns(false);
-		stub1.withArgs("domain.com").returns(false);
+		stub1.withArgs("sub.sub.domain.com", "sub.domain.com").returns(true);
+		stub1.withArgs("other.domain.com", "domain.com").returns(false);
+		stub1.withArgs("domain.com", "domain.com").returns(false);
 
 		beforeEach(() => {
 		
@@ -334,6 +336,7 @@ describe("CleanupService", () => {
 			},
 			contextualIdentitiesEnabled: false,
 			cache: cacheSetUp,
+			globalSubdomainEnabled: true,
 			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
 			
 		}
@@ -344,6 +347,7 @@ describe("CleanupService", () => {
 			},
 			contextualIdentitiesEnabled: true,
 			cache: cacheSetUp,
+			globalSubdomainEnabled: true,
 			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
 			
 		}
@@ -456,7 +460,27 @@ describe("CleanupService", () => {
 		cache.nameCacheMap.set("firefox-container-2", "Work");
 		cache.nameCacheMap.set("firefox-container-3", "Finance");
 		cache.nameCacheMap.set("firefox-container-4", "Shopping");
+		var cleanupProperties = {
+			whiteList: {
+				hasHost: function() {}
+			},
+			contextualIdentitiesEnabled: false,
+			cache,
+			globalSubdomainEnabled: true,
+			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
+			
+		}
 
+		var cleanupPropertiesContextual = {
+			whiteList: {
+				hasHost: function() {}
+			},
+			contextualIdentitiesEnabled: true,
+			cache,
+			globalSubdomainEnabled: true,
+			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
+			
+		}
 
 		var whiteList = {};
 		var stub1;
@@ -473,21 +497,21 @@ describe("CleanupService", () => {
 	    });
 
 		it("should return [facebook.com, amazon.com] with false contextualIdentitiesEnabled", () => {
-			return cleanupService.cleanCookiesOperation(true, whiteList, false, cache)
+			return cleanupService.cleanCookiesOperation(cleanupProperties)
 			.then((setOfDeletedDomainCookies) => {
 				assert.sameMembers(Array.from(setOfDeletedDomainCookies), ["facebook.com", "amazon.com"]);
 			});	
 		});
 
 		it("should return [facebook.com, amazon.com] with true contextualIdentitiesEnabled", () => {
-			return cleanupService.cleanCookiesOperation(false, whiteList, true, cache)
+			return cleanupService.cleanCookiesOperation(cleanupPropertiesContextual)
 			.then((setOfDeletedDomainCookies) => {
 				assert.sameMembers(Array.from(setOfDeletedDomainCookies), ["facebook.com", "amazon.com"]);
 			});	
 		});
 
-		it("should return 4 for call count of brwoser.cookies.getAll", () => {
-			return cleanupService.cleanCookiesOperation(false, whiteList, true, cache)
+		it("should return 4 for call count of browser.cookies.getAll", () => {
+			return cleanupService.cleanCookiesOperation(cleanupPropertiesContextual)
 			.then((setOfDeletedDomainCookies) => {
 				assert.strictEqual(browser.cookies.getAll.callCount, 4);
 			});	

@@ -18,7 +18,7 @@ class CleanupService {
 	}
 
 	isSafeToClean(cleanupProperties, cookieProperties) {
-		let cookieBaseDomainHost = cookieProperties.globalSubdomainEnabled ? cookieProperties.cookieBaseDomainHost : cookieProperties.cookieDomainHost;
+		let cookieBaseDomainHost = cleanupProperties.globalSubdomainEnabled ? cookieProperties.cookieBaseDomainHost : cookieProperties.cookieDomainHost;
 
 		if (cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
 			return  !cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) &&
@@ -101,7 +101,7 @@ class CleanupService {
 				cleanupProperties.setOfTabURLS = setOfTabURLSIn;
 			}
 
-			console.log(cleanupProperties);
+			// console.log(cleanupProperties);
 
 			if (cleanupProperties.contextualIdentitiesEnabled) {
 				// Clean cookies in different cookie ids using the contextual identities api
