@@ -53,7 +53,17 @@
     "message": "Modo ativo",
     "description": "Active Mode"
   },
-
+  
+  "switchToNoListText": {		
+	    "message": "Limpar depois de fecho de separador",		
+	    "description": "Clean After Tab Close"		
+	},  		
+			
+	"switchToGreyListText": {		
+	    "message": "Limpar no reínicio do navegador (Lista cinza)",		
+	    "description": "Clean on Browser Restart (GreyList)"		
+	},
+  
   "switchToWhiteListText": {
     "message": "Adicionar à lista branca?",
     "description": "Add to WhiteList?"
