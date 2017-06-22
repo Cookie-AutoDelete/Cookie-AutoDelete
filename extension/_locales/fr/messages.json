@@ -164,10 +164,15 @@
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   },
   
-  "enableGlobalSubdomainText": {		
-	  "message": "Activer le contrôle des sous-domaines",		
-	  "description": "Enable Check for Subdomains"		
-	},
+  "enableGlobalSubdomainText": {
+    "message": "Activer le contrôle des sous-domaines",
+    "description": "Enable Check for Subdomains"
+  },
+
+  "enableGlobalSubdomainTooltipText": {
+    "message": "Si activé, *.exemple.com correspondra à exemple.com. Le désactiver vous donne plus de contrôle sur vos listes.",
+    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
+  },
 
   "contextualIdentitiesEnabledText": {
     "message": "Activer le support pour les identités contextuelles de Firefox (EXPÉRIMENTAL Firefox 53+)",
