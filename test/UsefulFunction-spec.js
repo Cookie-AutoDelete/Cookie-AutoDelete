@@ -126,6 +126,16 @@ describe("getHostname()", () => {
 		assert.strictEqual(results, "yahoo.com");
 	});
 
+	it("should return scotiaonline.scotiabank.com from https://www1.scotiaonline.scotiabank.com/online/authentication/authentication.bns", () => {
+		var results = usefulFunctions.getHostname("https://www1.scotiaonline.scotiabank.com/online/authentication/authentication.bns");
+		assert.strictEqual(results, "scotiaonline.scotiabank.com");
+	});
+
+	it("should return mint.com from https://wwws.mint.com", () => {
+		var results = usefulFunctions.getHostname("https://wwws.mint.com");
+		assert.strictEqual(results, "mint.com");
+	});
+
 });
 
 describe("isAWebpage()", () => {
