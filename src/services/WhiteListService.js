@@ -78,6 +78,7 @@ class WhiteListService {
 	addURL(url, cookieStoreId = defaultWhiteList) {
 		if (!this.cookieWhiteList.has(cookieStoreId)) {
 			this.cookieWhiteList.set(cookieStoreId, new Set());
+			this.cookieWhiteList.set(this.returnOtherList(cookieStoreId), new Set());
 		}
 		this.removeURLFromLists(url, cookieStoreId);
 		this.cookieWhiteList.get(cookieStoreId).add(url);
@@ -88,6 +89,7 @@ class WhiteListService {
 	removeURL(url, cookieStoreId = defaultWhiteList) {
 		if (!this.cookieWhiteList.has(cookieStoreId)) {
 			this.cookieWhiteList.set(cookieStoreId, new Set());
+			this.cookieWhiteList.set(this.returnOtherList(cookieStoreId), new Set());
 			return;
 		}
 		this.cookieWhiteList.get(cookieStoreId).delete(url);
@@ -96,12 +98,8 @@ class WhiteListService {
 
 	// Remove the url from the white and grey lists
 	removeURLFromLists(url, cookieStoreId = defaultWhiteList) {
-		let otherList = this.returnOtherList(cookieStoreId);
-		// console.log(this.cookieWhiteList);
-		// console.log(url);
-		// console.log(cookieStoreId + " " + otherList);
 		this.cookieWhiteList.get(cookieStoreId).delete(url);
-		this.cookieWhiteList.get(otherList).delete(url);
+		this.cookieWhiteList.get(this.returnOtherList(cookieStoreId)).delete(url);
 	}
 
 	// returns the id of the other list depending if it was greylist or whitelist
@@ -114,9 +112,8 @@ class WhiteListService {
 
 	// Clears the set depending on the cookieStoreId
 	clearURL(cookieStoreId = defaultWhiteList) {
-		let otherList = this.returnOtherList(cookieStoreId);
 		this.cookieWhiteList.get(cookieStoreId).clear();
-		this.cookieWhiteList.get(otherList).clear();
+		this.cookieWhiteList.get(this.returnOtherList(cookieStoreId)).clear();
 		this.storeLocal(cookieStoreId);
 	}
 
