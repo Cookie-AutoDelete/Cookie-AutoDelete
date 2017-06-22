@@ -175,21 +175,17 @@ function onStartUp() {
 		module.exports.contextualIdentitiesEnabled = contextualIdentitiesEnabled;
 		module.exports.statLog = statLog;
 		module.exports.cache = cache;
+
+		// Do a cleanup on startup if active mode is on
+		if(items.activeMode) {
+			return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
+		}
 		return Promise.resolve();
 	})
 	.catch(onError);
 }
 
-// Does a cookie cleanup on startup if the user chooses
-function cookieCleanUpOnStart(items) {
-	return browser.storage.local.get()
-	.then((items) => {
-		return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
-	});
-}
-
 onStartUp()
-.then(cookieCleanUpOnStart)
 .catch(onError);
 
 module.exports = {
