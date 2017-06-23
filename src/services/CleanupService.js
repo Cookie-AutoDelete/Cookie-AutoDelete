@@ -21,23 +21,14 @@ class CleanupService {
 		let cookieBaseDomainHost = cleanupProperties.globalSubdomainEnabled ? cookieProperties.cookieBaseDomainHost : cookieProperties.cookieDomainHost;
 
 		if (cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
-			return  !cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) &&
-					!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
-
-		} else if(!cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
-			return 	!cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost) &&
-		 			!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
-
+			return !cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
+		} else if (!cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
+			return 	!cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		} else if (cleanupProperties.contextualIdentitiesEnabled && cleanupProperties.startUp) {
-			return  !cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) &&
-					!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
-		
+			return !cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		}
 		// !cleanupProperties.contextualIdentitiesEnabled && cleanupProperties.startUp
-		return 	!cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost) &&
-		 		!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
-
-		
+		return 	!cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 	}
 
 	// Deletes cookies if there is no existing cookie's host main url in an open tab
@@ -91,7 +82,7 @@ class CleanupService {
 		// Stores the deleted domains (for notification)
 		this.setOfDeletedDomainCookies = new Set();
 		this.recentlyCleaned = 0;
-		
+
 		return this.returnSetOfOpenTabDomains()
 		.then((setOfTabURLSIn) => {
 			let cleanupProperties = cleanupPropertiesIn;

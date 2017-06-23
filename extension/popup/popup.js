@@ -33,24 +33,20 @@ function fillPopup(tabs) {
 	// Sets the checkbox depending on the if it exists in the set
 	cookieStoreId = tabs[0].cookieStoreId;
 	if (page.contextualIdentitiesEnabled) {
-		if(page.whiteList.hasHost(hostUrl, cookieStoreId)) {
+		if (page.whiteList.hasHost(hostUrl, cookieStoreId)) {
 			document.getElementById("switchToWhiteList").checked = true;
-		} else if(page.whiteList.hasHost(hostUrl, cookieStoreId + greyPrefix)) {
+		} else if (page.whiteList.hasHost(hostUrl, cookieStoreId + greyPrefix)) {
 			document.getElementById("switchToGreyList").checked = true;
 		} else {
 			document.getElementById("switchToNoList").checked = true;
 		}
+	} else if (page.whiteList.hasHost(hostUrl, defaultWhiteList)) {
+		document.getElementById("switchToWhiteList").checked = true;
+	} else if (page.whiteList.hasHost(hostUrl, defaultWhiteList + greyPrefix)) {
+		document.getElementById("switchToGreyList").checked = true;
 	} else {
-		if(page.whiteList.hasHost(hostUrl, defaultWhiteList)) {
-			document.getElementById("switchToWhiteList").checked = true;
-		} else if(page.whiteList.hasHost(hostUrl, defaultWhiteList + greyPrefix)) {
-			document.getElementById("switchToGreyList").checked = true;
-		} else {
-			document.getElementById("switchToNoList").checked = true;
-		}
+		document.getElementById("switchToNoList").checked = true;
 	}
-
-
 
 	// hostUrl = page.extractMainDomain(hostUrl);
 	let hostPlaceholder = document.getElementById("hostwebsite");
@@ -150,9 +146,9 @@ document.getElementById("activeModeSwitch").addEventListener("click", () => {
 // Radio button event Handling
 
 document.getElementById("switchToNoList").addEventListener("click", () => {
-	console.log("Removed from list");
+	// console.log("Removed from list");
 	if (hostUrl !== undefined) {
-		if(page.contextualIdentitiesEnabled) {
+		if (page.contextualIdentitiesEnabled) {
 			page.whiteList.removeURLFromLists(hostUrl, cookieStoreId);
 		} else {
 			page.whiteList.removeURLFromLists(hostUrl, defaultWhiteList);
@@ -162,7 +158,7 @@ document.getElementById("switchToNoList").addEventListener("click", () => {
 });
 
 document.getElementById("switchToGreyList").addEventListener("click", () => {
-	console.log("Added to GreyList");
+	// console.log("Added to GreyList");
 	if (hostUrl !== undefined) {
 		if (page.contextualIdentitiesEnabled) {
 			page.whiteList.addURL(hostUrl, cookieStoreId + greyPrefix);
@@ -174,7 +170,7 @@ document.getElementById("switchToGreyList").addEventListener("click", () => {
 });
 
 document.getElementById("switchToWhiteList").addEventListener("click", () => {
-	console.log("Added to WhiteList");
+	// console.log("Added to WhiteList");
 	if (hostUrl !== undefined) {
 		if (page.contextualIdentitiesEnabled) {
 			page.whiteList.addURL(hostUrl, cookieStoreId);

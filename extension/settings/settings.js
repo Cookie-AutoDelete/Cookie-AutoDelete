@@ -139,7 +139,7 @@ document.getElementById("defaultSettings").addEventListener("click", () => {
 function addURLHoverButton(event) {
 	let dropbtn = document.getElementById("dropbtnId");
 	let dropdownText = document.getElementById("dropdownText");
-	if(dropbtn.classList.item(1) === WHITELIST) {
+	if (dropbtn.classList.item(1) === WHITELIST) {
 		dropbtn.textContent = `${browser.i18n.getMessage("toGreyListText")} \u25BC`;
 		dropbtn.classList.remove(WHITELIST);
 		dropbtn.classList.add(GREYLIST);
@@ -234,16 +234,15 @@ function exportMapToTxt() {
 	downloadTextFile(txtFile);
 }
 
-
 function switchList(event) {
 	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
 	let targetList = event.target.classList.item(0);
 	let currentWhiteList = defaultWhiteList;
-	if(page.contextualIdentitiesEnabled) {
+	if (page.contextualIdentitiesEnabled) {
 		currentWhiteList = getActiveTabName();
 	}
 
-	if(targetList === GREYLIST) {
+	if (targetList === GREYLIST) {
 		page.whiteList.addURL(url, currentWhiteList + greyPrefix);
 	} else {
 		page.whiteList.addURL(url, currentWhiteList);
@@ -277,7 +276,7 @@ function createRow(arrayItem, listType) {
 	let otherLink = document.createElement("a");
 	otherLink.href = "#";
 	otherLink.addEventListener("click", switchList);
-	if(listType === WHITELIST) {
+	if (listType === WHITELIST) {
 		otherLink.textContent = browser.i18n.getMessage("greyListWordText");
 		otherLink.classList.remove(WHITELIST);
 		otherLink.classList.add(GREYLIST);
@@ -305,7 +304,7 @@ function generateTableFromSet(whitelist, greylist) {
 	// console.log(whitelist);
 	// console.log(greylist);
 	let combinedArray = [...whitelist, ...greylist].sort();
-	// console.log(combinedArray); 
+	// console.log(combinedArray);
 	combinedArray.forEach((item) => {
 		theTable.appendChild(createRow(item, whitelist.has(item) ? WHITELIST : GREYLIST));
 	});
@@ -345,7 +344,7 @@ function generateTabNav() {
 	tabNav.classList.add("tab");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates the tabbed navigation above the table
-		if(!key.endsWith(greyPrefix)) {
+		if (!key.endsWith(greyPrefix)) {
 			let tab = document.createElement("li");
 			let aTag = document.createElement("a");
 			aTag.textContent = page.cache.getNameFromCookieID(key);
@@ -370,7 +369,7 @@ function generateTableOfURLS() {
 	let theTables = document.createElement("div");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates a table based on the Cookie ID
-		if(!key.endsWith(greyPrefix)) {
+		if (!key.endsWith(greyPrefix)) {
 			let tabContent = generateTableFromSet(value, page.whiteList.cookieWhiteList.get(key + greyPrefix));
 			tabContent.classList.add("tabcontent");
 			tabContent.id = key;
@@ -386,21 +385,19 @@ function generateTableOfURLS() {
 	} else {
 		document.getElementById("tableContainer").appendChild(theTables);
 	}
-	
 }
 
 function generateTable() {
 	if (document.contains(document.getElementById("containerTabs"))) {
 		document.getElementById("containerTabs").remove();
 	}
-	if(page.contextualIdentitiesEnabled) {
+	if (page.contextualIdentitiesEnabled) {
 		generateTabNav();
 	}
 	generateTableOfURLS();
-	if(page.contextualIdentitiesEnabled) {
+	if (page.contextualIdentitiesEnabled) {
 		document.getElementsByClassName("tablinks")[0].click();
 	}
-	
 }
 
 generateTable();

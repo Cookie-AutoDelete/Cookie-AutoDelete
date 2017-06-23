@@ -50,7 +50,7 @@ function onTabRemoved(tabId, removeInfo) {
 	});
 }
 
-// Set background icon to orange 
+// Set background icon to orange
 function setIconOrange(tab) {
 	browser.browserAction.setIcon({
 		tabId: tab.id, path: {48: "icons/icon_yellow_48.png"}
@@ -119,7 +119,7 @@ function setPreferences(items) {
 
 	if (items.enableGlobalSubdomainSetting === undefined) {
 		browser.storage.local.set({enableGlobalSubdomainSetting: true});
-	} 
+	}
 	return Promise.resolve(items);
 }
 
@@ -177,7 +177,7 @@ function onStartUp() {
 		module.exports.cache = cache;
 
 		// Do a cleanup on startup if active mode is on
-		if(items.activeMode) {
+		if (items.activeMode) {
 			return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
 		}
 		return Promise.resolve();
@@ -201,7 +201,14 @@ module.exports = {
 	},
 
 	cleanupOperation(ignoreOpenTabs = false, startUp = false) {
-		return cleanup.cleanCookiesOperation({ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache, startUp, globalSubdomainEnabled})
+		return cleanup.cleanCookiesOperation({
+			ignoreOpenTabs,
+			whiteList,
+			contextualIdentitiesEnabled,
+			cache,
+			startUp,
+			globalSubdomainEnabled
+		})
 		.then((setOfDeletedDomainCookies) => {
 			statLog.incrementCounter(cleanup.recentlyCleaned);
 			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies);
@@ -250,19 +257,17 @@ module.exports = {
 		if (contextualIdentitiesEnabled) {
 			if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId)) {
 				setIconDefault(tab);
-			} else if(whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId + greyPrefix)){
+			} else if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId + greyPrefix)) {
 				setIconOrange(tab);
 			} else {
 				setIconRed(tab);
 			}
+		} else if (whiteList.hasHostSubdomain(domainHost, baseDomainHost)) {
+			setIconDefault(tab);
+		} else if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, defaultWhiteList + greyPrefix)) {
+			setIconOrange(tab);
 		} else {
-			if (whiteList.hasHostSubdomain(domainHost, baseDomainHost)) {
-				setIconDefault(tab);
-			} else if(whiteList.hasHostSubdomain(domainHost, baseDomainHost, defaultWhiteList + greyPrefix)){
-				setIconOrange(tab);
-			} else {
-				setIconRed(tab);
-			}
+			setIconRed(tab);
 		}
 	}
 

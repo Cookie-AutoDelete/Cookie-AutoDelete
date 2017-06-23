@@ -13,26 +13,15 @@ class WhiteListService {
 					this.cookieWhiteList.set(cookieStoreId, new Set());
 				}
 			});
-
-			// let firefoxDefault = "firefox-default";
-			// if (items[firefoxDefault] !== undefined) {
-			// 	this.cookieWhiteList.set(firefoxDefault, new Set(items[firefoxDefault]));
-			// } else {
-			// 	this.cookieWhiteList.set(firefoxDefault, new Set());
-			// }
-
 			// contextualIdentitieies disabled
 		} else {
-
 			if (items[defaultWhiteList] !== undefined) {
 				this.cookieWhiteList.set(defaultWhiteList, new Set(items[defaultWhiteList]));
-				
 			} else {
 				this.cookieWhiteList.set(defaultWhiteList, new Set());
-				
 			}
 
-			if(items[defaultWhiteList + greyPrefix] !== undefined) {
+			if (items[defaultWhiteList + greyPrefix] !== undefined) {
 				this.cookieWhiteList.set(defaultWhiteList + greyPrefix, new Set(items[defaultWhiteList + greyPrefix]));
 			} else {
 				this.cookieWhiteList.set(defaultWhiteList + greyPrefix, new Set(items[defaultWhiteList + greyPrefix]));
@@ -104,7 +93,7 @@ class WhiteListService {
 
 	// returns the id of the other list depending if it was greylist or whitelist
 	returnOtherList(list) {
-		if(list.endsWith(greyPrefix)) {
+		if (list.endsWith(greyPrefix)) {
 			return list.replace(greyPrefix, "");
 		}
 		return list + greyPrefix;
