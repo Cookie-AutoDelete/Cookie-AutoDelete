@@ -46,6 +46,7 @@ document.getElementById("clearURLText").textContent = browser.i18n.getMessage("c
 document.getElementById("dropbtnId").textContent = `${browser.i18n.getMessage("toWhiteListText")} \u25BC`;
 document.getElementById("dropdownText").textContent = browser.i18n.getMessage("greyListWordText");
 document.getElementById("enterURLTooltipText").textContent = browser.i18n.getMessage("enterURLTooltipText");
+document.getElementById("hoverButtonTooltipText").textContent = browser.i18n.getMessage("hoverButtonTooltipText");
 document.getElementById("exportURLSText").textContent = browser.i18n.getMessage("exportURLSText");
 document.getElementById("importURLSText").textContent = browser.i18n.getMessage("importURLSText");
 

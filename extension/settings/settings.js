@@ -235,6 +235,7 @@ function exportMapToTxt() {
 }
 
 function switchList(event) {
+	event.preventDefault();
 	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
 	let targetList = event.target.classList.item(0);
 	let currentWhiteList = defaultWhiteList;
