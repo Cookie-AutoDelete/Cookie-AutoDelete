@@ -55,12 +55,12 @@
   },
   
   "switchToNoListText": {		
-	    "message": "Limpar depois de fecho de separador",		
+	    "message": "Limpar depois do fecho do separador",		
 	    "description": "Clean After Tab Close"		
 	},  		
 			
 	"switchToGreyListText": {		
-	    "message": "Limpar no reínicio do navegador (Lista cinza)",		
+	    "message": "Limpar no reínicio do navegador (lista cinza)",		
 	    "description": "Clean on Browser Restart (GreyList)"		
 	},
   
