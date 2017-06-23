@@ -6,12 +6,16 @@ const NotificationService = require("./services/NotificationService");
 const StatsService = require("./services/StatsService");
 const WhiteListService = require("./services/WhiteListService");
 
+const greyPrefix = "-Grey";
+const defaultWhiteList = "defaultWhiteList";
+
 let cleanup = new CleanupService();
 let notifyCleanup = new NotificationService();
 let whiteList;
 let statLog;
 let cache;
 let contextualIdentitiesEnabled = false;
+let globalSubdomainEnabled;
 
 // Logs the error
 function onError(error) {
@@ -43,6 +47,16 @@ function onTabRemoved(tabId, removeInfo) {
 			return createActiveModeAlarm();
 		}
 		return Promise.resolve();
+	});
+}
+
+// Set background icon to orange
+function setIconOrange(tab) {
+	browser.browserAction.setIcon({
+		tabId: tab.id, path: {48: "icons/icon_yellow_48.png"}
+	});
+	browser.browserAction.setBadgeBackgroundColor({
+		color: "#e6a32e", tabId: tab.id
 	});
 }
 
@@ -102,6 +116,10 @@ function setPreferences(items) {
 	if (items.cookieCleanUpOnStartSetting === undefined) {
 		browser.storage.local.set({cookieCleanUpOnStartSetting: false});
 	}
+
+	if (items.enableGlobalSubdomainSetting === undefined) {
+		browser.storage.local.set({enableGlobalSubdomainSetting: true});
+	}
 	return Promise.resolve(items);
 }
 
@@ -118,6 +136,8 @@ function contextualCheck(items) {
 
 // Create objects based on settings
 function createObjects(items) {
+	globalSubdomainEnabled = items.enableGlobalSubdomainSetting;
+
 	if (items.activeMode === true) {
 		exposedFunctions.enableActiveMode();
 	} else {
@@ -155,25 +175,17 @@ function onStartUp() {
 		module.exports.contextualIdentitiesEnabled = contextualIdentitiesEnabled;
 		module.exports.statLog = statLog;
 		module.exports.cache = cache;
+
+		// Do a cleanup on startup if active mode is on
+		if (items.activeMode) {
+			return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
+		}
 		return Promise.resolve();
 	})
 	.catch(onError);
 }
 
-// Does a cookie cleanup on startup if the user chooses
-function cookieCleanUpOnStart(items) {
-	return browser.storage.local.get()
-	.then((items) => {
-		if (items.cookieCleanUpOnStartSetting === true) {
-			// console.log("Startup Cleanup");
-			return exposedFunctions.cleanupOperation(true);
-		}
-		return Promise.resolve();
-	});
-}
-
 onStartUp()
-.then(cookieCleanUpOnStart)
 .catch(onError);
 
 module.exports = {
@@ -188,8 +200,15 @@ module.exports = {
 		});
 	},
 
-	cleanupOperation(ignoreOpenTabs = false) {
-		return cleanup.cleanCookiesOperation(ignoreOpenTabs, whiteList, contextualIdentitiesEnabled, cache)
+	cleanupOperation(ignoreOpenTabs = false, startUp = false) {
+		return cleanup.cleanCookiesOperation({
+			ignoreOpenTabs,
+			whiteList,
+			contextualIdentitiesEnabled,
+			cache,
+			startUp,
+			globalSubdomainEnabled
+		})
 		.then((setOfDeletedDomainCookies) => {
 			statLog.incrementCounter(cleanup.recentlyCleaned);
 			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies);
@@ -234,15 +253,19 @@ module.exports = {
 	},
 	checkIfProtected(tab) {
 		let domainHost = UsefulFunctions.getHostname(tab.url);
-		let baseDomainHost = UsefulFunctions.extractBaseDomain(domainHost);
+		let baseDomainHost = globalSubdomainEnabled ? UsefulFunctions.extractBaseDomain(domainHost) : domainHost;
 		if (contextualIdentitiesEnabled) {
-			if (whiteList.hasHost(domainHost, tab.cookieStoreId) || whiteList.hasHost(baseDomainHost, tab.cookieStoreId)) {
+			if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId)) {
 				setIconDefault(tab);
+			} else if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, tab.cookieStoreId + greyPrefix)) {
+				setIconOrange(tab);
 			} else {
 				setIconRed(tab);
 			}
-		} else if (whiteList.hasHost(domainHost) || whiteList.hasHost(baseDomainHost)) {
+		} else if (whiteList.hasHostSubdomain(domainHost, baseDomainHost)) {
 			setIconDefault(tab);
+		} else if (whiteList.hasHostSubdomain(domainHost, baseDomainHost, defaultWhiteList + greyPrefix)) {
+			setIconOrange(tab);
 		} else {
 			setIconRed(tab);
 		}

@@ -18,19 +18,17 @@ class CleanupService {
 	}
 
 	isSafeToClean(cleanupProperties, cookieProperties) {
-		// hasHost has flexible checking(differentiate between sub.sub.domain.com and domain.com)
-		// while setOfTabURLS is not flexible (sub.sub.domain.com will match to domain.com if in host domain in tab)
-		let safeToClean;
-		if (cleanupProperties.contextualIdentitiesEnabled) {
-			safeToClean = 	!(cleanupProperties.whiteList.hasHost(cookieProperties.cookieBaseDomainHost, cookieProperties.storeId) ||
-							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost, cookieProperties.storeId)) &&
-							!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
-		} else {
-			safeToClean = 	!(cleanupProperties.whiteList.hasHost(cookieProperties.cookieBaseDomainHost) ||
-							cleanupProperties.whiteList.hasHost(cookieProperties.cookieDomainHost)) &&
-							!cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
+		let cookieBaseDomainHost = cleanupProperties.globalSubdomainEnabled ? cookieProperties.cookieBaseDomainHost : cookieProperties.cookieDomainHost;
+
+		if (cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
+			return !cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
+		} else if (!cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
+			return 	!cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
+		} else if (cleanupProperties.contextualIdentitiesEnabled && cleanupProperties.startUp) {
+			return !cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		}
-		return safeToClean;
+		// !cleanupProperties.contextualIdentitiesEnabled && cleanupProperties.startUp
+		return 	!cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 	}
 
 	// Deletes cookies if there is no existing cookie's host main url in an open tab
@@ -79,25 +77,23 @@ class CleanupService {
 		});
 	}
 
-	// Main function for cookie cleanup
-	cleanCookiesOperation(ignoreOpenTabs = false, whiteListIn, contextualIdentitiesEnabledIn, cacheIn) {
+	// Main function for cookie cleanup ignoreOpenTabs = false, whiteListIn, contextualIdentitiesEnabledIn, cacheIn
+	cleanCookiesOperation(cleanupPropertiesIn) {
 		// Stores the deleted domains (for notification)
 		this.setOfDeletedDomainCookies = new Set();
 		this.recentlyCleaned = 0;
 
 		return this.returnSetOfOpenTabDomains()
 		.then((setOfTabURLSIn) => {
-			let cleanupProperties = {
-				whiteList: whiteListIn,
-				contextualIdentitiesEnabled: contextualIdentitiesEnabledIn,
-				cache: cacheIn
-			};
+			let cleanupProperties = cleanupPropertiesIn;
 
-			if (ignoreOpenTabs) {
+			if (cleanupProperties.ignoreOpenTabs) {
 				cleanupProperties.setOfTabURLS = new Set();
 			} else {
 				cleanupProperties.setOfTabURLS = setOfTabURLSIn;
 			}
+
+			// console.log(cleanupProperties);
 
 			if (cleanupProperties.contextualIdentitiesEnabled) {
 				// Clean cookies in different cookie ids using the contextual identities api

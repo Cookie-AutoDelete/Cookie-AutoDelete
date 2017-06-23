@@ -64,7 +64,7 @@ module.exports = {
 	getHostname(urlToGetHostName) {
 		let hostname = new URL(urlToGetHostName).hostname;
 		// Strip "www." if the URL starts with it.
-		hostname = hostname.replace(/^www\./, "");
+		hostname = hostname.replace(/^www[a-z0-9]?\./, "");
 		return hostname;
 	},
 

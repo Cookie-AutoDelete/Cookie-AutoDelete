@@ -44,6 +44,12 @@
 					<h2 id="releaseNotesText">Release Notes</h2>
 					<div class="row">
 						<div class="six columns">
+							<span>1.4.0</span>
+							<ul>
+								<li>New Feature: GreyList Support (Set a site's cookies to clear on browser restart)</li>
+								<li>Added: Global Subdomain Checkbox</li>
+								<li>Changed: WhiteList and GreyList are now Sorted</li>
+							</ul>
 							<span>1.3.0</span>
 							<ul>
 								<li>New Feature: Option to do a Cookie Cleanup on Startup</li>
@@ -57,17 +63,15 @@
 								<li>Added Localization Support. Instructions to translate Cookie AutoDelete are on GitHub Page</li>
 								<li>New Languages: pt_PT, es</li>
 							</ul>
+
+						</div>
+
+						<div class="six columns">
 							<span>1.1.0</span>
 							<ul>
 								<li>Can now access the popup in pages that are not webpages</li>
 								<li>New Feature: Background of the icon color changes whether a site is in the whitelist</li>
 							</ul>
-							
-							
-							
-						</div>
-
-						<div class="six columns">
 							<span>1.0.4</span>
 							<ul>
 								<li>Fixed Cookie Cleanup not activating if a cookie domain host had a '.' at the end</li>
@@ -149,6 +153,14 @@
 						</div>	
 					</div>
 
+					<div class="row">
+						<input type="checkbox" id="enableGlobalSubdomainSwitch">
+						<span id="enableGlobalSubdomainText">enableGlobalSubdomain</span>
+						<div class="tooltip">?
+						  <span id="enableGlobalSubdomainTooltipText" class="tooltiptext">enableGlobalSubdomain</span>
+						</div>	
+					</div>
+
 					<div class="row" id="contextualIdentitiesRow">
 						<input type="checkbox" id="contextualIdentitiesEnabledSwitch">
 						<span id="contextualIdentitiesEnabledText">Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)</span>
@@ -196,7 +208,13 @@
 
 					<button id="add">
 						<span id="addURLText">Add URL</span>
-					</button>		
+					</button>
+					 <div class="dropdown">
+					  <button id="dropbtnId" class="dropbtn WhiteList">TO WHITELIST &#x25BC;</button>
+					  <div class="dropdown-content">
+					    <a id="dropdownText" href="#">GreyList</a>
+					  </div>
+					</div> 
 					<button id="clear">
 						<span id="clearURLText">Remove All</span>
 					</button>

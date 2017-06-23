@@ -1,7 +1,10 @@
+const greyPrefix = "-Grey";
+
 class CacheService {
 	constructor() {
 		this.nameCacheMap = new Map();
 		this.nameCacheMap.set("firefox-default", "Default");
+		this.nameCacheMap.set(`firefox-default${greyPrefix}`, `Default${greyPrefix}`);
 	}
 
 	// Store contenxtual identity names in storage
@@ -10,6 +13,7 @@ class CacheService {
 		.then((containers) => {
 			containers.forEach((currentValue, index, array) => {
 				this.nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
+				this.nameCacheMap.set(currentValue.cookieStoreId + greyPrefix, currentValue.name + greyPrefix);
 			});
 			return browser.storage.local.set({containerCache: containers});
 		});
@@ -22,6 +26,7 @@ class CacheService {
 		}
 		items.containerCache.forEach((currentValue, index, array) => {
 			this.nameCacheMap.set(currentValue.cookieStoreId, currentValue.name);
+			this.nameCacheMap.set(currentValue.cookieStoreId + greyPrefix, currentValue.name + greyPrefix);
 		});
 		return Promise.resolve();
 	}

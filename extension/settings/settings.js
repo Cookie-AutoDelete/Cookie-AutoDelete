@@ -1,7 +1,10 @@
 /* global page*/
 /* eslint no-use-before-define: ["error", { "functions": false }]*/
 let browserDetect = browser.extension.getBackgroundPage().browserDetect;
-
+const defaultWhiteList = "defaultWhiteList";
+const greyPrefix = "-Grey";
+const GREYLIST = "GreyList";
+const WHITELIST = "WhiteList";
 // Logs the error
 function onError(error) {
 	console.error(`Error: ${error}`);
@@ -74,6 +77,7 @@ function restoreSettingValues() {
 	document.getElementById("showNumberOfCookiesInIconSwitch").checked = items.showNumberOfCookiesInIconSetting;
 	document.getElementById("notifyCookieCleanUpSwitch").checked = items.notifyCookieCleanUpSetting;
 	document.getElementById("cookieCleanUpOnStartSwitch").checked = items.cookieCleanUpOnStartSetting;
+	document.getElementById("enableGlobalSubdomainSwitch").checked = items.enableGlobalSubdomainSetting;
 	document.getElementById("contextualIdentitiesEnabledSwitch").checked = items.contextualIdentitiesEnabledSetting;
 	return Promise.resolve();
 });
@@ -88,6 +92,7 @@ function saveSettingsValues() {
 		showNumberOfCookiesInIconSetting: document.getElementById("showNumberOfCookiesInIconSwitch").checked,
 		notifyCookieCleanUpSetting: document.getElementById("notifyCookieCleanUpSwitch").checked,
 		cookieCleanUpOnStartSetting: document.getElementById("cookieCleanUpOnStartSwitch").checked,
+		enableGlobalSubdomainSetting: document.getElementById("enableGlobalSubdomainSwitch").checked,
 		contextualIdentitiesEnabledSetting: document.getElementById("contextualIdentitiesEnabledSwitch").checked
 	}).then(page.onStartUp);
 }
@@ -129,19 +134,33 @@ document.getElementById("defaultSettings").addEventListener("click", () => {
 /*
     Cookie WhiteList Logic
 */
+
+// Event handler for the add to WhiteList or GreyList hover button
+function addURLHoverButton(event) {
+	let dropbtn = document.getElementById("dropbtnId");
+	let dropdownText = document.getElementById("dropdownText");
+	if (dropbtn.classList.item(1) === WHITELIST) {
+		dropbtn.textContent = `${browser.i18n.getMessage("toGreyListText")} \u25BC`;
+		dropbtn.classList.remove(WHITELIST);
+		dropbtn.classList.add(GREYLIST);
+		dropdownText.textContent = `${browser.i18n.getMessage("whiteListWordText")}`;
+	} else {
+		dropbtn.textContent = `${browser.i18n.getMessage("toWhiteListText")} \u25BC`;
+		dropbtn.classList.remove(GREYLIST);
+		dropbtn.classList.add(WHITELIST);
+		dropdownText.textContent = `${browser.i18n.getMessage("greyListWordText")}`;
+	}
+}
+
 // Remove the url where the user clicked
 function clickRemoved(event) {
 	if (event.target.classList.contains("removeButton")) {
-		let URL = event.target.parentElement.textContent;
-        // Slice the unicode times from the URL
-		URL = URL.slice(1);
+		let URL = event.target.parentElement.classList.item(0);
+		let list = event.target.parentElement.classList.item(1);
+		let currentWhiteList = page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList;
 		URL = URL.trim();
-        // console.log(URL);
-		if (page.contextualIdentitiesEnabled) {
-			page.whiteList.removeURL(URL, getActiveTabName());
-		} else {
-			page.whiteList.removeURL(URL);
-		}
+        // console.log(list);
+		page.whiteList.removeURL(URL, list === WHITELIST ? currentWhiteList : currentWhiteList + greyPrefix);
 		generateTableOfURLS();
 	}
 }
@@ -160,11 +179,9 @@ function addURLFromInput() {
 	let input = document.getElementById("URLForm").value;
 	if (input) {
 		let URL = `http://www.${input}`;
-		if (page.contextualIdentitiesEnabled) {
-			page.whiteList.addURL(page.getHostname(URL), getActiveTabName());
-		} else {
-			page.whiteList.addURL(page.getHostname(URL));
-		}
+		let list = document.getElementById("dropbtnId").classList.item(1);
+		let currentWhiteList = page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList;
+		page.whiteList.addURL(page.getHostname(URL), list === WHITELIST ? currentWhiteList : currentWhiteList + greyPrefix);
 		document.getElementById("URLForm").value = "";
 		document.getElementById("URLForm").focus();
 		generateTableOfURLS();
@@ -211,29 +228,86 @@ function exportMapToTxt() {
 	let txtFile = "";
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
 		txtFile += `#${key}\n`;
-		txtFile += returnLinesFromArray(Array.from(value));
+		txtFile += returnLinesFromArray(Array.from(value).sort());
 		txtFile += "\n";
 	});
 	downloadTextFile(txtFile);
 }
 
-// Creates a html table from an array
-function generateTableFromArray(array) {
-	let arrayLength = array.length;
-	let theTable = document.createElement("table");
-
-	for (let i = 0; i < arrayLength; i++) {
-		let tr = document.createElement("tr");
-		let td = document.createElement("td");
-		let removeButton = document.createElement("span");
-		removeButton.classList.add("removeButton");
-		removeButton.addEventListener("click", clickRemoved);
-		removeButton.appendChild(document.createTextNode("\u00D7"));
-		td.appendChild(removeButton);
-		td.appendChild(document.createTextNode(array[i]));
-		tr.appendChild(td);
-		theTable.appendChild(tr);
+function switchList(event) {
+	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
+	let targetList = event.target.classList.item(0);
+	let currentWhiteList = defaultWhiteList;
+	if (page.contextualIdentitiesEnabled) {
+		currentWhiteList = getActiveTabName();
 	}
+
+	if (targetList === GREYLIST) {
+		page.whiteList.addURL(url, currentWhiteList + greyPrefix);
+	} else {
+		page.whiteList.addURL(url, currentWhiteList);
+	}
+	generateTableOfURLS();
+}
+
+function createRow(arrayItem, listType) {
+	let tr = document.createElement("tr");
+	let td = document.createElement("td");
+
+	td.classList.add(arrayItem);
+	td.classList.add(listType);
+	// console.log(td.classList.item(1));
+
+	let removeButton = document.createElement("span");
+	removeButton.classList.add("removeButton");
+	removeButton.addEventListener("click", clickRemoved);
+
+	let hoverMenu = document.createElement("div");
+	hoverMenu.classList.add("dropdown");
+	hoverMenu.style.float = "right";
+	hoverMenu.style.right = "1em";
+	hoverMenu.style.position = "relative";
+	let hoverButton = document.createElement("button");
+	hoverButton.classList.add("dropbtn");
+	hoverButton.textContent = `${listType === WHITELIST ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")} \u25BC`;
+	hoverButton.style.border = "none";
+	let hoverDropDownContent = document.createElement("div");
+	hoverDropDownContent.classList.add("dropdown-content");
+	let otherLink = document.createElement("a");
+	otherLink.href = "#";
+	otherLink.addEventListener("click", switchList);
+	if (listType === WHITELIST) {
+		otherLink.textContent = browser.i18n.getMessage("greyListWordText");
+		otherLink.classList.remove(WHITELIST);
+		otherLink.classList.add(GREYLIST);
+	} else {
+		otherLink.textContent = browser.i18n.getMessage("whiteListWordText");
+		otherLink.classList.remove(GREYLIST);
+		otherLink.classList.add(WHITELIST);
+	}
+
+	hoverDropDownContent.appendChild(otherLink);
+	hoverMenu.appendChild(hoverButton);
+	hoverMenu.appendChild(hoverDropDownContent);
+
+	removeButton.appendChild(document.createTextNode("\u00D7"));
+	td.appendChild(removeButton);
+	td.appendChild(document.createTextNode(arrayItem));
+	td.appendChild(hoverMenu);
+	tr.appendChild(td);
+	return tr;
+}
+
+// Creates a html table from an array
+function generateTableFromSet(whitelist, greylist) {
+	let theTable = document.createElement("table");
+	// console.log(whitelist);
+	// console.log(greylist);
+	let combinedArray = [...whitelist, ...greylist].sort();
+	// console.log(combinedArray);
+	combinedArray.forEach((item) => {
+		theTable.appendChild(createRow(item, whitelist.has(item) ? WHITELIST : GREYLIST));
+	});
 	return theTable;
 }
 
@@ -270,16 +344,18 @@ function generateTabNav() {
 	tabNav.classList.add("tab");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates the tabbed navigation above the table
-		let tab = document.createElement("li");
-		let aTag = document.createElement("a");
-		aTag.textContent = page.cache.getNameFromCookieID(key);
-		aTag.classList.add("tablinks");
-		aTag.classList.add(key);
-		aTag.addEventListener("click", (event) => {
-			openTab(event, key);
-		});
-		tab.appendChild(aTag);
-		tabNav.appendChild(tab);
+		if (!key.endsWith(greyPrefix)) {
+			let tab = document.createElement("li");
+			let aTag = document.createElement("a");
+			aTag.textContent = page.cache.getNameFromCookieID(key);
+			aTag.classList.add("tablinks");
+			aTag.classList.add(key);
+			aTag.addEventListener("click", (event) => {
+				openTab(event, key);
+			});
+			tab.appendChild(aTag);
+			tabNav.appendChild(tab);
+		}
 	});
 
 	tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
@@ -289,32 +365,25 @@ function generateTabNav() {
 function generateTableOfURLS() {
 	// let tableContainerNode = document.getElementById("tableContainer");
     // console.log(page.cookieWhiteList);
-	if (page.contextualIdentitiesEnabled) {
-		let activeTabName = getActiveTabName();
-		let theTables = document.createElement("div");
-		page.whiteList.cookieWhiteList.forEach((value, key, map) => {
-                // Creates a table based on the Cookie ID
-			let tabContent = generateTableFromArray(Array.from(value));
+	let activeTabName = getActiveTabName();
+	let theTables = document.createElement("div");
+	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
+        // Creates a table based on the Cookie ID
+		if (!key.endsWith(greyPrefix)) {
+			let tabContent = generateTableFromSet(value, page.whiteList.cookieWhiteList.get(key + greyPrefix));
 			tabContent.classList.add("tabcontent");
 			tabContent.id = key;
 			theTables.appendChild(tabContent);
 			if (activeTabName !== "" && key !== activeTabName) {
 				tabContent.style.display = "none";
 			}
-		});
+		}
+	});
 
-		if (document.getElementById("tableContainer").hasChildNodes()) {
-			document.getElementById("tableContainer").firstChild.replaceWith(theTables);
-		} else {
-			document.getElementById("tableContainer").appendChild(theTables);
-		}
+	if (document.getElementById("tableContainer").hasChildNodes()) {
+		document.getElementById("tableContainer").firstChild.replaceWith(theTables);
 	} else {
-		let theTable = generateTableFromArray(page.whiteList.returnList());
-		if (document.getElementById("tableContainer").hasChildNodes()) {
-			document.getElementById("tableContainer").firstChild.replaceWith(theTable);
-		} else {
-			document.getElementById("tableContainer").appendChild(theTable);
-		}
+		document.getElementById("tableContainer").appendChild(theTables);
 	}
 }
 
@@ -335,16 +404,14 @@ generateTable();
 
 // Event handler for the Remove All button
 document.getElementById("clear").addEventListener("click", () => {
-	if (page.contextualIdentitiesEnabled) {
-		page.whiteList.clearURL(getActiveTabName());
-	} else {
-		page.whiteList.clearURL();
-	}
+	page.whiteList.clearURL(page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList);
 	generateTableOfURLS();
 });
 
 // Event handler for the user entering a URL through a form
 document.getElementById("add").addEventListener("click", addURLFromInput);
+
+document.getElementById("dropdownText").addEventListener("click", addURLHoverButton);
 
 // Event handler when the user press "Enter" on a keyboard on the URL Form
 document.getElementById("URLForm").addEventListener("keypress", (e) => {
