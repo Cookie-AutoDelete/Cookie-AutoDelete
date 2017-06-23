@@ -170,7 +170,7 @@
   },
 
   "cookieCleanUpOnStartTooltipText": {
-    "message": "Функцията е идентична с "изчистване (без отворените подпрозорци)", тоест всички бисквитки извън белия списък се изтриват.",
+    "message": "Функцията е идентична с 'изчистване (без отворените подпрозорци)', тоест всички бисквитки извън белия списък се изтриват.",
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   },
 
@@ -180,7 +180,7 @@
   },
 
   "enableGlobalSubdomainTooltipText": {
-    "message": "При включване, "*.abv.com" ще съвпадне с "abv.com". Изключването ще ви даде повече контрол над списъците.",
+    "message": "При включване, '*.abv.com' ще съвпадне с 'abv.com'. Изключването ще ви даде повече контрол над списъците.",
     "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
   },
 
