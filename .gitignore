@@ -38,3 +38,5 @@ jspm_packages
 *.xpi
 *.zip
 extension/background-webpack.js
+
+*.js text eol=lf

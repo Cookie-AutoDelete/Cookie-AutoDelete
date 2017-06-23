@@ -5,13 +5,15 @@ Control your cookies! This extension is inspired by Self Destructing Cookies. Wh
 
 ## Main Features
 - Auto Deletes Cookies from Closed Tabs
-- WhiteList Support for Sites you want to keep Cookies
+- WhiteList/GreyList Support for Cookies
 - Easily Export/Import your Whitelist
 - Clear All Cookies for a Domain
+- Supports Manual Mode Cleaning from the popup
+- Easily see the number of cookies for a site 
 - Support for Container Tabs (Firefox 53+ Only)
 
 ### Usage
-1. Add the sites you want to keep cookies in the whitelist
+1. Add the sites you want to keep cookies in the WhiteList or GreyList
 2. Enable "Active Mode" in the popup or settings
 3. Watch those unused cookies disappear :)
 
@@ -20,19 +22,45 @@ Control your cookies! This extension is inspired by Self Destructing Cookies. Wh
 
 [Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
 
-## Internationalization (i18n)
+### Contributing
+
+#### Internationalization (i18n)
 
 Translate Cookie AutoDelete in your language or help fix a translation!
 
-1. Copy and paste the "/extension/_locales/en" folder.
+1. Copy and paste the `/extension/_locales/en` folder.
 2. Rename the newly copied folder to the language codes found [here](https://developer.chrome.com/webstore/i18n?csw=1#localeTable)
-3. Open the manifest.json in your newly created folder and start translating the "message" JSON properties. The description should be left alone as a reference. Also any word with '$' surrounding it should be left alone as they are placeholders.
-4. Test the translation by building it. Fix any UI glitches by if possible using a shorter translation.
+3. Open the messages.json in your newly created folder and start translating the "message" JSON properties. The description should be left alone as a reference. Also any word with '$' surrounding it should be left alone as they are placeholders.
+4. Test the translation under *Development* and *Testing*. Fix any UI glitches by if possible using a shorter translation.
 5. Make a Pull Request and you're done!.
-6. Watch for changes in the "/extension/_locales/en/messages.json" file for future updates or if the updates somehow got lost use a [diff tool](https://www.diffchecker.com/diff).
+6. Watch for changes in the `/extension/_locales/en/messages.json` file for future updates or if the updates somehow got lost use a [diff tool](https://www.diffchecker.com/diff).
 
-## Build Intructions
+#### Contributing Code
 
-1. Run `npm install`
-2. Run `npm run-script build`
+##### Requirements
+- Bash Linux or Bash for Windows (cause there's some .sh scripts)
+- Latest version of nodejs
+
+##### Development
+- `npm install` - installs all dependencies
+- `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.js` and its dependencies to `/extension`
+- `npm run lint` - Runs the eslinter for js files
+- `npm test` - Runs the test suite located in `/test`
+
+##### Testing
+1. Run `npm install` (if you haven't already)
+2. Run `npn run dev`
+3. Load the extension in the browser
+
+- Firefox
+  - Easiest way would be to run the tool [web-ext](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext#Testing_out_an_extension)
+  - Another way is go into `about:debugging` and load `/extension/manifest.json`
+
+- Chrome
+  - In the extension tab, enable Developer Mode, then `load unpacked extension` and load the `/extension` folder
+
+##### Building
+
+1. Run `npm install` (if you haven't already)
+2. Run `npm run build`
 3. The build files should be in a new folder called `/builds`
