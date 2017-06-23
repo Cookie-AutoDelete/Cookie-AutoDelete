@@ -31,25 +31,26 @@ Translate Cookie AutoDelete in your language or help fix a translation!
 1. Copy and paste the `/extension/_locales/en` folder.
 2. Rename the newly copied folder to the language codes found [here](https://developer.chrome.com/webstore/i18n?csw=1#localeTable)
 3. Open the messages.json in your newly created folder and start translating the "message" JSON properties. The description should be left alone as a reference. Also any word with '$' surrounding it should be left alone as they are placeholders.
-4. Test the translation under *Development* and *Testing*. Fix any UI glitches by if possible using a shorter translation.
+4. Test the translation under *Testing*. Fix any UI glitches by if possible using a shorter translation.
 5. Make a Pull Request and you're done!.
 6. Watch for changes in the `/extension/_locales/en/messages.json` file for future updates or if the updates somehow got lost use a [diff tool](https://www.diffchecker.com/diff).
 
 #### Contributing Code
 
 ##### Requirements
-- Bash Linux or Bash for Windows (cause there's some .sh scripts)
+- Bash Linux or Bash for Windows (cause there's some .sh scripts otherwise you can't do `npm run build` but can still do `npm run dev`)
 - Latest version of nodejs
 
 ##### Development
-- `npm install` - installs all dependencies
+- `npm install` - Installs all dependencies
 - `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.js` and its dependencies to `/extension`
 - `npm run lint` - Runs the eslinter for js files
 - `npm test` - Runs the test suite located in `/test`
+- `npm run build` - Builds the Firefox (.xpi) and Chrome (.zip) Builds
 
 ##### Testing
 1. Run `npm install` (if you haven't already)
-2. Run `npn run dev`
+2. Run `npm run dev`
 3. Load the extension in the browser
 
 - Firefox
