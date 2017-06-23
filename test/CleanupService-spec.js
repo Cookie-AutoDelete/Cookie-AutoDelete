@@ -1,16 +1,16 @@
-var assert = require("chai").assert;
-var CleanupService = require("../src/services/CleanupService");
-var browser = require("sinon-chrome");
-var sinon = require("sinon");
-var URL = require("url").URL;
+let assert = require("chai").assert;
+let CleanupService = require("../src/services/CleanupService");
+let browser = require("sinon-chrome");
+let sinon = require("sinon");
+let URL = require("url").URL;
 global.URL = URL;
 
 describe("CleanupService", () => {
-	var cleanupService;
-	var items = {defaultWhiteList: ["youtube.com", "google.com", "facebook.com"]};
+	let cleanupService;
+	let items = {defaultWhiteList: ["youtube.com", "google.com", "facebook.com"]};
 	global.browser = browser;
 
-	var cache = { 
+	let cache = { 
 		nameCacheMap: new Map()
 	};
 	cache.nameCacheMap.set("firefox_container_1", "Personal");
@@ -37,23 +37,23 @@ describe("CleanupService", () => {
 	});
 
 	describe("returnSetOfOpenTabDomains()", () => {
-		var UsefulFunctions = {
+		let UsefulFunctions = {
 			getHostname: function() {},
 			extractMainDomain: function() {},
 			isAWebpage: function() {}
 		}
-		var stub1 = sinon.stub(UsefulFunctions,"getHostname");
+		let stub1 = sinon.stub(UsefulFunctions,"getHostname");
 		stub1.withArgs("https://google.com/search").returns("google.com");
 		stub1.withArgs("http://facebook.com/search").returns("facebook.com");
 		stub1.withArgs("http://sub.domain.com").returns("sub.domain.com");
 
 
-		var stub2 = sinon.stub(UsefulFunctions,"extractMainDomain");
+		let stub2 = sinon.stub(UsefulFunctions,"extractMainDomain");
 		stub2.withArgs("google.com").returns("google.com");
 		stub2.withArgs("facebook.com").returns("facebook.com");
 		stub2.withArgs("sub.domain.com").returns("domain.com");
 
-		var stub3 = sinon.stub(UsefulFunctions,"isAWebpage");
+		let stub3 = sinon.stub(UsefulFunctions,"isAWebpage");
 		stub3.withArgs("https://google.com/search").returns(true);
 		stub3.withArgs("http://facebook.com/search").returns(true);
 		stub3.withArgs("http://sub.domain.com").returns(true);
@@ -113,7 +113,7 @@ describe("CleanupService", () => {
 	});
 
 	describe("isSafeToClean()", () => {	
-		var cacheSetUp = { 
+		let cacheSetUp = { 
 			nameCacheMap: new Map()
 		};
 		cacheSetUp.nameCacheMap.set("firefox-container-1", "Personal");
@@ -122,29 +122,30 @@ describe("CleanupService", () => {
 		cacheSetUp.nameCacheMap.set("firefox-container-4", "Shopping");
 
 
-		var cleanupProperties = {
+		let cleanupProperties = {
 			whiteList: {
 				hasHostInWhiteOrGrey: function() {}
 			},
 			contextualIdentitiesEnabled: false,
 			cache: cacheSetUp,
 			globalSubdomainEnabled: true,
+			startUp: false,
 			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
-			
 		}
 
-		var cleanupPropertiesContextual = {
+		let cleanupPropertiesContextual = {
 			whiteList: {
 				hasHostInWhiteOrGrey: function() {}
 			},
 			contextualIdentitiesEnabled: true,
 			cache: cacheSetUp,
 			globalSubdomainEnabled: true,
+			startUp: false,
 			setOfTabURLS: new Set()
 			
 		}
 
-		var stub1 = sinon.stub(cleanupProperties.whiteList, "hasHostInWhiteOrGrey");
+		let stub1 = sinon.stub(cleanupProperties.whiteList, "hasHostInWhiteOrGrey");
 		stub1.withArgs("google.com", "google.com").returns(false);
 		stub1.withArgs("youtube.com", "youtube.com").returns(false);
 		stub1.withArgs("sub.youtube.com", "sub.youtube.com").returns(false);
@@ -153,7 +154,7 @@ describe("CleanupService", () => {
 		stub1.withArgs("developer.mozilla.org", "mozilla.org").returns(false);
 
 		//contextual identity tests
-		var stub2 = sinon.stub(cleanupPropertiesContextual.whiteList, "hasHostInWhiteOrGrey");
+		let stub2 = sinon.stub(cleanupPropertiesContextual.whiteList, "hasHostInWhiteOrGrey");
 		stub2.withArgs("youtube.com", "youtube.com", "firefox-container-1").returns(true);
 		stub2.withArgs("youtube.com", "youtube.com", "firefox-container-2").returns(false);
 
@@ -175,7 +176,7 @@ describe("CleanupService", () => {
 
 		//google.com is not in whitelist or open tabs
 		it("should return true for google.com", () => {
-			var cookieProperties = {
+			let cookieProperties = {
 				cookieDomainHost: "google.com",
 				cookieBaseDomainHost: "google.com",
 				cookieMainDomainHost: "google.com"
@@ -185,7 +186,7 @@ describe("CleanupService", () => {
 
 		//youtube.com is in open tab
 		it("should return false for youtube.com", () => {
-			var cookieProperties = {
+			let cookieProperties = {
 				cookieDomainHost: "youtube.com",
 				cookieBaseDomainHost: "youtube.com",
 				cookieMainDomainHost: "youtube.com"
@@ -195,7 +196,7 @@ describe("CleanupService", () => {
 
 		//sub.youtube.com shares main domain of youtube.com
 		it("should return false for sub.youtube.com", () => {
-			var cookieProperties = {
+			let cookieProperties = {
 				cookieDomainHost: "sub.youtube.com",
 				cookieBaseDomainHost: "youtube.com",
 				cookieMainDomainHost: "youtube.com"
@@ -205,7 +206,7 @@ describe("CleanupService", () => {
 
 		//facebook.com is in whitelist
 		it("should return false for facebook.com", () => {
-			var cookieProperties = {
+			let cookieProperties = {
 				cookieDomainHost: "facebook.com",
 				cookieBaseDomainHost: "facebook.com",
 				cookieMainDomainHost: "facebook.com"
@@ -215,7 +216,7 @@ describe("CleanupService", () => {
 
 		//a subdomain sharing mozilla.com in open tabs should not be deleted
 		it("should return false for developer.mozilla.org", () => {
-			var cookieProperties = {
+			let cookieProperties = {
 				cookieDomainHost: "developer.mozilla.org",
 				cookieMainDomainHost: "mozilla.org"
 			}
@@ -226,7 +227,7 @@ describe("CleanupService", () => {
 
 		//youtube.com is in Personal
 		it("should return false for youtube.com Personal", () => {
-			var cookieProperties = {
+			let cookieProperties = {
 				cookieDomainHost: "youtube.com",
 				cookieBaseDomainHost: "youtube.com",
 				cookieMainDomainHost: "youtube.com",
@@ -237,7 +238,7 @@ describe("CleanupService", () => {
 
 		//youtube.com is not in Work
 		it("should return true for youtube.com Work", () => {
-			var cookieProperties = {
+			let cookieProperties = {
 				cookieDomainHost: "youtube.com",
 				cookieBaseDomainHost: "youtube.com",
 				cookieMainDomainHost: "youtube.com",
@@ -246,70 +247,288 @@ describe("CleanupService", () => {
 			assert.isTrue(cleanupService.isSafeToClean(cleanupPropertiesContextual, cookieProperties));
 		});
 
-		//subdomain testing for 1.3.0 https://github.com/mrdokenny/Cookie-AutoDelete/issues/3#issuecomment-304912809
+		describe("Subdomains", () => {
+			//example 1
+			//example.com is whitelisted
+			it("should return false for example.com", () => {
+				let cookieProperties = {
+					cookieDomainHost: "example.com",
+					cookieBaseDomainHost: "example.com",
+					cookieMainDomainHost: "example.com"
+				}
+				assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+			});
 
-		//example 1
-		//example.com is whitelisted
-		it("should return false for example.com", () => {
-			var cookieProperties = {
-				cookieDomainHost: "example.com",
-				cookieBaseDomainHost: "example.com",
-				cookieMainDomainHost: "example.com"
-			}
-			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+			//sub.example.com is the subdomain of example.com
+			it("should return false for sub.example.com", () => {
+				let cookieProperties = {
+					cookieDomainHost: "sub.example.com",
+					cookieBaseDomainHost: "example.com",
+					cookieMainDomainHost: "example.com"
+				}
+				assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+			});
+
+			//example 2: effects of whitelisting sub.domain.com
+			//domain.com is not explicitly whitelisted
+			it("should return true for domain.com", () => {
+				let cookieProperties = {
+					cookieDomainHost: "domain.com",
+					cookieBaseDomainHost: "domain.com",
+					cookieMainDomainHost: "domain.com"
+				}
+				assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+			});
+
+			//sub.domain.com is in the whitelist
+			it("should return false for sub.domain.com", () => {
+				let cookieProperties = {
+					cookieDomainHost: "sub.domain.com",
+					cookieBaseDomainHost: "domain.com",
+					cookieMainDomainHost: "domain.com"
+				}
+				assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+			});
+
+			//sub.sub.domain.com is part of the subdomain for sub.domain.com
+			it("should return false for sub.sub.domain.com", () => {
+				let cookieProperties = {
+					cookieDomainHost: "sub.sub.domain.com",
+					cookieBaseDomainHost: "sub.domain.com",
+					cookieMainDomainHost: "domain.com"
+				}
+				assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+			});
+			
+
+			//otherSub.domain.com can be deleted because it is not in open tabs and not in whitelist even though it shares domain.com
+			it("should return true for otherSub.domain.com", () => {
+				let cookieProperties = {
+					cookieDomainHost: "otherSub.domain.com",
+					cookieBaseDomainHost: "domain.com",
+					cookieMainDomainHost: "domain.com"
+				}
+				assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+			});
+
+			describe("Subdomains False", () => {
+				let cleanupProperties = {
+					whiteList: {
+						hasHostInWhiteOrGrey: function() {}
+					},
+					contextualIdentitiesEnabled: false,
+					cache: cacheSetUp,
+					globalSubdomainEnabled: false,
+					startUp: false,
+					setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
+				}
+				let stub1 = sinon.stub(cleanupProperties.whiteList, "hasHostInWhiteOrGrey");
+
+				stub1.withArgs("example.com", "example.com").returns(true);
+
+				stub1.withArgs("sub.domain.com", "sub.domain.com").returns(true);
+
+				stub1.withArgs("sub.domain.com", "sub.domain.com").returns(true);
+				stub1.withArgs("other.domain.com", "other.domain.com").returns(false);
+				stub1.withArgs("domain.com", "domain.com").returns(false);
+
+				//example 1
+				//example.com is whitelisted
+				it("should return false for example.com", () => {
+					let cookieProperties = {
+						cookieDomainHost: "example.com",
+						cookieBaseDomainHost: "example.com",
+						cookieMainDomainHost: "example.com"
+					}
+					assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+				});
+
+				//sub.example.com is the subdomain of example.com
+				it("should return false for sub.example.com", () => {
+					let cookieProperties = {
+						cookieDomainHost: "sub.example.com",
+						cookieBaseDomainHost: "example.com",
+						cookieMainDomainHost: "example.com"
+					}
+					assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+				});
+
+				//example 2: effects of whitelisting sub.domain.com
+				//domain.com is not explicitly whitelisted
+				it("should return true for domain.com", () => {
+					let cookieProperties = {
+						cookieDomainHost: "domain.com",
+						cookieBaseDomainHost: "domain.com",
+						cookieMainDomainHost: "domain.com"
+					}
+					assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+				});
+
+				//sub.domain.com is in the whitelist
+				it("should return false for sub.domain.com", () => {
+					let cookieProperties = {
+						cookieDomainHost: "sub.domain.com",
+						cookieBaseDomainHost: "domain.com",
+						cookieMainDomainHost: "domain.com"
+					}
+					assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+				});
+
+				it("should return true for sub.sub.domain.com", () => {
+					let cookieProperties = {
+						cookieDomainHost: "sub.sub.domain.com",
+						cookieBaseDomainHost: "sub.domain.com",
+						cookieMainDomainHost: "domain.com"
+					}
+					assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+				});
+				
+
+				//otherSub.domain.com can be deleted because it is not in open tabs and not in whitelist
+				it("should return true for otherSub.domain.com", () => {
+					let cookieProperties = {
+						cookieDomainHost: "otherSub.domain.com",
+						cookieBaseDomainHost: "domain.com",
+						cookieMainDomainHost: "domain.com"
+					}
+					assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+				});
+
+			});
 		});
 
-		//sub.example.com is the subdomain of example.com
-		it("should return false for sub.example.com", () => {
-			var cookieProperties = {
-				cookieDomainHost: "sub.example.com",
-				cookieBaseDomainHost: "example.com",
-				cookieMainDomainHost: "example.com"
-			}
-			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
-		});
-
-		//example 2
-		//domain.com is not explicitly whitelisted
-		it("should return true for domain.com", () => {
-			var cookieProperties = {
-				cookieDomainHost: "domain.com",
-				cookieBaseDomainHost: "domain.com",
-				cookieMainDomainHost: "domain.com"
-			}
-			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
-		});
-
-		//sub.domain.com is in the whitelist
-		it("should return false for sub.domain.com", () => {
-			var cookieProperties = {
-				cookieDomainHost: "sub.domain.com",
-				cookieBaseDomainHost: "domain.com",
-				cookieMainDomainHost: "domain.com"
-			}
-			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
-		});
-
-		//sub.sub.domain.com is part of the subdomain for sub.domain.com
-		it("should return false for sub.domain.com", () => {
-			var cookieProperties = {
-				cookieDomainHost: "sub.sub.domain.com",
-				cookieBaseDomainHost: "sub.domain.com",
-				cookieMainDomainHost: "domain.com"
-			}
-			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		after(() => {
+			stub1.restore();
+			stub2.restore();
 		});
 		
+	});
 
-		//otherSub.domain.com can be deleted because it is not in open tabs and not in whitelist even though it shares domain.com
-		it("should return true for otherSub.domain.com", () => {
-			var cookieProperties = {
-				cookieDomainHost: "otherSub.domain.com",
-				cookieBaseDomainHost: "domain.com",
-				cookieMainDomainHost: "domain.com"
+	describe("isSafeToClean() on startUp", () => {	
+		let cacheSetUp = { 
+			nameCacheMap: new Map()
+		};
+		cacheSetUp.nameCacheMap.set("firefox-container-1", "Personal");
+		cacheSetUp.nameCacheMap.set("firefox-container-2", "Work");
+		cacheSetUp.nameCacheMap.set("firefox-container-3", "Finance");
+		cacheSetUp.nameCacheMap.set("firefox-container-4", "Shopping");
+
+
+		let cleanupProperties = {
+			whiteList: {
+				hasHostSubdomain: function() {}
+			},
+			contextualIdentitiesEnabled: false,
+			cache: cacheSetUp,
+			globalSubdomainEnabled: true,
+			startUp: true,
+			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
+		}
+
+		let cleanupPropertiesContextual = {
+			whiteList: {
+				hasHostSubdomain: function() {}
+			},
+			contextualIdentitiesEnabled: true,
+			cache: cacheSetUp,
+			globalSubdomainEnabled: true,
+			startUp: true,
+			setOfTabURLS: new Set()
+			
+		}
+
+		let stub1 = sinon.stub(cleanupProperties.whiteList, "hasHostSubdomain");
+		stub1.withArgs("google.com", "google.com").returns(false);
+		stub1.withArgs("youtube.com", "youtube.com").returns(false);
+		stub1.withArgs("sub.youtube.com", "sub.youtube.com").returns(false);
+
+		stub1.withArgs("facebook.com", "facebook.com").returns(true);
+		stub1.withArgs("developer.mozilla.org", "mozilla.org").returns(false);
+
+		//contextual identity tests
+		let stub2 = sinon.stub(cleanupPropertiesContextual.whiteList, "hasHostSubdomain");
+		stub2.withArgs("youtube.com", "youtube.com", "firefox-container-1").returns(true);
+		stub2.withArgs("youtube.com", "youtube.com", "firefox-container-2").returns(false);
+
+
+		beforeEach(() => {
+		
+		});
+
+		//google.com is not in whitelist or open tabs
+		it("should return true for google.com", () => {
+			let cookieProperties = {
+				cookieDomainHost: "google.com",
+				cookieBaseDomainHost: "google.com",
+				cookieMainDomainHost: "google.com"
 			}
 			assert.isTrue(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
 		});
+
+		//youtube.com is in open tab
+		it("should return false for youtube.com", () => {
+			let cookieProperties = {
+				cookieDomainHost: "youtube.com",
+				cookieBaseDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//sub.youtube.com shares main domain of youtube.com
+		it("should return false for sub.youtube.com", () => {
+			let cookieProperties = {
+				cookieDomainHost: "sub.youtube.com",
+				cookieBaseDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//facebook.com is in whitelist
+		it("should return false for facebook.com", () => {
+			let cookieProperties = {
+				cookieDomainHost: "facebook.com",
+				cookieBaseDomainHost: "facebook.com",
+				cookieMainDomainHost: "facebook.com"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//a subdomain sharing mozilla.com in open tabs should not be deleted
+		it("should return false for developer.mozilla.org", () => {
+			let cookieProperties = {
+				cookieDomainHost: "developer.mozilla.org",
+				cookieMainDomainHost: "mozilla.org"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupProperties, cookieProperties));
+		});
+
+		//contextual identity tests
+
+		//youtube.com is in Personal
+		it("should return false for youtube.com Personal", () => {
+			let cookieProperties = {
+				cookieDomainHost: "youtube.com",
+				cookieBaseDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com",
+				storeId: "firefox-container-1"
+			}
+			assert.isFalse(cleanupService.isSafeToClean(cleanupPropertiesContextual, cookieProperties));
+		});
+
+		//youtube.com is not in Work
+		it("should return true for youtube.com Work", () => {
+			let cookieProperties = {
+				cookieDomainHost: "youtube.com",
+				cookieBaseDomainHost: "youtube.com",
+				cookieMainDomainHost: "youtube.com",
+				storeId: "firefox-container-2"
+			}
+			assert.isTrue(cleanupService.isSafeToClean(cleanupPropertiesContextual, cookieProperties));
+		});
+
+
 
 
 		after(() => {
@@ -319,8 +538,11 @@ describe("CleanupService", () => {
 		
 	});
 
+
+
+
 	describe("cleanCookies()", () => {
-		var cacheSetUp = { 
+		let cacheSetUp = { 
 			nameCacheMap: new Map(),
 			getNameFromCookieID: function() {}
 		};
@@ -330,7 +552,7 @@ describe("CleanupService", () => {
 		cacheSetUp.nameCacheMap.set("firefox-container-4", "Shopping");
 
 
-		var cleanupProperties = {
+		let cleanupProperties = {
 			whiteList: {
 				hasHost: function() {}
 			},
@@ -341,7 +563,7 @@ describe("CleanupService", () => {
 			
 		}
 
-		var cleanupPropertiesContextual = {
+		let cleanupPropertiesContextual = {
 			whiteList: {
 				hasHost: function() {}
 			},
@@ -351,16 +573,16 @@ describe("CleanupService", () => {
 			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
 			
 		}
-		var googleCookie = {name:"NID", domain: "google.com", secure: true, path:"/", storeId:"none"};
-		var youtubeCookie = {name:"SID", domain: "youtube.com", secure: true, path:"/", storeId:"none"};
-		var yahooCookie = {name:"BID", domain: "yahoo.com", secure: false, path:"/login", storeId:"none"};
+		let googleCookie = {name:"NID", domain: "google.com", secure: true, path:"/", storeId:"none"};
+		let youtubeCookie = {name:"SID", domain: "youtube.com", secure: true, path:"/", storeId:"none"};
+		let yahooCookie = {name:"BID", domain: "yahoo.com", secure: false, path:"/login", storeId:"none"};
 
-		var personalGoogleCookie = {name:"NID", domain: "google.com", secure: true, path:"/", storeId:"firefox-container-1"};
+		let personalGoogleCookie = {name:"NID", domain: "google.com", secure: true, path:"/", storeId:"firefox-container-1"};
 
-		var cookies = [googleCookie, youtubeCookie, yahooCookie];
-		var stub1;
+		let cookies = [googleCookie, youtubeCookie, yahooCookie];
+		let stub1;
 		
-		var stub2 = sinon.stub(cleanupPropertiesContextual.cache, "getNameFromCookieID");
+		let stub2 = sinon.stub(cleanupPropertiesContextual.cache, "getNameFromCookieID");
 		stub2.withArgs("firefox-container-1").returns("Personal");
 
 		beforeEach(() => {
@@ -453,38 +675,40 @@ describe("CleanupService", () => {
 	});
 
 	describe("cleanCookiesOperation()", () => {
-		var cache = { 
+		let cache = { 
 			nameCacheMap: new Map()
 		};
 		cache.nameCacheMap.set("firefox-container-1", "Personal");
 		cache.nameCacheMap.set("firefox-container-2", "Work");
 		cache.nameCacheMap.set("firefox-container-3", "Finance");
 		cache.nameCacheMap.set("firefox-container-4", "Shopping");
-		var cleanupProperties = {
+		let cleanupProperties = {
 			whiteList: {
 				hasHost: function() {}
 			},
 			contextualIdentitiesEnabled: false,
 			cache,
 			globalSubdomainEnabled: true,
+			ignoreOpenTabs: true,
 			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
 			
 		}
 
-		var cleanupPropertiesContextual = {
+		let cleanupPropertiesContextual = {
 			whiteList: {
 				hasHost: function() {}
 			},
 			contextualIdentitiesEnabled: true,
 			cache,
 			globalSubdomainEnabled: true,
+			ignoreOpenTabs: false,
 			setOfTabURLS: new Set(["youtube.com", "mozilla.org"])
 			
 		}
 
-		var whiteList = {};
-		var stub1;
-		var stub2;
+		let whiteList = {};
+		let stub1;
+		let stub2;
 
 		beforeEach(() => {
 			stub1 = sinon.stub(cleanupService, "cleanCookies");
@@ -518,7 +742,6 @@ describe("CleanupService", () => {
 		});
 
 		
-
 		after(() => {
 			stub1.restore();
 		});
