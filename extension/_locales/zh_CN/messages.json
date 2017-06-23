@@ -54,9 +54,19 @@
     "description": "Active Mode"
   },
 
+  "switchToNoListText": {
+    "message": "标签页关闭后清理",
+    "description": "Clean After Tab Close"
+  },  
+
+  "switchToGreyListText": {
+    "message": "浏览器重启时清理（绿名单）",
+    "description": "Clean on Browser Restart (GreyList)"
+  },
+
   "switchToWhiteListText": {
-    "message": "添加到白名单？",
-    "description": "Add to WhiteList?"
+    "message": "从不清理（白名单）",
+    "description": "Never Clean (WhiteList)"
   },
 
   "welcomeText": {
@@ -140,8 +150,8 @@
   },
 
   "showNumberOfCookiesInIconTooltipText": {
-    "message": "显示该域名的 Cookie 数量",
-    "description": "Show Number of Cookies for that Domain"
+    "message": "在徽章弹出窗中显示检测到哪些 Cookie。",
+    "description": "Shows which cookies can be detected in the popup badge."
   },
 
   "notifyCookieCleanUpText": {
@@ -154,6 +164,27 @@
     "description": "Shows how many cookies were cleaned and for which domain."
   },
 
+
+
+  "cookieCleanUpOnStartText": {
+    "message": "启动时清理打开标签页的 Cookie",
+    "description": "Clean Cookies from Open Tabs on StartUp"
+  },
+
+  "cookieCleanUpOnStartTooltipText": {
+    "message": "这基本上等同清理 Cookie（忽略打开的标签页），将删除所有不在白名单上的 Cookie。",
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
+  },
+
+  "enableGlobalSubdomainText": {
+    "message": "启用对子域的检查",
+    "description": "Enable Check for Subdomains"
+  },
+
+  "enableGlobalSubdomainTooltipText": {
+    "message": "在启用时，*.example.com 将匹配 example.com。关闭此功能可以更精确的控制您的列表。",
+    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "启用 Firefox 的身份（容器）支持（实验性，Firefox 53+）",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
@@ -175,13 +206,13 @@
   },
 
   "defaultSettingsText": {
-    "message": "默认设置",
+    "message": "恢复默认设置",
     "description": "Default Settings"
   },
 
   "defaultSettingsTooltipText": {
-    "message": "警告：这也将清除您的网址设置。请先注意备份它们！",
-    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
+    "message": "警告：这也将清除您的白名单。请先注意备份它们！",
+    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
   "saveConfirmText": {
@@ -204,6 +235,26 @@
     "description": "Cleared Counter!"
   },
 
+
+  "whiteListWordText": {
+    "message": "白名单",
+    "description": "WhiteList"
+  }, 
+
+  "greyListWordText": {
+    "message": "绿名单",
+    "description": "GreyList"
+  }, 
+
+  "toWhiteListText": {
+    "message": "到白名单",
+    "description": "To WhiteList"
+  }, 
+
+  "toGreyListText": {
+    "message": "到绿名单",
+    "description": "To GreyList"
+  }, 
   "addURLText": {
     "message": "添加网址",
     "description": "Add URL"
@@ -216,12 +267,17 @@
 
   "enterURLTooltipText": {
     "message": "输入网址，无需 'www.' 部分。输入后按回车（Enter）键或单击“添加网址”。您也可以先访问所需网站，然后点击工具栏上的蓝色图标来添加白名单。",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
+  },
+
+  "hoverButtonTooltipText": {
+    "message": "绿名单是您要保留到浏览器关闭（下次启动前）时的 Cookie。白名单是要永久保留的 Cookie。",
+    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
   },
 
   "exportURLSText": {
-    "message": "导出网址",
-    "description": "Export URLS"
+    "message": "导出白名单",
+    "description": "Export WhiteList"
   },
 
   "rightClickToSave": {
