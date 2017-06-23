@@ -54,9 +54,19 @@
     "description": "Active Mode"
   },
 
+  "switchToNoListText": {
+    "message": "Nach dem Schließen eines Tabs aufräumen",
+    "description": "Clean After Tab Close"
+  },  
+
+  "switchToGreyListText": {
+    "message": "Bei Browser-Neustart aufräumen (GreyList)",
+    "description": "Clean on Browser Restart (GreyList)"
+  },
+
   "switchToWhiteListText": {
-    "message": "Zur Whitelist hinzufügen?",
-    "description": "Add to WhiteList?"
+    "message": "Niemals aufräumen (WhiteList)",
+    "description": "Never Clean (WhiteList)"
   },
 
   "welcomeText": {
@@ -70,7 +80,7 @@
   },
 
   "whiteListText": {
-    "message": "Cookie-Whitelist",
+    "message": "Cookie-WhiteList",
     "description": "Cookie WhiteList"
   },
 
@@ -140,8 +150,8 @@
   },
 
   "showNumberOfCookiesInIconTooltipText": {
-    "message": "Zeigt die Anzahl der Cookies einer Domain im Tooltip des Symbols in der Symbolleiste",
-    "description": "Show Number of Cookies for that Domain"
+    "message": "Zeigt die Anzahl der erkannten Cookies im Symbols in der Symbolleiste",
+    "description": "Shows which cookies can be detected in the popup badge."
   },
 
   "notifyCookieCleanUpText": {
@@ -154,13 +164,33 @@
     "description": "Shows how many cookies were cleaned and for which domain."
   },
 
+  "cookieCleanUpOnStartText": {
+    "message": "Cookies von offenen Tabs beim Start aufräumen",
+    "description": "Clean Cookies from Open Tabs on StartUp"
+  },
+
+  "cookieCleanUpOnStartTooltipText": {
+    "message": "Im Grunde führt dies die Funktion \"Cookies aufräumen (offene Tabs ignorieren)\" aus, löscht also alle Cookies die nicht zu der WhiteList passen.",
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
+  },
+
+  "enableGlobalSubdomainText": {
+    "message": "Subdomain-Prüfung aktivieren",
+    "description": "Enable Check for Subdomains"
+  },
+
+  "enableGlobalSubdomainTooltipText": {
+    "message": "Wenn diese Funktion aktiviert ist, werden Cookies von Subdomains (*.example.com) nicht gelöscht, wenn die Top-Level-Domain (example.com) auf der WhiteList ist.",
+    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
+  },
+
   "contextualIdentitiesEnabledText": {
     "message": "Aktiviert die Unterstützung für Firefox' \"Contextual Identities\" (EXPERIMENTELL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
   },
 
   "contextualIdentitiesTooltipText": {
-    "message": "NICHT aktivieren solange du nicht Firefox 53+ nutzt. Fügt eine Whitelist für JEDEN Container hinzu, den du nutzt. Die Standard-Whitelist bleibt davon unabhängig.",
+    "message": "NICHT aktivieren solange du nicht Firefox 53+ nutzt. Fügt eine WhiteList für JEDEN Container hinzu, den du nutzt. Die Standard-WhiteList bleibt davon unabhängig.",
     "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
@@ -175,13 +205,13 @@
   },
 
   "defaultSettingsText": {
-    "message": "Standardeinstellungen",
-    "description": "Default Settings"
+    "message": "Standardeinstellungen wiederherstellen",
+    "description": "Restore Default Settings"
   },
 
   "defaultSettingsTooltipText": {
-    "message": "WARNUNG: Diese Aktion wird auch deine URLs zurücksetzen. Erstelle eine Sicherung!",
-    "description": "WARNING: This will also clear your URLS as well. So make a backup of them!"
+    "message": "WARNUNG: Diese Aktion wird auch deine WhiteList zurücksetzen. Erstelle eine Sicherung!",
+    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
   "saveConfirmText": {
@@ -204,6 +234,26 @@
     "description": "Cleared Counter!"
   },
 
+  "whiteListWordText": {
+    "message": "WhiteList",
+    "description": "WhiteList"
+  }, 
+
+  "greyListWordText": {
+    "message": "GreyList",
+    "description": "GreyList"
+  }, 
+
+  "toWhiteListText": {
+    "message": "Zur WhiteList",
+    "description": "To WhiteList"
+  }, 
+
+  "toGreyListText": {
+    "message": "Zur GreyList",
+    "description": "To GreyList"
+  }, 
+
   "addURLText": {
     "message": "URL hinzufügen",
     "description": "Add URL"
@@ -215,13 +265,18 @@
   },
 
   "enterURLTooltipText": {
-    "message": "Trage URLs ohne 'www.' ein, drücke dann die Eingabetaste oder klicke auf 'URL hinzufügen'. Alternativ besuche die Seite und füge sie vom blauen Symbol in der Symbolleiste hinzu.",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the blue icon."
+    "message": "Trage URLs ohne 'www.' ein, drücke dann die Eingabetaste oder klicke auf 'URL hinzufügen'. Alternativ besuche die Seite und füge sie vom Symbol in der Symbolleiste hinzu.",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
+  },
+
+  "hoverButtonTooltipText": {
+    "message": "Die GreyList betrifft Cookies, die zum Browser-Neustart gelöscht werden. Die WhiteList betrifft Cookies, die niemals gelöscht werden.",
+    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
   },
 
   "exportURLSText": {
-    "message": "URLs exportieren",
-    "description": "Export URLS"
+    "message": "WhiteList exportieren",
+    "description": "Export WhiteList"
   },
 
   "rightClickToSave": {
