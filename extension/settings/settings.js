@@ -8,6 +8,8 @@ const defaultWhiteList = "defaultWhiteList";
 const greyPrefix = "-Grey";
 const GREYLIST = "GreyList";
 const WHITELIST = "WhiteList";
+const firefoxPrivate = "firefox-private";
+
 // Logs the error
 function onError(error) {
 	console.error(`Error: ${error}`);
@@ -232,9 +234,11 @@ function downloadTextFile(txt) {
 function exportMapToTxt() {
 	let txtFile = "";
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
-		txtFile += `#${key}\n`;
-		txtFile += returnLinesFromArray(Array.from(value).sort());
-		txtFile += "\n";
+		if (key !== firefoxPrivate || key !== firefoxPrivate + greyPrefix) {
+			txtFile += `#${key}\n`;
+			txtFile += returnLinesFromArray(Array.from(value).sort());
+			txtFile += "\n";
+		}
 	});
 	downloadTextFile(txtFile);
 }
@@ -360,7 +364,8 @@ function generateTabNav() {
 	tabNav.classList.add("tab");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates the tabbed navigation above the table
-		if (!key.endsWith(greyPrefix)) {
+        // This fixes an issue where if you open a private window in Containers Mode, a new tab with [object Promise] will show up
+		if (!key.endsWith(greyPrefix) && key !== firefoxPrivate) {
 			let tab = document.createElement("li");
 			let aTag = document.createElement("a");
 			aTag.textContent = page.cache.getNameFromCookieID(key);
