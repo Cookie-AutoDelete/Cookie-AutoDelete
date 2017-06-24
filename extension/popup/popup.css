@@ -27,7 +27,7 @@ img {
 }
 
 #top {
-	padding-left: 10px;
+	margin-left: .5em;
 }
 
 
@@ -49,7 +49,7 @@ img {
 }
 
 #notify {
-	padding: 2px;
+	margin: .5em;
 }
 
 @keyframes successAnimation {
@@ -70,4 +70,9 @@ img {
 
 .failureAnimated {    
     animation: failureAnimation 1.5s ease-in-out; 
+}
+
+/* Override skeleton.css for label margins because they look off center */
+label {
+  margin: 0.2em;
 }
