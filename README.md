@@ -38,7 +38,7 @@ Translate Cookie AutoDelete in your language or help fix a translation!
 #### Contributing Code
 
 ##### Requirements
-- Bash Linux or Bash for Windows (cause there's some .sh scripts otherwise you can't do `npm run build` but can still do `npm run dev`)
+- Bash (cause there's some .sh scripts otherwise you can't do `npm run build` but can still do `npm run dev`)
 - Latest version of nodejs
 
 ##### Development
