@@ -155,11 +155,12 @@ function addURLHoverButton(event) {
 // Remove the url where the user clicked
 function clickRemoved(event) {
 	if (event.target.classList.contains("removeButton")) {
-		let URL = event.target.parentElement.classList.item(0);
-		let list = event.target.parentElement.classList.item(1);
+		let targetElement = event.target.parentElement.parentElement.parentElement;
+		let URL = targetElement.classList.item(0);
+		let list = targetElement.classList.item(1);
 		let currentWhiteList = page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList;
+		// console.log(URL + list);
 		URL = URL.trim();
-        // console.log(list);
 		page.whiteList.removeURL(URL, list === WHITELIST ? currentWhiteList : currentWhiteList + greyPrefix);
 		generateTableOfURLS();
 	}
@@ -236,9 +237,10 @@ function exportMapToTxt() {
 
 function switchList(event) {
 	event.preventDefault();
-	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
+	let url = event.target.parentElement.parentElement.parentElement.parentElement.classList.item(0);
 	let targetList = event.target.classList.item(0);
 	let currentWhiteList = defaultWhiteList;
+	// console.log(url + targetList);
 	if (page.contextualIdentitiesEnabled) {
 		currentWhiteList = getActiveTabName();
 	}
@@ -262,12 +264,12 @@ function createRow(arrayItem, listType) {
 	let removeButton = document.createElement("span");
 	removeButton.classList.add("removeButton");
 	removeButton.addEventListener("click", clickRemoved);
+	removeButton.appendChild(document.createTextNode("\u00D7"));
 
 	let hoverMenu = document.createElement("div");
 	hoverMenu.classList.add("dropdown");
-	hoverMenu.style.float = "right";
-	hoverMenu.style.right = "1em";
-	hoverMenu.style.position = "relative";
+	hoverMenu.classList.add("dropdownTable");
+
 	let hoverButton = document.createElement("button");
 	hoverButton.classList.add("dropbtn");
 	hoverButton.textContent = `${listType === WHITELIST ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")} \u25BC`;
@@ -291,10 +293,17 @@ function createRow(arrayItem, listType) {
 	hoverMenu.appendChild(hoverButton);
 	hoverMenu.appendChild(hoverDropDownContent);
 
-	removeButton.appendChild(document.createTextNode("\u00D7"));
-	td.appendChild(removeButton);
-	td.appendChild(document.createTextNode(arrayItem));
-	td.appendChild(hoverMenu);
+	let leftSide = document.createElement("span");
+	leftSide.classList.add("rowLeftSide");
+	leftSide.appendChild(removeButton);
+	leftSide.appendChild(document.createTextNode(arrayItem));
+
+	let rowContainer = document.createElement("div");
+	rowContainer.classList.add("rowContainer");
+
+	rowContainer.appendChild(leftSide);
+	rowContainer.appendChild(hoverMenu);
+	td.appendChild(rowContainer);
 	tr.appendChild(td);
 	return tr;
 }
