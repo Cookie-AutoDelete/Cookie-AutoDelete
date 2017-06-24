@@ -9,11 +9,11 @@ Control your cookies! This extension is inspired by Self Destructing Cookies. Wh
 - Easily Export/Import your Whitelist
 - Clear All Cookies for a Domain
 - Supports Manual Mode Cleaning from the popup
-- Easily see the number of cookies for a site 
+- Easily See the Number of Cookies for a site 
 - Support for Container Tabs (Firefox 53+ Only)
 
 ### Usage
-1. Add the sites you want to keep cookies in the WhiteList or GreyList
+1. Add the sites you want to keep cookies in the WhiteList (permanently) or GreyList (until Browser restart)
 2. Enable "Active Mode" in the popup or settings
 3. Watch those unused cookies disappear :)
 
