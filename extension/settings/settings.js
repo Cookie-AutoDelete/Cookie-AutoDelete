@@ -234,7 +234,7 @@ function downloadTextFile(txt) {
 function exportMapToTxt() {
 	let txtFile = "";
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
-		if (key !== firefoxPrivate || key !== firefoxPrivate + greyPrefix) {
+		if (key !== firefoxPrivate && key !== firefoxPrivate + greyPrefix) {
 			txtFile += `#${key}\n`;
 			txtFile += returnLinesFromArray(Array.from(value).sort());
 			txtFile += "\n";
