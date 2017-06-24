@@ -17,9 +17,15 @@ class CleanupService {
 		return cookieDomain;
 	}
 
+	// This checks whether or not it's safe to delete a cookie depending on user settings (globalSubdomainEnabled, contextualIdentitiesEnabled), whitelist, and whether cookies cleanup was called at startup
 	isSafeToClean(cleanupProperties, cookieProperties) {
+		// This was a quick and easy way of avoiding another long if/else blocks (2*2=4 if/else rather that 2*2*2=8 if/else)
+		// Basically hasHostInWhiteOrGrey and hasHostSubdomain takes in cookieDomainHost ie. drive.google.com and cookiesBaseDomainHost ie. google.com
+		// If globalSubdomainEnabled is false, then cookiesDomainHost = cookiesBaseDomainHost
 		let cookieBaseDomainHost = cleanupProperties.globalSubdomainEnabled ? cookieProperties.cookieBaseDomainHost : cookieProperties.cookieDomainHost;
 
+		// Regular Cleanup (!startUp) uses hasHostInWhiteOrGrey() because it doesn't clean from those lists
+		// StartUp Cleanup (startUp) uses hasHostSubdomain() only checking the whitelist
 		if (cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
 			return !cleanupProperties.whiteList.hasHostInWhiteOrGrey(cookieProperties.cookieDomainHost, cookieBaseDomainHost, cookieProperties.storeId) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 		} else if (!cleanupProperties.contextualIdentitiesEnabled && !cleanupProperties.startUp) {
@@ -31,7 +37,7 @@ class CleanupService {
 		return 	!cleanupProperties.whiteList.hasHostSubdomain(cookieProperties.cookieDomainHost, cookieBaseDomainHost) && !cleanupProperties.setOfTabURLS.has(cookieProperties.cookieMainDomainHost);
 	}
 
-	// Deletes cookies if there is no existing cookie's host main url in an open tab
+	// Goes through all the cookies to see if its safe to clean
 	cleanCookies(cookies, cleanupProperties) {
 		for (let i = 0; i < cookies.length; i++) {
 			let cookieProperties = cookies[i];
@@ -77,7 +83,7 @@ class CleanupService {
 		});
 	}
 
-	// Main function for cookie cleanup ignoreOpenTabs = false, whiteListIn, contextualIdentitiesEnabledIn, cacheIn
+	// Main function for cookie cleanup. Returns a list of domains that cookies were deleted from
 	cleanCookiesOperation(cleanupPropertiesIn) {
 		// Stores the deleted domains (for notification)
 		this.setOfDeletedDomainCookies = new Set();

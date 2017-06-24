@@ -171,6 +171,7 @@ function onStartUp(cookieCleanup = false) {
 		return createObjects(items);
 	})
 	.then((items) => {
+		// Export these so that popup and settings page can access them
 		module.exports.whiteList = whiteList;
 		module.exports.contextualIdentitiesEnabled = contextualIdentitiesEnabled;
 		module.exports.statLog = statLog;
@@ -188,6 +189,7 @@ function onStartUp(cookieCleanup = false) {
 onStartUp(true)
 .catch(onError);
 
+// Export these in a global variable named exposedFunctions
 module.exports = {
 	onStartUp() {
 		return onStartUp();
@@ -214,6 +216,7 @@ module.exports = {
 			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies);
 		});
 	},
+	// Used in the popup
 	getNotifyMessage() {
 		return notifyCleanup.notifyMessage;
 	},
@@ -251,6 +254,7 @@ module.exports = {
 	prepareCookieDomain(cookie) {
 		return cleanup.prepareCookieDomain(cookie);
 	},
+	// Checks if the host domain is in the whitelist and colors the icon
 	checkIfProtected(tab) {
 		let domainHost = UsefulFunctions.getHostname(tab.url);
 		let baseDomainHost = globalSubdomainEnabled ? UsefulFunctions.extractBaseDomain(domainHost) : domainHost;
@@ -280,6 +284,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 		return browser.windows.getCurrent()
 		.then((windowInfo) => {
+			// Disable the popup in incognito/private mode
 			if (windowInfo.incognito) {
 				browser.browserAction.disable(tab.id);
 				browser.browserAction.setBadgeText({
@@ -309,7 +314,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	return undefined;
 });
 
-// Alarm event handler
+// Alarm event handler for Active Mode
 browser.alarms.onAlarm.addListener((alarmInfo) => {
 	// console.log(alarmInfo.name);
 	if (alarmInfo.name === "activeModeAlarm") {

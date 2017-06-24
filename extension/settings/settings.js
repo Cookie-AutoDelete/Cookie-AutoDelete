@@ -1,5 +1,8 @@
 /* global page*/
 /* eslint no-use-before-define: ["error", { "functions": false }]*/
+
+// page is declared in settingsLocalization.js
+
 let browserDetect = browser.extension.getBackgroundPage().browserDetect;
 const defaultWhiteList = "defaultWhiteList";
 const greyPrefix = "-Grey";
@@ -99,6 +102,7 @@ function saveSettingsValues() {
 
 restoreSettingValues();
 
+// Hide the Container Mode option if not Firefox
 if (browserDetect() !== "Firefox" || browser.contextualIdentities === undefined) {
 	document.getElementById("contextualIdentitiesRow").style.display = "none";
 }
@@ -235,6 +239,7 @@ function exportMapToTxt() {
 	downloadTextFile(txtFile);
 }
 
+// Switches a domain from GreyList to WhiteList and vise versa
 function switchList(event) {
 	event.preventDefault();
 	let url = event.target.parentElement.parentElement.parentElement.parentElement.classList.item(0);
@@ -253,6 +258,7 @@ function switchList(event) {
 	generateTableOfURLS();
 }
 
+// Creates a row in the table
 function createRow(arrayItem, listType) {
 	let tr = document.createElement("tr");
 	let td = document.createElement("td");
@@ -345,7 +351,7 @@ function openTab(evt, tabContent) {
 	evt.currentTarget.classList.add("activeTab");
 }
 
-// Generates the nav above the url table
+// Generates the nav above the domain table
 function generateTabNav() {
 	let tableContainerNode = document.getElementById("tableContainer");
 	let tabNav = document.createElement("ul");
@@ -371,10 +377,8 @@ function generateTabNav() {
 	tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
 }
 
-// Generate the url table
+// Generate the domain table
 function generateTableOfURLS() {
-	// let tableContainerNode = document.getElementById("tableContainer");
-    // console.log(page.cookieWhiteList);
 	let activeTabName = getActiveTabName();
 	let theTables = document.createElement("div");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
@@ -397,6 +401,7 @@ function generateTableOfURLS() {
 	}
 }
 
+// Creates the table and the tab nav
 function generateTable() {
 	if (document.contains(document.getElementById("containerTabs"))) {
 		document.getElementById("containerTabs").remove();
@@ -421,6 +426,7 @@ document.getElementById("clear").addEventListener("click", () => {
 // Event handler for the user entering a URL through a form
 document.getElementById("add").addEventListener("click", addURLFromInput);
 
+// DropDown Button whether to add the domain to Grey or White List
 document.getElementById("dropdownText").addEventListener("click", addURLHoverButton);
 
 // Event handler when the user press "Enter" on a keyboard on the URL Form

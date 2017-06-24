@@ -1,5 +1,8 @@
+// defaultWhiteList is the defaultWhiteList in non Container Mode. Otherwise the default whitelist in ContainerMode is firefox-default.
 const defaultWhiteList = "defaultWhiteList";
+// Grey Prefix is a constant that is attached to the cookieStoreId to access the GreyList for that
 const greyPrefix = "-Grey";
+
 class WhiteListService {
 	constructor(items, contextualIdentitiesEnabled = false, cache) {
 		this.cookieWhiteList = new Map();
@@ -38,10 +41,12 @@ class WhiteListService {
 		return this.cookieWhiteList.get(cookieStoreId).has(url);
 	}
 
+	// Checks if cookieDomainHost and cookieBaseDomainHost exists in a cookieStoreId
 	hasHostSubdomain(cookieDomainHost, cookieBaseDomainHost, cookieStoreId = defaultWhiteList) {
 		return this.hasHost(cookieDomainHost, cookieStoreId) || this.hasHost(cookieBaseDomainHost, cookieStoreId);
 	}
 
+	// Checks whether a given cookieDomainHost and cookieBaseDomainHost in either Grey/White List
 	hasHostInWhiteOrGrey(cookieDomainHost, cookieBaseDomainHost, cookieStoreId = defaultWhiteList) {
 		let otherList = this.returnOtherList(cookieStoreId);
 		return this.hasHostSubdomain(cookieDomainHost, cookieBaseDomainHost, cookieStoreId) || this.hasHostSubdomain(cookieDomainHost, cookieBaseDomainHost, otherList);
