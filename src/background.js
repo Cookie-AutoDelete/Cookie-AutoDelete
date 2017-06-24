@@ -81,11 +81,15 @@ function setIconDefault(tab) {
 }
 
 // Show the # of cookies in icon
-function showNumberOfCookiesInIcon(tabURL, tabID) {
-	return browser.cookies.getAll({domain: UsefulFunctions.getHostname(tabURL)})
+function showNumberOfCookiesInIcon(tab) {
+	return browser.cookies.getAll({
+		domain: UsefulFunctions.getHostname(tab.url),
+		storeId: tab.cookieStoreId
+	})
 	.then((cookies) => {
 		browser.browserAction.setBadgeText({
-			text: cookies.length.toString(), tabId: tabID
+			text: cookies.length.toString(),
+			tabId: tab.id
 		});
 		return Promise.resolve();
 	});
@@ -305,7 +309,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 			return browser.storage.local.get("showNumberOfCookiesInIconSetting")
 			.then((items) => {
 				if (items.showNumberOfCookiesInIconSetting === true) {
-					return showNumberOfCookiesInIcon(tab.url, tab.id);
+					return showNumberOfCookiesInIcon(tab);
 				}
 				return Promise.resolve();
 			});
