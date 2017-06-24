@@ -159,7 +159,7 @@ function createObjects(items) {
 }
 
 // Sets up the background page on startup
-function onStartUp() {
+function onStartUp(cookieCleanup = false) {
 	return browser.storage.local.get()
 	.then((items) => {
 		return contextualCheck(items);
@@ -176,8 +176,8 @@ function onStartUp() {
 		module.exports.statLog = statLog;
 		module.exports.cache = cache;
 
-		// Do a cleanup on startup if active mode is on
-		if (items.activeMode) {
+		// Do a cleanup on startup if active mode is on and if its not been called from the settings page
+		if (items.activeMode && cookieCleanup) {
 			return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
 		}
 		return Promise.resolve();
@@ -185,7 +185,7 @@ function onStartUp() {
 	.catch(onError);
 }
 
-onStartUp()
+onStartUp(true)
 .catch(onError);
 
 module.exports = {
