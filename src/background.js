@@ -183,7 +183,9 @@ function onStartUp(cookieCleanup = false) {
 
 		// Do a cleanup on startup if active mode is on and if its not been called from the settings page
 		if (items.activeMode && cookieCleanup) {
-			return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
+			setTimeout(() => {
+				return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
+			}, 1250);
 		}
 		return Promise.resolve();
 	})
