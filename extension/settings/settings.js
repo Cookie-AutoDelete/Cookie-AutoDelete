@@ -211,7 +211,7 @@ function downloadTextFile(txt) {
 	let hiddenElement = document.createElement("a");
 	hiddenElement.href = `data:text/plain;charset=utf-8,${encodeURIComponent(txt)}`;
 	hiddenElement.target = "_target";
-	hiddenElement.download = "Cookie_AutoDelete_URLS.txt";
+	hiddenElement.download = page.contextualIdentitiesEnabled ? "Cookie_AutoDelete_Lists_Containers.txt" : "Cookie_AutoDelete_Lists.txt";
 
     // Firefox just opens the text rather than downloading it. In Chrome the "else" block of code works.
     // So this is a work around.
