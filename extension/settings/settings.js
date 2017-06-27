@@ -454,10 +454,18 @@ document.getElementById("importURLS").addEventListener("change", function() {
 	let reader = new FileReader();
 	reader.onload = function(progressEvent) {
 		// Entire file
-		// console.log(this.result);
+		let normalizedResult = this.result;
+		if (this.result.includes("\r\n")) {
+			// console.log("CRLF")
+			normalizedResult = this.result.replace(/\r\n/g, "\n");
+		} else if (this.result.includes("\r")) {
+			// console.log("CR")
+			normalizedResult = this.result.replace(/\r/g, "\n");
+		}
 
 		// By lines
-		let lines = this.result.split("\n");
+		let lines = normalizedResult.split("\n");
+		// console.log(lines);
 		let cookieID = "";
 		for (let line = 0; line < lines.length; line++) {
 			if (lines[line].charAt(0) === "#") {
