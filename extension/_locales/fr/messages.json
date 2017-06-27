@@ -4,11 +4,11 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Controler vos Cookies! Supprimer automatiquement les cookies non utilsiés de vos onglets fermés tout en gardant ceux que vous voulez.",
+    "message": "Contrôler vos Cookies ! Supprimer automatiquement les cookies non utilsiés de vos onglets fermés tout en gardant ceux que vous voulez.",
     "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Les cookies ont été supprimés !",
+    "message": "Cookie AutoDelete : Les cookies ont été supprimés !",
     "description": "Cookie AutoDelete: Cookies were Deleted!"
   },
   "notificationContent": {
@@ -26,7 +26,7 @@
     }
   },
   "hostWebsiteText": {
-    "message": "Hôte du site web:",
+    "message": "Hôte du site web :",
     "description": "Host Website:"
   },
   "cookieCleanupText": {
@@ -236,7 +236,7 @@
     "description": "Export WhiteList"
   },
   "rightClickToSave": {
-    "message": "Clic droit pour Enregsitrer le lien en tant que",
+    "message": "Clic droit pour Enregistrer le lien en tant que",
     "description": "Right Click to Save Link As"
   },
   "importURLSText": {
