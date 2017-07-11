@@ -180,17 +180,17 @@
   },
 
   "enableGlobalSubdomainTooltipText": {
-    "message": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists.",
+    "message": "Vid aktivering kommer *.example.com att matcha example.com. Inaktivering ger dig mer detaljerad kontroll över dina listor.",
     "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
   },
 
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)",
+    "message": "Aktivera stöd för Firefoxs kontextuella identiteter (EXPERIMENTELL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
   },
 
   "contextualIdentitiesTooltipText": {
-    "message": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these.",
+    "message": "Aktivera INTE, om du inte kör Firefox 53+. Detta kommer att lägga till en annan vitlista för VARJE behållare som du använder. Din standardvitlista är separerad från dessa.",
     "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
@@ -307,4 +307,3 @@
 
 
 }
-Create
