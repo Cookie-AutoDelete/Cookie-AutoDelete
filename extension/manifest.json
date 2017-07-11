@@ -12,17 +12,17 @@
   "default_locale": "en",
   "browser_action": {
   "browser_style": true,
-    "default_icon": {    
-      "48": "icons/icon_48.png"     
+    "default_icon": {
+      "48": "icons/icon_48.png"
     },
     "default_title": "Cookie AutoDelete",
     "default_popup": "popup/popup.html"
   },
   "icons": {
-    "48": "icons/icon_48.png",     
+    "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
-  
+
   "applications": {
     "gecko": {
       "id": "CookieAutoDelete@kennydo.com",
@@ -45,5 +45,5 @@
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "1.4.0"
+  "version": "1.4.1"
 }
