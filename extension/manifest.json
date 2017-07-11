@@ -11,6 +11,7 @@
   "author": "Kenny Do",
   "default_locale": "en",
   "browser_action": {
+  "browser_style": true,
     "default_icon": {    
       "48": "icons/icon_48.png"     
     },
