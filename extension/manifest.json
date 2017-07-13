@@ -30,8 +30,7 @@
     }
   },
   "options_ui": {
-  	"page": "settings/settings.html",
-  	"open_in_tab" : true
+  	"page": "settings/inpane.html"
   },
   "permissions": [
     "activeTab",
