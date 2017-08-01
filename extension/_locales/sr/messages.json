@@ -1,0 +1,309 @@
+{
+  "extensionName": {
+    "message": "Самобрисач колачића",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Управљајте вашим колачићима. Аутоматски бришите некоришћене колачиће из ваших затворених језичака а задржите оне које желите.",
+    "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
+  },
+
+  "notificationTitle": {
+    "message": "Самобрисач колачића: колачићи су обрисани!",
+    "description": "Cookie AutoDelete: Cookies were Deleted!"
+  },
+
+  "notificationContent": {
+    "message": "$Num$ обрисаних колачића са сајтова: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "websites" : {
+        "content" : "$2",
+        "example" : "google.com, facebook.com"
+      }
+    }
+  },
+
+  "hostWebsiteText": {
+    "message": "Веб сајт:",
+    "description": "Host Website:"
+  },
+
+  "cookieCleanupText": {
+    "message": "Чишћење колачића",
+    "description": "Cookie Cleanup"
+  },
+
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Чишћење колачића (занемари отворене језичке)",
+    "description": "Cookie Cleanup (Ignore Open Tabs)"
+  },
+
+  "clearCookiesForDomainText": {
+    "message": "Очисти све колачиће овог домена",
+    "description": "Clear All Cookies For This Domain"
+  },
+
+  "activeModeSwitchText": {
+    "message": "Активни режим",
+    "description": "Active Mode"
+  },
+
+  "switchToNoListText": {
+    "message": "Очисти након затварања језичка",
+    "description": "Clean After Tab Close"
+  },  
+
+  "switchToGreyListText": {
+    "message": "Очисти након поновног покретања прегледача (сиви списак)",
+    "description": "Clean on Browser Restart (GreyList)"
+  },
+
+  "switchToWhiteListText": {
+    "message": "Никада не чисти (бели списак)",
+    "description": "Never Clean (WhiteList)"
+  },
+
+  "welcomeText": {
+    "message": "Добродошли",
+    "description": "Welcome"
+  },
+
+  "settingsText": {
+    "message": "Подешавања колачића",
+    "description": "Cookie Settings"
+  },
+
+  "whiteListText": {
+    "message": "Бели списак колачића",
+    "description": "Cookie WhiteList"
+  },
+
+  "aboutText": {
+    "message": "О програму",
+    "description": "About"
+  },
+
+  "welcomeMessage": {
+    "message": "Здраво! У току ове сесије је Самобрисач Колачића обрисао $sessionDeleted$ колачића а свеукупно $totalDeleted$ колачића.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "totalDeleted" : {
+        "content" : "$2",
+        "example" : "456"
+      }
+    }
+  },
+
+  "reviewLinkMessage": {
+    "message": "Хвала вам што се испробали Самобрисач Колачића. Уколико вам се свидео, напишите преглед.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
+  },
+
+  "releaseNotesText": {
+    "message": "Белешке о издању",
+    "description": "Release Notes"
+  },
+
+  "activeModeText": {
+    "message": "Омогућити активни режим? Одложити брисање на:",
+    "description": "Enable Active Mode? Delay Before Cleaning:"
+  },
+
+  "minutesText": {
+    "message": "Минут(а)",
+    "description": "Minute(s)"
+  },
+
+  "activeModeTooltipText": {
+    "message": "Када је активни режим омогућен, чишћење колачића се врши након затварања језичка.",
+    "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
+  },
+
+  "statLoggingText": {
+    "message": "Бележи укупан број обрисаних колачића",
+    "description": "Log Total Number Of Cookies Deleted"
+  },
+
+  "statLoggingTooltipText": {
+    "message": "Броји обрисане колачиће у току сесије и од почетка рада. Ово је приказано у екрану добродошлице.",
+    "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
+  },
+
+  "resetCounterText": {
+    "message": "Ресетуј бројач",
+    "description": "Reset Counter"
+  },
+
+  "showNumberOfCookiesInIconText": {
+    "message": "Прикажи број колачића за дати домен",
+    "description": "Show Number of Cookies for that Domain"
+  },
+
+  "showNumberOfCookiesInIconTooltipText": {
+    "message": "Приказује које колачиће је могуће уочити у искачућем беџу.",
+    "description": "Shows which cookies can be detected in the popup badge."
+  },
+
+  "notifyCookieCleanUpText": {
+    "message": "Прикажи обавештење након чишћења колачића",
+    "description": "Show Notification After Cookie CleanUp"
+  },
+
+  "notifyCookieCleanUpTooltipText": {
+    "message": "Приказује колико је колачића очишћено по домену.",
+    "description": "Shows how many cookies were cleaned and for which domain."
+  },
+
+  "cookieCleanUpOnStartText": {
+    "message": "Очисти колачиће из отворених језичака при покретању",
+    "description": "Clean Cookies from Open Tabs on StartUp"
+  },
+
+  "cookieCleanUpOnStartTooltipText": {
+    "message": "У суштини, ово чисти колачиће (занемарују се отворени језичци) што значи да се бришу сви колачићи који нису на белом списку.",
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
+  },
+
+  "enableGlobalSubdomainText": {
+    "message": "Омогући проверу за поддомен",
+    "description": "Enable Check for Subdomains"
+  },
+
+  "enableGlobalSubdomainTooltipText": {
+    "message": "Када је омогућено, *.примердомена.срб ће се поклопити са примердомена.срб. Искључивањем ове опције добијате финију контролу над вашим списковима.",
+    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
+  },
+
+  "contextualIdentitiesEnabledText": {
+    "message": "Омогући подршку за Firefox-ове контекстуалне идентитете (У ПРОБНОЈ ФАЗИ Firefox 53+)",
+    "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
+  },
+
+  "contextualIdentitiesTooltipText": {
+    "message": "НЕ ОМОГУЋУЈТЕ осим ако нисте на Firefox-у 53+. Ово ће додати другачији бели списак ЗА СВАКИ контејнер који користите. Ваш подразумевани бели списак је одвојен од њих.",
+    "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
+  },
+
+  "saveText": {
+    "message": "Сачувај",
+    "description": "Save"
+  },
+
+  "cancelText": {
+    "message": "Откажи",
+    "description": "Cancel"
+  },
+
+  "defaultSettingsText": {
+    "message": "Врати подразумевана подешавања",
+    "description": "Restore Default Settings"
+  },
+
+  "defaultSettingsTooltipText": {
+    "message": "УПОЗОРЕЊЕ: Ово ће такође очистити ваш бели списак. Направите резерву претходно!",
+    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
+  },
+
+  "saveConfirmText": {
+    "message": "Сачувано!",
+    "description": "Saved!"
+  },
+
+  "cancelConfirmText": {
+    "message": "Враћена подешавања!",
+    "description": "Restored Settings!"
+  },
+
+  "defaultConfirmText": {
+    "message": "Враћена подразумевана подешавања!",
+    "description": "Restored Default Settings!"
+  },
+
+  "resetCounterConfirmText": {
+    "message": "Очишћен бројач!",
+    "description": "Cleared Counter!"
+  },
+
+  "whiteListWordText": {
+    "message": "Бели списак",
+    "description": "WhiteList"
+  }, 
+
+  "greyListWordText": {
+    "message": "Сиви списак",
+    "description": "GreyList"
+  }, 
+
+  "toWhiteListText": {
+    "message": "На бели списак",
+    "description": "To WhiteList"
+  }, 
+
+  "toGreyListText": {
+    "message": "На сиви списак",
+    "description": "To GreyList"
+  }, 
+
+  "addURLText": {
+    "message": "Додај URL",
+    "description": "Add URL"
+  }, 
+
+  "clearURLText": {
+    "message": "Уклони све",
+    "description": "Remove All"
+  },
+
+  "enterURLTooltipText": {
+    "message": "Унеси URL-ове без 'www.' дела, онда притисните 'Enter' или 'Додај URL'. Или отворите сајт па га додајте помоћу иконице.",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
+  },
+
+  "hoverButtonTooltipText": {
+    "message": "Сиви спискови су колачићи које желите да задржите све док се прегледач не покрене поново. Бели списак садржи колачиће које желите да задржите трајно.",
+    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
+  },
+
+  "exportURLSText": {
+    "message": "Извези бели списак",
+    "description": "Export WhiteList"
+  },
+
+  "rightClickToSave": {
+    "message": "Десни клик да сачувате везу као",
+    "description": "Right Click to Save Link As"
+  },
+
+  "importURLSText": {
+    "message": "Отпреми датотеку",
+    "description": "Upload File"
+  },
+
+  "reportIssuesText": {
+    "message": "Пријавите проблеме и предложите могућности",
+    "description": "Report issues and suggest features"
+  },  
+
+  "versionText": {
+    "message": "издање",
+    "description": "version"
+  },
+
+  "contributorsText": {
+    "message": "Доприносиоци:",
+    "description": "Contributors:"
+  }    
+
+
+
+}
