@@ -60,7 +60,7 @@
 	},  		
 			
 	"switchToGreyListText": {		
-	    "message": "Limpar no reínicio do navegador (lista cinza)",		
+	    "message": "Limpar no reinício do navegador (lista cinza)",		
 	    "description": "Clean on Browser Restart (GreyList)"		
 	},
   
