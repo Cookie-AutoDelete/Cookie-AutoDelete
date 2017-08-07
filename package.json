@@ -1,6 +1,6 @@
 {
   "name": "cookie-autodelete",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Firefox and Chrome extension that manages Cookies",
   "main": "index.js",
   "dependencies": {},
