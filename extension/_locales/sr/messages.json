@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Самобрисач колачића",
+    "message": "Cookie AutoDelete",
     "description": "Name of the extension."
   },
 
@@ -57,7 +57,7 @@
   "switchToNoListText": {
     "message": "Очисти након затварања језичка",
     "description": "Clean After Tab Close"
-  },  
+  },
 
   "switchToGreyListText": {
     "message": "Очисти након поновног покретања прегледача (сиви списак)",
@@ -237,27 +237,27 @@
   "whiteListWordText": {
     "message": "Бели списак",
     "description": "WhiteList"
-  }, 
+  },
 
   "greyListWordText": {
     "message": "Сиви списак",
     "description": "GreyList"
-  }, 
+  },
 
   "toWhiteListText": {
     "message": "На бели списак",
     "description": "To WhiteList"
-  }, 
+  },
 
   "toGreyListText": {
     "message": "На сиви списак",
     "description": "To GreyList"
-  }, 
+  },
 
   "addURLText": {
     "message": "Додај URL",
     "description": "Add URL"
-  }, 
+  },
 
   "clearURLText": {
     "message": "Уклони све",
@@ -292,7 +292,7 @@
   "reportIssuesText": {
     "message": "Пријавите проблеме и предложите могућности",
     "description": "Report issues and suggest features"
-  },  
+  },
 
   "versionText": {
     "message": "издање",
@@ -302,7 +302,7 @@
   "contributorsText": {
     "message": "Доприносиоци:",
     "description": "Contributors:"
-  }    
+  }
 
 
 
