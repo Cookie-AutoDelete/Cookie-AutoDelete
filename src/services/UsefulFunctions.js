@@ -62,9 +62,14 @@ module.exports = {
 
 	// Returns the host name of the url. Etc. "https://en.wikipedia.org/wiki/Cat" becomes en.wikipedia.org
 	getHostname(urlToGetHostName) {
-		let hostname = new URL(urlToGetHostName).hostname;
-		// Strip "www." if the URL starts with it.
-		hostname = hostname.replace(/^www[a-z0-9]?\./, "");
+		let hostname;
+		try {
+			hostname = new URL(urlToGetHostName).hostname;
+			// Strip "www." if the URL starts with it.
+			hostname = hostname.replace(/^www[a-z0-9]?\./, "");
+		} catch (error) {
+			return "";
+		}
 		return hostname;
 	},
 

@@ -130,6 +130,11 @@ describe("Useful URI Functions", function() {
 			let results = usefulFunctions.getHostname("https://wwws.mint.com");
 			assert.strictEqual(results, "mint.com");
 		});
+
+		it("should return an empty string from invalid URLs", function() {
+			let results = usefulFunctions.getHostname("");
+			assert.strictEqual(results, "");
+		});
 	});
 
 	describe("isAWebpage()", function() {
