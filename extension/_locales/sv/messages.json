@@ -5,17 +5,17 @@
   },
 
   "extensionDescription": {
-    "message": "掌控你的 Cookie！关闭标签页后自动删除未想保留的 Cookie。您可以设置想要保留的白名单。",
+    "message": "Kontrollera dina cookies! Ta automatiskt bort oanvända cookies efter stängda flikar, samtidigt som du bevarar de du vill ha kvar.",
     "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
   },
 
   "notificationTitle": {
-    "message": "Cookie AutoDelete：Cookie 已删除！",
+    "message": "Cookie AutoDelete: Cookies har tagits bort!",
     "description": "Cookie AutoDelete: Cookies were Deleted!"
   },
 
   "notificationContent": {
-    "message": "已删除 $Num$ 个下列网站的 Cookie：$Websites$",
+    "message": "$Num$ borttagna cookies från: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num" : {
@@ -30,67 +30,67 @@
   },
 
   "hostWebsiteText": {
-    "message": "网站：",
+    "message": "Webbsida:",
     "description": "Host Website:"
   },
 
   "cookieCleanupText": {
-    "message": "清理所有 Cookie",
+    "message": "Ta bort cookies",
     "description": "Cookie Cleanup"
   },
 
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "清理所有 Cookie（忽略打开的标签页）",
+    "message": "Ta bort cookies (utom öppna flikar)",
     "description": "Cookie Cleanup (Ignore Open Tabs)"
   },
 
   "clearCookiesForDomainText": {
-    "message": "清除此域名的所有 Cookie",
+    "message": "Ta bort alla cookies för denna domän",
     "description": "Clear All Cookies For This Domain"
   },
 
   "activeModeSwitchText": {
-    "message": "主动模式",
+    "message": "Aktivt läge",
     "description": "Active Mode"
   },
 
   "switchToNoListText": {
-    "message": "标签页关闭后清理",
+    "message": "Ta bort efter flikstängning",
     "description": "Clean After Tab Close"
   },  
 
   "switchToGreyListText": {
-    "message": "浏览器重启时清理（绿名单）",
+    "message": "Ta bort när webbläsaren startas om (Grålista)",
     "description": "Clean on Browser Restart (GreyList)"
   },
 
   "switchToWhiteListText": {
-    "message": "从不清理（白名单）",
+    "message": "Ta aldrig bort (Vitlista)",
     "description": "Never Clean (WhiteList)"
   },
 
   "welcomeText": {
-    "message": "欢迎使用",
+    "message": "Välkommen",
     "description": "Welcome"
   },
 
   "settingsText": {
-    "message": "Cookie 设置",
+    "message": "Inställningar",
     "description": "Cookie Settings"
   },
 
   "whiteListText": {
-    "message": "Cookie 白名单",
+    "message": "Vitlista",
     "description": "Cookie WhiteList"
   },
 
   "aboutText": {
-    "message": "关于",
+    "message": "Om",
     "description": "About"
   },
 
   "welcomeMessage": {
-    "message": "Cookie AutoDelete 在本次会话期间已删除 $sessionDeleted$ 个 Cookie；累计已删除 $totalDeleted$ 个 Cookie。",
+    "message": "Hej! Under den här sessionen har Cookie AutoDelete tagit bort $sessionDeleted$ av sammanlagt $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted" : {
@@ -105,203 +105,202 @@
   },
 
   "reviewLinkMessage": {
-    "message": "感谢您尝试 Cookie AutoDelete。如果您喜欢，请来评价吧。",
+    "message": "Tack för att du provar Cookie AutoDelete. Om du gillar det, kanske du vill lämna en recension.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
   },
 
   "releaseNotesText": {
-    "message": "发行日志",
+    "message": "Versionsinformation",
     "description": "Release Notes"
   },
 
   "activeModeText": {
-    "message": "启用主动模式？清理前延迟：",
+    "message": "Starta aktivt läge? Fördröjning före borttagning:",
     "description": "Enable Active Mode? Delay Before Cleaning:"
   },
 
   "minutesText": {
-    "message": "分钟",
+    "message": "minut(er)",
     "description": "Minute(s)"
   },
 
   "activeModeTooltipText": {
-    "message": "主动模式启用时，将在标签页关闭时清理 Cookie。",
+    "message": "När aktivt läge körs, triggas cookie-borttagningen av flikstängning.",
     "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
   },
 
   "statLoggingText": {
-    "message": "记录已删除 Cookie 的总数",
+    "message": "Logga det sammanlagda antalet borttagna cookies",
     "description": "Log Total Number Of Cookies Deleted"
   },
 
   "statLoggingTooltipText": {
-    "message": "记录本次会话期间删除的 Cookie 数量，以及总计数量。此数字将在本扩展“选项”的欢迎信息中显示。",
+    "message": "Räknar antalet borttagna cookies under sessionen och sammanlagt. Detta visas i välkomstfönstret.",
     "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
   "resetCounterText": {
-    "message": "重置计数器",
+    "message": "Nollställ räknaren",
     "description": "Reset Counter"
   },
 
   "showNumberOfCookiesInIconText": {
-    "message": "显示该域名的 Cookie 数量",
+    "message": "Visa antal cookies för domänen",
     "description": "Show Number of Cookies for that Domain"
   },
 
   "showNumberOfCookiesInIconTooltipText": {
-    "message": "在徽章弹出窗中显示检测到哪些 Cookie。",
+    "message": "Visar i verktygsikonen, hur många cookies som identifierats.",
     "description": "Shows which cookies can be detected in the popup badge."
   },
 
   "notifyCookieCleanUpText": {
-    "message": "清理 Cookie 后显示通知",
+    "message": "Visa avisering efter cookie-borttagning",
     "description": "Show Notification After Cookie CleanUp"
   },
 
   "notifyCookieCleanUpTooltipText": {
-    "message": "显示已清除哪个域的多少个 Cookie。",
+    "message": "Visar hur många cookies som tagits bort och för vilken domän.",
     "description": "Shows how many cookies were cleaned and for which domain."
   },
 
-
-
   "cookieCleanUpOnStartText": {
-    "message": "启动时清理打开标签页的 Cookie",
+    "message": "Ta bort cookies från öppna flikar vid uppstart",
     "description": "Clean Cookies from Open Tabs on StartUp"
   },
 
   "cookieCleanUpOnStartTooltipText": {
-    "message": "这基本上等同清理 Cookie（忽略打开的标签页），将删除所有不在白名单上的 Cookie。",
+    "message": "Detta utför en cookie-rensning (utom för öppna flikar), vilket innebär att alla cookies som inte finns i vitlistan, tas bort.",
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   },
 
   "enableGlobalSubdomainText": {
-    "message": "启用对子域的检查",
+    "message": "Aktivera kontroll av underdomäner",
     "description": "Enable Check for Subdomains"
   },
 
   "enableGlobalSubdomainTooltipText": {
-    "message": "在启用时，*.example.com 将匹配 example.com。关闭此功能可以更精确的控制您的列表。",
+    "message": "Vid aktivering kommer *.example.com att matcha example.com. Inaktivering ger dig mer detaljerad kontroll över dina listor.",
     "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
   },
+
   "contextualIdentitiesEnabledText": {
-    "message": "启用 Firefox 的身份（容器）支持（实验性，Firefox 53+）",
+    "message": "Aktivera stöd för Firefoxs kontextuella identiteter (EXPERIMENTELL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
   },
 
   "contextualIdentitiesTooltipText": {
-    "message": "如非 Firefox 53+ 版本，请勿启用。这将为您使用的每个容器添加不同的白名单。您的默认白名单与此不同。",
+    "message": "Aktivera INTE, om du inte kör Firefox 53+. Detta kommer att lägga till en annan vitlista för VARJE behållare som du använder. Din standardvitlista är separerad från dessa.",
     "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
   "saveText": {
-    "message": "保存",
+    "message": "Spara",
     "description": "Save"
   },
 
   "cancelText": {
-    "message": "取消",
+    "message": "Avbryt",
     "description": "Cancel"
   },
 
   "defaultSettingsText": {
-    "message": "恢复默认设置",
-    "description": "Default Settings"
+    "message": "Återställ standardinställningar",
+    "description": "Restore Default Settings"
   },
 
   "defaultSettingsTooltipText": {
-    "message": "警告：这也将清除您的白名单。请先注意备份它们！",
+    "message": "VARNING! Detta rensar också vitlistan, så gör en säkerhetskopia!",
     "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
   "saveConfirmText": {
-    "message": "已保存！",
+    "message": "Sparat!",
     "description": "Saved!"
   },
 
   "cancelConfirmText": {
-    "message": "已恢复原有设置！",
+    "message": "Återställde inställningarna!",
     "description": "Restored Settings!"
   },
 
   "defaultConfirmText": {
-    "message": "已恢复默认设置！",
+    "message": "Återställde standardinställningarna!",
     "description": "Restored Default Settings!"
   },
 
   "resetCounterConfirmText": {
-    "message": "计数器已清除！",
+    "message": "Nollställde räknaren!",
     "description": "Cleared Counter!"
   },
 
-
   "whiteListWordText": {
-    "message": "白名单",
+    "message": "Vitlista",
     "description": "WhiteList"
   }, 
 
   "greyListWordText": {
-    "message": "绿名单",
+    "message": "Grålista",
     "description": "GreyList"
   }, 
 
   "toWhiteListText": {
-    "message": "到白名单",
+    "message": "Till vitlistan",
     "description": "To WhiteList"
   }, 
 
   "toGreyListText": {
-    "message": "到绿名单",
+    "message": "Till grålistan",
     "description": "To GreyList"
   }, 
+
   "addURLText": {
-    "message": "添加网址",
+    "message": "Lägg till URL",
     "description": "Add URL"
   }, 
 
   "clearURLText": {
-    "message": "全部移除",
+    "message": "Ta bort alla",
     "description": "Remove All"
   },
 
   "enterURLTooltipText": {
-    "message": "输入网址，无需 'www.' 部分。输入后按回车（Enter）键或单击“添加网址”。您也可以先访问所需网站，然后点击工具栏上的蓝色图标来添加白名单。",
+    "message": "Ange URL:er utan www. och tryck 'Enter' eller 'Lägg till URL'. Alternativt, gå till sidan och lägg till den från verktygsikonen.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
   },
 
   "hoverButtonTooltipText": {
-    "message": "绿名单是您要保留到浏览器关闭（下次启动前）时的 Cookie。白名单是要永久保留的 Cookie。",
+    "message": "Grålistan är de cookies du vill bevara tills webbläsaren startas om. Vitlistan är de cookies du vill spara permanent.",
     "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
   },
 
   "exportURLSText": {
-    "message": "导出白名单",
+    "message": "Exportera vitlistan",
     "description": "Export WhiteList"
   },
 
   "rightClickToSave": {
-    "message": "右击以链接另存为",
+    "message": "Högerklicka för att 'Spara som'",
     "description": "Right Click to Save Link As"
   },
 
   "importURLSText": {
-    "message": "上传文件",
+    "message": "Läs in från fil",
     "description": "Upload File"
   },
 
   "reportIssuesText": {
-    "message": "报告问题和建议功能",
+    "message": "Rapportera problem och föreslå programfunktioner",
     "description": "Report issues and suggest features"
   },  
 
   "versionText": {
-    "message": "版本",
+    "message": "version",
     "description": "version"
   },
 
   "contributorsText": {
-    "message": "贡献者：",
+    "message": "Medhjälpare:",
     "description": "Contributors:"
   }    
 

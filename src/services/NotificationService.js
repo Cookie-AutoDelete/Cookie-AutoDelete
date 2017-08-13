@@ -6,6 +6,7 @@ class NotificationService {
 
 	// Creates a notification of what cookies were cleaned and how many
 	notifyCookieCleanUp(recentlyCleaned, setOfDeletedDomainCookies) {
+		// Format the string
 		if (setOfDeletedDomainCookies.size > 0) {
 			let stringOfDomains = "";
 			let commaAppendIndex = 0;

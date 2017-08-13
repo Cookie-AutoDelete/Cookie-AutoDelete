@@ -77,6 +77,7 @@ browser.tabs.query({
 .then(fillPopup)
 .catch(onError);
 
+// Shows a green bar if the action was sucessful
 function animateSuccess(element) {
 	element.classList.add("successAnimated");
 	setTimeout(() => {
@@ -84,6 +85,7 @@ function animateSuccess(element) {
 	}, 1500);
 }
 
+// Shows a red bar if the action was not sucessful
 function animateFailure(element) {
 	element.classList.add("failureAnimated");
 	setTimeout(() => {
@@ -96,7 +98,7 @@ document.getElementById("settings").addEventListener("click", () => {
 	browser.runtime.openOptionsPage();
 });
 
-// Clear all history for a domain
+// Manual Cookie Cleanup event handlers
 document.getElementById("cookieCleanup").addEventListener("click", () => {
 	page.cleanupOperation(false, false);
 	animateSuccess(document.getElementById("cookieCleanup"));
@@ -144,7 +146,6 @@ document.getElementById("activeModeSwitch").addEventListener("click", () => {
 });
 
 // Radio button event Handling
-
 document.getElementById("switchToNoList").addEventListener("click", () => {
 	// console.log("Removed from list");
 	if (hostUrl !== undefined) {

@@ -1,36 +1,36 @@
 h1 {
-    border-bottom: 1px solid grey;
-    padding-bottom: 4px;
-	text-align: center;
+  border-bottom: 1px solid grey;
+  padding-bottom: 4px;
+  text-align: center;
 }
 
 td {
-	margin: 5px;
-	border-collapse: collapse;
-  	max-height: 10px;
+  margin: 5px;
+  border-collapse: collapse;
+  max-height: 10px;
 }
 
 table {
-	width: 100%;
+  width: 100%;
 }
 
 input {
-	margin-top: 5px;
-	margin-bottom: 2px;
+  margin-top: 5px;
+  margin-bottom: 2px;
 }
 
 button:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 /* Table tabs */
- /* Style the list */
+/* Style the list */
 ul.tab {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
 
 /* Float the list items side by side */
@@ -41,13 +41,13 @@ ul.tab li {
 
 /* Style the links inside the list items */
 ul.tab li a {
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
 }
 
 /* Change background color of links on hover */
@@ -63,54 +63,54 @@ ul.tab li a:focus, .activeTab {
 
 /* Style the tab content */
 .tabcontent {
-    
-    width: 100%;
-    /*
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-    */
+
+  width: 100%;
+/*
+padding: 6px 12px;
+border: 1px solid #ccc;
+border-top: none;
+*/
 }
 
 .tabcontent tr{
-   width: 100%;
+  width: 100%;
 }
 
 /* Table container */
 #tableContainer {
-	margin-top: 2em;
-	margin-bottom: 2em;
-	height: 20em;
-	overflow: auto;
-	border: 1px solid black;	
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+  height: 20em;
+  overflow: auto;
+  border: 1px solid black;	
 }
 
 .removeIcon {
-	margin-left: .5em;
-	margin-right: 1em;
+  margin-left: .5em;
+  margin-right: 1em;
 }
 .removeIcon:hover {
-	cursor: pointer;
-	opacity: 0.5;
-	transition-duration: 0.15s;
+  cursor: pointer;
+  opacity: 0.5;
+  transition-duration: 0.15s;
 }
 
 /* Content Container */
 .content {
-	padding-left: 12em;
-	width: 40em;
+  padding-left: 12em;
+  width: 40em;
 }
 #welcomeContent h2 {
-	font-size: 3rem;
+  font-size: 3rem;
 }
 
 #welcomeContent span {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /* Upload button */
 input[type="number"] {
-    width: 5em;
+  width: 5em;
 }
 .file-upload {
   display: inline-block;
@@ -133,133 +133,134 @@ input[type="number"] {
 }
 
 input[type="file"] {
-    display: none;
+  display: none;
 }
 
 /* Sidebar */
 #menu {
-	width: 10em;
-	background-color: #26292E;
-	height: 100%;
-	position: fixed;
+  width: 10em;
+  background-color: #26292E;
+  height: 100%;
+  position: fixed;
 }
 
 .pure-menu {
-	padding-top: 2em;
+  padding-top: 2em;
 }
 
 .pure-menu-item {
-	padding-top: 1em;
-	padding-left: 1em;
-	padding-bottom: 1em;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
 }
 
 .pure-menu-item:hover {
-	cursor: pointer;
-	transition: background-color;
-	transition-duration: 0.15s;
-	background-color: grey;
+  cursor: pointer;
+  transition: background-color;
+  transition-duration: 0.15s;
+  background-color: grey;
 }
 .pure-menu-item span {
-	color: #C1C1B4;
-	font: message-box;
+  color: #C1C1B4;
+  font: message-box;
 }
 
 .pure-menu-selected {
-	background: grey !important;
-	background-color: grey;
-	border-style: none none none solid;
-	border-left-color: #0288D1;
+  background: grey !important;
+  background-color: grey;
+  border-style: none none none solid;
+  border-left-color: #0288D1;
 }
 
 /* Alerts */
- /* The alert message box */
+/* The alert message box */
 .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    opacity: 1;
-    transition: opacity 0.6s;
-    margin-bottom: 15px;
-    animation-duration: 1s;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  animation-duration: 1s;
 }
 
 .alert.success {
-	background-color: #4CAF50
-;}
-.alert.info {
-	background-color: #2196F3;
-}
-.alert.warning {
-	background-color: #ff9800;
-}
-/* The close button */
-.removeButton {
-    /*
-    color: white;
-    float: right;
-    */
-    font-weight: bold;
-    font-size: 2em;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-sizing: border-box;
-    margin-right: 10px;
-    margin-left: 10px;
+  background-color: #4CAF50
+  ;}
+  .alert.info {
+    background-color: #2196F3;
+  }
+  .alert.warning {
+    background-color: #ff9800;
+  }
+  /* The close button */
+  .removeButton {
+/*
+color: white;
+float: right;
+*/
+font-weight: bold;
+font-size: 2em;
+line-height: 20px;
+cursor: pointer;
+transition: 0.3s;
+box-sizing: border-box;
+margin-right: 10px;
+margin-left: 10px;
+vertical-align: middle;
 }
 
 /* When moving the mouse over the close button */
 .removeButton:hover {
-    color: grey;
+  color: grey;
 }
 
 .fadeOut {
-	-webkit-animation-name: fadeOut;
-	animation-name: fadeOut;
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
 }
 @keyframes fadeOut {
-   0% {opacity: 1;}
-   100% {opacity: 0;} 
+  0% {opacity: 1;}
+  100% {opacity: 0;} 
 } 
 /* Tooltips */
 /* Tooltip container */
 .tooltip {
-    position: relative;
-    background-color: #757575;
-    display: inline-block;
-    border-radius: 30px;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    font-size: 16px;
-	font-weight: 700;
-	color: #F9F9F9;
+  position: relative;
+  background-color: #757575;
+  display: inline-block;
+  border-radius: 30px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #F9F9F9;
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-    visibility: hidden;
+  visibility: hidden;
 
-    max-width: 10em;
-    min-height: 5em;
-    background-color: grey;
-    color: #F9F9F9;
-    text-align: center;
-    padding: 5px 5px;
-    border-radius: 6px;
-    font-size: 80%;
- 	position: fixed;
+  max-width: 10em;
+  min-height: 5em;
+  background-color: grey;
+  color: #F9F9F9;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 6px;
+  font-size: 80%;
+  position: fixed;
 
-    margin-left: -3em;
-    z-index: 2;
+  margin-left: -3em;
+  z-index: 2;
 }
 .tooltip:hover {
-    cursor: help;
+  cursor: help;
 }
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
 }
 
 span#welcomeMessage {
@@ -270,28 +271,45 @@ span#welcomeMessage {
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
+
+}
+
+.rowContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@media (max-width: 350px) {
+  .rowContainer {
+    flex-direction: column;
+  }
+}
+
+.rowLeftSide {
+  padding-top: 6px;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-    display: none;
-    position: absolute;
-    text-align: center;
-    background-color: #f9f9f9;
-    min-width: 130px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  display: none;
+  position: absolute;
+  text-align: center;
+  background-color: #f9f9f9;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    overflow: visible !important;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  overflow: visible !important;
 }
 
 /* Change color of dropdown links on hover */
@@ -302,10 +320,10 @@ span#welcomeMessage {
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-
+.dropdown .dropbtn {
+  margin-bottom: 0;
 } 

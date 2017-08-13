@@ -4,7 +4,7 @@ node_js:
 install:
   - npm install
 script:
-  - npm test
+  - npm run test-all
 after_script: 
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy: 

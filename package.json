@@ -1,6 +1,6 @@
 {
   "name": "cookie-autodelete",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "description": "Firefox and Chrome extension that manages Cookies",
   "main": "index.js",
   "dependencies": {},
@@ -9,7 +9,7 @@
     "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
     "eslint-plugin-json": "^1.2.0",
-    "eslint-plugin-mocha": "^4.9.0",
+    "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-promise": "^3.5.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
@@ -20,8 +20,9 @@
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
     "build": "./node_modules/.bin/webpack --config webpack.config.js && ./tools/buildFilesDev.sh",
-    "start": "webpack --config webpack.config.js --progress --colors --watch",
-    "lint": "./node_modules/.bin/eslint --ext .js src/** extension/popup/popup.js extension/settings/settings.js"
+    "dev": "webpack --config webpack.config.js --progress --colors --watch",
+    "lint": "./node_modules/.bin/eslint --ext=.js,.json src/** test/** extension/_locales/** extension/popup/popup.js extension/settings/settings.js",
+    "test-all": "npm run test && npm run lint"
   },
   "repository": {
     "type": "git",

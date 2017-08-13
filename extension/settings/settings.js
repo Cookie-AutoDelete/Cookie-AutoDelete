@@ -1,10 +1,15 @@
 /* global page*/
 /* eslint no-use-before-define: ["error", { "functions": false }]*/
+
+// page is declared in settingsLocalization.js
+
 let browserDetect = browser.extension.getBackgroundPage().browserDetect;
 const defaultWhiteList = "defaultWhiteList";
 const greyPrefix = "-Grey";
 const GREYLIST = "GreyList";
 const WHITELIST = "WhiteList";
+const firefoxPrivate = "firefox-private";
+
 // Logs the error
 function onError(error) {
 	console.error(`Error: ${error}`);
@@ -99,6 +104,7 @@ function saveSettingsValues() {
 
 restoreSettingValues();
 
+// Hide the Container Mode option if not Firefox
 if (browserDetect() !== "Firefox" || browser.contextualIdentities === undefined) {
 	document.getElementById("contextualIdentitiesRow").style.display = "none";
 }
@@ -155,11 +161,12 @@ function addURLHoverButton(event) {
 // Remove the url where the user clicked
 function clickRemoved(event) {
 	if (event.target.classList.contains("removeButton")) {
-		let URL = event.target.parentElement.classList.item(0);
-		let list = event.target.parentElement.classList.item(1);
+		let targetElement = event.target.parentElement.parentElement.parentElement;
+		let URL = targetElement.classList.item(0);
+		let list = targetElement.classList.item(1);
 		let currentWhiteList = page.contextualIdentitiesEnabled ? getActiveTabName() : defaultWhiteList;
+		// console.log(URL + list);
 		URL = URL.trim();
-        // console.log(list);
 		page.whiteList.removeURL(URL, list === WHITELIST ? currentWhiteList : currentWhiteList + greyPrefix);
 		generateTableOfURLS();
 	}
@@ -204,7 +211,7 @@ function downloadTextFile(txt) {
 	let hiddenElement = document.createElement("a");
 	hiddenElement.href = `data:text/plain;charset=utf-8,${encodeURIComponent(txt)}`;
 	hiddenElement.target = "_target";
-	hiddenElement.download = "Cookie_AutoDelete_URLS.txt";
+	hiddenElement.download = page.contextualIdentitiesEnabled ? "Cookie_AutoDelete_Lists_Containers.txt" : "Cookie_AutoDelete_Lists.txt";
 
     // Firefox just opens the text rather than downloading it. In Chrome the "else" block of code works.
     // So this is a work around.
@@ -227,17 +234,22 @@ function downloadTextFile(txt) {
 function exportMapToTxt() {
 	let txtFile = "";
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
-		txtFile += `#${key}\n`;
-		txtFile += returnLinesFromArray(Array.from(value).sort());
-		txtFile += "\n";
+		if (key !== firefoxPrivate && key !== firefoxPrivate + greyPrefix) {
+			txtFile += `#${key}\n`;
+			txtFile += returnLinesFromArray(Array.from(value).sort());
+			txtFile += "\n";
+		}
 	});
 	downloadTextFile(txtFile);
 }
 
+// Switches a domain from GreyList to WhiteList and vise versa
 function switchList(event) {
-	let url = event.target.parentElement.parentElement.parentElement.classList.item(0);
+	event.preventDefault();
+	let url = event.target.parentElement.parentElement.parentElement.parentElement.classList.item(0);
 	let targetList = event.target.classList.item(0);
 	let currentWhiteList = defaultWhiteList;
+	// console.log(url + targetList);
 	if (page.contextualIdentitiesEnabled) {
 		currentWhiteList = getActiveTabName();
 	}
@@ -250,6 +262,7 @@ function switchList(event) {
 	generateTableOfURLS();
 }
 
+// Creates a row in the table
 function createRow(arrayItem, listType) {
 	let tr = document.createElement("tr");
 	let td = document.createElement("td");
@@ -261,12 +274,12 @@ function createRow(arrayItem, listType) {
 	let removeButton = document.createElement("span");
 	removeButton.classList.add("removeButton");
 	removeButton.addEventListener("click", clickRemoved);
+	removeButton.appendChild(document.createTextNode("\u00D7"));
 
 	let hoverMenu = document.createElement("div");
 	hoverMenu.classList.add("dropdown");
-	hoverMenu.style.float = "right";
-	hoverMenu.style.right = "1em";
-	hoverMenu.style.position = "relative";
+	hoverMenu.classList.add("dropdownTable");
+
 	let hoverButton = document.createElement("button");
 	hoverButton.classList.add("dropbtn");
 	hoverButton.textContent = `${listType === WHITELIST ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")} \u25BC`;
@@ -290,10 +303,17 @@ function createRow(arrayItem, listType) {
 	hoverMenu.appendChild(hoverButton);
 	hoverMenu.appendChild(hoverDropDownContent);
 
-	removeButton.appendChild(document.createTextNode("\u00D7"));
-	td.appendChild(removeButton);
-	td.appendChild(document.createTextNode(arrayItem));
-	td.appendChild(hoverMenu);
+	let leftSide = document.createElement("span");
+	leftSide.classList.add("rowLeftSide");
+	leftSide.appendChild(removeButton);
+	leftSide.appendChild(document.createTextNode(arrayItem));
+
+	let rowContainer = document.createElement("div");
+	rowContainer.classList.add("rowContainer");
+
+	rowContainer.appendChild(leftSide);
+	rowContainer.appendChild(hoverMenu);
+	td.appendChild(rowContainer);
 	tr.appendChild(td);
 	return tr;
 }
@@ -335,7 +355,7 @@ function openTab(evt, tabContent) {
 	evt.currentTarget.classList.add("activeTab");
 }
 
-// Generates the nav above the url table
+// Generates the nav above the domain table
 function generateTabNav() {
 	let tableContainerNode = document.getElementById("tableContainer");
 	let tabNav = document.createElement("ul");
@@ -344,7 +364,8 @@ function generateTabNav() {
 	tabNav.classList.add("tab");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
         // Creates the tabbed navigation above the table
-		if (!key.endsWith(greyPrefix)) {
+        // This fixes an issue where if you open a private window in Containers Mode, a new tab with [object Promise] will show up
+		if (!key.endsWith(greyPrefix) && key !== firefoxPrivate) {
 			let tab = document.createElement("li");
 			let aTag = document.createElement("a");
 			aTag.textContent = page.cache.getNameFromCookieID(key);
@@ -361,10 +382,8 @@ function generateTabNav() {
 	tableContainerNode.parentNode.insertBefore(tabNav, tableContainerNode);
 }
 
-// Generate the url table
+// Generate the domain table
 function generateTableOfURLS() {
-	// let tableContainerNode = document.getElementById("tableContainer");
-    // console.log(page.cookieWhiteList);
 	let activeTabName = getActiveTabName();
 	let theTables = document.createElement("div");
 	page.whiteList.cookieWhiteList.forEach((value, key, map) => {
@@ -387,6 +406,7 @@ function generateTableOfURLS() {
 	}
 }
 
+// Creates the table and the tab nav
 function generateTable() {
 	if (document.contains(document.getElementById("containerTabs"))) {
 		document.getElementById("containerTabs").remove();
@@ -411,6 +431,7 @@ document.getElementById("clear").addEventListener("click", () => {
 // Event handler for the user entering a URL through a form
 document.getElementById("add").addEventListener("click", addURLFromInput);
 
+// DropDown Button whether to add the domain to Grey or White List
 document.getElementById("dropdownText").addEventListener("click", addURLHoverButton);
 
 // Event handler when the user press "Enter" on a keyboard on the URL Form
@@ -433,10 +454,18 @@ document.getElementById("importURLS").addEventListener("change", function() {
 	let reader = new FileReader();
 	reader.onload = function(progressEvent) {
 		// Entire file
-		// console.log(this.result);
+		let normalizedResult = this.result;
+		if (this.result.includes("\r\n")) {
+			// console.log("CRLF")
+			normalizedResult = this.result.replace(/\r\n/g, "\n");
+		} else if (this.result.includes("\r")) {
+			// console.log("CR")
+			normalizedResult = this.result.replace(/\r/g, "\n");
+		}
 
 		// By lines
-		let lines = this.result.split("\n");
+		let lines = normalizedResult.split("\n");
+		// console.log(lines);
 		let cookieID = "";
 		for (let line = 0; line < lines.length; line++) {
 			if (lines[line].charAt(0) === "#") {

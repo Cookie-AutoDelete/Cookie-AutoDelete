@@ -4,14 +4,14 @@
 <head>
 
 	<title>Cookie AutoDelete Settings</title>
-	<meta charset="UTF-8"> 
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../icons/icon_24.png">
 	<link rel="stylesheet" href="side-menu.css">
 	<link rel="stylesheet" href="../global_files/normalize.css">
 	<link rel="stylesheet" href="../global_files/skeleton.css">
-	<link rel="stylesheet" href="settings.css">	
-	
+	<link rel="stylesheet" href="settings.css">
+
 </head>
 
 <body>
@@ -49,6 +49,10 @@
 								<li>New Feature: GreyList Support (Set a site's cookies to clear on browser restart)</li>
 								<li>Added: Global Subdomain Checkbox</li>
 								<li>Changed: WhiteList and GreyList are now Sorted</li>
+								<li>Fixed (1.4.1): Edited txt files would break import under different EOL</li>
+								<li>New Language (1.4.1): sv</li>
+								<li>New Language (1.4.2): sr</li>
+								<li>Fixed (1.4.2): Cookie Cleanup failing on cookies without hostnames</li>
 							</ul>
 							<span>1.3.0</span>
 							<ul>
@@ -92,7 +96,7 @@
 								<li>Easily Export/Import your Whitelist</li>
 								<li>Clear All Cookies for a Domain</li>
 							</ul>
-							
+
 						</div>
 					</div>
 
@@ -109,7 +113,7 @@
 						  <span id="activeModeTooltipText" class="tooltiptext">When active mode is enabled, cookie cleanup is triggered on tab close.</span>
 						</div>
 
-					</div>	
+					</div>
 
 					<br>
 
@@ -121,7 +125,7 @@
 							  <span id="statLoggingTooltipText" class="tooltiptext">Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen.</span>
 							</div>
 						</div>
-						<div class="three columns">	
+						<div class="three columns">
 							<button id="resetCounter">
 								<span id="resetCounterText">Reset Counter</span>
 							</button>
@@ -134,7 +138,7 @@
 						<span id="showNumberOfCookiesInIconText">Show Number of Cookies for that Domain</span>
 						<div class="tooltip">?
 						  <span id="showNumberOfCookiesInIconTooltipText" class="tooltiptext">Shows how many cookies for that domain.</span>
-						</div>	
+						</div>
 					</div>
 
 					<div class="row">
@@ -142,7 +146,7 @@
 						<span id="notifyCookieCleanUpText">Show Notification After Cookie CleanUp</span>
 						<div class="tooltip">?
 						  <span id="notifyCookieCleanUpTooltipText" class="tooltiptext">Shows how manu cookies were cleaned and for which domain.</span>
-						</div>	
+						</div>
 					</div>
 
 					<div class="row">
@@ -150,7 +154,7 @@
 						<span id="cookieCleanUpOnStartText">cookieCleanUpOnStart</span>
 						<div class="tooltip">?
 						  <span id="cookieCleanUpOnStartTooltipText" class="tooltiptext">cookieCleanUpOnStartTooltipText</span>
-						</div>	
+						</div>
 					</div>
 
 					<div class="row">
@@ -158,7 +162,7 @@
 						<span id="enableGlobalSubdomainText">enableGlobalSubdomain</span>
 						<div class="tooltip">?
 						  <span id="enableGlobalSubdomainTooltipText" class="tooltiptext">enableGlobalSubdomain</span>
-						</div>	
+						</div>
 					</div>
 
 					<div class="row" id="contextualIdentitiesRow">
@@ -166,11 +170,11 @@
 						<span id="contextualIdentitiesEnabledText">Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)</span>
 						<div class="tooltip">?
 						  <span id="contextualIdentitiesTooltipText" class="tooltiptext">Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these.</span>
-						</div>	
+						</div>
 					</div>
 
 					<br><br>
-					<div class="row">			
+					<div class="row">
 						<button id="saveSettings" class="button-primary">
 							<span id="saveText">Save</span>
 						</button>
@@ -187,22 +191,22 @@
 						<div id="saveConfirm" class="alert success" style="display: none;">
 							<strong id="saveConfirmText">Saved!</strong>
 						</div>
-						<div id="cancelConfirm" class="alert warning" style="display: none;"> 
+						<div id="cancelConfirm" class="alert warning" style="display: none;">
 							<strong id="cancelConfirmText">Restored Settings!</strong>
 						</div>
-						<div id="defaultConfirm" class="alert warning" style="display: none;"> 
+						<div id="defaultConfirm" class="alert warning" style="display: none;">
 							<strong id="defaultConfirmText">Restored Default Settings!</strong>
 						</div>
 						<div id="resetCounterConfirm" class="alert success" style="display: none;">
 							<strong id="resetCounterConfirmText">Cleared Counter!</strong>
 						</div>
-					</div>					
+					</div>
 
 				</div>
 
 				<div id="listOfURLSContent">
 					<h1 id="sectionWhiteList">Cookie WhiteList</h1>
-					
+
 					<input id="URLForm" class="u-full-width" type="url">
 					<br>
 
@@ -214,7 +218,12 @@
 					  <div class="dropdown-content">
 					    <a id="dropdownText" href="#">GreyList</a>
 					  </div>
-					</div> 
+					</div>
+
+					<div class="tooltip">?
+				 		 <span id="hoverButtonTooltipText" class="tooltiptext">hoverButtonTooltipText</span>
+					</div>
+
 					<button id="clear">
 						<span id="clearURLText">Remove All</span>
 					</button>
@@ -228,8 +237,10 @@
 					<button id="exportURLS">
 						<span id="exportURLSText">Export URLS</span>
 					</button>
+
+
 					<div id="saveAs"></div>
-					<br><br>
+					</br>
 					<label class="file-upload">
 						<input id="importURLS" type="file"/>
 						<div id="importURLSText">Upload File</div>
@@ -240,7 +251,7 @@
 					<h1 id="sectionAbout">About</h1>
 					<a id="reportIssuesText" href="https://github.com/mrdokenny/Cookie-AutoDelete/issues">Report issues and suggest features</a> <br><br>
 					<a href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh">Chrome <span id="chromeVersionText"></span> </a><br>
-					<a  href="https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/">Firefox <span id="firefoxVersionText"></span> </a> <br><br>
+					<a href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/">Firefox <span id="firefoxVersionText"></span> </a> <br><br>
 					<span id="contributorsText">Contributors:</span>
 					<ul>
 						<li>Kenny Do (Creator)</li>
@@ -248,6 +259,7 @@
 						<li>AdmiralAnimE (bg translation)</li>
 						<li>Strayer (de translation)</li>
 						<li>yfdyh000 (zh_CN translation)</li>
+						<li>eson57 (sv translation)</li>
 					</ul>
 					</div>
 
@@ -256,11 +268,11 @@
 
 			</div>
 		</div>
-		
-		<script type="text/javascript" src="../global_files/browser-polyfill.js"></script>	
+
+		<script type="text/javascript" src="../global_files/browser-polyfill.js"></script>
 		<script type="text/javascript" src="settingsLocalization.js"></script>
-		<script type="text/javascript" src="ui.js"></script>		
-		<script type="text/javascript" src="settings.js"></script>	
+		<script type="text/javascript" src="ui.js"></script>
+		<script type="text/javascript" src="settings.js"></script>
 	</body>
 
 

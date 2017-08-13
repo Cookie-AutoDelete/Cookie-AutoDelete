@@ -54,9 +54,19 @@
     "description": "Active Mode"
   },
 
+  "switchToNoListText": {
+    "message": "Limpiar después de cerrar la pestaña",
+    "description": "Clean After Tab Close"
+  },
+      
+  "switchToGreyListText": {   
+    "message": "Limpiar el reinicio del navegador (lista gris)",
+    "description": "Clean on Browser Restart (GreyList)"
+  },
+
   "switchToWhiteListText": {
-    "message": "Añadir a la lista blanca?",
-    "description": "Add to WhiteList?"
+    "message": "Nunca limpie (lista blanca)",
+    "description": "Never Clean (WhiteList)"
   },
 
   "welcomeText": {
@@ -140,8 +150,8 @@
   },
 
 "showNumberOfCookiesInIconTooltipText": {
-    "message": "Mostrar número de cookies para ese dominio",
-    "description": "Show Number of Cookies for that Domain"
+    "message": "Muestra las cookies que se pueden detectar en la insignia emergente.",
+    "description": "Shows which cookies can be detected in the popup badge."
   },
 
 "notifyCookieCleanUpText": {
@@ -155,13 +165,23 @@
   },
 
 "cookieCleanUpOnStartText": {
-      "message": "Habilitar limpieza de cookies en el inicio",    
-      "description": "Enable Cookie Cleanup on Startup"   
-  },    
+      "message": "Borrar cookies desde las pestañas abiertas en Inicio",
+      "description": "Clean Cookies from Open Tabs on StartUp"
+  },
       
 "cookieCleanUpOnStartTooltipText": {
     "message": "Esto básicamente hace una limpieza de cookies (Ignorar pestañas abiertas), lo que significa que todas las cookies que no están en la lista blanca se eliminan.",    
-    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."   
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
+  },
+
+"enableGlobalSubdomainText": {
+    "message": "Habilitar la búsqueda de subdominios",
+    "description": "Enable Check for Subdomains"
+  },
+
+"enableGlobalSubdomainTooltipText": {
+    "message": "Cuando esté habilitado, *.example.com coincidirá con example.com. Al desactivar esto, obtendrás un mayor control granular sobre tus listas.",
+    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
   },
 
 "contextualIdentitiesEnabledText": {
@@ -214,7 +234,27 @@
     "description": "Cleared Counter!"
   },
 
- "addURLText": {
+"whiteListWordText": {
+    "message": "Lista blanca",
+    "description": "WhiteList"
+  }, 
+
+"greyListWordText": {
+    "message": "Lista Gris",
+    "description": "GreyList"
+  }, 
+
+"toWhiteListText": {
+    "message": "A la lista blanca",
+    "description": "To WhiteList"
+  }, 
+
+"toGreyListText": {
+    "message": "A la lista gris",
+    "description": "To GreyList"
+  }, 
+
+"addURLText": {
     "message": "Agregar URL",
     "description": "Add URL"
   }, 
@@ -227,6 +267,11 @@
 "enterURLTooltipText": {
     "message": "Ingrese URL sin el 'www'. Parte, luego presione 'Enter' o 'Add URL'. También puede ir al sitio y agregarlo desde el icono.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
+  },
+
+"hoverButtonTooltipText": {
+    "message": "Las listas grises son las cookies que desea conservar hasta que el navegador se reinicie. Las listas blancas son las cookies que desea mantener permanentemente.",
+    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
   },
 
 "exportURLSText": {

@@ -81,11 +81,15 @@ function setIconDefault(tab) {
 }
 
 // Show the # of cookies in icon
-function showNumberOfCookiesInIcon(tabURL, tabID) {
-	return browser.cookies.getAll({domain: UsefulFunctions.getHostname(tabURL)})
+function showNumberOfCookiesInIcon(tab) {
+	return browser.cookies.getAll({
+		domain: UsefulFunctions.getHostname(tab.url),
+		storeId: tab.cookieStoreId
+	})
 	.then((cookies) => {
 		browser.browserAction.setBadgeText({
-			text: cookies.length.toString(), tabId: tabID
+			text: cookies.length.toString(),
+			tabId: tab.id
 		});
 		return Promise.resolve();
 	});
@@ -159,7 +163,7 @@ function createObjects(items) {
 }
 
 // Sets up the background page on startup
-function onStartUp() {
+function onStartUp(cookieCleanup = false) {
 	return browser.storage.local.get()
 	.then((items) => {
 		return contextualCheck(items);
@@ -171,23 +175,27 @@ function onStartUp() {
 		return createObjects(items);
 	})
 	.then((items) => {
+		// Export these so that popup and settings page can access them
 		module.exports.whiteList = whiteList;
 		module.exports.contextualIdentitiesEnabled = contextualIdentitiesEnabled;
 		module.exports.statLog = statLog;
 		module.exports.cache = cache;
 
-		// Do a cleanup on startup if active mode is on
-		if (items.activeMode) {
-			return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
+		// Do a cleanup on startup if active mode is on and if its not been called from the settings page
+		if (items.activeMode && cookieCleanup) {
+			setTimeout(() => {
+				return exposedFunctions.cleanupOperation(items.cookieCleanUpOnStartSetting, true);
+			}, 1250);
 		}
 		return Promise.resolve();
 	})
 	.catch(onError);
 }
 
-onStartUp()
+onStartUp(true)
 .catch(onError);
 
+// Export these in a global variable named exposedFunctions
 module.exports = {
 	onStartUp() {
 		return onStartUp();
@@ -214,6 +222,7 @@ module.exports = {
 			return notifyCleanup.notifyCookieCleanUp(cleanup.recentlyCleaned, setOfDeletedDomainCookies);
 		});
 	},
+	// Used in the popup
 	getNotifyMessage() {
 		return notifyCleanup.notifyMessage;
 	},
@@ -251,6 +260,7 @@ module.exports = {
 	prepareCookieDomain(cookie) {
 		return cleanup.prepareCookieDomain(cookie);
 	},
+	// Checks if the host domain is in the whitelist and colors the icon
 	checkIfProtected(tab) {
 		let domainHost = UsefulFunctions.getHostname(tab.url);
 		let baseDomainHost = globalSubdomainEnabled ? UsefulFunctions.extractBaseDomain(domainHost) : domainHost;
@@ -280,6 +290,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 		return browser.windows.getCurrent()
 		.then((windowInfo) => {
+			// Disable the popup in incognito/private mode
 			if (windowInfo.incognito) {
 				browser.browserAction.disable(tab.id);
 				browser.browserAction.setBadgeText({
@@ -300,7 +311,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 			return browser.storage.local.get("showNumberOfCookiesInIconSetting")
 			.then((items) => {
 				if (items.showNumberOfCookiesInIconSetting === true) {
-					return showNumberOfCookiesInIcon(tab.url, tab.id);
+					return showNumberOfCookiesInIcon(tab);
 				}
 				return Promise.resolve();
 			});
@@ -309,7 +320,7 @@ browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	return undefined;
 });
 
-// Alarm event handler
+// Alarm event handler for Active Mode
 browser.alarms.onAlarm.addListener((alarmInfo) => {
 	// console.log(alarmInfo.name);
 	if (alarmInfo.name === "activeModeAlarm") {
