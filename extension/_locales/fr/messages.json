@@ -4,7 +4,7 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Contrôler vos Cookies ! Supprimer automatiquement les cookies non utilsiés de vos onglets fermés tout en gardant ceux que vous voulez.",
+    "message": "Contrôler vos Cookies ! Supprimer automatiquement les cookies non utilisés de vos onglets fermés tout en gardant ceux que vous voulez.",
     "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
   },
   "notificationTitle": {
