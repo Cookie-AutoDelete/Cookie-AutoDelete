@@ -80,8 +80,8 @@
   },
 
   "whiteListText": {
-    "message": "Cookie WhiteList",
-    "description": "Cookie WhiteList"
+    "message": "List of Expressions",
+    "description": "List of Expressions"
   },
 
   "aboutText": {

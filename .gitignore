@@ -35,6 +35,7 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-*.xpi
 *.zip
-extension/background-webpack.js
+*.xpi
+report.html
+*Bundle.js

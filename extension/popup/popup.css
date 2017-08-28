@@ -1,8 +1,4 @@
 
-span {
-  font-size: 1.9rem;
-  
-}
 
 span.userAction {
   font-size: 16px;
@@ -12,44 +8,25 @@ span.userAction {
 
 label:hover {
   background-color: #d3d3d3;
+  cursor: pointer;
 }
 
 label {
-	padding: 2px 10px;
+	padding: 2px 15px;
 }
 
-img {
-  margin-right: 5px;
-}
 .lineBreak {
   border-bottom: 1px solid #d3d3d3;
   margin: 2px 0;
 }
 
-#top {
-	margin-left: .8em;
-}
-
-
-.container {
-	padding: 0;
-	min-width: 17em;
-	user-select: none;
-}
-
-
-#settings {
-  width: 2em;
-  height: 2em;
-}
-
-#settings:hover {
+.cursorPoint:hover {
   cursor: pointer;
   filter: invert(50%);
 }
 
-#notify {
-	margin: .5em;
+body {
+  min-width: 400px;
 }
 
 @keyframes successAnimation {
@@ -58,8 +35,8 @@ img {
   100% { background-color: #FFFFFF; }
 }
 
-.successAnimated {    
-    animation: successAnimation 1.5s ease-in-out; 
+.successAnimated {
+    animation: successAnimation 1.5s ease-in-out;
 }
 
 @keyframes failureAnimation {
@@ -68,11 +45,6 @@ img {
   100% { background-color: #FFFFFF; }
 }
 
-.failureAnimated {    
-    animation: failureAnimation 1.5s ease-in-out; 
-}
-
-/* Override skeleton.css for label margins because they look off center */
-label {
-  margin: 0.2em;
+.failureAnimated {
+    animation: failureAnimation 1.5s ease-in-out;
 }

@@ -1,0 +1,50 @@
+{
+  "lists": {
+    "default": [
+      {
+        "id": "Bkbv-Ck_-",
+        "expression": "*google.com*",
+        "regExp": "^.*google\\.com.*$",
+        "type": "GREY"
+      }
+    ]
+  },
+  "cookieDeletedCounterTotal": 0,
+	"settings": {
+  	"activeMode": {
+  		"name": "activeMode",
+  		"value": false,
+  		"id": 1
+  	},
+  	"delayBeforeClean": {
+  		"name": "delayBeforeClean",
+  		"value": 1,
+  		"id": 2
+  	},
+  	"statLogging": {
+  		"name": "statLogging",
+  		"value": true,
+  		"id": 3
+  	},
+  	"showNumOfCookiesInIcon": {
+  		"name": "showNumOfCookiesInIcon",
+  		"value": true,
+  		"id": 4
+  	},
+  	"showNotificationAfterCleanup": {
+  		"name": "showNotificationAfterCleanup",
+  		"value": true,
+  		"id": 5
+  	},
+  	"cleanCookiesFromOpenTabsOnStartup": {
+  		"name": "cleanCookiesFromOpenTabsOnStartup",
+  		"value": false,
+  		"id": 6
+  	},
+  	"contextualIdentities": {
+  		"name": "contextualIdentities",
+  		"value": false,
+  		"id": 7
+  	}
+  }
+}

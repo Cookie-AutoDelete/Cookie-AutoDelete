@@ -2,87 +2,20 @@
 
 <html>
 <head>
-	<link rel="stylesheet" href="../global_files/normalize.css">
-	<link rel="stylesheet" href="../global_files/skeleton.css">
+	<link rel="stylesheet" href="../global_files/font-awesome.min.css">
+	<link rel="stylesheet" href="../global_files/bootstrap.min.css">
+	<link rel="stylesheet" href="../global_files/checkbox-and-radio.css">
 	<link rel="stylesheet" href="popup.css">
-	<meta charset="UTF-8"> 
+	<meta charset="UTF-8">
 </head>
 <body>
-	<div class="container">
-			<div id="top">
-				<div class="row">
-					<span><b id="hostWebsiteText">Host Website:</b></span>
-
-					<img src="../icons/settings.png" id="settings" class="u-pull-right">
-				</div>			
-			
-				<div class="row">
-					<div id="hostwebsite"></div>
-				</div>
-			</div>
-			<div class="row lineBreak"></div>
-			
-			<div class="row">
-				<label for="switchToNoList">
-						<input type="radio" name="siteState" id="switchToNoList">
-						<span id="switchToNoListText" class="userAction">No List</span>
-				</label>
-			</div>
-
-			<div class="row">
-				<label for="switchToGreyList">
-						<input type="radio" name="siteState" id="switchToGreyList">
-						<span id="switchToGreyListText" class="userAction">Add to GreyList?</span>
-				</label>
-			</div>
-
-			<div class="row">
-				<label for="switchToWhiteList">
-						<input type="radio" name="siteState" id="switchToWhiteList">
-						<span id="switchToWhiteListText" class="userAction">Add to WhiteList?</span>
-				</label>
-			</div>
-			
-			<div class="row lineBreak"></div>
-
-			<div class="row">
-				<label id="cookieCleanup" for="cookieCleanup">
-						<span id="cookieCleanupText" class="userAction">Cookie Cleanup</span>
-				</label>
-			</div>
-
-			<div class="row">
-				<label id="cookieCleanupIgnoreOpenTabs" for="cookieCleanupIgnoreOpenTabs">
-						<span id="cookieCleanupIgnoreOpenTabsText" class="userAction">Cookie Cleanup (Ignore Open Tabs)</span>
-				</label>
-			</div>
-			
-			<div class="row">
-				<label id="clearCookiesForDomain" for="clearCookiesForDomain">
-						<span id="clearCookiesForDomainText" class="userAction">Clear All Cookies For This Domain</span>
-				</label>
-			</div>
-
-			<div class="row lineBreak"></div>
-			
-			<div class="row">
-				<label for="activeModeSwitch">
-						<input type="checkbox" id="activeModeSwitch">
-						<span id="activeModeSwitchText" class="userAction">Active Mode</span>
-				</label>
-			</div>
-			
-			<div class="row lineBreak"></div>
-			
-			<div class="row" id="notify">
-
-			</div>
-			
-
-	</div>
 	<script type="text/javascript" src="../global_files/browser-polyfill.js"></script>
-	<script type="text/javascript" src="popupLocalization.js"></script>
-	<script type="text/javascript" src="popup.js"></script>
-	
+	<script src="../global_files/react.min.js"></script>
+	<script src="../global_files/react-dom.min.js"></script>
+	<script src="../global_files/redux.js"></script>
+	<script src="../global_files/react-redux.js"></script>
+	<script src="../global_files/redux-webext.js"></script>
+	<script src="./popupBundle.js"></script>
+
 </body>
 </html>

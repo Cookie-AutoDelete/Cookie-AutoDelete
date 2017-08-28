@@ -1,9 +1,13 @@
 {
   "background": {
     "scripts": [
-		"global_files/browserDetect.js",
-		"global_files/browser-polyfill.js",
-		"background-webpack.js"
+      "global_files/browserDetect.js",
+    	"global_files/browser-polyfill.js",
+    	"global_files/redux.js",
+    	"global_files/redux-thunk.js",
+    	"global_files/redux-webext.js",
+    	"global_files/shortid.js",
+    	"backgroundBundle.js"
 	]
   },
   "description": "__MSG_extensionDescription__",
@@ -26,7 +30,7 @@
   "applications": {
     "gecko": {
       "id": "CookieAutoDelete@kennydo.com",
-      "strict_min_version": "50.0"
+      "strict_min_version": "56.0"
     }
   },
   "options_ui": {
@@ -45,5 +49,5 @@
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "1.4.3"
+  "version": "2.0.0"
 }

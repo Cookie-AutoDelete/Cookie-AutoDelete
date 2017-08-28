@@ -1,0 +1,63 @@
+{
+  "releases":[
+    {
+      "version": "2.0.0",
+      "notes": [
+        "Changed: Under the hood improvements with React/Redux. Your settings and Domain list will be migrated automatically on update. Old settings are still kept.",
+        "Changed: Changed Strict String Matching to Expression Matching. Now you can use wildcards in your domains like git*b.com to match github.com and gitlab.com",
+        "Changed: UI Refresh with BootStrap",
+        "Changed: The old exported Domains are not compatible anymore with 2.X.X since there is an entirely different (better) storage format."
+      ]
+    },
+    {
+      "version": "1.4.0",
+      "notes": [
+        "New Feature: GreyList Support (Set a site's cookies to clear on browser restart)",
+        "Added: Global Subdomain Checkbox",
+        "Changed: WhiteList and GreyList are now Sorted",
+        "Fixed (1.4.1): Edited txt files would break import under different EOL",
+        "New Language (1.4.1): sv",
+        "New Language (1.4.2): sr",
+        "Fixed (1.4.2): Cookie Cleanup failing on cookies without hostnames",
+        "New Language (1.4.3): pt_BR",
+        "New Language (1.4.3): zh_ZW"
+      ]
+    },
+    {
+      "version": "1.3.0",
+      "notes": [
+        "New Feature: Option to do a Cookie Cleanup on Startup",
+        "New Feature: Whitelist Subdomain Support (The icon will tell you if a site is protected or not)",
+        "Fixed delay timer in settings not saving for certain locales with different decimals",
+        "New Languages: bg, de, fr, zh_CN"
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "notes": [
+        "New Feature: Cookie Cleanup (Ignore Open Tabs) in popup menu. This lets you clear cookies based on the WhiteList alone.",
+        "Added Localization Support. Instructions to translate Cookie AutoDelete are on GitHub Page",
+        "New Languages: pt_PT, es"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "notes": [
+        "Can now access the popup in pages that are not webpages",
+        "New Feature: Background of the icon color changes whether a site is in the whitelist"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "notes": [
+        "Auto Deletes Cookies from Closed Tabs",
+        "WhiteList Support for Sites you want to keep Cookies",
+        "Easily Export/Import your Whitelist",
+        "Clear All Cookies for a Domain",
+        "(1.0.2) Fixed Cookie Cleanup not activating from Background Services",
+        "(1.0.2) Added link to Firefox and Chrome extension pages",
+        "(1.0.3) Fixed Cookie Cleanup not activating if a tab had an IP address URL"
+      ]
+    }
+  ]
+}

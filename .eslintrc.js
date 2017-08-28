@@ -2,7 +2,8 @@
 
 module.exports = {
   // When adding items to this file please check for effects on sub-directories.
-  "parserOptions": {"ecmaFeatures": {"jsx": true}},
+  "parser": "babel-eslint",
+  "parserOptions": {"ecmaFeatures": {"jsx": true}, "sourceType": "module"},
   "env": {
     "browser": true,
     "es6": true,
@@ -14,10 +15,12 @@ module.exports = {
   "plugins": [
     "json",
     "mocha",
-    "promise"
+    "promise",
+    "react"
   ],
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:react/recommended"
   ],
   "rules": {
     "mocha/handle-done-callback": 2,
@@ -40,7 +43,7 @@ module.exports = {
     "accessor-pairs": [2, {"setWithoutGet": true, "getWithoutSet": false}],
     "array-bracket-spacing": [2, "never"],
     "array-callback-return": 2,
-    "arrow-body-style": [2, "always"],
+    "arrow-body-style": [2, "as-needed"],
     "arrow-parens": [2, "always"],
     "arrow-spacing": 2,
     "block-scoped-var": 2,
@@ -216,7 +219,7 @@ module.exports = {
     "no-warning-comments": 0, // TODO: Change to `1`?
     "no-whitespace-before-property": 2,
     "no-with": 2,
-    "object-curly-newline": [2, {"minProperties": 2}],
+    "object-curly-newline": [2, "always"],
     "object-curly-spacing": [2, "never"],
     "object-property-newline": [2, {"allowMultiplePropertiesPerLine": true}],
     "object-shorthand": [2, "always"],
@@ -239,7 +242,7 @@ module.exports = {
     "rest-spread-spacing": [2, "never"],
     "semi": [2, "always"],
     "semi-spacing": [2, {"before": false, "after": true}],
-    "sort-imports": 2,
+    "sort-imports": 0,
     "sort-vars": 2,
     "space-before-blocks": [2, "always"],
     "space-before-function-paren": [2, {"anonymous": "never", "named": "never"}],
