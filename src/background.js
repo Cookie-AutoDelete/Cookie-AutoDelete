@@ -17,12 +17,8 @@ const onSettingsChange = () => {
 			cacheCookieStoreIdNames()
 		);
 	}
-	if (!previousSettings["activeMode"].value && currentSettings["activeMode"].value) {
-		browser.tabs.onRemoved.addListener(onTabRemoved);
-	}
 
 	if (previousSettings["activeMode"].value && !currentSettings["activeMode"].value) {
-		browser.tabs.onRemoved.removeListener(onTabRemoved);
 		browser.alarms.clear("activeModeAlarm");
 	}
 
@@ -38,13 +34,15 @@ const createActiveModeAlarm = () => {
 
 // Create an alarm when a tab is closed
 const onTabRemoved = async (tabId, removeInfo) => {
-	const alarm = await browser.alarms.get("activeModeAlarm");
-	// This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
-	// in chrome, it returns an array
-	if (browserDetect() === "Firefox" && !alarm) {
-		createActiveModeAlarm();
-	} else if (alarm.name !== "activeModeAlarm") {
-		createActiveModeAlarm();
+	if (getSetting(store.getState(), "activeMode")) {
+		const alarm = await browser.alarms.get("activeModeAlarm");
+		// This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
+		// in chrome, it returns an array
+		if (browserDetect() === "Firefox" && !alarm) {
+			createActiveModeAlarm();
+		} else if (alarm.name !== "activeModeAlarm") {
+			createActiveModeAlarm();
+		}
 	}
 };
 
@@ -239,7 +237,7 @@ onStartUp();
 
 // Logic that controls when to disable the browser action
 browser.tabs.onUpdated.addListener(onTabUpdate);
-
+browser.tabs.onRemoved.addListener(onTabRemoved);
 
 // Alarm event handler for Active Mode
 browser.alarms.onAlarm.addListener((alarmInfo) => {
