@@ -6,30 +6,33 @@ import {checkIfProtected} from '../services/BrowserActionService';
 
 export const addExpression = (object) => (dispatch, getState) => {
 	const {payload} = object;
+	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
 	dispatch({
 		type: C.ADD_EXPRESSION,
 		payload,
-		storeId: payload.storeId
+		storeId
 	});
 	checkIfProtected(getState());
 };
 
 export const removeExpression = (object) => (dispatch, getState) => {
-	const {payload, storeId} = object;
+	const {payload} = object;
+	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
 	dispatch({
 		type: C.REMOVE_EXPRESSION,
 		payload,
-		storeId: payload.storeId
+		storeId
 	});
 	checkIfProtected(getState());
 };
 
 export const updateExpression = (object) => (dispatch, getState) => {
 	const {payload} = object;
+	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
 	dispatch({
 		type: C.UPDATE_EXPRESSION,
 		payload,
-		storeId: payload.storeId
+		storeId
 	});
 	checkIfProtected(getState());
 };

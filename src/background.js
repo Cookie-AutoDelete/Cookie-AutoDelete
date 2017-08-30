@@ -1,4 +1,4 @@
-import {updateSetting, validateSettings, cacheCookieStoreIdNames} from "./redux/Actions";
+import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter} from "./redux/Actions";
 import {getHostname, isAWebpage, spliceWWW, getSetting} from "./services/libs";
 import {checkIfProtected} from "./services/BrowserActionService";
 import {cookieCleanup} from "./redux/Actions";
@@ -92,15 +92,18 @@ const showNumberOfCookiesInIcon = async (tab) => {
 };
 
 const migration = (oldSettings) => {
-	if (Object.keys(oldSettings) !== 0 && oldSettings.migration_1 === undefined && oldSettings.keepHistorySetting !== undefined) {
+	if (Object.keys(oldSettings) !== 0 && oldSettings.migration_1 === undefined && oldSettings.activeMode !== undefined) {
+		store.dispatch(
+			incrementCookieDeletedCounter(oldSettings.cookieDeletedCounterTotal)
+		);
 		store.dispatch(
 			updateSetting({payload: {
-				id: 1, name: "keepHistory", value: oldSettings.keepHistorySetting
+				id: 1, name: "activeMode", value: oldSettings.activeMode
 			}})
 		);
 		store.dispatch(
 			updateSetting({payload: {
-				id: 2, name: "daysToKeep", value: oldSettings.daysToKeep
+				id: 2, name: "delayBeforeClean", value: oldSettings.delayBeforeClean
 			}})
 		);
 		store.dispatch(
@@ -110,10 +113,90 @@ const migration = (oldSettings) => {
 		);
 		store.dispatch(
 			updateSetting({payload: {
-				id: 4, name: "showVisitsInIcon", value: oldSettings.showVisitsInIconSetting
+				id: 4, name: "showNumOfCookiesInIcon", value: oldSettings.showNumberOfCookiesInIconSetting
 			}})
 		);
-		oldSettings.URLS.forEach((domain) => store.dispatch(addExpression({payload: {expression: `${domain}*`}})));
+		store.dispatch(
+			updateSetting({payload: {
+				id: 5, name: "showNotificationAfterCleanup", value: oldSettings.notifyCookieCleanUpSetting
+			}})
+		);
+		store.dispatch(
+			updateSetting({payload: {
+				id: 6, name: "cleanCookiesFromOpenTabsOnStartup", value: oldSettings.cookieCleanUpOnStartSetting
+			}})
+		);
+		store.dispatch(
+			updateSetting({payload: {
+				id: 7, name: "contextualIdentities", value: oldSettings.contextualIdentitiesEnabledSetting
+			}})
+		);
+		if (oldSettings.contextualIdentitiesEnabledSetting) {
+			store.dispatch(
+				cacheCookieStoreIdNames()
+			);
+			const newContainerCache = [
+				...oldSettings.containerCache,
+				{
+					cookieStoreId: "firefox-default"
+				}
+			];
+			newContainerCache.forEach(container => {
+				const {cookieStoreId} = container;
+				const greyPrefixed = `${cookieStoreId}-Grey`;
+				if (oldSettings[cookieStoreId] !== undefined) {
+					oldSettings[cookieStoreId].forEach(domain => {
+						const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+						store.dispatch(
+							addExpression({payload: {
+								expression,
+								listType: "WHITE",
+								storeId: cookieStoreId
+							}})
+						)
+					});
+				}
+				if (oldSettings[greyPrefixed] != undefined) {
+					oldSettings[greyPrefixed].forEach(domain => {
+						const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+						store.dispatch(
+							addExpression({payload: {
+								expression,
+								listType: "GREY",
+								storeId: cookieStoreId
+							}})
+						)
+					});
+				}
+			});
+		} else {
+			const cookieStoreId = "defaultWhiteList";
+			const greyPrefixed = `${cookieStoreId}-Grey`;
+			if (oldSettings[cookieStoreId] !== undefined) {
+				oldSettings[cookieStoreId].forEach(domain => {
+					const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+					store.dispatch(
+						addExpression({payload: {
+							expression,
+							listType: "WHITE",
+							storeId: cookieStoreId
+						}})
+					)
+				});
+			}
+			if (oldSettings[greyPrefixed] != undefined) {
+				oldSettings[greyPrefixed].forEach(domain => {
+					const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+					store.dispatch(
+						addExpression({payload: {
+							expression,
+							listType: "GREY",
+							storeId: cookieStoreId
+						}})
+					)
+				});
+			}
+		}
 		browser.storage.local.set({migration_1: true});
 	}
 };
@@ -131,17 +214,12 @@ const onStartUp = async () => {
 		stateFromStorage = {};
 	}
 	store = createStore(stateFromStorage);
-	// migration(storage);
-	// store.dispatch(
-	// 	validateSettings()
-	// );
+	migration(storage);
+	store.dispatch(
+		validateSettings()
+	);
 	store.dispatch({
 		type: "ON_STARTUP"
-	});
-
-	store.dispatch({
-		type: "ADD_EXPRESSION",
-		payload: {expression: "*mozilla.org", listType: "WHITE"}
 	});
 	store.dispatch({
 		type: "ADD_CACHE",
@@ -153,7 +231,7 @@ const onStartUp = async () => {
 	);
 	currentSettings = store.getState().settings;
 	store.subscribe(onSettingsChange);
-	//store.subscribe(saveToStorage);
+	store.subscribe(saveToStorage);
 
 };
 

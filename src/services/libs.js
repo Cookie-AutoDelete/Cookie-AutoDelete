@@ -62,3 +62,11 @@ export const prepareCookieDomain = (cookie) => {
 	cookieDomain = cookie.secure ? `https://${cookieDomain}` : `http://${cookieDomain}`;
 	return cookieDomain;
 };
+
+export const returnMatchedExpressionObject = (state, cookieStoreId, hostname) => {
+	const storeId = !getSetting(state, "contextualIdentities") || cookieStoreId === "firefox-default" ? "default" : cookieStoreId;
+	state.lists[storeId].find((expression) => {
+		const regExpObj = new RegExp(expression.regExp);
+		return regExpObj.test(hostname);
+	});
+}

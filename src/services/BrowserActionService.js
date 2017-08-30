@@ -1,4 +1,4 @@
-import {getHostname, getSetting} from "./libs";
+import {getHostname, getSetting, returnMatchedExpressionObject} from "./libs";
 
 export const checkIfProtected = async (state, tab = "UNDEFINED") => {
 	let currentTab;
@@ -11,14 +11,10 @@ export const checkIfProtected = async (state, tab = "UNDEFINED") => {
 		currentTab = tab;
 	}
 	const hostname = getHostname(currentTab.url);
-	const storeId = !getSetting(state, "contextualIdentities") || currentTab.cookieStoreId === "firefox-default" ? "default" : currentTab.cookieStoreId;
-	const index = state.lists[storeId].find((expression) => {
-		const regExpObj = new RegExp(expression.regExp);
-		return regExpObj.test(hostname);
-	});
-	if (index !== undefined && index.listType === "WHITE") {
+	const matchedExpression = returnMatchedExpressionObject(state, currentTab.cookieStoreId, hostname);
+	if (matchedExpression !== undefined && matchedExpression.listType === "WHITE") {
 		setIconDefault(tab);
-	} else if (index !== undefined && index.listType === "GREY") {
+	} else if (matchedExpression !== undefined && matchedExpression.listType === "GREY") {
 		setIconYellow(tab);
 	} else {
 		setIconRed(tab);

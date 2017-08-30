@@ -1,21 +1,15 @@
-import { getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain } from './libs';
+import { getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject } from './libs';
 
 export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	if (cleanupProperties.openTabDomains.has(cookieProperties.mainDomain)) {
 		return false;
 	}
 	const storeId = !getSetting(state, "contextualIdentities") || cookieProperties.storeId === "firefox-default" ? "default" : cookieProperties.storeId;
-	const index = state.lists[storeId].find((expression) => {
-		// Have to make a new RegExp to avoid mutating the one in the store after test
-		// console.log(expression.expression, cookieProperties.hostname);
-
-		const regExpObj = new RegExp(expression.regExp);
-		return regExpObj.test(cookieProperties.hostname);
-	});
+	const matchedExpression = returnMatchedExpressionObject(state, cookieProperties.storeId, cookieProperties.hostname);
 	if (cleanupProperties.greyCleanup) {
-		return index === undefined || index.listType === "GREY";
+		return matchedExpression === undefined || matchedExpression.listType === "GREY";
 	}
-	return index === undefined;
+	return matchedExpression === undefined;
 };
 
 // Goes through all the cookies to see if its safe to clean
