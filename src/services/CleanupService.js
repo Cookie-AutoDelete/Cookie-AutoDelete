@@ -4,7 +4,6 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	if (cleanupProperties.openTabDomains.has(cookieProperties.mainDomain)) {
 		return false;
 	}
-	const storeId = !getSetting(state, "contextualIdentities") || cookieProperties.storeId === "firefox-default" ? "default" : cookieProperties.storeId;
 	const matchedExpression = returnMatchedExpressionObject(state, cookieProperties.storeId, cookieProperties.hostname);
 	if (cleanupProperties.greyCleanup) {
 		return matchedExpression === undefined || matchedExpression.listType === "GREY";

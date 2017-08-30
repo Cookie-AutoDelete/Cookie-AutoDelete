@@ -65,7 +65,7 @@ export const prepareCookieDomain = (cookie) => {
 
 export const returnMatchedExpressionObject = (state, cookieStoreId, hostname) => {
 	const storeId = !getSetting(state, "contextualIdentities") || cookieStoreId === "firefox-default" ? "default" : cookieStoreId;
-	state.lists[storeId].find((expression) => {
+	return state.lists[storeId].find((expression) => {
 		const regExpObj = new RegExp(expression.regExp);
 		return regExpObj.test(hostname);
 	});
