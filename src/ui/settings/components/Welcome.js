@@ -15,7 +15,9 @@ const displayReleaseNotes = (releaseObj, constant) => {
 	}
 	while (i < length) {
 		const currentElement = releaseObj[i];
-		container.push(<span style={{marginLeft: "10px"}}>{currentElement.version}</span>);
+		container.push(<span style={{
+			marginLeft: "10px"
+		}}>{currentElement.version}</span>);
 		container.push(<ul>
 			{currentElement.notes.map((element, index) => <li key={`release${index}`}>{element}</li>)}
 		</ul>);
@@ -30,12 +32,15 @@ const getReviewLink = (browserDetect) => {
 	} else if (browserDetect === "Chrome") {
 		return "https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews";
 	}
-}
+	return "";
+};
 
 const Welcome = ({
 	style, cookieDeletedCounterTotal, cookieDeletedCounterSession, browserDetect
 }) => {
-	const {releases} = ReleaseNotes;
+	const {
+		releases
+	} = ReleaseNotes;
 	return (
 		<div style={style}>
 
@@ -45,7 +50,6 @@ const Welcome = ({
 			<a href={getReviewLink(browserDetect)}>{browser.i18n.getMessage("reviewLinkMessage")}</a>
 
 			<h2>{browser.i18n.getMessage("releaseNotesText")}</h2>
-
 
 			<div className="row">
 				<div className="col-md-6">
@@ -65,10 +69,13 @@ const Welcome = ({
 	);
 };
 
-
 const mapStateToProps = (state) => {
-	const {cookieDeletedCounterTotal, cookieDeletedCounterSession, cache} = state;
-	return {cookieDeletedCounterTotal, cookieDeletedCounterSession, browserDetect: cache.browserDetect};
+	const {
+		cookieDeletedCounterTotal, cookieDeletedCounterSession, cache
+	} = state;
+	return {
+		cookieDeletedCounterTotal, cookieDeletedCounterSession, browserDetect: cache.browserDetect
+	};
 };
 
 export default connect(mapStateToProps)(Welcome);

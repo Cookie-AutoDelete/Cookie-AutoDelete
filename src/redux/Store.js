@@ -30,7 +30,7 @@ const actions = {
 	COOKIE_CLEANUP: cookieCleanup,
 	REMOVE_EXPRESSION: removeExpression,
 	UPDATE_EXPRESSION: updateExpression,
-	RESET_COOKIE_DELETED_COUNTER: resetCookieDeletedCounter,
+	RESET_COOKIE_DELETED_COUNTER: resetCookieDeletedCounter
 };
 
 export default (state = {}) => createBackgroundStore({

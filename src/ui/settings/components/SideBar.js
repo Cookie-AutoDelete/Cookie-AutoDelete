@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 
 const styles = {
-	menuLink: {padding: "0.65em 2em"},
+	menuLink: {
+		padding: "0.65em 2em"
+	},
 	hamburger: {
 		transform: "translateX(-14px)",
 		color: "white"
@@ -83,8 +85,12 @@ class SideBar extends Component {
 
 						}
 
-						<div style={{position: 'absolute', bottom: '5px', width: '100%'}}>
-							<a href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/about" className="btn" style={{width: '100%', textAlign: 'center'}}>
+						<div style={{
+							position: "absolute", bottom: "5px", width: "100%"
+						}}>
+							<a href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/about" className="btn" style={{
+								width: "100%", textAlign: "center"
+							}}>
 								{"Contribute"}
 							</a>
 						</div>
@@ -95,6 +101,5 @@ class SideBar extends Component {
 		);
 	}
 }
-
 
 export default SideBar;

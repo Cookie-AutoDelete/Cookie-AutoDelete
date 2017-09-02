@@ -1,19 +1,23 @@
 import React from "react";
 import {connect} from "react-redux";
 import Tooltip from "./SettingsTooltip";
-import {getSetting} from '../../../services/libs';
+import {getSetting} from "../../../services/libs";
 import ExpressionTableBody from "../../common_components/ExpressionTableBody";
 import {
 	addExpressionUI
 } from "../../UIActions";
 
 const styles = {
-	buttonMargins: {margin: "5px"},
+	buttonMargins: {
+		margin: "5px"
+	},
 	tableContainer: {
 		overflow: "auto",
 		height: "55em"
 	},
-	buttonIcon: {marginRight: "2px"}
+	buttonIcon: {
+		marginRight: "2px"
+	}
 };
 
 class Expressions extends React.Component {
@@ -28,15 +32,19 @@ class Expressions extends React.Component {
 	}
 
 	importExpressions(files) {
-		const {onNewExpression} = this.props;
+		const {
+			onNewExpression
+		} = this.props;
 		let reader = new FileReader();
 		reader.onload = (file) => {
 			try {
 				const newExpressions = JSON.parse(file.target.result);
 				const storeIds = Object.keys(newExpressions);
-				storeIds.forEach(storeId => newExpressions[storeId].forEach(expression => onNewExpression(expression)));
+				storeIds.forEach((storeId) => newExpressions[storeId].forEach((expression) => onNewExpression(expression)));
 			} catch (error) {
-				this.setState({error: error.toString()});
+				this.setState({
+					error: error.toString()
+				});
 			}
 		};
 
@@ -44,9 +52,13 @@ class Expressions extends React.Component {
 	}
 
 	addExpressionByInput(payload) {
-		const {onNewExpression} = this.props;
+		const {
+			onNewExpression
+		} = this.props;
 		onNewExpression(payload);
-		this.setState({expressionInput: ""});
+		this.setState({
+			expressionInput: ""
+		});
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -55,15 +67,18 @@ class Expressions extends React.Component {
 		}
 	}
 
-
 	changeStoreIdTab(storeId) {
-		this.setState({storeId});
+		this.setState({
+			storeId
+		});
 	}
 
 	async componentDidMount() {
 		if (this.props.contextualIdentities) {
 			const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
-			this.setState({contextualIdentitiesObjects});
+			this.setState({
+				contextualIdentitiesObjects
+			});
 		}
 	}
 
@@ -73,7 +88,9 @@ class Expressions extends React.Component {
 			lists,
 			contextualIdentities
 		} = this.props;
-		const {error, contextualIdentitiesObjects, storeId} = this.state;
+		const {
+			error, contextualIdentitiesObjects, storeId
+		} = this.state;
 		return (
 			<div style={style}>
 				<h1>List of Expressions</h1>
@@ -85,10 +102,14 @@ class Expressions extends React.Component {
 							display: "inline", width: "93%"
 						}}
 						value={this.state.expressionInput}
-						onChange={(e) => this.setState({expressionInput: e.target.value})}
+						onChange={(e) => this.setState({
+							expressionInput: e.target.value
+						})}
 						onKeyPress={(e) => {
 							if (e.key === "Enter") {
-								this.addExpressionByInput({expression: this.state.expressionInput, storeId});
+								this.addExpressionByInput({
+									expression: this.state.expressionInput, storeId
+								});
 							}
 						}}
 						type="text"
@@ -96,7 +117,9 @@ class Expressions extends React.Component {
 						className="form-control"
 					/>
 
-					<button className="btn btn-primary" onClick={() => this.addExpressionByInput({expression: this.state.expressionInput, storeId})}>
+					<button className="btn btn-primary" onClick={() => this.addExpressionByInput({
+						expression: this.state.expressionInput, storeId
+					})}>
 						<i className="fa fa-plus-square" aria-hidden="true"></i>
 					</button>
 					<Tooltip
@@ -121,7 +144,9 @@ class Expressions extends React.Component {
 
 				{
 					error !== "" ?
-						<div onClick={() => this.setState({error: ""})} className="alert alert-danger">
+						<div onClick={() => this.setState({
+							error: ""
+						})} className="alert alert-danger">
 							{error}
 						</div> : ""
 				}
@@ -130,13 +155,12 @@ class Expressions extends React.Component {
 						<ul className="nav nav-tabs">
 							<li onClick={() => this.changeStoreIdTab("default")} className={`${storeId === "default" ? "active" : ""}`}><a href="#">Default</a></li>
 							{
-								contextualIdentitiesObjects.map(element =>
-									<li onClick={() => this.changeStoreIdTab(element.cookieStoreId)} className={`${storeId === element.cookieStoreId ? "active" : ""}`}><a href="#">{element.name}</a></li>
+								contextualIdentitiesObjects.map((element) =>
+									<li key={`navTab-${element.cookieStoreId}`} onClick={() => this.changeStoreIdTab(element.cookieStoreId)} className={`${storeId === element.cookieStoreId ? "active" : ""}`}><a href="#">{element.name}</a></li>
 								)
 							}
 						</ul> : ""
 				}
-
 
 				<div style={styles.tableContainer}>
 					<table className={"table table-striped table-hover table-bordered"}>
@@ -162,14 +186,20 @@ class Expressions extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	const {lists} = state;
-	return {lists, contextualIdentities: getSetting(state, "contextualIdentities")};
+	const {
+		lists
+	} = state;
+	return {
+		lists, contextualIdentities: getSetting(state, "contextualIdentities")
+	};
 };
 
-const mapDispatchToProps = (dispatch) => ({onNewExpression(payload) {
-	dispatch(
-		addExpressionUI(payload)
-	);
-}});
+const mapDispatchToProps = (dispatch) => ({
+	onNewExpression(payload) {
+		dispatch(
+			addExpressionUI(payload)
+		);
+	}
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expressions);

@@ -23,6 +23,9 @@ module.exports = {
     "plugin:react/recommended"
   ],
   "rules": {
+
+    "react/prop-types": 0,
+
     "mocha/handle-done-callback": 2,
     "mocha/max-top-level-suites": 2,
     "mocha/no-exclusive-tests": 2,
@@ -103,7 +106,7 @@ module.exports = {
     "no-class-assign": 2,
     "no-cond-assign": 2,
     "no-confusing-arrow": 2,
-    "no-console": [2, { allow: ["error"] }],
+    "no-console": [1, { allow: ["error"] }],
     "no-const-assign": 2,
     "no-constant-condition": 2,
     "no-continue": 0,
@@ -219,7 +222,9 @@ module.exports = {
     "no-warning-comments": 0, // TODO: Change to `1`?
     "no-whitespace-before-property": 2,
     "no-with": 2,
-    "object-curly-newline": [2, "always"],
+    "object-curly-newline": [2, {
+      minProperties: 1
+    }],
     "object-curly-spacing": [2, "never"],
     "object-property-newline": [2, {"allowMultiplePropertiesPerLine": true}],
     "object-shorthand": [2, "always"],

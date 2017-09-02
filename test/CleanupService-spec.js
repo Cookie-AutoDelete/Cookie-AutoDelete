@@ -1,74 +1,75 @@
-import { assert } from 'chai';
-import {isSafeToClean, cleanCookies, returnSetOfOpenTabDomains, cleanCookiesOperation} from '../src/services/CleanupService';
-import browser from 'sinon-chrome';
-import sinon from 'sinon';
-import {URL} from 'url';
+import {assert} from "chai";
+import {isSafeToClean, cleanCookies, returnSetOfOpenTabDomains} from "../src/services/CleanupService";
+// ToDo: cleanCookiesOperation
+import browser from "sinon-chrome";
+import sinon from "sinon";
+import {URL} from "url";
 global.URL = URL;
 
 const sampleState = {
-  "lists": {
-    "default": [
-      {
-        "regExp": "^.*google\\.com$",
-        "type": "GREY",
-      },
-      {
-        "regExp": "^youtube\\.com$",
-        "type": "WHITE",
-      },
-    ],
-    "firefox-container-1": [
-      {
-        "regExp": "^.*facebook\\.com$",
-        "type": "GREY",
-      },
-      {
-        "regExp": "^messenger\\.com$",
-        "type": "GREY",
-      },
-    ]
-  },
-  "cookieDeletedCounterTotal": 0,
-  "cookieDeletedCounterSession": 0,
+	"lists": {
+		"default": [
+			{
+				"regExp": "^.*google\\.com$",
+				"type": "GREY"
+			},
+			{
+				"regExp": "^youtube\\.com$",
+				"type": "WHITE"
+			}
+		],
+		"firefox-container-1": [
+			{
+				"regExp": "^.*facebook\\.com$",
+				"type": "GREY"
+			},
+			{
+				"regExp": "^messenger\\.com$",
+				"type": "GREY"
+			}
+		]
+	},
+	"cookieDeletedCounterTotal": 0,
+	"cookieDeletedCounterSession": 0,
 	"settings": {
-  	"activeMode": {
-  		"name": "activeMode",
-  		"value": false,
-  		"id": 1
-  	},
-  	"delayBeforeClean": {
-  		"name": "delayBeforeClean",
-  		"value": 1,
-  		"id": 2
-  	},
-  	"statLogging": {
-  		"name": "statLogging",
-  		"value": true,
-  		"id": 3
-  	},
-  	"showNumOfCookiesInIcon": {
-  		"name": "showNumOfCookiesInIcon",
-  		"value": true,
-  		"id": 4
-  	},
-  	"showNotificationAfterCleanup": {
-  		"name": "showNotificationAfterCleanup",
-  		"value": true,
-  		"id": 5
-  	},
-  	"cleanCookiesFromOpenTabsOnStartup": {
-  		"name": "cleanCookiesFromOpenTabsOnStartup",
-  		"value": false,
-  		"id": 6
-  	},
-  	"contextualIdentities": {
-  		"name": "contextualIdentities",
-  		"value": true,
-  		"id": 7
-  	}
-  },
-  "cache": {}
-}
+		"activeMode": {
+			"name": "activeMode",
+			"value": false,
+			"id": 1
+		},
+		"delayBeforeClean": {
+			"name": "delayBeforeClean",
+			"value": 1,
+			"id": 2
+		},
+		"statLogging": {
+			"name": "statLogging",
+			"value": true,
+			"id": 3
+		},
+		"showNumOfCookiesInIcon": {
+			"name": "showNumOfCookiesInIcon",
+			"value": true,
+			"id": 4
+		},
+		"showNotificationAfterCleanup": {
+			"name": "showNotificationAfterCleanup",
+			"value": true,
+			"id": 5
+		},
+		"cleanCookiesFromOpenTabsOnStartup": {
+			"name": "cleanCookiesFromOpenTabsOnStartup",
+			"value": false,
+			"id": 6
+		},
+		"contextualIdentities": {
+			"name": "contextualIdentities",
+			"value": true,
+			"id": 7
+		}
+	},
+	"cache": {}
+};
 
 describe("CleanupService", function() {
 	global.browser = browser;
@@ -97,47 +98,55 @@ describe("CleanupService", function() {
 
 		beforeEach(function() {
 			global.UsefulFunctions = UsefulFunctions;
-			browser.tabs.query.resolves([{url: "https://google.com/search"}, {url: "http://facebook.com/search"}, {url: "http://sub.domain.com"}, {url: "moz-extension://test/settings/settings.html"}]);
+			browser.tabs.query.resolves([{
+				url: "https://google.com/search"
+			}, {
+				url: "http://facebook.com/search"
+			}, {
+				url: "http://sub.domain.com"
+			}, {
+				url: "moz-extension://test/settings/settings.html"
+			}]);
 		});
 
 		it("should have google.com in set", function() {
 			return returnSetOfOpenTabDomains()
-			.then((results) => {
-				assert.isTrue(results.has("google.com"));
-				return Promise.resolve();
-			});
+				.then((results) => {
+					assert.isTrue(results.has("google.com"));
+					return Promise.resolve();
+				});
 		});
 
 		it("should have facebook.com in set", function() {
 			return returnSetOfOpenTabDomains()
-			.then((results) => {
-				assert.isTrue(results.has("facebook.com"));
-				return Promise.resolve();
-			});
+				.then((results) => {
+					assert.isTrue(results.has("facebook.com"));
+					return Promise.resolve();
+				});
 		});
 
 		it("should have domain.com in set", function() {
 			return returnSetOfOpenTabDomains()
-			.then((results) => {
-				assert.isTrue(results.has("domain.com"));
-				return Promise.resolve();
-			});
+				.then((results) => {
+					assert.isTrue(results.has("domain.com"));
+					return Promise.resolve();
+				});
 		});
 
 		it("should have length 3 in set", function() {
 			return returnSetOfOpenTabDomains()
-			.then((results) => {
-				assert.strictEqual(results.size, 3);
-				return Promise.resolve();
-			});
+				.then((results) => {
+					assert.strictEqual(results.size, 3);
+					return Promise.resolve();
+				});
 		});
 
 		it("should not have youtube.com in set", function() {
 			return returnSetOfOpenTabDomains()
-			.then((results) => {
-				assert.isFalse(results.has("youtube.com"));
-				return Promise.resolve();
-			});
+				.then((results) => {
+					assert.isFalse(results.has("youtube.com"));
+					return Promise.resolve();
+				});
 		});
 
 		after(function() {
@@ -149,100 +158,97 @@ describe("CleanupService", function() {
 	});
 
 	describe("isSafeToClean()", function() {
-    const cleanupProperties = {
-      greyCleanup: false,
-      ignoreOpenTabs: false,
-      openTabDomains: new Set(["example.com", "mozilla.org"])
-    };
+		const cleanupProperties = {
+			greyCleanup: false,
+			ignoreOpenTabs: false,
+			openTabDomains: new Set(["example.com", "mozilla.org"])
+		};
 
-    it("should return true for yahoo.com", function() {
-      const cookieProperty = {
-      	mainDomain: "yahoo.com", hostname: "yahoo.com", storeId: "firefox-default"
-      };
-
-			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isTrue(result);
-		});
-
-    it("should return false for youtube.com", function() {
-      const cookieProperty = {
-      	mainDomain: "youtube.com", hostname: "youtube.com", storeId: "firefox-default"
-      };
+		it("should return true for yahoo.com", function() {
+			const cookieProperty = {
+				mainDomain: "yahoo.com", hostname: "yahoo.com", storeId: "firefox-default"
+			};
 
 			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isFalse(result);
+			assert.isTrue(result);
 		});
 
-    it("should return true for sub.youtube.com", function() {
-      const cookieProperty = {
-      	mainDomain: "youtube.com", hostname: "sub.youtube.com", storeId: "firefox-default"
-      };
+		it("should return false for youtube.com", function() {
+			const cookieProperty = {
+				mainDomain: "youtube.com", hostname: "youtube.com", storeId: "firefox-default"
+			};
 
 			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isTrue(result);
+			assert.isFalse(result);
 		});
 
-    it("should return false for google.com", function() {
-      const cookieProperty = {
-      	mainDomain: "google.com", hostname: "google.com", storeId: "firefox-default"
-      };
+		it("should return true for sub.youtube.com", function() {
+			const cookieProperty = {
+				mainDomain: "youtube.com", hostname: "sub.youtube.com", storeId: "firefox-default"
+			};
 
 			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isFalse(result);
+			assert.isTrue(result);
 		});
 
-    it("should return true for google.com in Personal", function() {
-      const cookieProperty = {
-      	mainDomain: "google.com", hostname: "google.com", storeId: "firefox-container-1"
-      };
+		it("should return false for google.com", function() {
+			const cookieProperty = {
+				mainDomain: "google.com", hostname: "google.com", storeId: "firefox-default"
+			};
 
 			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isTrue(result);
+			assert.isFalse(result);
 		});
 
-    it("should return false for sub.google.com", function() {
-      const cookieProperty = {
-      	mainDomain: "google.com", hostname: "sub.google.com", storeId: "firefox-default"
-      };
+		it("should return true for google.com in Personal", function() {
+			const cookieProperty = {
+				mainDomain: "google.com", hostname: "google.com", storeId: "firefox-container-1"
+			};
 
 			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isFalse(result);
+			assert.isTrue(result);
 		});
 
-    it("should return false for example.com", function() {
-      const cookieProperty = {
-      	mainDomain: "example.com", hostname: "example.com", storeId: "firefox-default"
-      };
+		it("should return false for sub.google.com", function() {
+			const cookieProperty = {
+				mainDomain: "google.com", hostname: "sub.google.com", storeId: "firefox-default"
+			};
 
 			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isFalse(result);
+			assert.isFalse(result);
 		});
 
-    it("should return false for sub.example.com", function() {
-      const cookieProperty = {
-      	mainDomain: "example.com", hostname: "sub.example.com", storeId: "firefox-default"
-      };
+		it("should return false for example.com", function() {
+			const cookieProperty = {
+				mainDomain: "example.com", hostname: "example.com", storeId: "firefox-default"
+			};
 
 			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
-      assert.isFalse(result);
+			assert.isFalse(result);
 		});
 
-    it("should return false for Facebook in Personal onStartup", function() {
-      const cookieProperty = {
-        mainDomain: "facebook.com", hostname: "facebook.com", storeId: "firefox-container-1"
-      };
+		it("should return false for sub.example.com", function() {
+			const cookieProperty = {
+				mainDomain: "example.com", hostname: "sub.example.com", storeId: "firefox-default"
+			};
 
-      const result = isSafeToClean(sampleState, cookieProperty, {...cleanupProperties, greyCleanup: true});
-      assert.isFalse(result);
-    });
+			const result = isSafeToClean(sampleState, cookieProperty, cleanupProperties);
+			assert.isFalse(result);
+		});
 
+		it("should return false for Facebook in Personal onStartup", function() {
+			const cookieProperty = {
+				mainDomain: "facebook.com", hostname: "facebook.com", storeId: "firefox-container-1"
+			};
+
+			const result = isSafeToClean(sampleState, cookieProperty, {
+				...cleanupProperties, greyCleanup: true
+			});
+			assert.isFalse(result);
+		});
 	});
 
-
-
 	describe("cleanCookies()", function() {
-
-
 		const googleCookie = {
 			name: "NID", domain: "google.com", secure: true, path: "/", storeId: "firefox-default"
 		};
@@ -259,39 +265,36 @@ describe("CleanupService", function() {
 
 		const cookies = [googleCookie, youtubeCookie, yahooCookie, personalGoogleCookie];
 
-
 		it("should be called twice for cookies.remove", function() {
-      let cleanupProperties = {
-        greyCleanup: false,
-        ignoreOpenTabs: false,
-        openTabDomains: new Set(["example.com", "mozilla.org"]),
-        setOfDeletedDomainCookies: new Set()
-      };
+			let cleanupProperties = {
+				greyCleanup: false,
+				ignoreOpenTabs: false,
+				openTabDomains: new Set(["example.com", "mozilla.org"]),
+				setOfDeletedDomainCookies: new Set()
+			};
 
-      cleanCookies(sampleState, cookies, cleanupProperties);
+			cleanCookies(sampleState, cookies, cleanupProperties);
 			assert.isTrue(browser.cookies.remove.calledTwice);
 		});
-
-
 	});
 
 	// describe("cleanCookiesOperation()", function() {
-  //
-  //   let resolveStub = sinon.stub(browser.contextualIdentities, "query");
+	//
+	//   let resolveStub = sinon.stub(browser.contextualIdentities, "query");
 	// 	// let stub1;
 	// 	// let stub2;
-  //   //
+	//   //
 	// 	beforeEach(function() {
 	// 		// stub1 = sinon.stub(cleanupService, "cleanCookies");
 	// 		// stub1.resolves(new Set(["facebook.com", "amazon.com"]));
-  //     //
+	//     //
 	// 		// stub2 = sinon.stub(cleanupService, "returnSetOfOpenTabDomains");
 	// 		// stub2.resolves({});
 	// 		browser.cookies.getAll.resolves({});
-  //     resolveStub.resolves([{cookieStoreId: "firefox-container-1"}, {cookieStoreId: "firefox-container-2"}, {cookieStoreId: "firefox-container-3"}, {cookieStoreId: "firefox-container-4"}]);
+	//     resolveStub.resolves([{cookieStoreId: "firefox-container-1"}, {cookieStoreId: "firefox-container-2"}, {cookieStoreId: "firefox-container-3"}, {cookieStoreId: "firefox-container-4"}]);
 	// 	});
-  //
-  //
+	//
+	//
 	// 	it("should return 5 for call count of browser.cookies.getAll with contextualIdentities enabled", function() {
 	// 		return cleanCookiesOperation(sampleState, {greyCleanup: false, ignoreOpenTabs: false})
 	// 		.then((setOfDeletedDomainCookies) => {
@@ -299,7 +302,7 @@ describe("CleanupService", function() {
 	// 			return Promise.resolve();
 	// 		});
 	// 	});
-  //
+	//
 	// 	// after(function() {
 	// 	// 	stub1.restore();
 	// 	// });

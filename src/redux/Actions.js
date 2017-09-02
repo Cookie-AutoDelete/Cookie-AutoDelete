@@ -1,11 +1,13 @@
 import C from "./Constants";
 import initialState from "./initialState.json";
-import {getSetting, getHostname} from '../services/libs';
-import {cleanCookiesOperation} from '../services/CleanupService';
-import {checkIfProtected} from '../services/BrowserActionService';
+import {getSetting} from "../services/libs";
+import {cleanCookiesOperation} from "../services/CleanupService";
+import {checkIfProtected} from "../services/BrowserActionService";
 
 export const addExpression = (object) => (dispatch, getState) => {
-	const {payload} = object;
+	const {
+		payload
+	} = object;
 	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
 	dispatch({
 		type: C.ADD_EXPRESSION,
@@ -16,7 +18,9 @@ export const addExpression = (object) => (dispatch, getState) => {
 };
 
 export const removeExpression = (object) => (dispatch, getState) => {
-	const {payload} = object;
+	const {
+		payload
+	} = object;
 	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
 	dispatch({
 		type: C.REMOVE_EXPRESSION,
@@ -27,7 +31,9 @@ export const removeExpression = (object) => (dispatch, getState) => {
 };
 
 export const updateExpression = (object) => (dispatch, getState) => {
-	const {payload} = object;
+	const {
+		payload
+	} = object;
 	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
 	dispatch({
 		type: C.UPDATE_EXPRESSION,
@@ -37,22 +43,32 @@ export const updateExpression = (object) => (dispatch, getState) => {
 	checkIfProtected(getState());
 };
 
-export const incrementCookieDeletedCounter = (payload) => ({type: C.INCREMENT_COOKIE_DELETED_COUNTER, payload});
+export const incrementCookieDeletedCounter = (payload) => ({
+	type: C.INCREMENT_COOKIE_DELETED_COUNTER, payload
+});
 
-export const resetCookieDeletedCounter = () => ({type: C.RESET_COOKIE_DELETED_COUNTER});
+export const resetCookieDeletedCounter = () => ({
+	type: C.RESET_COOKIE_DELETED_COUNTER
+});
 
 export const updateSetting = (payloadSetting) => {
-	const {payload} = payloadSetting;
+	const {
+		payload
+	} = payloadSetting;
 	return {
 		type: C.UPDATE_SETTING,
 		payload
 	};
 };
 
-export const resetSettings = () => ({type: C.RESET_SETTINGS});
+export const resetSettings = () => ({
+	type: C.RESET_SETTINGS
+});
 
 export const validateSettings = () => (dispatch, getState) => {
-	const {settings} = getState();
+	const {
+		settings
+	} = getState();
 	const initialSettings = initialState.settings;
 	const settingKeys = Object.keys(settings);
 	const initialSettingKeys = Object.keys(initialSettings);
@@ -84,14 +100,20 @@ export const validateSettings = () => (dispatch, getState) => {
 export const cookieCleanup = (options) => async (dispatch, getState) => {
 	let newOptions;
 	if (options.payload !== undefined) {
-		newOptions = {...options.payload};
-	} else if(options.payload === undefined && (options.greyCleanup !== undefined || options.ignoreOpenTabs !== undefined)) {
+		newOptions = {
+			...options.payload
+		};
+	} else if (options.payload === undefined && (options.greyCleanup !== undefined || options.ignoreOpenTabs !== undefined)) {
 		newOptions = options;
 	} else {
-		newOptions = {greyCleanup: false, ignoreOpenTabs: false};
+		newOptions = {
+			greyCleanup: false, ignoreOpenTabs: false
+		};
 	}
 	const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
-	const { recentlyCleaned, setOfDeletedDomainCookies } = cleanupDoneObject;
+	const {
+		recentlyCleaned, setOfDeletedDomainCookies
+	} = cleanupDoneObject;
 	let notifyMessage;
 	// Format the string
 	if (setOfDeletedDomainCookies.size > 0) {
@@ -122,16 +144,30 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 			"message": notifyMessage
 		});
 	}
-
 };
 
 export const cacheCookieStoreIdNames = () => async (dispatch, getState) => {
 	const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
 	dispatch(
-		{type: C.ADD_CACHE, map: {key: "default", value: "Default"}}
+		{
+			type: C.ADD_CACHE,
+			map: {
+				key: "default", value: "Default"
+			}
+		}
 	);
 	dispatch(
-		{type: C.ADD_CACHE, map: {key: "firefox-default", value: "Default"}}
+		{
+			type: C.ADD_CACHE,
+			map: {
+				key: "firefox-default", value: "Default"
+			}
+		}
 	);
-	contextualIdentitiesObjects.forEach(object => dispatch({type: C.ADD_CACHE, map: {key: object.cookieStoreId, value: object.name}}));
-}
+	contextualIdentitiesObjects.forEach((object) => dispatch({
+		type: C.ADD_CACHE,
+		map: {
+			key: object.cookieStoreId, value: object.name
+		}
+	}));
+};

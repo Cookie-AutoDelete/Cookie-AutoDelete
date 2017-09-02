@@ -6,7 +6,9 @@ const CheckboxSetting = ({
 	const {
 		id, name, value
 	} = settingObject;
-	const inlineElement = inline ? {display: "inline"} : {};
+	const inlineElement = inline ? {
+		display: "inline"
+	} : {};
 	return (
 		<span style={inlineElement} className={`checkbox ${bsStyle !== undefined ? bsStyle : ""}`}>
 			<input checked={value} onChange={(e) => updateSetting({
@@ -19,6 +21,5 @@ const CheckboxSetting = ({
 		</span>
 	);
 };
-
 
 export default CheckboxSetting;

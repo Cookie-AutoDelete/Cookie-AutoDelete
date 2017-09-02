@@ -1,7 +1,9 @@
 import React from "react";
 
 const About = (props) => {
-	const {style} = props;
+	const {
+		style
+	} = props;
 	return (
 		<div style={style}>
 			<h1>{browser.i18n.getMessage("aboutText")}</h1>
@@ -23,6 +25,5 @@ const About = (props) => {
 		</div>
 	);
 };
-
 
 export default About;

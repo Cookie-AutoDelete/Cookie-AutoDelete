@@ -19,19 +19,6 @@ export const isAWebpage = (URL) => {
 	return false;
 };
 
-export const spliceWWW = (url) => {
-	let newURL;
-	try {
-		let urlObject = new URL(url);
-		newURL = `${urlObject.hostname}${urlObject.pathname}`;
-		// Strip "www." if the URL starts with it.
-		newURL = newURL.replace(/^www[a-z0-9]?\./, "");
-	} catch (error) {
-		return "";
-	}
-	return newURL;
-};
-
 // extract the main domain from sub domains (sub.sub.domain.com becomes domain.com)
 export const extractMainDomain = (domain) => {
 	if (domain === "") {
@@ -69,4 +56,4 @@ export const returnMatchedExpressionObject = (state, cookieStoreId, hostname) =>
 		const regExpObj = new RegExp(expression.regExp);
 		return regExpObj.test(hostname);
 	});
-}
+};

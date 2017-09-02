@@ -9,15 +9,18 @@ import CheckboxSetting from "../common_components/CheckboxSetting";
 const styles = {
 	rowText: {
 		margin: "0 5px 0px 15px",
-		fontSize: '18px',
-		fontWeight: 'bold'
+		fontSize: "18px",
+		fontWeight: "bold"
 	}
 };
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {tab: {}, storeId: ""};
+		this.state = {
+			tab: {},
+			storeId: ""
+		};
 	}
 
 	async componentDidMount() {
@@ -46,14 +49,18 @@ class App extends Component {
 		}, 1500);
 	}
 
-	async clearCookiesForThisDomain (hostname) {
-		const {cookieStoreId} = this.state.tab;
+	async clearCookiesForThisDomain(hostname) {
+		const {
+			cookieStoreId
+		} = this.state.tab;
 		const cookies = await browser.cookies.getAll({
 			domain: hostname,
 			storeId: cookieStoreId
 		});
 		if (cookies.length > 0) {
-			cookies.forEach(cookie => browser.cookies.remove({url: prepareCookieDomain(cookie), name: cookie.name, storeId: cookie.storeId}));
+			cookies.forEach((cookie) => browser.cookies.remove({
+				url: prepareCookieDomain(cookie), name: cookie.name, storeId: cookie.storeId
+			}));
 			this.animateSuccess(document.getElementById("cookieCleanup3"));
 		} else {
 			this.animateFailure(document.getElementById("cookieCleanup3"));
@@ -61,8 +68,12 @@ class App extends Component {
 	}
 
 	render() {
-		const {tab, storeId} = this.state;
-		const {onNewExpression, onCookieCleanup, onUpdateSetting, contextualIdentities, cache, settings} = this.props;
+		const {
+			tab, storeId
+		} = this.state;
+		const {
+			onNewExpression, onCookieCleanup, onUpdateSetting, contextualIdentities, cache, settings
+		} = this.props;
 		const hostname = getHostname(tab.url);
 		const mainDomain = extractMainDomain(hostname);
 		return (
@@ -70,8 +81,12 @@ class App extends Component {
 				<div className="row">
 
 					<div className="col-md-12">
-						<b style={{fontSize: "20px"}}>Host Website:</b>
-						<i style={{float: "right"}} onClick={() => browser.runtime.openOptionsPage()} className="fa fa-cog fa-2x cursorPoint" aria-hidden="true"></i>
+						<b style={{
+							fontSize: "20px"
+						}}>Host Website:</b>
+						<i style={{
+							float: "right"
+						}} onClick={() => browser.runtime.openOptionsPage()} className="fa fa-cog fa-2x cursorPoint" aria-hidden="true"></i>
 					</div>
 
 					<div>
@@ -90,20 +105,26 @@ class App extends Component {
 
 				{
 					hostname !== mainDomain ?
-					<RowAction
-						text={`- *${mainDomain}`}
-						action={() => onNewExpression({expression: `*${mainDomain}`, listType: "GREY", storeId})}
-						labelFor="addExpressionGrey"
-					/> : ""
+						<RowAction
+							text={`- *${mainDomain}`}
+							action={() => onNewExpression({
+								expression: `*${mainDomain}`, listType: "GREY", storeId
+							})}
+							labelFor="addExpressionGrey"
+						/> : ""
 				}
 				<RowAction
 					text={`- ${hostname}`}
-					action={() => onNewExpression({expression: `${hostname}`, listType: "GREY", storeId})}
+					action={() => onNewExpression({
+						expression: `${hostname}`, listType: "GREY", storeId
+					})}
 					labelFor="addExpressionGrey"
 				/>
 				<RowAction
 					text={`- *${hostname}`}
-					action={() => onNewExpression({expression: `*${hostname}`, listType: "GREY", storeId})}
+					action={() => onNewExpression({
+						expression: `*${hostname}`, listType: "GREY", storeId
+					})}
 					labelFor="addExpressionGrey"
 				/>
 
@@ -113,32 +134,38 @@ class App extends Component {
 
 				{
 					hostname !== mainDomain ?
-					<RowAction
-						text={`- *${mainDomain}`}
-						action={() => onNewExpression({expression: `*${mainDomain}`, listType: "WHITE", storeId})}
-						labelFor="addExpressionGrey"
-					/> : ""
+						<RowAction
+							text={`- *${mainDomain}`}
+							action={() => onNewExpression({
+								expression: `*${mainDomain}`, listType: "WHITE", storeId
+							})}
+							labelFor="addExpressionGrey"
+						/> : ""
 				}
-
 
 				<RowAction
 					text={`- ${hostname}`}
-					action={() => onNewExpression({expression: `${hostname}`, listType: "WHITE", storeId})}
+					action={() => onNewExpression({
+						expression: `${hostname}`, listType: "WHITE", storeId
+					})}
 					labelFor="addExpressionGrey"
 				/>
 
 				<RowAction
 					text={`- *${hostname}`}
-					action={() => onNewExpression({expression: `*${hostname}`, listType: "WHITE", storeId})}
+					action={() => onNewExpression({
+						expression: `*${hostname}`, listType: "WHITE", storeId
+					})}
 					labelFor="addExpressionWhite"
 				/>
-
 
 				<div className="row lineBreak" />
 				<RowAction
 					text={browser.i18n.getMessage("cookieCleanupText")}
 					action={() => {
-						onCookieCleanup({greyCleanup: false, ignoreOpenTabs: false});
+						onCookieCleanup({
+							greyCleanup: false, ignoreOpenTabs: false
+						});
 						this.animateSuccess(document.getElementById("cookieCleanup1"));
 					}}
 					labelFor="cookieCleanup1"
@@ -146,7 +173,9 @@ class App extends Component {
 				<RowAction
 					text={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
 					action={() => {
-						onCookieCleanup({greyCleanup: false, ignoreOpenTabs: true});
+						onCookieCleanup({
+							greyCleanup: false, ignoreOpenTabs: true
+						});
 						this.animateSuccess(document.getElementById("cookieCleanup2"));
 					}}
 					labelFor="cookieCleanup2"
@@ -158,7 +187,9 @@ class App extends Component {
 				/>
 
 				<div className="row lineBreak" />
-				<div className="row" style={{paddingLeft: "15px"}}>
+				<div className="row" style={{
+					paddingLeft: "15px"
+				}}>
 					<CheckboxSetting
 						text={browser.i18n.getMessage("activeModeText")}
 						settingObject={settings.activeMode}
@@ -169,7 +200,9 @@ class App extends Component {
 					<input
 						type="number"
 						className="form-control"
-						style={{display: "inline", width: "15%"}}
+						style={{
+							display: "inline", width: "15%"
+						}}
 						onChange={(e) => onUpdateSetting({
 							name: settings.delayBeforeClean.name, value: e.target.value, id: settings.delayBeforeClean.id
 						})}
@@ -190,10 +223,13 @@ class App extends Component {
 	}
 }
 
-
 const mapStateToProps = (state) => {
-	const { cache, settings } = state;
-	return {contextualIdentities: getSetting(state, "contextualIdentities"), cache, settings};
+	const {
+		cache, settings
+	} = state;
+	return {
+		contextualIdentities: getSetting(state, "contextualIdentities"), cache, settings
+	};
 };
 
 const mapDispatchToProps = (dispatch) => (
@@ -213,6 +249,6 @@ const mapDispatchToProps = (dispatch) => (
 				cookieCleanupUI(payload)
 			);
 		}
-});
+	});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,13 +5,21 @@ import {
 	updateExpressionUI
 } from "../UIActions";
 
-const styles = {actionButton: {margin: "0 5px"}};
+const styles = {
+	actionButton: {
+		margin: "0 5px"
+	}
+};
 
 const ActionButtonColumn = ({
- editId, onRemoveExpression, onUpdateExpression, editMode, setEdit, expressionObject, expressionInput, storeId
+	editId, onRemoveExpression, onUpdateExpression, editMode, setEdit, expressionObject, expressionInput, storeId
 }) => (
-	<td style={{width: "60px"}}>
-		<i onClick={() => onRemoveExpression({id: expressionObject.id, storeId})} style={styles.actionButton} className="fa fa-times fa-2x cursorPoint" aria-hidden="true"></i>
+	<td style={{
+		width: "60px"
+	}}>
+		<i onClick={() => onRemoveExpression({
+			id: expressionObject.id, storeId
+		})} style={styles.actionButton} className="fa fa-times fa-2x cursorPoint" aria-hidden="true"></i>
 		{
 			editMode && expressionObject.id === editId ? <i onClick={() => setEdit({
 				editMode: false, id: expressionObject.id, expressionInput: expressionObject.expression
@@ -25,7 +33,9 @@ const ActionButtonColumn = ({
 			editMode && expressionObject.id === editId ?
 				<i
 					onClick={() => {
-						setEdit({editMode: false});
+						setEdit({
+							editMode: false
+						});
 						onUpdateExpression({
 							...expressionObject, expression: expressionInput, storeId
 						});
@@ -80,19 +90,23 @@ class ExpressionTableBody extends React.Component {
 							{
 								editMode & id === expression.id ?
 									<div className="md-form">
-										<input id="form1" className="form-control" value={expressionInput} onChange={(e) => this.setState({expressionInput: e.target.value})} type="text" />
+										<input id="form1" className="form-control" value={expressionInput} onChange={(e) => this.setState({
+											expressionInput: e.target.value
+										})} type="text" />
 									</div> :
 									<td>{`${expression.expression}`}</td>
 							}
 							<td>{`${expression.regExp}`}</td>
 							<td>
-							{
-								editMode & id === expression.id ?
-									<button onClick={() => onUpdateExpression({id, storeId, listType: expression.listType === "GREY" ? "WHITE" : "GREY"})} className="btn btn-primary">
-										{`${expression.listType}`}
-									</button> :
-									`${expression.listType}`
-							}
+								{
+									editMode & id === expression.id ?
+										<button onClick={() => onUpdateExpression({
+											id, storeId, listType: expression.listType === "GREY" ? "WHITE" : "GREY"
+										})} className="btn btn-primary">
+											{`${expression.listType}`}
+										</button> :
+										`${expression.listType}`
+								}
 							</td>
 						</tr>
 					))
@@ -101,7 +115,6 @@ class ExpressionTableBody extends React.Component {
 		);
 	}
 }
-
 
 const mapDispatchToProps = (dispatch) => ({
 	onRemoveExpression(payload) {

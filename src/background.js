@@ -1,35 +1,37 @@
-import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter} from "./redux/Actions";
-import {getHostname, isAWebpage, spliceWWW, getSetting} from "./services/libs";
-import {checkIfProtected, setIconRed} from "./services/BrowserActionService";
-import {cookieCleanup} from "./redux/Actions";
+/* global browserDetect */
+import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
+import {getSetting} from "./services/libs";
+import {checkIfProtected, setIconRed, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
 
 let store;
 let currentSettings;
 
-const saveToStorage = () => browser.storage.local.set({state: JSON.stringify(store.getState())});
+const saveToStorage = () => browser.storage.local.set({
+	state: JSON.stringify(store.getState())
+});
 
 const onSettingsChange = () => {
 	let previousSettings = currentSettings;
 	currentSettings = store.getState().settings;
-	if (!previousSettings["contextualIdentities"].value && currentSettings["contextualIdentities"].value) {
+	if (!previousSettings.contextualIdentities.value && currentSettings.contextualIdentities.value) {
 		store.dispatch(
 			cacheCookieStoreIdNames()
 		);
 	}
 
-	if (previousSettings["activeMode"].value && !currentSettings["activeMode"].value) {
+	if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
 		browser.alarms.clear("activeModeAlarm");
 	}
-
 };
-
 
 // Create an alarm delay before cookie cleanup
 const createActiveModeAlarm = () => {
-	console.log("create alarm");
+	// console.log("create alarm");
 	const minutes = parseFloat(getSetting(store.getState(), "delayBeforeClean"));
-	browser.alarms.create("activeModeAlarm", {delayInMinutes: minutes});
+	browser.alarms.create("activeModeAlarm", {
+		delayInMinutes: minutes
+	});
 };
 
 // Create an alarm when a tab is closed
@@ -38,7 +40,7 @@ const onTabRemoved = async (tabId, removeInfo) => {
 		const alarm = await browser.alarms.get("activeModeAlarm");
 		// This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
 		// in chrome, it returns an array
-		if (browserDetect() === "Firefox" && !alarm) {
+		if (store.getState().cache.browserDetect === "Firefox" && !alarm) {
 			createActiveModeAlarm();
 		} else if (alarm.name !== "activeModeAlarm") {
 			createActiveModeAlarm();
@@ -72,21 +74,7 @@ export const onTabUpdate = async (tabId, changeInfo, tab) => {
 		if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
 			showNumberOfCookiesInIcon(tab);
 		}
-
 	}
-};
-
-// Show the # of cookies in icon
-const showNumberOfCookiesInIcon = async (tab) => {
-	const cookies = await browser.cookies.getAll({
-		domain: getHostname(tab.url),
-		storeId: tab.cookieStoreId
-	})
-	browser.browserAction.setBadgeText({
-		text: cookies.length.toString(),
-		tabId: tab.id
-	});
-
 };
 
 const migration = (oldSettings) => {
@@ -95,39 +83,53 @@ const migration = (oldSettings) => {
 			incrementCookieDeletedCounter(oldSettings.cookieDeletedCounterTotal)
 		);
 		store.dispatch(
-			updateSetting({payload: {
-				id: 1, name: "activeMode", value: oldSettings.activeMode
-			}})
+			updateSetting({
+				payload: {
+					id: 1, name: "activeMode", value: oldSettings.activeMode
+				}
+			})
 		);
 		store.dispatch(
-			updateSetting({payload: {
-				id: 2, name: "delayBeforeClean", value: oldSettings.delayBeforeClean
-			}})
+			updateSetting({
+				payload: {
+					id: 2, name: "delayBeforeClean", value: oldSettings.delayBeforeClean
+				}
+			})
 		);
 		store.dispatch(
-			updateSetting({payload: {
-				id: 3, name: "statLogging", value: oldSettings.statLoggingSetting
-			}})
+			updateSetting({
+				payload: {
+					id: 3, name: "statLogging", value: oldSettings.statLoggingSetting
+				}
+			})
 		);
 		store.dispatch(
-			updateSetting({payload: {
-				id: 4, name: "showNumOfCookiesInIcon", value: oldSettings.showNumberOfCookiesInIconSetting
-			}})
+			updateSetting({
+				payload: {
+					id: 4, name: "showNumOfCookiesInIcon", value: oldSettings.showNumberOfCookiesInIconSetting
+				}
+			})
 		);
 		store.dispatch(
-			updateSetting({payload: {
-				id: 5, name: "showNotificationAfterCleanup", value: oldSettings.notifyCookieCleanUpSetting
-			}})
+			updateSetting({
+				payload: {
+					id: 5, name: "showNotificationAfterCleanup", value: oldSettings.notifyCookieCleanUpSetting
+				}
+			})
 		);
 		store.dispatch(
-			updateSetting({payload: {
-				id: 6, name: "cleanCookiesFromOpenTabsOnStartup", value: oldSettings.cookieCleanUpOnStartSetting
-			}})
+			updateSetting({
+				payload: {
+					id: 6, name: "cleanCookiesFromOpenTabsOnStartup", value: oldSettings.cookieCleanUpOnStartSetting
+				}
+			})
 		);
 		store.dispatch(
-			updateSetting({payload: {
-				id: 7, name: "contextualIdentities", value: oldSettings.contextualIdentitiesEnabledSetting
-			}})
+			updateSetting({
+				payload: {
+					id: 7, name: "contextualIdentities", value: oldSettings.contextualIdentitiesEnabledSetting
+				}
+			})
 		);
 		if (oldSettings.contextualIdentitiesEnabledSetting) {
 			store.dispatch(
@@ -139,31 +141,37 @@ const migration = (oldSettings) => {
 					cookieStoreId: "firefox-default"
 				}
 			];
-			newContainerCache.forEach(container => {
-				const {cookieStoreId} = container;
+			newContainerCache.forEach((container) => {
+				const {
+					cookieStoreId
+				} = container;
 				const greyPrefixed = `${cookieStoreId}-Grey`;
 				if (oldSettings[cookieStoreId] !== undefined) {
-					oldSettings[cookieStoreId].forEach(domain => {
+					oldSettings[cookieStoreId].forEach((domain) => {
 						const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
 						store.dispatch(
-							addExpression({payload: {
-								expression,
-								listType: "WHITE",
-								storeId: cookieStoreId
-							}})
-						)
+							addExpression({
+								payload: {
+									expression,
+									listType: "WHITE",
+									storeId: cookieStoreId
+								}
+							})
+						);
 					});
 				}
-				if (oldSettings[greyPrefixed] != undefined) {
-					oldSettings[greyPrefixed].forEach(domain => {
+				if (oldSettings[greyPrefixed] !== undefined) {
+					oldSettings[greyPrefixed].forEach((domain) => {
 						const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
 						store.dispatch(
-							addExpression({payload: {
-								expression,
-								listType: "GREY",
-								storeId: cookieStoreId
-							}})
-						)
+							addExpression({
+								payload: {
+									expression,
+									listType: "GREY",
+									storeId: cookieStoreId
+								}
+							})
+						);
 					});
 				}
 			});
@@ -171,31 +179,37 @@ const migration = (oldSettings) => {
 			const cookieStoreId = "defaultWhiteList";
 			const greyPrefixed = `${cookieStoreId}-Grey`;
 			if (oldSettings[cookieStoreId] !== undefined) {
-				oldSettings[cookieStoreId].forEach(domain => {
+				oldSettings[cookieStoreId].forEach((domain) => {
 					const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
 					store.dispatch(
-						addExpression({payload: {
-							expression,
-							listType: "WHITE",
-							storeId: cookieStoreId
-						}})
-					)
+						addExpression({
+							payload: {
+								expression,
+								listType: "WHITE",
+								storeId: cookieStoreId
+							}
+						})
+					);
 				});
 			}
-			if (oldSettings[greyPrefixed] != undefined) {
-				oldSettings[greyPrefixed].forEach(domain => {
+			if (oldSettings[greyPrefixed] !== undefined) {
+				oldSettings[greyPrefixed].forEach((domain) => {
 					const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
 					store.dispatch(
-						addExpression({payload: {
-							expression,
-							listType: "GREY",
-							storeId: cookieStoreId
-						}})
-					)
+						addExpression({
+							payload: {
+								expression,
+								listType: "GREY",
+								storeId: cookieStoreId
+							}
+						})
+					);
 				});
 			}
 		}
-		browser.storage.local.set({migration_1: true});
+		browser.storage.local.set({
+			migration_1: true
+		});
 	}
 };
 
@@ -221,16 +235,18 @@ const onStartUp = async () => {
 	});
 	store.dispatch({
 		type: "ADD_CACHE",
-		map: {key: "browserDetect", value: browserDetect()}
+		map: {
+			key: "browserDetect", value: browserDetect()
+		}
 	});
-	console.log(store.getState());
 	store.dispatch(
-		cookieCleanup({greyCleanup: true, ignoreOpenTabs: getSetting(store.getState(), "cleanCookiesFromOpenTabsOnStartup")})
+		cookieCleanup({
+			greyCleanup: true, ignoreOpenTabs: getSetting(store.getState(), "cleanCookiesFromOpenTabsOnStartup")
+		})
 	);
 	currentSettings = store.getState().settings;
 	store.subscribe(onSettingsChange);
 	store.subscribe(saveToStorage);
-
 };
 
 onStartUp();
@@ -244,7 +260,9 @@ browser.alarms.onAlarm.addListener((alarmInfo) => {
 	// console.log(alarmInfo.name);
 	if (alarmInfo.name === "activeModeAlarm") {
 		store.dispatch(
-			cookieCleanup({greyCleanup: false, ignoreOpenTabs: false})
+			cookieCleanup({
+				greyCleanup: false, ignoreOpenTabs: false
+			})
 		);
 		browser.alarms.clear(alarmInfo.name);
 	}

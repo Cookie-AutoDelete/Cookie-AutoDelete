@@ -1,10 +1,10 @@
-import { assert } from 'chai';
-import {getHostname, isAWebpage, spliceWWW, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject} from '../src/services/libs';
-import {URL} from 'url';
+import {assert} from "chai";
+import {getHostname, isAWebpage, extractMainDomain, prepareCookieDomain} from "../src/services/libs";
+// ToDo: returnMatchedExpressionObject, getSetting
+import {URL} from "url";
 global.URL = URL;
 
 describe("Library Functions", function() {
-
 	describe("extractMainDomain()", function() {
 		it("should return domain.com from domain.com", function() {
 			let results = extractMainDomain("domain.com");
@@ -52,6 +52,19 @@ describe("Library Functions", function() {
 		});
 	});
 
+	describe("prepareCookieDomain()", function() {
+		it("should return https://google.com", function() {
+			assert.strictEqual(prepareCookieDomain({
+				domain: "google.com", secure: true, path: "/"
+			}), "https://google.com/");
+		});
+
+		it("should return http://google.com with a removed leading .", function() {
+			assert.strictEqual(prepareCookieDomain({
+				domain: ".google.com", secure: false, path: "/test"
+			}), "http://google.com/test");
+		});
+	});
 
 	describe("getHostname()", function() {
 		it("should return en.wikipedia.org from https://en.wikipedia.org/wiki/Cat", function() {

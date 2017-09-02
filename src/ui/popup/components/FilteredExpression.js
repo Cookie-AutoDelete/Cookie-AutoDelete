@@ -1,10 +1,13 @@
+/* eslint no-confusing-arrow: 0*/
 import React from "react";
 import {connect} from "react-redux";
 
 import ExpressionTableBody from "../../common_components/ExpressionTableBody";
 
 const FilteredExpression = (props) => {
-	const {expressions, storeId} = props;
+	const {
+		expressions, storeId
+	} = props;
 	return (
 		<table className={"table table-striped table-hover table-bordered"}>
 			<thead>
@@ -23,7 +26,6 @@ const FilteredExpression = (props) => {
 	);
 };
 
-
 const getExpression = (state, props) => state.lists[props.storeId] === undefined ? [] : state.lists[props.storeId];
 const getURL = (state, props) => props.url;
 const getMatchedExpressions = (state, props) => {
@@ -36,7 +38,8 @@ const getMatchedExpressions = (state, props) => {
 	});
 };
 
-
-const mapStateToProps = (state, props) => ({expressions: getMatchedExpressions(state, props)});
+const mapStateToProps = (state, props) => ({
+	expressions: getMatchedExpressions(state, props)
+});
 
 export default connect(mapStateToProps)(FilteredExpression);

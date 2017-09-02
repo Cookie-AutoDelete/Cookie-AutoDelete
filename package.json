@@ -45,7 +45,7 @@
     "test": "NODE_ENV=test nyc --require babel-register --require babel-polyfill mocha ./test/*",
     "build": "webpack --config webpack.config.js && ./tools/buildFilesDev.sh",
     "dev": "webpack --config webpack.config.js --progress --colors --watch",
-    "lint": "eslint --ext=.js,.json src/** test/** extension/_locales/** extension/popup/popup.js extension/settings/settings.js",
+    "lint": "./node_modules/.bin/eslint --fix --ext=.js,.json src/** test/** extension/_locales/**",
     "test-all": "npm run test && npm run lint"
   },
   "repository": {

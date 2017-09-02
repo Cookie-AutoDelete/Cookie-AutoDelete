@@ -1,4 +1,6 @@
-import { getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject } from './libs';
+import {getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject} from "./libs";
+
+let recentlyCleaned;
 
 export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	if (cleanupProperties.openTabDomains.has(cookieProperties.mainDomain)) {
@@ -16,10 +18,10 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 	for (let i = 0; i < cookies.length; i++) {
 		let cookieProperties = {
 			...cookies[i],
-			preparedCookieDomain: prepareCookieDomain(cookies[i]),
+			preparedCookieDomain: prepareCookieDomain(cookies[i])
 		};
-		cookieProperties["hostname"] = getHostname(cookieProperties.preparedCookieDomain);
-		cookieProperties["mainDomain"] = extractMainDomain(cookieProperties.hostname);
+		cookieProperties.hostname = getHostname(cookieProperties.preparedCookieDomain);
+		cookieProperties.mainDomain = extractMainDomain(cookieProperties.hostname);
 		// console.log(cookieProperties);
 
 		if (isSafeToClean(state, cookieProperties, cleanupProperties)) {
@@ -34,12 +36,13 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 			});
 		}
 	}
-
 };
 
 // Store all tabs' host domains to prevent cookie deletion from those domains
 export const returnSetOfOpenTabDomains = async () => {
-	const tabs = await browser.tabs.query({"windowType": "normal"});
+	const tabs = await browser.tabs.query({
+		"windowType": "normal"
+	});
 	let setOfTabURLS = new Set();
 	tabs.forEach((currentValue, index, array) => {
 		if (isAWebpage(currentValue.url)) {
@@ -51,10 +54,10 @@ export const returnSetOfOpenTabDomains = async () => {
 	return setOfTabURLS;
 };
 
-let recentlyCleaned;
-
 // Main function for cookie cleanup. Returns a list of domains that cookies were deleted from
-export const cleanCookiesOperation = async (state, cleanupProperties = {greyCleanup: false, ignoreOpenTabs: false}) => {
+export const cleanCookiesOperation = async (state, cleanupProperties = {
+	greyCleanup: false, ignoreOpenTabs: false
+}) => {
 	let openTabDomains = new Set();
 	let promiseContainers = [];
 	let setOfDeletedDomainCookies = new Set();
@@ -65,15 +68,22 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {greyClea
 	if (getSetting(state, "contextualIdentities")) {
 		const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
 		console.log(contextualIdentitiesObjects);
-		contextualIdentitiesObjects.forEach(async object => {
-			const cookies = await browser.cookies.getAll({storeId: object.cookieStoreId});
-			promiseContainers.push(cleanCookies(state, cookies, {...cleanupProperties, openTabDomains}));
+		contextualIdentitiesObjects.forEach(async (object) => {
+			const cookies = await browser.cookies.getAll({
+				storeId: object.cookieStoreId
+			});
+			promiseContainers.push(cleanCookies(state, cookies, {
+				...cleanupProperties, openTabDomains
+			}));
 		});
 		await Promise.all(promiseContainers);
 	}
 
 	const cookies = await browser.cookies.getAll({});
-	cleanCookies(state, cookies, {...cleanupProperties, openTabDomains, setOfDeletedDomainCookies});
-	return {setOfDeletedDomainCookies, recentlyCleaned};
-
+	cleanCookies(state, cookies, {
+		...cleanupProperties, openTabDomains, setOfDeletedDomainCookies
+	});
+	return {
+		setOfDeletedDomainCookies, recentlyCleaned
+	};
 };

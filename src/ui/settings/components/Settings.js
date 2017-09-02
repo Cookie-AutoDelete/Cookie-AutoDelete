@@ -26,7 +26,9 @@ const HistorySettings = (props) => {
 					<input
 						type="number"
 						className="form-control"
-						style={{display: "inline"}}
+						style={{
+							display: "inline"
+						}}
 						onChange={(e) => onUpdateSetting({
 							name: settings.delayBeforeClean.name, value: e.target.value, id: settings.delayBeforeClean.id
 						})}
@@ -136,8 +138,12 @@ const HistorySettings = (props) => {
 };
 
 const mapStateToProps = (state) => {
-	const {settings} = state;
-	return {settings};
+	const {
+		settings
+	} = state;
+	return {
+		settings
+	};
 };
 
 const mapDispatchToProps = (dispatch) => ({

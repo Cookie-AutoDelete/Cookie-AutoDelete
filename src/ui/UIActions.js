@@ -5,8 +5,12 @@ export const updateSettingUI = (payload) => ({
 	payload
 });
 
-export const resetSettingsUI = () => ({type: C.RESET_SETTINGS});
-export const resetCookieDeletedCounterUI = () => ({type: C.RESET_COOKIE_DELETED_COUNTER});
+export const resetSettingsUI = () => ({
+	type: C.RESET_SETTINGS
+});
+export const resetCookieDeletedCounterUI = () => ({
+	type: C.RESET_COOKIE_DELETED_COUNTER
+});
 
 export const addExpressionUI = (payload) => ({
 	type: C.ADD_EXPRESSION,

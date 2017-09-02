@@ -21,31 +21,14 @@ const globStringToRegex = (str) => `^${preg_quote(str).replace(/\\\*/g, ".*").re
 
 const hasExpression = (state, action) => state.some((expression) => expression.expression === action.payload.expression);
 
-const newExpressionObject = (state, action) => {
-	return {
-		...state,
-		...action.payload,
-		id: shortid.generate(),
-		regExp: action.payload.expression === undefined ? state.regExp : globStringToRegex(action.payload.expression),
-		listType: action.payload.listType === undefined ? "WHITE" : action.payload.listType,
-		cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
-	};
-};
-
-export const lists = (state = {}, action) => {
-	if(action.storeId === undefined && state["default"] === undefined) {
-		return {
-			default: expressions([], action)
-		};
-	}
-
-	const storeId = action.storeId === undefined ? "default" : action.storeId;
-	let newListObject = {
-		...state
-	};
-	newListObject[storeId] = expressions(state[storeId], action);
-	return newListObject;
-};
+const newExpressionObject = (state, action) => ({
+	...state,
+	...action.payload,
+	id: shortid.generate(),
+	regExp: action.payload.expression === undefined ? state.regExp : globStringToRegex(action.payload.expression),
+	listType: action.payload.listType === undefined ? "WHITE" : action.payload.listType,
+	cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
+});
 
 export const expression = (state = {}, action) => {
 	switch (action.type) {
@@ -87,13 +70,32 @@ export const expressions = (state = [], action) => {
 	}
 };
 
+export const lists = (state = {}, action) => {
+	if (action.storeId === undefined && state.default === undefined) {
+		return {
+			default: expressions([], action)
+		};
+	}
+
+	const storeId = action.storeId === undefined ? "default" : action.storeId;
+	let newListObject = {
+		...state
+	};
+	newListObject[storeId] = expressions(state[storeId], action);
+	return newListObject;
+};
+
 const initialSettings = initialState.settings;
 
 export const settings = (state = initialSettings, action) => {
 	switch (action.type) {
 	case C.UPDATE_SETTING: {
-		const {name} = action.payload;
-		let newObject = {...state};
+		const {
+			name
+		} = action.payload;
+		let newObject = {
+			...state
+		};
 		newObject[name] = {
 			...action.payload,
 			id: shortid.generate()
@@ -109,10 +111,10 @@ export const settings = (state = initialSettings, action) => {
 
 export const cookieDeletedCounterTotal = (state = 0, action) => {
 	switch (action.type) {
-	case C.INCREMENT_COOKIE_DELETED_COUNTER:
+	case C.INCREMENT_COOKIE_DELETED_COUNTER: {
 		const incrementBy = action.payload === undefined ? 1 : action.payload;
 		return state + incrementBy;
-
+	}
 	case C.RESET_SETTINGS:
 	case C.RESET_COOKIE_DELETED_COUNTER:
 		return 0;
@@ -123,10 +125,10 @@ export const cookieDeletedCounterTotal = (state = 0, action) => {
 
 export const cookieDeletedCounterSession = (state = 0, action) => {
 	switch (action.type) {
-	case C.INCREMENT_COOKIE_DELETED_COUNTER:
+	case C.INCREMENT_COOKIE_DELETED_COUNTER: {
 		const incrementBy = action.payload === undefined ? 1 : action.payload;
 		return state + incrementBy;
-
+	}
 	case C.ON_STARTUP:
 	case C.RESET_SETTINGS:
 	case C.RESET_COOKIE_DELETED_COUNTER:
@@ -138,19 +140,20 @@ export const cookieDeletedCounterSession = (state = 0, action) => {
 
 export const cache = (state = {}, action) => {
 	switch (action.type) {
-	case C.ADD_CACHE:
+	case C.ADD_CACHE: {
 		let newCacheObject = {
-			...state,
+			...state
 		};
 		newCacheObject[`${action.map.key}`] = action.map.value;
 		return newCacheObject;
+	}
 
 	case C.RESET_SETTINGS:
 		return {};
 	default:
 		return state;
 	}
-}
+};
 
 export default combineReducers({
 	lists,

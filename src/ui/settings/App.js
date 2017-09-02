@@ -6,14 +6,20 @@ import Expressions from "./components/Expressions";
 import About from "./components/About";
 
 class App extends Component {
-		state = {activeTab: "tabWelcome"}
+		state = {
+			activeTab: "tabWelcome"
+		}
 
 		switchTabs(newActiveTab) {
-			this.setState({activeTab: newActiveTab});
+			this.setState({
+				activeTab: newActiveTab
+			});
 		}
 
 		render() {
-			const {activeTab} = this.state;
+			const {
+				activeTab
+			} = this.state;
 			return (
 				<div id="layout">
 					<SideBar switchTabs={(tab) => this.switchTabs(tab)} activeTab={activeTab}/>
