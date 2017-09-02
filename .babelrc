@@ -1,5 +1,10 @@
 {
-  "presets": ["react", "env"],
+  "presets": ["react", ["env", {
+      "test": {
+        "plugins": [ "istanbul" ]
+      }
+    }]
+  ],
   "plugins": [
     "transform-class-properties",
     "transform-async-to-generator",

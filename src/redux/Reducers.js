@@ -27,7 +27,8 @@ const newExpressionObject = (state, action) => {
 		...action.payload,
 		id: shortid.generate(),
 		regExp: action.payload.expression === undefined ? state.regExp : globStringToRegex(action.payload.expression),
-		listType: action.payload.listType === undefined ? "WHITE" : action.payload.listType
+		listType: action.payload.listType === undefined ? "WHITE" : action.payload.listType,
+		cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
 	};
 };
 
@@ -143,7 +144,7 @@ export const cache = (state = {}, action) => {
 		};
 		newCacheObject[`${action.map.key}`] = action.map.value;
 		return newCacheObject;
-		
+
 	case C.RESET_SETTINGS:
 		return {};
 	default:

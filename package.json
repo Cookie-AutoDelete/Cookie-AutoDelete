@@ -20,6 +20,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
@@ -39,7 +40,7 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "scripts": {
-    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha  --compilers js:babel-core/register -R spec ./test/*",
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha  --compilers js:babel-core/register ./test/*",
     "build": "./node_modules/.bin/webpack --config webpack.config.js && ./tools/buildFilesDev.sh",
     "dev": "./node_modules/.bin/webpack --config webpack.config.js --progress --colors --watch",
     "lint": "./node_modules/.bin/eslint --ext=.js,.json src/** test/** extension/_locales/** extension/popup/popup.js extension/settings/settings.js",

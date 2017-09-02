@@ -1,6 +1,6 @@
 import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter} from "./redux/Actions";
 import {getHostname, isAWebpage, spliceWWW, getSetting} from "./services/libs";
-import {checkIfProtected} from "./services/BrowserActionService";
+import {checkIfProtected, setIconRed} from "./services/BrowserActionService";
 import {cookieCleanup} from "./redux/Actions";
 import createStore from "./redux/Store";
 

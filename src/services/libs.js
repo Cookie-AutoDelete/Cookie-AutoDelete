@@ -59,7 +59,7 @@ export const prepareCookieDomain = (cookie) => {
 	if (cookieDomain.charAt(0) === ".") {
 		cookieDomain = cookieDomain.slice(1);
 	}
-	cookieDomain = cookie.secure ? `https://${cookieDomain}` : `http://${cookieDomain}`;
+	cookieDomain = cookie.secure ? `https://${cookieDomain}${cookie.path}` : `http://${cookieDomain}${cookie.path}`;
 	return cookieDomain;
 };
 

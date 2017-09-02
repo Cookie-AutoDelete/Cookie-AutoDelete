@@ -1,15 +1,7 @@
 {
-  "lists": {
-    "default": [
-      {
-        "id": "Bkbv-Ck_-",
-        "expression": "*google.com*",
-        "regExp": "^.*google\\.com.*$",
-        "type": "GREY"
-      }
-    ]
-  },
+  "lists": {},
   "cookieDeletedCounterTotal": 0,
+  "cookieDeletedCounterSession": 0,
 	"settings": {
   	"activeMode": {
   		"name": "activeMode",
@@ -46,5 +38,6 @@
   		"value": false,
   		"id": 7
   	}
-  }
+  },
+  "cache": {}
 }

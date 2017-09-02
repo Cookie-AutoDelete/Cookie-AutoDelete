@@ -23,9 +23,9 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 		// console.log(cookieProperties);
 
 		if (isSafeToClean(state, cookieProperties, cleanupProperties)) {
-			console.log("clean", cookieProperties.hostname);
+			// console.log("clean", cookieProperties);
 			recentlyCleaned++;
-			setOfDeletedDomainCookies.add(getSetting(state, "contextualIdentities") ? `${cookieProperties.hostname} (${state.cache[cookieProperties.storeId]})` : cookieProperties.hostname);
+			cleanupProperties.setOfDeletedDomainCookies.add(getSetting(state, "contextualIdentities") ? `${cookieProperties.hostname} (${state.cache[cookieProperties.storeId]})` : cookieProperties.hostname);
 			// url: "http://domain.com" + cookies[i].path
 			browser.cookies.remove({
 				url: cookieProperties.preparedCookieDomain,
@@ -51,20 +51,20 @@ export const returnSetOfOpenTabDomains = async () => {
 	return setOfTabURLS;
 };
 
-let setOfDeletedDomainCookies;
 let recentlyCleaned;
 
 // Main function for cookie cleanup. Returns a list of domains that cookies were deleted from
 export const cleanCookiesOperation = async (state, cleanupProperties = {greyCleanup: false, ignoreOpenTabs: false}) => {
 	let openTabDomains = new Set();
 	let promiseContainers = [];
-	setOfDeletedDomainCookies = new Set();
+	let setOfDeletedDomainCookies = new Set();
 	recentlyCleaned = 0;
 	if (!cleanupProperties.ignoreOpenTabs) {
 		openTabDomains = await returnSetOfOpenTabDomains();
 	}
 	if (getSetting(state, "contextualIdentities")) {
 		const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
+		console.log(contextualIdentitiesObjects);
 		contextualIdentitiesObjects.forEach(async object => {
 			const cookies = await browser.cookies.getAll({storeId: object.cookieStoreId});
 			promiseContainers.push(cleanCookies(state, cookies, {...cleanupProperties, openTabDomains}));
@@ -72,10 +72,8 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {greyClea
 		await Promise.all(promiseContainers);
 	}
 
-
-	// Clean the default cookie id container (Contextual identity off)
 	const cookies = await browser.cookies.getAll({});
-	cleanCookies(state, cookies, {...cleanupProperties, openTabDomains});
+	cleanCookies(state, cookies, {...cleanupProperties, openTabDomains, setOfDeletedDomainCookies});
 	return {setOfDeletedDomainCookies, recentlyCleaned};
 
 };
