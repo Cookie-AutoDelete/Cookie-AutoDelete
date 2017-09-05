@@ -1,16 +1,30 @@
-import {getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject} from "./libs";
+import {getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject, getStoreId} from "./libs";
 
 let recentlyCleaned;
 
 export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
-	if (cleanupProperties.openTabDomains.has(cookieProperties.mainDomain)) {
-		return false;
+	const {
+		mainDomain, storeId, hostname
+	} = cookieProperties;
+	const {
+		cachedResults, greyCleanup, openTabDomains
+	} = cleanupProperties;
+	const newStoreId = getStoreId(state, storeId);
+	if (cachedResults[newStoreId] === undefined) {
+		cachedResults[newStoreId] = {};
 	}
-	const matchedExpression = returnMatchedExpressionObject(state, cookieProperties.storeId, cookieProperties.hostname);
-	if (cleanupProperties.greyCleanup) {
-		return matchedExpression === undefined || matchedExpression.listType === "GREY";
+	if (cachedResults[newStoreId][hostname] !== undefined) {
+		// console.log("used cached result", newStoreId, hostname);
+		return cachedResults[newStoreId][hostname];
 	}
-	return matchedExpression === undefined;
+	if (openTabDomains.has(mainDomain)) {
+		return (cachedResults[newStoreId][hostname] = false);
+	}
+	const matchedExpression = returnMatchedExpressionObject(state, storeId, hostname);
+	if (greyCleanup) {
+		return (cachedResults[newStoreId][hostname] = matchedExpression === undefined || matchedExpression.listType === "GREY");
+	}
+	return (cachedResults[newStoreId][hostname] = matchedExpression === undefined);
 };
 
 // Goes through all the cookies to see if its safe to clean
@@ -22,10 +36,7 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 		};
 		cookieProperties.hostname = getHostname(cookieProperties.preparedCookieDomain);
 		cookieProperties.mainDomain = extractMainDomain(cookieProperties.hostname);
-		// console.log(cookieProperties);
-
 		if (isSafeToClean(state, cookieProperties, cleanupProperties)) {
-			// console.log("clean", cookieProperties);
 			recentlyCleaned++;
 			cleanupProperties.setOfDeletedDomainCookies.add(getSetting(state, "contextualIdentities") ? `${cookieProperties.hostname} (${state.cache[cookieProperties.storeId]})` : cookieProperties.hostname);
 			// url: "http://domain.com" + cookies[i].path
@@ -61,28 +72,30 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 	let openTabDomains = new Set();
 	let promiseContainers = [];
 	let setOfDeletedDomainCookies = new Set();
+	let cachedResults = {};
 	recentlyCleaned = 0;
 	if (!cleanupProperties.ignoreOpenTabs) {
 		openTabDomains = await returnSetOfOpenTabDomains();
 	}
+	let newCleanupProperties = {
+		...cleanupProperties,
+		openTabDomains,
+		setOfDeletedDomainCookies,
+		cachedResults
+	};
 	if (getSetting(state, "contextualIdentities")) {
 		const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
-		console.log(contextualIdentitiesObjects);
 		contextualIdentitiesObjects.forEach(async (object) => {
 			const cookies = await browser.cookies.getAll({
 				storeId: object.cookieStoreId
 			});
-			promiseContainers.push(cleanCookies(state, cookies, {
-				...cleanupProperties, openTabDomains
-			}));
+			promiseContainers.push(cleanCookies(state, cookies, newCleanupProperties));
 		});
 		await Promise.all(promiseContainers);
 	}
 
 	const cookies = await browser.cookies.getAll({});
-	cleanCookies(state, cookies, {
-		...cleanupProperties, openTabDomains, setOfDeletedDomainCookies
-	});
+	cleanCookies(state, cookies, newCleanupProperties);
 	return {
 		setOfDeletedDomainCookies, recentlyCleaned
 	};

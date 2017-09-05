@@ -161,7 +161,8 @@ describe("CleanupService", function() {
 		const cleanupProperties = {
 			greyCleanup: false,
 			ignoreOpenTabs: false,
-			openTabDomains: new Set(["example.com", "mozilla.org"])
+			openTabDomains: new Set(["example.com", "mozilla.org"]),
+			cachedResults: {}
 		};
 
 		it("should return true for yahoo.com", function() {
@@ -270,7 +271,8 @@ describe("CleanupService", function() {
 				greyCleanup: false,
 				ignoreOpenTabs: false,
 				openTabDomains: new Set(["example.com", "mozilla.org"]),
-				setOfDeletedDomainCookies: new Set()
+				setOfDeletedDomainCookies: new Set(),
+				cachedResults: {}
 			};
 
 			cleanCookies(sampleState, cookies, cleanupProperties);
