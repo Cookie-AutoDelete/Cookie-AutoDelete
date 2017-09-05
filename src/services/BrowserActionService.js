@@ -26,7 +26,7 @@ const setIconYellow = (tab) => {
 };
 
 // Set background icon to red
-const setIconRed = (tab) => {
+export const setIconRed = (tab) => {
 	browser.browserAction.setIcon({
 		tabId: tab.id,
 		path: {
