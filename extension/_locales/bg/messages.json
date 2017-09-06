@@ -5,12 +5,12 @@
   },
 
   "extensionDescription": {
-    "message": "Поемете контрол над бисквитките! Автоматично изтривайте неизползваните бисквитки и запазете само тези, които искате.",
+    "message": "Поемете контрола над бисквитките! Автоматично изтрива неизползваните бисквитки и запазва само тези, които искате.",
     "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
   },
 
   "notificationTitle": {
-    "message": "Бисквитките са изтрити!",
+    "message": "Изтрити бисквитки!",
     "description": "Cookie AutoDelete: Cookies were Deleted!"
   },
 
@@ -30,7 +30,7 @@
   },
 
   "hostWebsiteText": {
-    "message": "Сайт:",
+    "message": "Страница:",
     "description": "Host Website:"
   },
 
@@ -55,9 +55,9 @@
   },
 
   "switchToNoListText": {
-    "message": "Изчистване след затваряне на раздел",
+    "message": "Изчистване след затваряне на раздела",
     "description": "Clean After Tab Close"
-  },  
+  },
 
   "switchToGreyListText": {
     "message": "Изчистване след повторно пускане на четеца (сив списък)",
@@ -90,7 +90,7 @@
   },
 
   "welcomeMessage": {
-    "message": "Привет! По време на сесията са изтрити $sessionDeleted$ бисквитки, а общо $totalDeleted$ бисквитки.",
+    "message": "Здравейте! По време на сесията са изтрити $sessionDeleted$ бисквитки, а общо $totalDeleted$ бисквитки.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted" : {
@@ -110,7 +110,7 @@
   },
 
   "releaseNotesText": {
-    "message": "Списък с промени",
+    "message": "Бележки по изданието",
     "description": "Release Notes"
   },
 
@@ -170,7 +170,7 @@
   },
 
   "cookieCleanUpOnStartTooltipText": {
-    "message": "Функцията е идентична с „изчистване (без отворените раздели)', тоест всички бисквитки извън белия списък биват изтривани.",
+    "message": "Функцията е идентична с „изчистване (без отворените раздели)“, тоест всички бисквитки извън белия списък биват изтривани.",
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   },
 
@@ -210,7 +210,7 @@
   },
 
   "defaultSettingsTooltipText": {
-    "message": "ВНИМАНИЕ: Това ще изчисти и белия списък, затова си направете резервно копие!",
+    "message": "ВНИМАНИЕ: Това ще изчисти и белия списък, затова направете резервно копие!",
     "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
@@ -237,27 +237,27 @@
   "whiteListWordText": {
     "message": "Бял списък",
     "description": "WhiteList"
-  }, 
+  },
 
   "greyListWordText": {
     "message": "Сив списък",
     "description": "GreyList"
-  }, 
+  },
 
   "toWhiteListText": {
     "message": "Към белия списък",
     "description": "To WhiteList"
-  }, 
+  },
 
   "toGreyListText": {
     "message": "Към сивия списък",
     "description": "To GreyList"
-  }, 
+  },
 
   "addURLText": {
     "message": "Добавяне на адрес",
     "description": "Add URL"
-  }, 
+  },
 
   "clearURLText": {
     "message": "Премахване на всички",
@@ -292,7 +292,7 @@
   "reportIssuesText": {
     "message": "Докладване за дефекти и предлагане на възможности",
     "description": "Report issues and suggest features"
-  },  
+  },
 
   "versionText": {
     "message": "версия",
@@ -302,8 +302,5 @@
   "contributorsText": {
     "message": "Допринесли:",
     "description": "Contributors:"
-  }    
-
-
-
+  }
 }
