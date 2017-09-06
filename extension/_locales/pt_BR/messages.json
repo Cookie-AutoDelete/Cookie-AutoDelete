@@ -35,12 +35,12 @@
   },
 
   "cookieCleanupText": {
-    "message": "Limpeza de cookies",
+    "message": "Limpar cookies",
     "description": "Cookie Cleanup"
   },
 
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Limpeza de cookies (ignorar abas abertas)",
+    "message": "Limpar cookies (ignorar abas abertas)",
     "description": "Cookie Cleanup (Ignore Open Tabs)"
   },
 
@@ -53,20 +53,20 @@
     "message": "Modo ativo",
     "description": "Active Mode"
   },
-  
-  "switchToNoListText": {		
-	    "message": "Limpar após o fechamento da aba",		
-	    "description": "Clean After Tab Close"		
-	},  		
-			
-	"switchToGreyListText": {		
-	    "message": "Limpar ao reiniciar o navegador (lista cinza)",		
-	    "description": "Clean on Browser Restart (GreyList)"		
-	},
-  
+
+  "switchToNoListText": {
+    "message": "Limpar após o fechamento da aba",
+    "description": "Clean After Tab Close"
+  },
+
+  "switchToGreyListText": {
+    "message": "Limpar ao reiniciar o navegador (lista cinza)",
+    "description": "Clean on Browser Restart (GreyList)"
+  },
+
   "switchToWhiteListText": {
-    "message": "Adicionar à lista branca?",
-    "description": "Add to WhiteList?"
+    "message": "Nunca limpar (lista branca)",
+    "description": "Never Clean (WhiteList)"
   },
 
   "welcomeText": {
@@ -163,7 +163,7 @@
     "message": "Mostrar quantos cookies foram limpos e de quais domínios.",
     "description": "Shows how many cookies were cleaned and for which domain."
   },
-  
+
   "cookieCleanUpOnStartText": {
     "message": "Habilitar limpeza de cookies ao iniciar",
     "description": "Enable Cookie Cleanup on Startup"
@@ -173,7 +173,7 @@
     "message": "Isto basicamente faz uma limpeza de cookies (ignorar abas abertas), o que significa que todos os cookies que não estão na lista branca são apagados.",
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   },
-  
+
   "enableGlobalSubdomainText": {
     "message": "Habilitar verificação por subdomínios",
     "description": "Enable Check for Subdomains"
@@ -183,7 +183,7 @@
     "message": "Quando habilitado, *.example.com irá corresponder a example.com. Desligar isso te dá um controle mais refinado sobre suas listas.",
     "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
   },
-  
+
   "contextualIdentitiesEnabledText": {
     "message": "Habilitar suporte para as identidades contextuais do Firefox (EXPERIMENTAL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
@@ -233,31 +233,31 @@
     "message": "Contador zerado!",
     "description": "Cleared Counter!"
   },
-  
+
   "whiteListWordText": {
     "message": "Lista branca",
     "description": "WhiteList"
-  }, 
+  },
 
   "greyListWordText": {
     "message": "Lista cinza",
     "description": "GreyList"
-  }, 
+  },
 
   "toWhiteListText": {
     "message": "Para a lista branca",
     "description": "To WhiteList"
-  }, 
+  },
 
   "toGreyListText": {
     "message": "Para a lista cinza",
     "description": "To GreyList"
-  }, 
-  
+  },
+
   "addURLText": {
     "message": "Adicionar URL",
     "description": "Add URL"
-  }, 
+  },
 
   "clearURLText": {
     "message": "Remover todos",
@@ -268,12 +268,12 @@
     "message": "Digite as URLS sem a parte 'www.', depois pressione 'Enter' ou 'Adicionar URL'. Alternativamente, vá ao site e adicione-o a partir do ícone.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
   },
-  
+
   "hoverButtonTooltipText": {
     "message": "A lista cinza são os cookies que quer manter até que o navegador reinicie. A lista branca são os cookies que quer manter permanentemente.",
     "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
   },
-  
+
   "exportURLSText": {
     "message": "Exportar lista branca",
     "description": "Export WhiteList"
@@ -292,7 +292,7 @@
   "reportIssuesText": {
     "message": "Reporte problemas e sugira funcionalidades",
     "description": "Report issues and suggest features"
-  },  
+  },
 
   "versionText": {
     "message": "versão",
@@ -302,8 +302,5 @@
   "contributorsText": {
     "message": "Contribuidores:",
     "description": "Contributors:"
-  }    
-
-
-
+  }
 }
