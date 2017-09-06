@@ -55,18 +55,18 @@
   },
   
   "switchToNoListText": {		
-	    "message": "Limpar depois do fecho do separador",		
-	    "description": "Clean After Tab Close"		
-	},  		
+    "message": "Limpar depois do fecho do separador",		
+    "description": "Clean After Tab Close"		
+  },  		
 			
-	"switchToGreyListText": {		
-	    "message": "Limpar no reinício do navegador (lista cinza)",		
-	    "description": "Clean on Browser Restart (GreyList)"		
-	},
+  "switchToGreyListText": {		
+    "message": "Limpar no reinício do navegador (lista cinza)",		
+    "description": "Clean on Browser Restart (GreyList)"		
+  },
   
   "switchToWhiteListText": {
-    "message": "Adicionar à lista branca?",
-    "description": "Add to WhiteList?"
+    "message": "Nunca limpar (lista branca)",
+    "description": "Never Clean (WhiteList)"
   },
 
   "welcomeText": {

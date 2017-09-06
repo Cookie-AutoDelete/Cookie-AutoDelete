@@ -5,7 +5,7 @@
   },
 
   "extensionDescription": {
-    "message": "Beherrsche deine Cookies! Lasse unbenutzte Cookies von deinen geschlossenen Tabs automatisch löschen.",
+    "message": "Beherrsche deine Cookies! Lasse unbenutzte Cookies deiner geschlossenen Tabs automatisch löschen.",
     "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
   },
 
@@ -105,7 +105,7 @@
   },
 
   "reviewLinkMessage": {
-    "message": "Danke für das Ausprobieren von Cookie AutoDelete. Falls es dir gefällt, verfasse bitte einen Erfahrungsbericht.",
+    "message": "Danke für das Ausprobieren von Cookie AutoDelete. Falls es dir gefällt, gib bitte eine Bewertung ab.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
   },
 
@@ -125,7 +125,7 @@
   },
 
   "activeModeTooltipText": {
-    "message": "Wenn der aktive Modus eingeschaltet ist wird das Aufräumen der Cookies beim Schließen eines Tabs ausgeführt",
+    "message": "Wenn der aktive Modus eingeschaltet ist, wird das Aufräumen der Cookies beim Schließen eines Tabs ausgeführt.",
     "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
   },
 
@@ -135,7 +135,7 @@
   },
 
   "statLoggingTooltipText": {
-    "message": "Zählt die Anzahl der gelöschten Cookies, wird im Willkommensbildschirm angezeigt",
+    "message": "Zählt die Anzahl der gelöschten Cookies, wird im Willkommensbildschirm angezeigt.",
     "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
@@ -150,12 +150,12 @@
   },
 
   "showNumberOfCookiesInIconTooltipText": {
-    "message": "Zeigt die Anzahl der erkannten Cookies im Symbols in der Symbolleiste",
+    "message": "Zeigt die Anzahl der erkannten Cookies im Symbol in der Symbolleiste",
     "description": "Shows which cookies can be detected in the popup badge."
   },
 
   "notifyCookieCleanUpText": {
-    "message": "Zeigt eine Benachrichtungen nach dem Aufräumen der Cookies",
+    "message": "Zeigt eine Benachrichtigung nach dem Aufräumen der Cookies",
     "description": "Show Notification After Cookie CleanUp"
   },
 
@@ -170,7 +170,7 @@
   },
 
   "cookieCleanUpOnStartTooltipText": {
-    "message": "Im Grunde führt dies die Funktion \"Cookies aufräumen (offene Tabs ignorieren)\" aus, löscht also alle Cookies die nicht zu der WhiteList passen.",
+    "message": "Im Grunde führt dies die Funktion \"Cookies aufräumen (offene Tabs ignorieren)\" aus, löscht also alle Cookies die nicht zur WhiteList passen.",
     "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
   },
 
@@ -265,7 +265,7 @@
   },
 
   "enterURLTooltipText": {
-    "message": "Trage URLs ohne 'www.' ein, drücke dann die Eingabetaste oder klicke auf 'URL hinzufügen'. Alternativ besuche die Seite und füge sie vom Symbol in der Symbolleiste hinzu.",
+    "message": "Trage URLs ohne 'www.' ein, drücke dann die Eingabetaste oder klicke auf 'URL hinzufügen'. Alternativ besuche die Seite und füge sie vom Symbol aus hinzu.",
     "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
   },
 
@@ -295,7 +295,7 @@
   },  
 
   "versionText": {
-    "message": "version",
+    "message": "Version",
     "description": "version"
   },
 
