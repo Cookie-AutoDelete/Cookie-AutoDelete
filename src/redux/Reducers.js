@@ -30,6 +30,15 @@ const newExpressionObject = (state, action) => ({
 	cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
 });
 
+const sortExpressionAlgorithm = (a,b) => {
+	if (a.listType === "WHITE" && b.listType === "GREY") {
+		return -1;
+	} else if (b.listType === "WHITE" && a.listType === "GREY"){
+		return 1;
+	}
+	return a.expression.localeCompare(b.expression);
+}
+
 export const expression = (state = {}, action) => {
 	switch (action.type) {
 	case C.UPDATE_EXPRESSION:
@@ -50,14 +59,14 @@ export const expressions = (state = [], action) => {
 		if (hasExpression(state, action)) {
 			return state;
 		}
-		return [...state, newExpressionObject({}, action)].sort((a, b) => a.expression.localeCompare(b.expression));
+		return [...state, newExpressionObject({}, action)].sort(sortExpressionAlgorithm);
 	}
 
 	case C.UPDATE_EXPRESSION:
 		if (hasExpression(state, action)) {
 			return state;
 		}
-		return state.map((e) => expression(e, action)).sort((a, b) => a.expression.localeCompare(b.expression));
+		return state.map((e) => expression(e, action)).sort(sortExpressionAlgorithm);
 
 	case C.REMOVE_EXPRESSION:
 		return state.filter((expression) => expression.id !== action.payload.id);
