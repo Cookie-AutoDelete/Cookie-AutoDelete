@@ -107,10 +107,14 @@
 				<div id="cookieSettingsContent">
 					<h1 id="sectionSettings">Cookie Settings</h1>
 					<div class="row">
-						<input type="checkbox" id="activeModeSwitch">
-						<span id="activeModeText">Enable Active Mode? Delay Before Cleaning:</span><span> </span>
-						<input id="delayBeforeCleanInput" type="number" min="1">
-						<span id="minutesText">Minute(s)</span>
+						<label>
+							<input type="checkbox" id="activeModeSwitch">
+							<span id="activeModeText">Enable Active Mode? Delay Before Cleaning:</span><span> </span>
+						</label>
+						<label>
+							<input id="delayBeforeCleanInput" type="number" min="1">
+							<span id="minutesText">Minute(s)</span>
+						</label>
 						<div class="tooltip">?
 						  <span id="activeModeTooltipText" class="tooltiptext">When active mode is enabled, cookie cleanup is triggered on tab close.</span>
 						</div>
@@ -121,8 +125,10 @@
 
 					<div class="row">
 						<div class="nine columns">
-							<input type="checkbox" id="statLoggingSwitch">
-							<span id="statLoggingText">Log Total Number Of Cookies Deleted</span>
+							<label>
+								<input type="checkbox" id="statLoggingSwitch">
+								<span id="statLoggingText">Log Total Number Of Cookies Deleted</span>
+							</label>
 							<div class="tooltip">?
 							  <span id="statLoggingTooltipText" class="tooltiptext">Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen.</span>
 							</div>
@@ -136,40 +142,50 @@
 					</div>
 
 					<div class="row">
-						<input type="checkbox" id="showNumberOfCookiesInIconSwitch">
-						<span id="showNumberOfCookiesInIconText">Show Number of Cookies for that Domain</span>
+						<label>
+							<input type="checkbox" id="showNumberOfCookiesInIconSwitch">
+							<span id="showNumberOfCookiesInIconText">Show Number of Cookies for that Domain</span>
+						</label>
 						<div class="tooltip">?
 						  <span id="showNumberOfCookiesInIconTooltipText" class="tooltiptext">Shows how many cookies for that domain.</span>
 						</div>
 					</div>
 
 					<div class="row">
-						<input type="checkbox" id="notifyCookieCleanUpSwitch">
-						<span id="notifyCookieCleanUpText">Show Notification After Cookie CleanUp</span>
+						<label>
+							<input type="checkbox" id="notifyCookieCleanUpSwitch">
+							<span id="notifyCookieCleanUpText">Show Notification After Cookie CleanUp</span>
+						</label>
 						<div class="tooltip">?
 						  <span id="notifyCookieCleanUpTooltipText" class="tooltiptext">Shows how manu cookies were cleaned and for which domain.</span>
 						</div>
 					</div>
 
 					<div class="row">
-						<input type="checkbox" id="cookieCleanUpOnStartSwitch">
-						<span id="cookieCleanUpOnStartText">cookieCleanUpOnStart</span>
+						<label>
+							<input type="checkbox" id="cookieCleanUpOnStartSwitch">
+							<span id="cookieCleanUpOnStartText">cookieCleanUpOnStart</span>
+						</label>
 						<div class="tooltip">?
 						  <span id="cookieCleanUpOnStartTooltipText" class="tooltiptext">cookieCleanUpOnStartTooltipText</span>
 						</div>
 					</div>
 
 					<div class="row">
-						<input type="checkbox" id="enableGlobalSubdomainSwitch">
-						<span id="enableGlobalSubdomainText">enableGlobalSubdomain</span>
+						<label>
+							<input type="checkbox" id="enableGlobalSubdomainSwitch">
+							<span id="enableGlobalSubdomainText">enableGlobalSubdomain</span>
+						</label>
 						<div class="tooltip">?
 						  <span id="enableGlobalSubdomainTooltipText" class="tooltiptext">enableGlobalSubdomain</span>
 						</div>
 					</div>
 
 					<div class="row" id="contextualIdentitiesRow">
-						<input type="checkbox" id="contextualIdentitiesEnabledSwitch">
-						<span id="contextualIdentitiesEnabledText">Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)</span>
+						<label>
+							<input type="checkbox" id="contextualIdentitiesEnabledSwitch">
+							<span id="contextualIdentitiesEnabledText">Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)</span>
+						</label>
 						<div class="tooltip">?
 						  <span id="contextualIdentitiesTooltipText" class="tooltiptext">Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these.</span>
 						</div>
