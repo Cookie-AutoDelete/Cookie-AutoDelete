@@ -3,21 +3,16 @@ import {combineReducers} from "redux";
 import shortid from "shortid";
 import initialState from "./initialState.json";
 
-// http://kevin.vanzonneveld.net
-// +   original by: booeyOH
-// +   improved by: Ates Goral (http://magnetiq.com)
-// +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-// +   bugfixed by: Onno Marsman
-// +   improved by: Brett Zamir (http://brett-zamir.me)
-// *     example 1: preg_quote("$40");
-// *     returns 1: '\$40'
-// *     example 2: preg_quote("*RRRING* Hello?");
-// *     returns 2: '\*RRRING\* Hello\?'
-// *     example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
-// *     returns 3: '\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:'
-const preg_quote = (str, delimiter) => (`${str}`).replace(new RegExp(`[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\${delimiter || ""}-]`, "g"), "\\$&");
-
-const globStringToRegex = (str) => `^${preg_quote(str).replace(/\\\*/g, ".*").replace(/\\\?/g, ".")}$`;
+export const expressionToRegExp = (string) => {
+	const normalizedString = string.trim().toLowerCase();
+	if (normalizedString === "*") {
+		return `^.*$`;
+	}
+	if (normalizedString.startsWith("*.")) {
+		return `${normalizedString.replace("*.", "(^|\.)").replace(/\./g, "\\.")}$`;
+	}
+	return `^${normalizedString.replace(/\./g, "\\.")}$`;
+};
 
 const hasExpression = (state, action) => state.some((expression) => expression.expression === action.payload.expression);
 
@@ -25,7 +20,7 @@ const newExpressionObject = (state, action) => ({
 	...state,
 	...action.payload,
 	id: shortid.generate(),
-	regExp: action.payload.expression === undefined ? state.regExp : globStringToRegex(action.payload.expression),
+	regExp: action.payload.expression === undefined ? state.regExp : expressionToRegExp(action.payload.expression),
 	listType: action.payload.listType === undefined ? "WHITE" : action.payload.listType,
 	cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
 });

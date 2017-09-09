@@ -1,8 +1,56 @@
 import {assert} from "chai";
-import {cookieDeletedCounterTotal, lists} from "../src/redux/Reducers";
+import {cookieDeletedCounterTotal, lists, expressionToRegExp} from "../src/redux/Reducers";
 import C from "../src/redux/Constants";
 
 describe("Reducer", function() {
+
+	describe("expressionToRegExp", function() {
+		it("should match example.com for example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("example.com"));
+			assert.isTrue(regExp.test("example.com"));
+		});
+		it("should not match badexample.com for example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("example.com"));
+			assert.isFalse(regExp.test("badexample.com"));
+		});
+		it("should match example.com for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("example.com"));
+		});
+		it("should match a.example.com for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.example.com"));
+		});
+		it("should match a.b.example.com for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.b.example.com"));
+		});
+		it("should match a.b-c.example.com for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.b-c.example.com"));
+		});
+		it("should match a.b_c.example.com for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.b_c.example.com"));
+		});
+		it("should match sub-with-strage_chars.example.another.sub.example.com for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("sub-with-strage_chars.example.another.sub.example.com"));
+		});
+		it("should not match badexample.com for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isFalse(regExp.test("badexample.com"));
+		});
+		it("should not match bad.example.com.others.org for *.example.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.example.com"));
+			assert.isFalse(regExp.test("bad.example.com.others.org"));
+		});
+		it("should equal ^.*$ for just *", function() {
+			const regExp = new RegExp(expressionToRegExp("*"));
+			assert.strictEqual(regExp.toString(), "/^.*$/");
+		});
+	});
+
 	describe("cookieDeletedCounterTotal", function() {
 		const state = 5;
 
@@ -70,30 +118,31 @@ describe("Reducer", function() {
 		const state = {
 			"default": [
 				{
-					"expression": "facebook.com*",
-					"id": "B1eWwWRJOb",
-					"regExp": "^facebook\\.com.*$",
-					"listType": "GREY"
-				},
-				{
 					"expression": "messenger.com*",
 					"id": "SyZbDbC1dW",
 					"regExp": "^messenger\\.com.*$",
 					"listType": "WHITE"
-				}
-			],
-			"firefox_container_1": [
+				},
 				{
 					"expression": "facebook.com*",
-					"id": "123",
+					"id": "B1eWwWRJOb",
 					"regExp": "^facebook\\.com.*$",
 					"listType": "GREY"
-				},
+				}
+
+			],
+			"firefox_container_1": [
 				{
 					"expression": "messenger.com*",
 					"id": "456",
 					"regExp": "^messenger\\.com.*$",
 					"listType": "WHITE"
+				},
+				{
+					"expression": "facebook.com*",
+					"id": "123",
+					"regExp": "^facebook\\.com.*$",
+					"listType": "GREY"
 				}
 			]
 		};
@@ -105,12 +154,12 @@ describe("Reducer", function() {
 					expression: "youtube.com", listType: "WHITE"
 				}
 			});
-			assert.propertyVal(newState.default[2], "expression", "youtube.com");
-			assert.propertyVal(newState.default[2], "listType", "WHITE");
-			assert.property(newState.default[2], "id");
-			assert.property(newState.default[2], "regExp");
+			assert.propertyVal(newState.default[1], "expression", "youtube.com");
+			assert.propertyVal(newState.default[1], "listType", "WHITE");
+			assert.property(newState.default[1], "id");
+			assert.property(newState.default[1], "regExp");
 		});
-		it("should return youtube.com on firefox_container_1", function() {
+		it("should return github.com on firefox_container_1", function() {
 			const newState = lists(state, {
 				type: C.ADD_EXPRESSION,
 				storeId: "firefox_container_1",
@@ -118,10 +167,10 @@ describe("Reducer", function() {
 					expression: "github.com", listType: "GREY"
 				}
 			});
-			assert.propertyVal(newState.firefox_container_1[1], "expression", "github.com");
-			assert.propertyVal(newState.firefox_container_1[1], "listType", "GREY");
-			assert.property(newState.firefox_container_1[1], "id");
-			assert.property(newState.firefox_container_1[1], "regExp");
+			assert.propertyVal(newState.firefox_container_1[2], "expression", "github.com");
+			assert.propertyVal(newState.firefox_container_1[2], "listType", "GREY");
+			assert.property(newState.firefox_container_1[2], "id");
+			assert.property(newState.firefox_container_1[2], "regExp");
 		});
 		it("should return not return messenger.com on default", function() {
 			const newState = lists(state, {
