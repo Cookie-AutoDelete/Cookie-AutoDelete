@@ -5,13 +5,10 @@ import initialState from "./initialState.json";
 
 export const expressionToRegExp = (string) => {
 	const normalizedString = string.trim().toLowerCase();
-	if (normalizedString === "*") {
-		return `^.*$`;
-	}
 	if (normalizedString.startsWith("*.")) {
-		return `${normalizedString.replace("*.", "(^|\.)").replace(/\./g, "\\.")}$`;
+		return `${normalizedString.replace("*.", "(^|\.)").replace(/\./g, "\\.").replace(/\*/g, "\.\*")}$`;
 	}
-	return `^${normalizedString.replace(/\./g, "\\.")}$`;
+	return `^${normalizedString.replace(/\./g, "\\.").replace(/\*/g, "\.\*")}$`;
 };
 
 const hasExpression = (state, action) => state.some((expression) => expression.expression === action.payload.expression);

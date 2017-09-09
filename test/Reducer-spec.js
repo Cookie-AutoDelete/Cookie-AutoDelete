@@ -49,6 +49,14 @@ describe("Reducer", function() {
 			const regExp = new RegExp(expressionToRegExp("*"));
 			assert.strictEqual(regExp.toString(), "/^.*$/");
 		});
+		it("should match github.com with git*b.com", function() {
+			const regExp = new RegExp(expressionToRegExp("git*b.com"));
+			assert.isTrue(regExp.test("github.com"));
+		});
+		it("should match sub.gitlab.com with *.git*b.com", function() {
+			const regExp = new RegExp(expressionToRegExp("*.git*b.com"));
+			assert.isTrue(regExp.test("sub.gitlab.com"));
+		});
 	});
 
 	describe("cookieDeletedCounterTotal", function() {
