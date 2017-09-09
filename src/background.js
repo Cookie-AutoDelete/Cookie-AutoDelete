@@ -148,7 +148,7 @@ const migration = (oldSettings) => {
 				const greyPrefixed = `${cookieStoreId}-Grey`;
 				if (oldSettings[cookieStoreId] !== undefined) {
 					oldSettings[cookieStoreId].forEach((domain) => {
-						const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+						const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
 						store.dispatch(
 							addExpression({
 								payload: {
@@ -162,7 +162,7 @@ const migration = (oldSettings) => {
 				}
 				if (oldSettings[greyPrefixed] !== undefined) {
 					oldSettings[greyPrefixed].forEach((domain) => {
-						const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+						const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
 						store.dispatch(
 							addExpression({
 								payload: {
@@ -180,7 +180,7 @@ const migration = (oldSettings) => {
 			const greyPrefixed = `${cookieStoreId}-Grey`;
 			if (oldSettings[cookieStoreId] !== undefined) {
 				oldSettings[cookieStoreId].forEach((domain) => {
-					const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+					const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
 					store.dispatch(
 						addExpression({
 							payload: {
@@ -194,7 +194,7 @@ const migration = (oldSettings) => {
 			}
 			if (oldSettings[greyPrefixed] !== undefined) {
 				oldSettings[greyPrefixed].forEach((domain) => {
-					const expression = oldSettings.enableGlobalSubdomainSetting ? `*${domain}` : domain;
+					const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
 					store.dispatch(
 						addExpression({
 							payload: {

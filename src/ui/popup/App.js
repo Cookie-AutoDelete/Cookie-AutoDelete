@@ -106,9 +106,9 @@ class App extends Component {
 				{
 					hostname !== mainDomain ?
 						<RowAction
-							text={`- *${mainDomain}`}
+							text={`- *.${mainDomain}`}
 							action={() => onNewExpression({
-								expression: `*${mainDomain}`, listType: "GREY", storeId
+								expression: `*.${mainDomain}`, listType: "GREY", storeId
 							})}
 							labelFor="addExpressionGrey"
 						/> : ""
@@ -121,9 +121,9 @@ class App extends Component {
 					labelFor="addExpressionGrey"
 				/>
 				<RowAction
-					text={`- *${hostname}`}
+					text={`- *.${hostname}`}
 					action={() => onNewExpression({
-						expression: `*${hostname}`, listType: "GREY", storeId
+						expression: `*.${hostname}`, listType: "GREY", storeId
 					})}
 					labelFor="addExpressionGrey"
 				/>
@@ -135,9 +135,9 @@ class App extends Component {
 				{
 					hostname !== mainDomain ?
 						<RowAction
-							text={`- *${mainDomain}`}
+							text={`- *.${mainDomain}`}
 							action={() => onNewExpression({
-								expression: `*${mainDomain}`, listType: "WHITE", storeId
+								expression: `*.${mainDomain}`, listType: "WHITE", storeId
 							})}
 							labelFor="addExpressionGrey"
 						/> : ""
@@ -152,9 +152,9 @@ class App extends Component {
 				/>
 
 				<RowAction
-					text={`- *${hostname}`}
+					text={`- *.${hostname}`}
 					action={() => onNewExpression({
-						expression: `*${hostname}`, listType: "WHITE", storeId
+						expression: `*.${hostname}`, listType: "WHITE", storeId
 					})}
 					labelFor="addExpressionWhite"
 				/>
