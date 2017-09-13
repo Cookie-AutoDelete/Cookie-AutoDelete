@@ -155,8 +155,8 @@
   },
 
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)",
-    "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
+    "message": "Enable Support for Firefox's Container Tabs",
+    "description": "Enable Support for Firefox's Container Tabs"
   },
 
   "defaultSettingsText": {
