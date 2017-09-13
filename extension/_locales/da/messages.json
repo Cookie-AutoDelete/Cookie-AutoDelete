@@ -30,8 +30,8 @@
   },
 
   "hostWebsiteText": {
-    "message": "Værts netsted:",
-    "description": "Host Website:"
+    "message": "Værts domæne:",
+    "description": "Host Domain:"
   },
 
   "cookieCleanupText": {
@@ -50,8 +50,8 @@
   },
 
   "activeModeSwitchText": {
-    "message": "Aktiv tilstand",
-    "description": "Active Mode"
+    "message": "Automatisk sletning",
+    "description": "Automatic Cleaning"
   },
 
   "switchToNoListText": {
@@ -115,8 +115,8 @@
   },
 
   "activeModeText": {
-    "message": "Aktiver aktiv tilstand? Forsinkelse før sletning:",
-    "description": "Enable Active Mode? Delay Before Cleaning:"
+    "message": "Aktiver automatisk sletning? Forsinkelse før sletning:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
 
   "minutesText": {
@@ -124,19 +124,9 @@
     "description": "Minute(s)"
   },
 
-  "activeModeTooltipText": {
-    "message": "Når aktiv tilstand er aktiveret, udløses sletning af cookies ved lukning af fane.",
-    "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
-  },
-
   "statLoggingText": {
     "message": "Log samlet antal slettede cookies",
     "description": "Log Total Number Of Cookies Deleted"
-  },
-
-  "statLoggingTooltipText": {
-    "message": "Tæller antallet af cookies slettet i løbet af denne session, og i alt. Dette vises på velkomstskærmen.",
-    "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
   "resetCounterText": {
@@ -149,19 +139,9 @@
     "description": "Show Number of Cookies for that Domain"
   },
 
-  "showNumberOfCookiesInIconTooltipText": {
-    "message": "Viser hvilke cookies der kan genkendes i pop-up-menuen.",
-    "description": "Shows which cookies can be detected in the popup badge."
-  },
-
   "notifyCookieCleanUpText": {
     "message": "Vis meddelelse efter sletning af cookies",
     "description": "Show Notification After Cookie CleanUp"
-  },
-
-  "notifyCookieCleanUpTooltipText": {
-    "message": "Vis hvor mange cookies der blev slettet, og for hvilket domæne.",
-    "description": "Shows how many cookies were cleaned and for which domain."
   },
 
   "cookieCleanUpOnStartText": {
@@ -169,69 +149,19 @@
     "description": "Clean Cookies from Open Tabs on StartUp"
   },
 
-  "cookieCleanUpOnStartTooltipText": {
-    "message": "Dette udfører grundlæggende en \"Slet cookies (ignorer åbne faner)\", hvilket betyder at alle cookies der ikke er på hvidlisten bliver slettet.",
-    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
-  },
-
   "enableGlobalSubdomainText": {
     "message": "Aktiver tjek for underdomæner",
     "description": "Enable Check for Subdomains"
   },
 
-  "enableGlobalSubdomainTooltipText": {
-    "message": "Aktiveret vil *.eksempel.dk matche eksempel.dk. Deaktiveret får du mere detaljeret kontrol over dine lister.",
-    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
-  },
-
   "contextualIdentitiesEnabledText": {
-    "message": "Aktiver understøttelse for Firefox' Kontekst-faneblade (EXPERIMENTEL Firefox 53+)",
-    "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
-  },
-
-  "contextualIdentitiesTooltipText": {
-    "message": "Aktiver IKKE med mindre du bruger Firefox 53+. Dette vil tilføje en forskellig hvidliste for HVERT kontekst-faneblad du bruger. Din standardhvidliste er separat fra disse.",
-    "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
-  },
-
-  "saveText": {
-    "message": "Gem",
-    "description": "Save"
-  },
-
-  "cancelText": {
-    "message": "Annuler",
-    "description": "Cancel"
+    "message": "Aktiver understøttelse for Firefox' Kontekst-faneblade",
+    "description": "Enable Support for Firefox's Container Tabs"
   },
 
   "defaultSettingsText": {
     "message": "Gendan standard opsætning",
     "description": "Restore Default Settings"
-  },
-
-  "defaultSettingsTooltipText": {
-    "message": "ADVARSEL: Dette vil også slette din hvidliste. Så lav en sikkerhedskopi af dem!",
-    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
-  },
-
-  "saveConfirmText": {
-    "message": "Gemt!",
-    "description": "Saved!"
-  },
-
-  "cancelConfirmText": {
-    "message": "Gendannede opsætning!",
-    "description": "Restored Settings!"
-  },
-
-  "defaultConfirmText": {
-    "message": "Gendannede standard opsætning!",
-    "description": "Restored Default Settings!"
-  },
-
-  "resetCounterConfirmText": {
-    "message": "Nulstillede tæller!",
-    "description": "Cleared Counter!"
   },
 
   "whiteListWordText": {
@@ -254,29 +184,14 @@
     "description": "To GreyList"
   }, 
 
-  "addURLText": {
-    "message": "Tilføj URL",
-    "description": "Add URL"
-  }, 
-
   "clearURLText": {
     "message": "Fjern alle",
     "description": "Remove All"
   },
 
-  "enterURLTooltipText": {
-    "message": "Indtast URL'er uden 'www.'-delen, og tast returtasten eller 'Tilføj URL'. Alternativt gå til netstedet og tilføj det fra ikonen.",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
-  },
-
-  "hoverButtonTooltipText": {
-    "message": "Grålisten er cookies du vil beholde indtil netlæseren genstarter. Hvidlisten er cookies du vil beholde permanent.",
-    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
-  },
-
   "exportURLSText": {
-    "message": "Eksporter hvidliste",
-    "description": "Export WhiteList"
+    "message": "Eksporter udtryk",
+    "description": "Export Expressions"
   },
 
   "rightClickToSave": {
@@ -285,8 +200,8 @@
   },
 
   "importURLSText": {
-    "message": "Overfør fil",
-    "description": "Upload File"
+    "message": "Importer udtryk",
+    "description": "Import Expressions"
   },
 
   "reportIssuesText": {
@@ -302,8 +217,31 @@
   "contributorsText": {
     "message": "Bidragydere:",
     "description": "Contributors:"
-  }    
+  },
 
+  "domainExpressionsText": {
+    "message": "Domain Expressions",
+    "description": "Domæneudtryk"
+  },
 
+  "matchedDomainExpressionText": {
+    "message": "Matched Domain Expression",
+    "description": "Matchet domæneudtryk"
+  },
+
+  "regularExpressionEquivalentText": {
+    "message": "Regular Expression Equivalent",
+    "description": "Tilsvarende regulært udtryk"
+  },
+
+  "listTypeText": {
+    "message": "List Type",
+    "description": "Listetype"
+  },
+
+  "enterDomainText": {
+    "message": "Enter Domain",
+    "description": "Indtast domæne"
+  }
 
 }
