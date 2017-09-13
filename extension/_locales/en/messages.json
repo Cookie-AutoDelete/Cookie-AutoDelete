@@ -57,7 +57,7 @@
   "switchToNoListText": {
     "message": "Clean After Tab Close",
     "description": "Clean After Tab Close"
-  },  
+  },
 
   "switchToGreyListText": {
     "message": "Clean on Browser Restart (GreyList)",
@@ -124,19 +124,9 @@
     "description": "Minute(s)"
   },
 
-  "activeModeTooltipText": {
-    "message": "When active mode is enabled, cookie cleanup is triggered on tab close.",
-    "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
-  },
-
   "statLoggingText": {
     "message": "Log Total Number Of Cookies Deleted",
     "description": "Log Total Number Of Cookies Deleted"
-  },
-
-  "statLoggingTooltipText": {
-    "message": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen.",
-    "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
   },
 
   "resetCounterText": {
@@ -149,49 +139,26 @@
     "description": "Show Number of Cookies for that Domain"
   },
 
-  "showNumberOfCookiesInIconTooltipText": {
-    "message": "Shows which cookies can be detected in the popup badge.",
-    "description": "Shows which cookies can be detected in the popup badge."
-  },
-
   "notifyCookieCleanUpText": {
     "message": "Show Notification After Cookie CleanUp",
     "description": "Show Notification After Cookie CleanUp"
   },
 
-  "notifyCookieCleanUpTooltipText": {
-    "message": "Shows how many cookies were cleaned and for which domain.",
-    "description": "Shows how many cookies were cleaned and for which domain."
-  },
 
   "cookieCleanUpOnStartText": {
     "message": "Clean Cookies from Open Tabs on StartUp",
     "description": "Clean Cookies from Open Tabs on StartUp"
   },
 
-  "cookieCleanUpOnStartTooltipText": {
-    "message": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted.",
-    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
-  },
 
   "enableGlobalSubdomainText": {
     "message": "Enable Check for Subdomains",
     "description": "Enable Check for Subdomains"
   },
 
-  "enableGlobalSubdomainTooltipText": {
-    "message": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists.",
-    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
-  },
-
   "contextualIdentitiesEnabledText": {
     "message": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)",
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
-  },
-
-  "contextualIdentitiesTooltipText": {
-    "message": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these.",
-    "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
   },
 
   "saveText": {
@@ -207,11 +174,6 @@
   "defaultSettingsText": {
     "message": "Restore Default Settings",
     "description": "Restore Default Settings"
-  },
-
-  "defaultSettingsTooltipText": {
-    "message": "WARNING: This will also clear your WhiteList as well. So make a backup of them!",
-    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
   },
 
   "saveConfirmText": {
@@ -237,41 +199,31 @@
   "whiteListWordText": {
     "message": "WhiteList",
     "description": "WhiteList"
-  }, 
+  },
 
   "greyListWordText": {
     "message": "GreyList",
     "description": "GreyList"
-  }, 
+  },
 
   "toWhiteListText": {
     "message": "To WhiteList",
     "description": "To WhiteList"
-  }, 
+  },
 
   "toGreyListText": {
     "message": "To GreyList",
     "description": "To GreyList"
-  }, 
+  },
 
   "addURLText": {
     "message": "Add URL",
     "description": "Add URL"
-  }, 
+  },
 
   "clearURLText": {
     "message": "Remove All",
     "description": "Remove All"
-  },
-
-  "enterURLTooltipText": {
-    "message": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon.",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
-  },
-
-  "hoverButtonTooltipText": {
-    "message": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently.",
-    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
   },
 
   "exportURLSText": {
@@ -292,7 +244,7 @@
   "reportIssuesText": {
     "message": "Report issues and suggest features",
     "description": "Report issues and suggest features"
-  },  
+  },
 
   "versionText": {
     "message": "version",
@@ -302,7 +254,7 @@
   "contributorsText": {
     "message": "Contributors:",
     "description": "Contributors:"
-  }    
+  }
 
 
 
