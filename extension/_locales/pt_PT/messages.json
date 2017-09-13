@@ -115,8 +115,8 @@
   },
 
   "activeModeText": {
-    "message": "Ativar modo ativo? Atraso antes da limpeza:",
-    "description": "Enable Active Mode? Delay Before Cleaning:"
+    "message": "Ativar limpeza automática? Atraso antes da limpeza:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
 
   "minutesText": {
