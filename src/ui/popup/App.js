@@ -83,7 +83,7 @@ class App extends Component {
 					<div className="col-md-12">
 						<b style={{
 							fontSize: "20px"
-						}}>Host Website:</b>
+						}}>{browser.i18n.getMessage("hostWebsiteText")}</b>
 						<i style={{
 							float: "right"
 						}} onClick={() => browser.runtime.openOptionsPage()} className="fa fa-cog fa-2x cursorPoint" aria-hidden="true"></i>

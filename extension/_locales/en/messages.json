@@ -30,8 +30,8 @@
   },
 
   "hostWebsiteText": {
-    "message": "Host Website:",
-    "description": "Host Website:"
+    "message": "Host Domain:",
+    "description": "Host Domain:"
   },
 
   "cookieCleanupText": {
@@ -227,8 +227,8 @@
   },
 
   "exportURLSText": {
-    "message": "Export WhiteList",
-    "description": "Export WhiteList"
+    "message": "Export Expressions",
+    "description": "Export Expressions"
   },
 
   "rightClickToSave": {
@@ -237,8 +237,8 @@
   },
 
   "importURLSText": {
-    "message": "Upload File",
-    "description": "Upload File"
+    "message": "Import Expressions",
+    "description": "Import Expressions"
   },
 
   "reportIssuesText": {
@@ -254,6 +254,31 @@
   "contributorsText": {
     "message": "Contributors:",
     "description": "Contributors:"
+  },
+
+  "domainExpressionsText": {
+    "message": "Domain Expressions",
+    "description": "Domain Expressions"
+  },
+
+  "matchedDomainExpressionText": {
+    "message": "Matched Domain Expression",
+    "description": "Matched Domain Expression"
+  },
+
+  "regularExpressionEquivalentText": {
+    "message": "Regular Expression Equivalent",
+    "description": "Regular Expression Equivalent"
+  },
+
+  "listTypeText": {
+    "message": "List Type",
+    "description": "List Type"
+  },
+
+  "enterDomainText": {
+    "message": "Enter Domain",
+    "description": "Enter Domain"
   }
 
 
