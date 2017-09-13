@@ -22,14 +22,14 @@ const newExpressionObject = (state, action) => ({
 	cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
 });
 
-const sortExpressionAlgorithm = (a,b) => {
+const sortExpressionAlgorithm = (a, b) => {
 	if (a.listType === "WHITE" && b.listType === "GREY") {
 		return -1;
-	} else if (b.listType === "WHITE" && a.listType === "GREY"){
+	} else if (b.listType === "WHITE" && a.listType === "GREY") {
 		return 1;
 	}
 	return a.expression.localeCompare(b.expression);
-}
+};
 
 export const expression = (state = {}, action) => {
 	switch (action.type) {

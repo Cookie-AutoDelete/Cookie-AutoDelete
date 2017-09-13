@@ -93,10 +93,10 @@ class Expressions extends React.Component {
 		} = this.state;
 		return (
 			<div style={style}>
-				<h1>List of Expressions</h1>
+				<h1>{browser.i18n.getMessage("whiteListText")}</h1>
 
 				<div className="md-form">
-					<label htmlFor="form1" className="">Enter Expression:</label>
+					<label htmlFor="form1" className="">{`${browser.i18n.getMessage("enterDomainText")}:`}</label>
 					<input
 						style={{
 							display: "inline", width: "93%"
@@ -167,9 +167,9 @@ class Expressions extends React.Component {
 						<thead>
 							<tr>
 								<th></th>
-								<th>{"Expression"}</th>
-								<th>{"Regular Expression Equivalent"}</th>
-								<th>{"ListType"}</th>
+								<th>{browser.i18n.getMessage("domainExpressionsText")}</th>
+								<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
+								<th>{browser.i18n.getMessage("listTypeText")}</th>
 							</tr>
 						</thead>
 						<ExpressionTableBody

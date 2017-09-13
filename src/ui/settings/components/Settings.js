@@ -10,7 +10,8 @@ const HistorySettings = (props) => {
 		settings,
 		onUpdateSetting,
 		onResetButtonClick,
-		onResetCounterButtonClick
+		onResetCounterButtonClick,
+		browserDetect
 	} = props;
 	return (
 		<div style={style}>
@@ -107,19 +108,22 @@ const HistorySettings = (props) => {
 				</div>
 			</div>
 
-			<div className="row">
-				<div className="col-md-12">
-					<CheckboxSetting
-						text={browser.i18n.getMessage("contextualIdentitiesEnabledText")}
-						settingObject={settings.contextualIdentities}
-						inline={true}
-						updateSetting={(payload) => onUpdateSetting(payload)}
-					/>
-					<Tooltip
-						text={browser.i18n.getMessage("contextualIdentitiesTooltipText")}
-					/>
-				</div>
-			</div>
+			{
+				browserDetect === "Firefox" ?
+					<div className="row">
+						<div className="col-md-12">
+							<CheckboxSetting
+								text={browser.i18n.getMessage("contextualIdentitiesEnabledText")}
+								settingObject={settings.contextualIdentities}
+								inline={true}
+								updateSetting={(payload) => onUpdateSetting(payload)}
+							/>
+							<Tooltip
+								text={browser.i18n.getMessage("contextualIdentitiesTooltipText")}
+							/>
+						</div>
+					</div> : ""
+			}
 
 			<br /><br />
 			<div className="row">
@@ -139,10 +143,11 @@ const HistorySettings = (props) => {
 
 const mapStateToProps = (state) => {
 	const {
-		settings
+		settings, cache
 	} = state;
 	return {
-		settings
+		settings,
+		browserDetect: cache.browserDetect
 	};
 };
 

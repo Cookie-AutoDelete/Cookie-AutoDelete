@@ -13,9 +13,9 @@ const FilteredExpression = (props) => {
 			<thead>
 				<tr>
 					<th></th>
-					<th>{"Matched Expression"}</th>
-					<th>{"Regular Expression Equivalent"}</th>
-					<th>{"ListType"}</th>
+					<th>{browser.i18n.getMessage("matchedDomainExpressionText")}</th>
+					<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
+					<th>{browser.i18n.getMessage("listTypeText")}</th>
 				</tr>
 			</thead>
 			<ExpressionTableBody
