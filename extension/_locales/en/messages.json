@@ -144,12 +144,10 @@
     "description": "Show Notification After Cookie CleanUp"
   },
 
-
   "cookieCleanUpOnStartText": {
     "message": "Clean Cookies from Open Tabs on StartUp",
     "description": "Clean Cookies from Open Tabs on StartUp"
   },
-
 
   "enableGlobalSubdomainText": {
     "message": "Enable Check for Subdomains",
@@ -161,39 +159,9 @@
     "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
   },
 
-  "saveText": {
-    "message": "Save",
-    "description": "Save"
-  },
-
-  "cancelText": {
-    "message": "Cancel",
-    "description": "Cancel"
-  },
-
   "defaultSettingsText": {
     "message": "Restore Default Settings",
     "description": "Restore Default Settings"
-  },
-
-  "saveConfirmText": {
-    "message": "Saved!",
-    "description": "Saved!"
-  },
-
-  "cancelConfirmText": {
-    "message": "Restored Settings!",
-    "description": "Restored Settings!"
-  },
-
-  "defaultConfirmText": {
-    "message": "Restored Default Settings!",
-    "description": "Restored Default Settings!"
-  },
-
-  "resetCounterConfirmText": {
-    "message": "Cleared Counter!",
-    "description": "Cleared Counter!"
   },
 
   "whiteListWordText": {
@@ -214,11 +182,6 @@
   "toGreyListText": {
     "message": "To GreyList",
     "description": "To GreyList"
-  },
-
-  "addURLText": {
-    "message": "Add URL",
-    "description": "Add URL"
   },
 
   "clearURLText": {
