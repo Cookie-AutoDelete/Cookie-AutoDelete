@@ -191,25 +191,12 @@ class App extends Component {
 					paddingLeft: "15px"
 				}}>
 					<CheckboxSetting
-						text={browser.i18n.getMessage("activeModeText")}
+						text={browser.i18n.getMessage("activeModeSwitchText")}
 						settingObject={settings.activeMode}
 						inline={true}
 						bsStyle={"checkbox-success"}
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
-					<input
-						type="number"
-						className="form-control"
-						style={{
-							display: "inline", width: "15%"
-						}}
-						onChange={(e) => onUpdateSetting({
-							name: settings.delayBeforeClean.name, value: e.target.value, id: settings.delayBeforeClean.id
-						})}
-						value={settings.delayBeforeClean.value}
-						min="1"
-					/>
-					<span>{browser.i18n.getMessage("minutesText")}</span>
 				</div>
 
 				<div className="row lineBreak" />
