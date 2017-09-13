@@ -28,7 +28,8 @@ const HistorySettings = (props) => {
 						type="number"
 						className="form-control"
 						style={{
-							display: "inline"
+							display: "inline",
+							margin: "0 5px"
 						}}
 						onChange={(e) => onUpdateSetting({
 							name: settings.delayBeforeClean.name, value: e.target.value, id: settings.delayBeforeClean.id
@@ -38,7 +39,7 @@ const HistorySettings = (props) => {
 					/>
 					<span>{browser.i18n.getMessage("minutesText")}</span>
 					<Tooltip
-						text={browser.i18n.getMessage("activeModeTooltipText")}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-automatic-cleaning"}
 					/>
 
 				</div>
@@ -54,7 +55,7 @@ const HistorySettings = (props) => {
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
 					<Tooltip
-						text={browser.i18n.getMessage("statLoggingTooltipText")}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#log-total-number-of-cookies-deleted"}
 					/>
 				</div>
 
@@ -75,7 +76,7 @@ const HistorySettings = (props) => {
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
 					<Tooltip
-						text={browser.i18n.getMessage("showNumberOfCookiesInIconTooltipText")}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#show-number-of-cookies-for-that-domain"}
 					/>
 				</div>
 			</div>
@@ -89,7 +90,7 @@ const HistorySettings = (props) => {
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
 					<Tooltip
-						text={browser.i18n.getMessage("notifyCookieCleanUpTooltipText")}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#show-notification-after-cookie-cleanup"}
 					/>
 				</div>
 			</div>
@@ -103,7 +104,7 @@ const HistorySettings = (props) => {
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
 					<Tooltip
-						text={browser.i18n.getMessage("cookieCleanUpOnStartTooltipText")}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#clean-cookies-from-open-tabs-on-startup"}
 					/>
 				</div>
 			</div>
@@ -119,7 +120,7 @@ const HistorySettings = (props) => {
 								updateSetting={(payload) => onUpdateSetting(payload)}
 							/>
 							<Tooltip
-								text={browser.i18n.getMessage("contextualIdentitiesTooltipText")}
+								hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-support-for-firefoxs-container-tabs-firefox-only"}
 							/>
 						</div>
 					</div> : ""
@@ -131,9 +132,6 @@ const HistorySettings = (props) => {
 					<button className="btn btn-danger" onClick={() => onResetButtonClick()}>
 						<span>{browser.i18n.getMessage("defaultSettingsText")}</span>
 					</button>
-					<Tooltip
-						text={browser.i18n.getMessage("defaultSettingsTooltipText")}
-					/>
 				</div>
 			</div>
 

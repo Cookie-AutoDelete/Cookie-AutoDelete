@@ -7,12 +7,29 @@ import About from "./components/About";
 
 class App extends Component {
 		state = {
-			activeTab: "tabWelcome"
+			activeTab: "tabWelcome",
+			tabId: 0,
+			settingsURL: ""
+		}
+
+		async componentDidMount() {
+			const tab = await browser.tabs.getCurrent();
+			const tabURL = new URL(tab.url);
+			this.setState({
+				activeTab: tabURL.hash !== "" || undefined ? tabURL.hash.substring(1) : "tabWelcome",
+				tabId: tab.id,
+				settingsURL: tab.url
+			});
 		}
 
 		switchTabs(newActiveTab) {
 			this.setState({
 				activeTab: newActiveTab
+			});
+			let newUrl = new URL(this.state.settingsURL);
+			newUrl.hash = newActiveTab;
+			browser.tabs.update(this.state.tabId, {
+				url: newUrl.href
 			});
 		}
 

@@ -177,41 +177,14 @@ input[type="file"] {
 }
 
 .tooltipCustom {
-  position: relative;
-  background-color: #757575;
-  display: inline-block;
-  border-radius: 30px;
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
-  margin: 0 5px;
-  color: #F9F9F9;
-  transform: translateY(2px);
+  color: #777;
+  cursor: pointer;
+  margin-left: 5px;
+  text-decoration: none;
 }
 
-/* Tooltip text */
-.tooltipCustom .tooltiptext {
-  visibility: hidden;
-
-  max-width: 10em;
-  min-height: 5em;
-  background-color: grey;
-  color: #F9F9F9;
-  text-align: center;
-  padding: 5px 5px;
-  border-radius: 6px;
-  font-size: 80%;
-  position: fixed;
-
-  margin-left: -3em;
-  z-index: 2;
-}
 .tooltipCustom:hover {
-  cursor: help;
-}
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltipCustom:hover .tooltiptext {
-  visibility: visible;
+  cursor: pointer;
 }

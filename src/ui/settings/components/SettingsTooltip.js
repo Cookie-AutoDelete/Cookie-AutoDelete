@@ -1,11 +1,9 @@
 import React from "react";
 
 const SettingsTooltip = ({
-	text
+	hrefURL
 }) => (
-	<span className="tooltipCustom">?
-		<span id="enterURLTooltipText" className="tooltiptext">{text}</span>
-	</span>
+	<a href={hrefURL} target={"_blank"} className="tooltipCustom">?</a>
 );
 
 export default SettingsTooltip;

@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import Tooltip from "./SettingsTooltip";
 import {getSetting} from "../../../services/libs";
 import ExpressionTableBody from "../../common_components/ExpressionTableBody";
 import {
@@ -99,7 +98,7 @@ class Expressions extends React.Component {
 					<label htmlFor="form1" className="">{`${browser.i18n.getMessage("enterDomainText")}:`}</label>
 					<input
 						style={{
-							display: "inline", width: "93%"
+							display: "inline", width: "96%"
 						}}
 						value={this.state.expressionInput}
 						onChange={(e) => this.setState({
@@ -122,9 +121,6 @@ class Expressions extends React.Component {
 					})}>
 						<i className="fa fa-plus-square" aria-hidden="true"></i>
 					</button>
-					<Tooltip
-						text={"Enter expressions without the 'www.' part. You can use the wildcard *. For example, git*b.com* will match github.com and gitlab.com. It also works with paths as well."}
-					/>
 				</div>
 
 				<a href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`} download="Cookie_AutoDelete_2.X.X_Expressions.json">
@@ -153,10 +149,10 @@ class Expressions extends React.Component {
 				{
 					contextualIdentities ?
 						<ul className="nav nav-tabs">
-							<li onClick={() => this.changeStoreIdTab("default")} className={`${storeId === "default" ? "active" : ""}`}><a href="#">Default</a></li>
+							<li onClick={() => this.changeStoreIdTab("default")} className={`${storeId === "default" ? "active" : ""}`}><a href="#tabExpressionList">Default</a></li>
 							{
 								contextualIdentitiesObjects.map((element) =>
-									<li key={`navTab-${element.cookieStoreId}`} onClick={() => this.changeStoreIdTab(element.cookieStoreId)} className={`${storeId === element.cookieStoreId ? "active" : ""}`}><a href="#">{element.name}</a></li>
+									<li key={`navTab-${element.cookieStoreId}`} onClick={() => this.changeStoreIdTab(element.cookieStoreId)} className={`${storeId === element.cookieStoreId ? "active" : ""}`}><a href="#tabExpressionList">{element.name}</a></li>
 								)
 							}
 						</ul> : ""
