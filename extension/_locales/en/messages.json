@@ -50,8 +50,8 @@
   },
 
   "activeModeSwitchText": {
-    "message": "Active Mode",
-    "description": "Active Mode"
+    "message": "Automatic Cleaning",
+    "description": "Automatic Cleaning"
   },
 
   "switchToNoListText": {
@@ -115,8 +115,8 @@
   },
 
   "activeModeText": {
-    "message": "Enable Active Mode? Delay Before Cleaning:",
-    "description": "Enable Active Mode? Delay Before Cleaning:"
+    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
 
   "minutesText": {
