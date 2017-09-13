@@ -3,7 +3,6 @@ import {cookieDeletedCounterTotal, lists, expressionToRegExp} from "../src/redux
 import C from "../src/redux/Constants";
 
 describe("Reducer", function() {
-
 	describe("expressionToRegExp", function() {
 		it("should match example.com for example.com", function() {
 			const regExp = new RegExp(expressionToRegExp("example.com"));

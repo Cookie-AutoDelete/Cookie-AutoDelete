@@ -110,19 +110,19 @@ const HistorySettings = (props) => {
 
 			{
 				browserDetect === "Firefox" ?
-				<div className="row">
-					<div className="col-md-12">
-						<CheckboxSetting
-							text={browser.i18n.getMessage("contextualIdentitiesEnabledText")}
-							settingObject={settings.contextualIdentities}
-							inline={true}
-							updateSetting={(payload) => onUpdateSetting(payload)}
-						/>
-						<Tooltip
-							text={browser.i18n.getMessage("contextualIdentitiesTooltipText")}
-						/>
-					</div>
-				</div> : ""
+					<div className="row">
+						<div className="col-md-12">
+							<CheckboxSetting
+								text={browser.i18n.getMessage("contextualIdentitiesEnabledText")}
+								settingObject={settings.contextualIdentities}
+								inline={true}
+								updateSetting={(payload) => onUpdateSetting(payload)}
+							/>
+							<Tooltip
+								text={browser.i18n.getMessage("contextualIdentitiesTooltipText")}
+							/>
+						</div>
+					</div> : ""
 			}
 
 			<br /><br />
