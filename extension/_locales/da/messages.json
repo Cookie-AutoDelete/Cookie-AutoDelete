@@ -1,0 +1,247 @@
+{
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Styr dine cookies! Slet ubrugte cookies automatisk når du lukker dine faner, og behold dem du vil beholde.",
+    "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
+  },
+
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: Cookies blev slettet!",
+    "description": "Cookie AutoDelete: Cookies were Deleted!"
+  },
+
+  "notificationContent": {
+    "message": "$Num$ slettede cookies fra: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "websites" : {
+        "content" : "$2",
+        "example" : "google.com, facebook.com"
+      }
+    }
+  },
+
+  "hostWebsiteText": {
+    "message": "Værts domæne:",
+    "description": "Host Domain:"
+  },
+
+  "cookieCleanupText": {
+    "message": "Slet cookies",
+    "description": "Cookie Cleanup"
+  },
+
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Slet cookies (ignorer åbne faner)",
+    "description": "Cookie Cleanup (Ignore Open Tabs)"
+  },
+
+  "clearCookiesForDomainText": {
+    "message": "Slet alle cookies for dette domæne",
+    "description": "Clear All Cookies For This Domain"
+  },
+
+  "activeModeSwitchText": {
+    "message": "Automatisk sletning",
+    "description": "Automatic Cleaning"
+  },
+
+  "switchToNoListText": {
+    "message": "Slet efter at fanen lukker",
+    "description": "Clean After Tab Close"
+  },  
+
+  "switchToGreyListText": {
+    "message": "Slet når netlæseren genstarter (grålist)",
+    "description": "Clean on Browser Restart (GreyList)"
+  },
+
+  "switchToWhiteListText": {
+    "message": "Slet aldrig (hvidlist)",
+    "description": "Never Clean (WhiteList)"
+  },
+
+  "welcomeText": {
+    "message": "Velkommen",
+    "description": "Welcome"
+  },
+
+  "settingsText": {
+    "message": "Cookie Opsætning",
+    "description": "Cookie Settings"
+  },
+
+  "whiteListText": {
+    "message": "Liste af udtryk",
+    "description": "List of Expressions"
+  },
+
+  "aboutText": {
+    "message": "Om",
+    "description": "About"
+  },
+
+  "welcomeMessage": {
+    "message": "Hej der! I løbet af denne session har Cookie AutoDelete slettet $sessionDeleted$ cookies, og i alt $totalDeleted$ cookies.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "totalDeleted" : {
+        "content" : "$2",
+        "example" : "456"
+      }
+    }
+  },
+
+  "reviewLinkMessage": {
+    "message": "Tak for at prøve Cookie AutoDelete. Hvis du kan lide den, så giv en anmeldelse.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
+  },
+
+  "releaseNotesText": {
+    "message": "Udgivelsesnoter",
+    "description": "Release Notes"
+  },
+
+  "activeModeText": {
+    "message": "Aktiver automatisk sletning? Forsinkelse før sletning:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
+  },
+
+  "minutesText": {
+    "message": "Minut(ter)",
+    "description": "Minute(s)"
+  },
+
+  "statLoggingText": {
+    "message": "Log samlet antal slettede cookies",
+    "description": "Log Total Number Of Cookies Deleted"
+  },
+
+  "resetCounterText": {
+    "message": "Nulstil tæller",
+    "description": "Reset Counter"
+  },
+
+  "showNumberOfCookiesInIconText": {
+    "message": "Vis antal cookies for det domæne",
+    "description": "Show Number of Cookies for that Domain"
+  },
+
+  "notifyCookieCleanUpText": {
+    "message": "Vis meddelelse efter sletning af cookies",
+    "description": "Show Notification After Cookie CleanUp"
+  },
+
+  "cookieCleanUpOnStartText": {
+    "message": "Slet cookies fra åbne faner ved opstart",
+    "description": "Clean Cookies from Open Tabs on StartUp"
+  },
+
+  "enableGlobalSubdomainText": {
+    "message": "Aktiver tjek for underdomæner",
+    "description": "Enable Check for Subdomains"
+  },
+
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktiver understøttelse for Firefox' Kontekst-faneblade",
+    "description": "Enable Support for Firefox's Container Tabs"
+  },
+
+  "defaultSettingsText": {
+    "message": "Gendan standard opsætning",
+    "description": "Restore Default Settings"
+  },
+
+  "whiteListWordText": {
+    "message": "Hvidlist",
+    "description": "WhiteList"
+  }, 
+
+  "greyListWordText": {
+    "message": "Grålist",
+    "description": "GreyList"
+  }, 
+
+  "toWhiteListText": {
+    "message": "Til hvidliste",
+    "description": "To WhiteList"
+  }, 
+
+  "toGreyListText": {
+    "message": "Til gråliste",
+    "description": "To GreyList"
+  }, 
+
+  "clearURLText": {
+    "message": "Fjern alle",
+    "description": "Remove All"
+  },
+
+  "exportURLSText": {
+    "message": "Eksporter udtryk",
+    "description": "Export Expressions"
+  },
+
+  "rightClickToSave": {
+    "message": "Højreklik og vælg 'Gem link som...'",
+    "description": "Right Click to Save Link As"
+  },
+
+  "importURLSText": {
+    "message": "Importer udtryk",
+    "description": "Import Expressions"
+  },
+
+  "reportIssuesText": {
+    "message": "Rapporter fejl og mangler, og foreslå funktionalitet",
+    "description": "Report issues and suggest features"
+  },  
+
+  "versionText": {
+    "message": "version",
+    "description": "version"
+  },
+
+  "contributorsText": {
+    "message": "Bidragydere:",
+    "description": "Contributors:"
+  },
+
+  "domainExpressionsText": {
+    "message": "Domain Expressions",
+    "description": "Domæneudtryk"
+  },
+
+  "matchedDomainExpressionText": {
+    "message": "Matched Domain Expression",
+    "description": "Matchet domæneudtryk"
+  },
+
+  "regularExpressionEquivalentText": {
+    "message": "Regular Expression Equivalent",
+    "description": "Tilsvarende regulært udtryk"
+  },
+
+  "listTypeText": {
+    "message": "List Type",
+    "description": "Listetype"
+  },
+
+  "enterDomainText": {
+    "message": "Enter Domain",
+    "description": "Indtast domæne"
+  }
+
+}
