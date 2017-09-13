@@ -1,0 +1,309 @@
+{
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Styr dine cookies! Slet ubrugte cookies automatisk når du lukker dine faner, og behold dem du vil beholde.",
+    "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
+  },
+
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: Cookies blev slettet!",
+    "description": "Cookie AutoDelete: Cookies were Deleted!"
+  },
+
+  "notificationContent": {
+    "message": "$Num$ slettede cookies fra: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "websites" : {
+        "content" : "$2",
+        "example" : "google.com, facebook.com"
+      }
+    }
+  },
+
+  "hostWebsiteText": {
+    "message": "Værts netsted:",
+    "description": "Host Website:"
+  },
+
+  "cookieCleanupText": {
+    "message": "Slet cookies",
+    "description": "Cookie Cleanup"
+  },
+
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Slet cookies (ignorer åbne faner)",
+    "description": "Cookie Cleanup (Ignore Open Tabs)"
+  },
+
+  "clearCookiesForDomainText": {
+    "message": "Slet alle cookies for dette domæne",
+    "description": "Clear All Cookies For This Domain"
+  },
+
+  "activeModeSwitchText": {
+    "message": "Aktiv tilstand",
+    "description": "Active Mode"
+  },
+
+  "switchToNoListText": {
+    "message": "Slet efter at fanen lukker",
+    "description": "Clean After Tab Close"
+  },  
+
+  "switchToGreyListText": {
+    "message": "Slet når netlæseren genstarter (grålist)",
+    "description": "Clean on Browser Restart (GreyList)"
+  },
+
+  "switchToWhiteListText": {
+    "message": "Slet aldrig (hvidlist)",
+    "description": "Never Clean (WhiteList)"
+  },
+
+  "welcomeText": {
+    "message": "Velkommen",
+    "description": "Welcome"
+  },
+
+  "settingsText": {
+    "message": "Cookie Opsætning",
+    "description": "Cookie Settings"
+  },
+
+  "whiteListText": {
+    "message": "Cookie Hvidliste",
+    "description": "Cookie WhiteList"
+  },
+
+  "aboutText": {
+    "message": "Om",
+    "description": "About"
+  },
+
+  "welcomeMessage": {
+    "message": "Hej der! I løbet af denne session har Cookie AutoDelete slettet $sessionDeleted$ cookies, og i alt $totalDeleted$ cookies.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted" : {
+        "content" : "$1",
+        "example" : "123"
+      },
+      "totalDeleted" : {
+        "content" : "$2",
+        "example" : "456"
+      }
+    }
+  },
+
+  "reviewLinkMessage": {
+    "message": "Tak for at prøve Cookie AutoDelete. Hvis du kan lide den, så giv en anmeldelse.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
+  },
+
+  "releaseNotesText": {
+    "message": "Udgivelsesnoter",
+    "description": "Release Notes"
+  },
+
+  "activeModeText": {
+    "message": "Aktiver aktiv tilstand? Forsinkelse før sletning:",
+    "description": "Enable Active Mode? Delay Before Cleaning:"
+  },
+
+  "minutesText": {
+    "message": "Minut(ter)",
+    "description": "Minute(s)"
+  },
+
+  "activeModeTooltipText": {
+    "message": "Når aktiv tilstand er aktiveret, udløses sletning af cookies ved lukning af fane.",
+    "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
+  },
+
+  "statLoggingText": {
+    "message": "Log samlet antal slettede cookies",
+    "description": "Log Total Number Of Cookies Deleted"
+  },
+
+  "statLoggingTooltipText": {
+    "message": "Tæller antallet af cookies slettet i løbet af denne session, og i alt. Dette vises på velkomstskærmen.",
+    "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
+  },
+
+  "resetCounterText": {
+    "message": "Nulstil tæller",
+    "description": "Reset Counter"
+  },
+
+  "showNumberOfCookiesInIconText": {
+    "message": "Vis antal cookies for det domæne",
+    "description": "Show Number of Cookies for that Domain"
+  },
+
+  "showNumberOfCookiesInIconTooltipText": {
+    "message": "Viser hvilke cookies der kan genkendes i pop-up-menuen.",
+    "description": "Shows which cookies can be detected in the popup badge."
+  },
+
+  "notifyCookieCleanUpText": {
+    "message": "Vis meddelelse efter sletning af cookies",
+    "description": "Show Notification After Cookie CleanUp"
+  },
+
+  "notifyCookieCleanUpTooltipText": {
+    "message": "Vis hvor mange cookies der blev slettet, og for hvilket domæne.",
+    "description": "Shows how many cookies were cleaned and for which domain."
+  },
+
+  "cookieCleanUpOnStartText": {
+    "message": "Slet cookies fra åbne faner ved opstart",
+    "description": "Clean Cookies from Open Tabs on StartUp"
+  },
+
+  "cookieCleanUpOnStartTooltipText": {
+    "message": "Dette udfører grundlæggende en \"Slet cookies (ignorer åbne faner)\", hvilket betyder at alle cookies der ikke er på hvidlisten bliver slettet.",
+    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
+  },
+
+  "enableGlobalSubdomainText": {
+    "message": "Aktiver tjek for underdomæner",
+    "description": "Enable Check for Subdomains"
+  },
+
+  "enableGlobalSubdomainTooltipText": {
+    "message": "Aktiveret vil *.eksempel.dk matche eksempel.dk. Deaktiveret får du mere detaljeret kontrol over dine lister.",
+    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
+  },
+
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktiver understøttelse for Firefox' Kontekst-faneblade (EXPERIMENTEL Firefox 53+)",
+    "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
+  },
+
+  "contextualIdentitiesTooltipText": {
+    "message": "Aktiver IKKE med mindre du bruger Firefox 53+. Dette vil tilføje en forskellig hvidliste for HVERT kontekst-faneblad du bruger. Din standardhvidliste er separat fra disse.",
+    "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
+  },
+
+  "saveText": {
+    "message": "Gem",
+    "description": "Save"
+  },
+
+  "cancelText": {
+    "message": "Annuler",
+    "description": "Cancel"
+  },
+
+  "defaultSettingsText": {
+    "message": "Gendan standard opsætning",
+    "description": "Restore Default Settings"
+  },
+
+  "defaultSettingsTooltipText": {
+    "message": "ADVARSEL: Dette vil også slette din hvidliste. Så lav en sikkerhedskopi af dem!",
+    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
+  },
+
+  "saveConfirmText": {
+    "message": "Gemt!",
+    "description": "Saved!"
+  },
+
+  "cancelConfirmText": {
+    "message": "Gendannede opsætning!",
+    "description": "Restored Settings!"
+  },
+
+  "defaultConfirmText": {
+    "message": "Gendannede standard opsætning!",
+    "description": "Restored Default Settings!"
+  },
+
+  "resetCounterConfirmText": {
+    "message": "Nulstillede tæller!",
+    "description": "Cleared Counter!"
+  },
+
+  "whiteListWordText": {
+    "message": "Hvidlist",
+    "description": "WhiteList"
+  }, 
+
+  "greyListWordText": {
+    "message": "Grålist",
+    "description": "GreyList"
+  }, 
+
+  "toWhiteListText": {
+    "message": "Til hvidliste",
+    "description": "To WhiteList"
+  }, 
+
+  "toGreyListText": {
+    "message": "Til gråliste",
+    "description": "To GreyList"
+  }, 
+
+  "addURLText": {
+    "message": "Tilføj URL",
+    "description": "Add URL"
+  }, 
+
+  "clearURLText": {
+    "message": "Fjern alle",
+    "description": "Remove All"
+  },
+
+  "enterURLTooltipText": {
+    "message": "Indtast URL'er uden 'www.'-delen, og tast returtasten eller 'Tilføj URL'. Alternativt gå til netstedet og tilføj det fra ikonen.",
+    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
+  },
+
+  "hoverButtonTooltipText": {
+    "message": "Grålisten er cookies du vil beholde indtil netlæseren genstarter. Hvidlisten er cookies du vil beholde permanent.",
+    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
+  },
+
+  "exportURLSText": {
+    "message": "Eksporter hvidliste",
+    "description": "Export WhiteList"
+  },
+
+  "rightClickToSave": {
+    "message": "Højreklik og vælg 'Gem link som...'",
+    "description": "Right Click to Save Link As"
+  },
+
+  "importURLSText": {
+    "message": "Overfør fil",
+    "description": "Upload File"
+  },
+
+  "reportIssuesText": {
+    "message": "Rapporter fejl og mangler, og foreslå funktionalitet",
+    "description": "Report issues and suggest features"
+  },  
+
+  "versionText": {
+    "message": "version",
+    "description": "version"
+  },
+
+  "contributorsText": {
+    "message": "Bidragydere:",
+    "description": "Contributors:"
+  }    
+
+
+
+}
