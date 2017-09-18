@@ -83,15 +83,13 @@ appears on the left side of the page.
 */
 
 #menu {
-  margin-left: -150px;
-  /* "#menu" width */
+  margin-left: -150px; /* "#menu" width */
   width: 150px;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 1000;
-  /* so the menu or its navicon stays above all content */
+  z-index: 1000; /* so the menu or its navicon stays above all content */
   background: #191818;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -172,15 +170,12 @@ small screens.
 
 .menu-link {
   position: fixed;
-  display: block;
-  /* Show this only on small screens */
+  display: block; /* Show this only on small screens */
   top: 0;
-  left: 0;
-  /* "#menu width" */
+  left: 0; /* "#menu width" */
   background: #000;
   background: rgba(0, 0, 0, 0.7);
-  font-size: 10px;
-  /* Change this value to increase/decrease button size */
+  font-size: 10px;  /* Change this value to increase/decrease button size */
   z-index: 10;
   width: 2em;
   height: auto;
@@ -249,9 +244,9 @@ Hides the menu at `48em`, but modify this based on your app's needs
 @media (max-width: 48em) {
   /* Only apply this when the window is small. Otherwise, the following
      case results in extra padding on the left:
-        * Make the window small
-        * Tap the menu to trigger the active state
-        * Make the window large again
+         * Make the window small
+         * Tap the menu to trigger the active state
+         * Make the window large again
   */
 
   #layout.active {
