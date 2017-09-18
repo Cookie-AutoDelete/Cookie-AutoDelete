@@ -37,7 +37,8 @@ class Expressions extends React.Component {
 			expressionInput: "",
 			error: "",
 			storeId: "default",
-			contextualIdentitiesObjects: []
+			contextualIdentitiesObjects: [],
+			listType: "WHITE"
 		};
 	}
 
@@ -83,6 +84,12 @@ class Expressions extends React.Component {
 		});
 	}
 
+	switchListType() {
+		this.setState({
+			listType: this.state.listType === "WHITE" ? "GREY" : "WHITE"
+		});
+	}
+
 	async componentDidMount() {
 		if (this.props.contextualIdentities) {
 			const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
@@ -99,17 +106,17 @@ class Expressions extends React.Component {
 			contextualIdentities
 		} = this.props;
 		const {
-			error, contextualIdentitiesObjects, storeId
+			error, contextualIdentitiesObjects, storeId, listType
 		} = this.state;
 		return (
 			<div style={style}>
 				<h1>{browser.i18n.getMessage("whiteListText")}</h1>
 
-				<div className="md-form">
+				<div className="row md-form">
 					<label htmlFor="form1" className="">{`${browser.i18n.getMessage("enterDomainText")}:`}</label>
 					<input
 						style={{
-							display: "inline", width: "96%"
+							display: "inline", width: "100%"
 						}}
 						value={this.state.expressionInput}
 						onChange={(e) => this.setState({
@@ -118,7 +125,7 @@ class Expressions extends React.Component {
 						onKeyPress={(e) => {
 							if (e.key === "Enter") {
 								this.addExpressionByInput({
-									expression: this.state.expressionInput, storeId
+									expression: this.state.expressionInput, storeId, listType
 								});
 							}
 						}}
@@ -126,32 +133,42 @@ class Expressions extends React.Component {
 						id="formText"
 						className="form-control"
 					/>
-
-					<button className="btn btn-primary" onClick={() => this.addExpressionByInput({
-						expression: this.state.expressionInput, storeId
-					})}>
-						<i className="fa fa-plus-square" aria-hidden="true"></i>
-					</button>
 				</div>
 
-				<a href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`} download="Cookie_AutoDelete_2.X.X_Expressions.json">
+				<div className="row">
+					<span className="pull-left">
+					<a href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`} download="Cookie_AutoDelete_2.X.X_Expressions.json">
 
-					<button style={styles.buttonMargins} className="btn btn-primary">
-						<i style={styles.buttonIcon} className="fa fa-download" aria-hidden="true"></i>
-						<span>Export Expressions</span>
-					</button>
-				</a>
+						<button style={styles.buttonMargins} className="btn btn-primary">
+							<i style={styles.buttonIcon} className="fa fa-download" aria-hidden="true"></i>
+							<span>Export Expressions</span>
+						</button>
+					</a>
 
-				<label style={styles.buttonMargins} className="btn btn-info">
-					<i style={styles.buttonIcon} className="fa fa-upload" aria-hidden="true"></i>
+					<label style={styles.buttonMargins} className="btn btn-info">
+						<i style={styles.buttonIcon} className="fa fa-upload" aria-hidden="true"></i>
 
-					<input onChange={(e) => this.importExpressions(e.target.files)} type="file" />
-          Import Expressions
-				</label>
+						<input onChange={(e) => this.importExpressions(e.target.files)} type="file" />
+	          Import Expressions
+					</label>
+					</span>
+
+					<span style={{padding: "5px 5px"}} className="pull-right">
+						<button onClick={() => this.switchListType()} className="btn btn-info">
+							{`${listType === "WHITE" ? browser.i18n.getMessage("toWhiteListText") : browser.i18n.getMessage("toGreyListText")}`}
+						</button>
+
+						<button style={{marginLeft: "5px"}} className="btn btn-primary" onClick={() => this.addExpressionByInput({
+							expression: this.state.expressionInput, storeId, listType
+						})}>
+							<i className="fa fa-plus-square" aria-hidden="true"></i>
+						</button>
+					</span>
+				</div>
 
 				{
 					error !== "" ?
-						<div onClick={() => this.setState({
+						<div className="row" onClick={() => this.setState({
 							error: ""
 						})} className="alert alert-danger">
 							{error}
@@ -159,7 +176,7 @@ class Expressions extends React.Component {
 				}
 				{
 					contextualIdentities ?
-						<ul className="nav nav-tabs">
+						<ul className="row nav nav-tabs">
 							<li onClick={() => this.changeStoreIdTab("default")} className={`${storeId === "default" ? "active" : ""}`}><a href="#tabExpressionList">Default</a></li>
 							{
 								contextualIdentitiesObjects.map((element) =>
@@ -169,7 +186,7 @@ class Expressions extends React.Component {
 						</ul> : ""
 				}
 
-				<div style={styles.tableContainer}>
+				<div className="row" style={styles.tableContainer}>
 					<table className={"table table-striped table-hover table-bordered"}>
 						<thead>
 							<tr>

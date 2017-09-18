@@ -114,9 +114,9 @@ class ExpressionTableBody extends React.Component {
 										<button onClick={() => onUpdateExpression({
 											id, storeId, listType: expression.listType === "GREY" ? "WHITE" : "GREY"
 										})} className="btn btn-primary">
-											{`${expression.listType}`}
+											{`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`}
 										</button> :
-										`${expression.listType}`
+										`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`
 								}
 							</td>
 						</tr>
