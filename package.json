@@ -38,6 +38,7 @@
     "nyc": "^11.1.0",
     "sinon": "^3.0.0",
     "sinon-chrome": "^2.2.1",
+    "uglify-es-webpack-plugin": "^0.10.0",
     "webpack": "^3.4.1",
     "webpack-bundle-analyzer": "^2.9.0"
   },
