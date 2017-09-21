@@ -1,9 +1,9 @@
+body {
+  min-width: 400px;
+}
 
-
-span.userAction {
-  font-size: 16px;
-  font-weight: 300;
-  text-align: center;
+label {
+  padding: 2px 15px;
 }
 
 label:hover {
@@ -11,13 +11,10 @@ label:hover {
   cursor: pointer;
 }
 
-label {
-	padding: 2px 15px;
-}
-
-.lineBreak {
-  border-bottom: 1px solid #d3d3d3;
-  margin: 2px 0;
+span.userAction {
+  font-size: 16px;
+  font-weight: 300;
+  text-align: center;
 }
 
 .cursorPoint:hover {
@@ -25,26 +22,27 @@ label {
   filter: invert(50%);
 }
 
-body {
-  min-width: 400px;
+.lineBreak {
+  border-bottom: 1px solid #d3d3d3;
+  margin: 2px 0;
 }
 
 @keyframes successAnimation {
-  0%   { background-color: #4CAF50; }
-  50%  { background-color: #4CAF50; }
-  100% { background-color: #FFFFFF; }
+  0%   { background-color: #4caF50; }
+  50%  { background-color: #4caF50; }
+  100% { background-color: #ffffff; }
 }
 
 .successAnimated {
-    animation: successAnimation 1.5s ease-in-out;
+  animation: successAnimation 1.5s ease-in-out;
 }
 
 @keyframes failureAnimation {
   0%   { background-color: #f44336; }
   50%  { background-color: #f44336; }
-  100% { background-color: #FFFFFF; }
+  100% { background-color: #ffffff; }
 }
 
 .failureAnimated {
-    animation: failureAnimation 1.5s ease-in-out;
+  animation: failureAnimation 1.5s ease-in-out;
 }
