@@ -1,26 +1,26 @@
-h1 {
-    border-bottom: 1px solid grey;
-    padding-bottom: 4px;
-	  text-align: center;
-}
-
-td {
-	margin: 5px;
-	border-collapse: collapse;
-  max-height: 10px;
-}
-
-table {
-	width: 100%;
+button:hover {
+  cursor: pointer;
 }
 
 input {
-	margin-top: 5px;
-	margin-bottom: 2px;
+  margin-top: 5px;
+  margin-bottom: 2px;
 }
 
-button:hover {
-	cursor: pointer;
+h1 {
+  border-bottom: 1px solid #808080;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  margin: 5px;
+  border-collapse: collapse;
+  max-height: 10px;
 }
 
 .cursorPoint:hover {
@@ -29,37 +29,41 @@ button:hover {
 }
 
 #tableContainer {
-	margin-top: 2em;
-	margin-bottom: 2em;
-	height: 15em;
-	overflow: auto;
-	border: 1px solid black;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  height: 15em;
+  overflow: auto;
+  border: 1px solid black;
 }
 
 .removeIcon {
-	margin-left: .5em;
-	margin-right: 1em;
+  margin-left: .5em;
+  margin-right: 1em;
 }
+
 .removeIcon:hover {
-	cursor: pointer;
-	opacity: 0.5;
-	transition-duration: 0.15s;
+  cursor: pointer;
+  opacity: 0.5;
+  transition-duration: 0.15s;
 }
+
 .content {
-	padding-left: 12em;
-	width: 40em;
+  padding-left: 12em;
+  width: 40em;
 }
+
 #welcomeContent h2 {
-	font-size: 3rem;
+  font-size: 3rem;
 }
 
 #welcomeContent span {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 input[type="number"] {
-    width: 5em;
+  width: 5em;
 }
+
 .file-upload {
   color: #337ab7;
   text-decoration: none;
@@ -81,99 +85,112 @@ input[type="number"] {
   user-select: none;
   background-image: none;
   border: 1px solid transparent;
-      border-top-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
   border-radius: 4px;
 }
 
 input[type="file"] {
-    display: none;
+  display: none;
 }
+
 #menu {
-	width: 10em;
-	background-color: #26292E;
-	height: 100%;
-	position: fixed;
+  width: 10em;
+  background-color: #26292e;
+  height: 100%;
+  position: fixed;
 }
 
 .pure-menu {
-	padding-top: 2em;
+  padding-top: 2em;
 }
 
 .pure-menu-item {
-	padding-top: 1em;
-	padding-left: 1em;
-	padding-bottom: 1em;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
 }
 
 .pure-menu-item:hover {
-	cursor: pointer;
-	transition: background-color;
-	transition-duration: 0.15s;
-	background-color: grey;
+  cursor: pointer;
+  transition: background-color;
+  transition-duration: 0.15s;
+  background-color: #808080;
 }
+
 .pure-menu-item span {
-	color: #C1C1B4;
-	font: message-box;
+  color: #c1c1b4;
+  font: message-box;
 }
 
 .pure-menu-selected {
-	background: grey !important;
-	background-color: grey;
-	border-style: none none none solid;
-	border-left-color: #0288D1;
+  background: #808080 !important;
+  background-color: #808080;
+  border-style: none none none solid;
+  border-left-color: #0288d1;
 }
 
- /* The alert message box */
+/* The alert message box */
+
 .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    opacity: 1;
-    transition: opacity 0.6s;
-    margin-bottom: 15px;
-    animation-duration: 1s;
+  padding: 20px;
+  background-color: #f44336;
+  color: #ffffff;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  animation-duration: 1s;
 }
 
 .alert.success {
-	background-color: #4CAF50;
+  background-color: #4caf50;
 }
+
 .alert.info {
-	background-color: #2196F3;
+  background-color: #2196f3;
 }
+
 .alert.warning {
-	background-color: #ff9800;
+  background-color: #ff9800;
 }
+
 /* The close button */
+
 .removeButton {
-    /*
-    color: white;
-    float: right;
-    */
-    font-weight: bold;
-    font-size: 2em;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-sizing: border-box;
-    margin-right: 10px;
-    margin-left: 10px;
+  /*
+  color: white;
+  float: right;
+  */
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-sizing: border-box;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 /* When moving the mouse over the close button */
+
 .removeButton:hover {
-    color: grey;
+  color: #808080;
 }
 
 .fadeOut {
-	-webkit-animation-name: fadeOut;
-	animation-name: fadeOut;
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
 }
+
 @keyframes fadeOut {
-   0% {opacity: 1;}
-   100% {opacity: 0;}
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .tooltipCustom {
