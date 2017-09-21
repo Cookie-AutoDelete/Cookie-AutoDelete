@@ -23,6 +23,7 @@ class App extends Component {
 			settingsURL: ""
 		}
 
+		// Gets the url hash and switches to that sidebar tab
 		async componentDidMount() {
 			const tab = await browser.tabs.getCurrent();
 			const tabURL = new URL(tab.url);
@@ -33,6 +34,7 @@ class App extends Component {
 			});
 		}
 
+		// Switch tabs and appends the hash of the tab name in the url
 		switchTabs(newActiveTab) {
 			this.setState({
 				activeTab: newActiveTab

@@ -71,6 +71,7 @@ class ExpressionTableBody extends React.Component {
 		};
 	}
 
+	// Toggle edit for a particular row
 	setEdit(editModeObject) {
 		this.setState(editModeObject);
 	}

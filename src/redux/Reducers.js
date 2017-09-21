@@ -14,6 +14,7 @@ import {combineReducers} from "redux";
 import shortid from "shortid";
 import initialState from "./initialState.json";
 
+// Converts a expression to its regular expression equivalent
 export const expressionToRegExp = (string) => {
 	const normalizedString = string.trim().toLowerCase();
 	if (normalizedString.startsWith("*.")) {
@@ -22,8 +23,10 @@ export const expressionToRegExp = (string) => {
 	return `^${normalizedString.replace(/\./g, "\\.").replace(/\*/g, "\.\*")}$`;
 };
 
+// Tests if the expression already exists in the list
 const hasExpression = (state, action) => state.some((expression) => expression.expression === action.payload.expression);
 
+// Creates a new Expression object to be stored in the list
 const newExpressionObject = (state, action) => ({
 	...state,
 	...action.payload,
@@ -33,6 +36,8 @@ const newExpressionObject = (state, action) => ({
 	cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
 });
 
+// Sorting algorithm for the expression list.
+// Order is WHITE -> GREY -> Alphanumeric
 const sortExpressionAlgorithm = (a, b) => {
 	if (a.listType === "WHITE" && b.listType === "GREY") {
 		return -1;

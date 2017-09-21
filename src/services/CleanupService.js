@@ -13,6 +13,7 @@ import {getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDom
 
 let recentlyCleaned;
 
+// Returns true if the cookie can be cleaned
 export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	const {
 		mainDomain, storeId, hostname
@@ -21,17 +22,27 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 		cachedResults, greyCleanup, openTabDomains
 	} = cleanupProperties;
 	const newStoreId = getStoreId(state, storeId);
+
+	// Adds in the storeId as a key to an object else it would be undefined
 	if (cachedResults[newStoreId] === undefined) {
 		cachedResults[newStoreId] = {};
 	}
+
+	// Tests if the storeId has the result in the cache
 	if (cachedResults[newStoreId][hostname] !== undefined) {
 		// console.log("used cached result", newStoreId, hostname);
 		return cachedResults[newStoreId][hostname];
 	}
+
+	// Tests if the main domain is open
 	if (openTabDomains.has(mainDomain)) {
 		return (cachedResults[newStoreId][hostname] = false);
 	}
+
+	// Checks the list for the first available match
 	const matchedExpression = returnMatchedExpressionObject(state, storeId, hostname);
+
+	// Store the results in cache for future lookups to cookieStoreId.hostname
 	if (greyCleanup) {
 		return (cachedResults[newStoreId][hostname] = matchedExpression === undefined || matchedExpression.listType === "GREY");
 	}

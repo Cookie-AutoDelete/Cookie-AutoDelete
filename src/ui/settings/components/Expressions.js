@@ -42,6 +42,7 @@ class Expressions extends React.Component {
 		};
 	}
 
+	// Import the expressions into the list
 	importExpressions(files) {
 		const {
 			onNewExpression
@@ -62,6 +63,7 @@ class Expressions extends React.Component {
 		reader.readAsText(files[0]);
 	}
 
+	// Add the expression using the + button or the Enter key
 	addExpressionByInput(payload) {
 		const {
 			onNewExpression
@@ -78,12 +80,14 @@ class Expressions extends React.Component {
 		}
 	}
 
+	// Change the id of the storeId for the container tabs
 	changeStoreIdTab(storeId) {
 		this.setState({
 			storeId
 		});
 	}
 
+	// Switch the list type for adding a expression
 	switchListType() {
 		this.setState({
 			listType: this.state.listType === "WHITE" ? "GREY" : "WHITE"
@@ -137,28 +141,32 @@ class Expressions extends React.Component {
 
 				<div className="row">
 					<span className="pull-left">
-					<a href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`} download="Cookie_AutoDelete_2.X.X_Expressions.json">
+						<a href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`} download="Cookie_AutoDelete_2.X.X_Expressions.json">
 
-						<button style={styles.buttonMargins} className="btn btn-primary">
-							<i style={styles.buttonIcon} className="fa fa-download" aria-hidden="true"></i>
-							<span>Export Expressions</span>
-						</button>
-					</a>
+							<button style={styles.buttonMargins} className="btn btn-primary">
+								<i style={styles.buttonIcon} className="fa fa-download" aria-hidden="true"></i>
+								<span>Export Expressions</span>
+							</button>
+						</a>
 
-					<label style={styles.buttonMargins} className="btn btn-info">
-						<i style={styles.buttonIcon} className="fa fa-upload" aria-hidden="true"></i>
+						<label style={styles.buttonMargins} className="btn btn-info">
+							<i style={styles.buttonIcon} className="fa fa-upload" aria-hidden="true"></i>
 
-						<input onChange={(e) => this.importExpressions(e.target.files)} type="file" />
-	          Import Expressions
-					</label>
+							<input onChange={(e) => this.importExpressions(e.target.files)} type="file" />
+							Import Expressions
+						</label>
 					</span>
 
-					<span style={{padding: "5px 5px"}} className="pull-right">
+					<span style={{
+						padding: "5px 5px"
+					}} className="pull-right">
 						<button onClick={() => this.switchListType()} className="btn btn-info">
 							{`${listType === "WHITE" ? browser.i18n.getMessage("toWhiteListText") : browser.i18n.getMessage("toGreyListText")}`}
 						</button>
 
-						<button style={{marginLeft: "5px"}} className="btn btn-primary" onClick={() => this.addExpressionByInput({
+						<button style={{
+							marginLeft: "5px"
+						}} className="btn btn-primary" onClick={() => this.addExpressionByInput({
 							expression: this.state.expressionInput, storeId, listType
 						})}>
 							<i className="fa fa-plus-square" aria-hidden="true"></i>
@@ -168,9 +176,9 @@ class Expressions extends React.Component {
 
 				{
 					error !== "" ?
-						<div className="row" onClick={() => this.setState({
+						<div onClick={() => this.setState({
 							error: ""
-						})} className="alert alert-danger">
+						})} className="row alert alert-danger">
 							{error}
 						</div> : ""
 				}

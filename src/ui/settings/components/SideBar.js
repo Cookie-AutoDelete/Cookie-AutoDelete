@@ -41,6 +41,7 @@ const sideBarTabs = [
 ];
 
 class SideBar extends Component {
+	// Switches tabs
 	toggleClass(element, className) {
 		let classes = element.className.split(/\s+/);
 		let i = 0;
@@ -60,6 +61,7 @@ class SideBar extends Component {
 		element.className = classes.join(" ");
 	}
 
+	// Toggles the sidebar
 	toggleAll() {
 		const active = "active";
 		const layout = document.getElementById("layout");

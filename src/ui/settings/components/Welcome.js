@@ -13,6 +13,7 @@ import React from "react";
 import ReleaseNotes from "../ReleaseNotes";
 import {connect} from "react-redux";
 
+// Algorithm to display the release notes using bootstrap grid
 const displayReleaseNotes = (releaseObj, constant) => {
 	let container = [];
 	let i = 0;
@@ -37,6 +38,7 @@ const displayReleaseNotes = (releaseObj, constant) => {
 	return container;
 };
 
+// Get the review link for different browsers
 const getReviewLink = (browserDetect) => {
 	if (browserDetect === "Firefox") {
 		return "https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/";

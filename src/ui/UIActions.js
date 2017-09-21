@@ -11,6 +11,8 @@ SOFTWARE.
 **/
 import C from "../redux/Constants";
 
+// These are passed to the regular action creators
+
 export const updateSettingUI = (payload) => ({
 	type: C.UPDATE_SETTING,
 	payload

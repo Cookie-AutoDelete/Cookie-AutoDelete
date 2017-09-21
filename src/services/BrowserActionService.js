@@ -62,6 +62,7 @@ const setIconDefault = (tab) => {
 	});
 };
 
+// Check if the site is protected an adjusts the icon appropiately
 export const checkIfProtected = async (state, tab = "UNDEFINED") => {
 	let currentTab;
 	if (tab === "UNDEFINED") {

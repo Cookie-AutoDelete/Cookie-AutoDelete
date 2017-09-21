@@ -39,6 +39,8 @@ const FilteredExpression = (props) => {
 
 const getExpression = (state, props) => state.lists[props.storeId] === undefined ? [] : state.lists[props.storeId];
 const getURL = (state, props) => props.url;
+
+// Filter the expression list from the current url
 const getMatchedExpressions = (state, props) => {
 	const expressions = getExpression(state, props);
 	const url = getURL(state, props);

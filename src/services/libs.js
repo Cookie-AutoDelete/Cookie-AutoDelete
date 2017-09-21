@@ -49,6 +49,7 @@ export const extractMainDomain = (domain) => {
 	return re.exec(editedDomain)[0];
 };
 
+// Gets the value of the setting
 export const getSetting = (state, settingName) => state.settings[settingName].value;
 
 // Puts the domain in the right format for browser.cookies.clean()
@@ -61,8 +62,10 @@ export const prepareCookieDomain = (cookie) => {
 	return cookieDomain;
 };
 
+// Gets a sanitized cookieStoreId
 export const getStoreId = (state, storeId) => (!getSetting(state, "contextualIdentities") || storeId === "firefox-default" ? "default" : storeId);
 
+// Returns the first availble matched expression
 export const returnMatchedExpressionObject = (state, cookieStoreId, hostname) => {
 	const storeId = getStoreId(state, cookieStoreId);
 	return state.lists[storeId].find((expression) => {

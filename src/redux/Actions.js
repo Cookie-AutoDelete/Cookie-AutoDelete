@@ -76,6 +76,7 @@ export const resetSettings = () => ({
 	type: C.RESET_SETTINGS
 });
 
+// Validates the setting object and adds missing settings if it doesn't already exist in the initialState.json
 export const validateSettings = () => (dispatch, getState) => {
 	const {
 		settings
@@ -108,8 +109,11 @@ export const validateSettings = () => (dispatch, getState) => {
 		});
 	}
 };
+
+// Cookie Cleanup operation that is to be called from the React UI
 export const cookieCleanup = (options) => async (dispatch, getState) => {
 	let newOptions;
+	// Add in default cleanup settings if payload does not provide any
 	if (options.payload !== undefined) {
 		newOptions = {
 			...options.payload
@@ -125,6 +129,9 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 	const {
 		recentlyCleaned, setOfDeletedDomainCookies
 	} = cleanupDoneObject;
+
+	// Show notifications after cleanup
+
 	let notifyMessage;
 	// Format the string
 	if (setOfDeletedDomainCookies.size > 0) {
@@ -141,6 +148,7 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 		notifyMessage = browser.i18n.getMessage("notificationContent", [recentlyCleaned, stringOfDomains]);
 	}
 
+	// Increment the count
 	if (getSetting(getState(), "statLogging")) {
 		dispatch(
 			incrementCookieDeletedCounter(recentlyCleaned)
@@ -157,6 +165,7 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 	}
 };
 
+// Map the cookieStoreId to their actual names and store in cache
 export const cacheCookieStoreIdNames = () => async (dispatch, getState) => {
 	const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
 	dispatch(
@@ -172,6 +181,14 @@ export const cacheCookieStoreIdNames = () => async (dispatch, getState) => {
 			type: C.ADD_CACHE,
 			map: {
 				key: "firefox-default", value: "Default"
+			}
+		}
+	);
+	dispatch(
+		{
+			type: C.ADD_CACHE,
+			map: {
+				key: "firefox-private", value: "Private"
 			}
 		}
 	);
