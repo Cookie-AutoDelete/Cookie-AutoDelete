@@ -218,6 +218,7 @@ const migration = (oldSettings) => {
 				});
 			}
 		}
+		saveToStorage();
 		browser.storage.local.set({
 			migration_1: true
 		});
