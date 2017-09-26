@@ -93,7 +93,7 @@ class ExpressionTable extends React.Component {
 					{
 						expressions.map((expression) => (
 							<tr key={expression.id}>
-								<td>
+								<td style={{ textAlign: "center" }} >
 									<IconButton
 										iconName="trash-o"
 										onClick={() => { this.onRemoveExpression(expression); }}
@@ -104,41 +104,45 @@ class ExpressionTable extends React.Component {
 										<td className="editableExpression">
 											<input className="form-control" value={expressionInput} onChange={(e) => this.setState({
 												expressionInput: e.target.value
-											})} type="text" style={{ width: "70%", display: "inline-block" }} />
+											})} type="text" style={{ display: "inline-block", verticalAlign: "middle" }} />
 											<IconButton
 												iconName="ban"
-												style={{ marginLeft: "5px" }}
+												style={{ marginLeft: "5px", float: "right" }}
 												onClick={() => { this.clearEdit(); }}
 											/>
 											<IconButton
 												iconName="floppy-o"
-												style={{ marginLeft: "5px" }}
+												style={{ marginLeft: "5px", float: "right" }}
 												onClick={() => { this.commitEdit(); }}
 											/>
 										</td> :
 										<td>
-											<div style={{ width: "80%", display: "inline-block" }}>
+											<div style={{ display: "inline-block", verticalAlign: "middle" }}>
 												{`${expression.expression}`}
 											</div>
 											<IconButton
 												iconName="pencil"
 												className="showOnRowHover"
-												style={{ marginLeft: "5px" }}
+												style={{ marginLeft: "5px", float: "right" }}
 												onClick={() => { this.startEditing(expression); }}
 											/>
 										</td>
 								}
 								<td>
-									{editMode && id == expression.id ?
-										globExpressionToRegExp(expressionInput) :
-										globExpressionToRegExp(expression.expression)}
+									<div style={{ verticalAlign: "middle" }}>
+										{editMode && id == expression.id ?
+											globExpressionToRegExp(expressionInput) :
+											globExpressionToRegExp(expression.expression)}
+									</div>
 								</td>
 								<td>
-									{`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`}
+									<div style={{ display: "inline-block", verticalAlign: "middle" }}>
+										{`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`}
+									</div>
 									<IconButton
 										iconName="refresh"
 										className="showOnRowHover"
-										style={{ marginLeft: "5px" }}
+										style={{ marginLeft: "5px", float: "right" }}
 										onClick={() => onUpdateExpression({
 											id: expression.id,
 											storeId,
