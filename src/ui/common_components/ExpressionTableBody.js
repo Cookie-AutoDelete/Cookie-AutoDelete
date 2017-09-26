@@ -86,7 +86,7 @@ class ExpressionTableBody extends React.Component {
 		} = this.state;
 		const expressions = this.props.expressions === undefined ? [] : this.props.expressions;
 		return (
-			<tbody>
+			<tbody className="expressionTableBody">
 				{
 					expressions.map((expression) => (
 						<tr key={expression.id}>
@@ -116,7 +116,7 @@ class ExpressionTableBody extends React.Component {
 									id: expression.id,
 									storeId,
 									listType: expression.listType === "GREY" ? "WHITE" : "GREY"
-								})} className="btn btn-light" style={{ marginLeft: "5px", padding: "4px 7px" }}>
+								})} className="btn btn-light toggleListButton" style={{ marginLeft: "5px", padding: "4px 7px" }}>
 									<i className="fa fa-refresh" aria-hidden="true"/>
 								</button>
 							</td>
