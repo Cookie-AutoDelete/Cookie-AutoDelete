@@ -45,9 +45,7 @@ const getMatchedExpressions = (state, props) => {
 	const expressions = getExpression(state, props);
 	const url = getURL(state, props);
 	return expressions.filter((expression) => {
-		const regObj = globExpressionToRegExp(expression.expression);
-		const result = regObj.test(url);
-		return result;
+		return new RegExp(globExpressionToRegExp(expression.expression)).test(url);
 	});
 };
 

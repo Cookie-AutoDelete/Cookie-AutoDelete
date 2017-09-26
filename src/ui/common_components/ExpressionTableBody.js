@@ -55,6 +55,10 @@ class ExpressionTableBody extends React.Component {
 		});
 	}
 
+	clearEdit() {
+		this.setState(EMPTY_STATE);
+	}
+
 	commitEdit() {
 		const original = (this.props.expressions || []).find((expression) => expression.id == this.state.id);
 		if (original) {
@@ -85,7 +89,12 @@ class ExpressionTableBody extends React.Component {
 									<td className="editableExpression">
 										<input className="form-control" value={expressionInput} onChange={(e) => this.setState({
 											expressionInput: e.target.value
-										})} type="text" style={{ width: "80%", display: "inline-block" }} />
+										})} type="text" style={{ width: "70%", display: "inline-block" }} />
+										<IconButton
+											iconName="ban"
+											style={{ marginLeft: "5px" }}
+											onClick={() => { this.clearEdit(); }}
+										/>
 										<IconButton
 											iconName="floppy-o"
 											style={{ marginLeft: "5px" }}
