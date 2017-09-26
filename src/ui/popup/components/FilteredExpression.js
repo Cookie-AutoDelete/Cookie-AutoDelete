@@ -14,26 +14,18 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {globExpressionToRegExp} from "../../../services/libs";
-import ExpressionTableBody from "../../common_components/ExpressionTableBody";
+import ExpressionTable from "../../common_components/ExpressionTable";
 
 const FilteredExpression = (props) => {
 	const {
 		expressions, storeId
 	} = props;
 	return (
-		<table className={"table table-striped table-hover table-bordered"}>
-			<thead>
-				<tr>
-					<th>{browser.i18n.getMessage("matchedDomainExpressionText")}</th>
-					<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
-					<th>{browser.i18n.getMessage("listTypeText")}</th>
-				</tr>
-			</thead>
-			<ExpressionTableBody
-				expressions={expressions}
-				storeId={storeId}
-			/>
-		</table>
+		<ExpressionTable
+			expressionColumnTitle={browser.i18n.getMessage("matchedDomainExpressionText")}
+			expressions={expressions}
+			storeId={storeId}
+		/>
 	);
 };
 
