@@ -23,7 +23,6 @@ const newExpressionObject = (state, action) => ({
 	...state,
 	...action.payload,
 	id: shortid.generate(),
-	regExp: action.payload.expression === undefined ? state.regExp : globExpressionToRegExp(action.payload.expression),
 	listType: action.payload.listType === undefined ? "WHITE" : action.payload.listType,
 	cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
 });

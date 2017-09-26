@@ -39,7 +39,6 @@ describe("Reducer", function() {
 			assert.propertyVal(newState.default[0], "expression", "google.com");
 			assert.propertyVal(newState.default[0], "listType", "GREY");
 			assert.property(newState.default[0], "id");
-			assert.property(newState.default[0], "regExp");
 		});
 		it("should return youtube.com for firefox_container_2", function() {
 			const newState = lists(state, {
@@ -52,7 +51,6 @@ describe("Reducer", function() {
 			assert.propertyVal(newState.firefox_container_2[0], "expression", "youtube.com");
 			assert.propertyVal(newState.firefox_container_2[0], "listType", "GREY");
 			assert.property(newState.firefox_container_2[0], "id");
-			assert.property(newState.firefox_container_2[0], "regExp");
 		});
 		it("should return google.com with a default listType of WHITE", function() {
 			const newState = lists(state, {
@@ -72,13 +70,11 @@ describe("Reducer", function() {
 				{
 					"expression": "messenger.com*",
 					"id": "SyZbDbC1dW",
-					"regExp": "^messenger\\.com.*$",
 					"listType": "WHITE"
 				},
 				{
 					"expression": "facebook.com*",
 					"id": "B1eWwWRJOb",
-					"regExp": "^facebook\\.com.*$",
 					"listType": "GREY"
 				}
 
@@ -87,13 +83,11 @@ describe("Reducer", function() {
 				{
 					"expression": "messenger.com*",
 					"id": "456",
-					"regExp": "^messenger\\.com.*$",
 					"listType": "WHITE"
 				},
 				{
 					"expression": "facebook.com*",
 					"id": "123",
-					"regExp": "^facebook\\.com.*$",
 					"listType": "GREY"
 				}
 			]
@@ -109,7 +103,6 @@ describe("Reducer", function() {
 			assert.propertyVal(newState.default[1], "expression", "youtube.com");
 			assert.propertyVal(newState.default[1], "listType", "WHITE");
 			assert.property(newState.default[1], "id");
-			assert.property(newState.default[1], "regExp");
 		});
 		it("should return github.com on firefox_container_1", function() {
 			const newState = lists(state, {
@@ -122,7 +115,6 @@ describe("Reducer", function() {
 			assert.propertyVal(newState.firefox_container_1[2], "expression", "github.com");
 			assert.propertyVal(newState.firefox_container_1[2], "listType", "GREY");
 			assert.property(newState.firefox_container_1[2], "id");
-			assert.property(newState.firefox_container_1[2], "regExp");
 		});
 		it("should return not return messenger.com on default", function() {
 			const newState = lists(state, {
@@ -143,7 +135,6 @@ describe("Reducer", function() {
 			assert.propertyVal(newState.default[1], "expression", "github.com");
 			assert.propertyVal(newState.default[1], "listType", "GREY");
 			assert.property(newState.default[1], "id");
-			assert.property(newState.default[1], "regExp");
 		});
 		it("should return google.com and WHITE for updated expression on firefox_container_1", function() {
 			const newState = lists(state, {
@@ -156,7 +147,6 @@ describe("Reducer", function() {
 			assert.propertyVal(newState.firefox_container_1[0], "expression", "google.com");
 			assert.propertyVal(newState.firefox_container_1[0], "listType", "WHITE");
 			assert.property(newState.firefox_container_1[0], "id");
-			assert.property(newState.firefox_container_1[0], "regExp");
 		});
 	});
 });

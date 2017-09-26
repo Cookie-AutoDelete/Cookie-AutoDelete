@@ -13,6 +13,7 @@ SOFTWARE.
 import React from "react";
 import {connect} from "react-redux";
 
+import {globExpressionToRegExp} from "../../../services/libs";
 import ExpressionTableBody from "../../common_components/ExpressionTableBody";
 
 const FilteredExpression = (props) => {
@@ -45,7 +46,7 @@ const getMatchedExpressions = (state, props) => {
 	const expressions = getExpression(state, props);
 	const url = getURL(state, props);
 	return expressions.filter((expression) => {
-		const regObj = new RegExp(expression.regExp);
+		const regObj = globExpressionToRegExp(expression.expression);
 		const result = regObj.test(url);
 		return result;
 	});

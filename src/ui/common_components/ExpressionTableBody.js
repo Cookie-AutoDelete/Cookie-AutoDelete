@@ -15,6 +15,7 @@ import {
 	removeExpressionUI,
 	updateExpressionUI
 } from "../UIActions";
+import {globExpressionToRegExp} from "../../services/libs";
 
 const styles = {
 	actionButton: {
@@ -108,7 +109,7 @@ class ExpressionTableBody extends React.Component {
 									</div> :
 									<td>{`${expression.expression}`}</td>
 							}
-							<td>{`${expression.regExp}`}</td>
+							<td>{`${globExpressionToRegExp(expression.expression)}`}</td>
 							<td>
 								{
 									editMode & id === expression.id ?
