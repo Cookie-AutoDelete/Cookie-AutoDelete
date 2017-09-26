@@ -96,7 +96,7 @@ class ExpressionTable extends React.Component {
 								<td style={{ textAlign: "center" }} >
 									<IconButton
 										iconName="trash-o"
-										onClick={() => { this.onRemoveExpression(expression); }}
+										onClick={() => { onRemoveExpression(expression); }}
 									/>
 								</td>
 								{
@@ -104,7 +104,7 @@ class ExpressionTable extends React.Component {
 										<td className="editableExpression">
 											<input className="form-control" value={expressionInput} onChange={(e) => this.setState({
 												expressionInput: e.target.value
-											})} type="text" style={{ display: "inline-block", verticalAlign: "middle" }} />
+											})} type="text" style={{ display: "inline-block", verticalAlign: "middle", margin: 0, width: "calc(100% - 70px)" }} />
 											<IconButton
 												iconName="ban"
 												style={{ marginLeft: "5px", float: "right" }}
