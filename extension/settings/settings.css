@@ -206,10 +206,10 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.expressionTableBody tr .showOnRowHover {
+.expressionTable tr .showOnRowHover {
   visibility: hidden;
 }
 
-.expressionTableBody tr:hover .showOnRowHover {
+.expressionTable tr:hover .showOnRowHover {
   visibility: visible;
 }

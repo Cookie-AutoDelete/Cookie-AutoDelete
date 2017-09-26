@@ -83,6 +83,7 @@ class ExpressionTable extends React.Component {
 			<table className={"table table-striped table-hover table-bordered"}>
 				<thead>
 					<tr>
+						<th/>
 						<th>{expressionColumnTitle}</th>
 						<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
 						<th>{browser.i18n.getMessage("listTypeText")}</th>
@@ -92,6 +93,12 @@ class ExpressionTable extends React.Component {
 					{
 						expressions.map((expression) => (
 							<tr key={expression.id}>
+								<td>
+									<IconButton
+										iconName="trash-o"
+										onClick={() => { this.onRemoveExpression(expression); }}
+									/>
+								</td>
 								{
 									editMode & id === expression.id ?
 										<td className="editableExpression">
