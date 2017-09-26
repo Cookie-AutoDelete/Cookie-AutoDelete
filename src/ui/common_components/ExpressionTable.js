@@ -24,12 +24,13 @@ const styles = {
 };
 
 const IconButton = ({
-	iconName, onClick, className, style
+	iconName, onClick, className, style, title
 }) => (
 	<button
 		className={`btn btn-light ${className || ""}`}
 		onClick={onClick}
 		style={{ padding: "4px 7px", ...style }}
+		title={title}
 	>
 		<i className={`fa fa-${iconName}`} aria-hidden="true"/>
 	</button>
@@ -95,6 +96,7 @@ class ExpressionTable extends React.Component {
 							<tr key={expression.id}>
 								<td style={{ textAlign: "center" }} >
 									<IconButton
+										title={browser.i18n.getMessage("removeExpressionText")}
 										iconName="trash-o"
 										onClick={() => { onRemoveExpression(expression); }}
 									/>
@@ -106,11 +108,13 @@ class ExpressionTable extends React.Component {
 												expressionInput: e.target.value
 											})} type="text" style={{ display: "inline-block", verticalAlign: "middle", margin: 0, width: "calc(100% - 70px)" }} />
 											<IconButton
+												title={browser.i18n.getMessage("stopEditingText")}
 												iconName="ban"
 												style={{ marginLeft: "5px", float: "right" }}
 												onClick={() => { this.clearEdit(); }}
 											/>
 											<IconButton
+												title={browser.i18n.getMessage("saveExpressionText")}
 												iconName="floppy-o"
 												style={{ marginLeft: "5px", float: "right" }}
 												onClick={() => { this.commitEdit(); }}
@@ -121,6 +125,7 @@ class ExpressionTable extends React.Component {
 												{`${expression.expression}`}
 											</div>
 											<IconButton
+												title={browser.i18n.getMessage("editExpressionText")}
 												iconName="pencil"
 												className="showOnRowHover"
 												style={{ marginLeft: "5px", float: "right" }}
@@ -137,9 +142,14 @@ class ExpressionTable extends React.Component {
 								</td>
 								<td>
 									<div style={{ display: "inline-block", verticalAlign: "middle" }}>
-										{`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`}
+										{`${expression.listType === "WHITE" ?
+											browser.i18n.getMessage("whiteListWordText") :
+											browser.i18n.getMessage("greyListWordText")}`}
 									</div>
 									<IconButton
+										title={`${expression.listType === "WHITE" ?
+											browser.i18n.getMessage("toggleToGreyListWordText") :
+											browser.i18n.getMessage("toggleToWhiteListWordText")}`}
 										iconName="refresh"
 										className="showOnRowHover"
 										style={{ marginLeft: "5px", float: "right" }}
