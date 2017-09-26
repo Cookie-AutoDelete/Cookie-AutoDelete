@@ -111,15 +111,14 @@ class ExpressionTableBody extends React.Component {
 							}
 							<td>{`${globExpressionToRegExp(expression.expression)}`}</td>
 							<td>
-								{
-									editMode & id === expression.id ?
-										<button onClick={() => onUpdateExpression({
-											id, storeId, listType: expression.listType === "GREY" ? "WHITE" : "GREY"
-										})} className="btn btn-primary">
-											{`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`}
-										</button> :
-										`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`
-								}
+								{`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`}
+								<button onClick={() => onUpdateExpression({
+									id: expression.id,
+									storeId,
+									listType: expression.listType === "GREY" ? "WHITE" : "GREY"
+								})} className="btn btn-light" style={{ marginLeft: "5px", padding: "4px 7px" }}>
+									<i className="fa fa-refresh" aria-hidden="true"/>
+								</button>
 							</td>
 						</tr>
 					))
