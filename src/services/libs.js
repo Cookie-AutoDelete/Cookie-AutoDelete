@@ -65,6 +65,15 @@ export const prepareCookieDomain = (cookie) => {
 // Gets a sanitized cookieStoreId
 export const getStoreId = (state, storeId) => (!getSetting(state, "contextualIdentities") || storeId === "firefox-default" ? "default" : storeId);
 
+// Converts a expression to its regular expression equivalent
+export const globExpressionToRegExp = (glob) => {
+	const normalizedGlob = glob.trim().toLowerCase();
+	if (normalizedGlob.startsWith("*.")) {
+		return `${normalizedGlob.replace("*.", "(^|\.)").replace(/\./g, "\\.").replace(/\*/g, "\.\*")}$`;
+	}
+	return `^${normalizedGlob.replace(/\./g, "\\.").replace(/\*/g, "\.\*")}$`;
+};
+
 // Returns the first availble matched expression
 export const returnMatchedExpressionObject = (state, cookieStoreId, hostname) => {
 	const storeId = getStoreId(state, cookieStoreId);

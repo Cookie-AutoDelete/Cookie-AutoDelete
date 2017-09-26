@@ -1,63 +1,8 @@
 import {assert} from "chai";
-import {cookieDeletedCounterTotal, lists, expressionToRegExp} from "../src/redux/Reducers";
+import {cookieDeletedCounterTotal, lists} from "../src/redux/Reducers";
 import C from "../src/redux/Constants";
 
 describe("Reducer", function() {
-	describe("expressionToRegExp", function() {
-		it("should match example.com for example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("example.com"));
-			assert.isTrue(regExp.test("example.com"));
-		});
-		it("should not match badexample.com for example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("example.com"));
-			assert.isFalse(regExp.test("badexample.com"));
-		});
-		it("should match example.com for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isTrue(regExp.test("example.com"));
-		});
-		it("should match a.example.com for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isTrue(regExp.test("a.example.com"));
-		});
-		it("should match a.b.example.com for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isTrue(regExp.test("a.b.example.com"));
-		});
-		it("should match a.b-c.example.com for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isTrue(regExp.test("a.b-c.example.com"));
-		});
-		it("should match a.b_c.example.com for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isTrue(regExp.test("a.b_c.example.com"));
-		});
-		it("should match sub-with-strage_chars.example.another.sub.example.com for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isTrue(regExp.test("sub-with-strage_chars.example.another.sub.example.com"));
-		});
-		it("should not match badexample.com for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isFalse(regExp.test("badexample.com"));
-		});
-		it("should not match bad.example.com.others.org for *.example.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.example.com"));
-			assert.isFalse(regExp.test("bad.example.com.others.org"));
-		});
-		it("should equal ^.*$ for just *", function() {
-			const regExp = new RegExp(expressionToRegExp("*"));
-			assert.strictEqual(regExp.toString(), "/^.*$/");
-		});
-		it("should match github.com with git*b.com", function() {
-			const regExp = new RegExp(expressionToRegExp("git*b.com"));
-			assert.isTrue(regExp.test("github.com"));
-		});
-		it("should match sub.gitlab.com with *.git*b.com", function() {
-			const regExp = new RegExp(expressionToRegExp("*.git*b.com"));
-			assert.isTrue(regExp.test("sub.gitlab.com"));
-		});
-	});
-
 	describe("cookieDeletedCounterTotal", function() {
 		const state = 5;
 

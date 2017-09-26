@@ -13,15 +13,7 @@ import C from "./Constants";
 import {combineReducers} from "redux";
 import shortid from "shortid";
 import initialState from "./initialState.json";
-
-// Converts a expression to its regular expression equivalent
-export const expressionToRegExp = (string) => {
-	const normalizedString = string.trim().toLowerCase();
-	if (normalizedString.startsWith("*.")) {
-		return `${normalizedString.replace("*.", "(^|\.)").replace(/\./g, "\\.").replace(/\*/g, "\.\*")}$`;
-	}
-	return `^${normalizedString.replace(/\./g, "\\.").replace(/\*/g, "\.\*")}$`;
-};
+import {globExpressionToRegExp} from "../services/libs";
 
 // Tests if the expression already exists in the list
 const hasExpression = (state, action) => state.some((expression) => expression.expression === action.payload.expression);
@@ -31,7 +23,7 @@ const newExpressionObject = (state, action) => ({
 	...state,
 	...action.payload,
 	id: shortid.generate(),
-	regExp: action.payload.expression === undefined ? state.regExp : expressionToRegExp(action.payload.expression),
+	regExp: action.payload.expression === undefined ? state.regExp : globExpressionToRegExp(action.payload.expression),
 	listType: action.payload.listType === undefined ? "WHITE" : action.payload.listType,
 	cookieNames: action.payload.cookieNames === undefined ? [] : action.payload.cookieNames
 });
