@@ -197,7 +197,6 @@ class Expressions extends React.Component {
 					<table className={"table table-striped table-hover table-bordered"}>
 						<thead>
 							<tr>
-								<th></th>
 								<th>{browser.i18n.getMessage("domainExpressionsText")}</th>
 								<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
 								<th>{browser.i18n.getMessage("listTypeText")}</th>

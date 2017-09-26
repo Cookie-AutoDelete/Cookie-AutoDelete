@@ -206,10 +206,10 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.expressionTableBody tr .toggleListButton {
+.expressionTableBody tr .showOnRowHover {
   visibility: hidden;
 }
 
-.expressionTableBody tr:hover .toggleListButton {
+.expressionTableBody tr:hover .showOnRowHover {
   visibility: visible;
 }

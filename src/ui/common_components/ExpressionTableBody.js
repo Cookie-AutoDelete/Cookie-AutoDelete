@@ -23,58 +23,48 @@ const styles = {
 	}
 };
 
-const ActionButtonColumn = ({
-	editId, onRemoveExpression, onUpdateExpression, editMode, setEdit, expressionObject, expressionInput, storeId
+const IconButton = ({
+	iconName, onClick, className, style
 }) => (
-	<td style={{
-		width: "60px"
-	}}>
-		<i onClick={() => onRemoveExpression({
-			id: expressionObject.id, storeId
-		})} style={styles.actionButton} className="fa fa-times fa-2x cursorPoint" aria-hidden="true"></i>
-		{
-			editMode && expressionObject.id === editId ? <i onClick={() => setEdit({
-				editMode: false, id: expressionObject.id, expressionInput: expressionObject.expression
-			})} style={styles.actionButton} className="fa fa-eraser fa-2x  cursorPoint" aria-hidden="true"></i> :
-				<i onClick={() => setEdit({
-					editMode: true, id: expressionObject.id, expressionInput: expressionObject.expression
-				})} style={styles.actionButton} className="fa fa-pencil-square-o fa-2x  cursorPoint" aria-hidden="true"></i>
-
-		}
-		{
-			editMode && expressionObject.id === editId ?
-				<i
-					onClick={() => {
-						setEdit({
-							editMode: false
-						});
-						onUpdateExpression({
-							...expressionObject, expression: expressionInput, storeId
-						});
-					}}
-					style={styles.actionButton}
-					className="fa fa-floppy-o fa-2x cursorPoint"
-					aria-hidden="true"
-				>
-				</i> : ""
-		}
-
-	</td>
+	<button
+		className={`btn btn-light ${className || ""}`}
+		onClick={onClick}
+		style={{ padding: "4px 7px", ...style }}
+	>
+		<i className={`fa fa-${iconName}`} aria-hidden="true"/>
+	</button>
 );
+
+const EMPTY_STATE = {
+	expressionInput: "",
+	editMode: false,
+	id: ""
+};
 
 class ExpressionTableBody extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			expressionInput: "",
-			editMode: false,
-			id: ""
-		};
+		this.state = EMPTY_STATE;
 	}
 
-	// Toggle edit for a particular row
-	setEdit(editModeObject) {
-		this.setState(editModeObject);
+	startEditing(expression) {
+		this.setState({
+			expressionInput: expression.expression,
+			editMode: true,
+			id: expression.id
+		});
+	}
+
+	commitEdit() {
+		const original = (this.props.expressions || []).find((expression) => expression.id == this.state.id);
+		if (original) {
+			this.props.onUpdateExpression({
+				...original,
+				expression: this.state.expressionInput,
+				storeId: this.props.storeId
+			});
+		}
+		this.setState(EMPTY_STATE);
 	}
 
 	render() {
@@ -90,35 +80,47 @@ class ExpressionTableBody extends React.Component {
 				{
 					expressions.map((expression) => (
 						<tr key={expression.id}>
-							<ActionButtonColumn
-								editMode={this.state.editMode}
-								expressionObject={expression}
-								expressionInput={expressionInput}
-								editId={id}
-								storeId={storeId}
-								onRemoveExpression={(payload) => onRemoveExpression(payload)}
-								onUpdateExpression={(payload) => onUpdateExpression(payload)}
-								setEdit={(editModeObject) => this.setEdit(editModeObject)}
-							/>
 							{
 								editMode & id === expression.id ?
-									<div className="md-form">
-										<input id="form1" className="form-control" value={expressionInput} onChange={(e) => this.setState({
+									<td className="editableExpression">
+										<input className="form-control" value={expressionInput} onChange={(e) => this.setState({
 											expressionInput: e.target.value
-										})} type="text" />
-									</div> :
-									<td>{`${expression.expression}`}</td>
+										})} type="text" style={{ width: "80%", display: "inline-block" }} />
+										<IconButton
+											iconName="floppy-o"
+											style={{ marginLeft: "5px" }}
+											onClick={() => { this.commitEdit(); }}
+										/>
+									</td> :
+									<td>
+										<div style={{ width: "80%", display: "inline-block" }}>
+											{`${expression.expression}`}
+										</div>
+										<IconButton
+											iconName="pencil"
+											className="showOnRowHover"
+											style={{ marginLeft: "5px" }}
+											onClick={() => { this.startEditing(expression); }}
+										/>
+									</td>
 							}
-							<td>{`${globExpressionToRegExp(expression.expression)}`}</td>
+							<td>
+								{editMode && id == expression.id ?
+									globExpressionToRegExp(expressionInput) :
+									globExpressionToRegExp(expression.expression)}
+							</td>
 							<td>
 								{`${expression.listType === "WHITE" ? browser.i18n.getMessage("whiteListWordText") : browser.i18n.getMessage("greyListWordText")}`}
-								<button onClick={() => onUpdateExpression({
-									id: expression.id,
-									storeId,
-									listType: expression.listType === "GREY" ? "WHITE" : "GREY"
-								})} className="btn btn-light toggleListButton" style={{ marginLeft: "5px", padding: "4px 7px" }}>
-									<i className="fa fa-refresh" aria-hidden="true"/>
-								</button>
+								<IconButton
+									iconName="refresh"
+									className="showOnRowHover"
+									style={{ marginLeft: "5px" }}
+									onClick={() => onUpdateExpression({
+										id: expression.id,
+										storeId,
+										listType: expression.listType === "GREY" ? "WHITE" : "GREY"
+									})}
+								/>
 							</td>
 						</tr>
 					))
