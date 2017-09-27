@@ -17,19 +17,15 @@ import {
 } from "../UIActions";
 import {globExpressionToRegExp} from "../../services/libs";
 
-const styles = {
-	actionButton: {
-		margin: "0 5px"
-	}
-};
-
 const IconButton = ({
 	iconName, onClick, className, style, title
 }) => (
 	<button
 		className={`btn btn-light ${className || ""}`}
 		onClick={onClick}
-		style={{ padding: "4px 7px", ...style }}
+		style={{
+			padding: "4px 7px", ...style
+		}}
 		title={title}
 	>
 		<i className={`fa fa-${iconName}`} aria-hidden="true"/>
@@ -61,7 +57,7 @@ class ExpressionTable extends React.Component {
 	}
 
 	commitEdit() {
-		const original = (this.props.expressions || []).find((expression) => expression.id == this.state.id);
+		const original = (this.props.expressions || []).find((expression) => expression.id === this.state.id);
 		if (original) {
 			this.props.onUpdateExpression({
 				...original,
@@ -94,11 +90,13 @@ class ExpressionTable extends React.Component {
 					{
 						expressions.map((expression) => (
 							<tr key={expression.id}>
-								<td style={{ textAlign: "center" }} >
+								<td style={{
+									textAlign: "center"
+								}} >
 									<IconButton
 										title={browser.i18n.getMessage("removeExpressionText")}
 										iconName="trash-o"
-										onClick={() => { onRemoveExpression(expression); }}
+										onClick={() => {onRemoveExpression(expression);}}
 									/>
 								</td>
 								{
@@ -106,42 +104,56 @@ class ExpressionTable extends React.Component {
 										<td className="editableExpression">
 											<input className="form-control" value={expressionInput} onChange={(e) => this.setState({
 												expressionInput: e.target.value
-											})} type="text" style={{ display: "inline-block", verticalAlign: "middle", margin: 0, width: "calc(100% - 70px)" }} />
+											})} type="text" style={{
+												display: "inline-block", verticalAlign: "middle", margin: 0, width: "calc(100% - 70px)"
+											}} />
 											<IconButton
 												title={browser.i18n.getMessage("stopEditingText")}
 												iconName="ban"
-												style={{ marginLeft: "5px", float: "right" }}
-												onClick={() => { this.clearEdit(); }}
+												style={{
+													marginLeft: "5px", float: "right"
+												}}
+												onClick={() => {this.clearEdit();}}
 											/>
 											<IconButton
 												title={browser.i18n.getMessage("saveExpressionText")}
 												iconName="floppy-o"
-												style={{ marginLeft: "5px", float: "right" }}
-												onClick={() => { this.commitEdit(); }}
+												style={{
+													marginLeft: "5px", float: "right"
+												}}
+												onClick={() => {this.commitEdit();}}
 											/>
 										</td> :
 										<td>
-											<div style={{ display: "inline-block", verticalAlign: "middle" }}>
+											<div style={{
+												display: "inline-block", verticalAlign: "middle"
+											}}>
 												{`${expression.expression}`}
 											</div>
 											<IconButton
 												title={browser.i18n.getMessage("editExpressionText")}
 												iconName="pencil"
 												className="showOnRowHover"
-												style={{ marginLeft: "5px", float: "right" }}
-												onClick={() => { this.startEditing(expression); }}
+												style={{
+													marginLeft: "5px", float: "right"
+												}}
+												onClick={() => {this.startEditing(expression);}}
 											/>
 										</td>
 								}
 								<td>
-									<div style={{ verticalAlign: "middle" }}>
-										{editMode && id == expression.id ?
+									<div style={{
+										verticalAlign: "middle"
+									}}>
+										{editMode && id === expression.id ?
 											globExpressionToRegExp(expressionInput) :
 											globExpressionToRegExp(expression.expression)}
 									</div>
 								</td>
 								<td>
-									<div style={{ display: "inline-block", verticalAlign: "middle" }}>
+									<div style={{
+										display: "inline-block", verticalAlign: "middle"
+									}}>
 										{`${expression.listType === "WHITE" ?
 											browser.i18n.getMessage("whiteListWordText") :
 											browser.i18n.getMessage("greyListWordText")}`}
@@ -152,7 +164,9 @@ class ExpressionTable extends React.Component {
 											browser.i18n.getMessage("toggleToWhiteListWordText")}`}
 										iconName="refresh"
 										className="showOnRowHover"
-										style={{ marginLeft: "5px", float: "right" }}
+										style={{
+											marginLeft: "5px", float: "right"
+										}}
 										onClick={() => onUpdateExpression({
 											id: expression.id,
 											storeId,

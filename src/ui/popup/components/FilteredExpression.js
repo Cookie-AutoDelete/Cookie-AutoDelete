@@ -36,9 +36,7 @@ const getURL = (state, props) => props.url;
 const getMatchedExpressions = (state, props) => {
 	const expressions = getExpression(state, props);
 	const url = getURL(state, props);
-	return expressions.filter((expression) => {
-		return new RegExp(globExpressionToRegExp(expression.expression)).test(url);
-	});
+	return expressions.filter((expression) => new RegExp(globExpressionToRegExp(expression.expression)).test(url));
 };
 
 const mapStateToProps = (state, props) => ({

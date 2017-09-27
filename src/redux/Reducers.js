@@ -13,7 +13,6 @@ import C from "./Constants";
 import {combineReducers} from "redux";
 import shortid from "shortid";
 import initialState from "./initialState.json";
-import {globExpressionToRegExp} from "../services/libs";
 
 // Tests if the expression already exists in the list
 const hasExpression = (state, action) => state.some((expression) => expression.expression === action.payload.expression);
