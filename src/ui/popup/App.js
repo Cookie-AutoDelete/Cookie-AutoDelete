@@ -10,20 +10,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 **/
 import React, {Component} from "react";
+import {findDOMNode} from "react-dom";
 import {connect} from "react-redux";
 import {getHostname, extractMainDomain, getSetting, prepareCookieDomain} from "../../services/libs";
 import FilteredExpression from "./components/FilteredExpression";
-import RowAction from "./components/RowAction";
 import {addExpressionUI, cookieCleanupUI, updateSettingUI} from "../UIActions";
-import CheckboxSetting from "../common_components/CheckboxSetting";
-
-const styles = {
-	rowText: {
-		margin: "0 5px 0px 15px",
-		fontSize: "18px",
-		fontWeight: "bold"
-	}
-};
+import IconButton from "../common_components/IconButton";
 
 class App extends Component {
 	constructor(props) {
@@ -44,20 +36,22 @@ class App extends Component {
 		});
 	}
 
-	// Flash a green background if successfull
-	animateSuccess(element) {
-		element.classList.add("successAnimated");
-		setTimeout(() => {
-			element.classList.remove("successAnimated");
-		}, 1500);
-	}
-
-	// Flash a red background if it failed or couldn't be done
-	animateFailure(element) {
-		element.classList.add("failureAnimated");
-		setTimeout(() => {
-			element.classList.remove("failureAnimated");
-		}, 1500);
+	animateFlash(ref, success) {
+		if (ref) {
+			let domNode;
+			try {
+				// eslint-disable-next-line react/no-find-dom-node
+				domNode = findDOMNode(ref);
+			} catch (e) {
+				// Ignore, we just won't animate anything.
+			}
+			if (domNode) {
+				domNode.classList.add(success ? "successAnimated" : "failureAnimated");
+				setTimeout(() => {
+					domNode.classList.remove(success ? "successAnimated" : "failureAnimated");
+				}, 1500);
+			}
+		}
 	}
 
 	async clearCookiesForThisDomain(hostname) {
@@ -72,10 +66,9 @@ class App extends Component {
 			cookies.forEach((cookie) => browser.cookies.remove({
 				url: prepareCookieDomain(cookie), name: cookie.name, storeId: cookie.storeId
 			}));
-			this.animateSuccess(document.getElementById("cookieCleanup3"));
-		} else {
-			this.animateFailure(document.getElementById("cookieCleanup3"));
+			return true;
 		}
+		return false;
 	}
 
 	render() {
@@ -87,134 +80,160 @@ class App extends Component {
 		} = this.props;
 		const hostname = getHostname(tab.url);
 		const mainDomain = extractMainDomain(hostname);
+		const addableHostnames = [
+			hostname === mainDomain ? undefined : `*.${mainDomain}`,
+			hostname,
+			`*.${hostname}`
+		].filter(Boolean);
 		return (
 			<div className="container">
 				<div className="row">
 
-					<div className="col-md-12">
-						<b style={{
-							fontSize: "20px"
-						}}>{browser.i18n.getMessage("hostWebsiteText")}</b>
-						<i style={{
-							float: "right"
-						}} onClick={() => browser.runtime.openOptionsPage()} className="fa fa-cog fa-2x cursorPoint" aria-hidden="true"></i>
+					<div
+						className="col-md-12"
+						style={{
+							paddingTop: "8px",
+							paddingBottom: "8px",
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "space-between",
+							backgroundColor: "rgba(0, 0, 0, 0.05)",
+							borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+						}}
+					>
+						<img
+							style={{
+								height: "32px",
+								width: "32px",
+								marginRight: "8px",
+								verticalAlign: "middle"
+							}}
+							src={browser.extension.getURL("icons/icon_32.png")}
+							title="Cookie AutoDelete"
+						/>
+
+						<div className="btn-group">
+							<IconButton
+								iconName="power-off"
+								className={settings.activeMode.value ? "btn-success" : "btn-danger"}
+								onClick={() => onUpdateSetting({
+									...settings.activeMode, value: !settings.activeMode.value
+								})}
+								title={settings.activeMode.value ? browser.i18n.getMessage("disableAutoDeleteText") : browser.i18n.getMessage("enableAutoDeleteText")}
+								text={settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
+							/>
+
+							<IconButton
+								iconName="eraser"
+								className="btn-warning"
+								onClick={() => {
+									onCookieCleanup({
+										greyCleanup: false, ignoreOpenTabs: false
+									});
+									this.animateFlash(this.cookieCleanupRef, true);
+								}}
+								ref={(e) => {this.cookieCleanupRef = e;}}
+								title={browser.i18n.getMessage("cookieCleanupText")}
+								text={browser.i18n.getMessage("cleanText")}
+							/>
+
+							<IconButton
+								iconName="eraser"
+								className="btn-warning"
+								onClick={() => {
+									onCookieCleanup({
+										greyCleanup: false, ignoreOpenTabs: true
+									});
+									this.animateFlash(this.cookieCleanupIgnoringOpenTabsRef, true);
+								}}
+								ref={(e) => {this.cookieCleanupIgnoringOpenTabsRef = e;}}
+								title={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
+								text={browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
+							/>
+
+							<IconButton
+								iconName="cog"
+								className="btn-info"
+								onClick={() => browser.runtime.openOptionsPage()}
+								title={browser.i18n.getMessage("preferencesText")}
+								text={browser.i18n.getMessage("preferencesText")}
+							/>
+						</div>
 					</div>
 
-					<div>
+				</div>
+
+				<div style={{
+					display: "flex", alignItems: "center", margin: "8px 0"
+				}} className="row">
+					{tab.favIconUrl &&
 						<img style={{
-							height: "1em", width: "1em", margin: "0 5px 0px 13px"
+							height: "20px",
+							width: "20px",
+							marginRight: "7px",
+							verticalAlign: "middle"
 						}} src={tab.favIconUrl} />
-						<span>{!contextualIdentities ? `${hostname}` : `${hostname} (${cache[storeId]})`}</span>
+					}
+					<span style={{
+						fontSize: "20px", verticalAlign: "middle"
+					}}>
+						{!contextualIdentities ? `${hostname}` : `${hostname} (${cache[storeId]})`}
+					</span>
+					<button
+						className="btn btn-warning"
+						style={{
+							marginLeft: "auto"
+						}}
+						title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
+						ref={(e) => {this.clearCookiesRef = e;}}
+						onClick={async () => {
+							const success = await this.clearCookiesForThisDomain(hostname);
+							this.animateFlash(this.clearCookiesRef, success);
+						}}
+					>
+						{browser.i18n.getMessage("clearCookiesText")}
+					</button>
+				</div>
+
+				{addableHostnames.map((hostname) => (
+					<div
+						key={hostname}
+						style={{
+							display: "flex", margin: "8px 0", alignItems: "center"
+						}}
+						className="row"
+					>
+						<div style={{
+							flex: 1
+						}}>{hostname}</div>
+						<div className="btn-group">
+							<IconButton
+								className="btn-secondary"
+								onClick={() => {onNewExpression({
+									expression: hostname, listType: "GREY", storeId
+								});}}
+								iconName="plus"
+								title={browser.i18n.getMessage("toGreyListText")}
+								text={browser.i18n.getMessage("greyListWordText")}
+							/>
+
+							<IconButton
+								className="btn-primary"
+								onClick={() => {onNewExpression({
+									expression: hostname, listType: "WHITE", storeId
+								});}}
+								iconName="plus"
+								title={browser.i18n.getMessage("toWhiteListText")}
+								text={browser.i18n.getMessage("whiteListWordText")}
+							/>
+						</div>
 					</div>
+				))}
 
-				</div>
-				<div className="row lineBreak" />
-
-				<div className="row">
-					<span style={styles.rowText}>{`${browser.i18n.getMessage("switchToGreyListText")}`}</span>
-				</div>
-
-				{
-					hostname !== mainDomain ?
-						<RowAction
-							text={`- *.${mainDomain}`}
-							action={() => onNewExpression({
-								expression: `*.${mainDomain}`, listType: "GREY", storeId
-							})}
-							labelFor="addExpressionGrey"
-						/> : ""
-				}
-				<RowAction
-					text={`- ${hostname}`}
-					action={() => onNewExpression({
-						expression: `${hostname}`, listType: "GREY", storeId
-					})}
-					labelFor="addExpressionGrey"
-				/>
-				<RowAction
-					text={`- *.${hostname}`}
-					action={() => onNewExpression({
-						expression: `*.${hostname}`, listType: "GREY", storeId
-					})}
-					labelFor="addExpressionGrey"
-				/>
-
-				<div className="row">
-					<span style={styles.rowText}>{`${browser.i18n.getMessage("switchToWhiteListText")}`}</span>
-				</div>
-
-				{
-					hostname !== mainDomain ?
-						<RowAction
-							text={`- *.${mainDomain}`}
-							action={() => onNewExpression({
-								expression: `*.${mainDomain}`, listType: "WHITE", storeId
-							})}
-							labelFor="addExpressionGrey"
-						/> : ""
-				}
-
-				<RowAction
-					text={`- ${hostname}`}
-					action={() => onNewExpression({
-						expression: `${hostname}`, listType: "WHITE", storeId
-					})}
-					labelFor="addExpressionGrey"
-				/>
-
-				<RowAction
-					text={`- *.${hostname}`}
-					action={() => onNewExpression({
-						expression: `*.${hostname}`, listType: "WHITE", storeId
-					})}
-					labelFor="addExpressionWhite"
-				/>
-
-				<div className="row lineBreak" />
-				<RowAction
-					text={browser.i18n.getMessage("cookieCleanupText")}
-					action={() => {
-						onCookieCleanup({
-							greyCleanup: false, ignoreOpenTabs: false
-						});
-						this.animateSuccess(document.getElementById("cookieCleanup1"));
-					}}
-					labelFor="cookieCleanup1"
-				/>
-				<RowAction
-					text={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
-					action={() => {
-						onCookieCleanup({
-							greyCleanup: false, ignoreOpenTabs: true
-						});
-						this.animateSuccess(document.getElementById("cookieCleanup2"));
-					}}
-					labelFor="cookieCleanup2"
-				/>
-				<RowAction
-					text={browser.i18n.getMessage("clearCookiesForDomainText")}
-					action={() => this.clearCookiesForThisDomain(hostname)}
-					labelFor="cookieCleanup3"
-				/>
-
-				<div className="row lineBreak" />
 				<div className="row" style={{
-					paddingLeft: "15px"
+					margin: "8px 0"
 				}}>
-					<CheckboxSetting
-						text={browser.i18n.getMessage("activeModeSwitchText")}
-						settingObject={settings.activeMode}
-						inline={true}
-						bsStyle={"checkbox-success"}
-						updateSetting={(payload) => onUpdateSetting(payload)}
-					/>
-				</div>
-
-				<div className="row lineBreak" />
-				<div className="row">
-
 					<FilteredExpression url={hostname} storeId={storeId}/>
-
 				</div>
 			</div>
 		);

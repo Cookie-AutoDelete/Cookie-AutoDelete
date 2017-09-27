@@ -25,6 +25,13 @@ const FilteredExpression = (props) => {
 			expressionColumnTitle={browser.i18n.getMessage("matchedDomainExpressionText")}
 			expressions={expressions}
 			storeId={storeId}
+			emptyElement={(
+				<span style={{
+					display: "flex", alignItems: "center", justifyContent: "center", fontStyle: "italic"
+				}}>
+					No rules matched this domain.
+				</span>
+			)}
 		/>
 	);
 };

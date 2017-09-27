@@ -198,6 +198,9 @@ class Expressions extends React.Component {
 						expressionColumnTitle={browser.i18n.getMessage("domainExpressionsText")}
 						expressions={lists[storeId]}
 						storeId={storeId}
+						emptyElement={(
+							<span>No expressions defined.</span>
+						)}
 					/>
 				</div>
 

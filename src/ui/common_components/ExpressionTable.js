@@ -16,21 +16,7 @@ import {
 	updateExpressionUI
 } from "../UIActions";
 import {globExpressionToRegExp} from "../../services/libs";
-
-const IconButton = ({
-	iconName, onClick, className, style, title
-}) => (
-	<button
-		className={`btn btn-light ${className || ""}`}
-		onClick={onClick}
-		style={{
-			padding: "4px 7px", ...style
-		}}
-		title={title}
-	>
-		<i className={`fa fa-${iconName}`} aria-hidden="true"/>
-	</button>
-);
+import IconButton from "./IconButton";
 
 const EMPTY_STATE = {
 	expressionInput: "",
@@ -70,12 +56,17 @@ class ExpressionTable extends React.Component {
 
 	render() {
 		const {
-			onRemoveExpression, onUpdateExpression, storeId, expressionColumnTitle
+			onRemoveExpression, onUpdateExpression, storeId, expressionColumnTitle, emptyElement
 		} = this.props;
 		const {
 			editMode, id, expressionInput
 		} = this.state;
 		const expressions = this.props.expressions === undefined ? [] : this.props.expressions;
+
+		if (expressions.length === 0) {
+			return emptyElement;
+		}
+
 		return (
 			<table className={"table table-striped table-hover table-bordered"}>
 				<thead>
@@ -95,6 +86,7 @@ class ExpressionTable extends React.Component {
 								}} >
 									<IconButton
 										title={browser.i18n.getMessage("removeExpressionText")}
+										className="btn-light"
 										iconName="trash-o"
 										onClick={() => {onRemoveExpression(expression);}}
 									/>
@@ -109,6 +101,7 @@ class ExpressionTable extends React.Component {
 											}} />
 											<IconButton
 												title={browser.i18n.getMessage("stopEditingText")}
+												className="btn-light"
 												iconName="ban"
 												style={{
 													marginLeft: "5px", float: "right"
@@ -117,6 +110,7 @@ class ExpressionTable extends React.Component {
 											/>
 											<IconButton
 												title={browser.i18n.getMessage("saveExpressionText")}
+												className="btn-light"
 												iconName="floppy-o"
 												style={{
 													marginLeft: "5px", float: "right"
@@ -133,7 +127,7 @@ class ExpressionTable extends React.Component {
 											<IconButton
 												title={browser.i18n.getMessage("editExpressionText")}
 												iconName="pencil"
-												className="showOnRowHover"
+												className="btn-light showOnRowHover"
 												style={{
 													marginLeft: "5px", float: "right"
 												}}
@@ -163,7 +157,7 @@ class ExpressionTable extends React.Component {
 											browser.i18n.getMessage("toggleToGreyListWordText") :
 											browser.i18n.getMessage("toggleToWhiteListWordText")}`}
 										iconName="refresh"
-										className="showOnRowHover"
+										className="btn-light showOnRowHover"
 										style={{
 											marginLeft: "5px", float: "right"
 										}}
