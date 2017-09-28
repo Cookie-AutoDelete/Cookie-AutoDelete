@@ -55,8 +55,8 @@
   },
 
   "clearCookiesText": {
-    "message": "Clear cookies",
-    "description": "Clear cookies"
+    "message": "Clear cookies for this domain",
+    "description": "Clear cookies for this domain"
   },
 
   "clearCookiesForDomainText": {

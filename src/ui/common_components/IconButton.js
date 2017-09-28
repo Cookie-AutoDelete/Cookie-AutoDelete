@@ -3,7 +3,7 @@ import React from "react";
 export default class IconButton extends React.Component {
 	render() {
 		const {
-			iconName, className, style, text
+			iconName, className, style, children
 		} = this.props;
 
 		return (
@@ -16,10 +16,10 @@ export default class IconButton extends React.Component {
 					padding: "4px 7px", ...style
 				}}
 			>
-				<i className={`fa fa-${iconName}`} aria-hidden="true" style={text ? {
+				<i className={`fa fa-${iconName}`} aria-hidden="true" style={React.Children.count(children) > 0 ? {
 					marginRight: "5px"
 				} : null}/>
-				{text}
+				{children}
 			</button>
 		);
 	}

@@ -112,17 +112,19 @@ class App extends Component {
 							title="Cookie AutoDelete"
 						/>
 
-						<div className="btn-group">
-							<IconButton
-								iconName="power-off"
-								className={settings.activeMode.value ? "btn-success" : "btn-danger"}
-								onClick={() => onUpdateSetting({
-									...settings.activeMode, value: !settings.activeMode.value
-								})}
-								title={settings.activeMode.value ? browser.i18n.getMessage("disableAutoDeleteText") : browser.i18n.getMessage("enableAutoDeleteText")}
-								text={settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
-							/>
+						<IconButton
+							iconName="power-off"
+							className={settings.activeMode.value ? "btn-success" : "btn-danger"}
+							style={{ marginRight: "4px" }}
+							onClick={() => onUpdateSetting({
+								...settings.activeMode, value: !settings.activeMode.value
+							})}
+							title={settings.activeMode.value ? browser.i18n.getMessage("disableAutoDeleteText") : browser.i18n.getMessage("enableAutoDeleteText")}
+						>
+							{settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
+						</IconButton>
 
+						<div className="btn-group" style={{ marginRight: "4px" }}>
 							<IconButton
 								iconName="eraser"
 								className="btn-warning"
@@ -132,10 +134,11 @@ class App extends Component {
 									});
 									this.animateFlash(this.cookieCleanupRef, true);
 								}}
-								ref={(e) => {this.cookieCleanupRef = e;}}
 								title={browser.i18n.getMessage("cookieCleanupText")}
-								text={browser.i18n.getMessage("cleanText")}
-							/>
+								ref={(e) => {this.cookieCleanupRef = e;}}
+							>
+								{browser.i18n.getMessage("cleanText")}
+							</IconButton>
 
 							<IconButton
 								iconName="eraser"
@@ -148,17 +151,19 @@ class App extends Component {
 								}}
 								ref={(e) => {this.cookieCleanupIgnoringOpenTabsRef = e;}}
 								title={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
-								text={browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
-							/>
-
-							<IconButton
-								iconName="cog"
-								className="btn-info"
-								onClick={() => browser.runtime.openOptionsPage()}
-								title={browser.i18n.getMessage("preferencesText")}
-								text={browser.i18n.getMessage("preferencesText")}
-							/>
+							>
+								{browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
+							</IconButton>
 						</div>
+
+						<IconButton
+							iconName="cog"
+							className="btn-info"
+							onClick={() => browser.runtime.openOptionsPage()}
+							title={browser.i18n.getMessage("preferencesText")}
+						>
+							{browser.i18n.getMessage("preferencesText")}
+						</IconButton>
 					</div>
 
 				</div>
@@ -179,20 +184,21 @@ class App extends Component {
 					}}>
 						{!contextualIdentities ? `${hostname}` : `${hostname} (${cache[storeId]})`}
 					</span>
-					<button
-						className="btn btn-warning"
+					<IconButton
+						iconName="eraser"
+						className="btn-warning"
 						style={{
 							marginLeft: "auto"
 						}}
 						title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
-						ref={(e) => {this.clearCookiesRef = e;}}
+						ref={(e) => { this.clearCookiesRef = e; }}
 						onClick={async () => {
 							const success = await this.clearCookiesForThisDomain(hostname);
 							this.animateFlash(this.clearCookiesRef, success);
 						}}
 					>
 						{browser.i18n.getMessage("clearCookiesText")}
-					</button>
+					</IconButton>
 				</div>
 
 				{addableHostnames.map((hostname) => (
@@ -214,8 +220,9 @@ class App extends Component {
 								});}}
 								iconName="plus"
 								title={browser.i18n.getMessage("toGreyListText")}
-								text={browser.i18n.getMessage("greyListWordText")}
-							/>
+							>
+								{browser.i18n.getMessage("greyListWordText")}
+							</IconButton>
 
 							<IconButton
 								className="btn-primary"
@@ -224,8 +231,9 @@ class App extends Component {
 								});}}
 								iconName="plus"
 								title={browser.i18n.getMessage("toWhiteListText")}
-								text={browser.i18n.getMessage("whiteListWordText")}
-							/>
+							>
+								{browser.i18n.getMessage("whiteListWordText")}
+							</IconButton>
 						</div>
 					</div>
 				))}
