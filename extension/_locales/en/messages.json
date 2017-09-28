@@ -45,13 +45,13 @@
   },
 
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, ignoring open tabs",
-    "description": "Clean, ignoring open tabs"
+    "message": "Clean, preserving open tabs",
+    "description": "Clean, preserving open tabs"
   },
 
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cookie cleanup now, ignoring open tabs",
-    "description": "Run cookie cleanup now, ignoring open tabs"
+    "message": "Run cookie cleanup now, preserving cookies for open tabs",
+    "description": "Run cookie cleanup now, preserving cookies for open tabs"
   },
 
   "clearCookiesText": {
