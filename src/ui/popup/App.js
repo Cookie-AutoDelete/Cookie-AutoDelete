@@ -122,37 +122,37 @@ class App extends Component {
 							{settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
 						</IconButton>
 
-						<div className="btn-group" style={{ margin: "0 4px" }}>
-							<IconButton
-								iconName="eraser"
-								className="btn-warning"
-								onClick={() => {
-									onCookieCleanup({
-										greyCleanup: false, ignoreOpenTabs: false
-									});
-									this.animateFlash(this.cookieCleanupRef, true);
-								}}
-								title={browser.i18n.getMessage("cookieCleanupText")}
-								ref={(e) => {this.cookieCleanupRef = e;}}
-							>
-								{browser.i18n.getMessage("cleanText")}
-							</IconButton>
+						<IconButton
+							iconName="eraser"
+							className="btn-warning"
+							style={{ margin: "0 4px" }}
+							onClick={() => {
+								onCookieCleanup({
+									greyCleanup: false, ignoreOpenTabs: false
+								});
+								this.animateFlash(this.cookieCleanupRef, true);
+							}}
+							title={browser.i18n.getMessage("cookieCleanupText")}
+							ref={(e) => {this.cookieCleanupRef = e;}}
+						>
+							{browser.i18n.getMessage("cleanText")}
+						</IconButton>
 
-							<IconButton
-								iconName="eraser"
-								className="btn-warning"
-								onClick={() => {
-									onCookieCleanup({
-										greyCleanup: false, ignoreOpenTabs: true
-									});
-									this.animateFlash(this.cookieCleanupIgnoringOpenTabsRef, true);
-								}}
-								ref={(e) => {this.cookieCleanupIgnoringOpenTabsRef = e;}}
-								title={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
-							>
-								{browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
-							</IconButton>
-						</div>
+						<IconButton
+							iconName="eraser"
+							className="btn-warning"
+							style={{ margin: "0 4px" }}
+							onClick={() => {
+								onCookieCleanup({
+									greyCleanup: false, ignoreOpenTabs: true
+								});
+								this.animateFlash(this.cookieCleanupIgnoringOpenTabsRef, true);
+							}}
+							ref={(e) => {this.cookieCleanupIgnoringOpenTabsRef = e;}}
+							title={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
+						>
+							{browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
+						</IconButton>
 
 						<IconButton
 							iconName="cog"

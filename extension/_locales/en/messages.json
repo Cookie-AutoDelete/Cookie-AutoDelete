@@ -70,11 +70,6 @@
     }
   },
 
-  "activeModeSwitchText": {
-    "message": "Automatic Cleaning",
-    "description": "Automatic Cleaning"
-  },
-
   "switchToNoListText": {
     "message": "Clean After Tab Close",
     "description": "Clean After Tab Close"
@@ -301,22 +296,22 @@
   },
 
   "autoDeleteEnabledText": {
-    "message" : "Auto-delete enabled",
-    "description": "Auto-delete enabled"
+    "message" : "Auto-clean enabled",
+    "description": "Auto-clean enabled"
   },
 
   "autoDeleteDisabledText": {
-    "message" : "Auto-delete disabled",
-    "description": "Auto-delete disabled"
+    "message" : "Auto-clean disabled",
+    "description": "Auto-clean disabled"
   },
 
   "disableAutoDeleteText": {
-    "message": "Toggle to disable auto-deleting of cookies (manual mode)",
-    "description": "Toggle to disable auto-deleting of cookies (manual mode)"
+    "message": "Toggle to disable automatic deleting of cookies (manual mode)",
+    "description": "Toggle to disable automatic deleting of cookies (manual mode)"
   },
 
   "enableAutoDeleteText": {
-    "message": "Toggle to enable auto-deleting of cookies (automatic mode)",
-    "description": "Toggle to enable auto-deleting of cookies (automatic mode)"
+    "message": "Toggle to enable automatic deleting of cookies (automatic mode)",
+    "description": "Toggle to enable automatic deleting of cookies (automatic mode)"
   }
 }
