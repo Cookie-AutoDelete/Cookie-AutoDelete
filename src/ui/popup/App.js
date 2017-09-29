@@ -87,20 +87,16 @@ class App extends Component {
 		].filter(Boolean);
 		return (
 			<div className="container">
-				<div className="row">
-
-					<div
-						className="col-md-12"
-						style={{
-							paddingTop: "8px",
-							paddingBottom: "8px",
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "space-between",
-							backgroundColor: "rgba(0, 0, 0, 0.05)",
-							borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
-						}}
-					>
+				<div
+					className="row"
+					style={{
+						paddingTop: "8px",
+						paddingBottom: "8px",
+						backgroundColor: "rgba(0, 0, 0, 0.05)",
+						borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+					}}
+				>
+					<div className="col-xs-1">
 						<img
 							style={{
 								height: "32px",
@@ -111,11 +107,13 @@ class App extends Component {
 							src={browser.extension.getURL("icons/icon_32.png")}
 							title="Cookie AutoDelete"
 						/>
+					</div>
 
+					<div className="col-xs-11" style={{ textAlign: "right" }}>
 						<IconButton
 							iconName="power-off"
 							className={settings.activeMode.value ? "btn-success" : "btn-danger"}
-							style={{ marginRight: "4px" }}
+							style={{ margin: "0 4px" }}
 							onClick={() => onUpdateSetting({
 								...settings.activeMode, value: !settings.activeMode.value
 							})}
@@ -124,7 +122,7 @@ class App extends Component {
 							{settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
 						</IconButton>
 
-						<div className="btn-group" style={{ marginRight: "4px" }}>
+						<div className="btn-group" style={{ margin: "0 4px" }}>
 							<IconButton
 								iconName="eraser"
 								className="btn-warning"
@@ -159,13 +157,13 @@ class App extends Component {
 						<IconButton
 							iconName="cog"
 							className="btn-info"
+							style={{ margin: "0 4px" }}
 							onClick={() => browser.runtime.openOptionsPage()}
 							title={browser.i18n.getMessage("preferencesText")}
 						>
 							{browser.i18n.getMessage("preferencesText")}
 						</IconButton>
 					</div>
-
 				</div>
 
 				<div style={{
