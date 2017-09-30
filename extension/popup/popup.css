@@ -17,20 +17,11 @@ span.userAction {
   text-align: center;
 }
 
-.cursorPoint:hover {
-  cursor: pointer;
-  filter: invert(50%);
-}
-
-.lineBreak {
-  border-bottom: 1px solid #d3d3d3;
-  margin: 2px 0;
-}
-
 @keyframes successAnimation {
-  0%   { background-color: #4caF50; }
+  0%   {}
+  10%  { background-color: #4caF50; }
   50%  { background-color: #4caF50; }
-  100% { background-color: #ffffff; }
+  100% {}
 }
 
 .successAnimated {
@@ -38,11 +29,16 @@ span.userAction {
 }
 
 @keyframes failureAnimation {
-  0%   { background-color: #f44336; }
+  0%   {}
+  10%  { background-color: #f44336; }
   50%  { background-color: #f44336; }
-  100% { background-color: #ffffff; }
+  100% {}
 }
 
 .failureAnimated {
   animation: failureAnimation 1.5s ease-in-out;
+}
+
+.table {
+  margin-bottom: 0;
 }

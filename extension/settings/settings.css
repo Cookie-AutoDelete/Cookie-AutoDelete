@@ -23,11 +23,6 @@ td {
   max-height: 10px;
 }
 
-.cursorPoint:hover {
-  cursor: pointer;
-  filter: invert(50%);
-}
-
 #tableContainer {
   margin-top: 2em;
   margin-bottom: 2em;

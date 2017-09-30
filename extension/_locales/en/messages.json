@@ -34,24 +34,40 @@
     "description": "Host Domain:"
   },
 
+  "cleanText": {
+    "message": "Clean",
+    "description": "Clean"
+  },
+
   "cookieCleanupText": {
-    "message": "Cookie Cleanup",
-    "description": "Cookie Cleanup"
+    "message": "Run cookie cleanup now",
+    "description": "Run cookie cleanup now"
+  },
+
+  "cleanIgnoringOpenTabsText": {
+    "message": "Clean, preserving open tabs",
+    "description": "Clean, preserving open tabs"
   },
 
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Cookie Cleanup (Ignore Open Tabs)",
-    "description": "Cookie Cleanup (Ignore Open Tabs)"
+    "message": "Run cookie cleanup now, preserving cookies for open tabs",
+    "description": "Run cookie cleanup now, preserving cookies for open tabs"
+  },
+
+  "clearCookiesText": {
+    "message": "Clear cookies for this domain",
+    "description": "Clear cookies for this domain"
   },
 
   "clearCookiesForDomainText": {
-    "message": "Clear All Cookies For This Domain",
-    "description": "Clear All Cookies For This Domain"
-  },
-
-  "activeModeSwitchText": {
-    "message": "Automatic Cleaning",
-    "description": "Automatic Cleaning"
+    "message": "Clear all cookies for $domain$",
+    "description": "Clear all cookies for example.com",
+    "placeholders": {
+      "domain" : {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
   },
 
   "switchToNoListText": {
@@ -72,6 +88,11 @@
   "welcomeText": {
     "message": "Welcome",
     "description": "Welcome"
+  },
+
+  "preferencesText": {
+    "message": "Settings",
+    "description": "Settings"
   },
 
   "settingsText": {
@@ -176,7 +197,7 @@
 
   "toWhiteListText": {
     "message": "Add to Whitelist",
-    "description": "Add to WhiteList"
+    "description": "Add to Whitelist"
   },
 
   "toGreyListText": {
@@ -272,5 +293,25 @@
   "toggleToWhiteListWordText": {
     "message": "Toggle to whitelist",
     "description": "Toggle to whitelist"
+  },
+
+  "autoDeleteEnabledText": {
+    "message" : "Auto-clean enabled",
+    "description": "Auto-clean enabled"
+  },
+
+  "autoDeleteDisabledText": {
+    "message" : "Auto-clean disabled",
+    "description": "Auto-clean disabled"
+  },
+
+  "disableAutoDeleteText": {
+    "message": "Toggle to disable automatic deleting of cookies (manual mode)",
+    "description": "Toggle to disable automatic deleting of cookies (manual mode)"
+  },
+
+  "enableAutoDeleteText": {
+    "message": "Toggle to enable automatic deleting of cookies (automatic mode)",
+    "description": "Toggle to enable automatic deleting of cookies (automatic mode)"
   }
 }
