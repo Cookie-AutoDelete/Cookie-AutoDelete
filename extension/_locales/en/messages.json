@@ -40,18 +40,18 @@
   },
 
   "cookieCleanupText": {
-    "message": "Run cookie cleanup now",
-    "description": "Run cookie cleanup now"
+    "message": "Run cleanup now",
+    "description": "Run cleanup now"
   },
 
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, preserving open tabs",
-    "description": "Clean, preserving open tabs"
+    "message": "Clean, include open tabs",
+    "description": "Clean, include open tabs"
   },
 
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cookie cleanup now, preserving cookies for open tabs",
-    "description": "Run cookie cleanup now, preserving cookies for open tabs"
+    "message": "Run cleanup now, include cookies from open tabs",
+    "description": "Run cleanup now, include cookies from open tabs"
   },
 
   "clearCookiesText": {
@@ -215,11 +215,6 @@
     "description": "Export Expressions"
   },
 
-  "rightClickToSave": {
-    "message": "Right Click to Save Link As",
-    "description": "Right Click to Save Link As"
-  },
-
   "importURLSText": {
     "message": "Import Expressions",
     "description": "Import Expressions"
@@ -261,7 +256,7 @@
   },
 
   "domainPlaceholderText": {
-    "message": "example.com, www.example.com, *.example.com",
+    "message": "example.com, subdomain.example.com, *.example.com",
     "description": "Domain Expression"
   },
 
@@ -306,12 +301,12 @@
   },
 
   "disableAutoDeleteText": {
-    "message": "Toggle to disable automatic deleting of cookies (manual mode)",
-    "description": "Toggle to disable automatic deleting of cookies (manual mode)"
+    "message": "Toggle to disable automatic cleanup (manual mode)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
   },
 
   "enableAutoDeleteText": {
-    "message": "Toggle to enable automatic deleting of cookies (automatic mode)",
-    "description": "Toggle to enable automatic deleting of cookies (automatic mode)"
+    "message": "Toggle to enable automatic cleanup (automatic mode)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
   }
 }
