@@ -12,7 +12,7 @@ SOFTWARE.
 import React from "react";
 import {connect} from "react-redux";
 import {getSetting} from "../../../services/libs";
-import ExpressionTableBody from "../../common_components/ExpressionTableBody";
+import ExpressionTable from "../../common_components/ExpressionTable";
 import {
 	addExpressionUI
 } from "../../UIActions";
@@ -194,20 +194,11 @@ class Expressions extends React.Component {
 				}
 
 				<div className="row" style={styles.tableContainer}>
-					<table className={"table table-striped table-hover table-bordered"}>
-						<thead>
-							<tr>
-								<th></th>
-								<th>{browser.i18n.getMessage("domainExpressionsText")}</th>
-								<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
-								<th>{browser.i18n.getMessage("listTypeText")}</th>
-							</tr>
-						</thead>
-						<ExpressionTableBody
-							expressions={lists[storeId]}
-							storeId={storeId}
-						/>
-					</table>
+					<ExpressionTable
+						expressionColumnTitle={browser.i18n.getMessage("domainExpressionsText")}
+						expressions={lists[storeId]}
+						storeId={storeId}
+					/>
 				</div>
 
 			</div>

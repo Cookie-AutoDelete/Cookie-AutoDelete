@@ -242,8 +242,35 @@
   "domainPlaceholderText": {
     "message": "example.com, www.example.com, *.example.com",
     "description": "Domain Expression"
+  },
+
+  "removeExpressionText": {
+    "message": "Remove expression",
+    "description": "Remove expression"
+  },
+
+  "stopEditingText": {
+    "message": "Stop editing",
+    "description": "Stop editing"
+  },
+
+  "saveExpressionText": {
+    "message": "Save expression",
+    "description": "Save expression"
+  },
+
+  "editExpressionText": {
+    "message": "Edit expression",
+    "description": "Edit expression"
+  },
+
+  "toggleToGreyListWordText": {
+    "message": "Toggle to greylist",
+    "description": "Toggle to greylist"
+  },
+
+  "toggleToWhiteListWordText": {
+    "message": "Toggle to whitelist",
+    "description": "Toggle to whitelist"
   }
-
-
-
 }

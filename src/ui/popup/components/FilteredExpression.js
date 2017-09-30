@@ -13,27 +13,19 @@ SOFTWARE.
 import React from "react";
 import {connect} from "react-redux";
 
-import ExpressionTableBody from "../../common_components/ExpressionTableBody";
+import {globExpressionToRegExp} from "../../../services/libs";
+import ExpressionTable from "../../common_components/ExpressionTable";
 
 const FilteredExpression = (props) => {
 	const {
 		expressions, storeId
 	} = props;
 	return (
-		<table className={"table table-striped table-hover table-bordered"}>
-			<thead>
-				<tr>
-					<th></th>
-					<th>{browser.i18n.getMessage("matchedDomainExpressionText")}</th>
-					<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
-					<th>{browser.i18n.getMessage("listTypeText")}</th>
-				</tr>
-			</thead>
-			<ExpressionTableBody
-				expressions={expressions}
-				storeId={storeId}
-			/>
-		</table>
+		<ExpressionTable
+			expressionColumnTitle={browser.i18n.getMessage("matchedDomainExpressionText")}
+			expressions={expressions}
+			storeId={storeId}
+		/>
 	);
 };
 
@@ -44,11 +36,7 @@ const getURL = (state, props) => props.url;
 const getMatchedExpressions = (state, props) => {
 	const expressions = getExpression(state, props);
 	const url = getURL(state, props);
-	return expressions.filter((expression) => {
-		const regObj = new RegExp(expression.regExp);
-		const result = regObj.test(url);
-		return result;
-	});
+	return expressions.filter((expression) => new RegExp(globExpressionToRegExp(expression.expression)).test(url));
 };
 
 const mapStateToProps = (state, props) => ({

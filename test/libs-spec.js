@@ -1,5 +1,5 @@
 import {assert} from "chai";
-import {getHostname, isAWebpage, extractMainDomain, prepareCookieDomain} from "../src/services/libs";
+import {getHostname, isAWebpage, extractMainDomain, prepareCookieDomain, globExpressionToRegExp} from "../src/services/libs";
 // ToDo: returnMatchedExpressionObject, getSetting
 import {URL} from "url";
 global.URL = URL;
@@ -112,6 +112,61 @@ describe("Library Functions", function() {
 		it("should return false from extension page", function() {
 			let results = isAWebpage("moz-extension://test/settings/settings.html");
 			assert.isFalse(results);
+		});
+	});
+
+	describe("globExpressionToRegExp", function() {
+		it("should match example.com for example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("example.com"));
+			assert.isTrue(regExp.test("example.com"));
+		});
+		it("should not match badexample.com for example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("example.com"));
+			assert.isFalse(regExp.test("badexample.com"));
+		});
+		it("should match example.com for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("example.com"));
+		});
+		it("should match a.example.com for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.example.com"));
+		});
+		it("should match a.b.example.com for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.b.example.com"));
+		});
+		it("should match a.b-c.example.com for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.b-c.example.com"));
+		});
+		it("should match a.b_c.example.com for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("a.b_c.example.com"));
+		});
+		it("should match sub-with-strage_chars.example.another.sub.example.com for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isTrue(regExp.test("sub-with-strage_chars.example.another.sub.example.com"));
+		});
+		it("should not match badexample.com for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isFalse(regExp.test("badexample.com"));
+		});
+		it("should not match bad.example.com.others.org for *.example.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.example.com"));
+			assert.isFalse(regExp.test("bad.example.com.others.org"));
+		});
+		it("should equal ^.*$ for just *", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*"));
+			assert.strictEqual(regExp.toString(), "/^.*$/");
+		});
+		it("should match github.com with git*b.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("git*b.com"));
+			assert.isTrue(regExp.test("github.com"));
+		});
+		it("should match sub.gitlab.com with *.git*b.com", function() {
+			const regExp = new RegExp(globExpressionToRegExp("*.git*b.com"));
+			assert.isTrue(regExp.test("sub.gitlab.com"));
 		});
 	});
 });

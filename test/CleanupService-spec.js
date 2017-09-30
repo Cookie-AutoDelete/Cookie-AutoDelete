@@ -10,21 +10,21 @@ const sampleState = {
 	"lists": {
 		"default": [
 			{
-				"regExp": "^.*google\\.com$",
+				"expression": "*.google.com",
 				"type": "GREY"
 			},
 			{
-				"regExp": "^youtube\\.com$",
+				"expression": "youtube.com",
 				"type": "WHITE"
 			}
 		],
 		"firefox-container-1": [
 			{
-				"regExp": "^.*facebook\\.com$",
+				"expression": "*.facebook.com",
 				"type": "GREY"
 			},
 			{
-				"regExp": "^messenger\\.com$",
+				"expression": "messenger.com",
 				"type": "GREY"
 			}
 		]
