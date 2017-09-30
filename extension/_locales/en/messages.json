@@ -5,13 +5,13 @@
   },
 
   "extensionDescription": {
-    "message": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want.",
-    "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
+    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
 
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies were Deleted!",
-    "description": "Cookie AutoDelete: Cookies were Deleted!"
+    "message": "Cookie AutoDelete: Cookies were deleted!",
+    "description": "Cookie AutoDelete: Cookies were deleted!"
   },
 
   "notificationContent": {
@@ -60,13 +60,13 @@
   },
 
   "switchToGreyListText": {
-    "message": "Clean on Browser Restart (GreyList)",
-    "description": "Clean on Browser Restart (GreyList)"
+    "message": "Clean on Browser Restart (Greylist)",
+    "description": "Clean on Browser Restart (Greylist)"
   },
 
   "switchToWhiteListText": {
-    "message": "Never Clean (WhiteList)",
-    "description": "Never Clean (WhiteList)"
+    "message": "Never Clean (Whitelist)",
+    "description": "Never Clean (Whitelist)"
   },
 
   "welcomeText": {
@@ -105,8 +105,8 @@
   },
 
   "reviewLinkMessage": {
-    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
+    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
 
   "releaseNotesText": {
@@ -140,13 +140,13 @@
   },
 
   "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie CleanUp",
-    "description": "Show Notification After Cookie CleanUp"
+    "message": "Show Notification After Cookie Cleanup",
+    "description": "Show Notification After Cookie Cleanup"
   },
 
   "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on StartUp",
-    "description": "Clean Cookies from Open Tabs on StartUp"
+    "message": "Clean Cookies from Open Tabs on Startup",
+    "description": "Clean Cookies from Open Tabs on Startup"
   },
 
   "enableGlobalSubdomainText": {
@@ -165,23 +165,23 @@
   },
 
   "whiteListWordText": {
-    "message": "WhiteList",
-    "description": "WhiteList"
+    "message": "Whitelist",
+    "description": "Whitelist"
   },
 
   "greyListWordText": {
-    "message": "GreyList",
-    "description": "GreyList"
+    "message": "Greylist",
+    "description": "Greylist"
   },
 
   "toWhiteListText": {
-    "message": "To WhiteList",
+    "message": "To Whitelist",
     "description": "To WhiteList"
   },
 
   "toGreyListText": {
-    "message": "To GreyList",
-    "description": "To GreyList"
+    "message": "To Greylist",
+    "description": "To Greylist"
   },
 
   "clearURLText": {
@@ -220,8 +220,8 @@
   },
 
   "domainExpressionsText": {
-    "message": "Domain Expressions",
-    "description": "Domain Expressions"
+    "message": "Domain Expression",
+    "description": "Domain Expression"
   },
 
   "matchedDomainExpressionText": {
