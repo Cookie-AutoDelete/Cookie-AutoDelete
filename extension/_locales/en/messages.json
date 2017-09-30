@@ -175,13 +175,13 @@
   },
 
   "toWhiteListText": {
-    "message": "To Whitelist",
-    "description": "To WhiteList"
+    "message": "Add to Whitelist",
+    "description": "Add to WhiteList"
   },
 
   "toGreyListText": {
-    "message": "To Greylist",
-    "description": "To Greylist"
+    "message": "Add to Greylist",
+    "description": "Add to Greylist"
   },
 
   "clearURLText": {
@@ -239,9 +239,9 @@
     "description": "List Type"
   },
 
-  "enterDomainText": {
-    "message": "Enter Domain",
-    "description": "Enter Domain"
+  "domainPlaceholderText": {
+    "message": "example.com, www.example.com, *.example.com",
+    "description": "Domain Expression"
   }
 
 

@@ -37,8 +37,7 @@ class Expressions extends React.Component {
 			expressionInput: "",
 			error: "",
 			storeId: "default",
-			contextualIdentitiesObjects: [],
-			listType: "WHITE"
+			contextualIdentitiesObjects: []
 		};
 	}
 
@@ -87,13 +86,6 @@ class Expressions extends React.Component {
 		});
 	}
 
-	// Switch the list type for adding a expression
-	switchListType() {
-		this.setState({
-			listType: this.state.listType === "WHITE" ? "GREY" : "WHITE"
-		});
-	}
-
 	async componentDidMount() {
 		if (this.props.contextualIdentities) {
 			const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
@@ -110,14 +102,13 @@ class Expressions extends React.Component {
 			contextualIdentities
 		} = this.props;
 		const {
-			error, contextualIdentitiesObjects, storeId, listType
+			error, contextualIdentitiesObjects, storeId
 		} = this.state;
 		return (
 			<div style={style}>
 				<h1>{browser.i18n.getMessage("whiteListText")}</h1>
 
 				<div className="row md-form">
-					<label htmlFor="form1" className="">{`${browser.i18n.getMessage("enterDomainText")}:`}</label>
 					<input
 						style={{
 							display: "inline", width: "100%"
@@ -126,10 +117,13 @@ class Expressions extends React.Component {
 						onChange={(e) => this.setState({
 							expressionInput: e.target.value
 						})}
+						placeholder={browser.i18n.getMessage("domainPlaceholderText")}
 						onKeyPress={(e) => {
 							if (e.key === "Enter") {
 								this.addExpressionByInput({
-									expression: this.state.expressionInput, storeId, listType
+									expression: this.state.expressionInput,
+									storeId,
+									listType: "WHITE"
 								});
 							}
 						}}
@@ -160,16 +154,21 @@ class Expressions extends React.Component {
 					<span style={{
 						padding: "5px 5px"
 					}} className="pull-right">
-						<button onClick={() => this.switchListType()} className="btn btn-info">
-							{`${listType === "WHITE" ? browser.i18n.getMessage("toWhiteListText") : browser.i18n.getMessage("toGreyListText")}`}
+						<button className="btn btn-secondary" onClick={() => this.addExpressionByInput({
+							expression: this.state.expressionInput,
+							storeId,
+							listType: "GREY"
+						})}>
+							{browser.i18n.getMessage("toGreyListText")}
 						</button>
-
 						<button style={{
 							marginLeft: "5px"
 						}} className="btn btn-primary" onClick={() => this.addExpressionByInput({
-							expression: this.state.expressionInput, storeId, listType
+							expression: this.state.expressionInput,
+							storeId,
+							listType: "WHITE"
 						})}>
-							<i className="fa fa-plus-square" aria-hidden="true"></i>
+							{browser.i18n.getMessage("toWhiteListText")}
 						</button>
 					</span>
 				</div>
