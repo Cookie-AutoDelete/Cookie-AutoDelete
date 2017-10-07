@@ -46,7 +46,7 @@ const HistorySettings = (props) => {
 							name: settings.delayBeforeClean.name, value: e.target.value, id: settings.delayBeforeClean.id
 						})}
 						value={settings.delayBeforeClean.value}
-						min="1"
+						min="0"
 					/>
 					<span>{browser.i18n.getMessage("minutesText")}</span>
 					<Tooltip

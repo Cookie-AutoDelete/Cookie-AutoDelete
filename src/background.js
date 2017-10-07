@@ -40,9 +40,17 @@ const onSettingsChange = () => {
 const createActiveModeAlarm = () => {
 	// console.log("create alarm");
 	const minutes = parseFloat(getSetting(store.getState(), "delayBeforeClean"));
-	browser.alarms.create("activeModeAlarm", {
-		delayInMinutes: minutes
-	});
+	if (minutes === 0) {
+		store.dispatch(
+			cookieCleanup({
+				greyCleanup: false, ignoreOpenTabs: false
+			})
+		);
+	} else {
+		browser.alarms.create("activeModeAlarm", {
+			delayInMinutes: minutes
+		});
+	}
 };
 
 // Create an alarm when a tab is closed
