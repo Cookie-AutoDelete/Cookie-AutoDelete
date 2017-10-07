@@ -93,7 +93,8 @@ class App extends Component {
 						paddingTop: "8px",
 						paddingBottom: "8px",
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
-						borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+						width: "650px"
 					}}
 				>
 					<div className="col-xs-1">
