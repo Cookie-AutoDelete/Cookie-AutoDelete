@@ -19,8 +19,8 @@ const About = (props) => {
 		<div style={style}>
 			<h1>{browser.i18n.getMessage("aboutText")}</h1>
 			<a href="https://github.com/mrdokenny/Cookie-AutoDelete/issues">{browser.i18n.getMessage("reportIssuesText")}</a> <br /><br />
-			<a href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh"><span>{`Chrome ${browser.i18n.getMessage("versionText")}`}</span> </a><br/>
-			<a href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/"><span>{`Firefox ${browser.i18n.getMessage("versionText")}`}</span> </a> <br/><br/>
+			<a href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh"><span>{`${browser.i18n.getMessage("versionText", ["Chrome"])}`}</span> </a><br/>
+			<a href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/"><span>{`${browser.i18n.getMessage("versionText", ["Firefox"])}`}</span> </a> <br/><br/>
 			<span>{`${browser.i18n.getMessage("contributorsText")}`}</span>
 			<ul>
 				<li>Kenny Do (Creator)</li>

@@ -29,11 +29,6 @@
     }
   },
 
-  "hostWebsiteText": {
-    "message": "Host Domain:",
-    "description": "Host Domain:"
-  },
-
   "cleanText": {
     "message": "Clean",
     "description": "Clean"
@@ -68,21 +63,6 @@
         "example": "example.com"
       }
     }
-  },
-
-  "switchToNoListText": {
-    "message": "Clean After Tab Close",
-    "description": "Clean After Tab Close"
-  },
-
-  "switchToGreyListText": {
-    "message": "Clean on Browser Restart (Greylist)",
-    "description": "Clean on Browser Restart (Greylist)"
-  },
-
-  "switchToWhiteListText": {
-    "message": "Never Clean (Whitelist)",
-    "description": "Never Clean (Whitelist)"
   },
 
   "welcomeText": {
@@ -196,13 +176,13 @@
   },
 
   "toWhiteListText": {
-    "message": "Add to Whitelist",
-    "description": "Add to Whitelist"
+    "message": "Add to Whitelist (Never Clean)",
+    "description": "Add to Whitelist (Never Clean)"
   },
 
   "toGreyListText": {
-    "message": "Add to Greylist",
-    "description": "Add to Greylist"
+    "message": "Add to Greylist (Clean on Browser Restart)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
   },
 
   "clearURLText": {
@@ -226,8 +206,14 @@
   },
 
   "versionText": {
-    "message": "version",
-    "description": "version"
+    "message": "$browser$ version",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser" : {
+        "content" : "$1",
+        "example" : "Firefox"
+      }
+    }
   },
 
   "contributorsText": {
