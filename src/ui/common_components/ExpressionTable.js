@@ -73,7 +73,11 @@ class ExpressionTable extends React.Component {
 					<tr>
 						<th/>
 						<th>{expressionColumnTitle}</th>
-						<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
+						{
+							window.innerWidth > 768 ?
+								<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
+							: ""
+						}
 						<th>{browser.i18n.getMessage("listTypeText")}</th>
 					</tr>
 				</thead>
@@ -135,15 +139,19 @@ class ExpressionTable extends React.Component {
 											/>
 										</td>
 								}
-								<td>
-									<div style={{
-										verticalAlign: "middle"
-									}}>
-										{editMode && id === expression.id ?
-											globExpressionToRegExp(expressionInput) :
-											globExpressionToRegExp(expression.expression)}
-									</div>
-								</td>
+								{
+									window.innerWidth > 768 ?
+										<td>
+											<div style={{
+												verticalAlign: "middle"
+											}}>
+												{editMode && id === expression.id ?
+													globExpressionToRegExp(expressionInput) :
+													globExpressionToRegExp(expression.expression)}
+											</div>
+										</td>
+									: ""
+								}
 								<td>
 									<div style={{
 										display: "inline-block", verticalAlign: "middle"
