@@ -181,7 +181,10 @@ class App extends Component {
 					<span style={{
 						fontSize: "20px", verticalAlign: "middle"
 					}}>
-						{!contextualIdentities ? `${hostname}` : `${hostname} (${cache[storeId]})`}
+						{
+							// Temporary fix until contextualIdentities events land
+						}
+						{!contextualIdentities ? `${hostname}` : `${hostname} ${cache[storeId] !== undefined ? `(${cache[storeId]})` : ""}`}
 					</span>
 					<IconButton
 						iconName="eraser"

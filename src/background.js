@@ -259,6 +259,12 @@ const onStartUp = async () => {
 			key: "browserDetect", value: browserDetect()
 		}
 	});
+	// Temporary fix until contextualIdentities events land
+	if (getSetting(store.getState(), "contextualIdentities")) {
+		store.dispatch(
+			cacheCookieStoreIdNames()
+		);
+	}
 	store.dispatch(
 		cookieCleanup({
 			greyCleanup: true, ignoreOpenTabs: getSetting(store.getState(), "cleanCookiesFromOpenTabsOnStartup")
