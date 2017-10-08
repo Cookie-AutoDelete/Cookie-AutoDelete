@@ -3,6 +3,14 @@
     "message":"Cookie AutoDelete",
     "description":"Name of the extension."
   },
+  "extensionDescription":{
+    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+  },
+  "notificationTitle":{
+    "message":"Cookie AutoDelete: Cookies were deleted!",
+    "description":"Cookie AutoDelete: Cookies were deleted!"
+  },
   "notificationContent":{
     "message":"$Num$ slettede cookies fra: $Websites$",
     "description":"123 Deleted Cookies from: google.com, facebook.com",
@@ -17,9 +25,43 @@
       }
     }
   },
+  "cleanText":{
+    "message":"Clean",
+    "description":"Clean"
+  },
+  "cookieCleanupText":{
+    "message":"Run cleanup now",
+    "description":"Run cleanup now"
+  },
+  "cleanIgnoringOpenTabsText":{
+    "message":"Clean, include open tabs",
+    "description":"Clean, include open tabs"
+  },
+  "cookieCleanupIgnoreOpenTabsText":{
+    "message":"Run cleanup now, include cookies from open tabs",
+    "description":"Run cleanup now, include cookies from open tabs"
+  },
+  "clearCookiesText":{
+    "message":"Clear cookies for this domain",
+    "description":"Clear cookies for this domain"
+  },
+  "clearCookiesForDomainText":{
+    "message":"Clear all cookies for $domain$",
+    "description":"Clear all cookies for example.com",
+    "placeholders":{
+      "domain":{
+        "content":"$1",
+        "example":"example.com"
+      }
+    }
+  },
   "welcomeText":{
     "message":"Velkommen",
     "description":"Welcome"
+  },
+  "preferencesText":{
+    "message":"Settings",
+    "description":"Settings"
   },
   "settingsText":{
     "message":"Cookie Opsætning",
@@ -47,6 +89,10 @@
       }
     }
   },
+  "reviewLinkMessage":{
+    "message":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+  },
   "releaseNotesText":{
     "message":"Udgivelsesnoter",
     "description":"Release Notes"
@@ -71,6 +117,14 @@
     "message":"Vis antal cookies for det domæne",
     "description":"Show Number of Cookies for that Domain"
   },
+  "notifyCookieCleanUpText":{
+    "message":"Show Notification After Cookie Cleanup",
+    "description":"Show Notification After Cookie Cleanup"
+  },
+  "cookieCleanUpOnStartText":{
+    "message":"Clean Cookies from Open Tabs on Startup",
+    "description":"Clean Cookies from Open Tabs on Startup"
+  },
   "enableGlobalSubdomainText":{
     "message":"Aktiver tjek for underdomæner",
     "description":"Enable Check for Subdomains"
@@ -82,6 +136,22 @@
   "defaultSettingsText":{
     "message":"Gendan standard opsætning",
     "description":"Restore Default Settings"
+  },
+  "whiteListWordText":{
+    "message":"Whitelist",
+    "description":"Whitelist"
+  },
+  "greyListWordText":{
+    "message":"Greylist",
+    "description":"Greylist"
+  },
+  "toWhiteListText":{
+    "message":"Add to Whitelist (Never Clean)",
+    "description":"Add to Whitelist (Never Clean)"
+  },
+  "toGreyListText":{
+    "message":"Add to Greylist (Clean on Browser Restart)",
+    "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
     "message":"Fjern alle",
@@ -99,9 +169,23 @@
     "message":"Rapporter fejl og mangler, og foreslå funktionalitet",
     "description":"Report issues and suggest features"
   },
+  "versionText":{
+    "message":"$browser$ version",
+    "description":"Firefox version",
+    "placeholders":{
+      "browser":{
+        "content":"$1",
+        "example":"Firefox"
+      }
+    }
+  },
   "contributorsText":{
     "message":"Bidragydere:",
     "description":"Contributors:"
+  },
+  "domainExpressionsText":{
+    "message":"Domain Expression",
+    "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
     "message":"Matchet domæneudtryk",
@@ -114,5 +198,49 @@
   "listTypeText":{
     "message":"Listetype",
     "description":"List Type"
+  },
+  "domainPlaceholderText":{
+    "message":"example.com, subdomain.example.com, *.example.com",
+    "description":"Domain Expression"
+  },
+  "removeExpressionText":{
+    "message":"Remove expression",
+    "description":"Remove expression"
+  },
+  "stopEditingText":{
+    "message":"Stop editing",
+    "description":"Stop editing"
+  },
+  "saveExpressionText":{
+    "message":"Save expression",
+    "description":"Save expression"
+  },
+  "editExpressionText":{
+    "message":"Edit expression",
+    "description":"Edit expression"
+  },
+  "toggleToGreyListWordText":{
+    "message":"Toggle to greylist",
+    "description":"Toggle to greylist"
+  },
+  "toggleToWhiteListWordText":{
+    "message":"Toggle to whitelist",
+    "description":"Toggle to whitelist"
+  },
+  "autoDeleteEnabledText":{
+    "message":"Auto-clean enabled",
+    "description":"Auto-clean enabled"
+  },
+  "autoDeleteDisabledText":{
+    "message":"Auto-clean disabled",
+    "description":"Auto-clean disabled"
+  },
+  "disableAutoDeleteText":{
+    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "description":"Toggle to disable automatic cleanup (manual mode)"
+  },
+  "enableAutoDeleteText":{
+    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }
