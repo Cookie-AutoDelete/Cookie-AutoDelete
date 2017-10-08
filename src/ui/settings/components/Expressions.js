@@ -13,6 +13,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {getSetting} from "../../../services/libs";
 import ExpressionTable from "../../common_components/ExpressionTable";
+import IconButton from "../../common_components/IconButton";
 import {
 	addExpressionUI
 } from "../../UIActions";
@@ -26,7 +27,7 @@ const styles = {
 		height: `${window.innerHeight - 210}px`
 	},
 	buttonIcon: {
-		marginRight: "2px"
+		marginRight: "7px"
 	}
 };
 
@@ -151,26 +152,36 @@ class Expressions extends React.Component {
 						</label>
 					</span>
 
-					<span style={{
-						padding: "5px 5px"
-					}} className="pull-right">
-						<button className="btn btn-secondary" onClick={() => this.addExpressionByInput({
-							expression: this.state.expressionInput,
-							storeId,
-							listType: "GREY"
-						})}>
-							{browser.i18n.getMessage("toGreyListText")}
-						</button>
-						<button style={{
-							marginLeft: "5px"
-						}} className="btn btn-primary" onClick={() => this.addExpressionByInput({
-							expression: this.state.expressionInput,
-							storeId,
-							listType: "WHITE"
-						})}>
-							{browser.i18n.getMessage("toWhiteListText")}
-						</button>
-					</span>
+					<div className="btn-group pull-right" style={{
+						padding: "7.5px 5px"
+					}}>
+						<IconButton
+							className="btn-secondary"
+							onClick={() => {this.addExpressionByInput({
+								expression: this.state.expressionInput,
+								storeId,
+								listType: "GREY"
+							});}}
+							iconName="plus"
+							title={browser.i18n.getMessage("toGreyListText")}
+						>
+							{browser.i18n.getMessage("greyListWordText")}
+						</IconButton>
+
+						<IconButton
+							className="btn-primary"
+							onClick={() => {this.addExpressionByInput({
+								expression: this.state.expressionInput,
+								storeId,
+								listType: "WHITE"
+							});}}
+							iconName="plus"
+							title={browser.i18n.getMessage("toWhiteListText")}
+						>
+							{browser.i18n.getMessage("whiteListWordText")}
+						</IconButton>
+					</div>
+
 				</div>
 
 				{
