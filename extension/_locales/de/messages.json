@@ -4,11 +4,11 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message":"Beherrsche deine Cookies! Lasse unbenutzte Cookies deiner geschlossenen Tabs automatisch löschen.",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies were deleted!",
+    "message":"Cookie AutoDelete: Cookies wurden gelöscht!",
     "description":"Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent":{
@@ -26,27 +26,27 @@
     }
   },
   "cleanText":{
-    "message":"Clean",
+    "message":"Säubern",
     "description":"Clean"
   },
   "cookieCleanupText":{
-    "message":"Run cleanup now",
+    "message":"Säuberung jetzt ausführen",
     "description":"Run cleanup now"
   },
   "cleanIgnoringOpenTabsText":{
-    "message":"Clean, include open tabs",
+    "message":"Säubern, inklusive geöffneter Tabs",
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Run cleanup now, include cookies from open tabs",
+    "message":"Säuberung jetzt ausführen, inklusive geöffneter Tabs",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
-    "message":"Clear cookies for this domain",
+    "message":"Cookies dieser Domain säubern",
     "description":"Clear cookies for this domain"
   },
   "clearCookiesForDomainText":{
-    "message":"Clear all cookies for $domain$",
+    "message":"Alle Cookies von $domain$ säubern",
     "description":"Clear all cookies for example.com",
     "placeholders":{
       "domain":{
@@ -60,7 +60,7 @@
     "description":"Welcome"
   },
   "preferencesText":{
-    "message":"Settings",
+    "message":"Einstellungen",
     "description":"Settings"
   },
   "settingsText":{
@@ -90,7 +90,7 @@
     }
   },
   "reviewLinkMessage":{
-    "message":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message":"Danke für das Ausprobieren von Cookie AutoDelete. Falls es dir gefällt, gib bitte eine Bewertung ab.",
     "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText":{
@@ -98,7 +98,7 @@
     "description":"Release Notes"
   },
   "activeModeText":{
-    "message":"Automatisches Entsorgen aktivieren? Verzögerung bis zur Entsorgung:",
+    "message":"Automatisches Säubern aktivieren? Verzögerung bis zur Säuberung:",
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
@@ -114,15 +114,15 @@
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Zeigt die Anzahl der Cookies einer Domain in der Symbolleiste",
+    "message":"Zeige die Anzahl der Cookies einer Domain an",
     "description":"Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText":{
-    "message":"Show Notification After Cookie Cleanup",
+    "message":"Zeige eine Benachrichtigung nach dem Säubern der Cookies",
     "description":"Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText":{
-    "message":"Clean Cookies from Open Tabs on Startup",
+    "message":"Cookies geöffneter Tabs beim Start säubern",
     "description":"Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText":{
@@ -130,7 +130,7 @@
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Unterstützung für Firefox Container Tabs",
+    "message":"Unterstützung für Firefox' Container-Tabs",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
@@ -146,11 +146,11 @@
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"Zur Whitelist hinzufügen (Nie säubern)",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"Zur Greylist hinzufügen (Beim Browser-Neustart säubern)",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -170,7 +170,7 @@
     "description":"Report issues and suggest features"
   },
   "versionText":{
-    "message":"$browser$ version",
+    "message":"$browser$ Version",
     "description":"Firefox version",
     "placeholders":{
       "browser":{
@@ -184,7 +184,7 @@
     "description":"Contributors:"
   },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"Domain-Ausdruck",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
@@ -192,7 +192,7 @@
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Entsprechender regulärerer Ausdruck",
+    "message":"Entsprechender regulärer Ausdruck",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
@@ -204,43 +204,43 @@
     "description":"Domain Expression"
   },
   "removeExpressionText":{
-    "message":"Remove expression",
+    "message":"Ausdruck entfernen",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"Bearbeitung beenden",
     "description":"Stop editing"
   },
   "saveExpressionText":{
-    "message":"Save expression",
+    "message":"Ausdruck speichern",
     "description":"Save expression"
   },
   "editExpressionText":{
-    "message":"Edit expression",
+    "message":"Ausdruck bearbeiten",
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Toggle to greylist",
+    "message":"Zur Greylist",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Toggle to whitelist",
+    "message":"Zur Whitelist",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
-    "message":"Auto-clean enabled",
+    "message":"Automatisches Säubern aktiviert",
     "description":"Auto-clean enabled"
   },
   "autoDeleteDisabledText":{
-    "message":"Auto-clean disabled",
+    "message":"Automatisches Säubern deaktiviert",
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "message":"Automatisches Säubern deaktivieren (Manueller Modus)",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "message":"Automatisches Säubern aktivieren (Automatischer Modus)",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }
