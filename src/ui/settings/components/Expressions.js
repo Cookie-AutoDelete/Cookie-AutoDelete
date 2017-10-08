@@ -23,7 +23,7 @@ const styles = {
 	},
 	tableContainer: {
 		overflow: "auto",
-		height: `${window.innerHeight-210}px`
+		height: `${window.innerHeight - 210}px`
 	},
 	buttonIcon: {
 		marginRight: "2px"

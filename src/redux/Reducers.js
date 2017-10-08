@@ -158,7 +158,7 @@ export const cache = (state = {}, action) => {
 	case C.RESET_SETTINGS: {
 		let newCacheObject = {};
 		// Prevent the browserDetect key to be deleted on reset
-		newCacheObject["browserDetect"] = state.browserDetect;
+		newCacheObject.browserDetect = state.browserDetect;
 		return newCacheObject;
 	}
 	default:

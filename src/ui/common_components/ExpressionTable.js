@@ -75,8 +75,8 @@ class ExpressionTable extends React.Component {
 						<th>{expressionColumnTitle}</th>
 						{
 							window.innerWidth > 768 ?
-								<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th>
-							: ""
+								<th>{browser.i18n.getMessage("regularExpressionEquivalentText")}</th> :
+								""
 						}
 						<th>{browser.i18n.getMessage("listTypeText")}</th>
 					</tr>
@@ -149,8 +149,8 @@ class ExpressionTable extends React.Component {
 													globExpressionToRegExp(expressionInput) :
 													globExpressionToRegExp(expression.expression)}
 											</div>
-										</td>
-									: ""
+										</td> :
+										""
 								}
 								<td>
 									<div style={{

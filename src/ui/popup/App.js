@@ -110,11 +110,15 @@ class App extends Component {
 						/>
 					</div>
 
-					<div className="col-xs-11" style={{ textAlign: "right" }}>
+					<div className="col-xs-11" style={{
+						textAlign: "right"
+					}}>
 						<IconButton
 							iconName="power-off"
 							className={settings.activeMode.value ? "btn-success" : "btn-danger"}
-							style={{ margin: "0 4px" }}
+							style={{
+								margin: "0 4px"
+							}}
 							onClick={() => onUpdateSetting({
 								...settings.activeMode, value: !settings.activeMode.value
 							})}
@@ -126,7 +130,9 @@ class App extends Component {
 						<IconButton
 							iconName="eraser"
 							className="btn-warning"
-							style={{ margin: "0 4px" }}
+							style={{
+								margin: "0 4px"
+							}}
 							onClick={() => {
 								onCookieCleanup({
 									greyCleanup: false, ignoreOpenTabs: false
@@ -142,7 +148,9 @@ class App extends Component {
 						<IconButton
 							iconName="eraser"
 							className="btn-warning"
-							style={{ margin: "0 4px" }}
+							style={{
+								margin: "0 4px"
+							}}
 							onClick={() => {
 								onCookieCleanup({
 									greyCleanup: false, ignoreOpenTabs: true
@@ -158,7 +166,9 @@ class App extends Component {
 						<IconButton
 							iconName="cog"
 							className="btn-info"
-							style={{ margin: "0 4px" }}
+							style={{
+								margin: "0 4px"
+							}}
 							onClick={() => browser.runtime.openOptionsPage()}
 							title={browser.i18n.getMessage("preferencesText")}
 						>
@@ -193,7 +203,7 @@ class App extends Component {
 							marginLeft: "auto"
 						}}
 						title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
-						ref={(e) => { this.clearCookiesRef = e; }}
+						ref={(e) => {this.clearCookiesRef = e;}}
 						onClick={async () => {
 							const success = await this.clearCookiesForThisDomain(hostname);
 							this.animateFlash(this.clearCookiesRef, success);
