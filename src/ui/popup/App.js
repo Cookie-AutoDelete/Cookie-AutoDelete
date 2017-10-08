@@ -94,7 +94,7 @@ class App extends Component {
 						paddingBottom: "8px",
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-						width: "650px"
+						minWidth: "650px"
 					}}
 				>
 					<div className="col-xs-1">
