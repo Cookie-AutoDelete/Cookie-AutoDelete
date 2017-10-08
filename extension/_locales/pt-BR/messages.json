@@ -1,6 +1,6 @@
 {
   "notificationContent":{
-    "message":"$Num$ cookies supprimés depuis : $Websites$",
+    "message":"$Num$ cookies apagados de: $Websites$",
     "description":"123 Deleted Cookies from: google.com, facebook.com",
     "placeholders":{
       "num":{
@@ -14,19 +14,19 @@
     }
   },
   "welcomeText":{
-    "message":"Bienvenue",
+    "message":"Bem-vindo",
     "description":"Welcome"
   },
   "settingsText":{
-    "message":"Paramètres cookies",
+    "message":"Configurações dos cookies",
     "description":"Cookie Settings"
   },
   "aboutText":{
-    "message":"À propos",
+    "message":"Sobre",
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Salut ! Lors de cette session, Cookie AutoDelete a supprimé $sessionDeleted$ cookies et $totalDeleted$ cookies au total.",
+    "message":"Olá! Durante esta sessão, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -40,39 +40,43 @@
     }
   },
   "releaseNotesText":{
-    "message":"Notes de version",
+    "message":"Notas da versão",
     "description":"Release Notes"
   },
+  "minutesText":{
+    "message":"Minuto(s)",
+    "description":"Minute(s)"
+  },
   "statLoggingText":{
-    "message":"Enregistrer le nombre total de cookies supprimés",
+    "message":"Registar número total de cookies apagados",
     "description":"Log Total Number Of Cookies Deleted"
   },
   "resetCounterText":{
-    "message":"Réinitialiser le compteur",
+    "message":"Zerar contador",
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Afficher le nombre de cookies pour ce domaine",
+    "message":"Mostrar número de cookies para esse domínio",
     "description":"Show Number of Cookies for that Domain"
   },
   "enableGlobalSubdomainText":{
-    "message":"Activer le contrôle des sous-domaines",
+    "message":"Habilitar verificação por subdomínios",
     "description":"Enable Check for Subdomains"
   },
   "defaultSettingsText":{
-    "message":"Restaurer les paramètres par défaut",
+    "message":"Restaurar configurações padrão",
     "description":"Restore Default Settings"
   },
   "clearURLText":{
-    "message":"Tout supprimer",
+    "message":"Remover todos",
     "description":"Remove All"
   },
   "reportIssuesText":{
-    "message":"Reporter les problèmes et suggérer des fonctionnalités",
+    "message":"Reporte problemas e sugira funcionalidades",
     "description":"Report issues and suggest features"
   },
   "contributorsText":{
-    "message":"Contributeurs:",
+    "message":"Contribuidores:",
     "description":"Contributors:"
   }
 }

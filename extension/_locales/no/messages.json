@@ -1,0 +1,38 @@
+{
+  "extensionName":{
+    "message":"Autosletter for informasjonskapsler",
+    "description":"Name of the extension."
+  },
+  "welcomeText":{
+    "message":"Velkommen",
+    "description":"Welcome"
+  },
+  "settingsText":{
+    "message":"Informasjonskapselinnstillinger",
+    "description":"Cookie Settings"
+  },
+  "whiteListText":{
+    "message":"Liste over uttrykk",
+    "description":"List of Expressions"
+  },
+  "aboutText":{
+    "message":"Om",
+    "description":"About"
+  },
+  "minutesText":{
+    "message":"Minutt(er)",
+    "description":"Minute(s)"
+  },
+  "clearURLText":{
+    "message":"Fjern alt",
+    "description":"Remove All"
+  },
+  "contributorsText":{
+    "message":"Medvirkende:",
+    "description":"Contributors:"
+  },
+  "listTypeText":{
+    "message":"Listetype",
+    "description":"List Type"
+  }
+}

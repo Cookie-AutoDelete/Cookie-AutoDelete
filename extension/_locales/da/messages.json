@@ -4,7 +4,7 @@
     "description":"Name of the extension."
   },
   "notificationContent":{
-    "message":"$Num$ Cookies gelöscht von: $Websites$",
+    "message":"$Num$ slettede cookies fra: $Websites$",
     "description":"123 Deleted Cookies from: google.com, facebook.com",
     "placeholders":{
       "num":{
@@ -18,23 +18,23 @@
     }
   },
   "welcomeText":{
-    "message":"Willkommen",
+    "message":"Velkommen",
     "description":"Welcome"
   },
   "settingsText":{
-    "message":"Cookie-Einstellungen",
+    "message":"Cookie Opsætning",
     "description":"Cookie Settings"
   },
   "whiteListText":{
-    "message":"Liste von Ausdrücken",
+    "message":"Liste af udtryk",
     "description":"List of Expressions"
   },
   "aboutText":{
-    "message":"Über",
+    "message":"Om",
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Cookie AutoDelete hat während dieser Sitzung $sessionDeleted$ und insgesamt $totalDeleted$ Cookies gelöscht.",
+    "message":"Hej der! I løbet af denne session har Cookie AutoDelete slettet $sessionDeleted$ cookies, og i alt $totalDeleted$ cookies.",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -48,71 +48,71 @@
     }
   },
   "releaseNotesText":{
-    "message":"Versionshinweise",
+    "message":"Udgivelsesnoter",
     "description":"Release Notes"
   },
   "activeModeText":{
-    "message":"Automatisches Entsorgen aktivieren? Verzögerung bis zur Entsorgung:",
+    "message":"Aktiver automatisk sletning? Forsinkelse før sletning:",
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
-    "message":"Minute(n)",
+    "message":"Minut(ter)",
     "description":"Minute(s)"
   },
   "statLoggingText":{
-    "message":"Gesamtanzahl gelöschter Cookies protokollieren",
+    "message":"Log samlet antal slettede cookies",
     "description":"Log Total Number Of Cookies Deleted"
   },
   "resetCounterText":{
-    "message":"Zähler zurücksetzen",
+    "message":"Nulstil tæller",
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Zeigt die Anzahl der Cookies einer Domain in der Symbolleiste",
+    "message":"Vis antal cookies for det domæne",
     "description":"Show Number of Cookies for that Domain"
   },
   "enableGlobalSubdomainText":{
-    "message":"Subdomain-Prüfung aktivieren",
+    "message":"Aktiver tjek for underdomæner",
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Unterstützung für Firefox Container Tabs",
+    "message":"Aktiver understøttelse for Firefox' Kontekst-faneblade",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
-    "message":"Standardeinstellungen wiederherstellen",
+    "message":"Gendan standard opsætning",
     "description":"Restore Default Settings"
   },
   "clearURLText":{
-    "message":"Alle löschen",
+    "message":"Fjern alle",
     "description":"Remove All"
   },
   "exportURLSText":{
-    "message":"Ausdrücke exportieren",
+    "message":"Eksporter udtryk",
     "description":"Export Expressions"
   },
   "importURLSText":{
-    "message":"Ausdrücke importieren",
+    "message":"Importer udtryk",
     "description":"Import Expressions"
   },
   "reportIssuesText":{
-    "message":"Melde Fehler und schlage neue Funktionen vor",
+    "message":"Rapporter fejl og mangler, og foreslå funktionalitet",
     "description":"Report issues and suggest features"
   },
   "contributorsText":{
-    "message":"Mitwirkende:",
+    "message":"Bidragydere:",
     "description":"Contributors:"
   },
   "matchedDomainExpressionText":{
-    "message":"Passender Domain-Ausdruck",
+    "message":"Matchet domæneudtryk",
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Entsprechender regulärerer Ausdruck",
+    "message":"Tilsvarende regulært udtryk",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
-    "message":"Listentyp",
+    "message":"Listetype",
     "description":"List Type"
   }
 }

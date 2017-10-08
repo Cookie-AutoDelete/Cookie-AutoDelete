@@ -4,7 +4,7 @@
     "description":"Name of the extension."
   },
   "notificationContent":{
-    "message":"$Num$ Cookies gelöscht von: $Websites$",
+    "message":"$Num$ куки были удалены от: $Websites$",
     "description":"123 Deleted Cookies from: google.com, facebook.com",
     "placeholders":{
       "num":{
@@ -18,23 +18,23 @@
     }
   },
   "welcomeText":{
-    "message":"Willkommen",
+    "message":"Добро пожаловать",
     "description":"Welcome"
   },
   "settingsText":{
-    "message":"Cookie-Einstellungen",
+    "message":"Настройки",
     "description":"Cookie Settings"
   },
   "whiteListText":{
-    "message":"Liste von Ausdrücken",
+    "message":"Список выражений",
     "description":"List of Expressions"
   },
   "aboutText":{
-    "message":"Über",
+    "message":"Информация",
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Cookie AutoDelete hat während dieser Sitzung $sessionDeleted$ und insgesamt $totalDeleted$ Cookies gelöscht.",
+    "message":"За время данной сессии с помощью Cookie AutoDelete было удалено $sessionDeleted$ куков, за все время удалено $totalDeleted$ куков.",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -48,71 +48,71 @@
     }
   },
   "releaseNotesText":{
-    "message":"Versionshinweise",
+    "message":"Заметки к релизу",
     "description":"Release Notes"
   },
   "activeModeText":{
-    "message":"Automatisches Entsorgen aktivieren? Verzögerung bis zur Entsorgung:",
+    "message":"Включить автоматическую очистку? Задержка перед очисткой:",
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
-    "message":"Minute(n)",
+    "message":"минут(ы)",
     "description":"Minute(s)"
   },
   "statLoggingText":{
-    "message":"Gesamtanzahl gelöschter Cookies protokollieren",
+    "message":"Вести подсчет всех удаленных кук",
     "description":"Log Total Number Of Cookies Deleted"
   },
   "resetCounterText":{
-    "message":"Zähler zurücksetzen",
+    "message":"Сбросить счетчик",
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Zeigt die Anzahl der Cookies einer Domain in der Symbolleiste",
+    "message":"Показывать количество кук для этого домена",
     "description":"Show Number of Cookies for that Domain"
   },
   "enableGlobalSubdomainText":{
-    "message":"Subdomain-Prüfung aktivieren",
+    "message":"Включить проверку для поддоменов",
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Unterstützung für Firefox Container Tabs",
+    "message":"Включить поддержку Container Tabs в Firefox",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
-    "message":"Standardeinstellungen wiederherstellen",
+    "message":"Восстановить первоначальные настройки",
     "description":"Restore Default Settings"
   },
   "clearURLText":{
-    "message":"Alle löschen",
+    "message":"Удалить все",
     "description":"Remove All"
   },
   "exportURLSText":{
-    "message":"Ausdrücke exportieren",
+    "message":"Експорт выражений",
     "description":"Export Expressions"
   },
   "importURLSText":{
-    "message":"Ausdrücke importieren",
+    "message":"Импорт выражений",
     "description":"Import Expressions"
   },
   "reportIssuesText":{
-    "message":"Melde Fehler und schlage neue Funktionen vor",
+    "message":"Сообщить об ошибке или предложить идею",
     "description":"Report issues and suggest features"
   },
   "contributorsText":{
-    "message":"Mitwirkende:",
+    "message":"Участники проекта:",
     "description":"Contributors:"
   },
   "matchedDomainExpressionText":{
-    "message":"Passender Domain-Ausdruck",
+    "message":"Выражение соответствующее домену",
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Entsprechender regulärerer Ausdruck",
+    "message":"Соответствующее регулярное выражение",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
-    "message":"Listentyp",
+    "message":"Тип списка",
     "description":"List Type"
   }
 }

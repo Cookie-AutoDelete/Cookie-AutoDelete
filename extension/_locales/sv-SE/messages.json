@@ -1,6 +1,6 @@
 {
   "notificationContent":{
-    "message":"$Num$ cookies supprimés depuis : $Websites$",
+    "message":"$Num$ borttagna cookies från: $Websites$",
     "description":"123 Deleted Cookies from: google.com, facebook.com",
     "placeholders":{
       "num":{
@@ -14,19 +14,19 @@
     }
   },
   "welcomeText":{
-    "message":"Bienvenue",
+    "message":"Välkommen",
     "description":"Welcome"
   },
   "settingsText":{
-    "message":"Paramètres cookies",
+    "message":"Inställningar",
     "description":"Cookie Settings"
   },
   "aboutText":{
-    "message":"À propos",
+    "message":"Om",
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Salut ! Lors de cette session, Cookie AutoDelete a supprimé $sessionDeleted$ cookies et $totalDeleted$ cookies au total.",
+    "message":"Hej! Under den här sessionen har Cookie AutoDelete tagit bort $sessionDeleted$ av sammanlagt $totalDeleted$ cookies.",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -40,39 +40,43 @@
     }
   },
   "releaseNotesText":{
-    "message":"Notes de version",
+    "message":"Versionsinformation",
     "description":"Release Notes"
   },
+  "minutesText":{
+    "message":"minut(er)",
+    "description":"Minute(s)"
+  },
   "statLoggingText":{
-    "message":"Enregistrer le nombre total de cookies supprimés",
+    "message":"Logga det sammanlagda antalet borttagna cookies",
     "description":"Log Total Number Of Cookies Deleted"
   },
   "resetCounterText":{
-    "message":"Réinitialiser le compteur",
+    "message":"Nollställ räknaren",
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Afficher le nombre de cookies pour ce domaine",
+    "message":"Visa antal cookies för domänen",
     "description":"Show Number of Cookies for that Domain"
   },
   "enableGlobalSubdomainText":{
-    "message":"Activer le contrôle des sous-domaines",
+    "message":"Aktivera kontroll av underdomäner",
     "description":"Enable Check for Subdomains"
   },
   "defaultSettingsText":{
-    "message":"Restaurer les paramètres par défaut",
+    "message":"Återställ standardinställningar",
     "description":"Restore Default Settings"
   },
   "clearURLText":{
-    "message":"Tout supprimer",
+    "message":"Ta bort alla",
     "description":"Remove All"
   },
   "reportIssuesText":{
-    "message":"Reporter les problèmes et suggérer des fonctionnalités",
+    "message":"Rapportera problem och föreslå programfunktioner",
     "description":"Report issues and suggest features"
   },
   "contributorsText":{
-    "message":"Contributeurs:",
+    "message":"Medhjälpare:",
     "description":"Contributors:"
   }
 }

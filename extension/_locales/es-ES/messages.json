@@ -4,7 +4,7 @@
     "description":"Name of the extension."
   },
   "notificationContent":{
-    "message":"$Num$ Cookies gelöscht von: $Websites$",
+    "message":"$Num$ Cookies eliminadas de: $Websites$",
     "description":"123 Deleted Cookies from: google.com, facebook.com",
     "placeholders":{
       "num":{
@@ -18,23 +18,23 @@
     }
   },
   "welcomeText":{
-    "message":"Willkommen",
+    "message":"Bienvenido",
     "description":"Welcome"
   },
   "settingsText":{
-    "message":"Cookie-Einstellungen",
+    "message":"Configuración de cookies",
     "description":"Cookie Settings"
   },
   "whiteListText":{
-    "message":"Liste von Ausdrücken",
+    "message":"Lista de expresiones",
     "description":"List of Expressions"
   },
   "aboutText":{
-    "message":"Über",
+    "message":"Acerca de",
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Cookie AutoDelete hat während dieser Sitzung $sessionDeleted$ und insgesamt $totalDeleted$ Cookies gelöscht.",
+    "message":"¡Hola! Durante esta sesión, Cookie AutoDelete ha eliminado $sessionDeleted$ cookies y en total $totalDeleted$ cookies.",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -48,71 +48,71 @@
     }
   },
   "releaseNotesText":{
-    "message":"Versionshinweise",
+    "message":"Notas de la versión",
     "description":"Release Notes"
   },
   "activeModeText":{
-    "message":"Automatisches Entsorgen aktivieren? Verzögerung bis zur Entsorgung:",
+    "message":"¿Permitir la limpieza automática? Demora antes de la limpieza:",
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
-    "message":"Minute(n)",
+    "message":"Minuto(s)",
     "description":"Minute(s)"
   },
   "statLoggingText":{
-    "message":"Gesamtanzahl gelöschter Cookies protokollieren",
+    "message":"Número total de cookies eliminadas del registro",
     "description":"Log Total Number Of Cookies Deleted"
   },
   "resetCounterText":{
-    "message":"Zähler zurücksetzen",
+    "message":"Reiniciar contador",
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Zeigt die Anzahl der Cookies einer Domain in der Symbolleiste",
+    "message":"Mostrar número de cookies para ese dominio",
     "description":"Show Number of Cookies for that Domain"
   },
   "enableGlobalSubdomainText":{
-    "message":"Subdomain-Prüfung aktivieren",
+    "message":"Habilitar la búsqueda de subdominios",
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Unterstützung für Firefox Container Tabs",
+    "message":"Habilitar el soporte para los contenedores separados de Firefox",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
-    "message":"Standardeinstellungen wiederherstellen",
+    "message":"Restaurar la configuración predeterminada",
     "description":"Restore Default Settings"
   },
   "clearURLText":{
-    "message":"Alle löschen",
+    "message":"Eliminar todo",
     "description":"Remove All"
   },
   "exportURLSText":{
-    "message":"Ausdrücke exportieren",
+    "message":"Exportación de expresiones",
     "description":"Export Expressions"
   },
   "importURLSText":{
-    "message":"Ausdrücke importieren",
+    "message":"Importación de Expresiones",
     "description":"Import Expressions"
   },
   "reportIssuesText":{
-    "message":"Melde Fehler und schlage neue Funktionen vor",
+    "message":"Informar problemas y sugerir funciones",
     "description":"Report issues and suggest features"
   },
   "contributorsText":{
-    "message":"Mitwirkende:",
+    "message":"Contribuidores:",
     "description":"Contributors:"
   },
   "matchedDomainExpressionText":{
-    "message":"Passender Domain-Ausdruck",
+    "message":"Expresión de dominio emparejado",
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Entsprechender regulärerer Ausdruck",
+    "message":"Expresión regular equivalente",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
-    "message":"Listentyp",
+    "message":"Tipo de lista",
     "description":"List Type"
   }
 }

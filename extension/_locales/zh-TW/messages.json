@@ -1,6 +1,6 @@
 {
   "notificationContent":{
-    "message":"$Num$ cookies supprimés depuis : $Websites$",
+    "message":"已清除 $Num$ 個來自下列網站的 cookie：$Websites$",
     "description":"123 Deleted Cookies from: google.com, facebook.com",
     "placeholders":{
       "num":{
@@ -14,19 +14,19 @@
     }
   },
   "welcomeText":{
-    "message":"Bienvenue",
+    "message":"歡迎使用",
     "description":"Welcome"
   },
   "settingsText":{
-    "message":"Paramètres cookies",
+    "message":"Cookie 設定",
     "description":"Cookie Settings"
   },
   "aboutText":{
-    "message":"À propos",
+    "message":"關於",
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Salut ! Lors de cette session, Cookie AutoDelete a supprimé $sessionDeleted$ cookies et $totalDeleted$ cookies au total.",
+    "message":"您好！Cookie AutoDelete 在此對談期間已清除 $sessionDeleted$ 個 cookie，累計清除了 $totalDeleted$ 個 cookie。",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -40,39 +40,43 @@
     }
   },
   "releaseNotesText":{
-    "message":"Notes de version",
+    "message":"版本資訊",
     "description":"Release Notes"
   },
+  "minutesText":{
+    "message":"分鐘",
+    "description":"Minute(s)"
+  },
   "statLoggingText":{
-    "message":"Enregistrer le nombre total de cookies supprimés",
+    "message":"記錄已清除 Cookie 的總數",
     "description":"Log Total Number Of Cookies Deleted"
   },
   "resetCounterText":{
-    "message":"Réinitialiser le compteur",
+    "message":"清除記錄",
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Afficher le nombre de cookies pour ce domaine",
+    "message":"顯示該域名的 Cookie 數量",
     "description":"Show Number of Cookies for that Domain"
   },
   "enableGlobalSubdomainText":{
-    "message":"Activer le contrôle des sous-domaines",
+    "message":"檢查子域名",
     "description":"Enable Check for Subdomains"
   },
   "defaultSettingsText":{
-    "message":"Restaurer les paramètres par défaut",
+    "message":"恢復預設設定",
     "description":"Restore Default Settings"
   },
   "clearURLText":{
-    "message":"Tout supprimer",
+    "message":"全部移除",
     "description":"Remove All"
   },
   "reportIssuesText":{
-    "message":"Reporter les problèmes et suggérer des fonctionnalités",
+    "message":"彙報問題及建議新功能",
     "description":"Report issues and suggest features"
   },
   "contributorsText":{
-    "message":"Contributeurs:",
+    "message":"貢獻者：",
     "description":"Contributors:"
   }
 }

@@ -1,309 +1,82 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
-
-  "extensionDescription": {
-    "message": "Prendi il controllo dei tuoi cookie! Elimina automaticamente i cookie non utilizzati dalle schede chiuse e mantieni solo quelli che vuoi.",
-    "description": "Control Your Cookies! Auto Delete Unused Cookies From your Closed Tabs While Keeping The Ones You Want."
-  },
-
-  "notificationTitle": {
-    "message": "Cookie AutoDelete: cookie eliminati!",
-    "description": "Cookie AutoDelete: Cookies were Deleted!"
-  },
-
-  "notificationContent": {
-    "message": "$Num$ cookie eliminati da: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num" : {
-        "content" : "$1",
-        "example" : "123"
+  "notificationContent":{
+    "message":"$Num$ cookie eliminati da: $Websites$",
+    "description":"123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders":{
+      "num":{
+        "content":"$1",
+        "example":"123"
       },
-      "websites" : {
-        "content" : "$2",
-        "example" : "google.com, facebook.com"
+      "websites":{
+        "content":"$2",
+        "example":"google.com, facebook.com"
       }
     }
   },
-
-  "hostWebsiteText": {
-    "message": "Sito web:",
-    "description": "Host Website:"
+  "welcomeText":{
+    "message":"Benvenuto",
+    "description":"Welcome"
   },
-
-  "cookieCleanupText": {
-    "message": "Pulisci cookie",
-    "description": "Cookie Cleanup"
+  "settingsText":{
+    "message":"Impostazioni cookie",
+    "description":"Cookie Settings"
   },
-
-  "cookieCleanupIgnoreOpenTabsText": {     
-    "message": "Pulisci cookie (ignora schede aperte)",
-    "description": "Cookie Cleanup (Ignore Open Tabs)"
+  "aboutText":{
+    "message":"Informazioni",
+    "description":"About"
   },
-
-  "clearCookiesForDomainText": {
-    "message": "Pulisci tutti da questo dominio",
-    "description": "Clear All Cookies For This Domain"
-  },
-
-  "activeModeSwitchText": {
-    "message": "Modalità Attiva",
-    "description": "Active Mode"
-  },
-
-  "switchToNoListText": {
-    "message": "Pulisci dopo chiusura scheda",
-    "description": "Clean After Tab Close"
-  },  
-
-  "switchToGreyListText": {
-    "message": "Pulisci al riavvio (Lista grigia)",
-    "description": "Clean on Browser Restart (GreyList)"
-  },
-
-  "switchToWhiteListText": {
-    "message": "Non pulire mai (Lista bianca)",
-    "description": "Never Clean (WhiteList)"
-  },
-
-  "welcomeText": {
-    "message": "Benvenuto",
-    "description": "Welcome"
-  },
-
-  "settingsText": {
-    "message": "Impostazioni cookie",
-    "description": "Cookie Settings"
-  },
-
-  "whiteListText": {
-    "message": "Lista bianca",
-    "description": "Cookie WhiteList"
-  },
-
-  "aboutText": {
-    "message": "Informazioni",
-    "description": "About"
-  },
-
-  "welcomeMessage": {
-    "message": "Ehilà! Durante questa sessione, Cookie AutoDelete ha eliminato $sessionDeleted$ cookie e in totale $totalDeleted$ cookie.",
-    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders": {
-      "sessionDeleted" : {
-        "content" : "$1",
-        "example" : "123"
+  "welcomeMessage":{
+    "message":"Ehilà! Durante questa sessione, Cookie AutoDelete ha eliminato $sessionDeleted$ cookie e in totale $totalDeleted$ cookie.",
+    "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders":{
+      "sessionDeleted":{
+        "content":"$1",
+        "example":"123"
       },
-      "totalDeleted" : {
-        "content" : "$2",
-        "example" : "456"
+      "totalDeleted":{
+        "content":"$2",
+        "example":"456"
       }
     }
   },
-
-  "reviewLinkMessage": {
-    "message": "Grazie per avere provato Cookie AutoDelete. Se ti è piaciuto, scrivi una recensione.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a Review."
+  "releaseNotesText":{
+    "message":"Cronologia",
+    "description":"Release Notes"
   },
-
-  "releaseNotesText": {
-    "message": "Cronologia",
-    "description": "Release Notes"
+  "minutesText":{
+    "message":"Minuto(i)",
+    "description":"Minute(s)"
   },
-
-  "activeModeText": {
-    "message": "Abilitare la Modalità Attiva? Ritardo per eliminare:",
-    "description": "Enable Active Mode? Delay Before Cleaning:"
+  "statLoggingText":{
+    "message":"Registra il numero totale dei cookie eliminati",
+    "description":"Log Total Number Of Cookies Deleted"
   },
-
-  "minutesText": {
-    "message": "Minuto(i)",
-    "description": "Minute(s)"
+  "resetCounterText":{
+    "message":"Reset contatore",
+    "description":"Reset Counter"
   },
-
-  "activeModeTooltipText": {
-    "message": "Quando la Modalità Attiva è abilitata, la pulitura dei cookie viene eseguita alla chiusura delle schede.",
-    "description": "When active mode is enabled, cookie cleanup is triggered on tab close."
+  "showNumberOfCookiesInIconText":{
+    "message":"Mostra il numero di cookie per quel dominio",
+    "description":"Show Number of Cookies for that Domain"
   },
-
-  "statLoggingText": {
-    "message": "Registra il numero totale dei cookie eliminati",
-    "description": "Log Total Number Of Cookies Deleted"
+  "enableGlobalSubdomainText":{
+    "message":"Abilita il controllo dei sottodomini",
+    "description":"Enable Check for Subdomains"
   },
-
-  "statLoggingTooltipText": {
-    "message": "Tiene il conto dei cookie eliminati durante questa sessione e in totale. Viene mostrato nella schermata di benvenuto.",
-    "description": "Counts the number of cookies deleted during this session and in total. This is shown in the Welcome Screen."
+  "defaultSettingsText":{
+    "message":"Ripristina impostazioni predefinite",
+    "description":"Restore Default Settings"
   },
-
-  "resetCounterText": {
-    "message": "Reset contatore",
-    "description": "Reset Counter"
+  "clearURLText":{
+    "message":"Rimuovi tutti",
+    "description":"Remove All"
   },
-
-  "showNumberOfCookiesInIconText": {
-    "message": "Mostra il numero di cookie per quel dominio",
-    "description": "Show Number of Cookies for that Domain"
+  "reportIssuesText":{
+    "message":"Segnala problemi e suggerisci funzionalità",
+    "description":"Report issues and suggest features"
   },
-
-  "showNumberOfCookiesInIconTooltipText": {
-    "message": "Mostra quali cookie posso essere rilevati nel messaggio popup.",
-    "description": "Shows which cookies can be detected in the popup badge."
-  },
-
-  "notifyCookieCleanUpText": {
-    "message": "Mostra una notifica dopo la pulitura dei cookie",
-    "description": "Show Notification After Cookie CleanUp"
-  },
-
-  "notifyCookieCleanUpTooltipText": {
-    "message": "Mostra quanti cookie sono stati eliminati e per quale dominio.",
-    "description": "Shows how many cookies were cleaned and for which domain."
-  },
-
-  "cookieCleanUpOnStartText": {
-    "message": "Pulisci i cookie delle schede aperte all'avvio",
-    "description": "Clean Cookies from Open Tabs on StartUp"
-  },
-
-  "cookieCleanUpOnStartTooltipText": {
-    "message": "Esegue un 'Pulisci cookie (ignora schede aperte)', cioè tutti i cookie assenti dalla lista bianca vengono cancellati.",
-    "description": "This basically does a Cookie Cleanup (Ignore Open Tabs), meaning all cookies not on the WhiteList are deleted."
-  },
-
-  "enableGlobalSubdomainText": {
-    "message": "Abilita il controllo dei sottodomini",
-    "description": "Enable Check for Subdomains"
-  },
-
-  "enableGlobalSubdomainTooltipText": {
-    "message": "Se attivato, *.esempio.it sarà compreso in esempio.it. Disattivandolo avrai un controllo più mirato sulle tue liste.",
-    "description": "When enabled, *.example.com will match example.com. Turning this off gives you more granular control over your lists."
-  },
-
-  "contextualIdentitiesEnabledText": {
-    "message": "Abilita il supporto alle identità contestuali di Firefox (SPERIMENTALE Firefox 53+)",
-    "description": "Enable Support for Firefox's Contextual Identities (EXPERIMENTAL Firefox 53+)"
-  },
-
-  "contextualIdentitiesTooltipText": {
-    "message": "NON abilitarlo se non usi Firefox 53+. Ciò aggiungerà una lista bianca differente per OGNI contenitore in uso. La tua lista bianca predefinita è separata da queste.",
-    "description": "Do NOT Enable unless you are on Firefox 53+. This will add a different whitelist for EACH containers you use. Your default whitelist is separate from these."
-  },
-
-  "saveText": {
-    "message": "Salva",
-    "description": "Save"
-  },
-
-  "cancelText": {
-    "message": "Annulla",
-    "description": "Cancel"
-  },
-
-  "defaultSettingsText": {
-    "message": "Ripristina impostazioni predefinite",
-    "description": "Restore Default Settings"
-  },
-
-  "defaultSettingsTooltipText": {
-    "message": "ATTENZIONE: ciò svuoterà anche la tua lista bianca, quindi fai un backup prima!",
-    "description": "WARNING: This will also clear your WhiteList as well, so make sure you have a backup"
-  },
-
-  "saveConfirmText": {
-    "message": "Salvato!",
-    "description": "Saved!"
-  },
-
-  "cancelConfirmText": {
-    "message": "Impostazioni ripristinate!",
-    "description": "Restored Settings!"
-  },
-
-  "defaultConfirmText": {
-    "message": "Impostazioni predefinite ripristinate!",
-    "description": "Restored Default Settings!"
-  },
-
-  "resetCounterConfirmText": {
-    "message": "Contatore svuotato!",
-    "description": "Cleared Counter!"
-  },
-
-  "whiteListWordText": {
-    "message": "Lista bianca",
-    "description": "WhiteList"
-  }, 
-
-  "greyListWordText": {
-    "message": "Lista grigia",
-    "description": "GreyList"
-  }, 
-
-  "toWhiteListText": {
-    "message": "in lista bianca",
-    "description": "To WhiteList"
-  }, 
-
-  "toGreyListText": {
-    "message": "in lista grigia",
-    "description": "To GreyList"
-  }, 
-
-  "addURLText": {
-    "message": "Aggiungi URL",
-    "description": "Add URL"
-  }, 
-
-  "clearURLText": {
-    "message": "Rimuovi tutti",
-    "description": "Remove All"
-  },
-
-  "enterURLTooltipText": {
-    "message": "Inserisci gli URL senza la parte 'www.', poi premi 'Invio' o 'Aggiungi URL'. Oppure visita il sito e aggiungilo dall'icona.",
-    "description": "Enter URLS without the 'www.' part, then press 'Enter' or 'Add URL'. Alternatively go to the site and add it from the icon."
-  },
-
-  "hoverButtonTooltipText": {
-    "message": "Nella lista grigia vanno i cookie che vuoi tenere fino al riavvio del browser. Nella lista bianca, invece, quelli che vuoi tenere per sempre.",
-    "description": "The GreyList are the cookies that you want to keep until the browser restarts. The WhiteList are the cookies that you want to keep permanently."
-  },
-
-  "exportURLSText": {
-    "message": "Esporta lista bianca",
-    "description": "Export WhiteList"
-  },
-
-  "rightClickToSave": {
-    "message": "Clic destro per salvare con nome",
-    "description": "Right Click to Save Link As"
-  },
-
-  "importURLSText": {
-    "message": "Invia file",
-    "description": "Upload File"
-  },
-
-  "reportIssuesText": {
-    "message": "Segnala problemi e suggerisci funzionalità",
-    "description": "Report issues and suggest features"
-  },  
-
-  "versionText": {
-    "message": "versione",
-    "description": "version"
-  },
-
-  "contributorsText": {
-    "message": "Collaboratori:",
-    "description": "Contributors:"
-  }    
-
-
-
+  "contributorsText":{
+    "message":"Collaboratori:",
+    "description":"Contributors:"
+  }
 }
