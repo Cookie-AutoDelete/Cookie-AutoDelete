@@ -24,14 +24,9 @@ const About = (props) => {
 			<span>{`${browser.i18n.getMessage("contributorsText")}`}</span>
 			<ul>
 				<li>Kenny Do (Creator)</li>
-				<li>SW1FT (pt_PT translation)</li>
-				<li>AdmiralAnimE, StoyanDimitrov (bg translation)</li>
-				<li>Strayer (de translation)</li>
-				<li>yfdyh000 (zh_CN translation)</li>
-				<li>eson57 (sv translation)</li>
-				<li>kostich (sr translation)</li>
-				<li>netrik182 (pt_BR translation)</li>
-				<li>Riotism (zh_ZW translation)</li>
+				<li>seansfkelley (UI Redesign of Expression Table Settings and Popup)</li>
+				<li><a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">GitHub Contributors</a></li>
+				<li><a href="https://crowdin.com/project/cookie-autodelete">Crowdin Contributors</a></li>
 			</ul>
 		</div>
 	);
