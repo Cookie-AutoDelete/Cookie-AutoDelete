@@ -4,11 +4,11 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message":"Prendi il controllo dei tuoi cookie! Elimina automaticamente i cookie inutilizzati dalle schede chiuse e mantieni solo quelli che vuoi.",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies were deleted!",
+    "message":"Cookie AutoDelete: cookie eliminati!",
     "description":"Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent":{
@@ -26,27 +26,27 @@
     }
   },
   "cleanText":{
-    "message":"Clean",
+    "message":"Pulisci",
     "description":"Clean"
   },
   "cookieCleanupText":{
-    "message":"Run cleanup now",
+    "message":"Pulisci adesso",
     "description":"Run cleanup now"
   },
   "cleanIgnoringOpenTabsText":{
-    "message":"Clean, include open tabs",
+    "message":"Pulisci, incluse le schede aperte",
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Run cleanup now, include cookies from open tabs",
+    "message":"Pulisci adesso, inclusi i cookie delle schede aperte",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
-    "message":"Clear cookies for this domain",
+    "message":"Elimina i cookie di questo dominio",
     "description":"Clear cookies for this domain"
   },
   "clearCookiesForDomainText":{
-    "message":"Clear all cookies for $domain$",
+    "message":"Elimina tutti i cookie di $domain$",
     "description":"Clear all cookies for example.com",
     "placeholders":{
       "domain":{
@@ -60,7 +60,7 @@
     "description":"Welcome"
   },
   "preferencesText":{
-    "message":"Settings",
+    "message":"Impostazioni",
     "description":"Settings"
   },
   "settingsText":{
@@ -68,7 +68,7 @@
     "description":"Cookie Settings"
   },
   "whiteListText":{
-    "message":"List of Expressions",
+    "message":"Elenco di espressioni",
     "description":"List of Expressions"
   },
   "aboutText":{
@@ -90,7 +90,7 @@
     }
   },
   "reviewLinkMessage":{
-    "message":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message":"Grazie per avere provato Cookie AutoDelete. Se ti è piaciuto, scrivi una recensione.",
     "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText":{
@@ -98,7 +98,7 @@
     "description":"Release Notes"
   },
   "activeModeText":{
-    "message":"Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message":"Attivare la pulitura automatica? Ritardo per eliminare:",
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
@@ -118,11 +118,11 @@
     "description":"Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText":{
-    "message":"Show Notification After Cookie Cleanup",
+    "message":"Mostra una notifica dopo la pulitura dei cookie",
     "description":"Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText":{
-    "message":"Clean Cookies from Open Tabs on Startup",
+    "message":"Pulisci i cookie delle schede aperte all'avvio",
     "description":"Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText":{
@@ -130,7 +130,7 @@
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Enable Support for Firefox's Container Tabs",
+    "message":"Attiva il supporto per le schede contenitore di Firefox",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
@@ -138,19 +138,19 @@
     "description":"Restore Default Settings"
   },
   "whiteListWordText":{
-    "message":"Whitelist",
+    "message":"Lista bianca",
     "description":"Whitelist"
   },
   "greyListWordText":{
-    "message":"Greylist",
+    "message":"Lista grigia",
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"Aggiungi alla lista bianca (non pulire mai)",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"Aggiungi alla lista grigia (pulisci al riavvio del browser)",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -158,11 +158,11 @@
     "description":"Remove All"
   },
   "exportURLSText":{
-    "message":"Export Expressions",
+    "message":"Esporta espressioni",
     "description":"Export Expressions"
   },
   "importURLSText":{
-    "message":"Import Expressions",
+    "message":"Importa espressioni",
     "description":"Import Expressions"
   },
   "reportIssuesText":{
@@ -170,7 +170,7 @@
     "description":"Report issues and suggest features"
   },
   "versionText":{
-    "message":"$browser$ version",
+    "message":"Versione $browser$",
     "description":"Firefox version",
     "placeholders":{
       "browser":{
@@ -184,63 +184,63 @@
     "description":"Contributors:"
   },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"Espressione del dominio",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
-    "message":"Matched Domain Expression",
+    "message":"Espressione del dominio corrispondente",
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Regular Expression Equivalent",
+    "message":"Espressione regolare equivalente",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
-    "message":"List Type",
+    "message":"Tipo di elenco",
     "description":"List Type"
   },
   "domainPlaceholderText":{
-    "message":"example.com, subdomain.example.com, *.example.com",
+    "message":"esempio.it, sottodominio.esempio.it, *.esempio.it",
     "description":"Domain Expression"
   },
   "removeExpressionText":{
-    "message":"Remove expression",
+    "message":"Rimuovi l'espressione",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"Interrompi modifica",
     "description":"Stop editing"
   },
   "saveExpressionText":{
-    "message":"Save expression",
+    "message":"Salva l'espressione",
     "description":"Save expression"
   },
   "editExpressionText":{
-    "message":"Edit expression",
+    "message":"Modifica l'espressione",
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Toggle to greylist",
+    "message":"Passa alla lista grigia",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Toggle to whitelist",
+    "message":"Passa alla lista bianca",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
-    "message":"Auto-clean enabled",
+    "message":"Pulitura automatica attivata",
     "description":"Auto-clean enabled"
   },
   "autoDeleteDisabledText":{
-    "message":"Auto-clean disabled",
+    "message":"Pulitura automatica disattivata",
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "message":"Cambia per disattivare la pulitura automatica (modalità manuale)",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "message":"Cambia per attivare la pulitura automatica (modalità automatica)",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }

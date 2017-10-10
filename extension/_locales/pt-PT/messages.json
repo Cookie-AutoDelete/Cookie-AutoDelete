@@ -4,11 +4,11 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message":"Controle os seus cookies! Apague automaticamente cookies não utilizados dos seus separadores fechados, enquanto mantém os que pretende.",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies were deleted!",
+    "message":"Cookie AutoDelete: Cookies foram apagados!",
     "description":"Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent":{
@@ -26,27 +26,27 @@
     }
   },
   "cleanText":{
-    "message":"Clean",
+    "message":"Limpar",
     "description":"Clean"
   },
   "cookieCleanupText":{
-    "message":"Run cleanup now",
+    "message":"Executar limpeza agora",
     "description":"Run cleanup now"
   },
   "cleanIgnoringOpenTabsText":{
-    "message":"Clean, include open tabs",
+    "message":"Limpar, incluir separadores abertos",
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Run cleanup now, include cookies from open tabs",
+    "message":"Executar limpeza agora, incluir cookies de separadores abertos",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
-    "message":"Clear cookies for this domain",
+    "message":"Limpar cookies para este domínio",
     "description":"Clear cookies for this domain"
   },
   "clearCookiesForDomainText":{
-    "message":"Clear all cookies for $domain$",
+    "message":"Limpar todos os cookies para $domain$",
     "description":"Clear all cookies for example.com",
     "placeholders":{
       "domain":{
@@ -60,7 +60,7 @@
     "description":"Welcome"
   },
   "preferencesText":{
-    "message":"Settings",
+    "message":"Definições",
     "description":"Settings"
   },
   "settingsText":{
@@ -90,7 +90,7 @@
     }
   },
   "reviewLinkMessage":{
-    "message":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message":"Obrigado por experimentar o Cookie AutoDelete. Se gostou, então por favor deixe uma análise.",
     "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText":{
@@ -118,11 +118,11 @@
     "description":"Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText":{
-    "message":"Show Notification After Cookie Cleanup",
+    "message":"Mostrar notificação após limpeza de cookies",
     "description":"Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText":{
-    "message":"Clean Cookies from Open Tabs on Startup",
+    "message":"Limpar cookies de separadores abertos no arranque",
     "description":"Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText":{
@@ -138,19 +138,19 @@
     "description":"Restore Default Settings"
   },
   "whiteListWordText":{
-    "message":"Whitelist",
+    "message":"Lista branca",
     "description":"Whitelist"
   },
   "greyListWordText":{
-    "message":"Greylist",
+    "message":"Lista cinza",
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"Adicionar à lista branca (nunca limpar)",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"Adicionar à lista cinza (limpar no reinício do navegador)",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -170,7 +170,7 @@
     "description":"Report issues and suggest features"
   },
   "versionText":{
-    "message":"$browser$ version",
+    "message":"Versão do $browser$",
     "description":"Firefox version",
     "placeholders":{
       "browser":{
@@ -184,7 +184,7 @@
     "description":"Contributors:"
   },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"Expressão do domínio",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
@@ -200,47 +200,47 @@
     "description":"List Type"
   },
   "domainPlaceholderText":{
-    "message":"example.com, subdomain.example.com, *.example.com",
+    "message":"exemplo.com, subdomínio.exemplo.com, *.exemplo.com",
     "description":"Domain Expression"
   },
   "removeExpressionText":{
-    "message":"Remove expression",
+    "message":"Remover expressão",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"Parar de editar",
     "description":"Stop editing"
   },
   "saveExpressionText":{
-    "message":"Save expression",
+    "message":"Guardar expressão",
     "description":"Save expression"
   },
   "editExpressionText":{
-    "message":"Edit expression",
+    "message":"Editar expressão",
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Toggle to greylist",
+    "message":"Alternar para a lista cinza",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Toggle to whitelist",
+    "message":"Alternar para a lista branca",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
-    "message":"Auto-clean enabled",
+    "message":"Limpeza automática ativada",
     "description":"Auto-clean enabled"
   },
   "autoDeleteDisabledText":{
-    "message":"Auto-clean disabled",
+    "message":"Limpeza automática desativada",
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "message":"Alternar para desativar limpeza automática (modo manual)",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "message":"Alternar para ativar limpeza automática (modo manual)",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }

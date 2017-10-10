@@ -4,11 +4,11 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message":"Styr dine cookies! Slet ubrugte cookies automatisk når du lukker dine faner, og behold dem du vil beholde.",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies were deleted!",
+    "message":"Cookie AutoDelete: Cookies blev slettet!",
     "description":"Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent":{
@@ -26,27 +26,27 @@
     }
   },
   "cleanText":{
-    "message":"Clean",
+    "message":"Slet",
     "description":"Clean"
   },
   "cookieCleanupText":{
-    "message":"Run cleanup now",
+    "message":"Slet nu",
     "description":"Run cleanup now"
   },
   "cleanIgnoringOpenTabsText":{
-    "message":"Clean, include open tabs",
+    "message":"Slet, inkluder åbne faner",
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Run cleanup now, include cookies from open tabs",
+    "message":"Slet nu, inkluder cookies fra åbne faner",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
-    "message":"Clear cookies for this domain",
+    "message":"Slet cookies for dette domæne",
     "description":"Clear cookies for this domain"
   },
   "clearCookiesForDomainText":{
-    "message":"Clear all cookies for $domain$",
+    "message":"Slet alle cookies for $domain$",
     "description":"Clear all cookies for example.com",
     "placeholders":{
       "domain":{
@@ -60,7 +60,7 @@
     "description":"Welcome"
   },
   "preferencesText":{
-    "message":"Settings",
+    "message":"Indstillinger",
     "description":"Settings"
   },
   "settingsText":{
@@ -90,7 +90,7 @@
     }
   },
   "reviewLinkMessage":{
-    "message":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message":"Tak for at prøve Cookie AutoDelete. Hvis du kan lide den, så giv en anmeldelse.",
     "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText":{
@@ -118,11 +118,11 @@
     "description":"Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText":{
-    "message":"Show Notification After Cookie Cleanup",
+    "message":"Vis meddelelse efter sletning af cookies",
     "description":"Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText":{
-    "message":"Clean Cookies from Open Tabs on Startup",
+    "message":"Slet cookies fra åbne faner ved opstart",
     "description":"Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText":{
@@ -138,19 +138,19 @@
     "description":"Restore Default Settings"
   },
   "whiteListWordText":{
-    "message":"Whitelist",
+    "message":"Hvidliste",
     "description":"Whitelist"
   },
   "greyListWordText":{
-    "message":"Greylist",
+    "message":"Gråliste",
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"Føj til hvidliste (slet aldrig)",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"Føj til gråliste (slet når netlæseren genstarter)",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -184,7 +184,7 @@
     "description":"Contributors:"
   },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"Domæneudtryk",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
@@ -204,43 +204,43 @@
     "description":"Domain Expression"
   },
   "removeExpressionText":{
-    "message":"Remove expression",
+    "message":"Fjern udtryk",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"Stop redigering",
     "description":"Stop editing"
   },
   "saveExpressionText":{
-    "message":"Save expression",
+    "message":"Gem udtryk",
     "description":"Save expression"
   },
   "editExpressionText":{
-    "message":"Edit expression",
+    "message":"Rediger udtryk",
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Toggle to greylist",
+    "message":"Skift til gråliste",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Toggle to whitelist",
+    "message":"Skift til hvidliste",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
-    "message":"Auto-clean enabled",
+    "message":"Automatisk sletning aktiveret",
     "description":"Auto-clean enabled"
   },
   "autoDeleteDisabledText":{
-    "message":"Auto-clean disabled",
+    "message":"Automatisk sletning deaktiveret",
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "message":"Skift for at deaktivere automatisk sletning (manuel tilstand)",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "message":"Skift for at aktivere automatisk sletning (automatisk tilstand)",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }

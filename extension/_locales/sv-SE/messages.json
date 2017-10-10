@@ -4,11 +4,11 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message":"Kontrollera dina cookies! Ta automatiskt bort oanvända cookies efter stängda flikar, samtidigt som du bevarar de du vill ha kvar.",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies were deleted!",
+    "message":"Cookie AutoDelete: Cookies har tagits bort!",
     "description":"Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent":{
@@ -26,27 +26,27 @@
     }
   },
   "cleanText":{
-    "message":"Clean",
+    "message":"Rensa",
     "description":"Clean"
   },
   "cookieCleanupText":{
-    "message":"Run cleanup now",
+    "message":"Kör borttagning nu",
     "description":"Run cleanup now"
   },
   "cleanIgnoringOpenTabsText":{
-    "message":"Clean, include open tabs",
+    "message":"Rensa, inklusive öppna flikar",
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Run cleanup now, include cookies from open tabs",
+    "message":"Kör borttagning nu, inklusive cookies från öppna flikar",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
-    "message":"Clear cookies for this domain",
+    "message":"Ta bort cookies för denna domän",
     "description":"Clear cookies for this domain"
   },
   "clearCookiesForDomainText":{
-    "message":"Clear all cookies for $domain$",
+    "message":"Ta bort cookies för $domain$",
     "description":"Clear all cookies for example.com",
     "placeholders":{
       "domain":{
@@ -60,7 +60,7 @@
     "description":"Welcome"
   },
   "preferencesText":{
-    "message":"Settings",
+    "message":"Inställningar",
     "description":"Settings"
   },
   "settingsText":{
@@ -68,7 +68,7 @@
     "description":"Cookie Settings"
   },
   "whiteListText":{
-    "message":"List of Expressions",
+    "message":"Lista över uttryck",
     "description":"List of Expressions"
   },
   "aboutText":{
@@ -90,7 +90,7 @@
     }
   },
   "reviewLinkMessage":{
-    "message":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message":"Tack för att du provar Cookie AutoDelete. Om du gillar det, kanske du vill lämna en recension.",
     "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText":{
@@ -98,7 +98,7 @@
     "description":"Release Notes"
   },
   "activeModeText":{
-    "message":"Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message":"Starta automatisk rensning? Fördröjning före borttagning:",
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
@@ -118,11 +118,11 @@
     "description":"Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText":{
-    "message":"Show Notification After Cookie Cleanup",
+    "message":"Visa avisering efter cookie-borttagning",
     "description":"Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText":{
-    "message":"Clean Cookies from Open Tabs on Startup",
+    "message":"Ta bort cookies från öppna flikar vid uppstart",
     "description":"Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText":{
@@ -130,7 +130,7 @@
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Enable Support for Firefox's Container Tabs",
+    "message":"Aktivera stöd för Firefox container-flikar",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
@@ -138,19 +138,19 @@
     "description":"Restore Default Settings"
   },
   "whiteListWordText":{
-    "message":"Whitelist",
+    "message":"Vitlista",
     "description":"Whitelist"
   },
   "greyListWordText":{
-    "message":"Greylist",
+    "message":"Grålista",
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"Lägg till i vitlistan (ta aldrig bort)",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"Lägg till i grålistan (Ta bort när webbläsaren startas)",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -158,11 +158,11 @@
     "description":"Remove All"
   },
   "exportURLSText":{
-    "message":"Export Expressions",
+    "message":"Exportera uttryck",
     "description":"Export Expressions"
   },
   "importURLSText":{
-    "message":"Import Expressions",
+    "message":"Importera uttryck",
     "description":"Import Expressions"
   },
   "reportIssuesText":{
@@ -184,63 +184,63 @@
     "description":"Contributors:"
   },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"Domänuttryck",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
-    "message":"Matched Domain Expression",
+    "message":"Matchade domänuttryck",
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Regular Expression Equivalent",
+    "message":"Reguljärt uttryck motsvarande",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
-    "message":"List Type",
+    "message":"Listtyp",
     "description":"List Type"
   },
   "domainPlaceholderText":{
-    "message":"example.com, subdomain.example.com, *.example.com",
+    "message":"exempel.com, underdomän.exempel.com, *. exempel.se",
     "description":"Domain Expression"
   },
   "removeExpressionText":{
-    "message":"Remove expression",
+    "message":"Ta bort uttrycket",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"Avsluta redigering",
     "description":"Stop editing"
   },
   "saveExpressionText":{
-    "message":"Save expression",
+    "message":"Spara uttryck",
     "description":"Save expression"
   },
   "editExpressionText":{
-    "message":"Edit expression",
+    "message":"Redigera uttryck",
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Toggle to greylist",
+    "message":"Växla till grålista",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Toggle to whitelist",
+    "message":"Växla till vitlista",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
-    "message":"Auto-clean enabled",
+    "message":"Automatisk borttagning aktiverad",
     "description":"Auto-clean enabled"
   },
   "autoDeleteDisabledText":{
-    "message":"Auto-clean disabled",
+    "message":"Automatisk borttagning inaktiverad",
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "message":"Växla om du vill inaktivera automatisk rensning (manuellt läge)",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "message":"Växla om du vill aktivera automatisk rensning (automatiskt läge)",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }
