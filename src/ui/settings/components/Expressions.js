@@ -140,7 +140,7 @@ class Expressions extends React.Component {
 
 							<button style={styles.buttonMargins} className="btn btn-primary">
 								<i style={styles.buttonIcon} className="fa fa-download" aria-hidden="true"></i>
-								<span>Export Expressions</span>
+								<span>{browser.i18n.getMessage("exportURLSText")}</span>
 							</button>
 						</a>
 
@@ -148,7 +148,7 @@ class Expressions extends React.Component {
 							<i style={styles.buttonIcon} className="fa fa-upload" aria-hidden="true"></i>
 
 							<input onChange={(e) => this.importExpressions(e.target.files)} type="file" />
-							Import Expressions
+							{browser.i18n.getMessage("importURLSText")}
 						</label>
 					</span>
 
