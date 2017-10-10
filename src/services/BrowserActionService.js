@@ -76,10 +76,10 @@ export const checkIfProtected = async (state, tab = "UNDEFINED") => {
 	const hostname = getHostname(currentTab.url);
 	const matchedExpression = returnMatchedExpressionObject(state, currentTab.cookieStoreId, hostname);
 	if (matchedExpression !== undefined && matchedExpression.listType === "WHITE") {
-		setIconDefault(tab);
+		setIconDefault(currentTab);
 	} else if (matchedExpression !== undefined && matchedExpression.listType === "GREY") {
-		setIconYellow(tab);
+		setIconYellow(currentTab);
 	} else {
-		setIconRed(tab);
+		setIconRed(currentTab);
 	}
 };
