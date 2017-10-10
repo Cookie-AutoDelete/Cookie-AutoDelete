@@ -67,31 +67,16 @@ const onTabRemoved = async (tabId, removeInfo) => {
 	}
 };
 
-export const onTabUpdate = async (tabId, changeInfo, tab) => {
+export const onTabUpdate = (tabId, changeInfo, tab) => {
 	if (tab.status === "complete") {
 		checkIfProtected(store.getState(), tab);
 
-		const windowInfo = await browser.windows.getCurrent();
-
-		// Disable the popup in incognito/private mode
-		if (windowInfo.incognito) {
-			browser.browserAction.disable(tab.id);
-			browser.browserAction.setBadgeText({
-				text: "X", tabId: tab.id
-			});
-			browser.browserAction.setBadgeBackgroundColor({
-				color: "red", tabId: tab.id
-			});
-			setIconRed(tab);
-		}
-		// Not incognito mode
-		browser.browserAction.enable(tab.id);
-		browser.browserAction.setBadgeText({
-			text: "", tabId: tab.id
-		});
-
 		if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
 			showNumberOfCookiesInIcon(tab);
+		} else {
+			browser.browserAction.setBadgeText({
+				text: "", tabId: tab.id
+			});
 		}
 	}
 };
