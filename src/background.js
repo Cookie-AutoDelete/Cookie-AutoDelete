@@ -12,7 +12,7 @@ SOFTWARE.
 /* global browserDetect */
 import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
 import {getSetting} from "./services/libs";
-import {checkIfProtected, setIconRed, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
+import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
 
 let store;
