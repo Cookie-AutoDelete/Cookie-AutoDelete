@@ -214,7 +214,7 @@ small screens.
 Hides the menu at `48em`, but modify this based on your app's needs
 */
 
-@media (min-width: 768px) {
+@media (min-width: 1300px) {
   .header, .content {
     padding-left: 2em;
     padding-right: 2em;
