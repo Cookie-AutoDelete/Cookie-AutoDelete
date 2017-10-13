@@ -19,15 +19,9 @@ import {
 } from "../../UIActions";
 
 const styles = {
-	buttonMargins: {
-		margin: "5px"
-	},
 	tableContainer: {
 		overflow: "auto",
 		height: `${window.innerHeight - 210}px`
-	},
-	buttonIcon: {
-		marginRight: "7px"
 	}
 };
 
@@ -106,10 +100,10 @@ class Expressions extends React.Component {
 			error, contextualIdentitiesObjects, storeId
 		} = this.state;
 		return (
-			<div style={style}>
+			<div className="col" style={style}>
 				<h1>{browser.i18n.getMessage("whiteListText")}</h1>
 
-				<div className="row md-form">
+				<div className="row">
 					<input
 						style={{
 							display: "inline", width: "100%"
@@ -134,27 +128,28 @@ class Expressions extends React.Component {
 					/>
 				</div>
 
-				<div className="row">
-					<span className="pull-left">
-						<a href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`} download="Cookie_AutoDelete_2.X.X_Expressions.json">
+				<div className="row" style={{ paddingTop: "8px", paddingBottom: "8px", justifyContent: "space-between" }}>
+					<div className="col-sm-auto btn-group" style={{ paddingLeft: "0" }}>
+						<IconButton
+							tag="a"
+							className="btn-primary"
+							iconName="download"
+							href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`}
+							download="Cookie_AutoDelete_2.X.X_Expressions.json"
+							role="button"
+							text={browser.i18n.getMessage("exportURLSText")}
+						/>
 
-							<button style={styles.buttonMargins} className="btn btn-primary">
-								<i style={styles.buttonIcon} className="fa fa-download" aria-hidden="true"></i>
-								<span>{browser.i18n.getMessage("exportURLSText")}</span>
-							</button>
-						</a>
-
-						<label style={styles.buttonMargins} className="btn btn-info">
-							<i style={styles.buttonIcon} className="fa fa-upload" aria-hidden="true"></i>
-
-							<input onChange={(e) => this.importExpressions(e.target.files)} type="file" />
-							{browser.i18n.getMessage("importURLSText")}
-						</label>
-					</span>
-
-					<div className="btn-group pull-right" style={{
-						padding: "7.5px 5px"
-					}}>
+						<IconButton
+							tag="input"
+							className="btn-info"
+							iconName="info"
+							type="file"
+							onChange={(e) => this.importExpressions(e.target.files)}
+							text={browser.i18n.getMessage("importURLSText")}
+						/>
+					</div>
+					<div className="col-sm-auto btn-group" style={{ paddingRight: "0", justifyContent: "flex-end" }}>
 						<IconButton
 							className="btn-secondary"
 							onClick={() => {this.addExpressionByInput({
@@ -164,9 +159,8 @@ class Expressions extends React.Component {
 							});}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toGreyListText")}
-						>
-							{browser.i18n.getMessage("greyListWordText")}
-						</IconButton>
+							text={browser.i18n.getMessage("greyListWordText")}
+						/>
 
 						<IconButton
 							className="btn-primary"
@@ -177,9 +171,8 @@ class Expressions extends React.Component {
 							});}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toWhiteListText")}
-						>
-							{browser.i18n.getMessage("whiteListWordText")}
-						</IconButton>
+							text={browser.i18n.getMessage("whiteListWordText")}
+						/>
 					</div>
 
 				</div>
