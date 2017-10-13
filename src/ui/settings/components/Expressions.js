@@ -187,11 +187,22 @@ class Expressions extends React.Component {
 				}
 				{
 					contextualIdentities ?
-						<ul className="row nav nav-tabs">
-							<li onClick={() => this.changeStoreIdTab("default")} className={`${storeId === "default" ? "active" : ""}`}><a href="#tabExpressionList">Default</a></li>
+						<ul className="row nav nav-tabs flex-column flex-sm-row">
+							<li
+								onClick={() => { this.changeStoreIdTab("default"); }}
+								className="nav-item"
+							>
+								<a className={`nav-link ${storeId === "default" ? "active" : ""}`} href="#tabExpressionList">Default</a>
+							</li>
 							{
 								contextualIdentitiesObjects.map((element) =>
-									<li key={`navTab-${element.cookieStoreId}`} onClick={() => this.changeStoreIdTab(element.cookieStoreId)} className={`${storeId === element.cookieStoreId ? "active" : ""}`}><a href="#tabExpressionList">{element.name}</a></li>
+									<li
+										key={`navTab-${element.cookieStoreId}`}
+										onClick={() => { this.changeStoreIdTab(element.cookieStoreId); }}
+										className="nav-item"
+									>
+										<a className={`nav-link ${storeId === element.cookieStoreId ? "active" : ""}`} href="#tabExpressionList">{element.name}</a>
+									</li>
 								)
 							}
 						</ul> : ""
