@@ -30,7 +30,7 @@
     "description":"Clean"
   },
   "cookieCleanupText":{
-    "message":"Run cleanup now",
+    "message":"Изчистване",
     "description":"Run cleanup now"
   },
   "cleanIgnoringOpenTabsText":{
@@ -38,7 +38,7 @@
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Run cleanup now, include cookies from open tabs",
+    "message":"Изчистване (вкл. отворените раздели)",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
@@ -76,7 +76,7 @@
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Здравейте! По време на сесията са изтрити $sessionDeleted$ бисквитки, а общо $totalDeleted$ бисквитки.",
+    "message":"Здравейте! По време на сесията са изтрити $sessionDeleted$ бисквитки, от общо $totalDeleted$ бисквитки.",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -146,11 +146,11 @@
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"Никога да не се изчиства (бял списък)",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"Изчистване след рестартиране на браузъра (сив списък)",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -184,15 +184,15 @@
     "description":"Contributors:"
   },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"Израз за домейн",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
-    "message":"Matched Domain Expression",
+    "message":"Изрази за съвпадащи домейни",
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Regular Expression Equivalent",
+    "message":"Еквивалент на регулярен израз",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
@@ -208,7 +208,7 @@
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"Спиране на редактирането",
     "description":"Stop editing"
   },
   "saveExpressionText":{
@@ -220,11 +220,11 @@
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Toggle to greylist",
+    "message":"Превключване към сивия списък",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Toggle to whitelist",
+    "message":"Превключване към белия списък",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
@@ -236,11 +236,11 @@
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "message":"Ръчен режим",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "message":"Автоматичен режим",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }

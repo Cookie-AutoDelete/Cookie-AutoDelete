@@ -4,7 +4,7 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Beherrsche deine Cookies! Lasse ungenutzte Cookie deiner geschlossenen Tabs automatisch löschen und behalte nur die gewünschten.",
+    "message":"Beherrsche deine Cookies! Lasse ungenutzte Cookies deiner geschlossenen Tabs automatisch löschen und behalte nur die gewünschten.",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
@@ -114,7 +114,7 @@
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
-    "message":"Zeigt die Anzahl der Cookies einer Domain in der Symbolleiste",
+    "message":"Zeige die Anzahl der Cookies einer Domain in der Symbolleiste",
     "description":"Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText":{
@@ -130,7 +130,7 @@
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Unterstützung für Firefox Container Tabs",
+    "message":"Unterstützung für Firefox' Container-Tabs",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
@@ -192,7 +192,7 @@
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Entsprechender regulärerer Ausdruck",
+    "message":"Entsprechender regulärer Ausdruck",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
