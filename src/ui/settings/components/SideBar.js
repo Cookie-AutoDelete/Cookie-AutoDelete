@@ -101,7 +101,7 @@ class SideBar extends Component {
 						<div style={{
 							position: "absolute", bottom: "5px", width: "100%"
 						}}>
-							<a href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/about" className="btn" style={{
+							<a href="https://www.paypal.me/mrkennyd/5" className="btn" style={{
 								width: "100%", textAlign: "center"
 							}}>
 								{"Contribute"}

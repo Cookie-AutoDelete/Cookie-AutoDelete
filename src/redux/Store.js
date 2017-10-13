@@ -25,9 +25,9 @@ import {
 const consoleMessages = (store) => (next) => (action) => {
 	let result;
 
-	console.log(
-		`dispatching action => ${action.type}
-	payload => ${JSON.stringify(action.payload)}`);
+	// console.log(
+	// 	`dispatching action => ${action.type}
+	// payload => ${JSON.stringify(action.payload)}`);
 
 	result = next(action);
 
