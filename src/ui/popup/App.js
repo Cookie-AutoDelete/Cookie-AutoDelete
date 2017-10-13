@@ -86,7 +86,7 @@ class App extends Component {
 			`*.${hostname}`
 		].filter(Boolean);
 		return (
-			<div className="container">
+			<div className="container-fluid">
 				<div
 					className="row"
 					style={{
@@ -94,10 +94,10 @@ class App extends Component {
 						paddingBottom: "8px",
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-						minWidth: "650px"
+						alignItems: "center"
 					}}
 				>
-					<div className="col-xs-1">
+					<div className="col-1">
 						<img
 							style={{
 								height: "32px",
@@ -105,12 +105,12 @@ class App extends Component {
 								marginRight: "8px",
 								verticalAlign: "middle"
 							}}
-							src={browser.extension.getURL("icons/icon_32.png")}
+							src={browser.extension.getURL("icons/icon_128.png")}
 							title="Cookie AutoDelete"
 						/>
 					</div>
 
-					<div className="col-xs-11" style={{
+					<div className="col" style={{
 						textAlign: "right"
 					}}>
 						<IconButton
@@ -177,20 +177,31 @@ class App extends Component {
 					</div>
 				</div>
 
-				<div style={{
-					display: "flex", alignItems: "center", margin: "8px 0"
-				}} className="row">
+				<div
+					className="row"
+					style={{
+						margin: "8px 0",
+						alignItems: "center",
+					}}
+				>
 					{tab.favIconUrl &&
-						<img style={{
-							height: "20px",
-							width: "20px",
-							marginRight: "7px",
-							verticalAlign: "middle"
-						}} src={tab.favIconUrl} />
+						<img
+							src={tab.favIconUrl}
+							style={{
+								height: "20px",
+								width: "20px",
+								marginRight: "7px",
+								verticalAlign: "middle"
+							}}
+						/>
 					}
-					<span style={{
-						fontSize: "20px", verticalAlign: "middle"
-					}}>
+					<span
+						style={{
+							fontSize: "20px",
+							verticalAlign: "middle",
+							marginRight: "8px"
+						}}
+					>
 						{
 							// Temporary fix until contextualIdentities events land
 						}
