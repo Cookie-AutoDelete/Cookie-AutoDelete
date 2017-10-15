@@ -9,6 +9,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 **/
+
 import React from "react";
 
 const About = (props) => {
@@ -24,9 +25,13 @@ const About = (props) => {
 			<span>{`${browser.i18n.getMessage("contributorsText")}`}</span>
 			<ul>
 				<li>Kenny Do (Creator)</li>
-				<li>seansfkelley (UI Redesign of Expression Table Settings and Popup)</li>
-				<li><a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">GitHub Contributors</a></li>
-				<li><a href="https://crowdin.com/project/cookie-autodelete">Crowdin Contributors</a></li>
+				<li>Sean Kelley (UI redesign of expression table settings and popup)</li>
+				<li>
+					<a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">GitHub contributors</a>
+				</li>
+				<li>
+					<a href="https://crowdin.com/project/cookie-autodelete">Crowdin contributors</a>
+				</li>
 			</ul>
 		</div>
 	);
