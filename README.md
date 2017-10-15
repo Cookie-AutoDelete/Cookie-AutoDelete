@@ -2,12 +2,12 @@
 [![Coverage Status](https://coveralls.io/repos/github/mrdokenny/Cookie-AutoDelete/badge.svg?branch=master)](https://coveralls.io/github/mrdokenny/Cookie-AutoDelete?branch=master)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cookie-autodelete/localized.svg)](https://crowdin.com/project/cookie-autodelete)
 
-# Cookie-AutoDelete
+# Cookie AutoDelete
 Control your cookies! This extension is inspired by [Self-Destructing Cookies](https://addons.mozilla.org/en-US/firefox/addon/self-destructing-cookies/). When a tab closes, any cookies not being used are automatically deleted. Prevent tracking by other cookies and add only the ones you trust. Easily import and export your cookie whitelist.
 
 ## Main features
-- Auto deletes cookies from closed tabs
-- WhiteList/GreyList support for cookies
+- Automatically deletes cookies from closed tabs
+- Whitelist/Greylist support for cookies
 - Easily export/import your whitelist
 - Clear all cookies for a domain
 - Supports manual mode cleaning from the popup
@@ -22,7 +22,7 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 ## Other versions
 [Google Chrome](https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh)
 
-[Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
+[Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
 
 ### Contributing
 
