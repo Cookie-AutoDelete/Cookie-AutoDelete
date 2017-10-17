@@ -95,7 +95,7 @@ class App extends Component {
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
 						alignItems: "center",
-						minWidth: `${cache.browserDetect === "Chrome" ? "650px" : ""}`
+						minWidth: `${cache.browserDetect === "Chrome" ? "750px" : ""}`
 					}}
 				>
 					<div className="col-1">
