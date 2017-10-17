@@ -95,7 +95,7 @@ class App extends Component {
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
 						alignItems: "center",
-						minWidth: `${cache.browserDetect === "Chrome" ? "650px" : "" }`
+						minWidth: `${cache.browserDetect === "Chrome" ? "650px" : ""}`
 					}}
 				>
 					<div className="col-1">
@@ -139,7 +139,7 @@ class App extends Component {
 								});
 								this.animateFlash(this.cookieCleanupRef, true);
 							}}
-							ref={(e) => { this.cookieCleanupRef = e;}}
+							ref={(e) => {this.cookieCleanupRef = e;}}
 							title={browser.i18n.getMessage("cookieCleanupText")}
 							text={browser.i18n.getMessage("cleanText")}
 						/>
@@ -178,7 +178,7 @@ class App extends Component {
 					className="row"
 					style={{
 						margin: "8px 0",
-						alignItems: "center",
+						alignItems: "center"
 					}}
 				>
 					{tab.favIconUrl &&

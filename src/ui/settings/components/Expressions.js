@@ -128,8 +128,12 @@ class Expressions extends React.Component {
 					/>
 				</div>
 
-				<div className="row" style={{ paddingTop: "8px", paddingBottom: "8px", justifyContent: "space-between" }}>
-					<div className="col-sm-auto btn-group" style={{ paddingLeft: "0" }}>
+				<div className="row" style={{
+					paddingTop: "8px", paddingBottom: "8px", justifyContent: "space-between"
+				}}>
+					<div className="col-sm-auto btn-group" style={{
+						paddingLeft: "0"
+					}}>
 						<IconButton
 							tag="a"
 							className="btn-primary"
@@ -149,7 +153,9 @@ class Expressions extends React.Component {
 							text={browser.i18n.getMessage("importURLSText")}
 						/>
 					</div>
-					<div className="col-sm-auto btn-group" style={{ paddingRight: "0", justifyContent: "flex-end" }}>
+					<div className="col-sm-auto btn-group" style={{
+						paddingRight: "0", justifyContent: "flex-end"
+					}}>
 						<IconButton
 							className="btn-secondary"
 							onClick={() => {this.addExpressionByInput({
@@ -189,7 +195,7 @@ class Expressions extends React.Component {
 					contextualIdentities ?
 						<ul className="row nav nav-tabs flex-column flex-sm-row">
 							<li
-								onClick={() => { this.changeStoreIdTab("default"); }}
+								onClick={() => {this.changeStoreIdTab("default");}}
 								className="nav-item"
 							>
 								<a className={`nav-link ${storeId === "default" ? "active" : ""}`} href="#tabExpressionList">Default</a>
@@ -198,7 +204,7 @@ class Expressions extends React.Component {
 								contextualIdentitiesObjects.map((element) =>
 									<li
 										key={`navTab-${element.cookieStoreId}`}
-										onClick={() => { this.changeStoreIdTab(element.cookieStoreId); }}
+										onClick={() => {this.changeStoreIdTab(element.cookieStoreId);}}
 										className="nav-item"
 									>
 										<a className={`nav-link ${storeId === element.cookieStoreId ? "active" : ""}`} href="#tabExpressionList">{element.name}</a>

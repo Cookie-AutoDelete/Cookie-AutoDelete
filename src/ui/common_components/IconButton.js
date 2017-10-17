@@ -36,10 +36,14 @@ export default class IconButton extends React.Component {
 				<i
 					className={`fa fa-${iconName}`}
 					aria-hidden="true"
-					style={text ? { marginRight: "5px" } : null}
+					style={text ? {
+						marginRight: "5px"
+					} : null}
 				/>
 				{text}
-				{tag === "input" ? <input {...nativeProps} style={{ display: "none" }}/> : null}
+				{tag === "input" ? <input {...nativeProps} style={{
+					display: "none"
+				}}/> : null}
 			</TagName>
 		);
 	}
