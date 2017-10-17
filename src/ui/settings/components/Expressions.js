@@ -143,7 +143,7 @@ class Expressions extends React.Component {
 						<IconButton
 							tag="input"
 							className="btn-info"
-							iconName="info"
+							iconName="upload"
 							type="file"
 							onChange={(e) => this.importExpressions(e.target.files)}
 							text={browser.i18n.getMessage("importURLSText")}
