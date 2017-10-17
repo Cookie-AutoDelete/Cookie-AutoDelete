@@ -164,7 +164,7 @@ class ExpressionTable extends React.Component {
 										title={`${expression.listType === "WHITE" ?
 											browser.i18n.getMessage("toggleToGreyListWordText") :
 											browser.i18n.getMessage("toggleToWhiteListWordText")}`}
-										iconName="refresh"
+										iconName="exchange"
 										className="btn-light showOnRowHover"
 										style={{
 											marginLeft: "5px", float: "right"
