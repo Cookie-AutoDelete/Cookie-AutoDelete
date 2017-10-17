@@ -29,7 +29,7 @@ const FilteredExpression = (props) => {
 				<span style={{
 					display: "flex", alignItems: "center", justifyContent: "center", fontStyle: "italic"
 				}}>
-					No rules matched this domain.
+					{browser.i18n.getMessage("noRulesText")}
 				</span>
 			)}
 		/>

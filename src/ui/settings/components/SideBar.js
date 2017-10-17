@@ -104,7 +104,7 @@ class SideBar extends Component {
 							<a href="https://www.paypal.me/mrkennyd/5" className="btn" style={{
 								width: "100%", textAlign: "center"
 							}}>
-								{"Contribute"}
+								{browser.i18n.getMessage("contributeText")}
 							</a>
 						</div>
 

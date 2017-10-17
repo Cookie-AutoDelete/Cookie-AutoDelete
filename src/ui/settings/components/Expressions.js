@@ -214,7 +214,7 @@ class Expressions extends React.Component {
 						expressions={lists[storeId]}
 						storeId={storeId}
 						emptyElement={(
-							<span>No expressions defined.</span>
+							<span>{browser.i18n.getMessage("noExpressionsText")}</span>
 						)}
 					/>
 				</div>
