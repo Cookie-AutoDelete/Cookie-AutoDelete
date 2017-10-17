@@ -250,11 +250,13 @@ const onStartUp = async () => {
 			cacheCookieStoreIdNames()
 		);
 	}
-	store.dispatch(
-		cookieCleanup({
-			greyCleanup: true, ignoreOpenTabs: getSetting(store.getState(), "cleanCookiesFromOpenTabsOnStartup")
-		})
-	);
+	if (getSetting(store.getState(), "activeMode")) {
+		store.dispatch(
+			cookieCleanup({
+				greyCleanup: true, ignoreOpenTabs: getSetting(store.getState(), "cleanCookiesFromOpenTabsOnStartup")
+			})
+		);
+	}
 	currentSettings = store.getState().settings;
 	store.subscribe(onSettingsChange);
 	store.subscribe(saveToStorage);
