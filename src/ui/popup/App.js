@@ -86,7 +86,7 @@ class App extends Component {
 			`*.${hostname}`
 		].filter(Boolean);
 		return (
-			<div className="container">
+			<div className="container-fluid">
 				<div
 					className="row"
 					style={{
@@ -94,10 +94,10 @@ class App extends Component {
 						paddingBottom: "8px",
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-						minWidth: "650px"
+						alignItems: "center"
 					}}
 				>
-					<div className="col-xs-1">
+					<div className="col-1">
 						<img
 							style={{
 								height: "32px",
@@ -105,12 +105,12 @@ class App extends Component {
 								marginRight: "8px",
 								verticalAlign: "middle"
 							}}
-							src={browser.extension.getURL("icons/icon_32.png")}
+							src={browser.extension.getURL("icons/icon_128.png")}
 							title="Cookie AutoDelete"
 						/>
 					</div>
 
-					<div className="col-xs-11" style={{
+					<div className="col" style={{
 						textAlign: "right"
 					}}>
 						<IconButton
@@ -123,9 +123,8 @@ class App extends Component {
 								...settings.activeMode, value: !settings.activeMode.value
 							})}
 							title={settings.activeMode.value ? browser.i18n.getMessage("disableAutoDeleteText") : browser.i18n.getMessage("enableAutoDeleteText")}
-						>
-							{settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
-						</IconButton>
+							text={settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
+						/>
 
 						<IconButton
 							iconName="eraser"
@@ -139,11 +138,10 @@ class App extends Component {
 								});
 								this.animateFlash(this.cookieCleanupRef, true);
 							}}
+							ref={(e) => { this.cookieCleanupRef = e;}}
 							title={browser.i18n.getMessage("cookieCleanupText")}
-							ref={(e) => {this.cookieCleanupRef = e;}}
-						>
-							{browser.i18n.getMessage("cleanText")}
-						</IconButton>
+							text={browser.i18n.getMessage("cleanText")}
+						/>
 
 						<IconButton
 							iconName="eraser"
@@ -159,9 +157,8 @@ class App extends Component {
 							}}
 							ref={(e) => {this.cookieCleanupIgnoringOpenTabsRef = e;}}
 							title={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
-						>
-							{browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
-						</IconButton>
+							text={browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
+						/>
 
 						<IconButton
 							iconName="cog"
@@ -171,26 +168,36 @@ class App extends Component {
 							}}
 							onClick={() => browser.runtime.openOptionsPage()}
 							title={browser.i18n.getMessage("preferencesText")}
-						>
-							{browser.i18n.getMessage("preferencesText")}
-						</IconButton>
+							text={browser.i18n.getMessage("preferencesText")}
+						/>
 					</div>
 				</div>
 
-				<div style={{
-					display: "flex", alignItems: "center", margin: "8px 0"
-				}} className="row">
+				<div
+					className="row"
+					style={{
+						margin: "8px 0",
+						alignItems: "center",
+					}}
+				>
 					{tab.favIconUrl &&
-						<img style={{
-							height: "20px",
-							width: "20px",
-							marginRight: "7px",
-							verticalAlign: "middle"
-						}} src={tab.favIconUrl} />
+						<img
+							src={tab.favIconUrl}
+							style={{
+								height: "20px",
+								width: "20px",
+								marginRight: "7px",
+								verticalAlign: "middle"
+							}}
+						/>
 					}
-					<span style={{
-						fontSize: "20px", verticalAlign: "middle"
-					}}>
+					<span
+						style={{
+							fontSize: "20px",
+							verticalAlign: "middle",
+							marginRight: "8px"
+						}}
+					>
 						{
 							// Temporary fix until contextualIdentities events land
 						}
@@ -202,15 +209,14 @@ class App extends Component {
 						style={{
 							marginLeft: "auto"
 						}}
-						title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
-						ref={(e) => {this.clearCookiesRef = e;}}
 						onClick={async () => {
 							const success = await this.clearCookiesForThisDomain(hostname);
 							this.animateFlash(this.clearCookiesRef, success);
 						}}
-					>
-						{browser.i18n.getMessage("clearCookiesText")}
-					</IconButton>
+						ref={(e) => {this.clearCookiesRef = e;}}
+						title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
+						text={browser.i18n.getMessage("clearCookiesText")}
+					/>
 				</div>
 
 				{addableHostnames.map((hostname) => (
@@ -232,9 +238,8 @@ class App extends Component {
 								});}}
 								iconName="plus"
 								title={browser.i18n.getMessage("toGreyListText")}
-							>
-								{browser.i18n.getMessage("greyListWordText")}
-							</IconButton>
+								text={browser.i18n.getMessage("greyListWordText")}
+							/>
 
 							<IconButton
 								className="btn-primary"
@@ -243,9 +248,8 @@ class App extends Component {
 								});}}
 								iconName="plus"
 								title={browser.i18n.getMessage("toWhiteListText")}
-							>
-								{browser.i18n.getMessage("whiteListWordText")}
-							</IconButton>
+								text={browser.i18n.getMessage("whiteListWordText")}
+							/>
 						</div>
 					</div>
 				))}
