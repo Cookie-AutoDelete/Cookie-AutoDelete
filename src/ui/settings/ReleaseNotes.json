@@ -6,7 +6,10 @@
         "Changed: Under the hood improvements with React/Redux. Your settings and Domain list will be migrated automatically on update. Old settings are still kept.",
         "Changed: Changed Strict String Matching to Expression Matching. Now you can use wildcards in your domains like git*b.com to match github.com and gitlab.com",
         "Changed: UI Refresh with BootStrap",
-        "Changed: The old exported Domains are not compatible anymore with 2.X.X since there is an entirely different (better) storage format."
+        "Changed: The old exported Domains are not compatible anymore with 2.X.X since there is an entirely different (better) storage format.",
+        "Fixed (2.0.1): Startup cleanup occurring even when Active Mode is disabled",
+        "Fixed (2.0.1): Popup reflow bugs",
+        "Changed (2.0.1): Some slight UI visual changes due to Bootstrap upgrade from 3 to 4"
       ]
     },
     {
