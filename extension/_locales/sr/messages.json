@@ -55,6 +55,10 @@
       }
     }
   },
+  "noRulesText":{
+    "message":"No rules matched this domain",
+    "description":"No rules matched this domain"
+  },
   "welcomeText":{
     "message":"Добродошли",
     "description":"Welcome"
@@ -183,6 +187,10 @@
     "message":"Доприносиоци:",
     "description":"Contributors:"
   },
+  "contributeText":{
+    "message":"Contribute",
+    "description":"Contribute"
+  },
   "domainExpressionsText":{
     "message":"Доменски израз",
     "description":"Domain Expression"
@@ -202,6 +210,10 @@
   "domainPlaceholderText":{
     "message":"primer.rs, poddomen.primer.rs, *.primer.rs, пример.срб",
     "description":"Domain Expression"
+  },
+  "noExpressionsText":{
+    "message":"No expressions defined.",
+    "description":"No expressions defined."
   },
   "removeExpressionText":{
     "message":"Уклони израз",

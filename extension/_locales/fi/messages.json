@@ -4,7 +4,7 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message":"Hallitse evästeitäsi! Poista käyttämättömät evästeet automaattisesti suljetuilta välilehdiltä, kuitenkin säilyttäen valitsemasi evästeet.",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
@@ -26,7 +26,7 @@
     }
   },
   "cleanText":{
-    "message":"Clean",
+    "message":"Puhdista",
     "description":"Clean"
   },
   "cookieCleanupText":{
@@ -55,24 +55,28 @@
       }
     }
   },
+  "noRulesText":{
+    "message":"No rules matched this domain",
+    "description":"No rules matched this domain"
+  },
   "welcomeText":{
-    "message":"Welcome",
+    "message":"Tervetuloa",
     "description":"Welcome"
   },
   "preferencesText":{
-    "message":"Settings",
+    "message":"Asetukset",
     "description":"Settings"
   },
   "settingsText":{
-    "message":"Cookie Settings",
+    "message":"Evästeasetukset",
     "description":"Cookie Settings"
   },
   "whiteListText":{
-    "message":"List of Expressions",
+    "message":"Sääntölista",
     "description":"List of Expressions"
   },
   "aboutText":{
-    "message":"About",
+    "message":"Tietoa",
     "description":"About"
   },
   "welcomeMessage":{
@@ -94,7 +98,7 @@
     "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText":{
-    "message":"Release Notes",
+    "message":"Julkaisutiedot",
     "description":"Release Notes"
   },
   "activeModeText":{
@@ -102,7 +106,7 @@
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
-    "message":"Minute(s)",
+    "message":"Minuutti(a)",
     "description":"Minute(s)"
   },
   "statLoggingText":{
@@ -110,7 +114,7 @@
     "description":"Log Total Number Of Cookies Deleted"
   },
   "resetCounterText":{
-    "message":"Reset Counter",
+    "message":"Nollaa laskuri",
     "description":"Reset Counter"
   },
   "showNumberOfCookiesInIconText":{
@@ -138,39 +142,39 @@
     "description":"Restore Default Settings"
   },
   "whiteListWordText":{
-    "message":"Whitelist",
+    "message":"Sallitut sivut",
     "description":"Whitelist"
   },
   "greyListWordText":{
-    "message":"Greylist",
+    "message":"Harmaa lista",
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"Lisää valkoiselle listalle (älä puhdista)",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"Lisää harmaalle listalle (puhdista selaimen käynnistyksessä)",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
-    "message":"Remove All",
+    "message":"Poista kaikki",
     "description":"Remove All"
   },
   "exportURLSText":{
-    "message":"Export Expressions",
+    "message":"Vie eväste säännöt",
     "description":"Export Expressions"
   },
   "importURLSText":{
-    "message":"Import Expressions",
+    "message":"Tuo eväste säännöt",
     "description":"Import Expressions"
   },
   "reportIssuesText":{
-    "message":"Report issues and suggest features",
+    "message":"Ilmoita ongelmista ja ehdota ominaisuuksia",
     "description":"Report issues and suggest features"
   },
   "versionText":{
-    "message":"$browser$ version",
+    "message":"$browser$ versio",
     "description":"Firefox version",
     "placeholders":{
       "browser":{
@@ -180,11 +184,15 @@
     }
   },
   "contributorsText":{
-    "message":"Contributors:",
+    "message":"Avustajat:",
     "description":"Contributors:"
   },
+  "contributeText":{
+    "message":"Contribute",
+    "description":"Contribute"
+  },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"Domain sääntö",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
@@ -196,27 +204,31 @@
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
-    "message":"List Type",
+    "message":"Tyyppi",
     "description":"List Type"
   },
   "domainPlaceholderText":{
     "message":"example.com, subdomain.example.com, *.example.com",
     "description":"Domain Expression"
   },
+  "noExpressionsText":{
+    "message":"No expressions defined.",
+    "description":"No expressions defined."
+  },
   "removeExpressionText":{
-    "message":"Remove expression",
+    "message":"Poista sääntö",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"Lopeta muokkaus",
     "description":"Stop editing"
   },
   "saveExpressionText":{
-    "message":"Save expression",
+    "message":"Tallenna sääntö",
     "description":"Save expression"
   },
   "editExpressionText":{
-    "message":"Edit expression",
+    "message":"Muokkaa sääntöä",
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
@@ -228,7 +240,7 @@
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
-    "message":"Auto-clean enabled",
+    "message":"Automaattinen puhdistus käytössä",
     "description":"Auto-clean enabled"
   },
   "autoDeleteDisabledText":{

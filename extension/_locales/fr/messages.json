@@ -55,6 +55,10 @@
       }
     }
   },
+  "noRulesText":{
+    "message":"No rules matched this domain",
+    "description":"No rules matched this domain"
+  },
   "welcomeText":{
     "message":"Bienvenue",
     "description":"Welcome"
@@ -183,6 +187,10 @@
     "message":"Contributeurs:",
     "description":"Contributors:"
   },
+  "contributeText":{
+    "message":"Contribute",
+    "description":"Contribute"
+  },
   "domainExpressionsText":{
     "message":"Expression du domaine",
     "description":"Domain Expression"
@@ -202,6 +210,10 @@
   "domainPlaceholderText":{
     "message":"exemple.com, sousdomaine.exemple.com, *.exemple.com",
     "description":"Domain Expression"
+  },
+  "noExpressionsText":{
+    "message":"No expressions defined.",
+    "description":"No expressions defined."
   },
   "removeExpressionText":{
     "message":"Supprimer l'expression",

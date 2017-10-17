@@ -55,6 +55,10 @@
       }
     }
   },
+  "noRulesText":{
+    "message":"No rules matched this domain",
+    "description":"No rules matched this domain"
+  },
   "welcomeText":{
     "message":"Välkommen",
     "description":"Welcome"
@@ -183,6 +187,10 @@
     "message":"Medhjälpare:",
     "description":"Contributors:"
   },
+  "contributeText":{
+    "message":"Contribute",
+    "description":"Contribute"
+  },
   "domainExpressionsText":{
     "message":"Domänuttryck",
     "description":"Domain Expression"
@@ -202,6 +210,10 @@
   "domainPlaceholderText":{
     "message":"exempel.com, underdomän.exempel.com, *. exempel.se",
     "description":"Domain Expression"
+  },
+  "noExpressionsText":{
+    "message":"No expressions defined.",
+    "description":"No expressions defined."
   },
   "removeExpressionText":{
     "message":"Ta bort uttrycket",

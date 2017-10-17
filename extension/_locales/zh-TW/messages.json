@@ -4,11 +4,11 @@
     "description":"Name of the extension."
   },
   "extensionDescription":{
-    "message":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message":"掌控您的 cookie！關閉分頁後自動清除沒用的 cookie，同時保留有用的 cookie。",
     "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies were deleted!",
+    "message":"Cookie AutoDelete: 已清除 cookie！",
     "description":"Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent":{
@@ -26,27 +26,27 @@
     }
   },
   "cleanText":{
-    "message":"Clean",
+    "message":"清除",
     "description":"Clean"
   },
   "cookieCleanupText":{
-    "message":"Run cleanup now",
+    "message":"現在清除",
     "description":"Run cleanup now"
   },
   "cleanIgnoringOpenTabsText":{
-    "message":"Clean, include open tabs",
+    "message":"清除，包括已開分頁",
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Run cleanup now, include cookies from open tabs",
+    "message":"現在清除，包括已開分頁的 cookie",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
-    "message":"Clear cookies for this domain",
+    "message":"清除此域名的所有 cookie",
     "description":"Clear cookies for this domain"
   },
   "clearCookiesForDomainText":{
-    "message":"Clear all cookies for $domain$",
+    "message":"清除所有 $domain$ 的 cookie",
     "description":"Clear all cookies for example.com",
     "placeholders":{
       "domain":{
@@ -55,12 +55,16 @@
       }
     }
   },
+  "noRulesText":{
+    "message":"No rules matched this domain",
+    "description":"No rules matched this domain"
+  },
   "welcomeText":{
     "message":"歡迎使用",
     "description":"Welcome"
   },
   "preferencesText":{
-    "message":"Settings",
+    "message":"設定",
     "description":"Settings"
   },
   "settingsText":{
@@ -68,7 +72,7 @@
     "description":"Cookie Settings"
   },
   "whiteListText":{
-    "message":"List of Expressions",
+    "message":"表示式列表",
     "description":"List of Expressions"
   },
   "aboutText":{
@@ -90,7 +94,7 @@
     }
   },
   "reviewLinkMessage":{
-    "message":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message":"感謝您使用 Cookie AutoDelete。如果您喜歡此擴充套件，請給我們寫一篇評論。",
     "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText":{
@@ -98,7 +102,7 @@
     "description":"Release Notes"
   },
   "activeModeText":{
-    "message":"Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message":"要啟用主動模式？在清除前延遲：",
     "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText":{
@@ -118,11 +122,11 @@
     "description":"Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText":{
-    "message":"Show Notification After Cookie Cleanup",
+    "message":"清除 Cookie 後通知我",
     "description":"Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText":{
-    "message":"Clean Cookies from Open Tabs on Startup",
+    "message":"啟動時清除已開分頁的 Cookie",
     "description":"Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText":{
@@ -130,7 +134,7 @@
     "description":"Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText":{
-    "message":"Enable Support for Firefox's Container Tabs",
+    "message":"啟用對 Firefox 背景身份功能的支援",
     "description":"Enable Support for Firefox's Container Tabs"
   },
   "defaultSettingsText":{
@@ -138,19 +142,19 @@
     "description":"Restore Default Settings"
   },
   "whiteListWordText":{
-    "message":"Whitelist",
+    "message":"白名單",
     "description":"Whitelist"
   },
   "greyListWordText":{
-    "message":"Greylist",
+    "message":"灰名單",
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Add to Whitelist (Never Clean)",
+    "message":"加入白名單（永不清除）",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Add to Greylist (Clean on Browser Restart)",
+    "message":"加入灰名單（在瀏覽器重啟後清除）",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -158,11 +162,11 @@
     "description":"Remove All"
   },
   "exportURLSText":{
-    "message":"Export Expressions",
+    "message":"匯出表示式",
     "description":"Export Expressions"
   },
   "importURLSText":{
-    "message":"Import Expressions",
+    "message":"匯入表示式",
     "description":"Import Expressions"
   },
   "reportIssuesText":{
@@ -170,7 +174,7 @@
     "description":"Report issues and suggest features"
   },
   "versionText":{
-    "message":"$browser$ version",
+    "message":"$browser$ 版本",
     "description":"Firefox version",
     "placeholders":{
       "browser":{
@@ -183,64 +187,72 @@
     "message":"貢獻者：",
     "description":"Contributors:"
   },
+  "contributeText":{
+    "message":"Contribute",
+    "description":"Contribute"
+  },
   "domainExpressionsText":{
-    "message":"Domain Expression",
+    "message":"域名表示式",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
-    "message":"Matched Domain Expression",
+    "message":"吻合的域名表示式",
     "description":"Matched Domain Expression"
   },
   "regularExpressionEquivalentText":{
-    "message":"Regular Expression Equivalent",
+    "message":"正規表示式",
     "description":"Regular Expression Equivalent"
   },
   "listTypeText":{
-    "message":"List Type",
+    "message":"名單",
     "description":"List Type"
   },
   "domainPlaceholderText":{
-    "message":"example.com, subdomain.example.com, *.example.com",
+    "message":"example.com、subdomain.example.com、*.example.com",
     "description":"Domain Expression"
   },
+  "noExpressionsText":{
+    "message":"No expressions defined.",
+    "description":"No expressions defined."
+  },
   "removeExpressionText":{
-    "message":"Remove expression",
+    "message":"移除表示式",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Stop editing",
+    "message":"停止編輯",
     "description":"Stop editing"
   },
   "saveExpressionText":{
-    "message":"Save expression",
+    "message":"儲存表示式",
     "description":"Save expression"
   },
   "editExpressionText":{
-    "message":"Edit expression",
+    "message":"編輯表示式",
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Toggle to greylist",
+    "message":"轉換至灰名單",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Toggle to whitelist",
+    "message":"轉換至白名單",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
-    "message":"Auto-clean enabled",
+    "message":"已啟用自動清除",
     "description":"Auto-clean enabled"
   },
   "autoDeleteDisabledText":{
-    "message":"Auto-clean disabled",
+    "message":"已停用自動清除",
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Toggle to disable automatic cleanup (manual mode)",
+    "message":"切換至手動模式（停止自動清除）",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Toggle to enable automatic cleanup (automatic mode)",
+    "message":"切換至自動模式（自動清除）",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }

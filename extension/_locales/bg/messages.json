@@ -38,7 +38,7 @@
     "description":"Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Изчистване (вкл. отворените раздели)",
+    "message":"Изчистване на всички бисквитки, включително и от отворените раздели",
     "description":"Run cleanup now, include cookies from open tabs"
   },
   "clearCookiesText":{
@@ -54,6 +54,10 @@
         "example":"example.com"
       }
     }
+  },
+  "noRulesText":{
+    "message":"No rules matched this domain",
+    "description":"No rules matched this domain"
   },
   "welcomeText":{
     "message":"Добре дошли",
@@ -76,7 +80,7 @@
     "description":"About"
   },
   "welcomeMessage":{
-    "message":"Здравейте! По време на сесията са изтрити $sessionDeleted$ бисквитки, от общо $totalDeleted$ бисквитки.",
+    "message":"Здравейте! По време на тази сесия са изтрити $sessionDeleted$ бисквитки, а общо за всички сесии - $totalDeleted$.",
     "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders":{
       "sessionDeleted":{
@@ -146,11 +150,11 @@
     "description":"Greylist"
   },
   "toWhiteListText":{
-    "message":"Никога да не се изчиства (бял списък)",
+    "message":"Бисквитките никога не се изчистват",
     "description":"Add to Whitelist (Never Clean)"
   },
   "toGreyListText":{
-    "message":"Изчистване след рестартиране на браузъра (сив списък)",
+    "message":"Бисквитките се изчистват след рестартиране на браузъра",
     "description":"Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText":{
@@ -183,8 +187,12 @@
     "message":"Допринесли:",
     "description":"Contributors:"
   },
+  "contributeText":{
+    "message":"Contribute",
+    "description":"Contribute"
+  },
   "domainExpressionsText":{
-    "message":"Израз за домейн",
+    "message":"Домейни",
     "description":"Domain Expression"
   },
   "matchedDomainExpressionText":{
@@ -203,12 +211,16 @@
     "message":"example.com, subdomain.example.com, *.example.com",
     "description":"Domain Expression"
   },
+  "noExpressionsText":{
+    "message":"No expressions defined.",
+    "description":"No expressions defined."
+  },
   "removeExpressionText":{
     "message":"Премахване на израза",
     "description":"Remove expression"
   },
   "stopEditingText":{
-    "message":"Спиране на редактирането",
+    "message":"Отказ",
     "description":"Stop editing"
   },
   "saveExpressionText":{
@@ -220,11 +232,11 @@
     "description":"Edit expression"
   },
   "toggleToGreyListWordText":{
-    "message":"Превключване към сивия списък",
+    "message":"Преместване в сивия списък",
     "description":"Toggle to greylist"
   },
   "toggleToWhiteListWordText":{
-    "message":"Превключване към белия списък",
+    "message":"Преместване в белия списък",
     "description":"Toggle to whitelist"
   },
   "autoDeleteEnabledText":{
@@ -236,11 +248,11 @@
     "description":"Auto-clean disabled"
   },
   "disableAutoDeleteText":{
-    "message":"Ръчен режим",
+    "message":"Щракнете за да преминете в ръчен режим",
     "description":"Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText":{
-    "message":"Автоматичен режим",
+    "message":"Щракнете за да преминете в автоматичен режим",
     "description":"Toggle to enable automatic cleanup (automatic mode)"
   }
 }
