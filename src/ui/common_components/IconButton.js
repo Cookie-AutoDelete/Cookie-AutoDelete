@@ -28,7 +28,6 @@ export default class IconButton extends React.Component {
 				{...nativeProps}
 				className={`btn ${className || ""}`}
 				style={{
-					padding: "4px 7px",
 					cursor: tag === "input" ? "pointer" : undefined,
 					...style
 				}}

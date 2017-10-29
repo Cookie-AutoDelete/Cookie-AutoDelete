@@ -95,10 +95,11 @@ class App extends Component {
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
 						alignItems: "center",
+						justifyContent: "space-between",
 						minWidth: `${cache.browserDetect === "Chrome" ? "750px" : ""}`
 					}}
 				>
-					<div className="col-1">
+					<div className="col-auto">
 						<img
 							style={{
 								height: "32px",
@@ -111,7 +112,7 @@ class App extends Component {
 						/>
 					</div>
 
-					<div className="col" style={{
+					<div className="col-auto" style={{
 						textAlign: "right"
 					}}>
 						<IconButton
@@ -127,39 +128,54 @@ class App extends Component {
 							text={settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
 						/>
 
-						<IconButton
-							iconName="eraser"
-							className="btn-warning"
+						<div
+							className="btn-group"
+							ref={(e) => { this.cleanButtonContainerRef = e; }}
 							style={{
 								margin: "0 4px"
 							}}
-							onClick={() => {
-								onCookieCleanup({
-									greyCleanup: false, ignoreOpenTabs: false
-								});
-								this.animateFlash(this.cookieCleanupRef, true);
-							}}
-							ref={(e) => {this.cookieCleanupRef = e;}}
-							title={browser.i18n.getMessage("cookieCleanupText")}
-							text={browser.i18n.getMessage("cleanText")}
-						/>
+						>
+							<IconButton
+								iconName="eraser"
+								className="btn-warning"
+								onClick={() => {
+									onCookieCleanup({
+										greyCleanup: false, ignoreOpenTabs: false
+									});
+									this.animateFlash(this.cleanButtonContainerRef, true);
+								}}
+								title={browser.i18n.getMessage("cookieCleanupText")}
+								text={browser.i18n.getMessage("cleanText")}
+							/>
 
-						<IconButton
-							iconName="eraser"
-							className="btn-warning"
-							style={{
-								margin: "0 4px"
-							}}
-							onClick={() => {
-								onCookieCleanup({
-									greyCleanup: false, ignoreOpenTabs: true
-								});
-								this.animateFlash(this.cookieCleanupIgnoringOpenTabsRef, true);
-							}}
-							ref={(e) => {this.cookieCleanupIgnoringOpenTabsRef = e;}}
-							title={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
-							text={browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
-						/>
+							<button className="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"/>
+							<div className="dropdown-menu">
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={() => {
+										onCookieCleanup({
+											greyCleanup: false, ignoreOpenTabs: true
+										});
+										this.animateFlash(this.cleanButtonContainerRef, true);
+									}}
+									title={browser.i18n.getMessage("cookieCleanupIgnoreOpenTabsText")}
+								>
+									{browser.i18n.getMessage("cleanIgnoringOpenTabsText")}
+								</a>
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={async () => {
+										const success = await this.clearCookiesForThisDomain(hostname);
+										this.animateFlash(this.cleanButtonContainerRef, success);
+									}}
+									title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
+								>
+									{browser.i18n.getMessage("clearCookiesText")}
+								</a>
+							</div>
+						</div>
 
 						<IconButton
 							iconName="cog"
@@ -204,20 +220,6 @@ class App extends Component {
 						}
 						{!contextualIdentities ? `${hostname}` : `${hostname} ${cache[storeId] !== undefined ? `(${cache[storeId]})` : ""}`}
 					</span>
-					<IconButton
-						iconName="eraser"
-						className="btn-warning"
-						style={{
-							marginLeft: "auto"
-						}}
-						onClick={async () => {
-							const success = await this.clearCookiesForThisDomain(hostname);
-							this.animateFlash(this.clearCookiesRef, success);
-						}}
-						ref={(e) => {this.clearCookiesRef = e;}}
-						title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
-						text={browser.i18n.getMessage("clearCookiesText")}
-					/>
 				</div>
 
 				{addableHostnames.map((hostname) => (
@@ -231,7 +233,7 @@ class App extends Component {
 						<div style={{
 							flex: 1
 						}}>{hostname}</div>
-						<div className="btn-group">
+						<div className="btn-group" style={{ marginLeft: "8px" }}>
 							<IconButton
 								className="btn-secondary"
 								onClick={() => {onNewExpression({
