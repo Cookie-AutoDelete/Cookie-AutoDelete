@@ -19,7 +19,12 @@ export const showNumberOfCookiesInIcon = async (tab) => {
 		storeId: tab.cookieStoreId
 	});
 
-	if (cookies.length !== 0) {
+	if (cookies.length === 0) {
+		browser.browserAction.setBadgeText({
+			text: "",
+			tabId: tab.id
+		});
+	} else {
 		browser.browserAction.setBadgeText({
 			text: cookies.length.toString(),
 			tabId: tab.id
