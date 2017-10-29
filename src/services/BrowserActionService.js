@@ -9,6 +9,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 **/
+
 import {getHostname, returnMatchedExpressionObject} from "./libs";
 
 // Show the # of cookies in icon
@@ -17,10 +18,18 @@ export const showNumberOfCookiesInIcon = async (tab) => {
 		domain: getHostname(tab.url),
 		storeId: tab.cookieStoreId
 	});
-	browser.browserAction.setBadgeText({
-		text: cookies.length.toString(),
-		tabId: tab.id
-	});
+
+	if (cookies.length === 0) {
+		browser.browserAction.setBadgeText({
+			text: "",
+			tabId: tab.id
+		});
+	} else {
+		browser.browserAction.setBadgeText({
+			text: cookies.length.toString(),
+			tabId: tab.id
+		});
+	}
 };
 
 // Set background icon to yellow
@@ -31,6 +40,7 @@ const setIconYellow = (tab) => {
 			48: "icons/icon_yellow_48.png"
 		}
 	});
+
 	browser.browserAction.setBadgeBackgroundColor({
 		color: "#e6a32e", tabId: tab.id
 	});
@@ -44,6 +54,7 @@ export const setIconRed = (tab) => {
 			48: "icons/icon_red_48.png"
 		}
 	});
+
 	browser.browserAction.setBadgeBackgroundColor({
 		color: "red", tabId: tab.id
 	});
@@ -57,14 +68,16 @@ const setIconDefault = (tab) => {
 			48: "icons/icon_48.png"
 		}
 	});
+
 	browser.browserAction.setBadgeBackgroundColor({
 		color: "blue", tabId: tab.id
 	});
 };
 
-// Check if the site is protected an adjusts the icon appropiately
+// Check if the site is protected and adjust the icon appropriately
 export const checkIfProtected = async (state, tab = "UNDEFINED") => {
 	let currentTab;
+
 	if (tab === "UNDEFINED") {
 		const tabAwait = await browser.tabs.query({
 			currentWindow: true, active: true
@@ -73,8 +86,10 @@ export const checkIfProtected = async (state, tab = "UNDEFINED") => {
 	} else {
 		currentTab = tab;
 	}
+
 	const hostname = getHostname(currentTab.url);
 	const matchedExpression = returnMatchedExpressionObject(state, currentTab.cookieStoreId, hostname);
+
 	if (matchedExpression !== undefined && matchedExpression.listType === "WHITE") {
 		setIconDefault(currentTab);
 	} else if (matchedExpression !== undefined && matchedExpression.listType === "GREY") {
