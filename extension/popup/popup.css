@@ -15,23 +15,35 @@ span.userAction {
 
 @keyframes successAnimation {
   0%   {}
-  10%  { background-color: #4caF50; }
-  50%  { background-color: #4caF50; }
+  10%  {
+    background-color: #4caF50;
+    border-color: #4caF50;
+  }
+  50%  {
+    background-color: #4caF50;
+    border-color: #4caF50;
+  }
   100% {}
 }
 
-.successAnimated {
+.successAnimated button {
   animation: successAnimation 1.5s ease-in-out;
 }
 
 @keyframes failureAnimation {
   0%   {}
-  10%  { background-color: #f44336; }
-  50%  { background-color: #f44336; }
+  10%  {
+    background-color: #f44336;
+    border-color: #f44336;
+  }
+  50%  {
+    background-color: #f44336;
+    border-color: #f44336;
+  }
   100% {}
 }
 
-.failureAnimated {
+.failureAnimated button {
   animation: failureAnimation 1.5s ease-in-out;
 }
 
