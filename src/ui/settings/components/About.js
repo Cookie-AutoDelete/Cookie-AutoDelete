@@ -28,6 +28,8 @@ const About = (props) => {
 				<li><a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">GitHub Contributors</a></li>
 				<li><a href="https://crowdin.com/project/cookie-autodelete">Crowdin Contributors</a></li>
 			</ul>
+			<br/><br/>
+			<a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation/"><span>{`${browser.i18n.getMessage("documentationText", ["Documentation"])}`}</span> </a>
 		</div>
 	);
 };
