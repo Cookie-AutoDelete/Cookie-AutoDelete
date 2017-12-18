@@ -200,6 +200,11 @@
     "description": "Export Expressions"
   },
 
+  "exportURLSTitle": {
+    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+
   "importURLSText": {
     "message": "Import Expressions",
     "description": "Import Expressions"
