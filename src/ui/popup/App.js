@@ -130,7 +130,7 @@ class App extends Component {
 
 						<div
 							className="btn-group"
-							ref={(e) => { this.cleanButtonContainerRef = e; }}
+							ref={(e) => {this.cleanButtonContainerRef = e;}}
 							style={{
 								margin: "0 4px"
 							}}
@@ -233,7 +233,9 @@ class App extends Component {
 						<div style={{
 							flex: 1
 						}}>{hostname}</div>
-						<div className="btn-group" style={{ marginLeft: "8px" }}>
+						<div className="btn-group" style={{
+							marginLeft: "8px"
+						}}>
 							<IconButton
 								className="btn-secondary"
 								onClick={() => {onNewExpression({
