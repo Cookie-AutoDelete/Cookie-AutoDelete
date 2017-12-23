@@ -38,14 +38,15 @@ const onSettingsChange = () => {
 
 // Create an alarm delay before cookie cleanup
 const createActiveModeAlarm = () => {
-	// console.log("create alarm");
 	const minutes = parseFloat(getSetting(store.getState(), "delayBeforeClean"));
-	if (minutes === 0) {
-		store.dispatch(
-			cookieCleanup({
-				greyCleanup: false, ignoreOpenTabs: false
-			})
-		);
+	if (minutes < 0.001) {
+		setTimeout(() => {
+			store.dispatch(
+				cookieCleanup({
+					greyCleanup: false, ignoreOpenTabs: false
+				})
+			);
+		}, 100)
 	} else {
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
