@@ -42,6 +42,11 @@
   		"name": "localstorageCleanup",
   		"value": false,
   		"id": 8
+  	},
+  	"notificationOnScreen": {
+  		"name": "notificationOnScreen",
+  		"value": 2,
+  		"id": 9
   	}
   },
   "cache": {}

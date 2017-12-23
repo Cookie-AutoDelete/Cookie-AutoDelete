@@ -100,6 +100,21 @@ const HistorySettings = (props) => {
 						inline={true}
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
+					<input
+						type="number"
+						className="form-control"
+						style={{
+							display: "inline",
+							margin: "0 5px"
+						}}
+						onChange={(e) => onUpdateSetting({
+							name: settings.notificationOnScreen.name, value: e.target.value, id: settings.notificationOnScreen.id
+						})}
+						value={settings.notificationOnScreen.value}
+						min="1"
+						max="5"
+					/>
+					<span>{browser.i18n.getMessage("secondsText")}</span>
 					<Tooltip
 						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#show-notification-after-cookie-cleanup"}
 					/>

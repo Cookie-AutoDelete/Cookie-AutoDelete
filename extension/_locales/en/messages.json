@@ -130,6 +130,11 @@
     "description": "Minute(s)"
   },
 
+  "secondsText": {
+    "message": "Second(s)",
+    "description": "Second(s)"
+  },
+
   "statLoggingText": {
     "message": "Log Total Number Of Cookies Deleted",
     "description": "Log Total Number Of Cookies Deleted"
