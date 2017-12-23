@@ -77,5 +77,6 @@ export const globExpressionToRegExp = (glob) => {
 // Returns the first availble matched expression
 export const returnMatchedExpressionObject = (state, cookieStoreId, hostname) => {
 	const storeId = getStoreId(state, cookieStoreId);
-	return state.lists[storeId].find((expression) => new RegExp(globExpressionToRegExp(expression.expression)).test(hostname));
+	const expressionList = state.lists[storeId] || [];
+	return expressionList.find((expression) => new RegExp(globExpressionToRegExp(expression.expression)).test(hostname));
 };
