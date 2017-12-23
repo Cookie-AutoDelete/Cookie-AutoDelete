@@ -61,11 +61,23 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 		if (isSafeToClean(state, cookieProperties, cleanupProperties)) {
 			recentlyCleaned++;
 			cleanupProperties.setOfDeletedDomainCookies.add(getSetting(state, "contextualIdentities") ? `${cookieProperties.hostname} (${state.cache[cookieProperties.storeId]})` : cookieProperties.hostname);
+			cleanupProperties.hostnamesDeleted.add(cookieProperties.hostname);
 			// url: "http://domain.com" + cookies[i].path
 			browser.cookies.remove({
 				url: cookieProperties.preparedCookieDomain,
 				name: cookieProperties.name,
 				storeId: cookieProperties.storeId
+			});
+		}
+	}
+};
+
+// This will use the browsingData's hostname attribute to delete any extra browsing data
+export const otherBrowsingDataCleanup = (state, hostnamesDeleted) => {
+	if (state.cache.browserDetect === "Firefox") {
+		if (getSetting(state, "localstorageCleanup")) {
+			browser.browsingData.removeLocalStorage({
+				hostnames: Array.from(hostnamesDeleted)
 			});
 		}
 	}
@@ -94,6 +106,7 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 	let openTabDomains = new Set();
 	let promiseContainers = [];
 	let setOfDeletedDomainCookies = new Set();
+	let hostnamesDeleted = new Set();
 	let cachedResults = {};
 	recentlyCleaned = 0;
 	if (!cleanupProperties.ignoreOpenTabs) {
@@ -103,6 +116,7 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 		...cleanupProperties,
 		openTabDomains,
 		setOfDeletedDomainCookies,
+		hostnamesDeleted,
 		cachedResults
 	};
 	if (getSetting(state, "contextualIdentities")) {
@@ -118,6 +132,9 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 
 	const cookies = await browser.cookies.getAll({});
 	cleanCookies(state, cookies, newCleanupProperties);
+	console.log(hostnamesDeleted);
+	otherBrowsingDataCleanup(state, hostnamesDeleted);
+
 	return {
 		setOfDeletedDomainCookies, recentlyCleaned
 	};

@@ -11,7 +11,7 @@ SOFTWARE.
 **/
 /* global browserDetect */
 import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
-import {getSetting} from "./services/libs";
+import {getSetting, getHostname} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
 
@@ -67,17 +67,33 @@ const onTabRemoved = async (tabId, removeInfo) => {
 	}
 };
 
+const getAllCookieActions = async (tab) => {
+	const cookies = await browser.cookies.getAll({
+		domain: getHostname(tab.url),
+		storeId: tab.cookieStoreId
+	});
+
+	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup")) {
+		browser.cookies.set({
+			url: tab.url,
+			name: "CookieAutoDelete",
+			value: "cookieForLocalstorageCleanup",
+			path: "/"
+		});
+	}
+	if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
+		showNumberOfCookiesInIcon(tab, cookies);
+	} else {
+		browser.browserAction.setBadgeText({
+			text: "", tabId: tab.id
+		});
+	}
+};
+
 export const onTabUpdate = (tabId, changeInfo, tab) => {
 	if (tab.status === "complete") {
 		checkIfProtected(store.getState(), tab);
-
-		if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
-			showNumberOfCookiesInIcon(tab);
-		} else {
-			browser.browserAction.setBadgeText({
-				text: "", tabId: tab.id
-			});
-		}
+		getAllCookieActions(tab);
 	}
 };
 

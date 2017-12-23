@@ -165,6 +165,16 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
 
+  "localstorageCleanupText": {
+    "message": "Localstorage Cleanup (Firefox 58+)",
+    "description": "Localstorage Cleanup (Firefox 58+)"
+  },
+
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+  },
+
   "defaultSettingsText": {
     "message": "Restore Default Settings",
     "description": "Restore Default Settings"

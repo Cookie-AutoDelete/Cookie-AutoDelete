@@ -126,30 +126,6 @@ input[type="file"] {
   border-left-color: #0288d1;
 }
 
-/* The alert message box */
-
-.alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: #ffffff;
-  opacity: 1;
-  transition: opacity 0.6s;
-  margin-bottom: 15px;
-  animation-duration: 1s;
-}
-
-.alert.success {
-  background-color: #4caf50;
-}
-
-.alert.info {
-  background-color: #2196f3;
-}
-
-.alert.warning {
-  background-color: #ff9800;
-}
-
 /* The close button */
 
 .removeButton {

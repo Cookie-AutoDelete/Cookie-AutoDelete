@@ -13,12 +13,7 @@ SOFTWARE.
 import {getHostname, returnMatchedExpressionObject} from "./libs";
 
 // Show the # of cookies in icon
-export const showNumberOfCookiesInIcon = async (tab) => {
-	const cookies = await browser.cookies.getAll({
-		domain: getHostname(tab.url),
-		storeId: tab.cookieStoreId
-	});
-
+export const showNumberOfCookiesInIcon = (tab, cookies) => {
 	if (cookies.length === 0) {
 		browser.browserAction.setBadgeText({
 			text: "",

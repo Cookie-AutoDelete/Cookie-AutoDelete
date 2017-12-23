@@ -121,7 +121,7 @@ const HistorySettings = (props) => {
 			</div>
 
 			{
-				browserDetect === "Firefox" ?
+				browserDetect === "Firefox" &&
 					<div className="row">
 						<div className="col-md-12">
 							<CheckboxSetting
@@ -134,7 +134,31 @@ const HistorySettings = (props) => {
 								hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-support-for-firefoxs-container-tabs-firefox-only"}
 							/>
 						</div>
-					</div> : ""
+					</div>
+			}
+
+			{
+				browserDetect === "Firefox" &&
+					<div className="row">
+						<div className="col-md-12">
+							<CheckboxSetting
+								text={browser.i18n.getMessage("localstorageCleanupText")}
+								settingObject={settings.localstorageCleanup}
+								inline={true}
+								updateSetting={(payload) => onUpdateSetting(payload)}
+							/>
+							<Tooltip
+								hrefURL={""}
+							/>
+						</div>
+					</div>
+			}
+
+			{
+				settings.contextualIdentities.value && settings.localstorageCleanup.value &&
+					<div className="alert alert-warning">
+						{browser.i18n.getMessage("localstorageAndContextualIdentitiesWarning")}
+					</div>
 			}
 
 			<br /><br />

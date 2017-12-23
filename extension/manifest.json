@@ -45,9 +45,10 @@
     "tabs",
     "storage",
     "alarms",
-    "notifications"
+    "notifications",
+    "browsingData"
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "2.0.1"
+  "version": "2.1.0"
 }

@@ -37,6 +37,11 @@
   		"name": "contextualIdentities",
   		"value": false,
   		"id": 7
+  	},
+  	"localstorageCleanup": {
+  		"name": "localstorageCleanup",
+  		"value": false,
+  		"id": 8
   	}
   },
   "cache": {}
