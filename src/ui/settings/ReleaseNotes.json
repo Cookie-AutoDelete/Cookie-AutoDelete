@@ -1,6 +1,16 @@
 {
   "releases":[
     {
+      "version": "2.1.0",
+      "notes": [
+        "Added: Localstorage Support (Firefox 58+)",
+        "Added: Notification on-screen timer setting",
+        "Fixed: Cookies not deleting for newly created Containers",
+        "Fixed: Cookies not deleting until a second tab close under no delay",
+        "Changed: Condensed popup actions"
+      ]
+    },
+    {
       "version": "2.0.0",
       "notes": [
         "Changed: Under the hood improvements with React/Redux. Your settings and Domain list will be migrated automatically on update. Old settings are still kept.",
