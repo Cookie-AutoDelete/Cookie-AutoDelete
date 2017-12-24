@@ -46,7 +46,7 @@ const createActiveModeAlarm = () => {
 					greyCleanup: false, ignoreOpenTabs: false
 				})
 			);
-		}, 100)
+		}, 100);
 	} else {
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
@@ -73,7 +73,7 @@ const getAllCookieActions = async (tab) => {
 		domain: getHostname(tab.url),
 		storeId: tab.cookieStoreId
 	});
-
+	let cookieLength = cookies.length;
 	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup")) {
 		browser.cookies.set({
 			url: tab.url,
@@ -81,9 +81,10 @@ const getAllCookieActions = async (tab) => {
 			value: "cookieForLocalstorageCleanup",
 			path: "/"
 		});
+		cookieLength = 1;
 	}
 	if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
-		showNumberOfCookiesInIcon(tab, cookies);
+		showNumberOfCookiesInIcon(tab, cookieLength);
 	} else {
 		browser.browserAction.setBadgeText({
 			text: "", tabId: tab.id
