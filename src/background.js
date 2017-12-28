@@ -89,7 +89,7 @@ const getAllCookieActions = async (tab) => {
 			url: tab.url,
 			name: "CookieAutoDelete",
 			value: "cookieForLocalstorageCleanup",
-			path: "/"
+			path: "/cookie-for-localstorage-cleanup"
 		});
 		cookieLength = 1;
 	}
