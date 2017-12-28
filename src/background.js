@@ -11,7 +11,7 @@ SOFTWARE.
 **/
 /* global browserDetect */
 import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
-import {getSetting, getHostname} from "./services/libs";
+import {getSetting, getHostname, isAWebpage} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
 
@@ -92,7 +92,7 @@ const getAllCookieActions = async (tab) => {
 		storeId: tab.cookieStoreId
 	});
 	let cookieLength = cookies.length;
-	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup")) {
+	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup") && isAWebpage(tab.url)) {
 		browser.cookies.set({
 			url: tab.url,
 			name: "CookieAutoDelete",
