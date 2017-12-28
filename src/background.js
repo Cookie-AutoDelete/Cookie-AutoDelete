@@ -35,10 +35,18 @@ const saveToStorage = () => {
 const onSettingsChange = () => {
 	let previousSettings = currentSettings;
 	currentSettings = store.getState().settings;
+	// Container Mode enabled
 	if (!previousSettings.contextualIdentities.value && currentSettings.contextualIdentities.value) {
 		store.dispatch(
 			cacheCookieStoreIdNames()
 		);
+	}
+
+	// Localstorage support enabled
+	if (!previousSettings.localstorageCleanup.value && currentSettings.localstorageCleanup.value) {
+		browser.browsingData.removeLocalStorage({
+			since: 0
+		});
 	}
 
 	if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
