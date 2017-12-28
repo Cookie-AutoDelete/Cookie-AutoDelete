@@ -18,9 +18,19 @@ import createStore from "./redux/Store";
 let store;
 let currentSettings;
 
-const saveToStorage = () => browser.storage.local.set({
-	state: JSON.stringify(store.getState())
-});
+// Delay saving to disk to queue up actions
+let delaySave = false;
+const saveToStorage = () => {
+	if (!delaySave) {
+		delaySave = true;
+		setTimeout(() => {
+			delaySave = false;
+			return browser.storage.local.set({
+				state: JSON.stringify(store.getState())
+			});
+		}, 1000)
+	}
+};
 
 const onSettingsChange = () => {
 	let previousSettings = currentSettings;
