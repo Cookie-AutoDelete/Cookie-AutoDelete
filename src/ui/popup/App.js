@@ -71,6 +71,15 @@ class App extends Component {
 		return false;
 	}
 
+	clearLocalstorageForThisDomain(hostname) {
+		// Using this method to ensure cross browser compatiblity
+		browser.tabs.executeScript({
+			code: "window.localStorage.clear();window.sessionStorage.clear();",
+			allFrames: true
+		});
+		return true;
+	}
+
 	render() {
 		const {
 			tab, storeId
@@ -170,9 +179,20 @@ class App extends Component {
 										const success = await this.clearCookiesForThisDomain(hostname);
 										this.animateFlash(this.cleanButtonContainerRef, success);
 									}}
-									title={browser.i18n.getMessage("clearCookiesForDomainText", [hostname])}
+									title={browser.i18n.getMessage("clearSiteDataForDomainText", ["cookies", hostname])}
 								>
-									{browser.i18n.getMessage("clearCookiesText")}
+									{browser.i18n.getMessage("clearSiteDataText", ["cookies"])}
+								</a>
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={async () => {
+										const success = await this.clearLocalstorageForThisDomain(hostname);
+										this.animateFlash(this.cleanButtonContainerRef, success);
+									}}
+									title={browser.i18n.getMessage("clearSiteDataForDomainText", ["localstorage", hostname])}
+								>
+									{browser.i18n.getMessage("clearSiteDataText", ["localstorage"])}
 								</a>
 							</div>
 						</div>
