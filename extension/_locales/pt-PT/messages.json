@@ -1,258 +1,280 @@
 {
-  "extensionName":{
-    "message":"Cookie AutoDelete",
-    "description":"Name of the extension."
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
   },
-  "extensionDescription":{
-    "message":"Controle os seus cookies! Apague automaticamente cookies não utilizados dos seus separadores fechados, enquanto mantém os que pretende.",
-    "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+  "extensionDescription": {
+    "message": "Controle os seus cookies! Apague automaticamente cookies não utilizados dos seus separadores fechados, enquanto mantém os que pretende.",
+    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
-  "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies foram apagados!",
-    "description":"Cookie AutoDelete: Cookies were deleted!"
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: Cookies foram apagados!",
+    "description": "Cookie AutoDelete: Cookies were deleted!"
   },
-  "notificationContent":{
-    "message":"$Num$ cookies apagados de: $Websites$",
-    "description":"123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders":{
-      "num":{
-        "content":"$1",
-        "example":"123"
+  "notificationContent": {
+    "message": "$Num$ cookies apagados de: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
       },
-      "websites":{
-        "content":"$2",
-        "example":"google.com, facebook.com"
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
       }
     }
   },
-  "cleanText":{
-    "message":"Limpar",
-    "description":"Clean"
+  "cleanText": {
+    "message": "Limpar",
+    "description": "Clean"
   },
-  "cookieCleanupText":{
-    "message":"Executar limpeza agora",
-    "description":"Run cleanup now"
+  "cookieCleanupText": {
+    "message": "Executar limpeza agora",
+    "description": "Run cleanup now"
   },
-  "cleanIgnoringOpenTabsText":{
-    "message":"Limpar, incluir separadores abertos",
-    "description":"Clean, include open tabs"
+  "cleanIgnoringOpenTabsText": {
+    "message": "Limpar, incluir separadores abertos",
+    "description": "Clean, include open tabs"
   },
-  "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Executar limpeza agora, incluir cookies de separadores abertos",
-    "description":"Run cleanup now, include cookies from open tabs"
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Executar limpeza agora, incluir cookies de separadores abertos",
+    "description": "Run cleanup now, include cookies from open tabs"
   },
-  "clearCookiesText":{
-    "message":"Limpar cookies para este domínio",
-    "description":"Clear cookies for this domain"
-  },
-  "clearCookiesForDomainText":{
-    "message":"Limpar todos os cookies para $domain$",
-    "description":"Clear all cookies for example.com",
-    "placeholders":{
-      "domain":{
-        "content":"$1",
-        "example":"example.com"
+  "clearSiteDataText": {
+    "message": "Clear $siteData$ for this domain",
+    "description": "Clear cookies for this domain",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       }
     }
   },
-  "noRulesText":{
-    "message":"No rules matched this domain",
-    "description":"No rules matched this domain"
-  },
-  "welcomeText":{
-    "message":"Boas vindas",
-    "description":"Welcome"
-  },
-  "preferencesText":{
-    "message":"Definições",
-    "description":"Settings"
-  },
-  "settingsText":{
-    "message":"Definições dos cookies",
-    "description":"Cookie Settings"
-  },
-  "whiteListText":{
-    "message":"Lista de expressões",
-    "description":"List of Expressions"
-  },
-  "aboutText":{
-    "message":"Acerca",
-    "description":"About"
-  },
-  "welcomeMessage":{
-    "message":"Olá! Durante esta sessão, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
-    "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders":{
-      "sessionDeleted":{
-        "content":"$1",
-        "example":"123"
+  "clearSiteDataForDomainText": {
+    "message": "Clear all $siteData$ for $domain$",
+    "description": "Clear all cookies for example.com",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       },
-      "totalDeleted":{
-        "content":"$2",
-        "example":"456"
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
-  "reviewLinkMessage":{
-    "message":"Obrigado por experimentar o Cookie AutoDelete. Se gostou, então por favor deixe uma análise.",
-    "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+  "noRulesText": {
+    "message": "Nenhuma regra corresponde a este domínio",
+    "description": "No rules matched this domain"
   },
-  "releaseNotesText":{
-    "message":"Notas de lançamento",
-    "description":"Release Notes"
+  "welcomeText": {
+    "message": "Boas vindas",
+    "description": "Welcome"
   },
-  "activeModeText":{
-    "message":"Ativar limpeza automática? Atraso antes da limpeza:",
-    "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
+  "preferencesText": {
+    "message": "Definições",
+    "description": "Settings"
   },
-  "minutesText":{
-    "message":"Minuto(s)",
-    "description":"Minute(s)"
+  "settingsText": {
+    "message": "Definições dos cookies",
+    "description": "Cookie Settings"
   },
-  "statLoggingText":{
-    "message":"Registar número total de cookies apagados",
-    "description":"Log Total Number Of Cookies Deleted"
+  "whiteListText": {
+    "message": "Lista de expressões",
+    "description": "List of Expressions"
   },
-  "resetCounterText":{
-    "message":"Repor contador",
-    "description":"Reset Counter"
+  "aboutText": {
+    "message": "Acerca",
+    "description": "About"
   },
-  "showNumberOfCookiesInIconText":{
-    "message":"Mostrar número de cookies para esse domínio",
-    "description":"Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText":{
-    "message":"Mostrar notificação após limpeza de cookies",
-    "description":"Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText":{
-    "message":"Limpar cookies de separadores abertos no arranque",
-    "description":"Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText":{
-    "message":"Ativar verificação por subdomínios",
-    "description":"Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText":{
-    "message":"Ativar suporte para os separadores contentores do Firefox",
-    "description":"Enable Support for Firefox's Container Tabs"
-  },
-  "defaultSettingsText":{
-    "message":"Restaurar predefinições",
-    "description":"Restore Default Settings"
-  },
-  "whiteListWordText":{
-    "message":"Lista branca",
-    "description":"Whitelist"
-  },
-  "greyListWordText":{
-    "message":"Lista cinza",
-    "description":"Greylist"
-  },
-  "toWhiteListText":{
-    "message":"Adicionar à lista branca (nunca limpar)",
-    "description":"Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText":{
-    "message":"Adicionar à lista cinza (limpar no reinício do navegador)",
-    "description":"Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText":{
-    "message":"Remover todos",
-    "description":"Remove All"
-  },
-  "exportURLSText":{
-    "message":"Exportar expressões",
-    "description":"Export Expressions"
-  },
-  "importURLSText":{
-    "message":"Importar expressões",
-    "description":"Import Expressions"
-  },
-  "reportIssuesText":{
-    "message":"Reporte problemas e sugira funcionalidades",
-    "description":"Report issues and suggest features"
-  },
-  "versionText":{
-    "message":"Versão do $browser$",
-    "description":"Firefox version",
-    "placeholders":{
-      "browser":{
-        "content":"$1",
-        "example":"Firefox"
+  "welcomeMessage": {
+    "message": "Olá! Durante esta sessão, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted": {
+        "content": "$1",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$2",
+        "example": "456"
       }
     }
   },
-  "contributorsText":{
-    "message":"Contribuidores:",
-    "description":"Contributors:"
+  "reviewLinkMessage": {
+    "message": "Obrigado por experimentar o Cookie AutoDelete. Se gostou, então por favor deixe uma análise.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
-  "contributeText":{
-    "message":"Contribute",
-    "description":"Contribute"
+  "releaseNotesText": {
+    "message": "Notas de lançamento",
+    "description": "Release Notes"
   },
-  "domainExpressionsText":{
-    "message":"Expressão do domínio",
-    "description":"Domain Expression"
+  "activeModeText": {
+    "message": "Ativar limpeza automática? Atraso antes da limpeza:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
-  "matchedDomainExpressionText":{
-    "message":"Expressão de domínio correspondente",
-    "description":"Matched Domain Expression"
+  "minutesText": {
+    "message": "Minuto(s)",
+    "description": "Minute(s)"
   },
-  "regularExpressionEquivalentText":{
-    "message":"Equivalente de expressão regular",
-    "description":"Regular Expression Equivalent"
+  "secondsText": {
+    "message": "Second(s)",
+    "description": "Second(s)"
   },
-  "listTypeText":{
-    "message":"Tipo de lista",
-    "description":"List Type"
+  "statLoggingText": {
+    "message": "Registar número total de cookies apagados",
+    "description": "Log Total Number Of Cookies Deleted"
   },
-  "domainPlaceholderText":{
-    "message":"exemplo.com, subdomínio.exemplo.com, *.exemplo.com",
-    "description":"Domain Expression"
+  "resetCounterText": {
+    "message": "Repor contador",
+    "description": "Reset Counter"
   },
-  "noExpressionsText":{
-    "message":"No expressions defined.",
-    "description":"No expressions defined."
+  "showNumberOfCookiesInIconText": {
+    "message": "Mostrar número de cookies para esse domínio",
+    "description": "Show Number of Cookies for that Domain"
   },
-  "removeExpressionText":{
-    "message":"Remover expressão",
-    "description":"Remove expression"
+  "notifyCookieCleanUpText": {
+    "message": "Mostrar notificação após limpeza de cookies",
+    "description": "Show Notification After Cookie Cleanup"
   },
-  "stopEditingText":{
-    "message":"Parar de editar",
-    "description":"Stop editing"
+  "cookieCleanUpOnStartText": {
+    "message": "Limpar cookies de separadores abertos no arranque",
+    "description": "Clean Cookies from Open Tabs on Startup"
   },
-  "saveExpressionText":{
-    "message":"Guardar expressão",
-    "description":"Save expression"
+  "enableGlobalSubdomainText": {
+    "message": "Ativar verificação por subdomínios",
+    "description": "Enable Check for Subdomains"
   },
-  "editExpressionText":{
-    "message":"Editar expressão",
-    "description":"Edit expression"
+  "contextualIdentitiesEnabledText": {
+    "message": "Ativar suporte para os separadores contentores do Firefox",
+    "description": "Enable Support for Firefox's Container Tabs"
   },
-  "toggleToGreyListWordText":{
-    "message":"Alternar para a lista cinza",
-    "description":"Toggle to greylist"
+  "localstorageCleanupText": {
+    "message": "Localstorage Cleanup (Firefox 58+)",
+    "description": "Localstorage Cleanup (Firefox 58+)"
   },
-  "toggleToWhiteListWordText":{
-    "message":"Alternar para a lista branca",
-    "description":"Toggle to whitelist"
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
-  "autoDeleteEnabledText":{
-    "message":"Limpeza automática ativada",
-    "description":"Auto-clean enabled"
+  "defaultSettingsText": {
+    "message": "Restaurar predefinições",
+    "description": "Restore Default Settings"
   },
-  "autoDeleteDisabledText":{
-    "message":"Limpeza automática desativada",
-    "description":"Auto-clean disabled"
+  "whiteListWordText": {
+    "message": "Lista branca",
+    "description": "Whitelist"
   },
-  "disableAutoDeleteText":{
-    "message":"Alternar para desativar limpeza automática (modo manual)",
-    "description":"Toggle to disable automatic cleanup (manual mode)"
+  "greyListWordText": {
+    "message": "Lista cinza",
+    "description": "Greylist"
   },
-  "enableAutoDeleteText":{
-    "message":"Alternar para ativar limpeza automática (modo manual)",
-    "description":"Toggle to enable automatic cleanup (automatic mode)"
+  "toWhiteListText": {
+    "message": "Adicionar à lista branca (nunca limpar)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toGreyListText": {
+    "message": "Adicionar à lista cinza (limpar no reinício do navegador)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "clearURLText": {
+    "message": "Remover todos",
+    "description": "Remove All"
+  },
+  "exportURLSText": {
+    "message": "Exportar expressões",
+    "description": "Export Expressions"
+  },
+  "importURLSText": {
+    "message": "Importar expressões",
+    "description": "Import Expressions"
+  },
+  "reportIssuesText": {
+    "message": "Reporte problemas e sugira funcionalidades",
+    "description": "Report issues and suggest features"
+  },
+  "versionText": {
+    "message": "Versão do $browser$",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "contributorsText": {
+    "message": "Contribuidores:",
+    "description": "Contributors:"
+  },
+  "contributeText": {
+    "message": "Contribuir",
+    "description": "Contribute"
+  },
+  "domainExpressionsText": {
+    "message": "Expressão do domínio",
+    "description": "Domain Expression"
+  },
+  "matchedDomainExpressionText": {
+    "message": "Expressão de domínio correspondente",
+    "description": "Matched Domain Expression"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "Equivalente de expressão regular",
+    "description": "Regular Expression Equivalent"
+  },
+  "listTypeText": {
+    "message": "Tipo de lista",
+    "description": "List Type"
+  },
+  "domainPlaceholderText": {
+    "message": "exemplo.com, subdomínio.exemplo.com, *.exemplo.com",
+    "description": "Domain Expression"
+  },
+  "noExpressionsText": {
+    "message": "Nenhuma expressão definida.",
+    "description": "No expressions defined."
+  },
+  "removeExpressionText": {
+    "message": "Remover expressão",
+    "description": "Remove expression"
+  },
+  "stopEditingText": {
+    "message": "Parar de editar",
+    "description": "Stop editing"
+  },
+  "saveExpressionText": {
+    "message": "Guardar expressão",
+    "description": "Save expression"
+  },
+  "editExpressionText": {
+    "message": "Editar expressão",
+    "description": "Edit expression"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Alternar para a lista cinza",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Alternar para a lista branca",
+    "description": "Toggle to whitelist"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Limpeza automática ativada",
+    "description": "Auto-clean enabled"
+  },
+  "autoDeleteDisabledText": {
+    "message": "Limpeza automática desativada",
+    "description": "Auto-clean disabled"
+  },
+  "disableAutoDeleteText": {
+    "message": "Alternar para desativar limpeza automática (modo manual)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "enableAutoDeleteText": {
+    "message": "Alternar para ativar limpeza automática (modo automático)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
   }
 }

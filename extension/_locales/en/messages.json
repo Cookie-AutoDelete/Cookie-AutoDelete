@@ -55,7 +55,7 @@
     "placeholders": {
       "siteData" : {
         "content": "$1",
-        "example": "example.com"
+        "example": "cookies"
       }
     }
   },

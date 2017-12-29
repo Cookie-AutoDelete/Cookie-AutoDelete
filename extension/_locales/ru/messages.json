@@ -1,258 +1,280 @@
 {
-  "extensionName":{
-    "message":"Cookie AutoDelete",
-    "description":"Name of the extension."
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
   },
-  "extensionDescription":{
-    "message":"Управляйте вашими куками! Автоматически очищайте неиспользуемые куки закрытых вкладок, оставляя только те, которые вам нужны.",
-    "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+  "extensionDescription": {
+    "message": "Управляйте вашими куками! Автоматически очищайте неиспользуемые куки закрытых вкладок, оставляя только те, которые вам нужны.",
+    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
-  "notificationTitle":{
-    "message":"Cookie AutoDelete: куки удалены!",
-    "description":"Cookie AutoDelete: Cookies were deleted!"
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: куки удалены!",
+    "description": "Cookie AutoDelete: Cookies were deleted!"
   },
-  "notificationContent":{
-    "message":"$Num$ куки были удалены от: $Websites$",
-    "description":"123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders":{
-      "num":{
-        "content":"$1",
-        "example":"123"
+  "notificationContent": {
+    "message": "$Num$ куки были удалены от: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
       },
-      "websites":{
-        "content":"$2",
-        "example":"google.com, facebook.com"
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
       }
     }
   },
-  "cleanText":{
-    "message":"Очистить",
-    "description":"Clean"
+  "cleanText": {
+    "message": "Очистить",
+    "description": "Clean"
   },
-  "cookieCleanupText":{
-    "message":"Запустить очистку сейчас",
-    "description":"Run cleanup now"
+  "cookieCleanupText": {
+    "message": "Запустить очистку сейчас",
+    "description": "Run cleanup now"
   },
-  "cleanIgnoringOpenTabsText":{
-    "message":"Очистить, включая открытые вкладки",
-    "description":"Clean, include open tabs"
+  "cleanIgnoringOpenTabsText": {
+    "message": "Очистить, включая открытые вкладки",
+    "description": "Clean, include open tabs"
   },
-  "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Запустить очистку сейчас, включая куки из открытых вкладок",
-    "description":"Run cleanup now, include cookies from open tabs"
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Запустить очистку сейчас, включая куки из открытых вкладок",
+    "description": "Run cleanup now, include cookies from open tabs"
   },
-  "clearCookiesText":{
-    "message":"Очистить куки для этого домена",
-    "description":"Clear cookies for this domain"
-  },
-  "clearCookiesForDomainText":{
-    "message":"Удалить все куки для $domain$",
-    "description":"Clear all cookies for example.com",
-    "placeholders":{
-      "domain":{
-        "content":"$1",
-        "example":"example.com"
+  "clearSiteDataText": {
+    "message": "Clear $siteData$ for this domain",
+    "description": "Clear cookies for this domain",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       }
     }
   },
-  "noRulesText":{
-    "message":"No rules matched this domain",
-    "description":"No rules matched this domain"
-  },
-  "welcomeText":{
-    "message":"Добро пожаловать",
-    "description":"Welcome"
-  },
-  "preferencesText":{
-    "message":"Настройки",
-    "description":"Settings"
-  },
-  "settingsText":{
-    "message":"Настройки",
-    "description":"Cookie Settings"
-  },
-  "whiteListText":{
-    "message":"Список выражений",
-    "description":"List of Expressions"
-  },
-  "aboutText":{
-    "message":"Информация",
-    "description":"About"
-  },
-  "welcomeMessage":{
-    "message":"За время данной сессии с помощью Cookie AutoDelete было удалено $sessionDeleted$ куков, за все время удалено $totalDeleted$ куков.",
-    "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders":{
-      "sessionDeleted":{
-        "content":"$1",
-        "example":"123"
+  "clearSiteDataForDomainText": {
+    "message": "Clear all $siteData$ for $domain$",
+    "description": "Clear all cookies for example.com",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       },
-      "totalDeleted":{
-        "content":"$2",
-        "example":"456"
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
-  "reviewLinkMessage":{
-    "message":"Спасибо за использование Cookie AutoDelete. Если вам понравилось, пожалуйста, оставьте отзыв.",
-    "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+  "noRulesText": {
+    "message": "Нет правил для этого домена",
+    "description": "No rules matched this domain"
   },
-  "releaseNotesText":{
-    "message":"Заметки к релизу",
-    "description":"Release Notes"
+  "welcomeText": {
+    "message": "Добро пожаловать",
+    "description": "Welcome"
   },
-  "activeModeText":{
-    "message":"Включить автоматическую очистку? Задержка перед очисткой:",
-    "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
+  "preferencesText": {
+    "message": "Настройки",
+    "description": "Settings"
   },
-  "minutesText":{
-    "message":"минут(ы)",
-    "description":"Minute(s)"
+  "settingsText": {
+    "message": "Настройки",
+    "description": "Cookie Settings"
   },
-  "statLoggingText":{
-    "message":"Вести подсчет всех удаленных кук",
-    "description":"Log Total Number Of Cookies Deleted"
+  "whiteListText": {
+    "message": "Список правил",
+    "description": "List of Expressions"
   },
-  "resetCounterText":{
-    "message":"Сбросить счетчик",
-    "description":"Reset Counter"
+  "aboutText": {
+    "message": "Информация",
+    "description": "About"
   },
-  "showNumberOfCookiesInIconText":{
-    "message":"Показывать количество кук для этого домена",
-    "description":"Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText":{
-    "message":"Показывать уведомление после очистки кук",
-    "description":"Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText":{
-    "message":"Очищать куки открытых вкладок при запуске",
-    "description":"Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText":{
-    "message":"Включить проверку для поддоменов",
-    "description":"Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText":{
-    "message":"Включить поддержку Container Tabs в Firefox",
-    "description":"Enable Support for Firefox's Container Tabs"
-  },
-  "defaultSettingsText":{
-    "message":"Восстановить первоначальные настройки",
-    "description":"Restore Default Settings"
-  },
-  "whiteListWordText":{
-    "message":"Белый список",
-    "description":"Whitelist"
-  },
-  "greyListWordText":{
-    "message":"Серый список",
-    "description":"Greylist"
-  },
-  "toWhiteListText":{
-    "message":"Добавить в белый список (никогда не очищать)",
-    "description":"Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText":{
-    "message":"Добавить в серый список (очистка при перезапуске браузера)",
-    "description":"Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText":{
-    "message":"Удалить все",
-    "description":"Remove All"
-  },
-  "exportURLSText":{
-    "message":"Експорт выражений",
-    "description":"Export Expressions"
-  },
-  "importURLSText":{
-    "message":"Импорт выражений",
-    "description":"Import Expressions"
-  },
-  "reportIssuesText":{
-    "message":"Сообщить об ошибке или предложить идею",
-    "description":"Report issues and suggest features"
-  },
-  "versionText":{
-    "message":"Версия $browser$",
-    "description":"Firefox version",
-    "placeholders":{
-      "browser":{
-        "content":"$1",
-        "example":"Firefox"
+  "welcomeMessage": {
+    "message": "За время данной сессии с помощью Cookie AutoDelete было удалено $sessionDeleted$ куков, за все время удалено $totalDeleted$ куков.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted": {
+        "content": "$1",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$2",
+        "example": "456"
       }
     }
   },
-  "contributorsText":{
-    "message":"Участники проекта:",
-    "description":"Contributors:"
+  "reviewLinkMessage": {
+    "message": "Спасибо за использование Cookie AutoDelete. Если вам понравилось, пожалуйста, оставьте отзыв.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
-  "contributeText":{
-    "message":"Contribute",
-    "description":"Contribute"
+  "releaseNotesText": {
+    "message": "Заметки к релизу",
+    "description": "Release Notes"
   },
-  "domainExpressionsText":{
-    "message":"Выражение домена",
-    "description":"Domain Expression"
+  "activeModeText": {
+    "message": "Включить автоматическую очистку? Задержка перед очисткой:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
-  "matchedDomainExpressionText":{
-    "message":"Выражение соответствующее домену",
-    "description":"Matched Domain Expression"
+  "minutesText": {
+    "message": "минут(ы)",
+    "description": "Minute(s)"
   },
-  "regularExpressionEquivalentText":{
-    "message":"Соответствующее регулярное выражение",
-    "description":"Regular Expression Equivalent"
+  "secondsText": {
+    "message": "Second(s)",
+    "description": "Second(s)"
   },
-  "listTypeText":{
-    "message":"Тип списка",
-    "description":"List Type"
+  "statLoggingText": {
+    "message": "Вести подсчет всех удаленных кук",
+    "description": "Log Total Number Of Cookies Deleted"
   },
-  "domainPlaceholderText":{
-    "message":"example.com, subdomain.example.com, *. example.com",
-    "description":"Domain Expression"
+  "resetCounterText": {
+    "message": "Сбросить счетчик",
+    "description": "Reset Counter"
   },
-  "noExpressionsText":{
-    "message":"No expressions defined.",
-    "description":"No expressions defined."
+  "showNumberOfCookiesInIconText": {
+    "message": "Показывать количество кук для этого домена",
+    "description": "Show Number of Cookies for that Domain"
   },
-  "removeExpressionText":{
-    "message":"Удалить выражение",
-    "description":"Remove expression"
+  "notifyCookieCleanUpText": {
+    "message": "Показывать уведомление после очистки кук",
+    "description": "Show Notification After Cookie Cleanup"
   },
-  "stopEditingText":{
-    "message":"Завершить редактирование",
-    "description":"Stop editing"
+  "cookieCleanUpOnStartText": {
+    "message": "Очищать куки открытых вкладок при запуске",
+    "description": "Clean Cookies from Open Tabs on Startup"
   },
-  "saveExpressionText":{
-    "message":"Сохранить выражение",
-    "description":"Save expression"
+  "enableGlobalSubdomainText": {
+    "message": "Включить проверку для поддоменов",
+    "description": "Enable Check for Subdomains"
   },
-  "editExpressionText":{
-    "message":"Редактировать выражение",
-    "description":"Edit expression"
+  "contextualIdentitiesEnabledText": {
+    "message": "Включить поддержку Container Tabs в Firefox",
+    "description": "Enable Support for Firefox's Container Tabs"
   },
-  "toggleToGreyListWordText":{
-    "message":"Перенести в серый список",
-    "description":"Toggle to greylist"
+  "localstorageCleanupText": {
+    "message": "Localstorage Cleanup (Firefox 58+)",
+    "description": "Localstorage Cleanup (Firefox 58+)"
   },
-  "toggleToWhiteListWordText":{
-    "message":"Перенести в белый список",
-    "description":"Toggle to whitelist"
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
-  "autoDeleteEnabledText":{
-    "message":"Автоочистка включена",
-    "description":"Auto-clean enabled"
+  "defaultSettingsText": {
+    "message": "Восстановить первоначальные настройки",
+    "description": "Restore Default Settings"
   },
-  "autoDeleteDisabledText":{
-    "message":"Автоочистка выключена",
-    "description":"Auto-clean disabled"
+  "whiteListWordText": {
+    "message": "Белый список",
+    "description": "Whitelist"
   },
-  "disableAutoDeleteText":{
-    "message":"Переключите, чтобы отключить автоматическую очистку (ручной режим)",
-    "description":"Toggle to disable automatic cleanup (manual mode)"
+  "greyListWordText": {
+    "message": "Серый список",
+    "description": "Greylist"
   },
-  "enableAutoDeleteText":{
-    "message":"Переключите, чтобы включить автоматическую очистку (автоматический режим)",
-    "description":"Toggle to enable automatic cleanup (automatic mode)"
+  "toWhiteListText": {
+    "message": "Добавить в белый список (никогда не очищать)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toGreyListText": {
+    "message": "Добавить в серый список (очистка при перезапуске браузера)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "clearURLText": {
+    "message": "Удалить все",
+    "description": "Remove All"
+  },
+  "exportURLSText": {
+    "message": "Экспортировать правила",
+    "description": "Export Expressions"
+  },
+  "importURLSText": {
+    "message": "Импортировать правила",
+    "description": "Import Expressions"
+  },
+  "reportIssuesText": {
+    "message": "Сообщить об ошибке или предложить идею",
+    "description": "Report issues and suggest features"
+  },
+  "versionText": {
+    "message": "Версия $browser$",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "contributorsText": {
+    "message": "Участники проекта:",
+    "description": "Contributors:"
+  },
+  "contributeText": {
+    "message": "Помощь",
+    "description": "Contribute"
+  },
+  "domainExpressionsText": {
+    "message": "Выражение для домена",
+    "description": "Domain Expression"
+  },
+  "matchedDomainExpressionText": {
+    "message": "Правило соответствующее домену",
+    "description": "Matched Domain Expression"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "Соответствующее регулярное выражение",
+    "description": "Regular Expression Equivalent"
+  },
+  "listTypeText": {
+    "message": "Тип списка",
+    "description": "List Type"
+  },
+  "domainPlaceholderText": {
+    "message": "example.com, subdomain.example.com, *. example.com",
+    "description": "Domain Expression"
+  },
+  "noExpressionsText": {
+    "message": "Правила не заданы.",
+    "description": "No expressions defined."
+  },
+  "removeExpressionText": {
+    "message": "Удалить правило",
+    "description": "Remove expression"
+  },
+  "stopEditingText": {
+    "message": "Отменить редактирование",
+    "description": "Stop editing"
+  },
+  "saveExpressionText": {
+    "message": "Сохранить правило",
+    "description": "Save expression"
+  },
+  "editExpressionText": {
+    "message": "Редактировать правило",
+    "description": "Edit expression"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Перенести в серый список",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Перенести в белый список",
+    "description": "Toggle to whitelist"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Автоочистка включена",
+    "description": "Auto-clean enabled"
+  },
+  "autoDeleteDisabledText": {
+    "message": "Автоочистка выключена",
+    "description": "Auto-clean disabled"
+  },
+  "disableAutoDeleteText": {
+    "message": "Переключите, чтобы отключить автоматическую очистку (ручной режим)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "enableAutoDeleteText": {
+    "message": "Переключите, чтобы включить автоматическую очистку (автоматический режим)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
   }
 }
