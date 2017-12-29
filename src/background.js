@@ -54,21 +54,37 @@ const onSettingsChange = () => {
 	}
 };
 
-// Create an alarm delay before cookie cleanup
+// Create an alarm delay or use setTimeout before cookie cleanup
+let alarmFlag = false;
 const createActiveModeAlarm = () => {
-	const minutes = parseFloat(getSetting(store.getState(), "delayBeforeClean"));
-	if (minutes < 0.001) {
+	const seconds = parseInt(getSetting(store.getState(), "delayBeforeClean"));
+	const minutes = seconds / 60;
+	const milliseconds = seconds * 1000;
+	if (alarmFlag) {
+		return;
+	}
+	alarmFlag = true;
 		setTimeout(() => {
 			store.dispatch(
 				cookieCleanup({
 					greyCleanup: false, ignoreOpenTabs: false
 				})
 			);
+			alarmFlag = false;
 		}, 100);
-	} else {
+	} else if (browserDetect() === "Firefox" || (browserDetect() === "Chrome" && seconds >= 60)){
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
 		});
+	} else {
+		setTimeout(() => {
+			store.dispatch(
+				cookieCleanup({
+					greyCleanup: false, ignoreOpenTabs: false
+				})
+			);
+			alarmFlag = false;
+		}, milliseconds);
 	}
 };
 
@@ -324,6 +340,7 @@ browser.alarms.onAlarm.addListener((alarmInfo) => {
 				greyCleanup: false, ignoreOpenTabs: false
 			})
 		);
+		alarmFlag = false;
 		browser.alarms.clear(alarmInfo.name);
 	}
 });

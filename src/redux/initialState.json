@@ -10,7 +10,7 @@
   	},
   	"delayBeforeClean": {
   		"name": "delayBeforeClean",
-  		"value": 1,
+  		"value": 15,
   		"id": 2
   	},
   	"statLogging": {

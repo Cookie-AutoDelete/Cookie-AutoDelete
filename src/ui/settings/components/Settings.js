@@ -49,7 +49,7 @@ const HistorySettings = (props) => {
 						value={settings.delayBeforeClean.value}
 						min="0"
 					/>
-					<span>{browser.i18n.getMessage("minutesText")}</span>
+					<span>{browser.i18n.getMessage("secondsText")}</span>
 					<Tooltip
 						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-automatic-cleaning"}
 					/>

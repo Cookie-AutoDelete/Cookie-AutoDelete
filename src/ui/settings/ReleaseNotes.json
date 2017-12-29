@@ -7,7 +7,8 @@
         "Added: Notification on-screen timer setting",
         "Fixed: Cookies not deleting for newly created Containers",
         "Fixed: Cookies not deleting until a second tab close under no delay",
-        "Changed: Condensed popup actions"
+        "Changed: Condensed popup actions",
+        "Changed: Delay timer changed from minutes to seconds"
       ]
     },
     {
