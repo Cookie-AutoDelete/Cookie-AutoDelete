@@ -28,7 +28,7 @@ const saveToStorage = () => {
 			return browser.storage.local.set({
 				state: JSON.stringify(store.getState())
 			});
-		}, 1000)
+		}, 1000);
 	}
 };
 
@@ -57,7 +57,7 @@ const onSettingsChange = () => {
 // Create an alarm delay or use setTimeout before cookie cleanup
 let alarmFlag = false;
 const createActiveModeAlarm = () => {
-	const seconds = parseInt(getSetting(store.getState(), "delayBeforeClean"));
+	const seconds = parseInt(getSetting(store.getState(), "delayBeforeClean"), 10);
 	const minutes = seconds / 60;
 	const milliseconds = seconds * 1000;
 	if (alarmFlag) {
@@ -73,7 +73,7 @@ const createActiveModeAlarm = () => {
 			);
 			alarmFlag = false;
 		}, 100);
-	} else if (browserDetect() === "Firefox" || (browserDetect() === "Chrome" && seconds >= 60)){
+	} else if (browserDetect() === "Firefox" || (browserDetect() === "Chrome" && seconds >= 60)) {
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
 		});
@@ -294,7 +294,6 @@ const onStartUp = async () => {
 	// Store the FF version in cache
 	if (browserDetect() === "Firefox") {
 		const browserInfo = await browser.runtime.getBrowserInfo();
-		console.log(browserInfo.version.split(".")[0]);
 		store.dispatch({
 			type: "ADD_CACHE",
 			map: {

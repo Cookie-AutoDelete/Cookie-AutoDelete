@@ -164,7 +164,7 @@ const HistorySettings = (props) => {
 								updateSetting={(payload) => onUpdateSetting(payload)}
 							/>
 							<Tooltip
-								hrefURL={""}
+								hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-localstorage-support"}
 							/>
 						</div>
 					</div>

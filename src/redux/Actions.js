@@ -151,7 +151,7 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 	}
 
 	// Increment the count
-	if (recentlyCleaned != 0 && getSetting(getState(), "statLogging")) {
+	if (recentlyCleaned !== 0 && getSetting(getState(), "statLogging")) {
 		dispatch(
 			incrementCookieDeletedCounter(recentlyCleaned)
 		);

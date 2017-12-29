@@ -25,6 +25,7 @@ const About = (props) => {
 			<ul>
 				<li>Kenny Do (Creator)</li>
 				<li>seansfkelley (UI Redesign of Expression Table Settings and Popup)</li>
+				<li>kennethtran93 (UI bug fixes)</li>
 				<li><a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">GitHub Contributors</a></li>
 				<li><a href="https://crowdin.com/project/cookie-autodelete">Crowdin Contributors</a></li>
 			</ul>

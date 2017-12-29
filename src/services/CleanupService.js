@@ -132,7 +132,7 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 
 	const cookies = await browser.cookies.getAll({});
 	cleanCookies(state, cookies, newCleanupProperties);
-	console.log(hostnamesDeleted);
+	// console.log(hostnamesDeleted);
 	otherBrowsingDataCleanup(state, hostnamesDeleted);
 
 	return {
