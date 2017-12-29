@@ -64,6 +64,7 @@ const createActiveModeAlarm = () => {
 		return;
 	}
 	alarmFlag = true;
+	if (seconds < 1) {
 		setTimeout(() => {
 			store.dispatch(
 				cookieCleanup({
