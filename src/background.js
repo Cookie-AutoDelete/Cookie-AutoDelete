@@ -274,6 +274,17 @@ const onStartUp = async () => {
 	store.dispatch({
 		type: "ON_STARTUP"
 	});
+	// Store the FF version in cache
+	if (browserDetect() === "Firefox") {
+		const browserInfo = await browser.runtime.getBrowserInfo();
+		console.log(browserInfo.version.split(".")[0]);
+		store.dispatch({
+			type: "ADD_CACHE",
+			map: {
+				key: "browserVersion", value: browserInfo.version.split(".")[0]
+			}
+		});
+	}
 	store.dispatch({
 		type: "ADD_CACHE",
 		map: {

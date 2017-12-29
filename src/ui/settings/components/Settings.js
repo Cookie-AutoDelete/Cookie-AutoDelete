@@ -22,7 +22,8 @@ const HistorySettings = (props) => {
 		onUpdateSetting,
 		onResetButtonClick,
 		onResetCounterButtonClick,
-		browserDetect
+		browserDetect,
+		browserVersion
 	} = props;
 	return (
 		<div style={style}>
@@ -153,7 +154,7 @@ const HistorySettings = (props) => {
 			}
 
 			{
-				browserDetect === "Firefox" &&
+				browserDetect === "Firefox" && browserVersion >= 58 &&
 					<div className="row">
 						<div className="col-md-12">
 							<CheckboxSetting
@@ -195,7 +196,8 @@ const mapStateToProps = (state) => {
 	} = state;
 	return {
 		settings,
-		browserDetect: cache.browserDetect
+		browserDetect: cache.browserDetect,
+		browserVersion: cache.browserVersion
 	};
 };
 
