@@ -83,7 +83,7 @@ class App extends Component {
 		const addableHostnames = [
 			hostname === mainDomain ? undefined : `*.${mainDomain}`,
 			hostname,
-			`*.${hostname}`
+			hostname === "" ? undefined : `*.${hostname}`
 		].filter(Boolean);
 		return (
 			<div className="container-fluid">
