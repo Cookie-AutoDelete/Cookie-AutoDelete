@@ -14,7 +14,7 @@ import React from "react";
 const SettingsTooltip = ({
 	hrefURL
 }) => (
-	<a href={hrefURL} target={"_blank"} className="tooltipCustom">?</a>
+	<a href={hrefURL} target={"_blank"} className="tooltipCustom" title={browser.i18n.getMessage("tooltipTitle")}>?</a>
 );
 
 export default SettingsTooltip;
