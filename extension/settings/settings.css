@@ -102,6 +102,7 @@ input[type="file"] {
 }
 
 .pure-menu-item {
+  display: block;
   padding-top: 1em;
   padding-left: 1em;
   padding-bottom: 1em;

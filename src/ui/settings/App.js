@@ -53,7 +53,7 @@ class App extends Component {
 			return (
 				<div id="layout">
 					<SideBar switchTabs={(tab) => this.switchTabs(tab)} activeTab={activeTab}/>
-					<div className="container">
+					<div aria-labelledby={activeTab} className="container" role="tabpanel">
 						{
 							activeTab === "tabWelcome" ? <Welcome /> : ""
 						}

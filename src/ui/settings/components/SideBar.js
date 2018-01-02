@@ -82,18 +82,21 @@ class SideBar extends Component {
 					<i style={styles.hamburger} className="fa fa-bars fa-3x" aria-hidden="true"></i>
 				</span>
 
-				<div id="menu">
-					<div className="pure-menu">
+				<nav id="menu">
+					<div className="pure-menu" role="tablist">
 						{
 							sideBarTabs.map((element, index) => (
-								<div
+								<a
 									key={element.tabId}
 									id={`${element.tabId}`}
 									onClick={() => switchTabs(element.tabId)}
+									href="#"
+									role="tab"
+									aria-selected={activeTab === element.tabId}
 									className={`pure-menu-item ${activeTab === element.tabId ? "pure-menu-selected" : ""}`}
 								>
 									<span>{`${element.tabText}`}</span>
-								</div>
+								</a>
 							))
 
 						}
@@ -109,7 +112,7 @@ class SideBar extends Component {
 						</div>
 
 					</div>
-				</div>
+				</nav>
 			</div>
 		);
 	}
