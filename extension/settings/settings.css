@@ -178,9 +178,11 @@ input[type="file"] {
 }
 
 .expressionTable tr .showOnRowHover {
-  visibility: hidden;
+  position: absolute;
+  top: -999px;
 }
 
-.expressionTable tr:hover .showOnRowHover {
-  visibility: visible;
+.expressionTable tr:hover .showOnRowHover,
+.expressionTable tr:focus-within .showOnRowHover {
+  position: initial;
 }
