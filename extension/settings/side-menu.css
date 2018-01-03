@@ -175,6 +175,7 @@ small screens.
   left: 0; /* "#menu width" */
   background: #000;
   background: rgba(0, 0, 0, 0.7);
+  border: 0;
   font-size: 10px;  /* Change this value to increase/decrease button size */
   z-index: 10;
   width: 2em;

@@ -54,9 +54,9 @@ class SideBar extends Component {
 		return (
 			<div ref={(node) => {this.node = node;}}>
 
-				<span style={styles.menuLink} onClick={() => this.toggleAll()} id="menuLink" className="menu-link">
-					<i style={styles.hamburger} className="fa fa-bars fa-3x" aria-hidden="true"></i>
-				</span>
+				<button style={styles.menuLink} onClick={() => this.toggleAll()} id="menuLink" className="menu-link" aria-label={browser.i18n.getMessage("toggleMenuLabel")}>
+					<i style={styles.hamburger} className="fa fa-bars fa-3x" role="presentation"></i>
+				</button>
 
 				<nav id="menu">
 					<div className="pure-menu" role="tablist">
