@@ -80,3 +80,19 @@ export const returnMatchedExpressionObject = (state, cookieStoreId, hostname) =>
 	const expressionList = state.lists[storeId] || [];
 	return expressionList.find((expression) => new RegExp(globExpressionToRegExp(expression.expression)).test(hostname));
 };
+
+// Return optional attributes for the Cookie API calls
+export const returnOptionalCookieAPIAttributes = (state, cookieAPIAttributes) => {
+	let newAttributes = {
+		...cookieAPIAttributes
+	};
+
+	// Add optional firstPartyDomain attribute
+	if (state.cache.browserDetect === "Firefox" && state.cache.firstPartyIsolateSetting && !Object.prototype.hasOwnProperty.call(newAttributes, "firstPartyDomain")) {
+		newAttributes.firstPartyDomain = undefined;
+		return newAttributes;
+	} else if (!(state.cache.browserDetect === "Firefox" && state.cache.firstPartyIsolateSetting)) {
+		delete newAttributes.firstPartyDomain;
+	}
+	return newAttributes;
+};

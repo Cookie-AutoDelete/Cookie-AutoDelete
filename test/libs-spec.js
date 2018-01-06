@@ -1,5 +1,5 @@
 import {assert} from "chai";
-import {getHostname, isAWebpage, extractMainDomain, prepareCookieDomain, globExpressionToRegExp} from "../src/services/libs";
+import {getHostname, isAWebpage, extractMainDomain, prepareCookieDomain, globExpressionToRegExp, returnOptionalCookieAPIAttributes} from "../src/services/libs";
 // ToDo: returnMatchedExpressionObject, getSetting
 import {URL} from "url";
 global.URL = URL;
@@ -167,6 +167,73 @@ describe("Library Functions", function() {
 		it("should match sub.gitlab.com with *.git*b.com", function() {
 			const regExp = new RegExp(globExpressionToRegExp("*.git*b.com"));
 			assert.isTrue(regExp.test("sub.gitlab.com"));
+		});
+	});
+
+	describe("returnOptionalCookieAPIAttributes()", function() {
+		it("should return an object with an undefined firstPartyDomain", function() {
+			const state = {
+				cache: {
+					browserDetect: "Firefox",
+					firstPartyIsolateSetting: true
+				}
+			};
+			const cookieAPIAttributes = {
+				domain: "example.com"
+			};
+			const results = returnOptionalCookieAPIAttributes(state, cookieAPIAttributes);
+			assert.include(results, {
+				firstPartyDomain: undefined, domain: "example.com"
+			});
+		});
+
+		it("should return an object the same object with a firstPartyDomain", function() {
+			const state = {
+				cache: {
+					browserDetect: "Firefox",
+					firstPartyIsolateSetting: true
+				}
+			};
+			const cookieAPIAttributes = {
+				domain: "example.com",
+				firstPartyDomain: "example.com"
+			};
+			const results = returnOptionalCookieAPIAttributes(state, cookieAPIAttributes);
+			assert.include(results, {
+				firstPartyDomain: "example.com", domain: "example.com"
+			});
+		});
+
+		it("should return an object with no firstPartyDomain (Setting false)", function() {
+			const state = {
+				cache: {
+					browserDetect: "Firefox",
+					firstPartyIsolateSetting: false
+				}
+			};
+			const cookieAPIAttributes = {
+				firstPartyDomain: ""
+			};
+			const results = returnOptionalCookieAPIAttributes(state, cookieAPIAttributes);
+			assert.notInclude(results, {
+				firstPartyDomain: ""
+			});
+		});
+
+		it("should return an object with no firstPartyDomain (Browser other than FF)", function() {
+			const state = {
+				cache: {
+					browserDetect: "Chrome",
+					firstPartyIsolateSetting: false
+				}
+			};
+			const cookieAPIAttributes = {
+				firstPartyDomain: ""
+			};
+			const results = returnOptionalCookieAPIAttributes(state, cookieAPIAttributes);
+			assert.notInclude(results, {
+				firstPartyDomain: ""
+			});
 		});
 	});
 });

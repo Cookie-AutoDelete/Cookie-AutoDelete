@@ -46,7 +46,8 @@
     "storage",
     "alarms",
     "notifications",
-    "browsingData"
+    "browsingData",
+    "privacy"
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",

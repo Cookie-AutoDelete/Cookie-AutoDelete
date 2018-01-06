@@ -11,7 +11,7 @@ SOFTWARE.
 **/
 /* global browserDetect */
 import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
-import {getSetting, getHostname, isAWebpage} from "./services/libs";
+import {getSetting, getHostname, isAWebpage, returnOptionalCookieAPIAttributes} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
 
@@ -104,18 +104,25 @@ const onTabRemoved = async (tabId, removeInfo) => {
 };
 
 const getAllCookieActions = async (tab) => {
-	const cookies = await browser.cookies.getAll({
-		domain: getHostname(tab.url),
-		storeId: tab.cookieStoreId
-	});
+	const cookies = await browser.cookies.getAll(
+		returnOptionalCookieAPIAttributes(store.getState(), {
+			domain: getHostname(tab.url),
+			storeId: tab.cookieStoreId,
+			firstPartyDomain: getHostname(tab.url)
+		})
+	);
+
 	let cookieLength = cookies.length;
 	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup") && isAWebpage(tab.url)) {
-		browser.cookies.set({
-			url: tab.url,
-			name: "CookieAutoDelete",
-			value: "cookieForLocalstorageCleanup",
-			path: "/cookie-for-localstorage-cleanup"
-		});
+		browser.cookies.set(
+			returnOptionalCookieAPIAttributes(store.getState(), {
+				url: tab.url,
+				name: "CookieAutoDelete",
+				value: "cookieForLocalstorageCleanup",
+				path: "/cookie-for-localstorage-cleanup",
+				firstPartyDomain: getHostname(tab.url)
+			})
+		);
 		cookieLength = 1;
 	}
 	if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
@@ -294,19 +301,33 @@ const onStartUp = async () => {
 	// Store the FF version in cache
 	if (browserDetect() === "Firefox") {
 		const browserInfo = await browser.runtime.getBrowserInfo();
+		const browserVersion = browserInfo.version.split(".")[0];
 		store.dispatch({
 			type: "ADD_CACHE",
 			map: {
-				key: "browserVersion", value: browserInfo.version.split(".")[0]
+				key: "browserVersion", value: browserVersion
 			}
 		});
+
+		// Store whether firstPartyIsolate is true or false
+		if (browserVersion >= 58) {
+			const setting = await browser.privacy.websites.firstPartyIsolate.get({});
+			store.dispatch({
+				type: "ADD_CACHE",
+				map: {
+					key: "firstPartyIsolateSetting", value: setting.value
+				}
+			});
+		}
 	}
+	// Store which browser environment in cache
 	store.dispatch({
 		type: "ADD_CACHE",
 		map: {
 			key: "browserDetect", value: browserDetect()
 		}
 	});
+
 	// Temporary fix until contextualIdentities events land
 	if (getSetting(store.getState(), "contextualIdentities")) {
 		store.dispatch(
