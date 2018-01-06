@@ -158,7 +158,7 @@ class App extends Component {
 							/>
 
 							<button className="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"/>
-							<div className="dropdown-menu">
+							<div className="dropdown-menu dropdown-menu-right">
 								<a
 									className="dropdown-item"
 									href="#"
