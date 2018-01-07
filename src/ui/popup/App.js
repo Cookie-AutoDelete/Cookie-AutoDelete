@@ -12,7 +12,7 @@ SOFTWARE.
 import React, {Component} from "react";
 import {findDOMNode} from "react-dom";
 import {connect} from "react-redux";
-import {getHostname, extractMainDomain, getSetting, prepareCookieDomain} from "../../services/libs";
+import {getHostname, extractMainDomain, getSetting, prepareCookieDomain, returnOptionalCookieAPIAttributes} from "../../services/libs";
 import FilteredExpression from "./components/FilteredExpression";
 import {addExpressionUI, cookieCleanupUI, updateSettingUI} from "../UIActions";
 import IconButton from "../common_components/IconButton";
@@ -54,18 +54,29 @@ class App extends Component {
 		}
 	}
 
-	async clearCookiesForThisDomain(hostname) {
+	async clearCookiesForThisDomain(cache, hostname) {
 		const {
 			cookieStoreId
 		} = this.state.tab;
-		const cookies = await browser.cookies.getAll({
-			domain: hostname,
-			storeId: cookieStoreId
-		});
+		const cookies = await browser.cookies.getAll(
+			returnOptionalCookieAPIAttributes({cache}, {
+				domain: hostname,
+				storeId: cookieStoreId,
+				firstPartyDomain: hostname
+			})
+		);
+
+
 		if (cookies.length > 0) {
-			cookies.forEach((cookie) => browser.cookies.remove({
-				url: prepareCookieDomain(cookie), name: cookie.name, storeId: cookie.storeId
-			}));
+			cookies.forEach((cookie) => browser.cookies.remove(
+				returnOptionalCookieAPIAttributes({cache}, {
+					url: prepareCookieDomain(cookie),
+					name: cookie.name,
+					storeId: cookie.storeId,
+					firstPartyDomain: cookie.firstPartyDomain
+				})
+			)
+		);
 			return true;
 		}
 		return false;
@@ -178,7 +189,7 @@ class App extends Component {
 									className="dropdown-item"
 									href="#"
 									onClick={async () => {
-										const success = await this.clearCookiesForThisDomain(hostname);
+										const success = await this.clearCookiesForThisDomain(cache, hostname);
 										this.animateFlash(this.cleanButtonContainerRef, success);
 									}}
 									title={browser.i18n.getMessage("clearSiteDataForDomainText", ["cookies", hostname])}
