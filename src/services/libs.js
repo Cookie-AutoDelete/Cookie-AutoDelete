@@ -32,6 +32,18 @@ export const isAWebpage = (URL) => {
 
 // extract the main domain from sub domains (sub.sub.domain.com becomes domain.com)
 export const extractMainDomain = (domain) => {
+	const secondLvlDomains = {
+		"biz": true,
+		"com": true,
+		"edu": true,
+		"gov": true,
+		"ltd": true,
+		"net": true,
+		"mod": true,
+		"org": true,
+		"police": true,
+		"school": true
+	};
 	if (domain === "") {
 		return "";
 	}
@@ -45,8 +57,21 @@ export const extractMainDomain = (domain) => {
 	if (editedDomain.charAt(editedDomain.length - 1) === ".") {
 		editedDomain = domain.slice(0, domain.length - 1);
 	}
-	let re = new RegExp("[a-z0-9|-]+\.[a-z0-9|-]+$");
-	return re.exec(editedDomain)[0];
+	const partsOfDomain = editedDomain.split(".");
+	const length = partsOfDomain.length;
+	if (length === 1) {
+		return partsOfDomain[0];
+	}
+	const firstPartOfTopLevel = partsOfDomain[length - 2];
+
+	// Check for country top level domain
+	if (
+		length > 2 &&
+		(partsOfDomain[length - 2].length === 2 || secondLvlDomains[firstPartOfTopLevel]) &&
+		partsOfDomain[length - 1].length === 2) {
+		return `${partsOfDomain[length - 3]}.${partsOfDomain[length - 2]}.${partsOfDomain[length - 1]}`;
+	}
+	return `${partsOfDomain[length - 2] !== undefined ? `${partsOfDomain[length - 2]}.` : ""}${partsOfDomain[length - 1]}`;
 };
 
 // Gets the value of the setting

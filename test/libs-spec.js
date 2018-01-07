@@ -26,6 +26,16 @@ describe("Library Functions", function() {
 			assert.strictEqual(results, "domain.com");
 		});
 
+		it("should return example.co.uk from sub.example.co.uk", function() {
+			let results = extractMainDomain("sub.example.co.uk");
+			assert.strictEqual(results, "example.co.uk");
+		});
+
+		it("should return example.com.br from sub.example.com.br", function() {
+			let results = extractMainDomain("sub.example.com.br");
+			assert.strictEqual(results, "example.com.br");
+		});
+
 		it("should return the ip address from an ip address", function() {
 			let results = extractMainDomain("127.0.0.1");
 			assert.strictEqual(results, "127.0.0.1");
