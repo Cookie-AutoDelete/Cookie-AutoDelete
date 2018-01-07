@@ -79,11 +79,13 @@ const createActiveModeAlarm = () => {
 		});
 	} else {
 		setTimeout(() => {
-			store.dispatch(
-				cookieCleanup({
-					greyCleanup: false, ignoreOpenTabs: false
-				})
-			);
+			if (getSetting(store.getState(), "activeMode")) {
+				store.dispatch(
+					cookieCleanup({
+						greyCleanup: false, ignoreOpenTabs: false
+					})
+				);
+			}
 			alarmFlag = false;
 		}, milliseconds);
 	}
