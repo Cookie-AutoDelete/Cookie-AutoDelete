@@ -59,24 +59,27 @@ class App extends Component {
 			cookieStoreId
 		} = this.state.tab;
 		const cookies = await browser.cookies.getAll(
-			returnOptionalCookieAPIAttributes({cache}, {
+			returnOptionalCookieAPIAttributes({
+				cache
+			}, {
 				domain: hostname,
 				storeId: cookieStoreId,
 				firstPartyDomain: hostname
 			})
 		);
 
-
 		if (cookies.length > 0) {
 			cookies.forEach((cookie) => browser.cookies.remove(
-				returnOptionalCookieAPIAttributes({cache}, {
+				returnOptionalCookieAPIAttributes({
+					cache
+				}, {
 					url: prepareCookieDomain(cookie),
 					name: cookie.name,
 					storeId: cookie.storeId,
 					firstPartyDomain: cookie.firstPartyDomain
 				})
 			)
-		);
+			);
 			return true;
 		}
 		return false;
@@ -121,18 +124,21 @@ class App extends Component {
 						minWidth: `${cache.browserDetect === "Chrome" ? "750px" : ""}`
 					}}
 				>
-					<div className="col-auto">
-						<img
-							style={{
-								height: "32px",
-								width: "32px",
-								marginRight: "8px",
-								verticalAlign: "middle"
-							}}
-							src={browser.extension.getURL("icons/icon_128.png")}
-							title="Cookie AutoDelete"
-						/>
-					</div>
+					{
+						window.innerWidth > 350 &&
+							<div className="col-auto">
+								<img
+									style={{
+										height: "32px",
+										width: "32px",
+										marginRight: "8px",
+										verticalAlign: "middle"
+									}}
+									src={browser.extension.getURL("icons/icon_128.png")}
+									title="Cookie AutoDelete"
+								/>
+							</div>
+					}
 
 					<div className="col-auto" style={{
 						textAlign: "right"
@@ -148,6 +154,19 @@ class App extends Component {
 							})}
 							title={settings.activeMode.value ? browser.i18n.getMessage("disableAutoDeleteText") : browser.i18n.getMessage("enableAutoDeleteText")}
 							text={settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
+						/>
+
+						<IconButton
+							iconName="bell"
+							className={settings.showNotificationAfterCleanup.value ? "btn-success" : "btn-danger"}
+							style={{
+								margin: "0 4px"
+							}}
+							onClick={() => onUpdateSetting({
+								...settings.showNotificationAfterCleanup, value: !settings.showNotificationAfterCleanup.value
+							})}
+							title={browser.i18n.getMessage("toggleNotificationText")}
+							text={settings.showNotificationAfterCleanup.value ? browser.i18n.getMessage("notificationEnabledText") : browser.i18n.getMessage("notificationDisabledText")}
 						/>
 
 						<div

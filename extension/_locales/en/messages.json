@@ -334,5 +334,20 @@
   "enableAutoDeleteText": {
     "message": "Toggle to enable automatic cleanup (automatic mode)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+
+  "notificationEnabledText": {
+    "message" : "Notification enabled",
+    "description": "Notification enabled"
+  },
+
+  "notificationDisabledText": {
+    "message" : "Notification disabled",
+    "description": "Notification disabled"
+  },
+
+  "toggleNotificationText": {
+    "message": "Toggle to enable or disable notifications",
+    "description": "Toggle to enable or disable notifications"
   }
 }
