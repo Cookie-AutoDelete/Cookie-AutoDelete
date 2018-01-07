@@ -38,6 +38,18 @@ class ExpressionTable extends React.Component {
 		});
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (this.editInput !== null && this.state.editMode === true && document.activeElement !== document.getElementById("formText")) {
+			this.editInput.focus();
+		}
+	}
+
+	moveCaretToEnd(e) {
+		let tempValue = e.target.value;
+		e.target.value = "";
+		e.target.value = tempValue;
+	}
+
 	clearEdit() {
 		this.setState(EMPTY_STATE);
 	}
@@ -98,9 +110,9 @@ class ExpressionTable extends React.Component {
 								{
 									editMode & id === expression.id ?
 										<td className="editableExpression">
-											<input className="form-control" value={expressionInput} onChange={(e) => this.setState({
+											<input ref={(c) => {this.editInput = c;}} className="form-control" value={expressionInput} onFocus={this.moveCaretToEnd} onChange={(e) => this.setState({
 												expressionInput: e.target.value
-											})} type="text" style={{
+											})} type="text" autoFocus="autofocus" style={{
 												display: "inline-block", verticalAlign: "middle", margin: 0, width: "calc(100% - 70px)"
 											}} />
 											<IconButton
