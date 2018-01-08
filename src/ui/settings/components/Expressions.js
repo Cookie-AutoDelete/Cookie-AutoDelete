@@ -93,7 +93,7 @@ class Expressions extends React.Component {
 	// Dynamically generate and append timestamp to download filename
 	exportAppendTimestamp(element) {
 		// We take into account the timezone offset since using Date.toISOString() returns in UTC/GMT.
-		element.setAttribute("download", `Cookie_AutoDelete_2.X.X_Expressions_${new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
+		element.setAttribute("download", `CAD_Expressions_${new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
 			.toISOString()
 			.slice(0, -5)
 			.replace("T", "_")
@@ -149,7 +149,7 @@ class Expressions extends React.Component {
 							className="btn-primary"
 							iconName="download"
 							href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`}
-							download="Cookie_AutoDelete_2.X.X_Expressions.json"
+							download="CAD_Expressions_Expressions.json"
 							role="button"
 							target="_blank"
 							onClick={(d) => this.exportAppendTimestamp(d.target)}
