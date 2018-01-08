@@ -90,6 +90,16 @@ class Expressions extends React.Component {
 		}
 	}
 
+	// Dynamically generate and append timestamp to download filename
+	exportAppendTimestamp(element) {
+		// We take into account the timezone offset since using Date.toISOString() returns in UTC/GMT.
+		element.setAttribute("download", `Cookie_AutoDelete_2.X.X_Expressions_${new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
+			.toISOString()
+			.slice(0, -5)
+			.replace("T", "_")
+			.replace(/:/g, ".")}.json`);
+	}
+
 	render() {
 		const {
 			style,
@@ -141,6 +151,10 @@ class Expressions extends React.Component {
 							href={`data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(this.props.lists, null, "  "))}`}
 							download="Cookie_AutoDelete_2.X.X_Expressions.json"
 							role="button"
+							target="_blank"
+							onClick={(d) => this.exportAppendTimestamp(d.target)}
+							onContextMenu={(d) => this.exportAppendTimestamp(d.target)}
+							title={browser.i18n.getMessage("exportURLSTitle")}
 							text={browser.i18n.getMessage("exportURLSText")}
 						/>
 
