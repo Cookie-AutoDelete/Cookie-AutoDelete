@@ -1,258 +1,280 @@
 {
-  "extensionName":{
-    "message":"Cookie AutoDelete",
-    "description":"Name of the extension."
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
   },
-  "extensionDescription":{
-    "message":"Управљајте вашим колачићима. Аутоматски бришите некоришћене колачиће из ваших затворених језичака а задржите оне које желите.",
-    "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+  "extensionDescription": {
+    "message": "Управљајте вашим колачићима. Аутоматски бришите некоришћене колачиће из ваших затворених језичака а задржите оне које желите.",
+    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
-  "notificationTitle":{
-    "message":"Cookie AutoDelete: колачићи су обрисани!",
-    "description":"Cookie AutoDelete: Cookies were deleted!"
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: колачићи су обрисани!",
+    "description": "Cookie AutoDelete: Cookies were deleted!"
   },
-  "notificationContent":{
-    "message":"$Num$ обрисаних колачића са сајтова: $Websites$",
-    "description":"123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders":{
-      "num":{
-        "content":"$1",
-        "example":"123"
+  "notificationContent": {
+    "message": "$Num$ обрисаних колачића са сајтова: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
       },
-      "websites":{
-        "content":"$2",
-        "example":"google.com, facebook.com"
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
       }
     }
   },
-  "cleanText":{
-    "message":"Очисти",
-    "description":"Clean"
+  "cleanText": {
+    "message": "Очисти",
+    "description": "Clean"
   },
-  "cookieCleanupText":{
-    "message":"Покрени чишћење сада",
-    "description":"Run cleanup now"
+  "cookieCleanupText": {
+    "message": "Покрени чишћење сада",
+    "description": "Run cleanup now"
   },
-  "cleanIgnoringOpenTabsText":{
-    "message":"Очисти и отворене језичке",
-    "description":"Clean, include open tabs"
+  "cleanIgnoringOpenTabsText": {
+    "message": "Очисти и отворене језичке",
+    "description": "Clean, include open tabs"
   },
-  "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Покрени чишћење сада, укључујући колачиће из отворених језичака",
-    "description":"Run cleanup now, include cookies from open tabs"
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Покрени чишћење сада, укључујући колачиће из отворених језичака",
+    "description": "Run cleanup now, include cookies from open tabs"
   },
-  "clearCookiesText":{
-    "message":"Очисти колачиће овог домена",
-    "description":"Clear cookies for this domain"
-  },
-  "clearCookiesForDomainText":{
-    "message":"Очисти све колачиће домена $domain$",
-    "description":"Clear all cookies for example.com",
-    "placeholders":{
-      "domain":{
-        "content":"$1",
-        "example":"example.com"
+  "clearSiteDataText": {
+    "message": "Clear $siteData$ for this domain",
+    "description": "Clear cookies for this domain",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       }
     }
   },
-  "noRulesText":{
-    "message":"No rules matched this domain",
-    "description":"No rules matched this domain"
-  },
-  "welcomeText":{
-    "message":"Добродошли",
-    "description":"Welcome"
-  },
-  "preferencesText":{
-    "message":"Подешавања",
-    "description":"Settings"
-  },
-  "settingsText":{
-    "message":"Подешавања колачића",
-    "description":"Cookie Settings"
-  },
-  "whiteListText":{
-    "message":"Списак израза",
-    "description":"List of Expressions"
-  },
-  "aboutText":{
-    "message":"О програму",
-    "description":"About"
-  },
-  "welcomeMessage":{
-    "message":"Здраво! У току ове сесије је Самобрисач Колачића обрисао $sessionDeleted$ колачића а свеукупно $totalDeleted$ колачића.",
-    "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders":{
-      "sessionDeleted":{
-        "content":"$1",
-        "example":"123"
+  "clearSiteDataForDomainText": {
+    "message": "Clear all $siteData$ for $domain$",
+    "description": "Clear all cookies for example.com",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       },
-      "totalDeleted":{
-        "content":"$2",
-        "example":"456"
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
-  "reviewLinkMessage":{
-    "message":"Хвала вам што сте пробали Cookie AutoDelete. Ако вам се свиђа, оставите рецензију.",
-    "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+  "noRulesText": {
+    "message": "Нема нађених правила за овај домен",
+    "description": "No rules matched this domain"
   },
-  "releaseNotesText":{
-    "message":"Белешке о издању",
-    "description":"Release Notes"
+  "welcomeText": {
+    "message": "Добродошли",
+    "description": "Welcome"
   },
-  "activeModeText":{
-    "message":"Омогућити аутоматско чишћење? Застој пре чишћења:",
-    "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
+  "preferencesText": {
+    "message": "Подешавања",
+    "description": "Settings"
   },
-  "minutesText":{
-    "message":"Минут(а)",
-    "description":"Minute(s)"
+  "settingsText": {
+    "message": "Подешавања колачића",
+    "description": "Cookie Settings"
   },
-  "statLoggingText":{
-    "message":"Бележи укупан број обрисаних колачића",
-    "description":"Log Total Number Of Cookies Deleted"
+  "whiteListText": {
+    "message": "Списак израза",
+    "description": "List of Expressions"
   },
-  "resetCounterText":{
-    "message":"Ресетуј бројач",
-    "description":"Reset Counter"
+  "aboutText": {
+    "message": "О програму",
+    "description": "About"
   },
-  "showNumberOfCookiesInIconText":{
-    "message":"Прикажи број колачића за дати домен",
-    "description":"Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText":{
-    "message":"Прикажи обавештење након брисања колачића",
-    "description":"Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText":{
-    "message":"Очисти колачиће из отворених језичака при покретању",
-    "description":"Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText":{
-    "message":"Омогући проверу за поддомен",
-    "description":"Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText":{
-    "message":"Омогући подршку за Firefox-ове контејнер језичке",
-    "description":"Enable Support for Firefox's Container Tabs"
-  },
-  "defaultSettingsText":{
-    "message":"Врати подразумевана подешавања",
-    "description":"Restore Default Settings"
-  },
-  "whiteListWordText":{
-    "message":"Бели списак",
-    "description":"Whitelist"
-  },
-  "greyListWordText":{
-    "message":"Сиви списак",
-    "description":"Greylist"
-  },
-  "toWhiteListText":{
-    "message":"Додај на бели списак (никада не чисти)",
-    "description":"Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText":{
-    "message":"Додај на сиви списак (чисти при поновном покретању прегледача)",
-    "description":"Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText":{
-    "message":"Уклони све",
-    "description":"Remove All"
-  },
-  "exportURLSText":{
-    "message":"Извези изразе",
-    "description":"Export Expressions"
-  },
-  "importURLSText":{
-    "message":"Увези изразе",
-    "description":"Import Expressions"
-  },
-  "reportIssuesText":{
-    "message":"Пријавите проблеме и предложите могућности",
-    "description":"Report issues and suggest features"
-  },
-  "versionText":{
-    "message":"Издање $browser$ прегледача",
-    "description":"Firefox version",
-    "placeholders":{
-      "browser":{
-        "content":"$1",
-        "example":"Firefox"
+  "welcomeMessage": {
+    "message": "Здраво! У току ове сесије је Самобрисач Колачића обрисао $sessionDeleted$ колачића а свеукупно $totalDeleted$ колачића.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted": {
+        "content": "$1",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$2",
+        "example": "456"
       }
     }
   },
-  "contributorsText":{
-    "message":"Доприносиоци:",
-    "description":"Contributors:"
+  "reviewLinkMessage": {
+    "message": "Хвала вам што сте пробали Cookie AutoDelete. Ако вам се свиђа, оставите рецензију.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
-  "contributeText":{
-    "message":"Contribute",
-    "description":"Contribute"
+  "releaseNotesText": {
+    "message": "Белешке о издању",
+    "description": "Release Notes"
   },
-  "domainExpressionsText":{
-    "message":"Доменски израз",
-    "description":"Domain Expression"
+  "activeModeText": {
+    "message": "Омогућити аутоматско чишћење? Застој пре чишћења:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
-  "matchedDomainExpressionText":{
-    "message":"Подударни доменски изрази",
-    "description":"Matched Domain Expression"
+  "minutesText": {
+    "message": "Минут(а)",
+    "description": "Minute(s)"
   },
-  "regularExpressionEquivalentText":{
-    "message":"Еквивалент општег израза",
-    "description":"Regular Expression Equivalent"
+  "secondsText": {
+    "message": "Second(s)",
+    "description": "Second(s)"
   },
-  "listTypeText":{
-    "message":"Врста списка",
-    "description":"List Type"
+  "statLoggingText": {
+    "message": "Бележи укупан број обрисаних колачића",
+    "description": "Log Total Number Of Cookies Deleted"
   },
-  "domainPlaceholderText":{
-    "message":"primer.rs, poddomen.primer.rs, *.primer.rs, пример.срб",
-    "description":"Domain Expression"
+  "resetCounterText": {
+    "message": "Ресетуј бројач",
+    "description": "Reset Counter"
   },
-  "noExpressionsText":{
-    "message":"No expressions defined.",
-    "description":"No expressions defined."
+  "showNumberOfCookiesInIconText": {
+    "message": "Прикажи број колачића за дати домен",
+    "description": "Show Number of Cookies for that Domain"
   },
-  "removeExpressionText":{
-    "message":"Уклони израз",
-    "description":"Remove expression"
+  "notifyCookieCleanUpText": {
+    "message": "Прикажи обавештење након брисања колачића",
+    "description": "Show Notification After Cookie Cleanup"
   },
-  "stopEditingText":{
-    "message":"Престани са уређивањем",
-    "description":"Stop editing"
+  "cookieCleanUpOnStartText": {
+    "message": "Очисти колачиће из отворених језичака при покретању",
+    "description": "Clean Cookies from Open Tabs on Startup"
   },
-  "saveExpressionText":{
-    "message":"Сачувај израз",
-    "description":"Save expression"
+  "enableGlobalSubdomainText": {
+    "message": "Омогући проверу за поддомен",
+    "description": "Enable Check for Subdomains"
   },
-  "editExpressionText":{
-    "message":"Уреди израз",
-    "description":"Edit expression"
+  "contextualIdentitiesEnabledText": {
+    "message": "Омогући подршку за Firefox-ове контејнер језичке",
+    "description": "Enable Support for Firefox's Container Tabs"
   },
-  "toggleToGreyListWordText":{
-    "message":"Пребаци на сиви списак",
-    "description":"Toggle to greylist"
+  "localstorageCleanupText": {
+    "message": "Localstorage Cleanup (Firefox 58+)",
+    "description": "Localstorage Cleanup (Firefox 58+)"
   },
-  "toggleToWhiteListWordText":{
-    "message":"Пребаци на бели списак",
-    "description":"Toggle to whitelist"
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
-  "autoDeleteEnabledText":{
-    "message":"Самочишћење омогућено",
-    "description":"Auto-clean enabled"
+  "defaultSettingsText": {
+    "message": "Врати подразумевана подешавања",
+    "description": "Restore Default Settings"
   },
-  "autoDeleteDisabledText":{
-    "message":"Самочишћење онемогућено",
-    "description":"Auto-clean disabled"
+  "whiteListWordText": {
+    "message": "Бели списак",
+    "description": "Whitelist"
   },
-  "disableAutoDeleteText":{
-    "message":"Промени за онемогућавање самочишћења (ручни режим)",
-    "description":"Toggle to disable automatic cleanup (manual mode)"
+  "greyListWordText": {
+    "message": "Сиви списак",
+    "description": "Greylist"
   },
-  "enableAutoDeleteText":{
-    "message":"Промени за омогућавање самочишћења (аутоматски режим)",
-    "description":"Toggle to enable automatic cleanup (automatic mode)"
+  "toWhiteListText": {
+    "message": "Додај на бели списак (никада не чисти)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toGreyListText": {
+    "message": "Додај на сиви списак (чисти при поновном покретању прегледача)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "clearURLText": {
+    "message": "Уклони све",
+    "description": "Remove All"
+  },
+  "exportURLSText": {
+    "message": "Извези изразе",
+    "description": "Export Expressions"
+  },
+  "importURLSText": {
+    "message": "Увези изразе",
+    "description": "Import Expressions"
+  },
+  "reportIssuesText": {
+    "message": "Пријавите проблеме и предложите могућности",
+    "description": "Report issues and suggest features"
+  },
+  "versionText": {
+    "message": "Издање $browser$ прегледача",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "contributorsText": {
+    "message": "Доприносиоци:",
+    "description": "Contributors:"
+  },
+  "contributeText": {
+    "message": "Допринесите",
+    "description": "Contribute"
+  },
+  "domainExpressionsText": {
+    "message": "Доменски израз",
+    "description": "Domain Expression"
+  },
+  "matchedDomainExpressionText": {
+    "message": "Подударни доменски изрази",
+    "description": "Matched Domain Expression"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "Еквивалент општег израза",
+    "description": "Regular Expression Equivalent"
+  },
+  "listTypeText": {
+    "message": "Врста списка",
+    "description": "List Type"
+  },
+  "domainPlaceholderText": {
+    "message": "primer.rs, poddomen.primer.rs, *.primer.rs, пример.срб",
+    "description": "Domain Expression"
+  },
+  "noExpressionsText": {
+    "message": "Нема наведених израза.",
+    "description": "No expressions defined."
+  },
+  "removeExpressionText": {
+    "message": "Уклони израз",
+    "description": "Remove expression"
+  },
+  "stopEditingText": {
+    "message": "Престани са уређивањем",
+    "description": "Stop editing"
+  },
+  "saveExpressionText": {
+    "message": "Сачувај израз",
+    "description": "Save expression"
+  },
+  "editExpressionText": {
+    "message": "Уреди израз",
+    "description": "Edit expression"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Пребаци на сиви списак",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Пребаци на бели списак",
+    "description": "Toggle to whitelist"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Самочишћење омогућено",
+    "description": "Auto-clean enabled"
+  },
+  "autoDeleteDisabledText": {
+    "message": "Самочишћење онемогућено",
+    "description": "Auto-clean disabled"
+  },
+  "disableAutoDeleteText": {
+    "message": "Промени за онемогућавање самочишћења (ручни режим)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "enableAutoDeleteText": {
+    "message": "Промени за омогућавање самочишћења (аутоматски режим)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
   }
 }

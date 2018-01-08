@@ -272,6 +272,7 @@ describe("CleanupService", function() {
 				ignoreOpenTabs: false,
 				openTabDomains: new Set(["example.com", "mozilla.org"]),
 				setOfDeletedDomainCookies: new Set(),
+				hostnamesDeleted: new Set(),
 				cachedResults: {}
 			};
 

@@ -9,7 +9,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 **/
-import {getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject, getStoreId} from "./libs";
+import {getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject, getStoreId, returnOptionalCookieAPIAttributes} from "./libs";
 
 let recentlyCleaned;
 
@@ -61,11 +61,26 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 		if (isSafeToClean(state, cookieProperties, cleanupProperties)) {
 			recentlyCleaned++;
 			cleanupProperties.setOfDeletedDomainCookies.add(getSetting(state, "contextualIdentities") ? `${cookieProperties.hostname} (${state.cache[cookieProperties.storeId]})` : cookieProperties.hostname);
+			cleanupProperties.hostnamesDeleted.add(cookieProperties.hostname);
 			// url: "http://domain.com" + cookies[i].path
-			browser.cookies.remove({
-				url: cookieProperties.preparedCookieDomain,
-				name: cookieProperties.name,
-				storeId: cookieProperties.storeId
+			browser.cookies.remove(
+				returnOptionalCookieAPIAttributes(state, {
+					url: cookieProperties.preparedCookieDomain,
+					name: cookieProperties.name,
+					storeId: cookieProperties.storeId,
+					firstPartyDomain: cookieProperties.firstPartyDomain
+				})
+			);
+		}
+	}
+};
+
+// This will use the browsingData's hostname attribute to delete any extra browsing data
+export const otherBrowsingDataCleanup = (state, hostnamesDeleted) => {
+	if (state.cache.browserDetect === "Firefox") {
+		if (getSetting(state, "localstorageCleanup")) {
+			browser.browsingData.removeLocalStorage({
+				hostnames: Array.from(hostnamesDeleted)
 			});
 		}
 	}
@@ -94,6 +109,7 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 	let openTabDomains = new Set();
 	let promiseContainers = [];
 	let setOfDeletedDomainCookies = new Set();
+	let hostnamesDeleted = new Set();
 	let cachedResults = {};
 	recentlyCleaned = 0;
 	if (!cleanupProperties.ignoreOpenTabs) {
@@ -103,21 +119,28 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 		...cleanupProperties,
 		openTabDomains,
 		setOfDeletedDomainCookies,
+		hostnamesDeleted,
 		cachedResults
 	};
+
 	if (getSetting(state, "contextualIdentities")) {
 		const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
 		contextualIdentitiesObjects.forEach(async (object) => {
-			const cookies = await browser.cookies.getAll({
-				storeId: object.cookieStoreId
-			});
+			const cookies = await browser.cookies.getAll(
+				returnOptionalCookieAPIAttributes(state, {
+					storeId: object.cookieStoreId
+				})
+			);
 			promiseContainers.push(cleanCookies(state, cookies, newCleanupProperties));
 		});
 		await Promise.all(promiseContainers);
 	}
 
-	const cookies = await browser.cookies.getAll({});
+	const cookies = await browser.cookies.getAll(returnOptionalCookieAPIAttributes(state, {}));
 	cleanCookies(state, cookies, newCleanupProperties);
+	// console.log(hostnamesDeleted);
+	otherBrowsingDataCleanup(state, hostnamesDeleted);
+
 	return {
 		setOfDeletedDomainCookies, recentlyCleaned
 	};

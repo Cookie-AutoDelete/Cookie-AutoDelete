@@ -10,7 +10,7 @@
   	},
   	"delayBeforeClean": {
   		"name": "delayBeforeClean",
-  		"value": 1,
+  		"value": 15,
   		"id": 2
   	},
   	"statLogging": {
@@ -37,6 +37,16 @@
   		"name": "contextualIdentities",
   		"value": false,
   		"id": 7
+  	},
+  	"localstorageCleanup": {
+  		"name": "localstorageCleanup",
+  		"value": false,
+  		"id": 8
+  	},
+  	"notificationOnScreen": {
+  		"name": "notificationOnScreen",
+  		"value": 3,
+  		"id": 9
   	}
   },
   "cache": {}

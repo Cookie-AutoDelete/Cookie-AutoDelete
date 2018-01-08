@@ -1,6 +1,19 @@
 {
   "releases":[
     {
+      "version": "2.1.0",
+      "notes": [
+        "Added: Localstorage Support (Firefox 58+, BrowserData API requested)",
+        "Added: First Party Isolation Support (Firefox 59+, Privacy API requested)",
+        "Added: Notification on-screen timer setting",
+        "Added: Notification quick toggle in the popup",
+        "Fixed: Cookies not deleting for newly created Containers",
+        "Fixed: Cookies not deleting until a second tab close under no delay",
+        "Changed: Condensed popup actions",
+        "Changed: Delay timer changed from minutes to seconds"
+      ]
+    },
+    {
       "version": "2.0.0",
       "notes": [
         "Changed: Under the hood improvements with React/Redux. Your settings and Domain list will be migrated automatically on update. Old settings are still kept.",

@@ -15,6 +15,8 @@ import {getSetting} from "../services/libs";
 import {cleanCookiesOperation} from "../services/CleanupService";
 import {checkIfProtected} from "../services/BrowserActionService";
 
+const COOKIE_CLEANUP_NOTIFICATION = "COOKIE_CLEANUP_NOTIFICATION";
+
 export const addExpression = (object) => (dispatch, getState) => {
 	const {
 		payload
@@ -149,19 +151,23 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 	}
 
 	// Increment the count
-	if (getSetting(getState(), "statLogging")) {
+	if (recentlyCleaned !== 0 && getSetting(getState(), "statLogging")) {
 		dispatch(
 			incrementCookieDeletedCounter(recentlyCleaned)
 		);
 	}
 
 	if (setOfDeletedDomainCookies.size > 0 && getSetting(getState(), "showNotificationAfterCleanup")) {
-		browser.notifications.create("COOKIE_CLEANUP_NOTIFICATION", {
+		browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
 			"type": "basic",
 			"iconUrl": browser.extension.getURL("icons/icon_48.png"),
 			"title": browser.i18n.getMessage("notificationTitle"),
 			"message": notifyMessage
 		});
+		const seconds = parseInt(`${getSetting(getState(), "notificationOnScreen")}000`, 10);
+		setTimeout(() => {
+			browser.notifications.clear(COOKIE_CLEANUP_NOTIFICATION);
+		}, seconds);
 	}
 };
 

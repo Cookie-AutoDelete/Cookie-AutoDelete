@@ -22,7 +22,8 @@ const HistorySettings = (props) => {
 		onUpdateSetting,
 		onResetButtonClick,
 		onResetCounterButtonClick,
-		browserDetect
+		browserDetect,
+		browserVersion
 	} = props;
 	return (
 		<div style={style}>
@@ -48,7 +49,7 @@ const HistorySettings = (props) => {
 						value={settings.delayBeforeClean.value}
 						min="0"
 					/>
-					<span>{browser.i18n.getMessage("minutesText")}</span>
+					<span>{browser.i18n.getMessage("secondsText")}</span>
 					<Tooltip
 						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-automatic-cleaning"}
 					/>
@@ -100,6 +101,21 @@ const HistorySettings = (props) => {
 						inline={true}
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
+					<input
+						type="number"
+						className="form-control"
+						style={{
+							display: "inline",
+							margin: "0 5px"
+						}}
+						onChange={(e) => onUpdateSetting({
+							name: settings.notificationOnScreen.name, value: e.target.value, id: settings.notificationOnScreen.id
+						})}
+						value={settings.notificationOnScreen.value}
+						min="1"
+						max="5"
+					/>
+					<span>{browser.i18n.getMessage("secondsText")}</span>
 					<Tooltip
 						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#show-notification-after-cookie-cleanup"}
 					/>
@@ -121,7 +137,7 @@ const HistorySettings = (props) => {
 			</div>
 
 			{
-				browserDetect === "Firefox" ?
+				browserDetect === "Firefox" &&
 					<div className="row">
 						<div className="col-md-12">
 							<CheckboxSetting
@@ -134,7 +150,31 @@ const HistorySettings = (props) => {
 								hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-support-for-firefoxs-container-tabs-firefox-only"}
 							/>
 						</div>
-					</div> : ""
+					</div>
+			}
+
+			{
+				browserDetect === "Firefox" && browserVersion >= 58 &&
+					<div className="row">
+						<div className="col-md-12">
+							<CheckboxSetting
+								text={browser.i18n.getMessage("localstorageCleanupText")}
+								settingObject={settings.localstorageCleanup}
+								inline={true}
+								updateSetting={(payload) => onUpdateSetting(payload)}
+							/>
+							<Tooltip
+								hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-localstorage-support"}
+							/>
+						</div>
+					</div>
+			}
+
+			{
+				settings.contextualIdentities.value && settings.localstorageCleanup.value &&
+					<div className="alert alert-warning">
+						{browser.i18n.getMessage("localstorageAndContextualIdentitiesWarning")}
+					</div>
 			}
 
 			<br /><br />
@@ -156,7 +196,8 @@ const mapStateToProps = (state) => {
 	} = state;
 	return {
 		settings,
-		browserDetect: cache.browserDetect
+		browserDetect: cache.browserDetect,
+		browserVersion: cache.browserVersion
 	};
 };
 

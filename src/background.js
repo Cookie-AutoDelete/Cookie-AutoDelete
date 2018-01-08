@@ -11,24 +11,42 @@ SOFTWARE.
 **/
 /* global browserDetect */
 import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
-import {getSetting} from "./services/libs";
+import {getSetting, getHostname, isAWebpage, returnOptionalCookieAPIAttributes} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
 
 let store;
 let currentSettings;
 
-const saveToStorage = () => browser.storage.local.set({
-	state: JSON.stringify(store.getState())
-});
+// Delay saving to disk to queue up actions
+let delaySave = false;
+const saveToStorage = () => {
+	if (!delaySave) {
+		delaySave = true;
+		setTimeout(() => {
+			delaySave = false;
+			return browser.storage.local.set({
+				state: JSON.stringify(store.getState())
+			});
+		}, 1000);
+	}
+};
 
 const onSettingsChange = () => {
 	let previousSettings = currentSettings;
 	currentSettings = store.getState().settings;
+	// Container Mode enabled
 	if (!previousSettings.contextualIdentities.value && currentSettings.contextualIdentities.value) {
 		store.dispatch(
 			cacheCookieStoreIdNames()
 		);
+	}
+
+	// Localstorage support enabled
+	if (!previousSettings.localstorageCleanup.value && currentSettings.localstorageCleanup.value) {
+		browser.browsingData.removeLocalStorage({
+			since: 0
+		});
 	}
 
 	if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
@@ -36,20 +54,40 @@ const onSettingsChange = () => {
 	}
 };
 
-// Create an alarm delay before cookie cleanup
+// Create an alarm delay or use setTimeout before cookie cleanup
+let alarmFlag = false;
 const createActiveModeAlarm = () => {
-	// console.log("create alarm");
-	const minutes = parseFloat(getSetting(store.getState(), "delayBeforeClean"));
-	if (minutes === 0) {
-		store.dispatch(
-			cookieCleanup({
-				greyCleanup: false, ignoreOpenTabs: false
-			})
-		);
-	} else {
+	const seconds = parseInt(getSetting(store.getState(), "delayBeforeClean"), 10);
+	const minutes = seconds / 60;
+	const milliseconds = seconds * 1000;
+	if (alarmFlag) {
+		return;
+	}
+	alarmFlag = true;
+	if (seconds < 1) {
+		setTimeout(() => {
+			store.dispatch(
+				cookieCleanup({
+					greyCleanup: false, ignoreOpenTabs: false
+				})
+			);
+			alarmFlag = false;
+		}, 100);
+	} else if (browserDetect() === "Firefox" || (browserDetect() === "Chrome" && seconds >= 60)) {
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
 		});
+	} else {
+		setTimeout(() => {
+			if (getSetting(store.getState(), "activeMode")) {
+				store.dispatch(
+					cookieCleanup({
+						greyCleanup: false, ignoreOpenTabs: false
+					})
+				);
+			}
+			alarmFlag = false;
+		}, milliseconds);
 	}
 };
 
@@ -67,17 +105,41 @@ const onTabRemoved = async (tabId, removeInfo) => {
 	}
 };
 
+const getAllCookieActions = async (tab) => {
+	const cookies = await browser.cookies.getAll(
+		returnOptionalCookieAPIAttributes(store.getState(), {
+			domain: getHostname(tab.url),
+			storeId: tab.cookieStoreId,
+			firstPartyDomain: getHostname(tab.url)
+		})
+	);
+
+	let cookieLength = cookies.length;
+	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup") && isAWebpage(tab.url)) {
+		browser.cookies.set(
+			returnOptionalCookieAPIAttributes(store.getState(), {
+				url: tab.url,
+				name: "CookieAutoDelete",
+				value: "cookieForLocalstorageCleanup",
+				path: "/cookie-for-localstorage-cleanup",
+				firstPartyDomain: getHostname(tab.url)
+			})
+		);
+		cookieLength = 1;
+	}
+	if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
+		showNumberOfCookiesInIcon(tab, cookieLength);
+	} else {
+		browser.browserAction.setBadgeText({
+			text: "", tabId: tab.id
+		});
+	}
+};
+
 export const onTabUpdate = (tabId, changeInfo, tab) => {
 	if (tab.status === "complete") {
 		checkIfProtected(store.getState(), tab);
-
-		if (getSetting(store.getState(), "showNumOfCookiesInIcon")) {
-			showNumberOfCookiesInIcon(tab);
-		} else {
-			browser.browserAction.setBadgeText({
-				text: "", tabId: tab.id
-			});
-		}
+		getAllCookieActions(tab);
 	}
 };
 
@@ -238,12 +300,36 @@ const onStartUp = async () => {
 	store.dispatch({
 		type: "ON_STARTUP"
 	});
+	// Store the FF version in cache
+	if (browserDetect() === "Firefox") {
+		const browserInfo = await browser.runtime.getBrowserInfo();
+		const browserVersion = browserInfo.version.split(".")[0];
+		store.dispatch({
+			type: "ADD_CACHE",
+			map: {
+				key: "browserVersion", value: browserVersion
+			}
+		});
+
+		// Store whether firstPartyIsolate is true or false
+		if (browserVersion >= 58) {
+			const setting = await browser.privacy.websites.firstPartyIsolate.get({});
+			store.dispatch({
+				type: "ADD_CACHE",
+				map: {
+					key: "firstPartyIsolateSetting", value: setting.value
+				}
+			});
+		}
+	}
+	// Store which browser environment in cache
 	store.dispatch({
 		type: "ADD_CACHE",
 		map: {
 			key: "browserDetect", value: browserDetect()
 		}
 	});
+
 	// Temporary fix until contextualIdentities events land
 	if (getSetting(store.getState(), "contextualIdentities")) {
 		store.dispatch(
@@ -277,6 +363,7 @@ browser.alarms.onAlarm.addListener((alarmInfo) => {
 				greyCleanup: false, ignoreOpenTabs: false
 			})
 		);
+		alarmFlag = false;
 		browser.alarms.clear(alarmInfo.name);
 	}
 });

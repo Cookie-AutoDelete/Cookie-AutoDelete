@@ -13,20 +13,15 @@ SOFTWARE.
 import {getHostname, returnMatchedExpressionObject} from "./libs";
 
 // Show the # of cookies in icon
-export const showNumberOfCookiesInIcon = async (tab) => {
-	const cookies = await browser.cookies.getAll({
-		domain: getHostname(tab.url),
-		storeId: tab.cookieStoreId
-	});
-
-	if (cookies.length === 0) {
+export const showNumberOfCookiesInIcon = (tab, cookieLength) => {
+	if (cookieLength === 0) {
 		browser.browserAction.setBadgeText({
 			text: "",
 			tabId: tab.id
 		});
 	} else {
 		browser.browserAction.setBadgeText({
-			text: cookies.length.toString(),
+			text: cookieLength.toString(),
 			tabId: tab.id
 		});
 	}

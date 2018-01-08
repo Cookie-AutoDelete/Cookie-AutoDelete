@@ -1,258 +1,280 @@
 {
-  "extensionName":{
-    "message":"Cookie AutoDelete",
-    "description":"Name of the extension."
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
   },
-  "extensionDescription":{
-    "message":"Styr dine cookies! Slet ubrugte cookies automatisk når du lukker dine faner, og behold dem du vil beholde.",
-    "description":"Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+  "extensionDescription": {
+    "message": "Styr dine cookies! Slet ubrugte cookies automatisk når du lukker dine faner, og behold dem du vil beholde.",
+    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
-  "notificationTitle":{
-    "message":"Cookie AutoDelete: Cookies blev slettet!",
-    "description":"Cookie AutoDelete: Cookies were deleted!"
+  "notificationTitle": {
+    "message": "Cookie AutoDelete: Cookies blev slettet!",
+    "description": "Cookie AutoDelete: Cookies were deleted!"
   },
-  "notificationContent":{
-    "message":"$Num$ slettede cookies fra: $Websites$",
-    "description":"123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders":{
-      "num":{
-        "content":"$1",
-        "example":"123"
+  "notificationContent": {
+    "message": "$Num$ slettede cookies fra: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
       },
-      "websites":{
-        "content":"$2",
-        "example":"google.com, facebook.com"
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
       }
     }
   },
-  "cleanText":{
-    "message":"Slet",
-    "description":"Clean"
+  "cleanText": {
+    "message": "Slet",
+    "description": "Clean"
   },
-  "cookieCleanupText":{
-    "message":"Slet nu",
-    "description":"Run cleanup now"
+  "cookieCleanupText": {
+    "message": "Slet nu",
+    "description": "Run cleanup now"
   },
-  "cleanIgnoringOpenTabsText":{
-    "message":"Slet, inkluder åbne faner",
-    "description":"Clean, include open tabs"
+  "cleanIgnoringOpenTabsText": {
+    "message": "Slet, inkluder åbne faner",
+    "description": "Clean, include open tabs"
   },
-  "cookieCleanupIgnoreOpenTabsText":{
-    "message":"Slet nu, inkluder cookies fra åbne faner",
-    "description":"Run cleanup now, include cookies from open tabs"
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Slet nu, inkluder cookies fra åbne faner",
+    "description": "Run cleanup now, include cookies from open tabs"
   },
-  "clearCookiesText":{
-    "message":"Slet cookies for dette domæne",
-    "description":"Clear cookies for this domain"
-  },
-  "clearCookiesForDomainText":{
-    "message":"Slet alle cookies for $domain$",
-    "description":"Clear all cookies for example.com",
-    "placeholders":{
-      "domain":{
-        "content":"$1",
-        "example":"example.com"
+  "clearSiteDataText": {
+    "message": "Clear $siteData$ for this domain",
+    "description": "Clear cookies for this domain",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       }
     }
   },
-  "noRulesText":{
-    "message":"No rules matched this domain",
-    "description":"No rules matched this domain"
-  },
-  "welcomeText":{
-    "message":"Velkommen",
-    "description":"Welcome"
-  },
-  "preferencesText":{
-    "message":"Indstillinger",
-    "description":"Settings"
-  },
-  "settingsText":{
-    "message":"Cookie Opsætning",
-    "description":"Cookie Settings"
-  },
-  "whiteListText":{
-    "message":"Liste af udtryk",
-    "description":"List of Expressions"
-  },
-  "aboutText":{
-    "message":"Om",
-    "description":"About"
-  },
-  "welcomeMessage":{
-    "message":"Hej der! I løbet af denne session har Cookie AutoDelete slettet $sessionDeleted$ cookies, og i alt $totalDeleted$ cookies.",
-    "description":"Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders":{
-      "sessionDeleted":{
-        "content":"$1",
-        "example":"123"
+  "clearSiteDataForDomainText": {
+    "message": "Clear all $siteData$ for $domain$",
+    "description": "Clear all cookies for example.com",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
       },
-      "totalDeleted":{
-        "content":"$2",
-        "example":"456"
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
-  "reviewLinkMessage":{
-    "message":"Tak for at prøve Cookie AutoDelete. Hvis du kan lide den, så giv en anmeldelse.",
-    "description":"Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+  "noRulesText": {
+    "message": "Ingen regler matchede dette domæne",
+    "description": "No rules matched this domain"
   },
-  "releaseNotesText":{
-    "message":"Udgivelsesnoter",
-    "description":"Release Notes"
+  "welcomeText": {
+    "message": "Velkommen",
+    "description": "Welcome"
   },
-  "activeModeText":{
-    "message":"Aktiver automatisk sletning? Forsinkelse før sletning:",
-    "description":"Enable Automatic Cleaning? Delay Before Cleaning:"
+  "preferencesText": {
+    "message": "Indstillinger",
+    "description": "Settings"
   },
-  "minutesText":{
-    "message":"Minut(ter)",
-    "description":"Minute(s)"
+  "settingsText": {
+    "message": "Cookie Opsætning",
+    "description": "Cookie Settings"
   },
-  "statLoggingText":{
-    "message":"Log samlet antal slettede cookies",
-    "description":"Log Total Number Of Cookies Deleted"
+  "whiteListText": {
+    "message": "Liste af udtryk",
+    "description": "List of Expressions"
   },
-  "resetCounterText":{
-    "message":"Nulstil tæller",
-    "description":"Reset Counter"
+  "aboutText": {
+    "message": "Om",
+    "description": "About"
   },
-  "showNumberOfCookiesInIconText":{
-    "message":"Vis antal cookies for det domæne",
-    "description":"Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText":{
-    "message":"Vis meddelelse efter sletning af cookies",
-    "description":"Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText":{
-    "message":"Slet cookies fra åbne faner ved opstart",
-    "description":"Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText":{
-    "message":"Aktiver tjek for underdomæner",
-    "description":"Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText":{
-    "message":"Aktiver understøttelse for Firefox' Kontekst-faneblade",
-    "description":"Enable Support for Firefox's Container Tabs"
-  },
-  "defaultSettingsText":{
-    "message":"Gendan standard opsætning",
-    "description":"Restore Default Settings"
-  },
-  "whiteListWordText":{
-    "message":"Hvidliste",
-    "description":"Whitelist"
-  },
-  "greyListWordText":{
-    "message":"Gråliste",
-    "description":"Greylist"
-  },
-  "toWhiteListText":{
-    "message":"Føj til hvidliste (slet aldrig)",
-    "description":"Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText":{
-    "message":"Føj til gråliste (slet når netlæseren genstarter)",
-    "description":"Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText":{
-    "message":"Fjern alle",
-    "description":"Remove All"
-  },
-  "exportURLSText":{
-    "message":"Eksporter udtryk",
-    "description":"Export Expressions"
-  },
-  "importURLSText":{
-    "message":"Importer udtryk",
-    "description":"Import Expressions"
-  },
-  "reportIssuesText":{
-    "message":"Rapporter fejl og mangler, og foreslå funktionalitet",
-    "description":"Report issues and suggest features"
-  },
-  "versionText":{
-    "message":"$browser$ version",
-    "description":"Firefox version",
-    "placeholders":{
-      "browser":{
-        "content":"$1",
-        "example":"Firefox"
+  "welcomeMessage": {
+    "message": "Hej der! I løbet af denne session har Cookie AutoDelete slettet $sessionDeleted$ cookies, og i alt $totalDeleted$ cookies.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "sessionDeleted": {
+        "content": "$1",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$2",
+        "example": "456"
       }
     }
   },
-  "contributorsText":{
-    "message":"Bidragydere:",
-    "description":"Contributors:"
+  "reviewLinkMessage": {
+    "message": "Tak for at prøve Cookie AutoDelete. Hvis du kan lide den, så giv en anmeldelse.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
-  "contributeText":{
-    "message":"Contribute",
-    "description":"Contribute"
+  "releaseNotesText": {
+    "message": "Udgivelsesnoter",
+    "description": "Release Notes"
   },
-  "domainExpressionsText":{
-    "message":"Domæneudtryk",
-    "description":"Domain Expression"
+  "activeModeText": {
+    "message": "Aktiver automatisk sletning? Forsinkelse før sletning:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
-  "matchedDomainExpressionText":{
-    "message":"Matchet domæneudtryk",
-    "description":"Matched Domain Expression"
+  "minutesText": {
+    "message": "Minut(ter)",
+    "description": "Minute(s)"
   },
-  "regularExpressionEquivalentText":{
-    "message":"Tilsvarende regulært udtryk",
-    "description":"Regular Expression Equivalent"
+  "secondsText": {
+    "message": "Second(s)",
+    "description": "Second(s)"
   },
-  "listTypeText":{
-    "message":"Listetype",
-    "description":"List Type"
+  "statLoggingText": {
+    "message": "Log samlet antal slettede cookies",
+    "description": "Log Total Number Of Cookies Deleted"
   },
-  "domainPlaceholderText":{
-    "message":"example.com, subdomain.example.com, *.example.com",
-    "description":"Domain Expression"
+  "resetCounterText": {
+    "message": "Nulstil tæller",
+    "description": "Reset Counter"
   },
-  "noExpressionsText":{
-    "message":"No expressions defined.",
-    "description":"No expressions defined."
+  "showNumberOfCookiesInIconText": {
+    "message": "Vis antal cookies for det domæne",
+    "description": "Show Number of Cookies for that Domain"
   },
-  "removeExpressionText":{
-    "message":"Fjern udtryk",
-    "description":"Remove expression"
+  "notifyCookieCleanUpText": {
+    "message": "Vis meddelelse efter sletning af cookies",
+    "description": "Show Notification After Cookie Cleanup"
   },
-  "stopEditingText":{
-    "message":"Stop redigering",
-    "description":"Stop editing"
+  "cookieCleanUpOnStartText": {
+    "message": "Slet cookies fra åbne faner ved opstart",
+    "description": "Clean Cookies from Open Tabs on Startup"
   },
-  "saveExpressionText":{
-    "message":"Gem udtryk",
-    "description":"Save expression"
+  "enableGlobalSubdomainText": {
+    "message": "Aktiver tjek for underdomæner",
+    "description": "Enable Check for Subdomains"
   },
-  "editExpressionText":{
-    "message":"Rediger udtryk",
-    "description":"Edit expression"
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktiver understøttelse for Firefox' Kontekst-faneblade",
+    "description": "Enable Support for Firefox's Container Tabs"
   },
-  "toggleToGreyListWordText":{
-    "message":"Skift til gråliste",
-    "description":"Toggle to greylist"
+  "localstorageCleanupText": {
+    "message": "Localstorage Cleanup (Firefox 58+)",
+    "description": "Localstorage Cleanup (Firefox 58+)"
   },
-  "toggleToWhiteListWordText":{
-    "message":"Skift til hvidliste",
-    "description":"Toggle to whitelist"
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
-  "autoDeleteEnabledText":{
-    "message":"Automatisk sletning aktiveret",
-    "description":"Auto-clean enabled"
+  "defaultSettingsText": {
+    "message": "Gendan standard opsætning",
+    "description": "Restore Default Settings"
   },
-  "autoDeleteDisabledText":{
-    "message":"Automatisk sletning deaktiveret",
-    "description":"Auto-clean disabled"
+  "whiteListWordText": {
+    "message": "Hvidliste",
+    "description": "Whitelist"
   },
-  "disableAutoDeleteText":{
-    "message":"Skift for at deaktivere automatisk sletning (manuel tilstand)",
-    "description":"Toggle to disable automatic cleanup (manual mode)"
+  "greyListWordText": {
+    "message": "Gråliste",
+    "description": "Greylist"
   },
-  "enableAutoDeleteText":{
-    "message":"Skift for at aktivere automatisk sletning (automatisk tilstand)",
-    "description":"Toggle to enable automatic cleanup (automatic mode)"
+  "toWhiteListText": {
+    "message": "Føj til hvidliste (slet aldrig)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toGreyListText": {
+    "message": "Føj til gråliste (slet når netlæseren genstarter)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "clearURLText": {
+    "message": "Fjern alle",
+    "description": "Remove All"
+  },
+  "exportURLSText": {
+    "message": "Eksporter udtryk",
+    "description": "Export Expressions"
+  },
+  "importURLSText": {
+    "message": "Importer udtryk",
+    "description": "Import Expressions"
+  },
+  "reportIssuesText": {
+    "message": "Rapporter fejl og mangler, og foreslå funktionalitet",
+    "description": "Report issues and suggest features"
+  },
+  "versionText": {
+    "message": "$browser$ version",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "contributorsText": {
+    "message": "Bidragydere:",
+    "description": "Contributors:"
+  },
+  "contributeText": {
+    "message": "Bidrag",
+    "description": "Contribute"
+  },
+  "domainExpressionsText": {
+    "message": "Domæneudtryk",
+    "description": "Domain Expression"
+  },
+  "matchedDomainExpressionText": {
+    "message": "Matchet domæneudtryk",
+    "description": "Matched Domain Expression"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "Tilsvarende regulært udtryk",
+    "description": "Regular Expression Equivalent"
+  },
+  "listTypeText": {
+    "message": "Listetype",
+    "description": "List Type"
+  },
+  "domainPlaceholderText": {
+    "message": "example.com, subdomain.example.com, *.example.com",
+    "description": "Domain Expression"
+  },
+  "noExpressionsText": {
+    "message": "Ingen udtryk defineret.",
+    "description": "No expressions defined."
+  },
+  "removeExpressionText": {
+    "message": "Fjern udtryk",
+    "description": "Remove expression"
+  },
+  "stopEditingText": {
+    "message": "Stop redigering",
+    "description": "Stop editing"
+  },
+  "saveExpressionText": {
+    "message": "Gem udtryk",
+    "description": "Save expression"
+  },
+  "editExpressionText": {
+    "message": "Rediger udtryk",
+    "description": "Edit expression"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Skift til gråliste",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Skift til hvidliste",
+    "description": "Toggle to whitelist"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Automatisk sletning aktiveret",
+    "description": "Auto-clean enabled"
+  },
+  "autoDeleteDisabledText": {
+    "message": "Automatisk sletning deaktiveret",
+    "description": "Auto-clean disabled"
+  },
+  "disableAutoDeleteText": {
+    "message": "Skift for at deaktivere automatisk sletning (manuel tilstand)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "enableAutoDeleteText": {
+    "message": "Skift for at aktivere automatisk sletning (automatisk tilstand)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
   }
 }
