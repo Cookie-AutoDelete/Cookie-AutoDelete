@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Krijg controle over uw cookies! Automatisch verwijderen van ongebruikte cookies van gesloten tabbladen met behoud van belangrijke cookies.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies were deleted!",
+    "message": "Cookie AutoDelete: Cookies zijn verwijderd!",
     "description": "Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "message": "Er zijn $Num$ Cookies verwijderd van: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -26,23 +26,23 @@
     }
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "Schoonmaken",
     "description": "Clean"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "Ruim cookies nu op",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "Ruim op, inclusief open tabbladen",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
+    "message": "Ruim op, inclusief cookies van open tabbladen",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Ruim op $siteData$ voor dit domein",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Ruim alles op $siteData$ voor $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -70,27 +70,27 @@
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Welcome",
+    "message": "Welkom",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Settings",
+    "message": "Instellingen",
     "description": "Settings"
   },
   "settingsText": {
-    "message": "Cookie Settings",
+    "message": "Cookie-instellingen",
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "List of Expressions",
+    "message": "Lijst met expressies",
     "description": "List of Expressions"
   },
   "aboutText": {
-    "message": "About",
+    "message": "Over",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
+    "message": "Hoi! Tijdens deze sessie heeft Cookie AutoDelete $sessionDeleted$ cookies verwijderd en in het totaal $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -108,7 +108,7 @@
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Release Notes",
+    "message": "Uitgave opmerkingen",
     "description": "Release Notes"
   },
   "activeModeText": {
@@ -116,11 +116,11 @@
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minute(s)",
+    "message": "Minu(u)t(en)",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Seconde(n)",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -128,7 +128,7 @@
     "description": "Log Total Number Of Cookies Deleted"
   },
   "resetCounterText": {
-    "message": "Reset Counter",
+    "message": "Reset teller",
     "description": "Reset Counter"
   },
   "showNumberOfCookiesInIconText": {
@@ -172,31 +172,35 @@
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Add to Whitelist (Never Clean)",
+    "message": "Toevoegen aan Whitelist (ruim cookie nooit op)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Add to Greylist (Clean on Browser Restart)",
+    "message": "Toevoegen aan Greylist (ruim cookie op na browser herstart)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Remove All",
+    "message": "Alles verwijderen",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Export Expressions",
+    "message": "Exporteer expressies",
     "description": "Export Expressions"
   },
+  "exportURLSTitle": {
+    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
   "importURLSText": {
-    "message": "Import Expressions",
+    "message": "Importeer expressies",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Report issues and suggest features",
+    "message": "Problemen rapporteren en voorstellen van functies",
     "description": "Report issues and suggest features"
   },
   "versionText": {
-    "message": "$browser$ version",
+    "message": "$browser$ versie",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -206,15 +210,15 @@
     }
   },
   "contributorsText": {
-    "message": "Contributors:",
+    "message": "Bijdragers:",
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Contribute",
+    "message": "Bijdragen",
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Domain Expression",
+    "message": "Domein expressie",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
@@ -222,35 +226,35 @@
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Regular Expression Equivalent",
+    "message": "Equivalent van de reguliere expressie",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "List Type",
+    "message": "Lijst Type",
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
+    "message": "example.com, subdomein.example.com, *. example.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "No expressions defined.",
+    "message": "Geen expressies gedefinieerd.",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Remove expression",
+    "message": "Verwijder expressie",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Stop editing",
+    "message": "Stoppen met bewerken",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Save expression",
+    "message": "Opslaan expressie",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Edit expression",
+    "message": "Expressie bewerken",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
@@ -262,7 +266,7 @@
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Auto-clean enabled",
+    "message": "Automatisch opruimen ingeschakeld",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Toggle to enable automatic cleanup (automatic mode)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Notification enabled",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Notification disabled",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Toggle to enable or disable notifications",
+    "description": "Toggle to enable or disable notifications"
   }
 }

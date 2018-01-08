@@ -42,7 +42,7 @@
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "$siteData$ dieser Domain aufräumen",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Alle $siteData$ von $domain$ aufräumen",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Sekunde(n)",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -152,11 +152,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Localstorage aufräumen (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Die gleichzeitige Aktivierung von \"Localstorage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -187,6 +187,10 @@
     "message": "Ausdrücke exportieren",
     "description": "Export Expressions"
   },
+  "exportURLSTitle": {
+    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
   "importURLSText": {
     "message": "Ausdrücke importieren",
     "description": "Import Expressions"
@@ -196,7 +200,7 @@
     "description": "Report issues and suggest features"
   },
   "versionText": {
-    "message": "$browser$ Version",
+    "message": "$browser$-Version",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Umschalten um automatisches Aufräumen zu aktivieren (automatischer Modus)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Notification enabled",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Notification disabled",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Toggle to enable or disable notifications",
+    "description": "Toggle to enable or disable notifications"
   }
 }

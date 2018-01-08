@@ -42,7 +42,7 @@
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Effacer tous les $siteData$ de ce domaine",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Effacer tous les $siteData$ de $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Seconde(s)",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -152,11 +152,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Nettoyage du LocalStorage (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Activer le Nettoyage du LocalStorage et les onglets Conteneurs de Firefox peut causer des effets indésirables dues à des limitations dans l'API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -186,6 +186,10 @@
   "exportURLSText": {
     "message": "Exporter les expressions",
     "description": "Export Expressions"
+  },
+  "exportURLSTitle": {
+    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
     "message": "Importer les expressions",
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Sélectionner pour activer le nettoyage automatique (mode manuel)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Notification enabled",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Notification disabled",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Toggle to enable or disable notifications",
+    "description": "Toggle to enable or disable notifications"
   }
 }

@@ -187,6 +187,10 @@
     "message": "Esporta espressioni",
     "description": "Export Expressions"
   },
+  "exportURLSTitle": {
+    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
   "importURLSText": {
     "message": "Importa espressioni",
     "description": "Import Expressions"
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Cambia per attivare la pulitura automatica (modalità automatica)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Notification enabled",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Notification disabled",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Toggle to enable or disable notifications",
+    "description": "Toggle to enable or disable notifications"
   }
 }

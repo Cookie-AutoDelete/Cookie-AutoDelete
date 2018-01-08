@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Segundo(s)",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -186,6 +186,10 @@
   "exportURLSText": {
     "message": "Exportar Expressões",
     "description": "Export Expressions"
+  },
+  "exportURLSTitle": {
+    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
     "message": "Importar Expressões",
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Alterne para ativar limpeza automática (modo automático)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Notification enabled",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Notification disabled",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Toggle to enable or disable notifications",
+    "description": "Toggle to enable or disable notifications"
   }
 }
