@@ -354,5 +354,15 @@
   "toggleNotificationText": {
     "message": "Toggle to enable or disable notifications",
     "description": "Toggle to enable or disable notifications"
+  },
+
+  "tooltipTitle": {
+    "message": "Learn more",
+    "description": "Learn more"
+  },
+
+  "toggleMenuLabel": {
+    "message": "Toggle menu",
+    "description": "Toggle menu"
   }
 }
