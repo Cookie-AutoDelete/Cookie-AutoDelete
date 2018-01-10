@@ -188,7 +188,7 @@
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "message": "Un horodatage sera ajouté au nom de fichier lors de l'exportation.\nVous avez des problèmes de téléchargement? Cliquez avec le bouton droit sur ce bouton et cliquez sur \"Enregistrer le lien sous ...\" pour le télécharger.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
@@ -282,15 +282,15 @@
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notification enabled",
+    "message": "Notification activée",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notification disabled",
+    "message": "Notification désactivée",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Toggle to enable or disable notifications",
+    "message": "Basculer pour activer ou désactiver les notifications",
     "description": "Toggle to enable or disable notifications"
   }
 }

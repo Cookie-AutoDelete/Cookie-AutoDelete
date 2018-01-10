@@ -66,7 +66,7 @@
     }
   },
   "noRulesText": {
-    "message": "No rules matched this domain",
+    "message": "Geen regels komen overeen met dit domein",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
@@ -104,7 +104,7 @@
     }
   },
   "reviewLinkMessage": {
-    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message": "Bedankt voor het uitproberen van Cookie AutoDelete. Indien u het leuk vindt dan beoordeel het alsublieft.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
@@ -112,7 +112,7 @@
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message": "Activeer automatisch opschonen? Stel de vertraging in voor het automatisch schoonmaken:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
@@ -124,7 +124,7 @@
     "description": "Second(s)"
   },
   "statLoggingText": {
-    "message": "Log Total Number Of Cookies Deleted",
+    "message": "Log van het totaal aantal verwijderde cookies",
     "description": "Log Total Number Of Cookies Deleted"
   },
   "resetCounterText": {
@@ -132,35 +132,35 @@
     "description": "Reset Counter"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Show Number of Cookies for that Domain",
+    "message": "Toon het aantal cookies voor dat domein",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie Cleanup",
+    "message": "Melding weergeven na het opschonen van cookies",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on Startup",
+    "message": "Ruim cookies op van openstaande tabbladen bij het starten",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Enable Check for Subdomains",
+    "message": "Activeer check op subdomein",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
+    "message": "Ondersteuning voor Firefox Container tabbladen inschakelen",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Localstorage Cleanup (Firefox 58 +)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Het inschakelen van zowel de Localstorage opruimen en de Container tabbladen kan sommige ongewenste bijwerkingen veroorzaken als gevolg van beperkingen van de API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
-    "message": "Restore Default Settings",
+    "message": "Standaardinstellingen herstellen",
     "description": "Restore Default Settings"
   },
   "whiteListWordText": {
@@ -188,7 +188,7 @@
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "message": "Een tijdstempel zal toegevoegd worden aan de bestandsnaam bij uitvoer. Ondervindt u problemen met downloaden?  Klik dan met de rechtermuisknop op deze knop en klik op \"Link opslaan als...\" om te downloaden.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
@@ -222,7 +222,7 @@
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Matched Domain Expression",
+    "message": "Overeenkomende domein expressie",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
@@ -258,11 +258,11 @@
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Toggle to greylist",
+    "message": "Schakel naar greylist",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Toggle to whitelist",
+    "message": "Schakel naar whitelist",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
@@ -270,27 +270,27 @@
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Auto-clean disabled",
+    "message": "Automatisch opruimen uitgeschakeld",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Toggle to disable automatic cleanup (manual mode)",
+    "message": "Schakel automatische opruimen uit (handmatige modus)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Toggle to enable automatic cleanup (automatic mode)",
+    "message": "Schakel automatische opruimen in (automatisch modus)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notification enabled",
+    "message": "Meldingen ingeschaked",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notification disabled",
+    "message": "Meldingen uitgeschakeld",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Toggle to enable or disable notifications",
+    "message": "In-\/ uitschakelen van meldingen",
     "description": "Toggle to enable or disable notifications"
   }
 }
