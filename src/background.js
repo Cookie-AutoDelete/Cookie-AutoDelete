@@ -72,7 +72,7 @@ const createActiveModeAlarm = () => {
 				})
 			);
 			alarmFlag = false;
-		}, 100);
+		}, 500);
 	} else if (browserDetect() === "Firefox" || (browserDetect() === "Chrome" && seconds >= 60)) {
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
