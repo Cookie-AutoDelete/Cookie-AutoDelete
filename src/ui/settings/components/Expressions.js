@@ -142,7 +142,7 @@ class Expressions extends React.Component {
 					paddingTop: "8px", paddingBottom: "8px", justifyContent: "space-between"
 				}}>
 					<div className="col-sm-auto btn-group" style={{
-						paddingLeft: "0"
+						paddingRight: 0, paddingLeft: 0
 					}}>
 						<IconButton
 							tag="a"
@@ -156,6 +156,7 @@ class Expressions extends React.Component {
 							onContextMenu={(d) => this.exportAppendTimestamp(d.target)}
 							title={browser.i18n.getMessage("exportURLSTitle")}
 							text={browser.i18n.getMessage("exportURLSText")}
+							style={{width: "50%"}}
 						/>
 
 						<IconButton
@@ -165,10 +166,11 @@ class Expressions extends React.Component {
 							type="file"
 							onChange={(e) => this.importExpressions(e.target.files)}
 							text={browser.i18n.getMessage("importURLSText")}
+							style={{width: "50%"}}
 						/>
 					</div>
 					<div className="col-sm-auto btn-group" style={{
-						paddingRight: "0", justifyContent: "flex-end"
+						paddingRight: 0, paddingLeft: 0, justifyContent: "flex-end"
 					}}>
 						<IconButton
 							className="btn-secondary"
@@ -177,6 +179,7 @@ class Expressions extends React.Component {
 								storeId,
 								listType: "GREY"
 							});}}
+							style={{width: "50%"}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toGreyListText")}
 							text={browser.i18n.getMessage("greyListWordText")}
@@ -189,6 +192,7 @@ class Expressions extends React.Component {
 								storeId,
 								listType: "WHITE"
 							});}}
+							style={{width: "50%"}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toWhiteListText")}
 							text={browser.i18n.getMessage("whiteListWordText")}
