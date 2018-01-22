@@ -24,7 +24,20 @@ export const getHostname = (urlToGetHostName) => {
 
 // Returns true if it is a webpage
 export const isAWebpage = (URL) => {
+	if (URL === undefined) {
+		return false;
+	}
 	if (URL.match(/^http:/) || URL.match(/^https:/)) {
+		return true;
+	}
+	return false;
+};
+
+// Returns true if it is a IP
+export const isAnIP = (URL) => {
+	const hostname = getHostname(URL);
+	let reIP = new RegExp("[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+");
+	if (reIP.test(hostname)) {
 		return true;
 	}
 	return false;

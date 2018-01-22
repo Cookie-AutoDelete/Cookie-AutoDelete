@@ -1,5 +1,5 @@
 import {assert} from "chai";
-import {getHostname, isAWebpage, extractMainDomain, prepareCookieDomain, globExpressionToRegExp, returnOptionalCookieAPIAttributes} from "../src/services/libs";
+import {getHostname, isAWebpage, isAnIP, extractMainDomain, prepareCookieDomain, globExpressionToRegExp, returnOptionalCookieAPIAttributes} from "../src/services/libs";
 // ToDo: returnMatchedExpressionObject, getSetting
 import {URL} from "url";
 global.URL = URL;
@@ -122,6 +122,38 @@ describe("Library Functions", function() {
 		it("should return false from extension page", function() {
 			let results = isAWebpage("moz-extension://test/settings/settings.html");
 			assert.isFalse(results);
+		});
+	});
+
+	describe("isAnIP()", function() {
+		it("should return false from https://en.wikipedia.org/wiki/Cat", function() {
+			let results = isAnIP("https://en.wikipedia.org/wiki/Cat");
+			assert.isFalse(results);
+		});
+
+		it("should return false from http://yahoo.com", function() {
+			let results = isAnIP("http://yahoo.com");
+			assert.isFalse(results);
+		});
+
+		it("should return false from random", function() {
+			let results = isAnIP("random");
+			assert.isFalse(results);
+		});
+
+		it("should return false from extension page", function() {
+			let results = isAnIP("moz-extension://test/settings/settings.html");
+			assert.isFalse(results);
+		});
+
+		it("should return true from http ip", function() {
+			let results = isAnIP("http://192.168.1.1/");
+			assert.isTrue(results);
+		});
+
+		it("should return true from https ip", function() {
+			let results = isAnIP("https://192.168.1.1/");
+			assert.isTrue(results);
 		});
 	});
 
