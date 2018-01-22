@@ -235,9 +235,12 @@ class App extends Component {
 							style={{
 								margin: "0 4px"
 							}}
-							onClick={() => browser.tabs.create({
-								url: "/settings/settings.html#tabSettings"
-							})}
+							onClick={() => {
+								browser.tabs.create({
+									url: "/settings/settings.html#tabSettings"
+								});
+								window.close();
+							}}
 							title={browser.i18n.getMessage("preferencesText")}
 							text={browser.i18n.getMessage("preferencesText")}
 						/>
