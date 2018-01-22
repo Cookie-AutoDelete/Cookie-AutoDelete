@@ -42,7 +42,7 @@
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Borrar $siteData$ para este dominio",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Borrar todo $siteData$ para $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -66,7 +66,7 @@
     }
   },
   "noRulesText": {
-    "message": "No rules matched this domain",
+    "message": "No hay reglas que coincidan con este dominio",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Segundo(s)",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -152,11 +152,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "LocalStorage limpieza (Firefox) 58 +",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Permitiendo limpieza de Localstorage y contenedores separados puede causar algunos efectos secundarios no deseados debido a las limitaciones de la API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -188,7 +188,7 @@
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "message": "Una marca de tiempo se anexa al nombre de archivo de exportación. ¿Tienes problemas para descargar?  Haga clic derecho en este botón y haga clic en 'Guardar enlace como...' para descargar.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
@@ -214,7 +214,7 @@
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Contribute",
+    "message": "Contribuye",
     "description": "Contribute"
   },
   "domainExpressionsText": {
@@ -238,7 +238,7 @@
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "No expressions defined.",
+    "message": "No hay expresiones definidas.",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
@@ -282,15 +282,15 @@
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notification enabled",
+    "message": "Las notificaciones están habilitadas",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notification disabled",
+    "message": "Las notificaciones están deshabilitadas",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Toggle to enable or disable notifications",
+    "message": "Palanca para activar o desactivar las notificaciones",
     "description": "Toggle to enable or disable notifications"
   }
 }
