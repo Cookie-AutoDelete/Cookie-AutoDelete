@@ -10,7 +10,9 @@
         "Fixed: Cookies not deleting for newly created Containers",
         "Fixed: Cookies not deleting until a second tab close under no delay",
         "Changed: Condensed popup actions",
-        "Changed: Delay timer changed from minutes to seconds"
+        "Changed: Delay timer changed from minutes to seconds",
+        "Changed (2.1.1): Mobile Settings UI Improvements",
+        "Changed (2.1.1): 'Restore Default Settings' now only affects the Settings Page"
       ]
     },
     {

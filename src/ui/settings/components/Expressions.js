@@ -156,7 +156,9 @@ class Expressions extends React.Component {
 							onContextMenu={(d) => this.exportAppendTimestamp(d.target)}
 							title={browser.i18n.getMessage("exportURLSTitle")}
 							text={browser.i18n.getMessage("exportURLSText")}
-							style={{width: "50%"}}
+							style={{
+								width: "50%"
+							}}
 						/>
 
 						<IconButton
@@ -166,7 +168,9 @@ class Expressions extends React.Component {
 							type="file"
 							onChange={(e) => this.importExpressions(e.target.files)}
 							text={browser.i18n.getMessage("importURLSText")}
-							style={{width: "50%"}}
+							style={{
+								width: "50%"
+							}}
 						/>
 					</div>
 					<div className="col-sm-auto btn-group" style={{
@@ -179,7 +183,9 @@ class Expressions extends React.Component {
 								storeId,
 								listType: "GREY"
 							});}}
-							style={{width: "50%"}}
+							style={{
+								width: "50%"
+							}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toGreyListText")}
 							text={browser.i18n.getMessage("greyListWordText")}
@@ -192,7 +198,9 @@ class Expressions extends React.Component {
 								storeId,
 								listType: "WHITE"
 							});}}
-							style={{width: "50%"}}
+							style={{
+								width: "50%"
+							}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toWhiteListText")}
 							text={browser.i18n.getMessage("whiteListWordText")}

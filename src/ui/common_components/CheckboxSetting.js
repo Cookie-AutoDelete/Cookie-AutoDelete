@@ -21,11 +21,11 @@ const CheckboxSetting = ({
 		display: "inline"
 	} : {};
 	return (
-		<span style={inlineElement} className={`checkbox`}>
-			<input className={`form-check-input`} checked={value} onChange={(e) => updateSetting({
+		<span style={inlineElement} className={"checkbox"}>
+			<input className={"form-check-input"} checked={value} onChange={(e) => updateSetting({
 				id, name, value: e.target.checked
 			})} id={id} type="checkbox" />
-			<label className={`form-check-label`} htmlFor={id}>
+			<label className={"form-check-label"} htmlFor={id}>
 				{text}
 			</label>
 
