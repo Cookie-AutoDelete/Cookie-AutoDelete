@@ -12,7 +12,7 @@ SOFTWARE.
 import React, {Component} from "react";
 import {findDOMNode} from "react-dom";
 import {connect} from "react-redux";
-import {getHostname, extractMainDomain, getSetting, prepareCookieDomain, returnOptionalCookieAPIAttributes} from "../../services/libs";
+import {getHostname, extractMainDomain, getSetting, prepareCookieDomain, returnOptionalCookieAPIAttributes, isAnIP} from "../../services/libs";
 import FilteredExpression from "./components/FilteredExpression";
 import {addExpressionUI, cookieCleanupUI, updateSettingUI} from "../UIActions";
 import IconButton from "../common_components/IconButton";
@@ -107,7 +107,7 @@ class App extends Component {
 			hostname === mainDomain ? undefined : `*.${mainDomain}`,
 			hostname
 		].filter(Boolean);
-		if (hostname !== "") {
+		if (hostname !== "" && !isAnIP(tab.url)) {
 			addableHostnames.push(`*.${hostname}`);
 		}
 		return (
@@ -235,9 +235,12 @@ class App extends Component {
 							style={{
 								margin: "0 4px"
 							}}
-							onClick={() => browser.tabs.create({
-								url: "/settings/settings.html#tabSettings"
-							})}
+							onClick={() => {
+								browser.tabs.create({
+									url: "/settings/settings.html#tabSettings"
+								});
+								window.close();
+							}}
 							title={browser.i18n.getMessage("preferencesText")}
 							text={browser.i18n.getMessage("preferencesText")}
 						/>

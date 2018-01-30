@@ -72,7 +72,7 @@ const createActiveModeAlarm = () => {
 				})
 			);
 			alarmFlag = false;
-		}, 100);
+		}, 500);
 	} else if (browserDetect() === "Firefox" || (browserDetect() === "Chrome" && seconds >= 60)) {
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
@@ -320,6 +320,14 @@ const onStartUp = async () => {
 					key: "firstPartyIsolateSetting", value: setting.value
 				}
 			});
+			if (browserVersion === "58" && setting.value) {
+				browser.notifications.create("FPI_NOTIFICATION", {
+					"type": "basic",
+					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
+					"title": "First Party Isolation Detected",
+					"message": "Please turn off privacy.firstparty.isolate and restart the browser as it breaks cookie cleanup"
+				});
+			}
 		}
 	}
 	// Store which browser environment in cache

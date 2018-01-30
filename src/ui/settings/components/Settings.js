@@ -15,6 +15,12 @@ import CheckboxSetting from "../../common_components/CheckboxSetting";
 import React from "react";
 import Tooltip from "./SettingsTooltip";
 
+const styles = {
+	rowOverrides: {
+		marginBottom: "10px"
+	}
+};
+
 const HistorySettings = (props) => {
 	const {
 		style,
@@ -28,7 +34,7 @@ const HistorySettings = (props) => {
 	return (
 		<div style={style}>
 			<h1>{browser.i18n.getMessage("settingsText")}</h1>
-			<div className="row">
+			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-12">
 					<CheckboxSetting
 						text={browser.i18n.getMessage("activeModeText")}
@@ -58,7 +64,7 @@ const HistorySettings = (props) => {
 
 			</div>
 
-			<div className="row">
+			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-9">
 					<CheckboxSetting
 						text={browser.i18n.getMessage("statLoggingText")}
@@ -79,7 +85,7 @@ const HistorySettings = (props) => {
 
 			</div>
 
-			<div className="row">
+			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-12">
 					<CheckboxSetting
 						text={browser.i18n.getMessage("showNumberOfCookiesInIconText")}
@@ -93,7 +99,7 @@ const HistorySettings = (props) => {
 				</div>
 			</div>
 
-			<div className="row">
+			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-12">
 					<CheckboxSetting
 						text={browser.i18n.getMessage("notifyCookieCleanUpText")}
@@ -122,7 +128,7 @@ const HistorySettings = (props) => {
 				</div>
 			</div>
 
-			<div className="row">
+			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-12">
 					<CheckboxSetting
 						text={browser.i18n.getMessage("cookieCleanUpOnStartText")}
@@ -138,7 +144,7 @@ const HistorySettings = (props) => {
 
 			{
 				browserDetect === "Firefox" &&
-					<div className="row">
+					<div className="row" style={styles.rowOverrides}>
 						<div className="col-md-12">
 							<CheckboxSetting
 								text={browser.i18n.getMessage("contextualIdentitiesEnabledText")}
@@ -155,7 +161,7 @@ const HistorySettings = (props) => {
 
 			{
 				browserDetect === "Firefox" && browserVersion >= 58 &&
-					<div className="row">
+					<div className="row" style={styles.rowOverrides}>
 						<div className="col-md-12">
 							<CheckboxSetting
 								text={browser.i18n.getMessage("localstorageCleanupText")}

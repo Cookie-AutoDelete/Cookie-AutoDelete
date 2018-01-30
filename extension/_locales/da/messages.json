@@ -42,7 +42,7 @@
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Slet $siteData$ for dette domæne",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Slet alle $siteData$ for $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Sekund(er)",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -152,11 +152,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Ryd op i offline-indhold (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Aktivering af både oprydning af offline-indhold og kontekst-faneblade kan forårsage uventede sideeffekter pga. API-begrænsninger",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -186,6 +186,10 @@
   "exportURLSText": {
     "message": "Eksporter udtryk",
     "description": "Export Expressions"
+  },
+  "exportURLSTitle": {
+    "message": "Et tidsstempel vil blive tilføjet til filnavnet ved eksport.\nProblemer med at hente? Højreklik denne knap og klik 'Gem link som...' for at hente.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
     "message": "Importer udtryk",
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Skift for at aktivere automatisk sletning (automatisk tilstand)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Meddelelser aktiveret",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Meddelelser deaktiveret",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Skift for at aktivere eller deaktivere meddelelser",
+    "description": "Toggle to enable or disable notifications"
   }
 }

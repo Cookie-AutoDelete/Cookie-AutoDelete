@@ -127,6 +127,16 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 			greyCleanup: false, ignoreOpenTabs: false
 		};
 	}
+
+	if (getState().cache.browserVersion === "58" && getState().cache.firstPartyIsolateSetting) {
+		browser.notifications.create("FPI_NOTIFICATION", {
+			"type": "basic",
+			"iconUrl": browser.extension.getURL("icons/icon_48.png"),
+			"title": "First Party Isolation Detected",
+			"message": "Please turn off privacy.firstparty.isolate and restart the browser as it breaks cookie cleanup"
+		});
+	}
+
 	const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
 	const {
 		recentlyCleaned, setOfDeletedDomainCookies

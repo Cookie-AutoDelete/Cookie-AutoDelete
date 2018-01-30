@@ -42,7 +42,7 @@
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "清除此域的 $siteData$",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "清除 $domain$ 的 $siteData$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -66,7 +66,7 @@
     }
   },
   "noRulesText": {
-    "message": "No rules matched this domain",
+    "message": "没有匹配此域的规则",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "秒",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -152,11 +152,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "本地存储清理（Firefox 58+）",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "由于 API 限制，同时启用本地存储清理和容器（身份）标签页可能导致一些不想要的副作用",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -187,6 +187,10 @@
     "message": "导出表达式",
     "description": "Export Expressions"
   },
+  "exportURLSTitle": {
+    "message": "导出时将会在文件名后面追加一个时间戳。\n下载有问题？右击此按钮，选择“链接另存为...”来下载。",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
   "importURLSText": {
     "message": "导入表达式",
     "description": "Import Expressions"
@@ -210,7 +214,7 @@
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Contribute",
+    "message": "捐助",
     "description": "Contribute"
   },
   "domainExpressionsText": {
@@ -222,7 +226,7 @@
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Regular Expression Equivalent",
+    "message": "正则表达式等效",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
@@ -234,7 +238,7 @@
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "No expressions defined.",
+    "message": "未定义表达式。",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "切换来启用自动清理（自动模式）",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "通知已启用",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "通知已停用",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "切换以启用或禁用通知",
+    "description": "Toggle to enable or disable notifications"
   }
 }
