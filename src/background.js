@@ -14,6 +14,7 @@ import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression,
 import {getSetting, getHostname, isAWebpage, returnOptionalCookieAPIAttributes} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
+import shortid from "shortid";
 
 let store;
 let currentSettings;
@@ -113,7 +114,6 @@ const getAllCookieActions = async (tab) => {
 			firstPartyDomain: getHostname(tab.url)
 		})
 	);
-
 	let cookieLength = cookies.length;
 	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup") && isAWebpage(tab.url)) {
 		browser.cookies.set(
@@ -121,7 +121,7 @@ const getAllCookieActions = async (tab) => {
 				url: tab.url,
 				name: "CookieAutoDelete",
 				value: "cookieForLocalstorageCleanup",
-				path: "/cookie-for-localstorage-cleanup",
+				path: `/${shortid.generate()}`,
 				firstPartyDomain: getHostname(tab.url),
 				expirationDate: Math.floor(Date.now() / 1000 + 31557600)
 			})
