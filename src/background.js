@@ -122,7 +122,8 @@ const getAllCookieActions = async (tab) => {
 				name: "CookieAutoDelete",
 				value: "cookieForLocalstorageCleanup",
 				path: "/cookie-for-localstorage-cleanup",
-				firstPartyDomain: getHostname(tab.url)
+				firstPartyDomain: getHostname(tab.url),
+				expirationDate: Math.floor(Date.now() / 1000 + 31557600)
 			})
 		);
 		cookieLength = 1;
