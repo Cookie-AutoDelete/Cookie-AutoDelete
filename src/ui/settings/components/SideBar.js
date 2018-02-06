@@ -41,59 +41,38 @@ const sideBarTabs = [
 ];
 
 class SideBar extends Component {
-	// Switches tabs
-	toggleClass(element, className) {
-		let classes = element.className.split(/\s+/);
-		let i = 0;
-		let length = classes.length;
-
-		for (; i < length; i++) {
-			if (classes[i] === className) {
-				classes.splice(i, 1);
-				break;
-			}
-		}
-		// The className is not found
-		if (length === classes.length) {
-			classes.push(className);
-		}
-
-		element.className = classes.join(" ");
-	}
-
 	// Toggles the sidebar
 	toggleAll() {
-		const active = "active";
-		const layout = document.getElementById("layout");
-		const menu = document.getElementById("menu");
-		const menuLink = document.getElementById("menuLink");
-		this.toggleClass(layout, active);
-		this.toggleClass(menu, active);
-		this.toggleClass(menuLink, active);
+		document.getElementById("layout").classList.toggle("active");
+		this.node.querySelector("#menu").classList.toggle("active");
+		this.node.querySelector("#menuLink").classList.toggle("active");
 	}
 	render() {
 		const {
 			activeTab, switchTabs
 		} = this.props;
 		return (
-			<div>
+			<div ref={(node) => {this.node = node;}}>
 
-				<span style={styles.menuLink} onClick={() => this.toggleAll()} id="menuLink" className="menu-link">
-					<i style={styles.hamburger} className="fa fa-bars fa-3x" aria-hidden="true"></i>
-				</span>
+				<button style={styles.menuLink} onClick={() => this.toggleAll()} id="menuLink" className="menu-link" aria-label={browser.i18n.getMessage("toggleMenuLabel")}>
+					<i style={styles.hamburger} className="fa fa-bars fa-3x" role="presentation"></i>
+				</button>
 
-				<div id="menu">
-					<div className="pure-menu">
+				<nav id="menu">
+					<div className="pure-menu" role="tablist">
 						{
 							sideBarTabs.map((element, index) => (
-								<div
+								<a
 									key={element.tabId}
 									id={`${element.tabId}`}
 									onClick={() => switchTabs(element.tabId)}
+									href="#"
+									role="tab"
+									aria-selected={activeTab === element.tabId}
 									className={`pure-menu-item ${activeTab === element.tabId ? "pure-menu-selected" : ""}`}
 								>
 									<span>{`${element.tabText}`}</span>
-								</div>
+								</a>
 							))
 
 						}
@@ -109,7 +88,7 @@ class SideBar extends Component {
 						</div>
 
 					</div>
-				</div>
+				</nav>
 			</div>
 		);
 	}
