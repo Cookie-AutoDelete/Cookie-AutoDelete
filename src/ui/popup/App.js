@@ -110,6 +110,9 @@ class App extends Component {
 		if (hostname !== "" && !isAnIP(tab.url)) {
 			addableHostnames.push(`*.${hostname}`);
 		}
+		if (Object.keys(tab).length === 0) {
+			return ("Loading");
+		}
 		return (
 			<div className="container-fluid">
 				<div
