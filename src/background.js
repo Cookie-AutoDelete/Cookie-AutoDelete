@@ -137,10 +137,18 @@ const getAllCookieActions = async (tab) => {
 	}
 };
 
+// Add a delay to prevent multiple spawns of the localstorage cookie
+let onTabUpdateDelay = false;
 export const onTabUpdate = (tabId, changeInfo, tab) => {
 	if (tab.status === "complete") {
 		checkIfProtected(store.getState(), tab);
-		getAllCookieActions(tab);
+		if (!onTabUpdateDelay) {
+			getAllCookieActions(tab);
+			onTabUpdateDelay = true;
+			setTimeout(() => {
+				onTabUpdateDelay = false;
+			}, 250);
+		}
 	}
 };
 
