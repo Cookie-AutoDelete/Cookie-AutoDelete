@@ -143,11 +143,11 @@ export const onTabUpdate = (tabId, changeInfo, tab) => {
 	if (tab.status === "complete") {
 		checkIfProtected(store.getState(), tab);
 		if (!onTabUpdateDelay) {
-			getAllCookieActions(tab);
 			onTabUpdateDelay = true;
 			setTimeout(() => {
+				getAllCookieActions(tab);
 				onTabUpdateDelay = false;
-			}, 250);
+			}, 750);
 		}
 	}
 };
