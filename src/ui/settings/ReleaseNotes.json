@@ -12,7 +12,9 @@
         "Changed: Condensed popup actions",
         "Changed: Delay timer changed from minutes to seconds",
         "Changed (2.1.1): Mobile Settings UI Improvements",
-        "Changed (2.1.1): 'Restore Default Settings' now only affects the Settings Page"
+        "Changed (2.1.1): 'Restore Default Settings' now only affects the Settings Page",
+        "Fixed (2.1.2): Popup UI Glitches",
+        "Fixed (2.1.2): Add a random path ID to localstorage cookie to prevent fingerprinting"
       ]
     },
     {
