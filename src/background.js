@@ -14,6 +14,7 @@ import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression,
 import {getSetting, getHostname, isAWebpage, returnOptionalCookieAPIAttributes} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
+import shortid from "shortid";
 
 let store;
 let currentSettings;
@@ -72,7 +73,7 @@ const createActiveModeAlarm = () => {
 				})
 			);
 			alarmFlag = false;
-		}, 100);
+		}, 500);
 	} else if (browserDetect() === "Firefox" || (browserDetect() === "Chrome" && seconds >= 60)) {
 		browser.alarms.create("activeModeAlarm", {
 			delayInMinutes: minutes
@@ -113,7 +114,6 @@ const getAllCookieActions = async (tab) => {
 			firstPartyDomain: getHostname(tab.url)
 		})
 	);
-
 	let cookieLength = cookies.length;
 	if (cookies.length === 0 && getSetting(store.getState(), "localstorageCleanup") && isAWebpage(tab.url)) {
 		browser.cookies.set(
@@ -121,8 +121,9 @@ const getAllCookieActions = async (tab) => {
 				url: tab.url,
 				name: "CookieAutoDelete",
 				value: "cookieForLocalstorageCleanup",
-				path: "/cookie-for-localstorage-cleanup",
-				firstPartyDomain: getHostname(tab.url)
+				path: `/${shortid.generate()}`,
+				firstPartyDomain: getHostname(tab.url),
+				expirationDate: Math.floor(Date.now() / 1000 + 31557600)
 			})
 		);
 		cookieLength = 1;
@@ -136,10 +137,18 @@ const getAllCookieActions = async (tab) => {
 	}
 };
 
+// Add a delay to prevent multiple spawns of the localstorage cookie
+let onTabUpdateDelay = false;
 export const onTabUpdate = (tabId, changeInfo, tab) => {
 	if (tab.status === "complete") {
 		checkIfProtected(store.getState(), tab);
-		getAllCookieActions(tab);
+		if (!onTabUpdateDelay) {
+			onTabUpdateDelay = true;
+			setTimeout(() => {
+				getAllCookieActions(tab);
+				onTabUpdateDelay = false;
+			}, 750);
+		}
 	}
 };
 
@@ -320,6 +329,14 @@ const onStartUp = async () => {
 					key: "firstPartyIsolateSetting", value: setting.value
 				}
 			});
+			if (browserVersion === "58" && setting.value) {
+				browser.notifications.create("FPI_NOTIFICATION", {
+					"type": "basic",
+					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
+					"title": "First Party Isolation Detected",
+					"message": "Please turn off privacy.firstparty.isolate and restart the browser as it breaks cookie cleanup"
+				});
+			}
 		}
 	}
 	// Store which browser environment in cache

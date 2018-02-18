@@ -42,7 +42,7 @@
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Limpar $siteData$ para este domínio",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Limpar todos os $siteData$ para $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Segundo(s)",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -152,11 +152,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Limpeza da localstorage (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Ativar a limpeza da localstorage e separadores contentores pode causar alguns efeitos secundários indesejados devido a limitações de API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -186,6 +186,10 @@
   "exportURLSText": {
     "message": "Exportar expressões",
     "description": "Export Expressions"
+  },
+  "exportURLSTitle": {
+    "message": "Uma marca temporal será anexada ao nome do ficheiro ao exportar.\nA ter problemas a transferir? Clique com o lado direito neste botão e clique em 'Guardar ligação como...' para transferir.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
     "message": "Importar expressões",
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Alternar para ativar limpeza automática (modo automático)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Notificação ativada",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Notificação desativada",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Alternar para ativar ou desativar notificações",
+    "description": "Toggle to enable or disable notifications"
   }
 }

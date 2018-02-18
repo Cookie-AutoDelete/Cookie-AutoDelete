@@ -17,7 +17,7 @@ mv ${FIREFOXFILENAME}.xpi ../$DES/
 
 sed -i '/contextualIdentities/d' manifest.json
 sed -i '/privacy/d' manifest.json
-sed -i '/browsingdData/d' manifest.json
+sed -i '/browsingData/d' manifest.json
 sed -i '/applications/,+5d' manifest.json
 
 # Don't use the b for beta builds in Chrome

@@ -12,10 +12,16 @@ SOFTWARE.
 import React, {Component} from "react";
 import {findDOMNode} from "react-dom";
 import {connect} from "react-redux";
-import {getHostname, extractMainDomain, getSetting, prepareCookieDomain, returnOptionalCookieAPIAttributes} from "../../services/libs";
+import {getHostname, extractMainDomain, getSetting, prepareCookieDomain, returnOptionalCookieAPIAttributes, isAnIP} from "../../services/libs";
 import FilteredExpression from "./components/FilteredExpression";
 import {addExpressionUI, cookieCleanupUI, updateSettingUI} from "../UIActions";
 import IconButton from "../common_components/IconButton";
+
+const styles = {
+	buttonStyle: {
+		margin: "4px 4px"
+	}
+};
 
 class App extends Component {
 	constructor(props) {
@@ -107,8 +113,11 @@ class App extends Component {
 			hostname === mainDomain ? undefined : `*.${mainDomain}`,
 			hostname
 		].filter(Boolean);
-		if (hostname !== "") {
+		if (hostname !== "" && !isAnIP(tab.url)) {
 			addableHostnames.push(`*.${hostname}`);
+		}
+		if (Object.keys(tab).length === 0) {
+			return ("Loading");
 		}
 		return (
 			<div className="container-fluid">
@@ -121,24 +130,9 @@ class App extends Component {
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
 						alignItems: "center",
 						justifyContent: "space-between",
-						minWidth: `${cache.browserDetect === "Chrome" ? "750px" : ""}`
+						minWidth: `${cache.browserDetect === "Chrome" ? "650px" : ""}`
 					}}
 				>
-					{
-						window.innerWidth > 350 &&
-							<div className="col-auto">
-								<img
-									style={{
-										height: "32px",
-										width: "32px",
-										marginRight: "8px",
-										verticalAlign: "middle"
-									}}
-									src={browser.extension.getURL("icons/icon_128.png")}
-									title="Cookie AutoDelete"
-								/>
-							</div>
-					}
 
 					<div className="col-auto" style={{
 						textAlign: "right"
@@ -146,9 +140,7 @@ class App extends Component {
 						<IconButton
 							iconName="power-off"
 							className={settings.activeMode.value ? "btn-success" : "btn-danger"}
-							style={{
-								margin: "0 4px"
-							}}
+							style={styles.buttonStyle}
 							onClick={() => onUpdateSetting({
 								...settings.activeMode, value: !settings.activeMode.value
 							})}
@@ -159,9 +151,7 @@ class App extends Component {
 						<IconButton
 							iconName="bell"
 							className={settings.showNotificationAfterCleanup.value ? "btn-success" : "btn-danger"}
-							style={{
-								margin: "0 4px"
-							}}
+							style={styles.buttonStyle}
 							onClick={() => onUpdateSetting({
 								...settings.showNotificationAfterCleanup, value: !settings.showNotificationAfterCleanup.value
 							})}
@@ -232,12 +222,13 @@ class App extends Component {
 						<IconButton
 							iconName="cog"
 							className="btn-info"
-							style={{
-								margin: "0 4px"
+							style={styles.buttonStyle}
+							onClick={() => {
+								browser.tabs.create({
+									url: "/settings/settings.html#tabSettings"
+								});
+								window.close();
 							}}
-							onClick={() => browser.tabs.create({
-								url: "/settings/settings.html#tabSettings"
-							})}
 							title={browser.i18n.getMessage("preferencesText")}
 							text={browser.i18n.getMessage("preferencesText")}
 						/>

@@ -69,9 +69,6 @@ export const expressions = (state = [], action) => {
 	case C.REMOVE_EXPRESSION:
 		return state.filter((expression) => expression.id !== action.payload.id);
 
-	case C.RESET_SETTINGS:
-		return [];
-
 	default:
 		return state;
 	}
@@ -122,7 +119,7 @@ export const cookieDeletedCounterTotal = (state = 0, action) => {
 		const incrementBy = action.payload === undefined ? 1 : action.payload;
 		return state + incrementBy;
 	}
-	case C.RESET_SETTINGS:
+
 	case C.RESET_COOKIE_DELETED_COUNTER:
 		return 0;
 	default:
@@ -137,7 +134,6 @@ export const cookieDeletedCounterSession = (state = 0, action) => {
 		return state + incrementBy;
 	}
 	case C.ON_STARTUP:
-	case C.RESET_SETTINGS:
 	case C.RESET_COOKIE_DELETED_COUNTER:
 		return 0;
 	default:

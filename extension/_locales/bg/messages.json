@@ -38,11 +38,11 @@
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Изчистване на всички бисквитки, включително и от отворените раздели",
+    "message": "Изчиства всички бисквитки, включително и от отворените раздели",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Изчистване на $siteData$ за този домейн",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -52,7 +52,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Изчистване на всички $siteData$ за $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -120,7 +120,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "секунди",
     "description": "Second(s)"
   },
   "statLoggingText": {
@@ -152,11 +152,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Изчистване на локалното хранилище (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Едновременното включване на изчистването на локалното хранилище и изолираните раздели може да доведе до нежелани ефекти поради ограниченията на ППИ",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -186,6 +186,10 @@
   "exportURLSText": {
     "message": "Изнасяне на изрази",
     "description": "Export Expressions"
+  },
+  "exportURLSTitle": {
+    "message": "При изнасяне, ще бъде добавено времето към името на файла.\nПри проблеми, щракнете с дясно копче върху този бутон и изберете 'Запазване на препратката като...'",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
     "message": "Внасяне на изрази",
@@ -218,7 +222,7 @@
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Изрази за съвпадащи домейни",
+    "message": "Изрази, съвпадащи с домейна",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
@@ -276,5 +280,17 @@
   "enableAutoDeleteText": {
     "message": "Щракнете за да преминете в автоматичен режим",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "С известия",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Без известия",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Включва \/ изключва известяването",
+    "description": "Toggle to enable or disable notifications"
   }
 }
