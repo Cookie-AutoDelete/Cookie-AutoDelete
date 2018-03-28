@@ -149,7 +149,7 @@ class App extends Component {
 						/>
 
 						<IconButton
-							iconName="bell"
+							iconName={settings.showNotificationAfterCleanup.value ? "bell" : "bell-slash"}
 							className={settings.showNotificationAfterCleanup.value ? "btn-success" : "btn-danger"}
 							style={styles.buttonStyle}
 							onClick={() => onUpdateSetting({
