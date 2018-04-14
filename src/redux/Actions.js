@@ -56,6 +56,10 @@ export const updateExpression = (object) => (dispatch, getState) => {
 	checkIfProtected(getState());
 };
 
+export const addActivity = (payload) => ({
+	type: C.ADD_ACTIVITY_LOG, payload
+});
+
 export const incrementCookieDeletedCounter = (payload) => ({
 	type: C.INCREMENT_COOKIE_DELETED_COUNTER, payload
 });
@@ -139,8 +143,15 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 
 	const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
 	const {
-		recentlyCleaned, setOfDeletedDomainCookies
+		recentlyCleaned, setOfDeletedDomainCookies, cachedResults
 	} = cleanupDoneObject;
+	console.log(cachedResults);
+	// Add the cached results to the activity log
+	if (getSetting(getState(), "diagnosticLogging")) {
+		dispatch(
+			addActivity(cachedResults)
+		);
+	}
 
 	// Show notifications after cleanup
 

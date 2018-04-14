@@ -11,21 +11,21 @@ const sampleState = {
 		"default": [
 			{
 				"expression": "*.google.com",
-				"type": "GREY"
+				"listType": "GREY"
 			},
 			{
 				"expression": "youtube.com",
-				"type": "WHITE"
+				"listType": "WHITE"
 			}
 		],
 		"firefox-container-1": [
 			{
 				"expression": "*.facebook.com",
-				"type": "GREY"
+				"listType": "GREY"
 			},
 			{
 				"expression": "messenger.com",
-				"type": "GREY"
+				"listType": "GREY"
 			}
 		]
 	},
@@ -237,7 +237,7 @@ describe("CleanupService", function() {
 			assert.isFalse(result);
 		});
 
-		it("should return false for Facebook in Personal onStartup", function() {
+		it("should return true for Facebook in Personal onStartup with Facebook in the Greylist", function() {
 			const cookieProperty = {
 				mainDomain: "facebook.com", hostname: "facebook.com", storeId: "firefox-container-1"
 			};
@@ -245,7 +245,7 @@ describe("CleanupService", function() {
 			const result = isSafeToClean(sampleState, cookieProperty, {
 				...cleanupProperties, greyCleanup: true
 			});
-			assert.isFalse(result);
+			assert.isTrue(result);
 		});
 	});
 

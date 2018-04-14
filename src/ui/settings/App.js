@@ -15,6 +15,7 @@ import Welcome from "./components/Welcome";
 import Settings from "./components/Settings";
 import Expressions from "./components/Expressions";
 import About from "./components/About";
+import ActivityLog from "./components/ActivityLog";
 
 class App extends Component {
 		state = {
@@ -62,6 +63,9 @@ class App extends Component {
 						}
 						{
 							activeTab === "tabExpressionList" ? <Expressions /> : ""
+						}
+						{
+							activeTab === "tabActivityLog" ? <ActivityLog /> : ""
 						}
 						{
 							activeTab === "tabAbout" ? <About /> : ""

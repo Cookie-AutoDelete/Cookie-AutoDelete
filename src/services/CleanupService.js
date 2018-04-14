@@ -27,26 +27,40 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	if (cachedResults[newStoreId] === undefined) {
 		cachedResults[newStoreId] = {};
 	}
+	cachedResults[newStoreId][hostname] = {};
 
 	// Tests if the storeId has the result in the cache
-	if (cachedResults[newStoreId][hostname] !== undefined) {
+	if (cachedResults[newStoreId][hostname].decision !== undefined) {
 		// console.log("used cached result", newStoreId, hostname);
-		return cachedResults[newStoreId][hostname];
+		return cachedResults[newStoreId][hostname].decision;
 	}
 
 	// Tests if the main domain is open
 	if (openTabDomains.has(mainDomain)) {
-		return (cachedResults[newStoreId][hostname] = false);
+		cachedResults[newStoreId][hostname].reason = `Keep because of open tabs of *.${mainDomain}`;
+		return (cachedResults[newStoreId][hostname].decision = false);
 	}
 
 	// Checks the list for the first available match
 	const matchedExpression = returnMatchedExpressionObject(state, storeId, hostname);
 
 	// Store the results in cache for future lookups to cookieStoreId.hostname
-	if (greyCleanup) {
-		return (cachedResults[newStoreId][hostname] = matchedExpression === undefined || matchedExpression.listType === "GREY");
+	if (greyCleanup && (matchedExpression === undefined || matchedExpression.listType === "GREY")) {
+		if (matchedExpression === undefined) {
+			cachedResults[newStoreId][hostname].reason = `Clean because of startup cleanup and ${hostname} is not in the white/grey lists ${openTabDomains.size !== 0 ? "or in any open tabs" : "and also open tabs were ignored"}`;
+			return (cachedResults[newStoreId][hostname].decision = true);
+		} else if (matchedExpression.listType === "GREY") {
+			cachedResults[newStoreId][hostname].reason = `Clean because of startup cleanup and ${matchedExpression.expression} is in the greylist`;
+			return (cachedResults[newStoreId][hostname].decision = true);
+		}
 	}
-	return (cachedResults[newStoreId][hostname] = matchedExpression === undefined);
+
+	if (matchedExpression === undefined) {
+		cachedResults[newStoreId][hostname].reason = `Clean because ${hostname} is not in the white/grey lists ${openTabDomains.size !== 0 ? "or in any open tabs" : "and also open tabs were ignored"}`;
+	} else {
+		cachedResults[newStoreId][hostname].reason = `Keep because of matched ${matchedExpression.expression} in the ${matchedExpression.listType.toLowerCase()}list`;
+	}
+	return (cachedResults[newStoreId][hostname].decision = matchedExpression === undefined);
 };
 
 // Goes through all the cookies to see if its safe to clean
@@ -110,7 +124,9 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 	let promiseContainers = [];
 	let setOfDeletedDomainCookies = new Set();
 	let hostnamesDeleted = new Set();
-	let cachedResults = {};
+	let cachedResults = {
+		dateTime: new Date()
+	};
 	recentlyCleaned = 0;
 	if (!cleanupProperties.ignoreOpenTabs) {
 		openTabDomains = await returnSetOfOpenTabDomains();
@@ -140,8 +156,7 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 	cleanCookies(state, cookies, newCleanupProperties);
 	// console.log(hostnamesDeleted);
 	otherBrowsingDataCleanup(state, hostnamesDeleted);
-
 	return {
-		setOfDeletedDomainCookies, recentlyCleaned
+		setOfDeletedDomainCookies, recentlyCleaned, cachedResults
 	};
 };

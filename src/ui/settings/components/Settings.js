@@ -88,6 +88,20 @@ const HistorySettings = (props) => {
 			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-12">
 					<CheckboxSetting
+						text={"Enable Dianostic Logging"}
+						settingObject={settings.diagnosticLogging}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+					<Tooltip
+						hrefURL={""}
+					/>
+				</div>
+			</div>
+
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
 						text={browser.i18n.getMessage("showNumberOfCookiesInIconText")}
 						settingObject={settings.showNumOfCookiesInIcon}
 						inline={true}

@@ -47,6 +47,11 @@
   		"name": "notificationOnScreen",
   		"value": 3,
   		"id": 9
+  	},
+  	"diagnosticLogging": {
+  		"name": "diagnosticLogging",
+  		"value": false,
+  		"id": 10
   	}
   },
   "cache": {}

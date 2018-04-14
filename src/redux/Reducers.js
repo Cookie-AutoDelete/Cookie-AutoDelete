@@ -141,6 +141,21 @@ export const cookieDeletedCounterSession = (state = 0, action) => {
 	}
 };
 
+export const activityLog = (state = [], action) => {
+	switch (action.type) {
+	case C.ADD_ACTIVITY_LOG: {
+		return [
+			action.payload,
+			...state
+		].slice(0, 10);
+	}
+	case C.RESET_COOKIE_DELETED_COUNTER:
+		return [];
+	default:
+		return state;
+	}
+};
+
 export const cache = (state = {}, action) => {
 	switch (action.type) {
 	case C.ADD_CACHE: {
@@ -161,5 +176,6 @@ export default combineReducers({
 	cookieDeletedCounterTotal,
 	cookieDeletedCounterSession,
 	settings,
+	activityLog,
 	cache
 });
