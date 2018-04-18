@@ -144,10 +144,13 @@ export const cookieDeletedCounterSession = (state = 0, action) => {
 export const activityLog = (state = [], action) => {
 	switch (action.type) {
 	case C.ADD_ACTIVITY_LOG: {
-		return [
-			action.payload,
-			...state
-		].slice(0, 10);
+		if (Object.keys(action.payload).length > 2) {
+			return [
+				action.payload,
+				...state
+			].slice(0, 10);
+		}
+		return state;
 	}
 	case C.RESET_COOKIE_DELETED_COUNTER:
 		return [];

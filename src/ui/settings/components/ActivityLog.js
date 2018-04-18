@@ -17,7 +17,7 @@ const ActivityLog = (props) => {
 	} = props;
 	return (
 		<div style={style}>
-			<h1>{browser.i18n.getMessage("aboutText")}</h1>
+			<h1>{browser.i18n.getMessage("cleanupLogText")}</h1>
 			<ActivityTable />
 		</div>
 	);

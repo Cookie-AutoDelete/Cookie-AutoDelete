@@ -11,8 +11,6 @@ SOFTWARE.
 **/
 import {getHostname, isAWebpage, extractMainDomain, getSetting, prepareCookieDomain, returnMatchedExpressionObject, getStoreId, returnOptionalCookieAPIAttributes} from "./libs";
 
-let recentlyCleaned;
-
 // Returns true if the cookie can be cleaned
 export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	const {
@@ -37,7 +35,7 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 
 	// Tests if the main domain is open
 	if (openTabDomains.has(mainDomain)) {
-		cachedResults[newStoreId][hostname].reason = `Keep because of open tabs of *.${mainDomain}`;
+		cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage("reasonKeepOpenTab", [mainDomain]);
 		return (cachedResults[newStoreId][hostname].decision = false);
 	}
 
@@ -47,18 +45,18 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	// Store the results in cache for future lookups to cookieStoreId.hostname
 	if (greyCleanup && (matchedExpression === undefined || matchedExpression.listType === "GREY")) {
 		if (matchedExpression === undefined) {
-			cachedResults[newStoreId][hostname].reason = `Clean because of startup cleanup and ${hostname} is not in the white/grey lists ${openTabDomains.size !== 0 ? "or in any open tabs" : "and also open tabs were ignored"}`;
+			cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage("reasonCleanStartupNoList", [hostname])} ${openTabDomains.size !== 0 ? browser.i18n.getMessage("reasonTabsWereNotIgnored") : browser.i18n.getMessage("reasonTabsWereIgnored")}`;
 			return (cachedResults[newStoreId][hostname].decision = true);
 		} else if (matchedExpression.listType === "GREY") {
-			cachedResults[newStoreId][hostname].reason = `Clean because of startup cleanup and ${matchedExpression.expression} is in the greylist`;
+			cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage("reasonCleanGreyList", [matchedExpression.expression]);
 			return (cachedResults[newStoreId][hostname].decision = true);
 		}
 	}
 
 	if (matchedExpression === undefined) {
-		cachedResults[newStoreId][hostname].reason = `Clean because ${hostname} is not in the white/grey lists ${openTabDomains.size !== 0 ? "or in any open tabs" : "and also open tabs were ignored"}`;
+		cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage("reasonCleanNoList", [hostname])} ${openTabDomains.size !== 0 ? browser.i18n.getMessage("reasonTabsWereNotIgnored") : browser.i18n.getMessage("reasonTabsWereIgnored")}`;
 	} else {
-		cachedResults[newStoreId][hostname].reason = `Keep because of matched ${matchedExpression.expression} in the ${matchedExpression.listType.toLowerCase()}list`;
+		cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage("reasonKeep", [matchedExpression.expression, (matchedExpression.listType === "GREY" ? browser.i18n.getMessage("greyListWordText") : browser.i18n.getMessage("whiteListWordText"))]);
 	}
 	return (cachedResults[newStoreId][hostname].decision = matchedExpression === undefined);
 };
@@ -73,7 +71,7 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 		cookieProperties.hostname = getHostname(cookieProperties.preparedCookieDomain);
 		cookieProperties.mainDomain = extractMainDomain(cookieProperties.hostname);
 		if (isSafeToClean(state, cookieProperties, cleanupProperties)) {
-			recentlyCleaned++;
+			cleanupProperties.cachedResults.recentlyCleaned++;
 			cleanupProperties.setOfDeletedDomainCookies.add(getSetting(state, "contextualIdentities") ? `${cookieProperties.hostname} (${state.cache[cookieProperties.storeId]})` : cookieProperties.hostname);
 			cleanupProperties.hostnamesDeleted.add(cookieProperties.hostname);
 			// url: "http://domain.com" + cookies[i].path
@@ -125,9 +123,9 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 	let setOfDeletedDomainCookies = new Set();
 	let hostnamesDeleted = new Set();
 	let cachedResults = {
-		dateTime: new Date()
+		dateTime: new Date().toString(),
+		recentlyCleaned: 0
 	};
-	recentlyCleaned = 0;
 	if (!cleanupProperties.ignoreOpenTabs) {
 		openTabDomains = await returnSetOfOpenTabDomains();
 	}
@@ -157,6 +155,6 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 	// console.log(hostnamesDeleted);
 	otherBrowsingDataCleanup(state, hostnamesDeleted);
 	return {
-		setOfDeletedDomainCookies, recentlyCleaned, cachedResults
+		setOfDeletedDomainCookies, cachedResults
 	};
 };

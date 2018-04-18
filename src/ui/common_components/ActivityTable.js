@@ -5,7 +5,13 @@ const ActivityTable = (props) => {
 		activityLog,
 		cache
 	} = props;
-	console.log(props.activityLog);
+	if (props.activityLog.length === 0) {
+		return (
+			<div className="alert alert-primary" role="alert">
+				<i>{browser.i18n.getMessage("nothingHereText")}</i>
+			</div>
+		);
+	}
 	return (
 		<div className="accordion" id="accordion">
 			{
@@ -15,6 +21,8 @@ const ActivityTable = (props) => {
 							<h5 className="mb-0">
 								<button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target={`#collapse${index}`} aria-expanded="false" aria-controls={`collapse${index}`}>
 									{new Date(element.dateTime).toLocaleString()}
+									<br />
+									{`${browser.i18n.getMessage("recentlyCleanedText")}: ${element.recentlyCleaned}`}
 								</button>
 							</h5>
 						</div>
@@ -22,7 +30,7 @@ const ActivityTable = (props) => {
 							<div className="card-body">
 								{
 									Object.keys(element).map((key) => {
-										if (key !== "dateTime") {
+										if (key !== "dateTime" || key !== "recentlyCleaned") {
 											return (
 												<div>
 													<h6>

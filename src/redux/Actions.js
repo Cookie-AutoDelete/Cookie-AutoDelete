@@ -143,42 +143,25 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 
 	const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
 	const {
-		recentlyCleaned, setOfDeletedDomainCookies, cachedResults
+		setOfDeletedDomainCookies, cachedResults
 	} = cleanupDoneObject;
-	console.log(cachedResults);
-	// Add the cached results to the activity log
-	if (getSetting(getState(), "diagnosticLogging")) {
-		dispatch(
-			addActivity(cachedResults)
-		);
-	}
-
-	// Show notifications after cleanup
-
-	let notifyMessage;
-	// Format the string
-	if (setOfDeletedDomainCookies.size > 0) {
-		let stringOfDomains = "";
-		let commaAppendIndex = 0;
-		setOfDeletedDomainCookies.forEach((value1, value2, set) => {
-			stringOfDomains += value2;
-			commaAppendIndex++;
-			if (commaAppendIndex < setOfDeletedDomainCookies.size) {
-				stringOfDomains += ", ";
-			}
-		});
-		// this.notifyMessage = recentlyCleaned + " Deleted Cookies from: " + stringOfDomains;
-		notifyMessage = browser.i18n.getMessage("notificationContent", [recentlyCleaned, stringOfDomains]);
-	}
+	const {
+		recentlyCleaned
+	} = cachedResults;
 
 	// Increment the count
 	if (recentlyCleaned !== 0 && getSetting(getState(), "statLogging")) {
 		dispatch(
 			incrementCookieDeletedCounter(recentlyCleaned)
 		);
+		dispatch(
+			addActivity(cachedResults)
+		);
 	}
 
+	// Show notifications after cleanup
 	if (setOfDeletedDomainCookies.size > 0 && getSetting(getState(), "showNotificationAfterCleanup")) {
+		const notifyMessage = browser.i18n.getMessage("notificationContent", [recentlyCleaned, Array.from(setOfDeletedDomainCookies).join(", ")]);
 		browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
 			"type": "basic",
 			"iconUrl": browser.extension.getURL("icons/icon_48.png"),

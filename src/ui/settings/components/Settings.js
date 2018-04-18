@@ -73,7 +73,7 @@ const HistorySettings = (props) => {
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
 					<Tooltip
-						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#log-total-number-of-cookies-deleted"}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-cleanup-log"}
 					/>
 				</div>
 
@@ -83,20 +83,6 @@ const HistorySettings = (props) => {
 					</button>
 				</div>
 
-			</div>
-
-			<div className="row" style={styles.rowOverrides}>
-				<div className="col-md-12">
-					<CheckboxSetting
-						text={"Enable Dianostic Logging"}
-						settingObject={settings.diagnosticLogging}
-						inline={true}
-						updateSetting={(payload) => onUpdateSetting(payload)}
-					/>
-					<Tooltip
-						hrefURL={""}
-					/>
-				</div>
 			</div>
 
 			<div className="row" style={styles.rowOverrides}>

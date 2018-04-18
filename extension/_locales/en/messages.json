@@ -100,6 +100,11 @@
     "description": "List of Expressions"
   },
 
+  "cleanupLogText": {
+    "message": "Cleanup Log",
+    "description": "Cleanup Log"
+  },
+
   "aboutText": {
     "message": "About",
     "description": "About"
@@ -118,6 +123,75 @@
         "example" : "456"
       }
     }
+  },
+
+  "reasonKeepOpenTab": {
+    "message": "Keep because of open tabs of *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+
+  "reasonCleanStartupNoList": {
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+
+  "reasonCleanGreyList": {
+    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "description": "Clean because of startup cleanup and *.google.com is not in the White/Grey lists",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+
+  "reasonCleanNoList": {
+    "message": "Clean because of $hostname$ is not in the White/Grey lists",
+    "description": "Clean because of sub.google.com is not in the White/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+
+  "reasonKeep": {
+    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+
+  "reasonTabsWereNotIgnored": {
+    "message": "or in any open tabs",
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+  },
+
+  "reasonTabsWereIgnored": {
+    "message": "and also open tabs were ignored",
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or and also open tabs were ignored"
   },
 
   "reviewLinkMessage": {
@@ -146,13 +220,13 @@
   },
 
   "statLoggingText": {
-    "message": "Log Total Number Of Cookies Deleted",
-    "description": "Log Total Number Of Cookies Deleted"
+    "message": "Enable Cleanup Log",
+    "description": "Enable Cleanup Log"
   },
 
   "resetCounterText": {
-    "message": "Reset Counter",
-    "description": "Reset Counter"
+    "message": "Clear Logs",
+    "description": "Clear Logs"
   },
 
   "showNumberOfCookiesInIconText": {
@@ -354,5 +428,15 @@
   "toggleNotificationText": {
     "message": "Toggle to enable or disable notifications",
     "description": "Toggle to enable or disable notifications"
+  },
+
+  "recentlyCleanedText": {
+    "message": "Recently Cleaned",
+    "description": "Recently Cleaned"
+  },
+
+  "nothingHereText": {
+    "message": "Nothing Here",
+    "description": "Nothing Here"
   }
 }

@@ -35,8 +35,8 @@ const sideBarTabs = [
 		tabText: browser.i18n.getMessage("whiteListText")
 	},
 	{
-		tabId: "tabActivityLog",
-		tabText: "ActivityLog"
+		tabId: "tabCleanupLog",
+		tabText: browser.i18n.getMessage("cleanupLogText")
 	},
 	{
 		tabId: "tabAbout",

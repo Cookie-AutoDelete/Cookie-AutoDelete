@@ -65,7 +65,7 @@ class App extends Component {
 							activeTab === "tabExpressionList" ? <Expressions /> : ""
 						}
 						{
-							activeTab === "tabActivityLog" ? <ActivityLog /> : ""
+							activeTab === "tabCleanupLog" ? <ActivityLog /> : ""
 						}
 						{
 							activeTab === "tabAbout" ? <About /> : ""
