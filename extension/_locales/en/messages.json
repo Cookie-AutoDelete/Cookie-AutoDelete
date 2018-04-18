@@ -149,7 +149,7 @@
 
   "reasonCleanGreyList": {
     "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
-    "description": "Clean because of startup cleanup and *.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and *.google.com is not in the Greylist",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -191,7 +191,7 @@
 
   "reasonTabsWereIgnored": {
     "message": "and also open tabs were ignored",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
 
   "reviewLinkMessage": {
