@@ -30,7 +30,7 @@ const ActivityTable = (props) => {
 							<div className="card-body">
 								{
 									Object.keys(element).map((key) => {
-										if (key !== "dateTime" || key !== "recentlyCleaned") {
+										if (key !== "dateTime" && key !== "recentlyCleaned") {
 											return (
 												<div>
 													<h6>
