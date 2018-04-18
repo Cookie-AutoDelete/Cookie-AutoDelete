@@ -16,6 +16,7 @@ import Settings from "./components/Settings";
 import Expressions from "./components/Expressions";
 import About from "./components/About";
 import ActivityLog from "./components/ActivityLog";
+import ErrorBoundary from "../common_components/ErrorBoundary";
 
 class App extends Component {
 		state = {
@@ -54,23 +55,25 @@ class App extends Component {
 			return (
 				<div id="layout">
 					<SideBar switchTabs={(tab) => this.switchTabs(tab)} activeTab={activeTab}/>
-					<div className="container">
-						{
-							activeTab === "tabWelcome" ? <Welcome /> : ""
-						}
-						{
-							activeTab === "tabSettings" ? <Settings /> : ""
-						}
-						{
-							activeTab === "tabExpressionList" ? <Expressions /> : ""
-						}
-						{
-							activeTab === "tabCleanupLog" ? <ActivityLog /> : ""
-						}
-						{
-							activeTab === "tabAbout" ? <About /> : ""
-						}
-					</div>
+					<ErrorBoundary>
+						<div className="container">
+							{
+								activeTab === "tabWelcome" ? <Welcome /> : ""
+							}
+							{
+								activeTab === "tabSettings" ? <Settings /> : ""
+							}
+							{
+								activeTab === "tabExpressionList" ? <Expressions /> : ""
+							}
+							{
+								activeTab === "tabCleanupLog" ? <ActivityLog /> : ""
+							}
+							{
+								activeTab === "tabAbout" ? <About /> : ""
+							}
+						</div>
+					</ErrorBoundary>
 				</div>
 			);
 		}
