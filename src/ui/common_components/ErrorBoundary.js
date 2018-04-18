@@ -9,14 +9,16 @@ class ErrorBoundary extends React.Component {
 
     componentDidCatch(error, info) {
     	// Display fallback UI
-    	this.setState({
-    		hasError: true,
-    		message: `
+    	if (error !== "state is undefined") {
+    		this.setState({
+    			hasError: true,
+    			message: `
             ${error.message}
             ${error.stack}
             at line ${error.lineNumber}
             `
-    	});
+    		});
+    	}
     }
 
     resetButton() {
