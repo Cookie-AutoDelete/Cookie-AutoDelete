@@ -17,7 +17,7 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 		mainDomain, storeId, hostname
 	} = cookieProperties;
 	const {
-		cachedResults, greyCleanup, openTabDomains
+		cachedResults, greyCleanup, openTabDomains, ignoreOpenTabs
 	} = cleanupProperties;
 	const newStoreId = getStoreId(state, storeId);
 
@@ -45,7 +45,7 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	// Store the results in cache for future lookups to cookieStoreId.hostname
 	if (greyCleanup && (matchedExpression === undefined || matchedExpression.listType === "GREY")) {
 		if (matchedExpression === undefined) {
-			cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage("reasonCleanStartupNoList", [hostname])} ${openTabDomains.size !== 0 ? browser.i18n.getMessage("reasonTabsWereNotIgnored") : browser.i18n.getMessage("reasonTabsWereIgnored")}`;
+			cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage("reasonCleanStartupNoList", [hostname])} ${!ignoreOpenTabs ? browser.i18n.getMessage("reasonTabsWereNotIgnored") : browser.i18n.getMessage("reasonTabsWereIgnored")}`;
 			return (cachedResults[newStoreId][hostname].decision = true);
 		} else if (matchedExpression.listType === "GREY") {
 			cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage("reasonCleanGreyList", [matchedExpression.expression]);
@@ -54,7 +54,7 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 	}
 
 	if (matchedExpression === undefined) {
-		cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage("reasonCleanNoList", [hostname])} ${openTabDomains.size !== 0 ? browser.i18n.getMessage("reasonTabsWereNotIgnored") : browser.i18n.getMessage("reasonTabsWereIgnored")}`;
+		cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage("reasonCleanNoList", [hostname])} ${!ignoreOpenTabs ? browser.i18n.getMessage("reasonTabsWereNotIgnored") : browser.i18n.getMessage("reasonTabsWereIgnored")}`;
 	} else {
 		cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage("reasonKeep", [matchedExpression.expression, (matchedExpression.listType === "GREY" ? browser.i18n.getMessage("greyListWordText") : browser.i18n.getMessage("whiteListWordText"))]);
 	}

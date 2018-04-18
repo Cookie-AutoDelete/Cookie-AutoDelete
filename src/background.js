@@ -11,7 +11,7 @@ SOFTWARE.
 **/
 /* global browserDetect */
 import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
-import {getSetting, getHostname, isAWebpage, returnOptionalCookieAPIAttributes} from "./services/libs";
+import {getSetting, getHostname, isAWebpage, returnOptionalCookieAPIAttributes, extractMainDomain} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
 import shortid from "shortid";
@@ -92,8 +92,7 @@ const createActiveModeAlarm = () => {
 	}
 };
 
-// Create an alarm when a tab is closed
-const onTabRemoved = async (tabId, removeInfo) => {
+const cleanFromFromTabEvents = async () => {
 	if (getSetting(store.getState(), "activeMode")) {
 		const alarm = await browser.alarms.get("activeModeAlarm");
 		// This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
@@ -150,6 +149,27 @@ export const onTabUpdate = (tabId, changeInfo, tab) => {
 			}, 750);
 		}
 	}
+};
+
+let tabToDomain = {};
+export const onDomainChange = (tabId, changeInfo, tab) => {
+	if (tab.status === "complete") {
+		const mainDomain = extractMainDomain(getHostname(tab.url));
+		if (tabToDomain[tabId] === undefined && mainDomain !== "") {
+			tabToDomain[tabId] = mainDomain;
+		} else if (tabToDomain[tabId] !== mainDomain && mainDomain !== "") {
+			tabToDomain[tabId] = mainDomain;
+			if (getSetting(store.getState(), "domainChangeCleanup")) {
+				console.log("domain change clean");
+				console.log(tabToDomain);
+				cleanFromFromTabEvents();
+			}
+		}
+	}
+};
+
+export const onDomainChangeRemove = (tabId) => {
+	delete tabToDomain[tabId];
 };
 
 const migration = (oldSettings) => {
@@ -369,7 +389,9 @@ onStartUp();
 
 // Logic that controls when to disable the browser action
 browser.tabs.onUpdated.addListener(onTabUpdate);
-browser.tabs.onRemoved.addListener(onTabRemoved);
+browser.tabs.onUpdated.addListener(onDomainChange);
+browser.tabs.onRemoved.addListener(onDomainChangeRemove);
+browser.tabs.onRemoved.addListener(cleanFromFromTabEvents);
 
 // Alarm event handler for Active Mode
 browser.alarms.onAlarm.addListener((alarmInfo) => {

@@ -140,7 +140,7 @@
     "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
-      "mainDomain": {
+      "hostname": {
         "content": "$1",
         "example": "sub.google.com"
       }
@@ -149,7 +149,7 @@
 
   "reasonCleanGreyList": {
     "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
-    "description": "Clean because of startup cleanup and *.google.com is not in the Greylist",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",

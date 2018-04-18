@@ -21,7 +21,7 @@ const styles = {
 	}
 };
 
-const HistorySettings = (props) => {
+const Settings = (props) => {
 	const {
 		style,
 		settings,
@@ -62,6 +62,20 @@ const HistorySettings = (props) => {
 
 				</div>
 
+			</div>
+
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={"Domain Change Cleanup"}
+						settingObject={settings.domainChangeCleanup}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+					<Tooltip
+						hrefURL={""}
+					/>
+				</div>
 			</div>
 
 			<div className="row" style={styles.rowOverrides}>
@@ -225,4 +239,4 @@ const mapDispatchToProps = (dispatch) => ({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HistorySettings);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

@@ -47,7 +47,13 @@
   		"name": "notificationOnScreen",
   		"value": 3,
   		"id": 9
+  	},
+  	"domainChangeCleanup": {
+  		"name": "domainChangeCleanup",
+  		"value": false,
+  		"id": 10
   	}
   },
+  "activityLog": [],
   "cache": {}
 }
