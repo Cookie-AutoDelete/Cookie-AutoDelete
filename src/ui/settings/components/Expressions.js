@@ -157,7 +157,8 @@ class Expressions extends React.Component {
 							title={browser.i18n.getMessage("exportURLSTitle")}
 							text={browser.i18n.getMessage("exportURLSText")}
 							style={{
-								width: "50%"
+								width: "50%",
+								height: "38px"
 							}}
 						/>
 
@@ -184,7 +185,8 @@ class Expressions extends React.Component {
 								listType: "GREY"
 							});}}
 							style={{
-								width: "50%"
+								width: "50%",
+								height: "38px"
 							}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toGreyListText")}
@@ -199,7 +201,8 @@ class Expressions extends React.Component {
 								listType: "WHITE"
 							});}}
 							style={{
-								width: "50%"
+								width: "50%",
+								height: "38px"
 							}}
 							iconName="plus"
 							title={browser.i18n.getMessage("toWhiteListText")}
