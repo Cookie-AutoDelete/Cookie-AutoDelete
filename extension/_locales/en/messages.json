@@ -219,6 +219,11 @@
     "description": "Second(s)"
   },
 
+  "cleanupDomainChangeText": {
+    "message": "Enable Cleanup on Domain Change",
+    "description": "Enable Cleanup on Domain Change"
+  },
+
   "statLoggingText": {
     "message": "Enable Cleanup Log",
     "description": "Enable Cleanup Log"

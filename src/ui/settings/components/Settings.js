@@ -67,13 +67,13 @@ const Settings = (props) => {
 			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-12">
 					<CheckboxSetting
-						text={"Domain Change Cleanup"}
+						text={browser.i18n.getMessage("cleanupDomainChangeText")}
 						settingObject={settings.domainChangeCleanup}
 						inline={true}
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
 					<Tooltip
-						hrefURL={""}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-cleanup-on-domain-change"}
 					/>
 				</div>
 			</div>

@@ -160,8 +160,6 @@ export const onDomainChange = (tabId, changeInfo, tab) => {
 		} else if (tabToDomain[tabId] !== mainDomain && mainDomain !== "") {
 			tabToDomain[tabId] = mainDomain;
 			if (getSetting(store.getState(), "domainChangeCleanup")) {
-				console.log("domain change clean");
-				console.log(tabToDomain);
 				cleanFromFromTabEvents();
 			}
 		}
