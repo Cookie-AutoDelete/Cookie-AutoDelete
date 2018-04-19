@@ -224,12 +224,12 @@
     "description": "Enable Cleanup on Domain Change"
   },
 
-  "statLoggingText": {
-    "message": "Enable Cleanup Log",
-    "description": "Enable Cleanup Log"
+  "enableCleanupLogText": {
+    "message": "Enable Cleanup Log and Counter",
+    "description": "Enable Cleanup Log and Counter"
   },
 
-  "resetCounterText": {
+  "clearLogsText": {
     "message": "Clear Logs",
     "description": "Clear Logs"
   },

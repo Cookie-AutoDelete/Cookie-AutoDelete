@@ -81,19 +81,19 @@ const Settings = (props) => {
 			<div className="row" style={styles.rowOverrides}>
 				<div className="col-md-9">
 					<CheckboxSetting
-						text={browser.i18n.getMessage("statLoggingText")}
+						text={browser.i18n.getMessage("enableCleanupLogText")}
 						settingObject={settings.statLogging}
 						inline={true}
 						updateSetting={(payload) => onUpdateSetting(payload)}
 					/>
 					<Tooltip
-						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-cleanup-log"}
+						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-cleanup-log-and-counter"}
 					/>
 				</div>
 
 				<div className="col-md-3">
 					<button onClick={() => onResetCounterButtonClick()} className="btn btn-warning" id="resetCounter">
-						<span>{browser.i18n.getMessage("resetCounterText")}</span>
+						<span>{browser.i18n.getMessage("clearLogsText")}</span>
 					</button>
 				</div>
 
