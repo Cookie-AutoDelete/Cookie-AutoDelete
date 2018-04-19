@@ -101,7 +101,16 @@ export const prepareCookieDomain = (cookie) => {
 };
 
 // Gets a sanitized cookieStoreId
-export const getStoreId = (state, storeId) => (!getSetting(state, "contextualIdentities") || storeId === "firefox-default" ? "default" : storeId);
+export const getStoreId = (state, storeId) => {
+	if (storeId === "firefox-default" || (state.cache.browserDetect === "Chrome" && storeId === "0")) {
+		return "default";
+	}
+	if (state.cache.browserDetect === "Chrome" && storeId === "1") {
+		return "private";
+	}
+
+	return storeId;
+};
 
 // Converts a expression to its regular expression equivalent
 export const globExpressionToRegExp = (glob) => {

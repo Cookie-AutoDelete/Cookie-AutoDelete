@@ -63,10 +63,10 @@ export const isSafeToClean = (state, cookieProperties, cleanupProperties) => {
 
 // Goes through all the cookies to see if its safe to clean
 export const cleanCookies = (state, cookies, cleanupProperties) => {
-	for (let i = 0; i < cookies.length; i++) {
+	for (let cookie of cookies) {
 		let cookieProperties = {
-			...cookies[i],
-			preparedCookieDomain: prepareCookieDomain(cookies[i])
+			...cookie,
+			preparedCookieDomain: prepareCookieDomain(cookie)
 		};
 		cookieProperties.hostname = getHostname(cookieProperties.preparedCookieDomain);
 		cookieProperties.mainDomain = extractMainDomain(cookieProperties.hostname);
@@ -85,6 +85,7 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 			);
 		}
 	}
+	return Promise.resolve();
 };
 
 // This will use the browsingData's hostname attribute to delete any extra browsing data
@@ -137,22 +138,40 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 		cachedResults
 	};
 
+	let cookieStoreIds = new Set();
+	// Store cookieStoreIds from the contextualIdentities API
 	if (getSetting(state, "contextualIdentities")) {
 		const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
-		contextualIdentitiesObjects.forEach(async (object) => {
-			const cookies = await browser.cookies.getAll(
-				returnOptionalCookieAPIAttributes(state, {
-					storeId: object.cookieStoreId
-				})
-			);
-			promiseContainers.push(cleanCookies(state, cookies, newCleanupProperties));
-		});
-		await Promise.all(promiseContainers);
+
+		for (let object of contextualIdentitiesObjects) {
+			cookieStoreIds.add(object.cookieStoreId);
+		}
 	}
 
-	const cookies = await browser.cookies.getAll(returnOptionalCookieAPIAttributes(state, {}));
-	cleanCookies(state, cookies, newCleanupProperties);
-	// console.log(hostnamesDeleted);
+	// Store cookieStoreIds from the cookies API
+	const cookieStores = await browser.cookies.getAllCookieStores();
+	for (let store of cookieStores) {
+		cookieStoreIds.add(store.id);
+	}
+
+	// Clean for each cookieStore jar
+	for (let id of cookieStoreIds) {
+		const cookies = await browser.cookies.getAll(
+			returnOptionalCookieAPIAttributes(state, {
+				storeId: id
+			})
+		);
+		promiseContainers.push(cleanCookies(state, cookies, newCleanupProperties));
+	}
+
+	await Promise.all(promiseContainers);
+
+	// Scrub private cookieStores
+	const storesIdsToScrub = ["firefox-private", "private"];
+	for (let id of storesIdsToScrub) {
+		delete cachedResults[id];
+	}
+
 	otherBrowsingDataCleanup(state, hostnamesDeleted);
 	return {
 		setOfDeletedDomainCookies, cachedResults
