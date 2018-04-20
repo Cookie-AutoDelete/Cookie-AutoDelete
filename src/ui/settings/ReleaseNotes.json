@@ -1,6 +1,14 @@
 {
   "releases":[
     {
+      "version": "2.2.0",
+      "notes": [
+        "Added: Cleanup Log, gives the decision taken (Keep or Clean) for every site and the reasons why after cleanup",
+        "Added: Setting for activating cleanup on domain change in the same tab",
+        "Added: Proper support for cleaning private mode cookies"
+      ]
+    },
+    {
       "version": "2.1.0",
       "notes": [
         "Added: Localstorage Support (Firefox 58+, BrowserData API requested)",
