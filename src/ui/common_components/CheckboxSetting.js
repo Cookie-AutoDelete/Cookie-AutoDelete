@@ -22,10 +22,10 @@ const CheckboxSetting = ({
 	} : {};
 	return (
 		<span style={inlineElement} className={"checkbox"}>
-			<input className={"form-check-input"} checked={value} onChange={(e) => updateSetting({
+			<input className={"form-check-input addHover"} checked={value} onChange={(e) => updateSetting({
 				id, name, value: e.target.checked
 			})} id={id} type="checkbox" />
-			<label className={"form-check-label"} htmlFor={id}>
+			<label className={"form-check-label addHover"} htmlFor={id}>
 				{text}
 			</label>
 
