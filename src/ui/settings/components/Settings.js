@@ -10,7 +10,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 **/
 import {connect} from "react-redux";
-import {resetCookieDeletedCounterUI, resetSettingsUI, updateSettingUI} from "../../UIActions";
+import {resetSettingsUI, updateSettingUI} from "../../UIActions";
 import CheckboxSetting from "../../common_components/CheckboxSetting";
 import React from "react";
 import Tooltip from "./SettingsTooltip";
@@ -27,7 +27,6 @@ const Settings = (props) => {
 		settings,
 		onUpdateSetting,
 		onResetButtonClick,
-		onResetCounterButtonClick,
 		browserDetect,
 		browserVersion
 	} = props;
@@ -79,7 +78,7 @@ const Settings = (props) => {
 			</div>
 
 			<div className="row" style={styles.rowOverrides}>
-				<div className="col-md-9">
+				<div className="col-md-12">
 					<CheckboxSetting
 						text={browser.i18n.getMessage("enableCleanupLogText")}
 						settingObject={settings.statLogging}
@@ -89,12 +88,6 @@ const Settings = (props) => {
 					<Tooltip
 						hrefURL={"https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-cleanup-log-and-counter"}
 					/>
-				</div>
-
-				<div className="col-md-3">
-					<button onClick={() => onResetCounterButtonClick()} className="btn btn-warning" id="resetCounter">
-						<span>{browser.i18n.getMessage("clearLogsText")}</span>
-					</button>
 				</div>
 
 			</div>
@@ -230,11 +223,6 @@ const mapDispatchToProps = (dispatch) => ({
 	onResetButtonClick() {
 		dispatch(
 			resetSettingsUI()
-		);
-	},
-	onResetCounterButtonClick() {
-		dispatch(
-			resetCookieDeletedCounterUI()
 		);
 	}
 });

@@ -29,9 +29,24 @@
     }
   },
 
+  "filterText": {
+    "message": "Filter",
+    "description": "Filter"
+  },
+
+  "noneText": {
+    "message": "None",
+    "description": "None"
+  },
+
   "cleanText": {
     "message": "Clean",
     "description": "Clean"
+  },
+
+  "keepText": {
+    "message": "Keep",
+    "description": "Keep"
   },
 
   "cookieCleanupText": {
@@ -435,13 +450,8 @@
     "description": "Toggle to enable or disable notifications"
   },
 
-  "recentlyCleanedText": {
-    "message": "Recently Cleaned",
-    "description": "Recently Cleaned"
-  },
-
-  "nothingHereText": {
-    "message": "Nothing Here",
-    "description": "Nothing Here"
+  "noCleanupLogText": {
+    "message": "No Cleanup Log Yet",
+    "description": "No Cleanup Log Yet"
   }
 }

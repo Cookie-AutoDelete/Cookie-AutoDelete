@@ -24,4 +24,10 @@ const constants = {
 	DUMMY_VAR: ""
 };
 
+export const FILTER_OPTIONS = {
+	NONE: "NONE",
+	CLEAN: "CLEAN",
+	KEEP: "KEEP"
+};
+
 export default constants;

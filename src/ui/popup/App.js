@@ -16,6 +16,7 @@ import {getHostname, extractMainDomain, getSetting, prepareCookieDomain, returnO
 import FilteredExpression from "./components/FilteredExpression";
 import {addExpressionUI, cookieCleanupUI, updateSettingUI} from "../UIActions";
 import IconButton from "../common_components/IconButton";
+import ActivityTable from "../common_components/ActivityTable";
 
 const styles = {
 	buttonStyle: {
@@ -309,6 +310,7 @@ class App extends Component {
 				}}>
 					<FilteredExpression url={hostname} storeId={storeId}/>
 				</div>
+				<ActivityTable numberToShow={3} decisionFilter={"CLEAN"}/>
 			</div>
 		);
 	}

@@ -27,9 +27,15 @@ const FilteredExpression = (props) => {
 			storeId={storeId}
 			emptyElement={(
 				<span style={{
-					display: "flex", alignItems: "center", justifyContent: "center", fontStyle: "italic"
+					fontStyle: "italic", width: "100%"
 				}}>
-					{browser.i18n.getMessage("noRulesText")}
+					<div className="alert alert-primary" role="alert"
+						style={{
+							marginBottom: 0
+						}}
+					>
+						<i>{browser.i18n.getMessage("noRulesText")}</i>
+					</div>
 				</span>
 			)}
 		/>
