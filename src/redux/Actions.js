@@ -156,9 +156,7 @@ export const cookieCleanup = (options) => async (dispatch, getState) => {
 		);
 	}
 
-	// This has the effect of keeping at least one log of 0 recently cleaned but not too many of it until there is a new log with a recentlyClean > 0
-	const recentLog = getState().activityLog[0];
-	if ((recentLog === undefined || recentlyCleaned !== 0 || recentLog.recentlyCleaned !== recentlyCleaned) && getSetting(getState(), "statLogging")) {
+	if (recentlyCleaned !== 0 && getSetting(getState(), "statLogging")) {
 		dispatch(
 			addActivity(cachedResults)
 		);
