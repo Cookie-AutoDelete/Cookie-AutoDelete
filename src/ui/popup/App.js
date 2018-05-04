@@ -121,7 +121,12 @@ class App extends Component {
 			return ("Loading");
 		}
 		return (
-			<div className="container-fluid">
+			<div
+				className="container-fluid"
+				style={{
+					minWidth: `${cache.browserDetect === "Chrome" ? "650px" : ""}`
+				}}
+			>
 				<div
 					className="row"
 					style={{
@@ -130,57 +135,61 @@ class App extends Component {
 						backgroundColor: "rgba(0, 0, 0, 0.05)",
 						borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
 						alignItems: "center",
-						justifyContent: "space-between",
-						minWidth: `${cache.browserDetect === "Chrome" ? "650px" : ""}`
+						justifyContent: "center"
 					}}
 				>
 
-					<div className="col-auto" style={{
-						textAlign: "right"
-					}}>
-						<IconButton
-							iconName="power-off"
-							className={settings.activeMode.value ? "btn-success" : "btn-danger"}
-							style={styles.buttonStyle}
-							onClick={() => onUpdateSetting({
-								...settings.activeMode, value: !settings.activeMode.value
-							})}
-							title={settings.activeMode.value ? browser.i18n.getMessage("disableAutoDeleteText") : browser.i18n.getMessage("enableAutoDeleteText")}
-							text={settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
-						/>
+					<IconButton
+						iconName="power-off"
+						className={settings.activeMode.value ? "btn-success" : "btn-danger"}
+						style={styles.buttonStyle}
+						onClick={() => onUpdateSetting({
+							...settings.activeMode, value: !settings.activeMode.value
+						})}
+						title={settings.activeMode.value ? browser.i18n.getMessage("disableAutoDeleteText") : browser.i18n.getMessage("enableAutoDeleteText")}
+						text={settings.activeMode.value ? browser.i18n.getMessage("autoDeleteEnabledText") : browser.i18n.getMessage("autoDeleteDisabledText")}
+					/>
 
-						<IconButton
-							iconName="bell"
-							className={settings.showNotificationAfterCleanup.value ? "btn-success" : "btn-danger"}
-							style={styles.buttonStyle}
-							onClick={() => onUpdateSetting({
-								...settings.showNotificationAfterCleanup, value: !settings.showNotificationAfterCleanup.value
-							})}
-							title={browser.i18n.getMessage("toggleNotificationText")}
-							text={settings.showNotificationAfterCleanup.value ? browser.i18n.getMessage("notificationEnabledText") : browser.i18n.getMessage("notificationDisabledText")}
-						/>
+					<IconButton
+						iconName="bell"
+						className={settings.showNotificationAfterCleanup.value ? "btn-success" : "btn-danger"}
+						style={styles.buttonStyle}
+						onClick={() => onUpdateSetting({
+							...settings.showNotificationAfterCleanup, value: !settings.showNotificationAfterCleanup.value
+						})}
+						title={browser.i18n.getMessage("toggleNotificationText")}
+						text={settings.showNotificationAfterCleanup.value ? browser.i18n.getMessage("notificationEnabledText") : browser.i18n.getMessage("notificationDisabledText")}
+					/>
 
-						<div
-							className="btn-group"
-							ref={(e) => {this.cleanButtonContainerRef = e;}}
-							style={{
-								margin: "0 4px"
+					<div
+						className="btn-group"
+						ref={(e) => {this.cleanButtonContainerRef = e;}}
+						style={{
+							margin: "0 4px"
+						}}
+					>
+						<IconButton
+							iconName="eraser"
+							className="btn-warning"
+							onClick={() => {
+								onCookieCleanup({
+									greyCleanup: false, ignoreOpenTabs: false
+								});
+								this.animateFlash(this.cleanButtonContainerRef, true);
 							}}
-						>
-							<IconButton
-								iconName="eraser"
-								className="btn-warning"
-								onClick={() => {
-									onCookieCleanup({
-										greyCleanup: false, ignoreOpenTabs: false
-									});
-									this.animateFlash(this.cleanButtonContainerRef, true);
-								}}
-								title={browser.i18n.getMessage("cookieCleanupText")}
-								text={browser.i18n.getMessage("cleanText")}
-							/>
+							title={browser.i18n.getMessage("cookieCleanupText")}
+							text={browser.i18n.getMessage("cleanText")}
+						/>
 
-							<button className="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"/>
+						<div className="dropdown">
+							<button
+								className="btn btn-warning dropdown-toggle dropdown-toggle-split"
+								data-toggle="dropdown"
+								data-disabled="true"
+								style={{
+									transform: "translate3d(-3px, 0px, 0px)"
+								}}
+							/>
 							<div className="dropdown-menu dropdown-menu-right">
 								<a
 									className="dropdown-item"
@@ -217,23 +226,24 @@ class App extends Component {
 								>
 									{browser.i18n.getMessage("clearSiteDataText", ["localstorage"])}
 								</a>
+
 							</div>
 						</div>
-
-						<IconButton
-							iconName="cog"
-							className="btn-info"
-							style={styles.buttonStyle}
-							onClick={() => {
-								browser.tabs.create({
-									url: "/settings/settings.html#tabSettings"
-								});
-								window.close();
-							}}
-							title={browser.i18n.getMessage("preferencesText")}
-							text={browser.i18n.getMessage("preferencesText")}
-						/>
 					</div>
+					<IconButton
+						iconName="cog"
+						className="btn-info"
+						style={styles.buttonStyle}
+						onClick={() => {
+							browser.tabs.create({
+								url: "/settings/settings.html#tabSettings"
+							});
+							window.close();
+						}}
+						title={browser.i18n.getMessage("preferencesText")}
+						text={browser.i18n.getMessage("preferencesText")}
+					/>
+
 				</div>
 
 				<div

@@ -451,7 +451,7 @@
   },
 
   "noCleanupLogText": {
-    "message": "No Cleanup Log Yet",
-    "description": "No Cleanup Log Yet"
+    "message": "No Cleanup Logs Found",
+    "description": "No Cleanup Logs Found"
   }
 }
