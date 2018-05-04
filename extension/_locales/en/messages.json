@@ -159,8 +159,8 @@
   },
 
   "reasonCleanNoList": {
-    "message": "Clean because of $hostname$ is not in the White/Grey lists",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists",
+    "message": "Clean because $hostname$ is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
