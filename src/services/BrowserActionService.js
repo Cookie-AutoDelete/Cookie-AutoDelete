@@ -83,8 +83,7 @@ export const checkIfProtected = async (state, tab = "UNDEFINED") => {
 	}
 
 	const hostname = getHostname(currentTab.url);
-	const matchedExpression = returnMatchedExpressionObject(state, currentTab.cookieStoreId, hostname);
-
+	const matchedExpression = returnMatchedExpressionObject(state, currentTab.cookieStoreId || "default", hostname);
 	if (matchedExpression !== undefined && matchedExpression.listType === "WHITE") {
 		setIconDefault(currentTab);
 	} else if (matchedExpression !== undefined && matchedExpression.listType === "GREY") {
