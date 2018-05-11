@@ -106,11 +106,12 @@ const cleanFromFromTabEvents = async () => {
 };
 
 const getAllCookieActions = async (tab) => {
+	const hostname = getHostname(tab.url);
 	const cookies = await browser.cookies.getAll(
 		returnOptionalCookieAPIAttributes(store.getState(), {
-			domain: getHostname(tab.url),
+			domain: hostname,
 			storeId: tab.cookieStoreId,
-			firstPartyDomain: getHostname(tab.url)
+			firstPartyDomain: extractMainDomain(hostname)
 		})
 	);
 	let cookieLength = cookies.length;
