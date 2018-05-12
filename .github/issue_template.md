@@ -1,4 +1,13 @@
 
+<!-- 
+    PLEASE READ THE FAQ AND Documentation BEFORE POSTING:
+
+https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues
+https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation
+
+Issues that have an answer in the FAQ WILL get closed and be pointed into the right direction
+Support Issues without any activity WILL get closed 
+ -->
 ### Describe the Bug/Feature
 
 <!-- Helpful to have console output if it's a bug -->
