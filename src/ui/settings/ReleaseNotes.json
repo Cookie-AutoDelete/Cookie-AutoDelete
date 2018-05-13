@@ -5,7 +5,8 @@
       "notes": [
         "Added: Cleanup Log, gives the decision taken (Keep or Clean) for every site and the reasons why after cleanup",
         "Added: Setting for activating cleanup on domain change in the same tab",
-        "Added: Proper support for cleaning private mode cookies"
+        "Added: Proper support for cleaning private mode cookies",
+        "Fixed: Rare bug where deleting an expression wouldn't be deleted"
       ]
     },
     {

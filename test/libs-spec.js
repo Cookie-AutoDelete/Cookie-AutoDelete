@@ -1,5 +1,5 @@
 import {assert} from "chai";
-import {getHostname, isAWebpage, isAnIP, extractMainDomain, prepareCookieDomain, globExpressionToRegExp, returnOptionalCookieAPIAttributes} from "../src/services/libs";
+import {getHostname, isAWebpage, isAnIP, extractMainDomain, prepareCookieDomain, globExpressionToRegExp, returnOptionalCookieAPIAttributes, getStoreId} from "../src/services/libs";
 // ToDo: returnMatchedExpressionObject, getSetting
 import {URL} from "url";
 global.URL = URL;
@@ -73,6 +73,76 @@ describe("Library Functions", function() {
 			assert.strictEqual(prepareCookieDomain({
 				domain: ".google.com", secure: false, path: "/test"
 			}), "http://google.com/test");
+		});
+	});
+
+	describe("getStoreId()", function() {
+		const contextualIdentitiesFalseChrome = {
+			"settings": {
+				"contextualIdentities": {
+					"name": "contextualIdentities",
+					"value": false,
+					"id": 7
+				}
+			},
+			"cache": {
+				browserDetect: "Chrome"
+			}
+		};
+		const contextualIdentitiesFalseFF = {
+			"settings": {
+				"contextualIdentities": {
+					"name": "contextualIdentities",
+					"value": false,
+					"id": 7
+				}
+			},
+			"cache": {
+				browserDetect: "Firefox"
+			}
+		};
+		const contextualIdentitiesTrue = {
+			"settings": {
+				"contextualIdentities": {
+					"name": "contextualIdentities",
+					"value": true,
+					"id": 7
+				}
+			},
+			"cache": {
+				browserDetect: "Firefox"
+			}
+		};
+
+		// Default storeIds
+		it("should return default from firefox-default", function() {
+			assert.strictEqual(getStoreId(contextualIdentitiesFalseFF, "firefox-default"), "default");
+		});
+
+		it("should return default from Chrome and storeId 0", function() {
+			assert.strictEqual(getStoreId(contextualIdentitiesFalseChrome, "0"), "default");
+		});
+
+		// Private storeIds
+		it("should return firefox-private from Firefox and storeId firefox-private (private)", function() {
+			assert.strictEqual(getStoreId(contextualIdentitiesFalseFF, "firefox-private"), "firefox-private");
+		});
+
+		it("should return firefox-private from Firefox and storeId firefox-private (private) with containers", function() {
+			assert.strictEqual(getStoreId(contextualIdentitiesTrue, "firefox-private"), "firefox-private");
+		});
+
+		it("should return private from Chrome and storeId 1 (private)", function() {
+			assert.strictEqual(getStoreId(contextualIdentitiesFalseChrome, "1"), "private");
+		});
+
+		// Containers
+		it("should return firefox-container-1 from Firefox and Containers on", function() {
+			assert.strictEqual(getStoreId(contextualIdentitiesTrue, "firefox-container-1"), "firefox-container-1");
+		});
+
+		it("should return default from Firefox and storeId firefox-container-1 with Containers off", function() {
+			assert.strictEqual(getStoreId(contextualIdentitiesFalseFF, "firefox-container-1"), "default");
 		});
 	});
 

@@ -11,7 +11,7 @@ SOFTWARE.
 **/
 import C from "./Constants";
 import initialState from "./initialState.json";
-import {getSetting} from "../services/libs";
+import {getSetting, getStoreId} from "../services/libs";
 import {cleanCookiesOperation} from "../services/CleanupService";
 import {checkIfProtected} from "../services/BrowserActionService";
 
@@ -21,10 +21,15 @@ export const addExpression = (object) => (dispatch, getState) => {
 	const {
 		payload
 	} = object;
-	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
+	const storeId = getStoreId(getState(), payload.storeId);
+	// Sanitize the payload's storeId
+	const newPayload = {
+		...payload,
+		storeId
+	};
 	dispatch({
 		type: C.ADD_EXPRESSION,
-		payload,
+		payload: newPayload,
 		storeId
 	});
 	checkIfProtected(getState());
@@ -34,7 +39,7 @@ export const removeExpression = (object) => (dispatch, getState) => {
 	const {
 		payload
 	} = object;
-	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
+	const storeId = getStoreId(getState(), payload.storeId);
 	dispatch({
 		type: C.REMOVE_EXPRESSION,
 		payload,
@@ -47,7 +52,7 @@ export const updateExpression = (object) => (dispatch, getState) => {
 	const {
 		payload
 	} = object;
-	const storeId = !getSetting(getState(), "contextualIdentities") || payload.storeId === "firefox-default" ? "default" : payload.storeId;
+	const storeId = getStoreId(getState(), payload.storeId);
 	dispatch({
 		type: C.UPDATE_EXPRESSION,
 		payload,
