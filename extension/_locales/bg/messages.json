@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "Филтриране",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Без",
+    "description": "None"
+  },
   "cleanText": {
     "message": "Изчистване",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "Запазване",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "Изчистване",
@@ -85,6 +97,10 @@
     "message": "Списък с изрази",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "Дневник на изчистванията",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "Относно",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Запазване заради отворени подпрозорци на *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Изчистване заради началното почистване и $hostname$ не е в бял или сив списък",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Изчистване заради началното почистване и $matchedExpression$ не е в сив списък",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Изчистване, защото $hostname$ не е в бял или сив списък",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Запазване заради съвпадащо $matchedExpression$ в $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "или в който и да е отворен подпрозорец",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "и отворените подпрозорци са пренебрегнати",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Благодарим ви, че пробвахте разширението. Ако го харесвате, моля, напишете отзив.",
@@ -123,13 +201,17 @@
     "message": "секунди",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "Записване на общия брой изтрити бисквитки",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "Включване на изчистването при промяна на домейна",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "Зануляване на брояча",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "Включване на дневника за изчистване и брояча",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "Изчистване на дневниците",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Показване на броя бисквитки на домейна",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "Включва \/ изключва известяването",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Не са намерени дневници за изчистване",
+    "description": "No Cleanup Logs Found"
   }
 }

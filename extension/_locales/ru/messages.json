@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "Фильтр",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Без фильтра",
+    "description": "None"
+  },
   "cleanText": {
     "message": "Очистить",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "Оставить",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "Запустить очистку сейчас",
@@ -85,6 +97,10 @@
     "message": "Список правил",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "Журнал очистки",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "Информация",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Keep because of open tabs of *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "or in any open tabs",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "and also open tabs were ignored",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Спасибо за использование Cookie AutoDelete. Если вам понравилось, пожалуйста, оставьте отзыв.",
@@ -123,13 +201,17 @@
     "message": "Секунд",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "Вести подсчет всех удаленных кук",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "Включить очистку при смене домена",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "Сбросить счетчик",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "Включить журнал событий и счетчик",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "Очистить журнал",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Показывать количество кук для этого домена",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "Переключите, чтобы включить или отключить уведомления",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Записи в журнале отсутствуют",
+    "description": "No Cleanup Logs Found"
   }
 }

@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "Filtro",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Nessuno",
+    "description": "None"
+  },
   "cleanText": {
     "message": "Pulisci",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "Mantieni",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "Pulisci adesso",
@@ -85,6 +97,10 @@
     "message": "Elenco di espressioni",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "Registro delle puliture",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "Informazioni",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Mantieni a causa delle schede aperte di *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Pulisci a causa dell'avvio pulitura e $hostname$ non è in lista bianca\/grigia",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Pulisci a causa dell'avvio pulitura e $matchedExpression$ è in lista grigia",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Pulisci perché $hostname$ non è in lista bianca\/grigia",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Mantieni perchè $matchedExpression$ è presente in $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "o in qualsiasi scheda aperta",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "e inoltre le schede aperte sono state ignorate",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Grazie per avere provato Cookie AutoDelete. Se ti è piaciuto, scrivi una recensione.",
@@ -123,13 +201,17 @@
     "message": "Secondo\/i",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "Registra il numero totale dei cookie eliminati",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "Attiva la pulitura al cambiamento di dominio",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "Reset contatore",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "Attiva il registro delle puliture e il contatore",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "Cancella il registro",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Mostra il numero di cookie per quel dominio",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "Modifica per attivare o disattivare le notifiche",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Nessun registro delle puliture trovato",
+    "description": "No Cleanup Logs Found"
   }
 }

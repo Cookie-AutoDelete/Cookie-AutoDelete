@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "过滤",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "无",
+    "description": "None"
+  },
   "cleanText": {
     "message": "清理",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "保留",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "立即清理",
@@ -85,6 +97,10 @@
     "message": "例外名单",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "清理日志",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "关于",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Keep because of open tabs of *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "or in any open tabs",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "and also open tabs were ignored",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "感谢您尝试 Cookie AutoDelete。如果您喜欢，请来评价吧。",
@@ -123,13 +201,17 @@
     "message": "秒",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "记录已删除 Cookie 的总数",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "启用域变更时清理",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "重置计数器",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "启用清理日志和计数器",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "清除日志",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "显示该域名的 Cookie 数量",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "切换以启用或禁用通知",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "没有找到清理日志",
+    "description": "No Cleanup Logs Found"
   }
 }

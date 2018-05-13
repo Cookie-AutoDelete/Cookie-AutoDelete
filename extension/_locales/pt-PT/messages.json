@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "Filtro",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Nenhum",
+    "description": "None"
+  },
   "cleanText": {
     "message": "Limpar",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "Manter",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "Executar limpeza agora",
@@ -85,6 +97,10 @@
     "message": "Lista de expressões",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "Registo de limpeza",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "Acerca",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Manter por causa de separadores abertos de *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Limpar por causa da limpeza de arranque e $hostname$ não está nas listas branca\/cinza",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Limpar por causa da limpeza de arranque e $matchedExpression$ está lista cinza",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Limpar porque $hostname$ não está nas listas branca\/cinza",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Manter por causa de $matchedExpression$ correspondentes na $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "ou em quaisquer separadores abertos",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "e também separadores abertos foram ignorados",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Obrigado por experimentar o Cookie AutoDelete. Se gostou, então por favor deixe uma análise.",
@@ -123,13 +201,17 @@
     "message": "Segundo(s)",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "Registar número total de cookies apagados",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "Ativar limpeza na mudança de domínio",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "Repor contador",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "Ativar limpeza de registo e contador",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "Limpar registo",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Mostrar número de cookies para esse domínio",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "Alternar para ativar ou desativar notificações",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Nenhum registo de limpeza encontrado",
+    "description": "No Cleanup Logs Found"
   }
 }

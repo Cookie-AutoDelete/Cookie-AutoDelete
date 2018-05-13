@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Управљајте вашим колачићима. Аутоматски бришите некоришћене колачиће из ваших затворених језичака а задржите оне које желите.",
+    "message": "Kelola kuki Anda! Otomatis hapus kuki yang tidak digunakan dari tab yang tertutup dan tetap simpan yang Anda inginkan.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: колачићи су обрисани!",
+    "message": "Cookie AutoDelete: Kuki telah dihapus!",
     "description": "Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent": {
-    "message": "$Num$ обрисаних колачића са сајтова: $Websites$",
+    "message": "$Num$ Kuki Dihapus dari: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -26,35 +26,35 @@
     }
   },
   "filterText": {
-    "message": "Филтер",
+    "message": "Filter",
     "description": "Filter"
   },
   "noneText": {
-    "message": "Ништа",
+    "message": "Nihil",
     "description": "None"
   },
   "cleanText": {
-    "message": "Очисти",
+    "message": "Hapus",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Задржи",
+    "message": "Simpan",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Покрени чишћење сада",
+    "message": "Hapus sekarang",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Очисти и отворене језичке",
+    "message": "Hapus, termasuk tab yang terbuka",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Покрени чишћење сада, укључујући колачиће из отворених језичака",
+    "message": "Hapus sekarang, termasuk kuki dari tab yang terbuka",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Очисти $siteData$ овог домена",
+    "message": "Hapus $siteData$ untuk domain ini",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -64,7 +64,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Очисти све $siteData$ за $domain$",
+    "message": "Hapus semua $siteData$ untuk $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -78,35 +78,35 @@
     }
   },
   "noRulesText": {
-    "message": "Нема нађених правила за овај домен",
+    "message": "Tidak ada aturan yang cocok dengan domain ini",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Добродошли",
+    "message": "Selamat Datang",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Подешавања",
+    "message": "Pengaturan",
     "description": "Settings"
   },
   "settingsText": {
-    "message": "Подешавања колачића",
+    "message": "Pengaturan Kuki",
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "Списак израза",
+    "message": "Daftar Ekspresi",
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Записник чишћења",
+    "message": "Hapus Log",
     "description": "Cleanup Log"
   },
   "aboutText": {
-    "message": "О програму",
+    "message": "Tentang",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Здраво! У току ове сесије је Самобрисач Колачића обрисао $sessionDeleted$ колачића а свеукупно $totalDeleted$ колачића.",
+    "message": "Hai! Sepanjang sesi ini, Cookie AutoDelete telah menghapus $sessionDeleted$ kuki dan total $totalDeleted$ kuki.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -120,7 +120,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "Задржи због отворених језичака домена *.$mainDomain$",
+    "message": "Disimpan karena tab yang terbuka dari *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -130,7 +130,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Очисти због чишћења при покретању и зато што домен $hostname$ није на сивом или белом списку",
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -140,7 +140,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Очисти због чишћења при покретању и зато што домен $matchedExpression$ није на сивом списку",
+    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -150,7 +150,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Очисти зато што домен $hostname$ није на сивом или белом списку",
+    "message": "Dihapus karena $hostname$ tidak ada di dalam daftar Putih\/Abu-abu",
     "description": "Clean because sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -160,7 +160,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Задржи зато што се домен $matchedExpression$ налази на списку врсте $listType$",
+    "message": "Disimpan karena $matchedExpression$ ada di dalam $listType$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -174,115 +174,115 @@
     }
   },
   "reasonTabsWereNotIgnored": {
-    "message": "или у било ком отвореном језичку",
+    "message": "atau di dalam tab yang terbuka manapun",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "и такође су отворени језичци занемарени",
+    "message": "dan tab yang terbuka juga diabaikan",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Хвала вам што сте пробали Cookie AutoDelete. Ако вам се свиђа, оставите рецензију.",
+    "message": "Terima kasih telah mencoba Cookie AutoDelete. Jika Anda menyukainya, silakan berikan tinjauan.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Белешке о издању",
+    "message": "Catatan Rilis",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Омогућити аутоматско чишћење? Застој пре чишћења:",
+    "message": "Mengaktifkan Hapus Otomatis? Penundaan Sebelum Menghapus:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Минут(а)",
+    "message": "Menit",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Секунд(е)",
+    "message": "Detik",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Омогући чишћење при промени домена",
+    "message": "Aktifkan Hapus saat Domain Berubah",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Омогући записник чишћења и бројач",
+    "message": "Aktifkan Hapus Log dan Penghitung",
     "description": "Enable Cleanup Log and Counter"
   },
   "clearLogsText": {
-    "message": "Очисти записнике",
+    "message": "Hapus Log",
     "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Прикажи број колачића за дати домен",
+    "message": "Tampilkan Jumlah Kuki untuk Domain tersebut",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Прикажи обавештење након брисања колачића",
+    "message": "Tampilkan Notifikasi Setelah Menghapus Kuki",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Очисти колачиће из отворених језичака при покретању",
+    "message": "Hapus Kuki dari Tab yang Terbuka saat memulai",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Омогући проверу за поддомен",
+    "message": "Aktifkan Pengecekan Subdomain",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Омогући подршку за Firefox-ове контејнер језичке",
+    "message": "Aktifkan Dukungan untuk Tab Container Firefox",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Чишћење локалног складишта (Firefox 58+)",
+    "message": "Hapus Localstorage (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Омогућавање чишћења локалног складишта и контејнерских језичака може изазвати нежељена дејства због ограничења АПИ-ја",
+    "message": "Mengaktifkan Penghapusan Localstorage dan Tab Container mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
-    "message": "Врати подразумевана подешавања",
+    "message": "Kembalikan ke Pengaturan Bawaan",
     "description": "Restore Default Settings"
   },
   "whiteListWordText": {
-    "message": "Бели списак",
+    "message": "Daftar Putih",
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "Сиви списак",
+    "message": "Daftar Abu-abu",
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Додај на бели списак (никада не чисти)",
+    "message": "Tambahkan ke Daftar Putih (Tidak Dihapus)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Додај на сиви списак (чисти при поновном покретању прегледача)",
+    "message": "Tambahkan ke Daftar Abu-abu (Dihapus saat Memulai Ulang Peramban)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Уклони све",
+    "message": "Buang Semua",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Извези изразе",
+    "message": "Ekspor Ekspresi",
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "Временски жиг ће бити додат на назив датотеке приликом извоза.\nИмате проблема са преузимањем? Десни клик на ово дугме па изаберите „Сачувај везу као…“ да бисте преузели.",
+    "message": "Waktu akan ditambahkan ke berkas nama saat mengekspor.\nKesulitan mengunduh? Klik kanan tombol ini dan klik 'Simpan Tautan Sebagai...' untuk mengunduh.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
-    "message": "Увези изразе",
+    "message": "Impor Ekspresi",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Пријавите проблеме и предложите могућности",
+    "message": "Laporkan masalah dan saran fitur",
     "description": "Report issues and suggest features"
   },
   "versionText": {
-    "message": "Издање $browser$ прегледача",
+    "message": "Versi $browser$",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -292,91 +292,91 @@
     }
   },
   "contributorsText": {
-    "message": "Доприносиоци:",
+    "message": "Kontributor:",
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Допринесите",
+    "message": "Kontribusi",
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Доменски израз",
+    "message": "Ekspresi Domain",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Подударни доменски изрази",
+    "message": "Ekspresi Domain yang Cocok",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Еквивалент општег израза",
+    "message": "Padanan Ekspresi Regular",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "Врста списка",
+    "message": "Tipe Daftar",
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "primer.rs, poddomen.primer.rs, *.primer.rs, пример.срб",
+    "message": "example.com, subdomain.example.com, *.example.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "Нема наведених израза.",
+    "message": "No expressions defined.",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Уклони израз",
+    "message": "Buang ekspresi",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Престани са уређивањем",
+    "message": "Setop menyunting",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Сачувај израз",
+    "message": "Simpan ekspresi",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Уреди израз",
+    "message": "Sunting ekspresi",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Пребаци на сиви списак",
+    "message": "Ubah ke daftar abu-abu",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Пребаци на бели списак",
+    "message": "Ubah ke daftar putih",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Самочишћење омогућено",
+    "message": "Hapus otomatis diaktifkan",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Самочишћење онемогућено",
+    "message": "Hapus otomatis dinonaktifkan",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Промени за онемогућавање самочишћења (ручни режим)",
+    "message": "Klik untuk menonaktifkan hapus otomatis (mode manual)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Промени за омогућавање самочишћења (аутоматски режим)",
+    "message": "Klik untuk mengaktifkan hapus otomatis (mode otomatis)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Обавештење омогућено",
+    "message": "Notifikasi diaktifkan",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Обавештење онемогућено",
+    "message": "Notifikasi dinonaktifkan",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Притисните да бисте омогућили или онемогућили обавештења",
+    "message": "Klik untuk mengaktifkan atau menonaktifkan notifikasi",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "Нема записника о чишћењу",
+    "message": "No Cleanup Logs Found",
     "description": "No Cleanup Logs Found"
   }
 }

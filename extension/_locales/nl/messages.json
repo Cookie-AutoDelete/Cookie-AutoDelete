@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "Filter",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Geen",
+    "description": "None"
+  },
   "cleanText": {
     "message": "Schoonmaken",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "Behouden",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "Ruim cookies nu op",
@@ -85,6 +97,10 @@
     "message": "Lijst met expressies",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "Opschonen logboek",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "Over",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Keep because of open tabs of *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "or in any open tabs",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "and also open tabs were ignored",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Bedankt voor het uitproberen van Cookie AutoDelete. Indien u het leuk vindt dan beoordeel het alsublieft.",
@@ -123,13 +201,17 @@
     "message": "Seconde(n)",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "Log van het totaal aantal verwijderde cookies",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "Enable Cleanup on Domain Change",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "Reset teller",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "Enable Cleanup Log and Counter",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "Logboek wissen",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Toon het aantal cookies voor dat domein",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "In-\/ uitschakelen van meldingen",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Geen logboeken gevonden om op te schonen",
+    "description": "No Cleanup Logs Found"
   }
 }

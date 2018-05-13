@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "Filtr",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Brak",
+    "description": "None"
+  },
   "cleanText": {
     "message": "Wyczyść",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "Zachowaj",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "Wyczyść teraz",
@@ -85,6 +97,10 @@
     "message": "Lista formuł",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "Log czyszczenia",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "Informacje",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Zachowane z powodu obecności otwartych kart z *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Wyczyszczone z powodu czyszczenia przy starcie oraz braku $hostname$ na białej\/szarej liście",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Wyczyszczone z powodu czyszczenia na starcie oraz obecności $matchedExpression$ na szarej liście",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Wyczyszczone z powodu braku $hostname$ na białej\/szarej liście",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Zachowane z powodu obecności $matchedExpression$ na $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "lub w otwartej karcie",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "oraz otwarte karty zostały zignorowane",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Dzięki za wypróbowanie Cookie AutoDelete. Jeśli ci się podoba, proszę o recenzję.",
@@ -123,13 +201,17 @@
     "message": "sekund",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "Zapisuj całkowitą ilość usuniętych ciasteczek",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "Włącz czyszczenie przy zmianie domeny",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "Wyzeruj licznik",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "Włącz log czyszczenia i licznik",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "Wyczyść log",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Pokaż ilość ciasteczek z tej domeny",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "Przełącz, aby włączyć lub wyłączyć powiadomienia",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Log czyszczenia nie znaleziony",
+    "description": "No Cleanup Logs Found"
   }
 }

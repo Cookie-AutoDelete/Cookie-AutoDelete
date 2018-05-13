@@ -25,9 +25,21 @@
       }
     }
   },
+  "filterText": {
+    "message": "Filtrera",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Inget",
+    "description": "None"
+  },
   "cleanText": {
     "message": "Rensa",
     "description": "Clean"
+  },
+  "keepText": {
+    "message": "Behåll",
+    "description": "Keep"
   },
   "cookieCleanupText": {
     "message": "Kör borttagning nu",
@@ -85,6 +97,10 @@
     "message": "Lista över uttryck",
     "description": "List of Expressions"
   },
+  "cleanupLogText": {
+    "message": "Rensningslogg",
+    "description": "Cleanup Log"
+  },
   "aboutText": {
     "message": "Om",
     "description": "About"
@@ -102,6 +118,68 @@
         "example": "456"
       }
     }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Behåll på grund av öppna flikar i *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Rensa eftersom uppstartsrensning och $hostname$ inte finns i vit-\/grålistan",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Rensa eftersom uppstartsrensning och $matchedExpression$ finns i grålistan",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Rensa eftersom $hostname$ inte finns i vit-\/grålistan",
+    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Behåll på grund av matchande $matchedExpression$ i $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "eller i någon öppen flik",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "och även öppna flikar ignorerades",
+    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Tack för att du provar Cookie AutoDelete. Om du gillar det, kanske du vill lämna en recension.",
@@ -123,13 +201,17 @@
     "message": "Sekund(er)",
     "description": "Second(s)"
   },
-  "statLoggingText": {
-    "message": "Logga det sammanlagda antalet borttagna cookies",
-    "description": "Log Total Number Of Cookies Deleted"
+  "cleanupDomainChangeText": {
+    "message": "Aktivera rensning vid domänförändring",
+    "description": "Enable Cleanup on Domain Change"
   },
-  "resetCounterText": {
-    "message": "Nollställ räknaren",
-    "description": "Reset Counter"
+  "enableCleanupLogText": {
+    "message": "Aktivera rensningslogg och räknare",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "clearLogsText": {
+    "message": "Rensa loggar",
+    "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Visa antal cookies för domänen",
@@ -292,5 +374,9 @@
   "toggleNotificationText": {
     "message": "Aktivera\/Inaktivera aviseringar",
     "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Inga rensningsloggar hittades",
+    "description": "No Cleanup Logs Found"
   }
 }
