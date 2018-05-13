@@ -68,7 +68,7 @@ class Expressions extends React.Component {
 		});
 	}
 
-	componentWillReceiveProps(nextProps) {
+	getDerivedStateFromProps(nextProps) {
 		if (nextProps.contextualIdentities === false) {
 			this.changeStoreIdTab("default");
 		}
