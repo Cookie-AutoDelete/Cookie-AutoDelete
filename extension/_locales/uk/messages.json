@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Управляйте вашими куками! Автоматически очищайте неиспользуемые куки закрытых вкладок, оставляя только те, которые вам нужны.",
+    "message": "Керуйте вашими куками! Автоматично очищайте невикористовувані куки закритих вкладок, залишаючи тільки ті, які вам потрібні.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: куки удалены!",
+    "message": "Cookie AutoDelete: куки видалено!",
     "description": "Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent": {
-    "message": "$Num$ куки были удалены от: $Websites$",
+    "message": "$Num$ видалено куки від: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -26,35 +26,35 @@
     }
   },
   "filterText": {
-    "message": "Фильтр",
+    "message": "Фільтр",
     "description": "Filter"
   },
   "noneText": {
-    "message": "Без фильтра",
+    "message": "Без фільтра",
     "description": "None"
   },
   "cleanText": {
-    "message": "Очистить",
+    "message": "Очистити",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Оставить",
+    "message": "Залишити",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Запустить очистку сейчас",
+    "message": "Запустити очищення зараз",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Очистить, включая открытые вкладки",
+    "message": "Очистити, включаючи відкриті вкладки",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Запустить очистку сейчас, включая куки из открытых вкладок",
+    "message": "Запустити очищення зараз, включаючи куки відкритих вкладок",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Очистить $siteData$ для этого домена",
+    "message": "Очистити $siteData$ для цього домену",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -64,7 +64,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Очистить все $siteData$ для $domain$",
+    "message": "Очистити все $siteData$ для $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -78,19 +78,19 @@
     }
   },
   "noRulesText": {
-    "message": "Нет правил для этого домена",
+    "message": "Немає правил для цього домену",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Добро пожаловать",
+    "message": "Ласкаво просимо",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Настройки",
+    "message": "Налаштування",
     "description": "Settings"
   },
   "settingsText": {
-    "message": "Настройки",
+    "message": "Налаштування",
     "description": "Cookie Settings"
   },
   "whiteListText": {
@@ -102,11 +102,11 @@
     "description": "Cleanup Log"
   },
   "aboutText": {
-    "message": "Информация",
+    "message": "Інформація",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "За время данной сессии с помощью Cookie AutoDelete было удалено $sessionDeleted$ куков, за все время удалено $totalDeleted$ куков.",
+    "message": "За час цієї сесії за допомогою Cookie AutoDelete видалено $sessionDeleted$ куків, за весь час видалено $totalDeleted$ куків.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -182,19 +182,19 @@
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Спасибо за использование Cookie AutoDelete. Если вам понравилось, пожалуйста, оставьте отзыв.",
+    "message": "Дякуємо за використання Cookie AutoDelete. Якщо вам сподобалося, будь ласка, залиште відгук.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Заметки к релизу",
+    "message": "Нотатки до випуску",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Включить автоматическую очистку? Задержка перед очисткой:",
+    "message": "Включити автоматичне очищення? Затримка перед очищенням:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "минут(ы)",
+    "message": "Хвилин(и)",
     "description": "Minute(s)"
   },
   "secondsText": {
@@ -202,87 +202,87 @@
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Включить очистку при смене домена",
+    "message": "Включити очистку після зміни домену",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Включить журнал событий и счетчик",
+    "message": "Включити журнал подій і лічильник",
     "description": "Enable Cleanup Log and Counter"
   },
   "clearLogsText": {
-    "message": "Очистить журнал",
+    "message": "Очистити журнал",
     "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Показывать количество кук для этого домена",
+    "message": "Показувати кількість кук для цього домену",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Показывать уведомление после очистки кук",
+    "message": "Показувати сповіщення після очищення кук",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Очищать куки открытых вкладок при запуске",
+    "message": "Очищати куки відкритих вкладок під час запуску",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Включить проверку для поддоменов",
+    "message": "Увімкнути перевірку піддоменів",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Включить поддержку Container Tabs в Firefox",
+    "message": "Включити підтримку Container Tabs в Firefox",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Очистка локального хранилища (Firefox 58+)",
+    "message": "Очищення локального сховища (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Включение очистки локального хранилища и контейнеров может вызвать некоторые нежелательные побочные эффекты из-за ограничений API",
+    "message": "Включення очищення локального сховища і контейнерів може викликати деякі небажані побічні ефекти через обмеження API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
-    "message": "Восстановить первоначальные настройки",
+    "message": "Відновити початкові налаштування",
     "description": "Restore Default Settings"
   },
   "whiteListWordText": {
-    "message": "Белый список",
+    "message": "Білий список",
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "Серый список",
+    "message": "Сірий список",
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Добавить в белый список (никогда не очищать)",
+    "message": "Додати в білий список (ніколи не очищати)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Добавить в серый список (очистка при перезапуске браузера)",
+    "message": "Додати в сірий список (очищення при перезапуску браузера)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Удалить все",
+    "message": "Видалити все",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Экспортировать правила",
+    "message": "Експортувати правила",
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "К имени экспортируемого файла будет добавляться отметка времени. Возникли проблемы при загрузке?  Щелкните правой кнопкой мыши эту кнопку и нажмите «Сохранить ссылку как...» для загрузки.",
+    "message": "До імені експортованого файлу буде додаватися відмітка часу. Виникли проблеми при завантаженні? Клацніть правою кнопкою миші цю кнопку і натисніть «Зберегти посилання як...» для завантаження.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "importURLSText": {
-    "message": "Импортировать правила",
+    "message": "Імпортувати правила",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Сообщить об ошибке или предложить идею",
+    "message": "Повідомити про помилку чи запропонувати ідею",
     "description": "Report issues and suggest features"
   },
   "versionText": {
-    "message": "Версия $browser$",
+    "message": "Версія $browser$",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -292,27 +292,27 @@
     }
   },
   "contributorsText": {
-    "message": "Участники проекта:",
+    "message": "Учасники проекту:",
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Помощь",
+    "message": "Допомога",
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Выражение для домена",
+    "message": "Вираз для домену",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Правило соответствующее домену",
+    "message": "Правило відповідне домену",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Соответствующее регулярное выражение",
+    "message": "Відповідний регулярний вираз",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "Тип списка",
+    "message": "Тип списку",
     "description": "List Type"
   },
   "domainPlaceholderText": {
@@ -320,63 +320,63 @@
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "Правила не заданы.",
+    "message": "Правила не задані.",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Удалить правило",
+    "message": "Видалити правило",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Отменить редактирование",
+    "message": "Скасувати редагування",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Сохранить правило",
+    "message": "Зберегти правило",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Редактировать правило",
+    "message": "Редагувати правило",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Перенести в серый список",
+    "message": "Перенести в сірий список",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Перенести в белый список",
+    "message": "Перенести в білий список",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Автоочистка включена",
+    "message": "Авто-очищення ввімкнене",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Автоочистка выключена",
+    "message": "Авто-очищення вимкнена",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Переключите, чтобы отключить автоматическую очистку (ручной режим)",
+    "message": "Перемкніть, щоб вимкнути автоматичне очищення (ручний режим)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Переключите, чтобы включить автоматическую очистку (автоматический режим)",
+    "message": "Перемкніть, щоб включити автоматичне очищення (автоматичний режим)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Уведомления включены",
+    "message": "Повідомлення включені",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Уведомления отключены",
+    "message": "Повідомлення відключені",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Переключите, чтобы включить или отключить уведомления",
+    "message": "Перемкніть, щоб включити чи відключити повідомлення",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "Записи в журнале отсутствуют",
+    "message": "Записи в журналі відсутні",
     "description": "No Cleanup Logs Found"
   }
 }
