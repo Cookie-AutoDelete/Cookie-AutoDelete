@@ -105,7 +105,7 @@ export const getStoreId = (state, storeId) => {
 	if (
 		(storeId === "firefox-default") ||
 		(!getSetting(state, "contextualIdentities") && storeId !== "firefox-private" && state.cache.browserDetect === "Firefox") ||
-		(state.cache.browserDetect === "Chrome" && storeId === "0" || state.cache.browserDetect === "Opera" && storeId === "0")) {
+		(state.cache.browserDetect === "Chrome" && storeId === "0") || (state.cache.browserDetect === "Opera" && storeId === "0")) {
 		return "default";
 	}
 	if (state.cache.browserDetect === "Chrome" && storeId === "1") {
