@@ -92,6 +92,7 @@ export const cleanCookies = (state, cookies, cleanupProperties) => {
 export const otherBrowsingDataCleanup = (state, hostnamesDeleted) => {
 	if (state.cache.browserDetect === "Firefox") {
 		if (getSetting(state, "localstorageCleanup")) {
+			hostnamesDeleted.delete("");
 			browser.browsingData.removeLocalStorage({
 				hostnames: Array.from(hostnamesDeleted)
 			});
