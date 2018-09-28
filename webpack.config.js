@@ -12,7 +12,7 @@ const plugins = [
     mangle: false
   }),
   new webpack.BannerPlugin(`
-    Copyright (c) 2017 Kenny Do
+    Copyright (c) 2018 Kenny Do, Christian Zei
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -120,8 +120,24 @@ const popupConfig = {
     plugins
 };
 
+const contentScriptConfig = {
+    entry: {
+        settings: `${__dirname}/src/removeECBrowsingData.js`
+    },
+    output: {
+        path: `${__dirname}/extension`,
+        filename: "contentScriptBundle.js",
+    },
+    externals: {
+        // "node/npm module name": "name of exported library variable"
+    },
+    module: moduleConfig,
+    plugins
+};
+
 module.exports = [
   backgroundConfig,
   settingConfig,
-  popupConfig
+  popupConfig,
+  contentScriptConfig
 ];

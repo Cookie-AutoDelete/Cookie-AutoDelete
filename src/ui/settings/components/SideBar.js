@@ -28,7 +28,7 @@ const sideBarTabs = [
 	},
 	{
 		tabId: "tabSettings",
-		tabText: browser.i18n.getMessage("settingsText")
+		tabText: browser.i18n.getMessage("sidebarSettingsText")
 	},
 	{
 		tabId: "tabExpressionList",

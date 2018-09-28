@@ -378,5 +378,153 @@
   "noCleanupLogText": {
     "message": "Inga rensningsloggar hittades",
     "description": "No Cleanup Logs Found"
+  },
+  "hstsAlarmText": {
+    "message": "Show notification, when HSTS tracking is likely to be performed",
+    "description": "Show notification, when HSTS tracking is likely to be performed"
+  }, 
+  "hstsPreventText": {
+    "message": "Try to prevent HSTS tracking",
+    "description": "Try to prevent HSTS tracking"
+  }, 
+  "dntHeaderSendText": {
+    "message": "Send Do-Not-Track header to tell servers not to track my browser",
+    "description": "Send Do-Not-Track header to tell servers not to track my browser"
+  },
+  "hstsTrackingFoundText": {
+    "message": "HSTS tracking was discovered at ",
+    "description": "HSTS tracking was discovered at "
+  },
+  "evercookieSettingsText": {
+    "message": "Evercookie and Tracking Settings",
+    "description": "Evercookie and Tracking Settings"
+  },
+  "sidebarSettingsText": {
+    "message": "Inställningar",
+    "description": "Settings"
+  },
+  "ecHTTPcookieDeleteText": {
+    "message": "Clear HTTP Cookies",
+    "description": "Clear HTTP Cookies"
+  },
+  "ecLSOdeleteText": {
+    "message": "Clear Local Shared Objects (Flash Cookies)",
+    "description": "Clear Local Shared Objects (Flash Cookies)"
+  },
+  "ecCacheClearText": {
+    "message": "Clear Browser Cache",
+    "description": "Clear Browser Cache"
+  },
+  "ecWindowNameClearText": {
+    "message": "Clear window.name",
+    "description": "Clear window.name"
+  },
+  "ecWebHistoryText": {
+    "message": "Clear Browser History",
+    "description": "Clear Browser History"
+  },
+  "ecLocalStorageText": {
+    "message": "Clear Local Storage and Session Storage",
+    "description": "Clear Local Storage and Session Storage"
+  },
+  "ecIndexedDBclearText": {
+    "message": "Clear IndexedDB",
+    "description": "Clear IndexedDB"
+  },
+  "ecSQLiteClearText": {
+    "message": "Clear WebSQL",
+    "description": "Clear WebSQL"
+  },
+  "evercookieDeletionText": {
+    "message": "Evercookie Deletion",
+    "description": "Evercookie Deletion"
+  },
+  "ecClearOnTabCloseText": {
+    "message": "Automatically delete Evercookies after closing the browser tab (Auto-Clean mode)",
+    "description": "Automatically delete Evercookies after closing the browser tab (Auto-Clean mode)"
+  },
+  "ecClearOnDomainChangeText": {
+    "message": "Automatically delete Evercookies after a domain change in Auto-Clean mode",
+    "description": "Automatically delete Evercookies after a domain change"
+  },
+  "ecClearOnStartupText": {
+    "message": "Automatically delete Evercookies on startup in Auto-Clean mode",
+    "description": "Automatically delete Evercookies on startup in Auto-Clean mode"
+  },
+  "ecTrackingAndEverCookieTitleText": {
+    "message": "Tracking and Evercookie Functions",
+    "description": "Tracking and Evercookie Funtions"
+  },
+  "ecAutoModeDisableText": {
+     "message": "Toggle to disable automatic Evercookie cleanup (manual mode)",
+     "description": "Toggle to disable automatic Evercookie cleanup (manual mode)"
+  },
+  "ecAutoModeEnableText": {
+     "message": "Toggle to enable automatic Evercookie cleanup (automatic mode)",
+     "description": "Toggle to enable automatic Evercookie cleanup (automatic mode)"
+  },
+  "hstsTrackingButtonText": {
+     "message": "Toggle to enable or disable HSTS-tracking notifications",
+     "description": "Toggle to enable or disable HSTS-tracking notifications"
+  },
+  "hstsTrackingEnabledText": {
+     "message": "HSTS-tracking alarm enabled",
+     "description": "HSTS-tracking alarm enabled"
+  },
+  "hstsTrackingDisabledText": {
+     "message": "HSTS-tracking alarm disabled",
+     "description": "HSTS-tracking alarm disabled"
+  },
+  "evercookieCleanupText": {
+     "message": "Clear all Evercookies, but keep cookies from open tabs",
+     "description": "Clear all Evercookies, but keep cookies from open tabs"
+  },
+  "evercookieCleanupTabsText": {
+     "message": "Clear all Evercookies, include open tabs",
+     "description": "Clear all Evercookies, include open tabs"
+  },
+  "evercookieCleanupTitleText": {
+     "message": "Run Evercookie cleanup now, include them from open tabs",
+     "description": "Run Evercookie cleanup now, include them from open tabs"
+  },
+  "searchECText": {
+     "message": "Check",
+     "description": "Check"
+  },
+  "searchECTitleText": {
+     "message": "Try to find Evercookies on this Domain",
+     "description": "Try to find Evercookies on this Domain"
+  },
+  "evercookieFoundText": {
+	  "message": "An Evercookie was found at ",
+	  "description": "An Evercookie was found at "
+  },
+  "evercookieFoundNotificationText": {
+	  "message": "Cookie AutoDelete: Evercookie found!",
+	  "description": "Cookie AutoDelete: Evercookie found!"
+  },
+  "hstsTrackingNotificationTitleText": {
+    "message": "Cookie AutoDelete: HSTS Tracking Notification!",
+    "description": "Cookie AutoDelete: HSTS Tracking Notification!"
+  },
+  "evercookieCleanupPopupText": {
+     "message": "Clear all Evercookies, except from open tabs",
+     "description": "Clear all Evercookies, except from open tabs"
+  },  
+  "cookieCleanupPopupText": {
+    "message": "Clean, exclude open tabs",
+    "description": "Clean, exclude open tabs"
+  },
+  "cookieCleanupTitleText": {
+    "message": "Run cleanup now, exclude cookies from open tabs",
+    "description": "Run cleanup now, exclude cookies from open tabs"
+  },
+  "hstsPreventNotificationText": {
+    "message": "You are prevented by CookieAutoDelete",
+    "description": "You are prevented by CookieAutoDelete"
+  },
+  "hstsNotPreventNotificationText": {
+    "message": "Prevention can be activated in settings",
+    "description": "Prevention can be activated in settings"
   }
 }

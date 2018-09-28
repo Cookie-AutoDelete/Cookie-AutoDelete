@@ -1,6 +1,18 @@
 {
   "releases":[
     {
+      "version": "3.0.0",
+      "notes": [
+        "Added: Automatic and manual Evercookie deletion and notification",
+        "Added: HSTS tracking prevention and notification",
+        "Added: Option to automatically send Do-Not-Track headers",
+        "Fixed: Bugs when deletion is executed in non-HTTP tabs",
+        "Fixed: Bugs in LocalStorage deletion",
+        "Fixed: Bugs in detection of new tabs",
+        "Fixed: Popup size for Opera browser"
+      ]
+    },
+    {
       "version": "2.2.0",
       "notes": [
         "Added: Cleanup Log, gives the decision taken (Keep or Clean) for every site and the reasons why after cleanup",
@@ -12,7 +24,7 @@
     {
       "version": "2.1.0",
       "notes": [
-        "Added: Localstorage Support (Firefox 58+, BrowserData API requested)",
+        "Added: LocalStorage Support (Firefox 58+, BrowserData API requested)",
         "Added: First Party Isolation Support (Firefox 59+, Privacy API requested)",
         "Added: Notification on-screen timer setting",
         "Added: Notification quick toggle in the popup",

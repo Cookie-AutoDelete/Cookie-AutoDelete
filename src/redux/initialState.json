@@ -52,7 +52,77 @@
   		"name": "domainChangeCleanup",
   		"value": false,
   		"id": 10
-  	}
+  	},
+	"hstsAlarm": {
+		"name": "hstsAlarm",
+		"value": true,
+		"id": 11
+	},
+	"hstsPrevent": {
+		"name": "hstsPrevent",
+		"value": true,
+		"id": 12
+	},
+	"dntHeaderSend": {
+		"name": "dntHeaderSend",
+		"value": true,
+		"id": 13
+	},
+	"ecHTTPcookieDelete": {
+		"name": "ecHTTPcookieDelete",
+		"value": true,
+		"id": 14
+	},
+	"ecLSOdelete": {
+		"name": "ecLSOdelete",
+		"value": true,
+		"id": 15
+	},
+	"ecCacheClear": {
+		"name": "ecCacheClear",
+		"value": true,
+		"id": 16
+	},
+	"ecWindowNameClear": {
+		"name": "ecWindowNameClear",
+		"value": true,
+		"id": 17
+	},
+	"ecWebHistoryClear": {
+		"name": "ecWebHistoryClear",
+		"value": false,
+		"id": 18
+	},
+	"ecLocalStorageClear": {
+		"name": "ecLocalStorageClear",
+		"value": true,
+		"id": 19
+	},
+	"ecIndexedDBclear": {
+		"name": "ecIndexedDBclear",
+		"value": true,
+		"id": 20
+	},
+	"ecSQLiteClear": {
+		"name": "ecSQLiteClear",
+		"value": true,
+		"id": 21
+	},
+	"ecClearOnTabClose": {
+		"name": "ecClearOnTabClose",
+		"value": false,
+		"id": 22
+	},
+	"ecClearOnDomainChange": {
+		"name": "ecClearOnDomainChange",
+		"value": false,
+		"id": 23
+	},
+	"ecClearOnStartup": {
+		"name": "ecClearOnStartup",
+		"value": false,
+		"id": 24
+	}
   },
   "activityLog": [],
   "cache": {}
