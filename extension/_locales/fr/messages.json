@@ -471,6 +471,10 @@
      "message": "HSTS-tracking alarm enabled",
      "description": "HSTS-tracking alarm enabled"
   },
+  "hstsTrackingDisabledText": {
+     "message": "HSTS-tracking alarm disabled",
+     "description": "HSTS-tracking alarm disabled"
+  },
   "evercookieCleanupText": {
      "message": "Clear all Evercookies, but keep cookies from open tabs",
      "description": "Clear all Evercookies, but keep cookies from open tabs"
@@ -478,10 +482,6 @@
   "evercookieCleanupTabsText": {
      "message": "Clear all Evercookies, include open tabs",
      "description": "Clear all Evercookies, include open tabs"
-  },
-  "evercookieCleanupText": {
-     "message": "Clear all Evercookies",
-     "description": "Clear all Evercookies"
   },
   "evercookieCleanupTitleText": {
      "message": "Run Evercookie cleanup now, include them from open tabs",

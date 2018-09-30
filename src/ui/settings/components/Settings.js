@@ -200,150 +200,150 @@ const Settings = (props) => {
 
 			<h1>{browser.i18n.getMessage("evercookieSettingsText")}</h1>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("hstsAlarmText")}
-                        settingObject={settings.hstsAlarm}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("hstsAlarmText")}
+						settingObject={settings.hstsAlarm}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("hstsPreventText")}
-                        settingObject={settings.hstsPrevent}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("hstsPreventText")}
+						settingObject={settings.hstsPrevent}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("dntHeaderSendText")}
-                        settingObject={settings.dntHeaderSend}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("dntHeaderSendText")}
+						settingObject={settings.dntHeaderSend}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecClearOnTabCloseText")}
-                        settingObject={settings.ecClearOnTabClose}
-                        inline={false}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecClearOnTabCloseText")}
+						settingObject={settings.ecClearOnTabClose}
+						inline={false}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecClearOnDomainChangeText")}
-                        settingObject={settings.ecClearOnDomainChange}
-                        inline={false}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecClearOnDomainChangeText")}
+						settingObject={settings.ecClearOnDomainChange}
+						inline={false}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecClearOnStartupText")}
-                        settingObject={settings.ecClearOnStartup}
-                        inline={false}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecClearOnStartupText")}
+						settingObject={settings.ecClearOnStartup}
+						inline={false}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <h4>{browser.i18n.getMessage("evercookieDeletionText")}</h4>
+			<h4>{browser.i18n.getMessage("evercookieDeletionText")}</h4>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecHTTPcookieDeleteText")}
-                        settingObject={settings.ecHTTPcookieDelete}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecHTTPcookieDeleteText")}
+						settingObject={settings.ecHTTPcookieDelete}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecLSOdeleteText")}
-                        settingObject={settings.ecLSOdelete}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecLSOdeleteText")}
+						settingObject={settings.ecLSOdelete}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecCacheClearText")}
-                        settingObject={settings.ecCacheClear}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecCacheClearText")}
+						settingObject={settings.ecCacheClear}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecWindowNameClearText")}
-                        settingObject={settings.ecWindowNameClear}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecWindowNameClearText")}
+						settingObject={settings.ecWindowNameClear}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecWebHistoryText")}
-                        settingObject={settings.ecWebHistoryClear}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecWebHistoryText")}
+						settingObject={settings.ecWebHistoryClear}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecLocalStorageText")}
-                        settingObject={settings.ecLocalStorageClear}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecLocalStorageText")}
+						settingObject={settings.ecLocalStorageClear}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
-            <div className="row" style={styles.rowOverrides}>
-                <div className="col-md-12">
-                    <CheckboxSetting
-                        text={browser.i18n.getMessage("ecIndexedDBclearText")}
-                        settingObject={settings.ecIndexedDBclear}
-                        inline={true}
-                        updateSetting={(payload) => onUpdateSetting(payload)}
-                    />
-                </div>
-            </div>
+			<div className="row" style={styles.rowOverrides}>
+				<div className="col-md-12">
+					<CheckboxSetting
+						text={browser.i18n.getMessage("ecIndexedDBclearText")}
+						settingObject={settings.ecIndexedDBclear}
+						inline={true}
+						updateSetting={(payload) => onUpdateSetting(payload)}
+					/>
+				</div>
+			</div>
 
 			{
 				browserDetect !== "Firefox" &&
@@ -357,7 +357,7 @@ const Settings = (props) => {
 							/>
 						</div>
 					</div>
-            }
+			}
 
 			<br /><br />
 			<div className="row">
@@ -367,8 +367,6 @@ const Settings = (props) => {
 					</button>
 				</div>
 			</div>
-
-
 
 		</div>
 	);

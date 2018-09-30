@@ -177,10 +177,3 @@ export const cleanCookiesOperation = async (state, cleanupProperties = {
 		setOfDeletedDomainCookies, cachedResults
 	};
 };
-
-export const clearCookiesForDomain = (state, hostnameToDelete) => {
-    browser.browsingData.removeLocalStorage({
-        hostnames: Array.from(hostnamesDeleted)
-    });
-
-}

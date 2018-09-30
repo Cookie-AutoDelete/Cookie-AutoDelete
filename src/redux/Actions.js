@@ -77,7 +77,7 @@ export const updateSetting = (payloadSetting) => {
 	const {
 		payload
 	} = payloadSetting;
-    return {
+	return {
 		type: C.UPDATE_SETTING,
 		payload
 	};
