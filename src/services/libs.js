@@ -95,6 +95,8 @@ export const prepareCookieDomain = (cookie) => {
 	let cookieDomain = cookie.domain;
 	if (cookieDomain.charAt(0) === ".") {
 		cookieDomain = cookieDomain.slice(1);
+	} else if (/^[0-9a-fA-F]*:[0-9a-fA-F:]+$/.test(cookieDomain)) { // Looks like a v6 IP
+		cookieDomain = "["+cookieDomain+"]";
 	}
 	cookieDomain = cookie.secure ? `https://${cookieDomain}${cookie.path}` : `http://${cookieDomain}${cookie.path}`;
 	return cookieDomain;
