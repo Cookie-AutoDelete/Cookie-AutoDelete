@@ -80,8 +80,8 @@ export const extractMainDomain = (domain) => {
 	// Check for country top level domain
 	if (
 		length > 2 &&
-		(partsOfDomain[length - 2].length === 2 || secondLvlDomains[firstPartOfTopLevel]) &&
-		partsOfDomain[length - 1].length === 2) {
+        (partsOfDomain[length - 2].length === 2 || secondLvlDomains[firstPartOfTopLevel]) &&
+        partsOfDomain[length - 1].length === 2) {
 		return `${partsOfDomain[length - 3]}.${partsOfDomain[length - 2]}.${partsOfDomain[length - 1]}`;
 	}
 	return `${partsOfDomain[length - 2] !== undefined ? `${partsOfDomain[length - 2]}.` : ""}${partsOfDomain[length - 1]}`;
@@ -104,8 +104,8 @@ export const prepareCookieDomain = (cookie) => {
 export const getStoreId = (state, storeId) => {
 	if (
 		(storeId === "firefox-default") ||
-		(!getSetting(state, "contextualIdentities") && storeId !== "firefox-private" && state.cache.browserDetect === "Firefox") ||
-		(state.cache.browserDetect === "Chrome" && storeId === "0") || (state.cache.browserDetect === "Opera" && storeId === "0")) {
+        (!getSetting(state, "contextualIdentities") && storeId !== "firefox-private" && state.cache.browserDetect === "Firefox") ||
+        (state.cache.browserDetect === "Chrome" && storeId === "0") || (state.cache.browserDetect === "Opera" && storeId === "0")) {
 		return "default";
 	}
 	if (state.cache.browserDetect === "Chrome" && storeId === "1") {

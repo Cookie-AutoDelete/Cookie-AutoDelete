@@ -24,6 +24,7 @@ const About = (props) => {
 			<span>{`${browser.i18n.getMessage("contributorsText")}`}</span>
 			<ul>
 				<li>Kenny Do (Creator)</li>
+				<li>Christian Zei (Evercookie Deletion and Anti-Tracking Functions; bug fixes)</li>
 				<li>seansfkelley (UI Redesign of Expression Table Settings and Popup)</li>
 				<li>kennethtran93 (UI bug fixes)</li>
 				<li><a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">GitHub Contributors</a></li>

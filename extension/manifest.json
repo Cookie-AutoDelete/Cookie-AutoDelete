@@ -10,12 +10,17 @@
     	"backgroundBundle.js"
 	]
   },
-  "description": "__MSG_extensionDescription__",
-  "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
-  "author": "Kenny Do",
+  "content_scripts": [{
+    "all_frames": true,
+    "js": ["contentScriptBundle.js"],
+    "matches": ["*://*/evercookies-will-be-killed-in-browser-*"],
+    "run_at": "document_start"
+  }],
+  "description": "__MSG_extensionDescription__",  "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
+  "author": "Kenny Do, Christian Zei",
   "default_locale": "en",
   "browser_action": {
-  "browser_style": true,
+    "browser_style": true,
     "default_icon": {
       "48": "icons/icon_48.png"
     },
@@ -47,9 +52,12 @@
     "notifications",
     "browsingData",
     "privacy",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
     "alarms"
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "2.2.0"
+  "version": "3.0.0"
 }

@@ -50,3 +50,74 @@ span.userAction {
 .table {
   margin-bottom: 0;
 }
+
+/* stylesheet for main dropdown items */
+
+.main-dropdown-item {
+  display:block;
+  width:100%;
+  padding:.25rem 1.5rem;
+  clear:both;
+  font-weight: bold;
+  color:#212529;
+  text-align:inherit;
+  white-space:nowrap;
+  background-color:transparent;
+  border:0
+}
+
+.main-dropdown-item:hover {
+  color:#16181b;
+  text-decoration:none;
+  background-color:#f8f9fa
+}
+
+.main-dropdown-item:active {
+  color:#fff;text-decoration:none;
+  background-color:#007bff
+}
+
+.main-dropdown-item:disabled {
+  color:#6c757d;
+  background-color:transparent
+}
+
+.main-dropdown-item-text{
+  display:block;
+  padding:.25rem 1.5rem;
+  color:#212529
+}
+
+/* Stylesheet for search button (other buttons' stylesheets can be found in bootstrap.css) */
+
+.btn-search {
+  color:#fff;
+  background-color:#A020F0;
+  border-color:#A020F0
+}
+
+.btn-search:hover {
+  color:#fff;
+  background-color:#A020F0;
+  border-color:#A020F0
+}
+
+.btn-search:focus {
+  box-shadow:0 0 0 .2rem rgba(160,32,240,.5)
+}
+
+.btn-search:disabled{
+  color:#fff;
+  background-color:#A020F0;
+  border-color:#A020F0
+}
+
+.show>.btn-search.dropdown-toggle{
+  color:#fff;
+  background-color:#A020F0;
+  border-color:#A020F0
+}
+
+.show>.btn-search.dropdown-toggle:focus{
+  box-shadow:0 0 0 .2rem rgba(160,32,240,.5)
+}

@@ -1,9 +1,11 @@
 {
   "name": "cookie-autodelete",
-  "version": "1.4.2",
+  "version": "3.0.0",
   "description": "Firefox and Chrome extension that manages Cookies",
   "main": "index.js",
   "dependencies": {
+    "lint": "^1.1.2",
+    "npm": "^6.4.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -53,7 +55,7 @@
     "type": "git",
     "url": "git+https://github.com/mrdokenny/Cookie-AutoDelete.git"
   },
-  "author": "Kenny Do",
+  "author": "Kenny Do, Christian Zei",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mrdokenny/Cookie-AutoDelete/issues"

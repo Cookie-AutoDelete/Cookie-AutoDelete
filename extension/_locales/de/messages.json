@@ -30,7 +30,7 @@
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Keine",
     "description": "None"
   },
   "cleanText": {
@@ -38,7 +38,7 @@
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Behalten",
     "description": "Keep"
   },
   "cookieCleanupText": {
@@ -98,7 +98,7 @@
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Cleanup Log",
+    "message": "Aufräumen Log",
     "description": "Cleanup Log"
   },
   "aboutText": {
@@ -120,7 +120,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "Behalten, aufgrund von offenen Tabs von *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -130,7 +130,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "message": "Aufgeräumt, da Start-Aufräumung und $hostname$ nicht in der White-\/Greylist ist",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -140,7 +140,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "Aufgeräumt, da Start-Aufräumung und $matchedExpression$ in der Greylist ist",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -150,7 +150,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "message": "Aufgeräumt, da $hostname$ nicht in der White-\/Greylist ist",
     "description": "Clean because sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -160,7 +160,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "Behalten, aufgrund von $matchedExpression$ in der $listType$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -174,11 +174,11 @@
     }
   },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "oder in einem geöffnetem Tab",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "und zudem wurden geöffnete Tabs ignoriert",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
@@ -202,15 +202,15 @@
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
+    "message": "Aktiviere Aufräumen bei Domainwechsel",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
+    "message": "Aktiviere Aufräumen Log and Zähler",
     "description": "Enable Cleanup Log and Counter"
   },
   "clearLogsText": {
-    "message": "Clear Logs",
+    "message": "Logs aufräumen",
     "description": "Clear Logs"
   },
   "showNumberOfCookiesInIconText": {
@@ -356,11 +356,11 @@
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Umschalten um automatisches Aufräumen zu deaktivieren (manueller Modus)",
+    "message": "Umschalten, um automatisches Aufräumen zu deaktivieren (manueller Modus)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Umschalten um automatisches Aufräumen zu aktivieren (automatischer Modus)",
+    "message": "Umschalten, um automatisches Aufräumen zu aktivieren (automatischer Modus)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
@@ -372,11 +372,159 @@
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Umstellen um Benachrichtigungen zu aktivieren oder deaktivieren",
+    "message": "Umstellen, um Benachrichtigungen zu aktivieren oder deaktivieren",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "No Cleanup Logs Found",
+    "message": "Keine Aufräumen Logs gefunden",
     "description": "No Cleanup Logs Found"
+  },
+  "hstsAlarmText": {
+    "message": "Zeige eine Benachrichtigung, wenn wahrscheinlich ein HSTS Tracking durchgeführt wird",
+    "description": "Show notification, when HSTS tracking is likely to be performed"
+  }, 
+  "hstsPreventText": {
+    "message": "Versuche HSTS Tracking zu unterbinden",
+    "description": "Try to prevent HSTS tracking"
+  }, 
+  "dntHeaderSendText": {
+    "message": "Sende Do-Not-Track Header, um Servern mitzuteilen, meinen Browser nicht zu tracken",
+    "description": "Send Do-Not-Track header to tell servers not to track my browser"
+  },
+  "hstsTrackingFoundText": {
+    "message": "HSTS Tracking wurde entdeckt auf ",
+    "description": "HSTS tracking was discovered at "
+  },
+  "evercookieSettingsText": {
+    "message": "Evercookie und Tracking Einstellungen",
+    "description": "Evercookie and Tracking Settings"
+  },
+  "sidebarSettingsText": {
+    "message": "Einstellungen",
+    "description": "Settings"
+  },
+  "ecHTTPcookieDeleteText": {
+    "message": "Lösche HTTP Cookies",
+    "description": "Clear HTTP Cookies"
+  },
+  "ecLSOdeleteText": {
+    "message": "Lösche Local Shared Objects (Flash Cookies)",
+    "description": "Clear Local Shared Objects (Flash Cookies)"
+  },
+  "ecCacheClearText": {
+    "message": "Bereinige Browser Cache",
+    "description": "Clear Browser Cache"
+  },
+  "ecWindowNameClearText": {
+    "message": "Bereinige window.name",
+    "description": "Clear window.name"
+  },
+  "ecWebHistoryText": {
+    "message": "Bereinige Browser History",
+    "description": "Clear Browser History"
+  },
+  "ecLocalStorageText": {
+    "message": "Bereinige Local Storage and Session Storage",
+    "description": "Clear Local Storage and Session Storage"
+  },
+  "ecIndexedDBclearText": {
+    "message": "Bereinige IndexedDB",
+    "description": "Clear IndexedDB"
+  },
+  "ecSQLiteClearText": {
+    "message": "Bereinige WebSQL",
+    "description": "Clear WebSQL"
+  },
+  "evercookieDeletionText": {
+    "message": "Evercookie Löschung",
+    "description": "Evercookie Deletion"
+  },
+  "ecClearOnTabCloseText": {
+    "message": "Evercookies automatisch löschen, nachdem ein Browser Tab geschlossen wurde (Automatisches Aufräumen)",
+    "description": "Automatically delete Evercookies after closing the browser tab"
+  },
+  "ecClearOnDomainChangeText": {
+    "message": "Evercookies bei automatischem Aufräumen auch nach einem Domainwechsel löschen",
+    "description": "Automatically delete Evercookies after a domain change"
+  },
+  "ecClearOnStartupText": {
+    "message": "Evercookies bei automatischem Aufräumen auch beim Browserstart löschen",
+    "description": "Automatically delete Evercookies on startup"
+  },
+  "ecTrackingAndEverCookieTitleText": {
+    "message": "Tracking und Evercookie Funktionen",
+    "description": "Tracking and Evercookie Funtions"
+  },
+  "ecAutoModeDisableText": {
+     "message": "Umschalten, um automatisches Aufräumen von Evercookies zu deaktivieren (manueller Modus)",
+     "description": "Toggle to disable automatic Evercookie cleanup (manual mode)"
+  },
+  "ecAutoModeEnableText": {
+     "message": "Umschalten, um automatisches Aufräumen von Evercookies zu aktivieren (automatischer Modus)",
+     "description": "Toggle to enable automatic Evercookie cleanup (automatic mode)"
+  },
+  "hstsTrackingButtonText": {
+     "message": "Umstellen, um Benachrichtigungen bei HSTS-Tracking zu aktivieren oder zu deaktivieren",
+     "description": "Toggle to enable or disable HSTS-tracking notifications"
+  },
+  "hstsTrackingEnabledText": {
+     "message": "HSTS-Tracking Alarm aktiviert",
+     "description": "HSTS-tracking alarm enabled"
+  },
+  "hstsTrackingDisabledText": {
+     "message": "HSTS-Tracking Alarm deaktiviert",
+     "description": "HSTS-tracking alarm disabled"
+  },
+  "evercookieCleanupText": {
+     "message": "Lösche alle Evercookies, aber behalte Cookies aus offenen Tabs",
+     "description": "Clear all Evercookies, but keep cookies from open tabs"
+  },
+  "evercookieCleanupTabsText": {
+     "message": "Lösche alle Evercookies, inklusive offener Tabs",
+     "description": "Clear all Evercookies, include open tabs"
+  },
+  "evercookieCleanupTitleText": {
+     "message": "Evercookies jetzt aufräumen, inklusive derer aus offenen Tabs",
+     "description": "Run Evercookie cleanup now, include them from open tabs"
+  },
+  "searchECText": {
+     "message": "Prüfen",
+     "description": "Check"
+  },
+  "searchECTitleText": {
+     "message": "Versuche Evercookies auf dieser Domain zu finden",
+     "description": "Try to find Evercookies on this Domain"
+  },
+  "evercookieFoundText": {
+	  "message": "Ein Evercookie wurde auf folgender Seite gefunden: ",
+	  "description": "An Evercookie was found at "
+  },
+  "evercookieFoundNotificationText": {
+	  "message": "Cookie AutoDelete: Evercookie gefunden!",
+	  "description": "Cookie AutoDelete: Evercookie found!"
+  },
+  "hstsTrackingNotificationTitleText": {
+    "message": "Cookie AutoDelete: HSTS Tracking Benachrichtigung!",
+    "description": "Cookie AutoDelete: HSTS Tracking Notification!"
+  },
+  "evercookieCleanupPopupText": {
+     "message": "Lösche alle Evercookies, außer aus offene Tabs",
+     "description": "Clear all Evercookies, except from open tabs"
+  },  
+  "cookieCleanupPopupText": {
+    "message": "Aufräumen, außer offene Tabs",
+    "description": "Clean, exclude open tabs"
+  },
+  "cookieCleanupTitleText": {
+    "message": "Jetzt aufräumen, außer Cookies aus offenen Tabs",
+    "description": "Run cleanup now, exclude cookies from open tabs"
+  },
+  "hstsPreventNotificationText": {
+    "message": "Du wirst durch CookieAutoDelete geschützt",
+    "description": "You are prevented by CookieAutoDelete"
+  },
+  "hstsNotPreventNotificationText": {
+    "message": "Schutz kann in den Einstellungen aktiviert werden",
+    "description": "Prevention can be activated in settings"
   }
 }
