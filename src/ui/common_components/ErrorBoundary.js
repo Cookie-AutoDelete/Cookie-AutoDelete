@@ -1,4 +1,4 @@
-import {resetSettingsUI} from "../UIActions";
+import {resetSettings} from "../../redux/Actions";
 import {connect} from "react-redux";
 import React from "react";
 
@@ -51,7 +51,7 @@ class ErrorBoundary extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
 	onResetButtonClick() {
 		dispatch(
-			resetSettingsUI()
+			resetSettings()
 		);
 	}
 });

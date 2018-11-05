@@ -12,7 +12,7 @@ SOFTWARE.
 import React from "react";
 import {connect} from "react-redux";
 import ActivityTable from "../../common_components/ActivityTable";
-import {resetCookieDeletedCounterUI} from "../../UIActions";
+import {resetCookieDeletedCounter} from "../../../redux/Actions";
 import {FILTER_OPTIONS} from "../../../redux/Constants";
 
 class ActivityLog extends React.Component {
@@ -81,7 +81,7 @@ class ActivityLog extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
 	onResetCounterButtonClick() {
 		dispatch(
-			resetCookieDeletedCounterUI()
+			resetCookieDeletedCounter()
 		);
 	}
 });

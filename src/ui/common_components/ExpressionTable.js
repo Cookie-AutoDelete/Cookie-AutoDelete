@@ -14,7 +14,7 @@ import {connect} from "react-redux";
 import {
 	removeExpressionUI,
 	updateExpressionUI
-} from "../UIActions";
+} from "../../redux/Actions";
 import {globExpressionToRegExp} from "../../services/libs";
 import IconButton from "./IconButton";
 

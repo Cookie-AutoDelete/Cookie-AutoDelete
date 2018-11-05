@@ -14,7 +14,7 @@ import {findDOMNode} from "react-dom";
 import {connect} from "react-redux";
 import {getHostname, extractMainDomain, getSetting, prepareCookieDomain, returnOptionalCookieAPIAttributes, isAnIP} from "../../services/libs";
 import FilteredExpression from "./components/FilteredExpression";
-import {addExpressionUI, cookieCleanupUI, updateSettingUI} from "../UIActions";
+import {addExpressionUI, cookieCleanup, updateSetting} from "../../redux/Actions";
 import IconButton from "../common_components/IconButton";
 import ActivityTable from "../common_components/ActivityTable";
 
@@ -339,7 +339,7 @@ const mapDispatchToProps = (dispatch) => (
 	{
 		onUpdateSetting(newSetting) {
 			dispatch(
-				updateSettingUI(newSetting)
+				updateSetting(newSetting)
 			);
 		},
 		onNewExpression(payload) {
@@ -349,7 +349,7 @@ const mapDispatchToProps = (dispatch) => (
 		},
 		onCookieCleanup(payload) {
 			dispatch(
-				cookieCleanupUI(payload)
+				cookieCleanup(payload)
 			);
 		}
 	});

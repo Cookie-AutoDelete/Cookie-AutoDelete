@@ -17,28 +17,32 @@ import {checkIfProtected} from "../services/BrowserActionService";
 
 const COOKIE_CLEANUP_NOTIFICATION = "COOKIE_CLEANUP_NOTIFICATION";
 
-export const addExpression = (object) => (dispatch, getState) => {
-	const {
-		payload
-	} = object;
-	const storeId = getStoreId(getState(), payload.storeId);
+export const addExpressionUI = (payload) => ({
+	type: C.ADD_EXPRESSION,
+	payload
+});
+
+export const removeExpressionUI = (payload) => ({
+	type: C.REMOVE_EXPRESSION,
+	payload
+});
+export const updateExpressionUI = (payload) => ({
+	type: C.UPDATE_EXPRESSION,
+	payload
+});
+
+export const addExpression = (payload) => (dispatch, getState) => {
 	// Sanitize the payload's storeId
-	const newPayload = {
-		...payload,
-		storeId
-	};
+	const storeId = getStoreId(getState(), payload.storeId);
 	dispatch({
 		type: C.ADD_EXPRESSION,
-		payload: newPayload,
+		payload,
 		storeId
 	});
 	checkIfProtected(getState());
 };
 
-export const removeExpression = (object) => (dispatch, getState) => {
-	const {
-		payload
-	} = object;
+export const removeExpression = (payload) => (dispatch, getState) => {
 	const storeId = getStoreId(getState(), payload.storeId);
 	dispatch({
 		type: C.REMOVE_EXPRESSION,
@@ -48,10 +52,7 @@ export const removeExpression = (object) => (dispatch, getState) => {
 	checkIfProtected(getState());
 };
 
-export const updateExpression = (object) => (dispatch, getState) => {
-	const {
-		payload
-	} = object;
+export const updateExpression = (payload) => (dispatch, getState) => {
 	const storeId = getStoreId(getState(), payload.storeId);
 	dispatch({
 		type: C.UPDATE_EXPRESSION,
@@ -73,15 +74,10 @@ export const resetCookieDeletedCounter = () => ({
 	type: C.RESET_COOKIE_DELETED_COUNTER
 });
 
-export const updateSetting = (payloadSetting) => {
-	const {
-		payload
-	} = payloadSetting;
-	return {
-		type: C.UPDATE_SETTING,
-		payload
-	};
-};
+export const updateSetting = (payload) => ({
+	type: C.UPDATE_SETTING,
+	payload
+});
 
 export const resetSettings = () => ({
 	type: C.RESET_SETTINGS

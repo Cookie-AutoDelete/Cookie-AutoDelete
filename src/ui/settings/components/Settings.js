@@ -10,7 +10,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 **/
 import {connect} from "react-redux";
-import {resetSettingsUI, updateSettingUI} from "../../UIActions";
+import {resetSettings, updateSetting} from "../../../redux/Actions";
 import CheckboxSetting from "../../common_components/CheckboxSetting";
 import React from "react";
 import Tooltip from "./SettingsTooltip";
@@ -217,12 +217,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 	onUpdateSetting(newSetting) {
 		dispatch(
-			updateSettingUI(newSetting)
+			updateSetting(newSetting)
 		);
 	},
 	onResetButtonClick() {
 		dispatch(
-			resetSettingsUI()
+			resetSettings()
 		);
 	}
 });

@@ -16,7 +16,7 @@ import ExpressionTable from "../../common_components/ExpressionTable";
 import IconButton from "../../common_components/IconButton";
 import {
 	addExpressionUI
-} from "../../UIActions";
+} from "../../../redux/Actions";
 
 const styles = {
 	tableContainer: {

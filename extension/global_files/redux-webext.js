@@ -140,10 +140,12 @@ function handleMessage(msg, sender, cb) {
             actionData = _objectWithoutProperties(_msg$action, ['type']);
 
         var action = actions[type];
-
+        // console.log(msg);
+        // console.log(actionData);
         if (action) {
             // if action doesn't have any data we should pass "undefined"
-            store.dispatch(action(Object.keys(actionData).length ? actionData : undefined));
+            var {payload = {}} = actionData;
+            store.dispatch(action(Object.keys(actionData).length ? payload : undefined));
         } else {
             console.error('Provided in background store "actions" object doesn\'t contain "' + type + '" key.');
         }
@@ -264,6 +266,7 @@ function subscribe(listener) {
 
 function dispatch(action) {
     // perform an action to change state of "background" store
+    console.log(action);
     chrome.runtime.sendMessage({
         type: _constants.DISPATCH,
         action: action
