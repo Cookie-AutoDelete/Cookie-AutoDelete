@@ -10,7 +10,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 **/
 /* global browserDetect */
-import {updateSetting, validateSettings, cacheCookieStoreIdNames, addExpression, incrementCookieDeletedCounter, cookieCleanup} from "./redux/Actions";
+import {validateSettings, cacheCookieStoreIdNames, cookieCleanup} from "./redux/Actions";
 import {getSetting, getHostname, isAWebpage, returnOptionalCookieAPIAttributes, extractMainDomain} from "./services/libs";
 import {checkIfProtected, showNumberOfCookiesInIcon} from "./services/BrowserActionService";
 import createStore from "./redux/Store";
@@ -172,143 +172,6 @@ export const onDomainChangeRemove = (tabId) => {
 	delete tabToDomain[tabId];
 };
 
-const migration = (oldSettings) => {
-	if (Object.keys(oldSettings) !== 0 && oldSettings.migration_1 === undefined && oldSettings.activeMode !== undefined) {
-		store.dispatch(
-			incrementCookieDeletedCounter(oldSettings.cookieDeletedCounterTotal)
-		);
-		store.dispatch(
-			updateSetting({
-				payload: {
-					id: 1, name: "activeMode", value: oldSettings.activeMode
-				}
-			})
-		);
-		store.dispatch(
-			updateSetting({
-				payload: {
-					id: 2, name: "delayBeforeClean", value: oldSettings.delayBeforeClean
-				}
-			})
-		);
-		store.dispatch(
-			updateSetting({
-				payload: {
-					id: 3, name: "statLogging", value: oldSettings.statLoggingSetting
-				}
-			})
-		);
-		store.dispatch(
-			updateSetting({
-				payload: {
-					id: 4, name: "showNumOfCookiesInIcon", value: oldSettings.showNumberOfCookiesInIconSetting
-				}
-			})
-		);
-		store.dispatch(
-			updateSetting({
-				payload: {
-					id: 5, name: "showNotificationAfterCleanup", value: oldSettings.notifyCookieCleanUpSetting
-				}
-			})
-		);
-		store.dispatch(
-			updateSetting({
-				payload: {
-					id: 6, name: "cleanCookiesFromOpenTabsOnStartup", value: oldSettings.cookieCleanUpOnStartSetting
-				}
-			})
-		);
-		store.dispatch(
-			updateSetting({
-				payload: {
-					id: 7, name: "contextualIdentities", value: oldSettings.contextualIdentitiesEnabledSetting
-				}
-			})
-		);
-		if (oldSettings.contextualIdentitiesEnabledSetting) {
-			store.dispatch(
-				cacheCookieStoreIdNames()
-			);
-			const newContainerCache = [
-				...oldSettings.containerCache,
-				{
-					cookieStoreId: "firefox-default"
-				}
-			];
-			newContainerCache.forEach((container) => {
-				const {
-					cookieStoreId
-				} = container;
-				const greyPrefixed = `${cookieStoreId}-Grey`;
-				if (oldSettings[cookieStoreId] !== undefined) {
-					oldSettings[cookieStoreId].forEach((domain) => {
-						const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
-						store.dispatch(
-							addExpression({
-								payload: {
-									expression,
-									listType: "WHITE",
-									storeId: cookieStoreId
-								}
-							})
-						);
-					});
-				}
-				if (oldSettings[greyPrefixed] !== undefined) {
-					oldSettings[greyPrefixed].forEach((domain) => {
-						const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
-						store.dispatch(
-							addExpression({
-								payload: {
-									expression,
-									listType: "GREY",
-									storeId: cookieStoreId
-								}
-							})
-						);
-					});
-				}
-			});
-		} else {
-			const cookieStoreId = "defaultWhiteList";
-			const greyPrefixed = `${cookieStoreId}-Grey`;
-			if (oldSettings[cookieStoreId] !== undefined) {
-				oldSettings[cookieStoreId].forEach((domain) => {
-					const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
-					store.dispatch(
-						addExpression({
-							payload: {
-								expression,
-								listType: "WHITE",
-								storeId: cookieStoreId
-							}
-						})
-					);
-				});
-			}
-			if (oldSettings[greyPrefixed] !== undefined) {
-				oldSettings[greyPrefixed].forEach((domain) => {
-					const expression = oldSettings.enableGlobalSubdomainSetting ? `*.${domain}` : domain;
-					store.dispatch(
-						addExpression({
-							payload: {
-								expression,
-								listType: "GREY",
-								storeId: cookieStoreId
-							}
-						})
-					);
-				});
-			}
-		}
-		saveToStorage();
-		browser.storage.local.set({
-			migration_1: true
-		});
-	}
-};
-
 const onStartUp = async () => {
 	const storage = await browser.storage.local.get();
 	let stateFromStorage;
@@ -322,7 +185,6 @@ const onStartUp = async () => {
 		stateFromStorage = {};
 	}
 	store = createStore(stateFromStorage);
-	migration(storage);
 	store.dispatch(
 		validateSettings()
 	);
@@ -349,14 +211,6 @@ const onStartUp = async () => {
 					key: "firstPartyIsolateSetting", value: setting.value
 				}
 			});
-			if (browserVersion === "58" && setting.value) {
-				browser.notifications.create("FPI_NOTIFICATION", {
-					"type": "basic",
-					"iconUrl": browser.extension.getURL("icons/icon_48.png"),
-					"title": "First Party Isolation Detected",
-					"message": "Please turn off privacy.firstparty.isolate and restart the browser as it breaks cookie cleanup"
-				});
-			}
 		}
 	}
 	// Store which browser environment in cache
