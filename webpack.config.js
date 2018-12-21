@@ -1,16 +1,8 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 const webpack = require('webpack');
-const UglifyEsPlugin = require('uglify-es-webpack-plugin');
+// const UglifyEsPlugin = require('uglify-es-webpack-plugin');
 const plugins = [
-  new UglifyEsPlugin({
-    output: {
-        comments: false,
-        beautify: true,
-        preserve_line: true
-    },
-    compress: false,
-    mangle: false
-  }),
   new webpack.BannerPlugin(`
     Copyright (c) 2017 Kenny Do
 
@@ -22,7 +14,7 @@ const plugins = [
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-  `)
+  `),
   // new BundleAnalyzerPlugin({
   //       analyzerMode: 'static'
   // })
@@ -30,98 +22,86 @@ const plugins = [
 const moduleConfig = {
   rules: [
     {
-      test: /\.js$/,
+      test: /\.tsx?$/,
       exclude: /node_modules/,
       use: [
         {
-          loader: 'babel-loader',
-          options: {
-            presets: ['react'],
-            plugins: [
-              require("babel-plugin-transform-class-properties"),
-              require("babel-plugin-transform-async-to-generator"),
-              require("babel-plugin-transform-object-rest-spread")
-            ],
-            babelrc: false
-          }
-        }
-      ]
+          loader: 'ts-loader',
+          // options: {
+          //   // this will disable any type checking
+          //   transpileOnly: true,
+          // },
+        },
+      ],
     },
-    {
-      test: /\.json$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'json-loader',
-        }
-      ]
-    }
+    { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+  ],
+};
 
-  ]
+const resolve = {
+  extensions: ['.mjs', '.tsx', '.ts', '.js', '.json', '.png'],
 };
 
 const backgroundConfig = {
   entry: {
-      settings: `${__dirname}/src/background.js`
+    settings: `${__dirname}/src/background.ts`,
   },
   output: {
-      path: `${__dirname}/extension`,
-      filename: "backgroundBundle.js",
+    path: `${__dirname}/extension`,
+    filename: 'backgroundBundle.js',
   },
+  resolve,
   externals: {
-      // "node/npm module name": "name of exported library variable"
-      "redux": "Redux",
-      "redux-thunk": "ReduxThunk",
-      "redux-webext": "ReduxWebExt",
-      "shortid": "ShortId"
+    // "node/npm module name": "name of exported library variable"
+    // redux: 'Redux',
+    // 'redux-thunk': 'ReduxThunk',
+    'redux-webext': 'ReduxWebExt',
+    // shortid: 'ShortId',
   },
   module: moduleConfig,
-  plugins
+  plugins,
 };
 
-
 const settingConfig = {
-    entry: {
-        settings: `${__dirname}/src/ui/settings/index.js`
-    },
-    output: {
-        path: `${__dirname}/extension/settings`,
-        filename: "settingsBundle.js",
-    },
-    externals: {
-        // "node/npm module name": "name of exported library variable"
-        "react": "React",
-        "react-dom": "ReactDOM",
-        "redux": "Redux",
-        "react-redux": "ReactRedux",
-        "redux-webext": "ReduxWebExt"
-    },
-    module: moduleConfig,
-    plugins
+  entry: {
+    settings: `${__dirname}/src/ui/settings/index.tsx`,
+  },
+  output: {
+    path: `${__dirname}/extension/settings`,
+    filename: 'settingsBundle.js',
+  },
+  resolve,
+  externals: {
+    // "node/npm module name": "name of exported library variable"
+    // react: 'React',
+    // 'react-dom': 'ReactDOM',
+    // redux: 'Redux',
+    // 'react-redux': 'ReactRedux',
+    'redux-webext': 'ReduxWebExt',
+  },
+  module: moduleConfig,
+  plugins,
 };
 
 const popupConfig = {
-    entry: {
-        settings: `${__dirname}/src/ui/popup/index.js`
-    },
-    output: {
-        path: `${__dirname}/extension/popup`,
-        filename: "popupBundle.js",
-    },
-    externals: {
-        // "node/npm module name": "name of exported library variable"
-        "react": "React",
-        "react-dom": "ReactDOM",
-        "redux": "Redux",
-        "react-redux": "ReactRedux",
-        "redux-webext": "ReduxWebExt",
-    },
-    module: moduleConfig,
-    plugins
+  entry: {
+    settings: `${__dirname}/src/ui/popup/index.tsx`,
+  },
+  output: {
+    path: `${__dirname}/extension/popup`,
+    filename: 'popupBundle.js',
+  },
+  resolve,
+  externals: {
+    // "node/npm module name": "name of exported library variable"
+    // react: 'React',
+    // 'react-dom': 'ReactDOM',
+    // redux: 'Redux',
+    // 'react-redux': 'ReactRedux',
+    'redux-webext': 'ReduxWebExt',
+  },
+  module: moduleConfig,
+  plugins,
 };
 
-module.exports = [
-  backgroundConfig,
-  settingConfig,
-  popupConfig
-];
+module.exports = [backgroundConfig, popupConfig, settingConfig];

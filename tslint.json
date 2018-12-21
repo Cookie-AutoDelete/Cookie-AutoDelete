@@ -1,0 +1,31 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-airbnb",
+    "tslint-react",
+    "tslint-immutable",
+    "tslint-config-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "interface-name": false,
+    "jsx-no-lambda": false,
+    "max-classes-per-file": false,
+    "object-shorthand-properties-first": false,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-pascal-case"
+    ],
+    // Immutable
+    "no-var-keyword": true,
+    "no-parameter-reassignment": true,
+    "readonly-keyword": false,
+    "readonly-array": false,
+    "no-object-mutation": false,
+    "no-delete": false
+  },
+  "rulesDirectory": []
+}
