@@ -14,41 +14,6 @@ import { connect } from 'react-redux';
 // tslint:disable-next-line: import-name
 import ReleaseNotes from '../ReleaseNotes.json';
 
-// Algorithm to display the release notes using bootstrap grid
-// const displayReleaseNotes2 = (releaseObj, constant) => {
-//   let container = [];
-//   let i = 0;
-//   let length = 0;
-//   if (constant === 'FIRST_HALF') {
-//     i = 0;
-//     length = parseInt(releaseObj.length / 2, 10);
-//   } else {
-//     i = parseInt(releaseObj.length / 2, 10);
-//     length = releaseObj.length;
-//   }
-//   while (i < length) {
-//     const currentElement = releaseObj[i];
-//     container.push(
-//       <span
-//         style={{
-//           marginLeft: '10px',
-//         }}
-//       >
-//         {currentElement.version}
-//       </span>,
-//     );
-//     container.push(
-//       <ul>
-//         {currentElement.notes.map((element, index) => (
-//           <li key={`release${index}`}>{element}</li>
-//         ))}
-//       </ul>,
-//     );
-//     i++;
-//   }
-//   return container;
-// };
-
 const displayReleaseNotes = (releases: ReleaseNote[]) => {
   return (
     <div className="col-md-6">
@@ -112,15 +77,11 @@ const Welcome: React.FunctionComponent<OwnProps> = ({
       <h2>{browser.i18n.getMessage('releaseNotesText')}</h2>
 
       <div className="row">
-        <div className="col-md-6">
-          {displayReleaseNotes(releases.slice(0, releases.length / 2))}
-        </div>
+        {displayReleaseNotes(releases.slice(0, releases.length / 2))}
 
-        <div className="col-md-6">
-          {displayReleaseNotes(
-            releases.slice(releases.length / 2, releases.length),
-          )}
-        </div>
+        {displayReleaseNotes(
+          releases.slice(releases.length / 2, releases.length),
+        )}
       </div>
     </div>
   );
