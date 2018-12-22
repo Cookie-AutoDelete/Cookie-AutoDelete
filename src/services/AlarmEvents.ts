@@ -6,8 +6,7 @@ export default class AlarmEvents extends StoreUser {
   public static activeModeAlarm(alarmInfo: browser.alarms.Alarm) {
     // console.log(alarmInfo.name);
     if (alarmInfo.name === 'activeModeAlarm') {
-      this.store.dispatch(
-        // @ts-ignore
+      this.store.dispatch<any>(
         cookieCleanup({
           greyCleanup: false,
           ignoreOpenTabs: false,
@@ -31,8 +30,7 @@ export default class AlarmEvents extends StoreUser {
     this.alarmFlag = true;
     if (seconds < 1) {
       setTimeout(() => {
-        this.store.dispatch(
-          // @ts-ignore
+        this.store.dispatch<any>(
           cookieCleanup({
             greyCleanup: false,
             ignoreOpenTabs: false,
@@ -50,8 +48,7 @@ export default class AlarmEvents extends StoreUser {
     } else {
       setTimeout(() => {
         if (getSetting(this.store.getState(), 'activeMode')) {
-          this.store.dispatch(
-            // @ts-ignore
+          this.store.dispatch<any>(
             cookieCleanup({
               greyCleanup: false,
               ignoreOpenTabs: false,

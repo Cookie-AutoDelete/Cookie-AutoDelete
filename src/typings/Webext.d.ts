@@ -11,5 +11,8 @@ declare namespace browser.cookies {
   }
   type OptionalCookieProperties = Partial<CookieProperties>;
 }
+declare namespace browser.privacy.websites.firstPartyIsolate {
+  function get(emptyObject: {}): { value: boolean };
+}
 
 declare module 'redux-webext';

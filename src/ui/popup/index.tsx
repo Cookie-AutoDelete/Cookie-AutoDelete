@@ -10,7 +10,6 @@
  * SOFTWARE.
  */
 import * as React from 'react';
-// @ts-ignore
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createUIStore } from 'redux-webext';

@@ -27,6 +27,7 @@ import {
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
+import { ReduxAction } from '../../typings/ReduxConstants';
 import ActivityTable from '../common_components/ActivityTable';
 import IconButton from '../common_components/IconButton';
 import FilteredExpression from './components/FilteredExpression';
@@ -48,17 +49,12 @@ interface StateProps {
   state: State;
 }
 
-interface OwnProps {
-  tab: browser.tabs.Tab | undefined;
-  storeId: string;
-}
-
 class InitialState {
   public tab: browser.tabs.Tab | undefined = undefined;
   public storeId: string = 'default';
 }
 
-type PopupAppComponentProps = DispatchProps & StateProps & OwnProps;
+type PopupAppComponentProps = DispatchProps & StateProps;
 
 class App extends React.Component<PopupAppComponentProps, InitialState> {
   public state = new InitialState();
@@ -428,14 +424,14 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   }
 }
 
-const mapStateToProps = (state: State, ownProps: OwnProps) => {
+const mapStateToProps = (state: State) => {
   return {
     contextualIdentities: getSetting(state, 'contextualIdentities') as boolean,
     state,
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   onUpdateSetting(newSetting: Setting) {
     dispatch(updateSetting(newSetting));
   },
@@ -447,8 +443,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   },
 });
 
-export default connect<StateProps, DispatchProps, OwnProps>(
-  // @ts-ignore
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(App);

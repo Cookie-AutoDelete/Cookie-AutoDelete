@@ -38,14 +38,13 @@ const consoleMessages = (store: any) => (next: any) => (action: any) => {
 };
 
 const actions = {
-  UPDATE_SETTING: updateSetting,
-  // tslint:disable-next-line:object-literal-sort-keys
-  RESET_SETTINGS: resetSettings,
   ADD_EXPRESSION: addExpression,
   COOKIE_CLEANUP: cookieCleanup,
   REMOVE_EXPRESSION: removeExpression,
-  UPDATE_EXPRESSION: updateExpression,
   RESET_COOKIE_DELETED_COUNTER: resetCookieDeletedCounter,
+  RESET_SETTINGS: resetSettings,
+  UPDATE_EXPRESSION: updateExpression,
+  UPDATE_SETTING: updateSetting,
 };
 
 export default (state = {}) => {

@@ -87,18 +87,18 @@ export default class TabEvents extends StoreUser {
       getSetting(AlarmEvents.store.getState(), 'localstorageCleanup') &&
       isAWebpage(tab.url)
     ) {
-      browser.cookies.set(
-        // @ts-ignore
-        returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
+      const cookiesAttributes = returnOptionalCookieAPIAttributes(
+        StoreUser.store.getState(),
+        {
           expirationDate: Math.floor(Date.now() / 1000 + 31557600),
           firstPartyDomain: extractMainDomain(getHostname(tab.url)),
           name: 'CookieAutoDelete',
           path: `/${shortid.generate()}`,
           storeId: tab.cookieStoreId,
-          url: tab.url,
           value: 'cookieForLocalstorageCleanup',
-        }),
+        },
       );
+      browser.cookies.set({ ...cookiesAttributes, url: tab.url || '' });
       cookieLength = 1;
     }
     if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon')) {

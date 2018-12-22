@@ -9,13 +9,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import { Action, Dispatch } from 'redux';
+import { ActionCreator, Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import { checkIfProtected } from '../services/BrowserActionService';
 import { cleanCookiesOperation } from '../services/CleanupService';
 import { getSetting, getStoreId } from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
   ADD_EXPRESSION,
+  COOKIE_CLEANUP,
   INCREMENT_COOKIE_DELETED_COUNTER,
   ReduxAction,
   ReduxConstants,
@@ -44,7 +46,7 @@ export const updateExpressionUI = (payload: Expression): UPDATE_EXPRESSION => ({
 });
 
 export const addExpression = (payload: Expression) => (
-  dispatch: Dispatch<any>,
+  dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ) => {
   dispatch({
@@ -59,7 +61,7 @@ export const addExpression = (payload: Expression) => (
 };
 
 export const removeExpression = (payload: Expression) => (
-  dispatch: Dispatch<any>,
+  dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ) => {
   dispatch({
@@ -74,7 +76,7 @@ export const removeExpression = (payload: Expression) => (
 };
 
 export const updateExpression = (payload: Expression) => (
-  dispatch: Dispatch<any>,
+  dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ) => {
   dispatch({
@@ -114,10 +116,9 @@ export const resetSettings = (): RESET_SETTINGS => ({
 });
 
 // Validates the setting object and adds missing settings if it doesn't already exist in the initialState.json
-export const validateSettings = () => (
-  dispatch: Dispatch<Action>,
-  getState: GetState,
-) => {
+export const validateSettings: ActionCreator<
+  ThunkAction<void, State, null, ReduxAction>
+> = () => (dispatch, getState) => {
   const { settings } = getState();
   const initialSettings = initialState.settings;
   const settingKeys = Object.keys(settings);
@@ -150,15 +151,19 @@ export const validateSettings = () => (
   }
 };
 
-export const cookieCleanupUI = (payload: CleanupProperties) => ({
+export const cookieCleanupUI = (
+  payload: CleanupProperties,
+): COOKIE_CLEANUP => ({
   payload,
   type: ReduxConstants.COOKIE_CLEANUP,
 });
 
 // Cookie Cleanup operation that is to be called from the React UI
-export const cookieCleanup = (
+export const cookieCleanup: ActionCreator<
+  ThunkAction<void, State, null, ReduxAction>
+> = (
   options: CleanupProperties = { greyCleanup: false, ignoreOpenTabs: false },
-) => async (dispatch: Dispatch<ReduxAction>, getState: GetState) => {
+) => async (dispatch, getState) => {
   const newOptions = options;
   // Add in default cleanup settings if payload does not provide any
   // if (options.payload !== undefined) {

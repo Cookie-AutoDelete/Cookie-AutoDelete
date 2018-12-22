@@ -15,7 +15,7 @@ import {
   cookieCleanup,
   validateSettings,
 } from './redux/Actions';
-// tslint:disable-next-line:import-name
+// tslint:disable-next-line: import-name
 import createStore from './redux/Store';
 import AlarmEvents from './services/AlarmEvents';
 import { getSetting } from './services/Libs';
@@ -48,8 +48,7 @@ const onSettingsChange = () => {
     !previousSettings.contextualIdentities.value &&
     currentSettings.contextualIdentities.value
   ) {
-    // @ts-ignore
-    store.dispatch(cacheCookieStoreIdNames());
+    store.dispatch<any>(cacheCookieStoreIdNames());
   }
 
   // Localstorage support enabled
@@ -80,8 +79,7 @@ const onStartUp = async () => {
     stateFromStorage = {};
   }
   store = createStore(stateFromStorage);
-  // @ts-ignore
-  store.dispatch(validateSettings());
+  store.dispatch<any>(validateSettings());
   store.dispatch({
     type: ReduxConstants.ON_STARTUP,
   });
@@ -98,7 +96,6 @@ const onStartUp = async () => {
     });
     // Store whether firstPartyIsolate is true or false
     if (browserVersion >= '58') {
-      // @ts-ignore
       const setting = await browser.privacy.websites.firstPartyIsolate.get({});
       store.dispatch({
         payload: {
@@ -120,12 +117,10 @@ const onStartUp = async () => {
 
   // Temporary fix until contextualIdentities events land
   if (getSetting(store.getState(), 'contextualIdentities')) {
-    // @ts-ignore
-    store.dispatch(cacheCookieStoreIdNames());
+    store.dispatch<any>(cacheCookieStoreIdNames());
   }
   if (getSetting(store.getState(), 'activeMode')) {
-    store.dispatch(
-      // @ts-ignore
+    store.dispatch<any>(
       cookieCleanup({
         greyCleanup: true,
         ignoreOpenTabs: getSetting(

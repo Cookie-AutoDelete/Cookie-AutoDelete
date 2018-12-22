@@ -183,7 +183,7 @@ export const returnMatchedExpressionObject = (
 export const returnOptionalCookieAPIAttributes = (
   state: State,
   cookieAPIAttributes: browser.cookies.OptionalCookieProperties & {
-    url?: string;
+    [x: string]: any;
   },
 ) => {
   // Add optional firstPartyDomain attribute

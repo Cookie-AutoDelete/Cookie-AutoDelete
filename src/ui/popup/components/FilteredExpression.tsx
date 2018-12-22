@@ -24,7 +24,6 @@ interface ReduxState {
   expressions: Expression[];
 }
 
-// tslint:disable-next-line:variable-name
 const FilteredExpression: React.FunctionComponent<
   OwnProps & ReduxState
 > = props => {

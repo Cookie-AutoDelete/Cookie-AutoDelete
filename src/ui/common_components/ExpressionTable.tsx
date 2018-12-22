@@ -253,13 +253,12 @@ class ExpressionTable extends React.Component<
                   onClick={() =>
                     onUpdateExpression({
                       ...expression,
-                      storeId,
-                      // tslint:disable-next-line:object-literal-sort-keys
                       id: expression.id,
                       listType:
                         expression.listType === ListType.GREY
                           ? ListType.WHITE
                           : ListType.GREY,
+                      storeId,
                     })
                   }
                 />
@@ -280,7 +279,7 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
     dispatch(updateExpressionUI(payload));
   },
 });
-export default connect<{}, DispatchProps, OwnProps>(
+export default connect(
   null,
   mapDispatchToProps,
 )(ExpressionTable);

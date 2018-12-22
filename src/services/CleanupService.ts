@@ -142,16 +142,16 @@ export const cleanCookies = (
           : cookieProperties.hostname,
       );
       cleanupProperties.hostnamesDeleted.add(cookieProperties.hostname);
+      const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
+        firstPartyDomain: cookieProperties.firstPartyDomain,
+        storeId: cookieProperties.storeId,
+      });
       // url: "http://domain.com" + cookies[i].path
-      browser.cookies.remove(
-        // @ts-ignore
-        returnOptionalCookieAPIAttributes(state, {
-          firstPartyDomain: cookieProperties.firstPartyDomain,
-          name: cookieProperties.name,
-          storeId: cookieProperties.storeId,
-          url: cookieProperties.preparedCookieDomain,
-        }),
-      );
+      browser.cookies.remove({
+        ...cookieAPIProperties,
+        name: cookieProperties.name,
+        url: cookieProperties.preparedCookieDomain,
+      });
     }
   }
   return Promise.resolve();
@@ -247,7 +247,6 @@ export const cleanCookiesOperation = async (
   // Scrub private cookieStores
   const storesIdsToScrub = ['firefox-private', 'private'];
   for (const id of storesIdsToScrub) {
-    // @ts-ignore
     delete cachedResults[id];
   }
 

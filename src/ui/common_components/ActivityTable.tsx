@@ -29,7 +29,7 @@ const createSummary = (cleanupObj: CacheResults) => {
 };
 
 interface StateProps {
-  activityLog: CacheResults[];
+  activityLog: ReadonlyArray<CacheResults>;
   cache: CacheMap;
 }
 
@@ -40,7 +40,6 @@ interface OwnProps {
 
 type ActivityTableProps = OwnProps & StateProps;
 
-// tslint:disable-next-line:variable-name
 const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
   const { activityLog, cache, numberToShow, decisionFilter } = props;
   if (props.activityLog.length === 0) {
@@ -151,7 +150,4 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-// @ts-ignore
-export default connect<StateProps, {}, OwnProps>(mapStateToProps)(
-  ActivityTable,
-);
+export default connect(mapStateToProps)(ActivityTable);

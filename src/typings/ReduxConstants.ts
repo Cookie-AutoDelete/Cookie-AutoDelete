@@ -39,7 +39,7 @@ export type UPDATE_EXPRESSION = Readonly<{
 }>;
 export type COOKIE_CLEANUP = Readonly<{
   type: ReduxConstants.COOKIE_CLEANUP;
-  payload: CookiePropertiesCleanup;
+  payload: CleanupProperties;
 }>;
 export type ON_STARTUP = Readonly<{
   type: ReduxConstants.ON_STARTUP;

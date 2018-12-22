@@ -56,10 +56,11 @@ class Expressions extends React.Component<ExpressionProps> {
     const reader = new FileReader();
     reader.onload = file => {
       try {
-        const newExpressions: StoreIdToExpressionList = JSON.parse(
-          // @ts-ignore
-          file.target.result,
-        );
+        if (!file.target) throw Error('File not found');
+        // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
+        const target: any = file.target;
+        const result: string = target.result;
+        const newExpressions: StoreIdToExpressionList = JSON.parse(result);
         const storeIds = Object.keys(newExpressions);
         storeIds.forEach(storeId =>
           newExpressions[storeId].forEach(expression =>
@@ -324,7 +325,7 @@ class Expressions extends React.Component<ExpressionProps> {
 const mapStateToProps = (state: State) => {
   const { lists } = state;
   return {
-    contextualIdentities: getSetting(state, 'contextualIdentities'),
+    contextualIdentities: getSetting(state, 'contextualIdentities') as boolean,
     lists,
   };
 };
@@ -335,8 +336,7 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   },
 });
 
-export default connect<StateProps, DispatchProps, OwnProps>(
-  // @ts-ignore
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Expressions);
