@@ -14,8 +14,10 @@ import { checkIfProtected } from '../services/BrowserActionService';
 import { cleanCookiesOperation } from '../services/CleanupService';
 import { getSetting, getStoreId } from '../services/Libs';
 import {
+  ADD_ACTIVITY_LOG,
   ADD_EXPRESSION,
   INCREMENT_COOKIE_DELETED_COUNTER,
+  ReduxAction,
   ReduxConstants,
   REMOVE_EXPRESSION,
   RESET_COOKIE_DELETED_COUNTER,
@@ -86,7 +88,7 @@ export const updateExpression = (payload: Expression) => (
   checkIfProtected(getState());
 };
 
-export const addActivity = (payload: CacheResults) => ({
+export const addActivity = (payload: CacheResults): ADD_ACTIVITY_LOG => ({
   payload,
   type: ReduxConstants.ADD_ACTIVITY_LOG,
 });
@@ -156,7 +158,7 @@ export const cookieCleanupUI = (payload: CleanupProperties) => ({
 // Cookie Cleanup operation that is to be called from the React UI
 export const cookieCleanup = (
   options: CleanupProperties = { greyCleanup: false, ignoreOpenTabs: false },
-) => async (dispatch: Dispatch<Action>, getState: GetState) => {
+) => async (dispatch: Dispatch<ReduxAction>, getState: GetState) => {
   const newOptions = options;
   // Add in default cleanup settings if payload does not provide any
   // if (options.payload !== undefined) {
@@ -228,27 +230,27 @@ export const cookieCleanup = (
 
 // Map the cookieStoreId to their actual names and store in cache
 export const cacheCookieStoreIdNames = () => async (
-  dispatch: Dispatch<Action>,
+  dispatch: Dispatch<ReduxAction>,
 ) => {
   const contextualIdentitiesObjects = await browser.contextualIdentities.query(
     {},
   );
   dispatch({
-    map: {
+    payload: {
       key: 'default',
       value: 'Default',
     },
     type: ReduxConstants.ADD_CACHE,
   });
   dispatch({
-    map: {
+    payload: {
       key: 'firefox-default',
       value: 'Default',
     },
     type: ReduxConstants.ADD_CACHE,
   });
   dispatch({
-    map: {
+    payload: {
       key: 'firefox-private',
       value: 'Private',
     },

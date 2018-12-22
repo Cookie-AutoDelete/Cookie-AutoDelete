@@ -10,7 +10,6 @@
  * SOFTWARE.
  */
 import { Store } from 'redux';
-import shortid from 'shortid';
 import {
   cacheCookieStoreIdNames,
   cookieCleanup,
@@ -18,19 +17,13 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line:import-name
 import createStore from './redux/Store';
-import {
-  checkIfProtected,
-  showNumberOfCookiesInIcon,
-} from './services/BrowserActionService';
-import {
-  extractMainDomain,
-  getHostname,
-  getSetting,
-  isAWebpage,
-  returnOptionalCookieAPIAttributes,
-} from './services/Libs';
+import AlarmEvents from './services/AlarmEvents';
+import { getSetting } from './services/Libs';
+import StoreUser from './services/StoreUser';
+import TabEvents from './services/TabEvents';
+import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
 
-let store: Store;
+let store: Store<State, ReduxAction>;
 let currentSettings: { [setting: string]: Setting };
 
 // Delay saving to disk to queue up actions
@@ -74,147 +67,6 @@ const onSettingsChange = () => {
   }
 };
 
-// Create an alarm delay or use setTimeout before cookie cleanup
-let alarmFlag = false;
-const createActiveModeAlarm = () => {
-  const seconds = parseInt(
-    getSetting(store.getState(), 'delayBeforeClean') as string,
-    10,
-  );
-  const minutes = seconds / 60;
-  const milliseconds = seconds * 1000;
-  if (alarmFlag) {
-    return;
-  }
-  alarmFlag = true;
-  if (seconds < 1) {
-    setTimeout(() => {
-      store.dispatch(
-        // @ts-ignore
-        cookieCleanup({
-          greyCleanup: false,
-          ignoreOpenTabs: false,
-        }),
-      );
-      alarmFlag = false;
-    }, 500);
-  } else if (
-    browserDetect() === 'Firefox' ||
-    (browserDetect() === 'Chrome' && seconds >= 60)
-  ) {
-    browser.alarms.create('activeModeAlarm', {
-      delayInMinutes: minutes,
-    });
-  } else {
-    setTimeout(() => {
-      if (getSetting(store.getState(), 'activeMode')) {
-        store.dispatch(
-          // @ts-ignore
-          cookieCleanup({
-            greyCleanup: false,
-            ignoreOpenTabs: false,
-          }),
-        );
-      }
-      alarmFlag = false;
-    }, milliseconds);
-  }
-};
-
-const cleanFromFromTabEvents = async () => {
-  if (getSetting(store.getState(), 'activeMode')) {
-    const alarm = await browser.alarms.get('activeModeAlarm');
-    // This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
-    // in chrome, it returns an array
-    if (store.getState().cache.browserDetect === 'Firefox' && !alarm) {
-      createActiveModeAlarm();
-    } else if (alarm && alarm.name !== 'activeModeAlarm') {
-      createActiveModeAlarm();
-    }
-  }
-};
-
-const getAllCookieActions = async (tab: browser.tabs.Tab) => {
-  const hostname = getHostname(tab.url);
-  const cookies = await browser.cookies.getAll(
-    returnOptionalCookieAPIAttributes(store.getState(), {
-      domain: hostname,
-      firstPartyDomain: extractMainDomain(hostname),
-      storeId: tab.cookieStoreId,
-    }),
-  );
-  let cookieLength = cookies.length;
-  if (
-    cookies.length === 0 &&
-    getSetting(store.getState(), 'localstorageCleanup') &&
-    isAWebpage(tab.url)
-  ) {
-    browser.cookies.set(
-      // @ts-ignore
-      returnOptionalCookieAPIAttributes(store.getState(), {
-        expirationDate: Math.floor(Date.now() / 1000 + 31557600),
-        firstPartyDomain: extractMainDomain(getHostname(tab.url)),
-        name: 'CookieAutoDelete',
-        path: `/${shortid.generate()}`,
-        storeId: tab.cookieStoreId,
-        url: tab.url,
-        value: 'cookieForLocalstorageCleanup',
-      }),
-    );
-    cookieLength = 1;
-  }
-  if (getSetting(store.getState(), 'showNumOfCookiesInIcon')) {
-    showNumberOfCookiesInIcon(tab, cookieLength);
-  } else {
-    browser.browserAction.setBadgeText({
-      tabId: tab.id,
-      text: '',
-    });
-  }
-};
-
-// Add a delay to prevent multiple spawns of the localstorage cookie
-let onTabUpdateDelay = false;
-export const onTabUpdate = (
-  tabId: number,
-  changeInfo: any,
-  tab: browser.tabs.Tab,
-) => {
-  if (tab.status === 'complete') {
-    checkIfProtected(store.getState(), tab);
-    if (!onTabUpdateDelay) {
-      onTabUpdateDelay = true;
-      setTimeout(() => {
-        getAllCookieActions(tab);
-        onTabUpdateDelay = false;
-      }, 750);
-    }
-  }
-};
-
-const tabToDomain: { [key: number]: string } = {};
-export const onDomainChange = (
-  tabId: number,
-  changeInfo: any,
-  tab: browser.tabs.Tab,
-) => {
-  if (tab.status === 'complete') {
-    const mainDomain = extractMainDomain(getHostname(tab.url));
-    if (tabToDomain[tabId] === undefined && mainDomain !== '') {
-      tabToDomain[tabId] = mainDomain;
-    } else if (tabToDomain[tabId] !== mainDomain && mainDomain !== '') {
-      tabToDomain[tabId] = mainDomain;
-      if (getSetting(store.getState(), 'domainChangeCleanup')) {
-        cleanFromFromTabEvents();
-      }
-    }
-  }
-};
-
-export const onDomainChangeRemove = (tabId: number) => {
-  delete tabToDomain[tabId];
-};
-
 const onStartUp = async () => {
   const storage = await browser.storage.local.get();
   let stateFromStorage;
@@ -231,7 +83,7 @@ const onStartUp = async () => {
   // @ts-ignore
   store.dispatch(validateSettings());
   store.dispatch({
-    type: 'ON_STARTUP',
+    type: ReduxConstants.ON_STARTUP,
   });
   // Store the FF version in cache
   if (browserDetect() === 'Firefox') {
@@ -242,7 +94,7 @@ const onStartUp = async () => {
         key: 'browserVersion',
         value: browserVersion,
       },
-      type: 'ADD_CACHE',
+      type: ReduxConstants.ADD_CACHE,
     });
     // Store whether firstPartyIsolate is true or false
     if (browserVersion >= '58') {
@@ -253,7 +105,7 @@ const onStartUp = async () => {
           key: 'firstPartyIsolateSetting',
           value: setting.value,
         },
-        type: 'ADD_CACHE',
+        type: ReduxConstants.ADD_CACHE,
       });
     }
   }
@@ -263,7 +115,7 @@ const onStartUp = async () => {
       key: 'browserDetect',
       value: browserDetect(),
     },
-    type: 'ADD_CACHE',
+    type: ReduxConstants.ADD_CACHE,
   });
 
   // Temporary fix until contextualIdentities events land
@@ -286,28 +138,17 @@ const onStartUp = async () => {
   currentSettings = store.getState().settings;
   store.subscribe(onSettingsChange);
   store.subscribe(saveToStorage);
+
+  // This is important to initialize the Store for all classes that extend from this
+  StoreUser.init(store);
+
+  browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
+  browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
+  browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
+  browser.tabs.onRemoved.addListener(TabEvents.cleanFromFromTabEvents);
+
+  // Alarm event handler for Active Mode
+  browser.alarms.onAlarm.addListener(AlarmEvents.activeModeAlarm);
 };
 
 onStartUp();
-
-// Logic that controls when to disable the browser action
-browser.tabs.onUpdated.addListener(onTabUpdate);
-browser.tabs.onUpdated.addListener(onDomainChange);
-browser.tabs.onRemoved.addListener(onDomainChangeRemove);
-browser.tabs.onRemoved.addListener(cleanFromFromTabEvents);
-
-// Alarm event handler for Active Mode
-browser.alarms.onAlarm.addListener(alarmInfo => {
-  // console.log(alarmInfo.name);
-  if (alarmInfo.name === 'activeModeAlarm') {
-    store.dispatch(
-      // @ts-ignore
-      cookieCleanup({
-        greyCleanup: false,
-        ignoreOpenTabs: false,
-      }),
-    );
-    alarmFlag = false;
-    browser.alarms.clear(alarmInfo.name);
-  }
-});
