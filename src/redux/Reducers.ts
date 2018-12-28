@@ -172,7 +172,7 @@ export const cookieDeletedCounterSession = (
 };
 
 export const activityLog = (
-  state: ReadonlyArray<CacheResults> = [],
+  state: ReadonlyArray<ActivityLog> = [],
   action: ReduxAction,
 ) => {
   switch (action.type) {

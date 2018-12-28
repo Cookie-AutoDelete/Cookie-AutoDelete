@@ -90,7 +90,7 @@ export const updateExpression = (payload: Expression) => (
   checkIfProtected(getState());
 };
 
-export const addActivity = (payload: CacheResults): ADD_ACTIVITY_LOG => ({
+export const addActivity = (payload: ActivityLog): ADD_ACTIVITY_LOG => ({
   payload,
   type: ReduxConstants.ADD_ACTIVITY_LOG,
 });

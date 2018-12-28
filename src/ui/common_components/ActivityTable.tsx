@@ -13,7 +13,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { FilterOptions } from '../../typings/Enums';
 
-const createSummary = (cleanupObj: CacheResults) => {
+const createSummary = (cleanupObj: ActivityLog) => {
   const keys = Object.keys(cleanupObj);
   const domainSet = new Set();
   keys.forEach(key => {
@@ -29,7 +29,7 @@ const createSummary = (cleanupObj: CacheResults) => {
 };
 
 interface StateProps {
-  activityLog: ReadonlyArray<CacheResults>;
+  activityLog: ReadonlyArray<ActivityLog>;
   cache: CacheMap;
 }
 

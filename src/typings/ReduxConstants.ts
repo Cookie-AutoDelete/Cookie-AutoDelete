@@ -64,5 +64,5 @@ export type RESET_SETTINGS = Readonly<{
 }>;
 export type ADD_ACTIVITY_LOG = Readonly<{
   type: ReduxConstants.ADD_ACTIVITY_LOG;
-  payload: CacheResults;
+  payload: ActivityLog;
 }>;

@@ -17,7 +17,7 @@ type State = Readonly<{
   cookieDeletedCounterTotal: number;
   cookieDeletedCounterSession: number;
   settings: MapToSettingObject;
-  activityLog: ReadonlyArray<CacheResults>;
+  activityLog: ReadonlyArray<ActivityLog>;
   cache: CacheMap;
 }>;
 

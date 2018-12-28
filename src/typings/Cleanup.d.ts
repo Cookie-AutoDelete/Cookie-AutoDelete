@@ -3,7 +3,7 @@ type CleanupProperties = {
   ignoreOpenTabs: boolean;
 };
 
-type CacheResults = {
+type ActivityLog = {
   dateTime: string;
   recentlyCleaned: number;
   storeIds: {
@@ -17,7 +17,7 @@ type CacheResults = {
 };
 
 interface CleanupPropertiesInternal extends CleanupProperties {
-  cachedResults: CacheResults;
+  cachedResults: ActivityLog;
 
   hostnamesDeleted: Set<String>;
   openTabDomains: Set<String>;

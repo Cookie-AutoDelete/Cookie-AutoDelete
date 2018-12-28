@@ -199,10 +199,10 @@ export const cleanCookiesOperation = async (
   const promiseContainers = [];
   const setOfDeletedDomainCookies = new Set();
   const hostnamesDeleted = new Set();
-  const cachedResults: CacheResults = {
+  const cachedResults: ActivityLog = {
     dateTime: new Date().toString(),
     recentlyCleaned: 0,
-  } as CacheResults;
+  } as ActivityLog;
   if (!cleanupProperties.ignoreOpenTabs) {
     openTabDomains = await returnSetOfOpenTabDomains();
   }
