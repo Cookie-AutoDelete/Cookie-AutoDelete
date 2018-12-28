@@ -25,7 +25,6 @@ const newExpressionObject = (
   state: Expression | {},
   action: { payload: Expression },
 ) => ({
-  ...state,
   ...action.payload,
   cookieNames: !action.payload.cookieNames ? [] : action.payload.cookieNames,
   id: shortid.generate(),
@@ -55,13 +54,12 @@ export const expression = (
   action: ReduxAction,
 ): Expression => {
   switch (action.type) {
-    case ReduxConstants.UPDATE_EXPRESSION:
+    case ReduxConstants.UPDATE_EXPRESSION: {
       if (state.id === action.payload.id) {
         return newExpressionObject(state, action);
       }
-
       return state;
-
+    }
     default:
       return state;
   }
@@ -82,9 +80,6 @@ export const expressions = (
     }
 
     case ReduxConstants.UPDATE_EXPRESSION:
-      if (hasExpression(state, action)) {
-        return state;
-      }
       return state
         .map(e => expression(e, action))
         .sort(sortExpressionAlgorithm);
@@ -176,7 +171,10 @@ export const cookieDeletedCounterSession = (
   }
 };
 
-export const activityLog = (state = [], action: ReduxAction) => {
+export const activityLog = (
+  state: ReadonlyArray<CacheResults> = [],
+  action: ReduxAction,
+) => {
   switch (action.type) {
     case ReduxConstants.ADD_ACTIVITY_LOG: {
       if (Object.keys(action.payload).length > 2) {
@@ -206,11 +204,11 @@ export const cache = (state: CacheMap = {}, action: ReduxAction) => {
   }
 };
 
-export default combineReducers({
+export default combineReducers<State, ReduxAction>({
   activityLog,
   cache,
   cookieDeletedCounterSession,
   cookieDeletedCounterTotal,
   lists,
   settings,
-} as any);
+});

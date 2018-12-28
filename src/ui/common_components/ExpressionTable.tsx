@@ -93,7 +93,6 @@ class ExpressionTable extends React.Component<
     const {
       onRemoveExpression,
       onUpdateExpression,
-      storeId,
       expressionColumnTitle,
       emptyElement,
     } = this.props;
@@ -253,12 +252,10 @@ class ExpressionTable extends React.Component<
                   onClick={() =>
                     onUpdateExpression({
                       ...expression,
-                      id: expression.id,
                       listType:
                         expression.listType === ListType.GREY
                           ? ListType.WHITE
                           : ListType.GREY,
-                      storeId,
                     })
                   }
                 />

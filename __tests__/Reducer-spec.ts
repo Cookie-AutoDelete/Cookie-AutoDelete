@@ -113,14 +113,17 @@ describe('Reducer', () => {
     };
 
     it('should return youtube.com on default', () => {
-      const newState = lists(state, {
-        payload: {
-          ...mockExpression,
-          expression: 'youtube.com',
-          listType: ListType.WHITE,
+      const newState = lists(
+        { ...state },
+        {
+          payload: {
+            ...mockExpression,
+            expression: 'youtube.com',
+            listType: ListType.WHITE,
+          },
+          type: ReduxConstants.ADD_EXPRESSION,
         },
-        type: ReduxConstants.ADD_EXPRESSION,
-      });
+      );
       const newExpression = newState.default[1];
       expect(newExpression).toHaveProperty('expression', 'youtube.com');
       expect(newExpression).toHaveProperty('listType', ListType.WHITE);
@@ -128,42 +131,51 @@ describe('Reducer', () => {
     });
 
     it('should return github.com on firefox_container_1', () => {
-      const newState = lists(state, {
-        payload: {
-          expression: 'github.com',
-          listType: ListType.GREY,
-          storeId: 'firefox_container_1',
+      const newState = lists(
+        { ...state },
+        {
+          payload: {
+            expression: 'github.com',
+            listType: ListType.GREY,
+            storeId: 'firefox_container_1',
+          },
+          type: ReduxConstants.ADD_EXPRESSION,
         },
-        type: ReduxConstants.ADD_EXPRESSION,
-      });
+      );
       const newExpression = newState.firefox_container_1[2];
       expect(newExpression).toHaveProperty('expression', 'github.com');
       expect(newExpression).toHaveProperty('listType', ListType.GREY);
       expect(newExpression).toHaveProperty('id');
     });
     it('should return not return messenger.com on default', () => {
-      const newState = lists(state, {
-        payload: {
-          id: 'SyZbDbC1dW',
-          storeId: 'default',
+      const newState = lists(
+        { ...state },
+        {
+          payload: {
+            id: 'SyZbDbC1dW',
+            storeId: 'default',
+          },
+          type: ReduxConstants.REMOVE_EXPRESSION,
         },
-        type: ReduxConstants.REMOVE_EXPRESSION,
-      });
+      );
       expect(newState.default).not.toEqual(
         expect.arrayContaining(state.default as any[]),
       );
     });
 
     it('should return github.com and GREY for updated expression on default', () => {
-      const newState = lists(state, {
-        payload: {
-          ...mockExpression,
-          expression: 'github.com',
-          id: 'SyZbDbC1dW',
-          listType: ListType.GREY,
+      const newState = lists(
+        { ...state },
+        {
+          payload: {
+            ...mockExpression,
+            expression: 'github.com',
+            id: 'SyZbDbC1dW',
+            listType: ListType.GREY,
+          },
+          type: ReduxConstants.UPDATE_EXPRESSION,
         },
-        type: ReduxConstants.UPDATE_EXPRESSION,
-      });
+      );
 
       const newExpression = newState.default[1];
       expect(newExpression).toHaveProperty('expression', 'github.com');
@@ -172,15 +184,18 @@ describe('Reducer', () => {
     });
 
     it('should return google.com and WHITE for updated expression on firefox_container_1', () => {
-      const newState = lists(state, {
-        payload: {
-          expression: 'google.com',
-          id: '123',
-          listType: ListType.WHITE,
-          storeId: 'firefox_container_1',
+      const newState = lists(
+        { ...state },
+        {
+          payload: {
+            expression: 'google.com',
+            id: '123',
+            listType: ListType.WHITE,
+            storeId: 'firefox_container_1',
+          },
+          type: ReduxConstants.UPDATE_EXPRESSION,
         },
-        type: ReduxConstants.UPDATE_EXPRESSION,
-      });
+      );
 
       const newExpression = newState.firefox_container_1[0];
       expect(newExpression).toHaveProperty('expression', 'google.com');
