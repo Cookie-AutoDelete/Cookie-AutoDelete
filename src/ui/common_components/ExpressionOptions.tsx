@@ -13,11 +13,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { updateExpressionUI } from '../../redux/Actions';
+import { returnOptionalCookieAPIAttributes } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 interface DispatchProps {
   onUpdateExpression: (payload: Expression) => void;
 }
-
+interface StateProps {
+  state: State;
+}
 interface OwnProps {
   expression: Expression;
 }
@@ -26,24 +29,48 @@ class InitialState {
   public cookies: browser.cookies.CookieProperties[] = [];
 }
 
-type ExpressionOptionsProps = OwnProps & DispatchProps;
+type ExpressionOptionsProps = OwnProps & DispatchProps & StateProps;
 
 const trimDotAndStar = (str: string) => str.replace(/^[\.\*]+|[\.\*]+$/g, '');
 
+/**
+ * cleanAllCookies => droplist
+ * undefined => false
+ * false => true
+ * true => false
+ */
+const coerceBoolean = (bool: boolean | undefined) => {
+  if (bool === undefined) return false;
+  return !bool;
+};
 class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public state = new InitialState();
 
   public async componentDidMount() {
-    if (!this.props.expression.cleanAllCookies) {
+    if (coerceBoolean(this.props.expression.cleanAllCookies)) {
       await this.getAllCookies();
     }
+  }
+  /** Converts an expression default storeId to the defaults of the browser */
+  public toPublicStoreId(storeId: string) {
+    const browser: string = this.props.state.cache.browserDetect;
+    if (storeId === 'default' && browser === 'Chrome') {
+      return '0';
+    }
+    if (storeId === 'default' && browser === 'Firefox') {
+      return 'firefox-default';
+    }
+    return storeId;
   }
 
   public async getAllCookies() {
     const { expression } = this.props;
-    const cookies = await browser.cookies.getAll({
-      domain: trimDotAndStar(expression.expression),
-    });
+    const cookies = await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(this.props.state, {
+        domain: trimDotAndStar(expression.expression),
+        storeId: this.toPublicStoreId(expression.storeId),
+      }),
+    );
     this.setState({ cookies });
   }
 
@@ -88,7 +115,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
 
   public toggleCleanAllCookies(checked: boolean) {
     const { expression, onUpdateExpression } = this.props;
-    if (!expression.cleanAllCookies) {
+    if (!coerceBoolean(expression.cleanAllCookies)) {
       this.getAllCookies();
     }
     onUpdateExpression({
@@ -108,8 +135,8 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public render() {
     const { cookies } = this.state;
     const { expression } = this.props;
-    const dropList =
-      expression.cleanAllCookies === undefined || !expression.cleanAllCookies;
+
+    const dropList = coerceBoolean(expression.cleanAllCookies);
     const cleanLocalstorageKey = `${expression.id}-localstorage`;
     const keepAllCookiesKey = `${expression.id}-droplist`;
     return (
@@ -154,6 +181,12 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   }
 }
 
+const mapStateToProps = (state: State) => {
+  return {
+    state,
+  };
+};
+
 const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   onUpdateExpression(payload: Expression) {
     dispatch(updateExpressionUI(payload));
@@ -161,6 +194,6 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ExpressionOptions);
