@@ -1,12 +1,10 @@
 language: node_js
 node_js:
-  - "7"
+  - '10'
 install:
   - npm install
 script:
   - npm run test-all
-after_script:
-  - cat ./node_modules/nyc/bin/nyc.js report | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
   - chmod +x ./tools/buildFilesDev.sh
   - bash tools/replaceVersionNumber.sh
