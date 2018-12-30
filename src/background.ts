@@ -17,8 +17,7 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
-import AlarmEvents from './services/AlarmEvents';
-import { getSetting } from './services/Libs';
+import { getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
@@ -119,17 +118,6 @@ const onStartUp = async () => {
   if (getSetting(store.getState(), 'contextualIdentities')) {
     store.dispatch<any>(cacheCookieStoreIdNames());
   }
-  if (getSetting(store.getState(), 'activeMode')) {
-    store.dispatch<any>(
-      cookieCleanup({
-        greyCleanup: true,
-        ignoreOpenTabs: getSetting(
-          store.getState(),
-          'cleanCookiesFromOpenTabsOnStartup',
-        ),
-      }),
-    );
-  }
   currentSettings = store.getState().settings;
   store.subscribe(onSettingsChange);
   store.subscribe(saveToStorage);
@@ -141,9 +129,32 @@ const onStartUp = async () => {
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
   browser.tabs.onRemoved.addListener(TabEvents.cleanFromFromTabEvents);
-
-  // Alarm event handler for Active Mode
-  browser.alarms.onAlarm.addListener(AlarmEvents.activeModeAlarm);
 };
 
 onStartUp();
+browser.runtime.onStartup.addListener(async () => {
+  await sleep(1500);
+  greyCleanup();
+});
+browser.runtime.onInstalled.addListener(async details => {
+  await sleep(1500);
+  if (details.reason === 'update') {
+    store.dispatch({
+      type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+    });
+  }
+});
+
+const greyCleanup = () => {
+  if (getSetting(store.getState(), 'activeMode')) {
+    store.dispatch<any>(
+      cookieCleanup({
+        greyCleanup: true,
+        ignoreOpenTabs: getSetting(
+          store.getState(),
+          'cleanCookiesFromOpenTabsOnStartup',
+        ),
+      }),
+    );
+  }
+};

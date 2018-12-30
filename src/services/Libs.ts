@@ -221,3 +221,10 @@ export const undefinedIsTrue = (bool: boolean | undefined) => {
   }
   return bool;
 };
+
+/**
+ * Sleep execution for ms
+ */
+export const sleep = (ms: number) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};

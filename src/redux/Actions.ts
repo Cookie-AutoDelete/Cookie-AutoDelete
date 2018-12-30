@@ -165,35 +165,6 @@ export const cookieCleanup: ActionCreator<
   options: CleanupProperties = { greyCleanup: false, ignoreOpenTabs: false },
 ) => async (dispatch, getState) => {
   const newOptions = options;
-  // Add in default cleanup settings if payload does not provide any
-  // if (options.payload !== undefined) {
-  //   newOptions = {
-  //     ...options.payload
-  //   };
-  // } else if (
-  //   options.payload === undefined &&
-  //   (options.greyCleanup !== undefined || options.ignoreOpenTabs !== undefined)
-  // ) {
-  //   newOptions = options;
-  // } else {
-  //   newOptions = {
-  //     greyCleanup: false,
-  //     ignoreOpenTabs: false
-  //   };
-  // }
-
-  // if (
-  //   getState().cache.browserVersion === '58' &&
-  //   getState().cache.firstPartyIsolateSetting
-  // ) {
-  //   browser.notifications.create('FPI_NOTIFICATION', {
-  //     type: 'basic',
-  //     iconUrl: browser.extension.getURL('icons/icon_48.png'),
-  //     title: 'First Party Isolation Detected',
-  //     message:
-  //       'Please turn off privacy.firstparty.isolate and restart the browser as it breaks cookie cleanup'
-  //   });
-  // }
 
   const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
   const { setOfDeletedDomainCookies, cachedResults } = cleanupDoneObject;
