@@ -8,6 +8,7 @@ import {
   isAWebpage,
   prepareCookieDomain,
   returnOptionalCookieAPIAttributes,
+  undefinedIsTrue,
 } from '../src/services/Libs';
 // ToDo: returnMatchedExpressionObject, getSetting
 
@@ -305,6 +306,18 @@ describe('Library Functions', () => {
     it('should match sub.gitlab.com with *.git*b.com', () => {
       const regExp = new RegExp(globExpressionToRegExp('*.git*b.com'));
       expect(regExp.test('sub.gitlab.com')).toBe(true);
+    });
+  });
+
+  describe('undefinedIsTrue', () => {
+    it('should return true for undefined', () => {
+      expect(undefinedIsTrue(undefined)).toBe(true);
+    });
+    it('should return true for true', () => {
+      expect(undefinedIsTrue(true)).toBe(true);
+    });
+    it('should return false for false', () => {
+      expect(undefinedIsTrue(false)).toBe(false);
     });
   });
 

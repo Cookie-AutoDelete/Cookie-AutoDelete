@@ -211,3 +211,13 @@ export const returnOptionalCookieAPIAttributes = (
   }
   return cookieAPIAttributes;
 };
+
+/**
+ * Opposite of a falsey check for undefined
+ */
+export const undefinedIsTrue = (bool: boolean | undefined) => {
+  if (bool === undefined) {
+    return true;
+  }
+  return bool;
+};

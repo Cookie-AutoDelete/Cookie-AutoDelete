@@ -7,9 +7,7 @@ type ActivityLog = {
   dateTime: string;
   recentlyCleaned: number;
   storeIds: {
-    [storeId: string]: {
-      [hostname: string]: { decision?: boolean; reason?: string };
-    };
+    [storeId: string]: CleanReasonObject[];
   };
 } & {
   // Remove this after update
@@ -17,14 +15,36 @@ type ActivityLog = {
 };
 
 interface CleanupPropertiesInternal extends CleanupProperties {
-  cachedResults: ActivityLog;
-
-  hostnamesDeleted: Set<String>;
   openTabDomains: Set<String>;
-  setOfDeletedDomainCookies: Set<String>;
+}
+
+declare const enum ReasonKeep {
+  OpenTabs = 'reasonKeepOpenTab',
+  MatchedExpression = 'reasonKeep',
+}
+
+declare const enum ReasonClean {
+  StartupNoMatchedExpression = 'reasonCleanStartupNoList',
+  StartupCleanupAndGreyList = 'reasonCleanGreyList',
+  NoMatchedExpression = 'reasonCleanNoList',
+  MatchedExpressionButNoCookieName = 'reasonCleanCookieName',
+}
+
+declare const enum OpenTabStatus {
+  TabsWasNotIgnored = 'reasonTabsWereNotIgnored',
+  TabsWereIgnored = 'reasonTabsWereIgnored',
+}
+
+interface CleanReasonObject {
+  cleanCookie: boolean;
+  reason: ReasonKeep | ReasonClean;
+  openTabStatus: OpenTabStatus;
+  expression?: Expression;
+  cookie: CookiePropertiesCleanup;
 }
 
 interface CookiePropertiesCleanup extends browser.cookies.CookieProperties {
   mainDomain: string;
   hostname: string;
+  preparedCookieDomain: string;
 }

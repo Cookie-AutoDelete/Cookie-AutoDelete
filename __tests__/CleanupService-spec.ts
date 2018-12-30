@@ -37,11 +37,41 @@ const greyMessenger: Expression = {
   storeId: 'firefox-container-1',
 };
 
+const exampleWithCookieName: Expression = {
+  cleanAllCookies: false,
+  cookieNames: ['in-cookie-names'],
+  expression: 'examplewithcookiename.com',
+  id: '5',
+  listType: ListType.WHITE,
+  storeId: 'default',
+};
+
+const exampleWithCookieNameCleanAllCookiesTrue: Expression = {
+  ...exampleWithCookieName,
+  cleanAllCookies: true,
+  expression: 'exampleWithCookieNameCleanAllCookiesTrue.com',
+};
+
+const exampleWithCookieNameGrey: Expression = {
+  ...exampleWithCookieName,
+  listType: ListType.GREY,
+  storeId: 'firefox-container-1',
+};
+
 const sampleState: State = {
   ...initialState,
   lists: {
-    default: [wildCardWhiteListGoogle, whiteListYoutube],
-    'firefox-container-1': [wildCardGreyFacebook, greyMessenger],
+    default: [
+      wildCardWhiteListGoogle,
+      whiteListYoutube,
+      exampleWithCookieName,
+      exampleWithCookieNameCleanAllCookiesTrue,
+    ],
+    'firefox-container-1': [
+      wildCardGreyFacebook,
+      greyMessenger,
+      exampleWithCookieNameGrey,
+    ],
   },
 };
 
@@ -53,6 +83,7 @@ const mockCookie: CookiePropertiesCleanup = {
   mainDomain: '',
   name: 'key',
   path: '/',
+  preparedCookieDomain: '',
   secure: true,
   session: true,
   storeId: 'firefox-default',
@@ -133,35 +164,35 @@ describe('CleanupService', () => {
     });
 
     it('should have google.com in set', () => {
-      return returnSetOfOpenTabDomains().then(results => {
+      return returnSetOfOpenTabDomains(false).then(results => {
         expect(results.has('google.com')).toBe(true);
         return Promise.resolve();
       });
     });
 
     it('should have facebook.com in set', () => {
-      return returnSetOfOpenTabDomains().then(results => {
+      return returnSetOfOpenTabDomains(false).then(results => {
         expect(results.has('facebook.com')).toBe(true);
         return Promise.resolve();
       });
     });
 
     it('should have domain.com in set', () => {
-      return returnSetOfOpenTabDomains().then(results => {
+      return returnSetOfOpenTabDomains(false).then(results => {
         expect(results.has('domain.com')).toBe(true);
         return Promise.resolve();
       });
     });
 
     it('should have length 3 in set', () => {
-      return returnSetOfOpenTabDomains().then(results => {
+      return returnSetOfOpenTabDomains(false).then(results => {
         expect(results.size).toBe(3);
         return Promise.resolve();
       });
     });
 
     it('should not have youtube.com in set', () => {
-      return returnSetOfOpenTabDomains().then(results => {
+      return returnSetOfOpenTabDomains(false).then(results => {
         expect(results.has('youtube.com')).toBe(false);
         return Promise.resolve();
       });
@@ -192,6 +223,16 @@ describe('CleanupService', () => {
           getMessage: () => '',
         },
       };
+      when(Lib.undefinedIsTrue)
+        .calledWith(undefined)
+        .mockReturnValue(true);
+      when(Lib.undefinedIsTrue)
+        .calledWith(true)
+        .mockReturnValue(true);
+      when(Lib.undefinedIsTrue)
+        .calledWith(false)
+        .mockReturnValue(false);
+
       when(Lib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'default', 'youtube.com')
         .mockReturnValue(whiteListYoutube);
@@ -201,6 +242,26 @@ describe('CleanupService', () => {
       when(Lib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'default', 'sub.google.com')
         .mockReturnValue(wildCardWhiteListGoogle);
+      when(Lib.returnMatchedExpressionObject)
+        .calledWith(sampleState, 'firefox-container-1', 'facebook.com')
+        .mockReturnValue(wildCardGreyFacebook);
+      when(Lib.returnMatchedExpressionObject)
+        .calledWith(sampleState, 'default', 'examplewithcookiename.com')
+        .mockReturnValue(exampleWithCookieName);
+      when(Lib.returnMatchedExpressionObject)
+        .calledWith(
+          sampleState,
+          'default',
+          'exampleWithCookieNameCleanAllCookiesTrue.com',
+        )
+        .mockReturnValue(exampleWithCookieNameCleanAllCookiesTrue);
+      when(Lib.returnMatchedExpressionObject)
+        .calledWith(
+          sampleState,
+          'firefox-container-1',
+          'examplewithcookiename.com',
+        )
+        .mockReturnValue(exampleWithCookieNameGrey);
     });
 
     it('should return true for yahoo.com', () => {
@@ -214,7 +275,8 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(true);
+      expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
     });
 
     it('should return false for youtube.com', () => {
@@ -227,7 +289,8 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(false);
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
     });
 
     it('should return true for sub.youtube.com', () => {
@@ -241,7 +304,8 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(true);
+      expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
     });
 
     it('should return false for google.com', () => {
@@ -255,7 +319,8 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(false);
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
     });
 
     it('should return true for google.com in Personal', () => {
@@ -269,7 +334,8 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(true);
+      expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
     });
 
     it('should return false for sub.google.com', () => {
@@ -283,7 +349,8 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(false);
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
     });
 
     it('should return false for example.com', () => {
@@ -297,7 +364,8 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(false);
+      expect(result.reason).toBe(ReasonKeep.OpenTabs);
+      expect(result.cleanCookie).toBe(false);
     });
 
     it('should return false for sub.example.com', () => {
@@ -311,7 +379,27 @@ describe('CleanupService', () => {
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
       });
-      expect(result).toBe(false);
+      expect(result.reason).toBe(ReasonKeep.OpenTabs);
+      expect(result.openTabStatus).toBe(OpenTabStatus.TabsWasNotIgnored);
+      expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return true for sub.example.com because tabs were ignored', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'sub.example.com',
+        mainDomain: 'example.com',
+        storeId: 'default',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+        ignoreOpenTabs: true,
+        openTabDomains: new Set<string>(),
+      });
+      expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
+      expect(result.openTabStatus).toBe(OpenTabStatus.TabsWereIgnored);
+      expect(result.cleanCookie).toBe(true);
     });
 
     it('should return true for Facebook in Personal onStartup with Facebook in the Greylist', () => {
@@ -326,7 +414,105 @@ describe('CleanupService', () => {
         ...cleanupProperties,
         greyCleanup: true,
       });
-      expect(result).toBe(true);
+      expect(result.reason).toBe(ReasonClean.StartupCleanupAndGreyList);
+      expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return true for startup cleanup and no matched expression', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'nomatch.com',
+        mainDomain: 'nomatch.com',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+        greyCleanup: true,
+      });
+      expect(result.reason).toBe(ReasonClean.StartupNoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return false for examplewithcookiename.com because it has a cookie name in the list (keepAllCookies: false)', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'examplewithcookiename.com',
+        mainDomain: 'examplewithcookiename.com',
+        name: 'in-cookie-names',
+        storeId: 'default',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return true for examplewithcookiename.com because it does not have a cookie name in the list (keepAllCookies: false)', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'examplewithcookiename.com',
+        mainDomain: 'examplewithcookiename.com',
+        name: 'not-in-cookie-names',
+        storeId: 'default',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.MatchedExpressionButNoCookieName);
+      expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return false for exampleWithCookieNameCleanAllCookiesTrue.com because of (keepAllCookies: true)', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'exampleWithCookieNameCleanAllCookiesTrue.com',
+        mainDomain: 'exampleWithCookieNameCleanAllCookiesTrue.com',
+        name: 'not-in-cookie-names',
+        storeId: 'default',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return false for examplewithcookiename.com because it has a cookie name in the list (Startup)', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'examplewithcookiename.com',
+        mainDomain: 'examplewithcookiename.com',
+        name: 'in-cookie-names',
+        storeId: 'firefox-container-1',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+        greyCleanup: true,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return true for examplewithcookiename.com because it does not have a cookie name in the list (Startup)', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'examplewithcookiename.com',
+        mainDomain: 'examplewithcookiename.com',
+        name: 'not-in-cookie-names',
+        storeId: 'firefox-container-1',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+        greyCleanup: true,
+      });
+      expect(result.reason).toBe(ReasonClean.StartupCleanupAndGreyList);
+      expect(result.cleanCookie).toBe(true);
     });
 
     afterAll(() => {

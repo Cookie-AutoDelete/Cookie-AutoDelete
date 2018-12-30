@@ -14,47 +14,48 @@ import {
   extractMainDomain,
   getHostname,
   getSetting,
-  getStoreId,
   isAWebpage,
   prepareCookieDomain,
   returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
+  undefinedIsTrue,
 } from './Libs';
 
-// Returns true if the cookie can be cleaned
+/** Prepare a cookie for deletion */
+const prepareCookie = (cookie: browser.cookies.CookieProperties) => {
+  const cookieProperties = {
+    ...cookie,
+    hostname: '',
+    mainDomain: '',
+    preparedCookieDomain: prepareCookieDomain(cookie),
+  };
+  cookieProperties.hostname = getHostname(
+    cookieProperties.preparedCookieDomain,
+  );
+  cookieProperties.mainDomain = extractMainDomain(cookieProperties.hostname);
+  return cookieProperties;
+};
+
+/** Returns an object representing the cookie with internal flags */
 export const isSafeToClean = (
   state: State,
   cookieProperties: CookiePropertiesCleanup,
   cleanupProperties: CleanupPropertiesInternal,
-) => {
+): CleanReasonObject => {
   const { mainDomain, storeId, hostname } = cookieProperties;
-  const {
-    cachedResults,
-    greyCleanup,
-    openTabDomains,
-    ignoreOpenTabs,
-  } = cleanupProperties;
-  const newStoreId = getStoreId(state, storeId);
-
-  // Adds in the storeId as a key to an object else it would be undefined
-  if (cachedResults[newStoreId] === undefined) {
-    cachedResults[newStoreId] = {};
-  }
-  cachedResults[newStoreId][hostname] = {};
-
-  // Tests if the storeId has the result in the cache
-  if (cachedResults[newStoreId][hostname].decision !== undefined) {
-    // console.log("used cached result", newStoreId, hostname);
-    return cachedResults[newStoreId][hostname].decision;
-  }
+  const { greyCleanup, openTabDomains, ignoreOpenTabs } = cleanupProperties;
+  const openTabStatus = ignoreOpenTabs
+    ? OpenTabStatus.TabsWereIgnored
+    : OpenTabStatus.TabsWasNotIgnored;
 
   // Tests if the main domain is open
   if (openTabDomains.has(mainDomain)) {
-    cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage(
-      'reasonKeepOpenTab',
-      [mainDomain],
-    );
-    return (cachedResults[newStoreId][hostname].decision = false);
+    return {
+      cleanCookie: false,
+      cookie: cookieProperties,
+      openTabStatus,
+      reason: ReasonKeep.OpenTabs,
+    };
   }
 
   // Checks the list for the first available match
@@ -64,115 +65,106 @@ export const isSafeToClean = (
     hostname,
   );
 
-  // Store the results in cache for future lookups to cookieStoreId.hostname
+  // Startup cleanup checks
+  if (greyCleanup && !matchedExpression) {
+    return {
+      cleanCookie: true,
+      cookie: cookieProperties,
+      openTabStatus,
+      reason: ReasonClean.StartupNoMatchedExpression,
+    };
+  }
+
   if (
     greyCleanup &&
-    (matchedExpression === undefined ||
-      matchedExpression.listType === ListType.GREY)
+    matchedExpression &&
+    matchedExpression.listType === ListType.GREY &&
+    // Tests the cleanAllCookies flag and if it doesn't include that name or if there is no cookieNames
+    (undefinedIsTrue(matchedExpression.cleanAllCookies) ||
+      (matchedExpression.cookieNames &&
+        !matchedExpression.cookieNames.includes(cookieProperties.name)))
   ) {
-    if (matchedExpression === undefined) {
-      cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage(
-        'reasonCleanStartupNoList',
-        [hostname],
-      )} ${
-        !ignoreOpenTabs
-          ? browser.i18n.getMessage('reasonTabsWereNotIgnored')
-          : browser.i18n.getMessage('reasonTabsWereIgnored')
-      }`;
-      return (cachedResults[newStoreId][hostname].decision = true);
-    }
-    if (matchedExpression.listType === ListType.GREY) {
-      cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage(
-        'reasonCleanGreyList',
-        [matchedExpression.expression],
-      );
-      return (cachedResults[newStoreId][hostname].decision = true);
-    }
+    return {
+      cleanCookie: true,
+      cookie: cookieProperties,
+      expression: matchedExpression,
+      openTabStatus,
+      reason: ReasonClean.StartupCleanupAndGreyList,
+    };
   }
 
-  if (matchedExpression === undefined) {
-    cachedResults[newStoreId][hostname].reason = `${browser.i18n.getMessage(
-      'reasonCleanNoList',
-      [hostname],
-    )} ${
-      !ignoreOpenTabs
-        ? browser.i18n.getMessage('reasonTabsWereNotIgnored')
-        : browser.i18n.getMessage('reasonTabsWereIgnored')
-    }`;
-  } else {
-    cachedResults[newStoreId][hostname].reason = browser.i18n.getMessage(
-      'reasonKeep',
-      [
-        matchedExpression.expression,
-        matchedExpression.listType === ListType.GREY
-          ? browser.i18n.getMessage('greyListWordText')
-          : browser.i18n.getMessage('whiteListWordText'),
-      ],
-    );
+  // Normal cleanup checks
+  if (!matchedExpression) {
+    return {
+      cleanCookie: true,
+      cookie: cookieProperties,
+      openTabStatus,
+      reason: ReasonClean.NoMatchedExpression,
+    };
   }
-  return (cachedResults[newStoreId][hostname].decision =
-    matchedExpression === undefined);
+  if (
+    matchedExpression &&
+    !undefinedIsTrue(matchedExpression.cleanAllCookies) &&
+    matchedExpression.cookieNames &&
+    !matchedExpression.cookieNames.includes(cookieProperties.name)
+  ) {
+    return {
+      cleanCookie: true,
+      cookie: cookieProperties,
+      expression: matchedExpression,
+      openTabStatus,
+      reason: ReasonClean.MatchedExpressionButNoCookieName,
+    };
+  }
+  return {
+    cleanCookie: false,
+    cookie: cookieProperties,
+    expression: matchedExpression,
+    openTabStatus,
+    reason: ReasonKeep.MatchedExpression,
+  };
 };
 
-// Goes through all the cookies to see if its safe to clean
+/** Clean cookies */
 export const cleanCookies = (
   state: State,
-  cookies: browser.cookies.CookieProperties[],
-  cleanupProperties: CleanupPropertiesInternal,
+  markedForDeletion: CleanReasonObject[],
 ) => {
-  for (const cookie of cookies) {
-    const cookieProperties = {
-      ...cookie,
-      hostname: '',
-      mainDomain: '',
-      preparedCookieDomain: prepareCookieDomain(cookie),
-    };
-    cookieProperties.hostname = getHostname(
-      cookieProperties.preparedCookieDomain,
-    );
-    cookieProperties.mainDomain = extractMainDomain(cookieProperties.hostname);
-
-    if (isSafeToClean(state, cookieProperties, cleanupProperties)) {
-      cleanupProperties.cachedResults.recentlyCleaned += 1;
-      cleanupProperties.setOfDeletedDomainCookies.add(
-        getSetting(state, 'contextualIdentities')
-          ? `${cookieProperties.hostname} (${
-              state.cache[cookieProperties.storeId]
-            })`
-          : cookieProperties.hostname,
-      );
-      cleanupProperties.hostnamesDeleted.add(cookieProperties.hostname);
-      const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
-        firstPartyDomain: cookieProperties.firstPartyDomain,
-        storeId: cookieProperties.storeId,
-      });
-      // url: "http://domain.com" + cookies[i].path
-      browser.cookies.remove({
-        ...cookieAPIProperties,
-        name: cookieProperties.name,
-        url: cookieProperties.preparedCookieDomain,
-      });
-    }
-  }
-  return Promise.resolve();
+  markedForDeletion.forEach(obj => {
+    const cookieProperties = obj.cookie;
+    const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
+      firstPartyDomain: cookieProperties.firstPartyDomain,
+      storeId: cookieProperties.storeId,
+    });
+    // url: "http://domain.com" + cookies[i].path
+    browser.cookies.remove({
+      ...cookieAPIProperties,
+      name: cookieProperties.name,
+      url: cookieProperties.preparedCookieDomain,
+    });
+  });
 };
 
-// This will use the browsingData's hostname attribute to delete any extra browsing data
+/** This will use the browsingData's hostname attribute to delete any extra browsing data */
 export const otherBrowsingDataCleanup = (
   state: State,
-  hostnamesDeleted: Set<string>,
+  hostnamesDeleted: string[],
 ) => {
-  if (state.cache.browserDetect === 'Firefox') {
-    if (getSetting(state, 'localstorageCleanup')) {
-      browser.browsingData.removeLocalStorage({
-        hostnames: Array.from(hostnamesDeleted),
-      });
-    }
+  if (
+    state.cache.browserDetect === 'Firefox' &&
+    getSetting(state, 'localstorageCleanup')
+  ) {
+    browser.browsingData.removeLocalStorage({
+      hostnames: hostnamesDeleted,
+    });
   }
 };
 
-// Store all tabs' host domains to prevent cookie deletion from those domains
-export const returnSetOfOpenTabDomains = async () => {
+/** Store all tabs' host domains to prevent cookie deletion from those domains */
+export const returnSetOfOpenTabDomains = async (ignoreOpenTabs: boolean) => {
+  if (ignoreOpenTabs) {
+    return new Set<string>();
+  }
   const tabs = await browser.tabs.query({
     windowType: 'normal',
   });
@@ -187,31 +179,26 @@ export const returnSetOfOpenTabDomains = async () => {
   return setOfTabURLS;
 };
 
-// Main function for cookie cleanup. Returns a list of domains that cookies were deleted from
+/** Main function for cookie cleanup. Returns a list of domains that cookies were deleted from */
 export const cleanCookiesOperation = async (
   state: State,
-  cleanupProperties = {
+  cleanupProperties: CleanupProperties = {
     greyCleanup: false,
     ignoreOpenTabs: false,
   },
 ) => {
-  let openTabDomains = new Set();
-  const promiseContainers = [];
   const setOfDeletedDomainCookies = new Set();
-  const hostnamesDeleted = new Set();
   const cachedResults: ActivityLog = {
     dateTime: new Date().toString(),
     recentlyCleaned: 0,
-  } as ActivityLog;
-  if (!cleanupProperties.ignoreOpenTabs) {
-    openTabDomains = await returnSetOfOpenTabDomains();
-  }
+    storeIds: {},
+  };
+  const openTabDomains = await returnSetOfOpenTabDomains(
+    cleanupProperties.ignoreOpenTabs,
+  );
   const newCleanupProperties: CleanupPropertiesInternal = {
     ...cleanupProperties,
-    cachedResults,
-    hostnamesDeleted,
     openTabDomains,
-    setOfDeletedDomainCookies,
   };
 
   const cookieStoreIds = new Set();
@@ -239,18 +226,43 @@ export const cleanCookiesOperation = async (
         storeId: id,
       }),
     );
-    promiseContainers.push(cleanCookies(state, cookies, newCleanupProperties));
-  }
+    const isSafeToCleanObjects = cookies.map(cookie => {
+      return isSafeToClean(state, prepareCookie(cookie), newCleanupProperties);
+    });
+    const markedForDeletion = isSafeToCleanObjects.filter(
+      obj => obj.cleanCookie,
+    );
+    cleanCookies(state, markedForDeletion);
+    const markedForLocalStorageDeletion = markedForDeletion.filter(obj => {
+      const notInAnyLists = obj.reason === ReasonClean.NoMatchedExpression;
+      const listCleanLocalstorage =
+        obj.expression && !obj.expression.cleanLocalStorage;
+      return notInAnyLists || listCleanLocalstorage;
+    });
 
-  await Promise.all(promiseContainers);
+    otherBrowsingDataCleanup(
+      state,
+      markedForLocalStorageDeletion.map(obj => obj.cookie.hostname),
+    );
+
+    // Side effects
+    cachedResults.storeIds[id] = markedForDeletion;
+    cachedResults.recentlyCleaned += markedForDeletion.length;
+    markedForDeletion.forEach(obj => {
+      setOfDeletedDomainCookies.add(
+        getSetting(state, 'contextualIdentities')
+          ? `${obj.cookie.hostname} (${state.cache[obj.cookie.storeId]})`
+          : obj.cookie.hostname,
+      );
+    });
+  }
 
   // Scrub private cookieStores
   const storesIdsToScrub = ['firefox-private', 'private'];
   for (const id of storesIdsToScrub) {
-    delete cachedResults[id];
+    delete cachedResults.storeIds[id];
   }
 
-  otherBrowsingDataCleanup(state, hostnamesDeleted);
   return {
     cachedResults,
     setOfDeletedDomainCookies,

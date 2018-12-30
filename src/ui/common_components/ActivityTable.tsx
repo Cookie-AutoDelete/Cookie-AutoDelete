@@ -14,18 +14,73 @@ import { connect } from 'react-redux';
 import { FilterOptions } from '../../typings/Enums';
 
 const createSummary = (cleanupObj: ActivityLog) => {
-  const keys = Object.keys(cleanupObj);
-  const domainSet = new Set();
-  keys.forEach(key => {
-    if (key !== 'dateTime' && key !== 'recentlyCleaned') {
-      Object.keys(cleanupObj[key]).forEach(domain => {
-        if (cleanupObj[key][domain].decision) {
-          domainSet.add(domain);
-        }
-      });
-    }
+  const domainSet = new Set<string>();
+  Object.entries(cleanupObj.storeIds).forEach(([key, value]) => {
+    value.forEach(deletedLog => domainSet.add(deletedLog.cookie.hostname));
   });
   return Array.from(domainSet).join(', ');
+};
+
+const createDetailedSummary = (cleanReasonObjects: CleanReasonObject[]) => {
+  const mapDomainToCookieNames: { [domain: string]: CleanReasonObject[] } = {};
+  cleanReasonObjects.forEach(obj => {
+    if (mapDomainToCookieNames[obj.cookie.hostname]) {
+      mapDomainToCookieNames[obj.cookie.hostname].push(obj);
+    } else {
+      mapDomainToCookieNames[obj.cookie.hostname] = [obj];
+    }
+  });
+  return Object.entries(mapDomainToCookieNames).map(
+    ([domain, cleanReasonObj]) => {
+      return (
+        <div
+          style={{
+            marginLeft: '10px',
+          }}
+          className={`alert alert-danger`}
+          key={`${domain}`}
+          role="alert"
+        >
+          {`${domain} (${cleanReasonObj
+            .map(obj => obj.cookie.name)
+            .join(', ')}): ${returnReasonMessages(cleanReasonObj[0])}`}
+        </div>
+      );
+    },
+  );
+};
+
+const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
+  const { reason } = cleanReasonObject;
+  const { hostname, mainDomain } = cleanReasonObject.cookie;
+  const matchedExpression = cleanReasonObject.expression;
+  switch (reason) {
+    case ReasonKeep.OpenTabs: {
+      return browser.i18n.getMessage(reason, [mainDomain]);
+    }
+
+    case ReasonClean.NoMatchedExpression:
+    case ReasonClean.StartupNoMatchedExpression: {
+      return browser.i18n.getMessage(reason, [hostname]);
+    }
+
+    case ReasonClean.StartupCleanupAndGreyList: {
+      return browser.i18n.getMessage(reason, [
+        matchedExpression ? matchedExpression.expression : '',
+      ]);
+    }
+
+    case ReasonKeep.MatchedExpression: {
+      return browser.i18n.getMessage(reason, [
+        matchedExpression ? matchedExpression.expression : '',
+        matchedExpression && matchedExpression.listType === ListType.GREY
+          ? browser.i18n.getMessage('greyListWordText')
+          : browser.i18n.getMessage('whiteListWordText'),
+      ]);
+    }
+    default:
+      return '';
+  }
 };
 
 interface StateProps {
@@ -41,7 +96,7 @@ interface OwnProps {
 type ActivityTableProps = OwnProps & StateProps;
 
 const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
-  const { activityLog, cache, numberToShow, decisionFilter } = props;
+  const { activityLog, numberToShow } = props;
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
@@ -94,45 +149,16 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
               data-parent="#accordion"
             >
               <div className="card-body">
-                {Object.keys(element).map(key => {
-                  if (key !== 'dateTime' && key !== 'recentlyCleaned') {
+                {Object.entries(element.storeIds).map(
+                  ([storeId, cleanReasonObjects]) => {
                     return (
-                      <div>
-                        <h6>{cache[key]}</h6>
-                        {Object.keys(element[key])
-                          .sort((a, b) => a.localeCompare(b))
-                          .filter(site => {
-                            if (FilterOptions.KEEP === decisionFilter) {
-                              return element[key][site].decision === false;
-                            }
-                            if (FilterOptions.CLEAN === decisionFilter) {
-                              return element[key][site].decision === true;
-                            }
-                            return true;
-                          })
-                          .map(keyDomain => (
-                            <div
-                              style={{
-                                marginLeft: '10px',
-                              }}
-                              className={`alert alert-${
-                                element[key][keyDomain].decision
-                                  ? 'danger'
-                                  : 'success'
-                              }`}
-                              key={`${element.dateTime}${key}${keyDomain}`}
-                              role="alert"
-                            >
-                              {`${keyDomain}: ${
-                                element[key][keyDomain].reason
-                              }`}
-                            </div>
-                          ))}
+                      <div key={'TODO'}>
+                        <h6>{storeId}</h6>
+                        {createDetailedSummary(cleanReasonObjects)}
                       </div>
                     );
-                  }
-                  return '';
-                })}
+                  },
+                )}
               </div>
             </div>
           </div>

@@ -37,7 +37,7 @@ class ActivityLog extends React.Component<ActivityLogProps> {
   }
   public render() {
     const { style, onResetCounterButtonClick } = this.props;
-    const { decisionFilter } = this.state;
+    // const { decisionFilter } = this.state;
     return (
       <div style={style}>
         <h1>{browser.i18n.getMessage('cleanupLogText')}</h1>
@@ -53,7 +53,7 @@ class ActivityLog extends React.Component<ActivityLogProps> {
               marginTop: '5px',
             }}
           >
-            <span>{`${browser.i18n.getMessage('filterText')}: `}</span>
+            {/* <span>{`${browser.i18n.getMessage('filterText')}: `}</span>
             <div className="form-check form-check-inline">
               <input
                 className="form-check-input"
@@ -95,7 +95,7 @@ class ActivityLog extends React.Component<ActivityLogProps> {
               <label className="form-check-label" htmlFor="filterRadios3">
                 {browser.i18n.getMessage('keepText')}
               </label>
-            </div>
+            </div> */}
           </div>
           <button
             onClick={() => onResetCounterButtonClick()}

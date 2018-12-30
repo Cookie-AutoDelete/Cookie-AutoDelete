@@ -13,8 +13,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeExpressionUI, updateExpressionUI } from '../../redux/Actions';
-import { globExpressionToRegExp } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
+import ExpressionOptions from './ExpressionOptions';
 import IconButton from './IconButton';
 
 class EmptyState {
@@ -110,13 +110,11 @@ class ExpressionTable extends React.Component<
           <tr>
             <th />
             <th>{expressionColumnTitle}</th>
-            {window.innerWidth > 768 ? (
-              <th>
-                {browser.i18n.getMessage('regularExpressionEquivalentText')}
-              </th>
-            ) : (
-              ''
-            )}
+            <th>
+              {/* {browser.i18n.getMessage('regularExpressionEquivalentText')} */}
+              {'Options'}
+            </th>
+
             <th>{browser.i18n.getMessage('listTypeText')}</th>
           </tr>
         </thead>
@@ -209,21 +207,15 @@ class ExpressionTable extends React.Component<
                   />
                 </td>
               )}
-              {window.innerWidth > 768 ? (
-                <td>
-                  <div
-                    style={{
-                      verticalAlign: 'middle',
-                    }}
-                  >
-                    {editMode && id === expression.id
-                      ? globExpressionToRegExp(expressionInput)
-                      : globExpressionToRegExp(expression.expression)}
-                  </div>
-                </td>
-              ) : (
-                ''
-              )}
+              <td>
+                <div
+                  style={{
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  <ExpressionOptions expression={expression} />
+                </div>
+              </td>
               <td>
                 <div
                   style={{
