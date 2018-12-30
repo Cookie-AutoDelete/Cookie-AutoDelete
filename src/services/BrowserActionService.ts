@@ -27,6 +27,10 @@ export const showNumberOfCookiesInIcon = (
       tabId: tab.id,
       text: cookieLength.toString(),
     });
+    browser.browserAction.setBadgeTextColor({
+      color: 'white',
+      tabId: tab.id,
+    });
   }
 };
 
