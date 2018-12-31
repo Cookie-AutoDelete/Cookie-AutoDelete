@@ -2,20 +2,18 @@
   "background": {
     "scripts": [
       "global_files/browserDetect.js",
-    	"global_files/browser-polyfill.js",
-    	"global_files/redux.js",
-    	"global_files/redux-thunk.js",
-    	"global_files/redux-webext.js",
-    	"global_files/shortid.js",
-    	"backgroundBundle.js"
-	]
+      "global_files/browser-polyfill.js",
+      "global_files/redux-webext.js",
+      "bundles/commons.bundle.js",
+      "bundles/background.bundle.js"
+    ]
   },
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
   "author": "Kenny Do",
   "default_locale": "en",
   "browser_action": {
-  "browser_style": true,
+    "browser_style": true,
     "default_icon": {
       "48": "icons/icon_48.png"
     },
@@ -26,7 +24,6 @@
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
-
   "applications": {
     "gecko": {
       "id": "CookieAutoDelete@kennydo.com",
@@ -34,8 +31,8 @@
     }
   },
   "options_ui": {
-  	"page": "settings/settings.html",
-  	"open_in_tab" : true
+    "page": "settings/settings.html",
+    "open_in_tab": true
   },
   "permissions": [
     "activeTab",

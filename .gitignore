@@ -39,3 +39,4 @@ jspm_packages
 *.xpi
 report.html
 *Bundle.js
+*bundle.js
