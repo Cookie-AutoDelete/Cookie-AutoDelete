@@ -9,7 +9,7 @@
     ]
   },
   "description": "__MSG_extensionDescription__",
-  "homepage_url": "https://github.com/mrdokenny/Cookie-AutoDelete",
+  "homepage_url": "https://github.com/Cookie-AutoDelete/Cookie-AutoDelete",
   "author": "Kenny Do",
   "default_locale": "en",
   "browser_action": {
@@ -27,7 +27,7 @@
   "applications": {
     "gecko": {
       "id": "CookieAutoDelete@kennydo.com",
-      "strict_min_version": "56.0"
+      "strict_min_version": "59.0"
     }
   },
   "options_ui": {
@@ -48,5 +48,5 @@
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "2.2.0"
+  "version": "3.0.0"
 }

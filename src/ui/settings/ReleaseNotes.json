@@ -1,5 +1,14 @@
 {
-  "releases":[
+  "releases": [
+    {
+      "version": "3.0.0",
+      "notes": [
+        "Added: Ability to keep individual cookies or localstorage per expression",
+        "Changed: Reduced final build size by over 65%",
+        "Changed: Prevent startup cleanup on an extension update",
+        "Fixed: Black font on badge text"
+      ]
+    },
     {
       "version": "2.2.0",
       "notes": [
