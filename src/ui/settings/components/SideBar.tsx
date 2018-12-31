@@ -9,8 +9,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
-
 const styles = {
   hamburger: {
     color: 'white',
@@ -90,11 +90,7 @@ class SideBar extends React.Component<OwnProps> {
           id="menuLink"
           className="menu-link"
         >
-          <i
-            style={styles.hamburger}
-            className="fa fa-bars fa-3x"
-            aria-hidden="true"
-          />
+          <FontAwesomeIcon size={'3x'} style={styles.hamburger} icon="bars" />
         </span>
 
         <div id="menu">

@@ -13,7 +13,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createUIStore } from 'redux-webext';
+import fontAwesomeImports from '../font-awesome-imports';
 import App from './App';
+
+fontAwesomeImports();
 
 async function initApp() {
   const store = await createUIStore();

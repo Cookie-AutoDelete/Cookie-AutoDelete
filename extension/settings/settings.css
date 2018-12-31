@@ -2,6 +2,11 @@ button:hover {
   cursor: pointer;
 }
 
+label:hover {
+  background-color: #d3d3d3;
+  cursor: pointer;
+}
+
 input {
   margin-top: 5px;
   margin-bottom: 2px;
@@ -32,7 +37,7 @@ td {
 }
 
 .removeIcon {
-  margin-left: .5em;
+  margin-left: 0.5em;
   margin-right: 1em;
 }
 
@@ -55,7 +60,7 @@ td {
   font-weight: bold;
 }
 
-input[type="number"] {
+input[type='number'] {
   width: 5em;
 }
 
@@ -87,7 +92,7 @@ input[type="number"] {
   border-radius: 4px;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 

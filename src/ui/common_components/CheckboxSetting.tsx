@@ -9,6 +9,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 interface OwnProps {
   inline?: boolean;
@@ -17,6 +18,13 @@ interface OwnProps {
   text: string;
   updateSetting: (payload: Setting) => void;
 }
+
+const styles = {
+  checkbox: {
+    marginRight: '5px',
+  } as React.CSSProperties,
+};
+
 const CheckboxSetting: React.FunctionComponent<OwnProps> = ({
   inline,
   bsStyle,
@@ -32,22 +40,31 @@ const CheckboxSetting: React.FunctionComponent<OwnProps> = ({
     : {};
   return (
     <span style={inlineElement} className={'checkbox'}>
-      <input
-        className={'form-check-input addHover'}
-        checked={value as boolean}
-        onChange={e =>
+      <span
+        className={'addHover'}
+        onClick={() =>
           updateSetting({
             id,
             name,
-            value: e.target.checked,
+            value: !value,
           })
         }
-        id={id.toString()}
-        type="checkbox"
-      />
-      <label className={'form-check-label addHover'} htmlFor={id.toString()}>
-        {text}
-      </label>
+      >
+        {value ? (
+          <FontAwesomeIcon
+            style={styles.checkbox}
+            size={'lg'}
+            icon={['far', 'check-square']}
+          />
+        ) : (
+          <FontAwesomeIcon
+            style={styles.checkbox}
+            size={'lg'}
+            icon={['far', 'square']}
+          />
+        )}
+        <label>{text}</label>
+      </span>
     </span>
   );
 };

@@ -9,10 +9,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
 interface IconButtonProps {
-  iconName?: string;
+  iconName: IconProp;
   className: string;
   styleReact?: React.CSSProperties;
   text?: string;
@@ -50,9 +52,7 @@ export default class IconButton extends React.Component<IconButtonProps> {
           ...styleReact,
         }}
       >
-        <i
-          className={`fa fa-${iconName}`}
-          aria-hidden="true"
+        <FontAwesomeIcon
           style={
             text
               ? {
@@ -60,6 +60,7 @@ export default class IconButton extends React.Component<IconButtonProps> {
                 }
               : undefined
           }
+          icon={iconName}
         />
         {text}
         {tag === 'input' ? (

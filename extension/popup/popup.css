@@ -1,5 +1,5 @@
-label {
-  padding: 2px 15px;
+.addHover:hover {
+  cursor: pointer;
 }
 
 label:hover {
@@ -14,16 +14,18 @@ span.userAction {
 }
 
 @keyframes successAnimation {
-  0%   {}
-  10%  {
-    background-color: #4caF50;
-    border-color: #4caF50;
+  0% {
   }
-  50%  {
-    background-color: #4caF50;
-    border-color: #4caF50;
+  10% {
+    background-color: #4caf50;
+    border-color: #4caf50;
   }
-  100% {}
+  50% {
+    background-color: #4caf50;
+    border-color: #4caf50;
+  }
+  100% {
+  }
 }
 
 .successAnimated button {
@@ -31,16 +33,18 @@ span.userAction {
 }
 
 @keyframes failureAnimation {
-  0%   {}
-  10%  {
+  0% {
+  }
+  10% {
     background-color: #f44336;
     border-color: #f44336;
   }
-  50%  {
+  50% {
     background-color: #f44336;
     border-color: #f44336;
   }
-  100% {}
+  100% {
+  }
 }
 
 .failureAnimated button {

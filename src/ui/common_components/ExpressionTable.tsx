@@ -129,7 +129,7 @@ class ExpressionTable extends React.Component<
                 <IconButton
                   title={browser.i18n.getMessage('removeExpressionText')}
                   className="btn-light"
-                  iconName="trash-o"
+                  iconName="trash"
                   onClick={() => {
                     onRemoveExpression(expression);
                   }}
@@ -173,7 +173,7 @@ class ExpressionTable extends React.Component<
                   <IconButton
                     title={browser.i18n.getMessage('saveExpressionText')}
                     className="btn-light"
-                    iconName="floppy-o"
+                    iconName="save"
                     styleReact={{
                       float: 'right',
                       marginLeft: '5px',
@@ -195,7 +195,7 @@ class ExpressionTable extends React.Component<
                   </div>
                   <IconButton
                     title={browser.i18n.getMessage('editExpressionText')}
-                    iconName="pencil"
+                    iconName="pen"
                     className="btn-light showOnRowHover"
                     styleReact={{
                       float: 'right',
@@ -235,7 +235,7 @@ class ExpressionTable extends React.Component<
                       ? browser.i18n.getMessage('toggleToGreyListWordText')
                       : browser.i18n.getMessage('toggleToWhiteListWordText')
                   }`}
-                  iconName="exchange"
+                  iconName="exchange-alt"
                   className="btn-light showOnRowHover"
                   styleReact={{
                     float: 'right',

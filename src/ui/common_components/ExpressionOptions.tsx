@@ -9,6 +9,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -30,6 +31,12 @@ class InitialState {
 }
 
 type ExpressionOptionsProps = OwnProps & DispatchProps & StateProps;
+
+const styles = {
+  checkbox: {
+    marginRight: '5px',
+  } as React.CSSProperties,
+};
 
 const trimDotAndStar = (str: string) => str.replace(/^[\.\*]+|[\.\*]+$/g, '');
 
@@ -86,13 +93,10 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       const key = `${checked}-${expression.id}-${cookie.name}`;
       return (
         <div style={{ marginLeft: '20px' }} key={key} className={'checkbox'}>
-          <input
-            className={'form-check-input addHover'}
-            checked={checked}
-            type="checkbox"
-            id={key}
-            onChange={e => {
-              if (e.target.checked) {
+          <span
+            className={'addHover'}
+            onClick={() => {
+              if (!checked) {
                 onUpdateExpression({
                   ...expression,
                   cookieNames: [...cookieNames, cookie.name],
@@ -104,10 +108,22 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                 });
               }
             }}
-          />
-          <label className={'form-check-label addHover'} htmlFor={key}>
-            {cookie.name}
-          </label>
+          >
+            {checked ? (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'check-square']}
+              />
+            ) : (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'square']}
+              />
+            )}
+            <label>{cookie.name}</label>
+          </span>
         </div>
       );
     });
@@ -137,43 +153,60 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const { expression } = this.props;
 
     const dropList = coerceBoolean(expression.cleanAllCookies);
-    const cleanLocalstorageKey = `${expression.id}-localstorage`;
-    const keepAllCookiesKey = `${expression.id}-droplist`;
     return (
       <div>
         <div className={'checkbox'}>
-          <input
-            className={'form-check-input addHover'}
-            checked={!expression.cleanLocalStorage}
-            type="checkbox"
-            onChange={e => this.toggleCleanLocalstorage(!e.target.checked)}
-            id={cleanLocalstorageKey}
-          />
-          <label
-            className={'form-check-label addHover'}
-            htmlFor={cleanLocalstorageKey}
+          <span
+            className={'addHover'}
+            onClick={() =>
+              this.toggleCleanLocalstorage(!expression.cleanLocalStorage)
+            }
           >
-            {'Keep Localstorage'}
-          </label>
+            {!expression.cleanLocalStorage ? (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'check-square']}
+              />
+            ) : (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'square']}
+              />
+            )}
+            <label>{'Keep Localstorage'}</label>
+          </span>
         </div>
         {}
         <div className={'checkbox'}>
-          <input
-            className={'form-check-input addHover'}
-            checked={
-              expression.cleanAllCookies === undefined ||
-              expression.cleanAllCookies
+          <span
+            className={'addHover'}
+            onClick={() =>
+              this.toggleCleanAllCookies(
+                !(
+                  expression.cleanAllCookies === undefined ||
+                  expression.cleanAllCookies
+                ),
+              )
             }
-            type="checkbox"
-            onChange={e => this.toggleCleanAllCookies(e.target.checked)}
-            id={keepAllCookiesKey}
-          />
-          <label
-            className={'form-check-label addHover'}
-            htmlFor={keepAllCookiesKey}
           >
-            {'Keep all cookies'}
-          </label>
+            {expression.cleanAllCookies === undefined ||
+            expression.cleanAllCookies ? (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'check-square']}
+              />
+            ) : (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'square']}
+              />
+            )}
+            <label>{'Keep all cookies'}</label>
+          </span>
         </div>
         {dropList && this.createCookieList(cookies, expression)}
       </div>
