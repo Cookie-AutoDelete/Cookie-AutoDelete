@@ -4,7 +4,7 @@
       "global_files/browserDetect.js",
       "global_files/browser-polyfill.js",
       "global_files/redux-webext.js",
-      "bundles/commons.bundle.js",
+      "bundles/common-background-popup-setting.bundle.js",
       "bundles/background.bundle.js"
     ]
   },

@@ -55,11 +55,20 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
+      automaticNameDelimiter: '-',
       cacheGroups: {
-        commons: {
-          name: 'commons',
+        ui: {
+          test: /[\\/]node_modules[\\/](react|react-dom|@fortawesome)[\\/]|[\\/]src[\\/]ui[\\/]/,
+          priority: -10,
+        },
+        common: {
           chunks: 'initial',
+          priority: -15,
+        },
+        default: {
           minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
         },
       },
     },
