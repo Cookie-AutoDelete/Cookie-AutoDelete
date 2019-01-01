@@ -159,29 +159,31 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
       <div>
-        <div className={'checkbox'}>
-          <span
-            className={'addHover'}
-            onClick={() =>
-              this.toggleCleanLocalstorage(!expression.cleanLocalStorage)
-            }
-          >
-            {!expression.cleanLocalStorage ? (
-              <FontAwesomeIcon
-                style={styles.checkbox}
-                size={'lg'}
-                icon={['far', 'check-square']}
-              />
-            ) : (
-              <FontAwesomeIcon
-                style={styles.checkbox}
-                size={'lg'}
-                icon={['far', 'square']}
-              />
-            )}
-            <label>{'Keep Localstorage'}</label>
-          </span>
-        </div>
+        {this.props.state.cache.browserDetect === 'Firefox' && (
+          <div className={'checkbox'}>
+            <span
+              className={'addHover'}
+              onClick={() =>
+                this.toggleCleanLocalstorage(!expression.cleanLocalStorage)
+              }
+            >
+              {!expression.cleanLocalStorage ? (
+                <FontAwesomeIcon
+                  style={styles.checkbox}
+                  size={'lg'}
+                  icon={['far', 'check-square']}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  style={styles.checkbox}
+                  size={'lg'}
+                  icon={['far', 'square']}
+                />
+              )}
+              <label>{'Keep Localstorage'}</label>
+            </span>
+          </div>
+        )}
         {}
         <div className={'checkbox'}>
           <span
