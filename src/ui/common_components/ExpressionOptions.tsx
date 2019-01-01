@@ -38,7 +38,11 @@ const styles = {
   } as React.CSSProperties,
 };
 
-const trimDotAndStar = (str: string) => str.replace(/^[\.\*]+|[\.\*]+$/g, '');
+const trimDotAndStar = (str: string) => {
+  const trimmed = str.replace(/^[\.\*]+|[\.\*]+$/g, '');
+  if (trimmed === '') return undefined;
+  return trimmed;
+};
 
 /**
  * cleanAllCookies => droplist
