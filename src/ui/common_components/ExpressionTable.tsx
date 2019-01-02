@@ -120,7 +120,7 @@ class ExpressionTable extends React.Component<
         </thead>
         <tbody className="expressionTable">
           {expressions.map(expression => (
-            <tr key={expression.id}>
+            <tr key={`${expression.expression}-${expression.listType}`}>
               <td
                 style={{
                   textAlign: 'center',

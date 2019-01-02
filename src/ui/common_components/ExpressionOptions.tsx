@@ -90,11 +90,14 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     expression: Expression,
   ) {
     const { onUpdateExpression } = this.props;
-    const cookieNames = expression.cookieNames || [];
-    return cookies.map(cookie => {
-      const checked =
-        expression.cookieNames && expression.cookieNames.includes(cookie.name);
-      const key = `${checked}-${expression.id}-${cookie.name}`;
+    const originalCookieNames = expression.cookieNames || [];
+    const cookieNamesSet = new Set(originalCookieNames);
+    const cookieNames = Array.from(
+      new Set([...(expression.cookieNames || []), ...cookies.map(a => a.name)]),
+    ).sort((a, b) => a.localeCompare(b));
+    return cookieNames.map(name => {
+      const checked = cookieNamesSet.has(name);
+      const key = `${checked}-${expression.id}-${name}`;
       return (
         <div style={{ marginLeft: '20px' }} key={key} className={'checkbox'}>
           <span
@@ -103,12 +106,14 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               if (!checked) {
                 onUpdateExpression({
                   ...expression,
-                  cookieNames: [...cookieNames, cookie.name],
+                  cookieNames: [...originalCookieNames, name],
                 });
               } else {
                 onUpdateExpression({
                   ...expression,
-                  cookieNames: cookieNames.filter(name => name !== cookie.name),
+                  cookieNames: originalCookieNames.filter(
+                    cookieName => cookieName !== name,
+                  ),
                 });
               }
             }}
@@ -126,7 +131,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                 icon={['far', 'square']}
               />
             )}
-            <label>{cookie.name}</label>
+            <label>{name}</label>
           </span>
         </div>
       );
@@ -214,7 +219,11 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
             <label>{'Keep all cookies'}</label>
           </span>
         </div>
-        {dropList && this.createCookieList(cookies, expression)}
+        {dropList && (
+          <div style={{ height: '150px', overflow: 'auto' }}>
+            {this.createCookieList(cookies, expression)}
+          </div>
+        )}
       </div>
     );
   }
