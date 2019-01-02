@@ -233,13 +233,19 @@ export const cleanCookiesOperation = async (
       obj => obj.cleanCookie,
     );
     cleanCookies(state, markedForDeletion);
-    const markedForLocalStorageDeletion = markedForDeletion.filter(obj => {
-      const notInAnyLists = obj.reason === ReasonClean.NoMatchedExpression;
-      const listCleanLocalstorage =
-        obj.expression && !obj.expression.cleanLocalStorage;
-      return notInAnyLists || listCleanLocalstorage;
-    });
 
+    const cleanLocalstorage = (bool?: boolean) => {
+      if (bool === undefined) return false;
+      return bool;
+    };
+    const markedForLocalStorageDeletion = isSafeToCleanObjects.filter(obj => {
+      const notProtectedByOpenTab = obj.reason !== ReasonKeep.OpenTabs;
+      const notInAnyLists = obj.reason === ReasonClean.NoMatchedExpression;
+      const listCleanLocalstorage = cleanLocalstorage(
+        obj.expression ? obj.expression.cleanLocalStorage : undefined,
+      );
+      return notInAnyLists || (notProtectedByOpenTab && listCleanLocalstorage);
+    });
     otherBrowsingDataCleanup(
       state,
       markedForLocalStorageDeletion.map(obj => obj.cookie.hostname),
