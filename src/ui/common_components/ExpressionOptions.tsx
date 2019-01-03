@@ -185,7 +185,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                   icon={['far', 'square']}
                 />
               )}
-              <label>{'Keep Localstorage'}</label>
+              <label>{browser.i18n.getMessage('keepLocalstorageText')}</label>
             </span>
           </div>
         )}
@@ -216,7 +216,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                 icon={['far', 'square']}
               />
             )}
-            <label>{'Keep all cookies'}</label>
+            <label>{browser.i18n.getMessage('keepAllCookiesText')}</label>
           </span>
         </div>
         {dropList && (

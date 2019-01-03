@@ -244,6 +244,16 @@
     "description": "Enable Cleanup Log and Counter"
   },
 
+  "keepLocalstorageText": {
+    "message": "Keep Localstorage",
+    "description": "Keep Localstorage"
+  },
+
+  "keepAllCookiesText": {
+    "message": "Keep All Cookies",
+    "description": "Keep All Cookies"
+  },
+
   "clearLogsText": {
     "message": "Clear Logs",
     "description": "Clear Logs"
