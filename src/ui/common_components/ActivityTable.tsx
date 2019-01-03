@@ -180,12 +180,13 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
         marginBottom: '10px',
       }}
     >
-      {filtered.map((element, index) => {
-        const summary = createSummary(element);
+      {filtered.map((log, index) => {
+        const summary = createSummary(log);
         const message = browser.i18n.getMessage('notificationContent', [
-          element.recentlyCleaned.toString(),
+          log.recentlyCleaned.toString(),
           summary !== '' ? summary : '(Private)',
         ]);
+        const storeIdEntries = Object.entries(log.storeIds);
         return (
           <div key={index} className="card">
             <div
@@ -197,7 +198,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
                 iconName={'undo'}
                 className={'btn-primary'}
                 title={browser.i18n.getMessage('restoreText')}
-                onClick={() => restoreCookies(state, element, onRemoveActvity)}
+                onClick={() => restoreCookies(state, log, onRemoveActvity)}
               />
               <h5
                 className="mb-0"
@@ -213,9 +214,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
                   aria-expanded="false"
                   aria-controls={`collapse${index}`}
                 >
-                  {`${new Date(
-                    element.dateTime,
-                  ).toLocaleString()} - ${message}`}
+                  {`${new Date(log.dateTime).toLocaleString()} - ${message}`}
                 </button>
               </h5>
             </div>
@@ -226,16 +225,14 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
               data-parent="#accordion"
             >
               <div className="card-body">
-                {Object.entries(element.storeIds).map(
-                  ([storeId, cleanReasonObjects]) => {
-                    return (
-                      <div key={'TODO'}>
-                        <h6>{storeId}</h6>
-                        {createDetailedSummary(cleanReasonObjects)}
-                      </div>
-                    );
-                  },
-                )}
+                {storeIdEntries.map(([storeId, cleanReasonObjects]) => {
+                  return (
+                    <div key={`${storeId}-${log.dateTime}`}>
+                      {storeIdEntries.length > 1 && <h6>{storeId}</h6>}
+                      {createDetailedSummary(cleanReasonObjects)}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
