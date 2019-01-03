@@ -199,6 +199,21 @@
     }
   },
 
+  "reasonCleanCookieName": {
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+
   "reasonTabsWereNotIgnored": {
     "message": "or in any open tabs",
     "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"

@@ -78,6 +78,7 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
       ]);
     }
 
+    case ReasonClean.MatchedExpressionButNoCookieName:
     case ReasonKeep.MatchedExpression: {
       return browser.i18n.getMessage(reason, [
         matchedExpression ? matchedExpression.expression : '',
@@ -86,6 +87,7 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
           : browser.i18n.getMessage('whiteListWordText'),
       ]);
     }
+
     default:
       return '';
   }
