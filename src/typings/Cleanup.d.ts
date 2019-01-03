@@ -36,6 +36,7 @@ declare const enum OpenTabStatus {
 }
 
 interface CleanReasonObject {
+  cached: boolean;
   cleanCookie: boolean;
   reason: ReasonKeep | ReasonClean;
   openTabStatus: OpenTabStatus;

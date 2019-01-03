@@ -52,6 +52,7 @@ export const isSafeToClean = (
   // Tests if the main domain is open
   if (openTabDomains.has(mainDomain)) {
     return {
+      cached: false,
       cleanCookie: false,
       cookie: cookieProperties,
       openTabStatus,
@@ -69,6 +70,7 @@ export const isSafeToClean = (
   // Startup cleanup checks
   if (greyCleanup && !matchedExpression) {
     return {
+      cached: false,
       cleanCookie: true,
       cookie: cookieProperties,
       openTabStatus,
@@ -86,6 +88,7 @@ export const isSafeToClean = (
         !matchedExpression.cookieNames.includes(cookieProperties.name)))
   ) {
     return {
+      cached: false,
       cleanCookie: true,
       cookie: cookieProperties,
       expression: matchedExpression,
@@ -97,6 +100,7 @@ export const isSafeToClean = (
   // Normal cleanup checks
   if (!matchedExpression) {
     return {
+      cached: false,
       cleanCookie: true,
       cookie: cookieProperties,
       openTabStatus,
@@ -110,6 +114,7 @@ export const isSafeToClean = (
     !matchedExpression.cookieNames.includes(cookieProperties.name)
   ) {
     return {
+      cached: false,
       cleanCookie: true,
       cookie: cookieProperties,
       expression: matchedExpression,
@@ -118,6 +123,7 @@ export const isSafeToClean = (
     };
   }
   return {
+    cached: false,
     cleanCookie: false,
     cookie: cookieProperties,
     expression: matchedExpression,
