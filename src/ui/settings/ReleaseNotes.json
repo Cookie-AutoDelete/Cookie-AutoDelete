@@ -4,6 +4,8 @@
       "version": "3.0.0",
       "notes": [
         "Added: Ability to keep individual cookies or localstorage per expression",
+        "Added: Ability to restore cookies after a cleanup",
+        "Added: Better indication of a failed cleanup in the form of a notification",
         "Changed: Reduced final build size by over 65%",
         "Changed: Prevent startup cleanup on an extension update",
         "Fixed: Black font on badge text"
