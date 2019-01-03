@@ -198,7 +198,11 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           />
 
           <IconButton
-            iconName="bell"
+            iconName={
+              settings.showNotificationAfterCleanup.value
+                ? 'bell'
+                : 'bell-slash'
+            }
             className={
               settings.showNotificationAfterCleanup.value
                 ? 'btn-success'

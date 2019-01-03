@@ -15,6 +15,7 @@ import { Dispatch } from 'redux';
 import { resetSettings, updateSetting } from '../../../redux/Actions';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import CheckboxSetting from '../../common_components/CheckboxSetting';
+import IconButton from '../../common_components/IconButton';
 import SettingsTooltip from './SettingsTooltip';
 
 const styles = {
@@ -234,12 +235,12 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
       <br />
       <div className="row">
         <div className="col-md-12">
-          <button
-            className="btn btn-danger"
+          <IconButton
+            className="btn-danger"
             onClick={() => onResetButtonClick()}
-          >
-            <span>{browser.i18n.getMessage('defaultSettingsText')}</span>
-          </button>
+            iconName="undo"
+            text={browser.i18n.getMessage('defaultSettingsText')}
+          />
         </div>
       </div>
     </div>

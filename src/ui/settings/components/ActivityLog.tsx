@@ -16,6 +16,7 @@ import { resetCookieDeletedCounter } from '../../../redux/Actions';
 import { FilterOptions } from '../../../typings/Enums';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ActivityTable from '../../common_components/ActivityTable';
+import IconButton from '../../common_components/IconButton';
 
 interface OwnProps {
   style?: React.CSSProperties;
@@ -97,13 +98,12 @@ class ActivityLog extends React.Component<ActivityLogProps> {
               </label>
             </div> */}
           </div>
-          <button
+          <IconButton
+            iconName="trash"
+            text={browser.i18n.getMessage('clearLogsText')}
             onClick={() => onResetCounterButtonClick()}
-            className="btn btn-warning"
-            id="resetCounter"
-          >
-            <span>{browser.i18n.getMessage('clearLogsText')}</span>
-          </button>
+            className="btn-warning"
+          />
         </div>
         <ActivityTable decisionFilter={this.state.decisionFilter} />
       </div>
