@@ -21,6 +21,7 @@ import {
   INCREMENT_COOKIE_DELETED_COUNTER,
   ReduxAction,
   ReduxConstants,
+  REMOVE_ACTIVITY_LOG,
   REMOVE_EXPRESSION,
   RESET_COOKIE_DELETED_COUNTER,
   RESET_SETTINGS,
@@ -93,6 +94,11 @@ export const updateExpression = (payload: Expression) => (
 export const addActivity = (payload: ActivityLog): ADD_ACTIVITY_LOG => ({
   payload,
   type: ReduxConstants.ADD_ACTIVITY_LOG,
+});
+
+export const removeActivity = (payload: ActivityLog): REMOVE_ACTIVITY_LOG => ({
+  payload,
+  type: ReduxConstants.REMOVE_ACTIVITY_LOG,
 });
 
 export const incrementCookieDeletedCounter = (

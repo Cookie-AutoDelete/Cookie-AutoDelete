@@ -18,13 +18,13 @@
     "message": "$Num$ Deleted Cookies from: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
-      "num" : {
-        "content" : "$1",
-        "example" : "123"
+      "num": {
+        "content": "$1",
+        "example": "123"
       },
-      "websites" : {
-        "content" : "$2",
-        "example" : "google.com, facebook.com"
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
       }
     }
   },
@@ -68,7 +68,7 @@
     "message": "Clear $siteData$ for this domain",
     "description": "Clear cookies for this domain",
     "placeholders": {
-      "siteData" : {
+      "siteData": {
         "content": "$1",
         "example": "cookies"
       }
@@ -79,11 +79,11 @@
     "message": "Clear all $siteData$ for $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
-      "siteData" : {
+      "siteData": {
         "content": "$1",
         "example": "cookies"
       },
-      "domain" : {
+      "domain": {
         "content": "$2",
         "example": "example.com"
       }
@@ -129,13 +129,13 @@
     "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted" : {
-        "content" : "$1",
-        "example" : "123"
+      "sessionDeleted": {
+        "content": "$1",
+        "example": "123"
       },
-      "totalDeleted" : {
-        "content" : "$2",
-        "example" : "456"
+      "totalDeleted": {
+        "content": "$2",
+        "example": "456"
       }
     }
   },
@@ -249,6 +249,16 @@
     "description": "Clear Logs"
   },
 
+  "restoreFailedText": {
+    "message": "Restore Failed",
+    "description": "Restore Failed"
+  },
+
+  "restoreText": {
+    "message": "Restore",
+    "description": "Ex: Restore Cleanup"
+  },
+
   "showNumberOfCookiesInIconText": {
     "message": "Show Number of Cookies for that Domain",
     "description": "Show Number of Cookies for that Domain"
@@ -338,9 +348,9 @@
     "message": "$browser$ version",
     "description": "Firefox version",
     "placeholders": {
-      "browser" : {
-        "content" : "$1",
-        "example" : "Firefox"
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
       }
     }
   },
@@ -416,12 +426,12 @@
   },
 
   "autoDeleteEnabledText": {
-    "message" : "Auto-clean enabled",
+    "message": "Auto-clean enabled",
     "description": "Auto-clean enabled"
   },
 
   "autoDeleteDisabledText": {
-    "message" : "Auto-clean disabled",
+    "message": "Auto-clean disabled",
     "description": "Auto-clean disabled"
   },
 
@@ -436,12 +446,12 @@
   },
 
   "notificationEnabledText": {
-    "message" : "Notification enabled",
+    "message": "Notification enabled",
     "description": "Notification enabled"
   },
 
   "notificationDisabledText": {
-    "message" : "Notification disabled",
+    "message": "Notification disabled",
     "description": "Notification disabled"
   },
 

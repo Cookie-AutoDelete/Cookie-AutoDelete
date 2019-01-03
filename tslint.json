@@ -19,6 +19,7 @@
       "check-format",
       "allow-pascal-case"
     ],
+    "no-console": [true, "log"],
     // Immutable
     "no-var-keyword": true,
     "no-parameter-reassignment": true,

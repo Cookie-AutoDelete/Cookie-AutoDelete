@@ -181,8 +181,8 @@ export const returnMatchedExpressionObject = (
  * Return optional attributes for the Cookie API calls
  */
 export const returnOptionalCookieAPIAttributes = (
-  state: State,
-  cookieAPIAttributes: browser.cookies.OptionalCookieProperties & {
+  state: State | CacheMap,
+  cookieAPIAttributes: Partial<CookiePropertiesCleanup> & {
     [x: string]: any;
   },
 ) => {

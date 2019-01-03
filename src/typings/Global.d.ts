@@ -8,7 +8,9 @@ type StoreIdToExpressionList = Readonly<{
 
 type MapToSettingObject = Readonly<{ [setting: string]: Setting }>;
 
-type CacheMap = Readonly<{ [key: string]: any }>;
+type CacheMap = Readonly<
+  { [browserDetect: string]: string } & { [key: string]: any }
+>;
 
 type GetState = () => State;
 

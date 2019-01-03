@@ -10,6 +10,7 @@ export const enum ReduxConstants {
   UPDATE_SETTING = 'UPDATE_SETTING',
   RESET_SETTINGS = 'RESET_SETTINGS',
   ADD_ACTIVITY_LOG = 'ADD_ACTIVITY_LOG',
+  REMOVE_ACTIVITY_LOG = 'REMOVE_ACTIVITY_LOG',
 }
 
 export type ReduxAction =
@@ -23,7 +24,8 @@ export type ReduxAction =
   | RESET_COOKIE_DELETED_COUNTER
   | UPDATE_SETTING
   | RESET_SETTINGS
-  | ADD_ACTIVITY_LOG;
+  | ADD_ACTIVITY_LOG
+  | REMOVE_ACTIVITY_LOG;
 
 export type ADD_EXPRESSION = Readonly<{
   type: ReduxConstants.ADD_EXPRESSION;
@@ -64,5 +66,9 @@ export type RESET_SETTINGS = Readonly<{
 }>;
 export type ADD_ACTIVITY_LOG = Readonly<{
   type: ReduxConstants.ADD_ACTIVITY_LOG;
+  payload: ActivityLog;
+}>;
+export type REMOVE_ACTIVITY_LOG = Readonly<{
+  type: ReduxConstants.REMOVE_ACTIVITY_LOG;
   payload: ActivityLog;
 }>;

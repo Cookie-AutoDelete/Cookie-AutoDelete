@@ -15,6 +15,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons/faPowerOff';
 import { faSave } from '@fortawesome/free-solid-svg-icons/faSave';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
+import { faUndo } from '@fortawesome/free-solid-svg-icons/faUndo';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 
 export default () => {
@@ -33,6 +34,7 @@ export default () => {
     faPowerOff,
     faSave,
     faTrash,
+    faUndo,
     faUpload,
   );
 };

@@ -13,9 +13,11 @@ import { applyMiddleware, createStore } from 'redux';
 // tslint:disable-next-line:import-name
 import thunk from 'redux-thunk';
 import { createBackgroundStore } from 'redux-webext';
+import { ReduxConstants } from '../typings/ReduxConstants';
 import {
   addExpression,
   cookieCleanup,
+  removeActivity,
   removeExpression,
   resetCookieDeletedCounter,
   resetSettings,
@@ -37,9 +39,10 @@ const consoleMessages = (store: any) => (next: any) => (action: any) => {
   return result;
 };
 
-const actions = {
+const actions: { [key in ReduxConstants]?: any } = {
   ADD_EXPRESSION: addExpression,
   COOKIE_CLEANUP: cookieCleanup,
+  REMOVE_ACTIVITY_LOG: removeActivity,
   REMOVE_EXPRESSION: removeExpression,
   RESET_COOKIE_DELETED_COUNTER: resetCookieDeletedCounter,
   RESET_SETTINGS: resetSettings,

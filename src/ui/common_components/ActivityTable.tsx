@@ -11,7 +11,12 @@
  */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { removeActivity } from '../../redux/Actions';
+import { returnOptionalCookieAPIAttributes } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
+import { ReduxAction } from '../../typings/ReduxConstants';
+import IconButton from './IconButton';
 
 const createSummary = (cleanupObj: ActivityLog) => {
   const domainSet = new Set<string>();
@@ -83,9 +88,15 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
   }
 };
 
+type ActivityAction = (log: ActivityLog) => void;
 interface StateProps {
   activityLog: ReadonlyArray<ActivityLog>;
   cache: CacheMap;
+  state: State;
+}
+
+interface DispatchProps {
+  onRemoveActvity: ActivityAction;
 }
 
 interface OwnProps {
@@ -93,10 +104,68 @@ interface OwnProps {
   numberToShow?: number;
 }
 
-type ActivityTableProps = OwnProps & StateProps;
+type ActivityTableProps = OwnProps & StateProps & DispatchProps;
+
+const restoreCookies = async (
+  state: State,
+  log: ActivityLog,
+  onRemoveActvity: ActivityAction,
+) => {
+  const cleanReasonObjsArrays = Object.values(log.storeIds);
+  const promiseArr = [];
+  for (const cleanReasonObjs of cleanReasonObjsArrays) {
+    for (const obj of cleanReasonObjs) {
+      const {
+        domain,
+        expirationDate,
+        firstPartyDomain,
+        httpOnly,
+        name,
+        path,
+        sameSite,
+        secure,
+        storeId,
+        value,
+      } = obj.cookie;
+      const cookieProperties = {
+        ...returnOptionalCookieAPIAttributes(state, {
+          firstPartyDomain,
+        }),
+        domain,
+        expirationDate,
+        httpOnly,
+        name,
+        path,
+        sameSite,
+        secure,
+        storeId,
+        url: obj.cookie.preparedCookieDomain,
+        value,
+      };
+
+      promiseArr.push(browser.cookies.set(cookieProperties));
+    }
+  }
+  try {
+    await Promise.all(promiseArr).catch(e => {
+      browser.notifications.create('failed-restore', {
+        iconUrl: browser.extension.getURL('icons/icon_48.png'),
+        message: e.message,
+        title: browser.i18n.getMessage('restoreFailedText'),
+        type: 'basic',
+      });
+      console.error(e);
+      throw e;
+    });
+  } catch (e) {
+    return;
+  }
+  // Restore didn't fail
+  onRemoveActvity(log);
+};
 
 const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
-  const { activityLog, numberToShow } = props;
+  const { activityLog, numberToShow, state, onRemoveActvity } = props;
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
@@ -121,7 +190,17 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
         ]);
         return (
           <div key={index} className="card">
-            <div className="card-header" id={`heading${index}`}>
+            <div
+              style={{ display: 'flex' }}
+              className="card-header"
+              id={`heading${index}`}
+            >
+              <IconButton
+                iconName={'undo'}
+                className={'btn-primary'}
+                title={browser.i18n.getMessage('restoreText')}
+                onClick={() => restoreCookies(state, element, onRemoveActvity)}
+              />
               <h5
                 className="mb-0"
                 style={{
@@ -173,7 +252,17 @@ const mapStateToProps = (state: State) => {
   return {
     activityLog,
     cache,
+    state,
   };
 };
 
-export default connect(mapStateToProps)(ActivityTable);
+const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+  onRemoveActvity(activity: ActivityLog) {
+    dispatch(removeActivity(activity));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ActivityTable);
