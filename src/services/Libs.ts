@@ -116,7 +116,11 @@ export const getSetting = (state: State, settingName: string) =>
  * Puts the domain in the right format for browser.cookies.clean()
  */
 export const prepareCookieDomain = (cookie: browser.cookies.Cookie) => {
-  const cookieDomain = trimDot(cookie.domain);
+  let cookieDomain = trimDot(cookie.domain);
+  // Looks like a v6 IP
+  if (/^[0-9a-fA-F]*:[0-9a-fA-F:]+$/.test(cookieDomain)) {
+    cookieDomain = `[${cookieDomain}]`;
+  }
   return cookie.secure
     ? `https://${cookieDomain}${cookie.path}`
     : `http://${cookieDomain}${cookie.path}`;

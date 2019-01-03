@@ -83,6 +83,17 @@ describe('Library Functions', () => {
       ).toBe('https://google.com/');
     });
 
+    it('should return a wrapped ivp6 ip cookie domain in brackets', () => {
+      expect(
+        prepareCookieDomain({
+          ...mockCookie,
+          domain: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+          path: '/',
+          secure: true,
+        }),
+      ).toBe('https://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]/');
+    });
+
     it('should return http://google.com with a removed leading .', () => {
       expect(
         prepareCookieDomain({
