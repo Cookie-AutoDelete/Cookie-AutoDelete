@@ -159,7 +159,14 @@ class Expressions extends React.Component<ExpressionProps> {
             className="form-control"
           />
         </div>
-
+        <div className="row">
+          <a
+            target="_blank"
+            href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enter-expression"
+          >
+            {browser.i18n.getMessage('questionExpression')}
+          </a>
+        </div>
         <div
           className="row"
           style={{

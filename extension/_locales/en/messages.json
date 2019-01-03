@@ -344,6 +344,11 @@
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
 
+  "questionExpression": {
+    "message": "How do Expressions work?",
+    "description": "How do Expressions work?"
+  },
+
   "importURLSText": {
     "message": "Import Expressions",
     "description": "Import Expressions"
