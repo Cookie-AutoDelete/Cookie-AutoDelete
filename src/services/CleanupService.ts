@@ -271,7 +271,9 @@ export const cleanCookiesOperation = async (
       ...allLocalstorageToClean,
       ...markedForLocalStorageDeletion,
     ];
-    cachedResults.storeIds[id] = markedForDeletion;
+    if (markedForDeletion.length !== 0) {
+      cachedResults.storeIds[id] = markedForDeletion;
+    }
     cachedResults.recentlyCleaned += markedForDeletion.length;
     markedForDeletion.forEach(obj => {
       setOfDeletedDomainCookies.add(

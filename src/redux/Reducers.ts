@@ -177,7 +177,7 @@ export const activityLog = (
 ) => {
   switch (action.type) {
     case ReduxConstants.ADD_ACTIVITY_LOG: {
-      if (Object.keys(action.payload).length > 2) {
+      if (Object.keys(action.payload.storeIds).length > 0) {
         return [action.payload, ...state].slice(0, 10);
       }
       return state;
