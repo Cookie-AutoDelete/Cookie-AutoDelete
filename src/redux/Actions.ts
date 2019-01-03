@@ -173,6 +173,7 @@ export const cookieCleanup: ActionCreator<
   const newOptions = options;
 
   const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
+  if (!cleanupDoneObject) return;
   const { setOfDeletedDomainCookies, cachedResults } = cleanupDoneObject;
   const { recentlyCleaned } = cachedResults;
 

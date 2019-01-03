@@ -13,7 +13,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeActivity } from '../../redux/Actions';
-import { returnOptionalCookieAPIAttributes } from '../../services/Libs';
+import {
+  returnOptionalCookieAPIAttributes,
+  throwErrorNotification,
+} from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
 import { ReduxAction } from '../../typings/ReduxConstants';
 import IconButton from './IconButton';
@@ -148,12 +151,7 @@ const restoreCookies = async (
   }
   try {
     await Promise.all(promiseArr).catch(e => {
-      browser.notifications.create('failed-restore', {
-        iconUrl: browser.extension.getURL('icons/icon_48.png'),
-        message: e.message,
-        title: browser.i18n.getMessage('restoreFailedText'),
-        type: 'basic',
-      });
+      throwErrorNotification(e);
       console.error(e);
       throw e;
     });

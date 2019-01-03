@@ -20,6 +20,7 @@
       "allow-pascal-case"
     ],
     "no-console": [true, "log"],
+    "array-type": false,
     // Immutable
     "no-var-keyword": true,
     "no-parameter-reassignment": true,

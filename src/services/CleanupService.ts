@@ -18,6 +18,7 @@ import {
   prepareCookieDomain,
   returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
+  throwErrorNotification,
   undefinedIsTrue,
 } from './Libs';
 
@@ -126,10 +127,11 @@ export const isSafeToClean = (
 };
 
 /** Clean cookies */
-export const cleanCookies = (
+export const cleanCookies = async (
   state: State,
   markedForDeletion: CleanReasonObject[],
 ) => {
+  const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
   markedForDeletion.forEach(obj => {
     const cookieProperties = obj.cookie;
     const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
@@ -137,26 +139,34 @@ export const cleanCookies = (
       storeId: cookieProperties.storeId,
     });
     // url: "http://domain.com" + cookies[i].path
-    browser.cookies.remove({
+    const promise = browser.cookies.remove({
       ...cookieAPIProperties,
       name: cookieProperties.name,
       url: cookieProperties.preparedCookieDomain,
     });
+    promiseArr.push(promise);
+  });
+  await Promise.all(promiseArr).catch(e => {
+    throw e;
   });
 };
 
 /** This will use the browsingData's hostname attribute to delete any extra browsing data */
-export const otherBrowsingDataCleanup = (
+export const otherBrowsingDataCleanup = async (
   state: State,
-  hostnamesDeleted: string[],
+  hostnames: string[],
 ) => {
   if (
     state.cache.browserDetect === 'Firefox' &&
     getSetting(state, 'localstorageCleanup')
   ) {
-    browser.browsingData.removeLocalStorage({
-      hostnames: hostnamesDeleted,
-    });
+    await browser.browsingData
+      .removeLocalStorage({
+        hostnames,
+      })
+      .catch(e => {
+        throw e;
+      });
   }
 };
 
@@ -187,6 +197,7 @@ export const cleanCookiesOperation = async (
     ignoreOpenTabs: false,
   },
 ) => {
+  let allLocalstorageToClean: CleanReasonObject[] = [];
   const setOfDeletedDomainCookies = new Set();
   const cachedResults: ActivityLog = {
     dateTime: new Date().toString(),
@@ -232,8 +243,16 @@ export const cleanCookiesOperation = async (
     const markedForDeletion = isSafeToCleanObjects.filter(
       obj => obj.cleanCookie,
     );
-    cleanCookies(state, markedForDeletion);
 
+    try {
+      await cleanCookies(state, markedForDeletion);
+    } catch (e) {
+      console.error(e);
+      throwErrorNotification(e);
+      return undefined;
+    }
+
+    // Setup Localstorage cleaning
     const cleanLocalstorage = (bool?: boolean) => {
       if (bool === undefined) return false;
       return bool;
@@ -246,12 +265,12 @@ export const cleanCookiesOperation = async (
       );
       return notInAnyLists || (notProtectedByOpenTab && listCleanLocalstorage);
     });
-    otherBrowsingDataCleanup(
-      state,
-      markedForLocalStorageDeletion.map(obj => obj.cookie.hostname),
-    );
 
     // Side effects
+    allLocalstorageToClean = [
+      ...allLocalstorageToClean,
+      ...markedForLocalStorageDeletion,
+    ];
     cachedResults.storeIds[id] = markedForDeletion;
     cachedResults.recentlyCleaned += markedForDeletion.length;
     markedForDeletion.forEach(obj => {
@@ -261,6 +280,17 @@ export const cleanCookiesOperation = async (
           : obj.cookie.hostname,
       );
     });
+  }
+
+  try {
+    await otherBrowsingDataCleanup(
+      state,
+      allLocalstorageToClean.map(obj => obj.cookie.hostname),
+    );
+  } catch (e) {
+    console.error(e);
+    // if it reaches this point then cookies were deleted, so don't return undefined
+    throwErrorNotification(e);
   }
 
   // Scrub private cookieStores

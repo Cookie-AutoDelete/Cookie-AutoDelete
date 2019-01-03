@@ -232,3 +232,15 @@ export const undefinedIsTrue = (bool: boolean | undefined) => {
 export const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
+
+/**
+ * Show an Error notification
+ */
+export const throwErrorNotification = (e: Error) => {
+  browser.notifications.create('failed-restore', {
+    iconUrl: browser.extension.getURL('icons/icon_red_48.png'),
+    message: e.message,
+    title: browser.i18n.getMessage('errorText'),
+    type: 'basic',
+  });
+};

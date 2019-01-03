@@ -259,9 +259,9 @@
     "description": "Clear Logs"
   },
 
-  "restoreFailedText": {
-    "message": "Restore Failed",
-    "description": "Restore Failed"
+  "errorText": {
+    "message": "Error!",
+    "description": "Error!"
   },
 
   "restoreText": {
