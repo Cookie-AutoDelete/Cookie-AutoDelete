@@ -17,7 +17,7 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
-import { getSetting, sleep } from './services/Libs';
+import { convertVersionToNumber, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
@@ -138,7 +138,7 @@ browser.runtime.onStartup.addListener(async () => {
 });
 browser.runtime.onInstalled.addListener(async details => {
   await sleep(1500);
-  if (details.reason === 'update') {
+  if (details.reason === 'update' && convertVersionToNumber(details.previousVersion) < 300) {
     store.dispatch({
       type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
     });

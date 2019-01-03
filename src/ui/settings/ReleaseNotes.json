@@ -8,7 +8,8 @@
         "Added: Better indication of a failed cleanup in the form of a notification",
         "Changed: Reduced final build size by over 65%",
         "Changed: Prevent startup cleanup on an extension update",
-        "Fixed: Black font on badge text"
+        "Fixed: Black font on badge text",
+        "Removed: Migration code from 1.X.X to 2.X.X"
       ]
     },
     {

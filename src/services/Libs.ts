@@ -244,3 +244,13 @@ export const throwErrorNotification = (e: Error) => {
     type: 'basic',
   });
 };
+
+/**
+ * Converts a version string to a number
+ */
+export const convertVersionToNumber = (version?: string) => {
+  if (!version) return -1;
+  return parseInt(version.replace(/[\.]/g, ''), 10)
+};
+
+

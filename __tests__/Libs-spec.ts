@@ -9,6 +9,7 @@ import {
   prepareCookieDomain,
   returnOptionalCookieAPIAttributes,
   undefinedIsTrue,
+  convertVersionToNumber,
 } from '../src/services/Libs';
 // ToDo: returnMatchedExpressionObject, getSetting
 
@@ -428,4 +429,19 @@ describe('Library Functions', () => {
       );
     });
   });
+
+  describe('convertVersionToNumber()', () => {
+    it('should return 123', () => {
+      const results = convertVersionToNumber('1.2.3');
+      expect(results).toBe(123);
+    })
+    it('should return -1', () => {
+      const results = convertVersionToNumber();
+      expect(results).toBe(-1);
+    })
+    it('should return 3.0.0', () => {
+      const results = convertVersionToNumber('3.0.0');
+      expect(results).toBe(300);
+    })
+  })
 });
