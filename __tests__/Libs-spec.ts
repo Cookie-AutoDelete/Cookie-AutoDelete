@@ -1,5 +1,6 @@
 import { initialState } from '../src/redux/State';
 import {
+  convertVersionToNumber,
   extractMainDomain,
   getHostname,
   getStoreId,
@@ -8,8 +9,8 @@ import {
   isAWebpage,
   prepareCookieDomain,
   returnOptionalCookieAPIAttributes,
+  trimDot,
   undefinedIsTrue,
-  convertVersionToNumber,
 } from '../src/services/Libs';
 // ToDo: returnMatchedExpressionObject, getSetting
 
@@ -434,14 +435,25 @@ describe('Library Functions', () => {
     it('should return 123', () => {
       const results = convertVersionToNumber('1.2.3');
       expect(results).toBe(123);
-    })
+    });
     it('should return -1', () => {
       const results = convertVersionToNumber();
       expect(results).toBe(-1);
-    })
+    });
     it('should return 3.0.0', () => {
       const results = convertVersionToNumber('3.0.0');
       expect(results).toBe(300);
-    })
-  })
+    });
+  });
+
+  describe('trimDot()', () => {
+    it('should return example.com with no leading dots', () => {
+      const results = trimDot('.example.com');
+      expect(results).toBe('example.com');
+    });
+    it('should return example.com with no leading and ending dots', () => {
+      const results = trimDot('.example.com.');
+      expect(results).toBe('example.com');
+    });
+  });
 });
