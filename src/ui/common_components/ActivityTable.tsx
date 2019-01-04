@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeActivity } from '../../redux/Actions';
 import {
+  getSetting,
   returnOptionalCookieAPIAttributes,
   throwErrorNotification,
 } from '../../services/Libs';
@@ -230,7 +231,10 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
                 {storeIdEntries.map(([storeId, cleanReasonObjects]) => {
                   return (
                     <div key={`${storeId}-${log.dateTime}`}>
-                      {storeIdEntries.length > 1 && <h6>{storeId}</h6>}
+                      {(storeIdEntries.length > 1 ||
+                        getSetting(state, 'contextualIdentities')) && (
+                        <h6>{storeId}</h6>
+                      )}
                       {createDetailedSummary(cleanReasonObjects)}
                     </div>
                   );
