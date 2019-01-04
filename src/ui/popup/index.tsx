@@ -13,13 +13,18 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createUIStore } from 'redux-webext';
+import { sleep } from '../../services/Libs';
 import fontAwesomeImports from '../font-awesome-imports';
 import App from './App';
 
 fontAwesomeImports();
 
 async function initApp() {
-  const store = await createUIStore();
+  let store = await createUIStore();
+  while (!store.getState()) {
+    await sleep(250);
+    store = await createUIStore();
+  }
   const mountNode = document.createElement('div');
   document.body.appendChild(mountNode);
 
