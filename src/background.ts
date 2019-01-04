@@ -133,11 +133,11 @@ const onStartUp = async () => {
 
 onStartUp();
 browser.runtime.onStartup.addListener(async () => {
-  await sleep(1500);
+  await awaitStore();
   greyCleanup();
 });
 browser.runtime.onInstalled.addListener(async details => {
-  await sleep(1500);
+  await awaitStore();
   if (details.reason === 'update') {
     store.dispatch<any>(validateSettings());
     if (convertVersionToNumber(details.previousVersion) < 300) {
@@ -147,6 +147,12 @@ browser.runtime.onInstalled.addListener(async details => {
     }
   }
 });
+
+const awaitStore = async () => {
+  while (!store) {
+    await sleep(250);
+  }
+};
 
 const greyCleanup = () => {
   if (getSetting(store.getState(), 'activeMode')) {
