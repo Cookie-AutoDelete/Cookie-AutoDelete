@@ -78,7 +78,7 @@ const onStartUp = async () => {
     stateFromStorage = {};
   }
   store = createStore(stateFromStorage);
-  store.dispatch<any>(validateSettings());
+
   store.dispatch({
     type: ReduxConstants.ON_STARTUP,
   });
@@ -138,10 +138,13 @@ browser.runtime.onStartup.addListener(async () => {
 });
 browser.runtime.onInstalled.addListener(async details => {
   await sleep(1500);
-  if (details.reason === 'update' && convertVersionToNumber(details.previousVersion) < 300) {
-    store.dispatch({
-      type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
-    });
+  if (details.reason === 'update') {
+    store.dispatch<any>(validateSettings());
+    if (convertVersionToNumber(details.previousVersion) < 300) {
+      store.dispatch({
+        type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+      });
+    }
   }
 });
 
