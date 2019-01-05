@@ -204,23 +204,25 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
         </div>
       )}
 
-      {browserDetect === 'Firefox' && browserVersion >= '58' && (
-        <div className="row" style={styles.rowOverrides}>
-          <div className="col-md-12">
-            <CheckboxSetting
-              text={browser.i18n.getMessage('localstorageCleanupText')}
-              settingObject={settings.localstorageCleanup}
-              inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
-            />
-            <SettingsTooltip
-              hrefURL={
-                'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-localstorage-support'
-              }
-            />
+      {browserDetect === 'Firefox' &&
+        browserVersion >= '58' &&
+        browser.browsingData.removeLocalStorage && (
+          <div className="row" style={styles.rowOverrides}>
+            <div className="col-md-12">
+              <CheckboxSetting
+                text={browser.i18n.getMessage('localstorageCleanupText')}
+                settingObject={settings.localstorageCleanup}
+                inline={true}
+                updateSetting={payload => onUpdateSetting(payload)}
+              />
+              <SettingsTooltip
+                hrefURL={
+                  'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-localstorage-support'
+                }
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {settings.contextualIdentities.value &&
         settings.localstorageCleanup.value && (
