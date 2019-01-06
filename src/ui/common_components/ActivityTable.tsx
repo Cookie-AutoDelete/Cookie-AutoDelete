@@ -122,14 +122,11 @@ const restoreCookies = async (
   for (const cleanReasonObjs of cleanReasonObjsArrays) {
     for (const obj of cleanReasonObjs) {
       const {
-        domain,
         expirationDate,
         firstPartyDomain,
         httpOnly,
         name,
-        path,
         sameSite,
-        secure,
         storeId,
         value,
       } = obj.cookie;
@@ -137,13 +134,10 @@ const restoreCookies = async (
         ...returnOptionalCookieAPIAttributes(state, {
           firstPartyDomain,
         }),
-        domain,
         expirationDate,
         httpOnly,
         name,
-        path,
         sameSite,
-        secure,
         storeId,
         url: obj.cookie.preparedCookieDomain,
         value,
