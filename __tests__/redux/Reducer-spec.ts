@@ -1,4 +1,9 @@
-import { cookieDeletedCounterTotal, lists } from '../../src/redux/Reducers';
+import {
+  activityLog,
+  cookieDeletedCounterSession,
+  cookieDeletedCounterTotal,
+  lists,
+} from '../../src/redux/Reducers';
 import { ReduxConstants } from '../../src/typings/ReduxConstants';
 
 const mockExpression: Expression = {
@@ -8,6 +13,59 @@ const mockExpression: Expression = {
 };
 
 describe('Reducer', () => {
+  describe('activityLog', () => {
+    const log1 = {
+      dateTime: 'Thu Jan 10 2019 08:00:00 GMT-0800 (Pacific Standard Time)',
+      recentlyCleaned: 0,
+      storeIds: {
+        test: [],
+      },
+    };
+    const log2 = {
+      dateTime: 'Thu Jan 11 2019 08:00:00 GMT-0800 (Pacific Standard Time)',
+      recentlyCleaned: 0,
+      storeIds: {
+        test: [],
+      },
+    };
+    const state: ActivityLog[] = [log1];
+
+    it('should be removed', () => {
+      const result = activityLog(state, {
+        payload: log1,
+        type: ReduxConstants.REMOVE_ACTIVITY_LOG,
+      });
+      expect(result.length).toBe(0);
+    });
+
+    it('should be removed when reseting counter', () => {
+      const result = activityLog(state, {
+        type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+      });
+      expect(result.length).toBe(0);
+    });
+
+    it('should be added to the front', () => {
+      const result = activityLog(state, {
+        payload: log2,
+        type: ReduxConstants.ADD_ACTIVITY_LOG,
+      });
+      expect(result.length).toBe(2);
+      expect(result[0].dateTime).toBe(log2.dateTime);
+      expect(result[1].dateTime).toBe(log1.dateTime);
+    });
+
+    it('should not be added because no storeIds', () => {
+      const result = activityLog(state, {
+        payload: {
+          ...log2,
+          storeIds: {},
+        },
+        type: ReduxConstants.ADD_ACTIVITY_LOG,
+      });
+      expect(result.length).toBe(1);
+    });
+  });
   describe('cookieDeletedCounterTotal', () => {
     const state = 5;
 
@@ -25,6 +83,36 @@ describe('Reducer', () => {
     });
     it('should return 10', () => {
       const newState = cookieDeletedCounterTotal(state, {
+        payload: 5,
+        type: ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER,
+      });
+      expect(newState).toBe(10);
+    });
+  });
+
+  describe('cookieDeletedCounterSession', () => {
+    const state = 5;
+
+    it('should return 0', () => {
+      const newState = cookieDeletedCounterSession(state, {
+        type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+      });
+      expect(newState).toBe(0);
+    });
+    it('should return 0 on start up', () => {
+      const newState = cookieDeletedCounterSession(state, {
+        type: ReduxConstants.ON_STARTUP,
+      });
+      expect(newState).toBe(0);
+    });
+    it('should return 6', () => {
+      const newState = cookieDeletedCounterSession(state, {
+        type: ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER,
+      });
+      expect(newState).toBe(6);
+    });
+    it('should return 10', () => {
+      const newState = cookieDeletedCounterSession(state, {
         payload: 5,
         type: ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER,
       });

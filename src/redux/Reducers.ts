@@ -183,9 +183,7 @@ export const activityLog = (
       return state;
     }
     case ReduxConstants.REMOVE_ACTIVITY_LOG: {
-      return state.filter(
-        log => log.recentlyCleaned !== action.payload.recentlyCleaned,
-      );
+      return state.filter(log => log.dateTime !== action.payload.dateTime);
     }
     case ReduxConstants.RESET_COOKIE_DELETED_COUNTER:
       return [];
