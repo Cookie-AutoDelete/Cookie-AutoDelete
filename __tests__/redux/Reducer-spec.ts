@@ -1,5 +1,5 @@
-import { cookieDeletedCounterTotal, lists } from '../src/redux/Reducers';
-import { ReduxConstants } from '../src/typings/ReduxConstants';
+import { cookieDeletedCounterTotal, lists } from '../../src/redux/Reducers';
+import { ReduxConstants } from '../../src/typings/ReduxConstants';
 
 const mockExpression: Expression = {
   expression: '',

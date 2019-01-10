@@ -85,9 +85,6 @@ export const extractMainDomain = (domain: string) => {
   const editedDomain = trimDot(domain);
   const partsOfDomain = editedDomain.split('.');
   const length = partsOfDomain.length;
-  if (length === 1) {
-    return partsOfDomain[0];
-  }
   const firstPartOfTopLevel = partsOfDomain[length - 2];
 
   // Check for country top level domain
@@ -237,7 +234,7 @@ export const sleep = (ms: number) => {
  * Show an Error notification
  */
 export const throwErrorNotification = (e: Error) => {
-  browser.notifications.create('failed-restore', {
+  browser.notifications.create('failed-notification', {
     iconUrl: browser.extension.getURL('icons/icon_red_48.png'),
     message: e.message,
     title: browser.i18n.getMessage('errorText'),
@@ -250,7 +247,5 @@ export const throwErrorNotification = (e: Error) => {
  */
 export const convertVersionToNumber = (version?: string) => {
   if (!version) return -1;
-  return parseInt(version.replace(/[\.]/g, ''), 10)
+  return parseInt(version.replace(/[\.]/g, ''), 10);
 };
-
-

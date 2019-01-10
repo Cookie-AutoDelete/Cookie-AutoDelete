@@ -1,4 +1,4 @@
-import { initialState } from '../src/redux/State';
+import { initialState } from '../../src/redux/State';
 import {
   convertVersionToNumber,
   extractMainDomain,
@@ -8,11 +8,13 @@ import {
   isAnIP,
   isAWebpage,
   prepareCookieDomain,
+  returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
+  sleep,
+  throwErrorNotification,
   trimDot,
   undefinedIsTrue,
-} from '../src/services/Libs';
-// ToDo: returnMatchedExpressionObject, getSetting
+} from '../../src/services/Libs';
 
 const mockCookie: browser.cookies.Cookie = {
   domain: 'domain.com',
@@ -66,6 +68,10 @@ describe('Library Functions', () => {
 
     it('should return domain.com from .domain.com.', () => {
       expect(extractMainDomain('domain.com.')).toBe('domain.com');
+    });
+
+    it('should return local from local', () => {
+      expect(extractMainDomain('local')).toBe('local');
     });
 
     it('should return nothing on empty string', () => {
@@ -160,6 +166,20 @@ describe('Library Functions', () => {
       expect(getStoreId(contextualIdentitiesFalseChrome, '0')).toBe('default');
     });
 
+    it('should return default from Chrome and storeId 0', () => {
+      expect(
+        getStoreId(
+          {
+            ...contextualIdentitiesFalseChrome,
+            cache: {
+              browserDetect: 'Opera',
+            },
+          },
+          '0',
+        ),
+      ).toBe('default');
+    });
+
     // Private storeIds
     it('should return firefox-private from Firefox and storeId firefox-private (private)', () => {
       expect(getStoreId(contextualIdentitiesFalseFF, 'firefox-private')).toBe(
@@ -237,6 +257,9 @@ describe('Library Functions', () => {
         false,
       );
     });
+    it('should return false from undefined', () => {
+      expect(isAWebpage(undefined)).toBe(false);
+    });
   });
 
   describe('isAnIP()', () => {
@@ -262,6 +285,9 @@ describe('Library Functions', () => {
 
     it('should return true from https ip', () => {
       expect(isAnIP('https://192.168.1.1/')).toBe(true);
+    });
+    it('should return false from undefined', () => {
+      expect(isAnIP(undefined)).toBe(false);
     });
   });
 
@@ -322,7 +348,38 @@ describe('Library Functions', () => {
     });
   });
 
-  describe('undefinedIsTrue', () => {
+  describe('returnMatchedExpressionObject ()', () => {
+    const state: State = {
+      ...initialState,
+      lists: {
+        default: [
+          {
+            expression: '*.expression.com',
+            listType: ListType.WHITE,
+            storeId: 'default',
+          },
+        ],
+      },
+    };
+    it('should return a matched expression', () => {
+      const results = returnMatchedExpressionObject(
+        state,
+        'default',
+        'expression.com',
+      );
+      expect(results!.expression).toBe('*.expression.com');
+    });
+    it('should return undefined', () => {
+      const results = returnMatchedExpressionObject(
+        state,
+        'firefox-container-1',
+        'expression.com',
+      );
+      expect(results).toBe(undefined);
+    });
+  });
+
+  describe('undefinedIsTrue()', () => {
     it('should return true for undefined', () => {
       expect(undefinedIsTrue(undefined)).toBe(true);
     });
@@ -454,6 +511,41 @@ describe('Library Functions', () => {
     it('should return example.com with no leading and ending dots', () => {
       const results = trimDot('.example.com.');
       expect(results).toBe('example.com');
+    });
+  });
+
+  describe('sleep()', () => {
+    it('should return undefined', async () => {
+      expect.assertions(1);
+      const result = await sleep(1);
+      expect(result).toBe(undefined);
+    });
+  });
+
+  describe('throwErrorNotification()', () => {
+    beforeAll(() => {
+      global.browser = {
+        extension: {
+          getURL: jest.fn(),
+        },
+        i18n: {
+          getMessage: jest.fn(),
+        },
+        notifications: {
+          create: jest.fn(),
+        },
+      };
+    });
+    it('should expect one call to browser.notifications.create', () => {
+      throwErrorNotification({ name: 'Test Error', message: 'An ERROR!' });
+      expect(global.browser.notifications.create).toHaveBeenCalled();
+      expect(global.browser.notifications.create).toHaveBeenCalledWith(
+        'failed-notification',
+        {
+          message: 'An ERROR!',
+          type: 'basic',
+        },
+      );
     });
   });
 });

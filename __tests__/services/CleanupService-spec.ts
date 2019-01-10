@@ -1,13 +1,13 @@
 import { when } from 'jest-when';
-import { initialState } from '../src/redux/State';
+import { initialState } from '../../src/redux/State';
 import {
   isSafeToClean,
   returnSetOfOpenTabDomains,
-} from '../src/services/CleanupService';
-import * as Lib from '../src/services/Libs';
+} from '../../src/services/CleanupService';
+import * as Lib from '../../src/services/Libs';
 // ToDo: cleanCookiesOperation
 
-jest.mock('../src/services/Libs');
+jest.mock('../../src/services/Libs');
 
 const wildCardWhiteListGoogle: Expression = {
   expression: '*.google.com',
