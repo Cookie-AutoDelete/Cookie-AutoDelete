@@ -173,6 +173,20 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Częściowo wyczyszczone z powodu obecności $matchedExpression$ na $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
     "message": "lub w otwartej karcie",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
@@ -209,12 +223,28 @@
     "message": "Włącz log czyszczenia i licznik",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Zachowaj Localstorage",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Zachowaj wszystkie ciasteczka",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
     "message": "Wyczyść log",
     "description": "Clear Logs"
   },
+  "errorText": {
+    "message": "Błąd!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Przywróć",
+    "description": "Ex: Restore Cleanup"
+  },
   "showNumberOfCookiesInIconText": {
-    "message": "Pokaż ilość ciasteczek z tej domeny",
+    "message": "Pokaż liczbę ciasteczek z tej domeny",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "Do nazwy eksportowanego pliku dodana będzie aktualna data.\nMasz problem z pobraniem pliku?  Kliknij prawym klawiszem na przycisk i wybierz 'Zapisz element docelowy jako...'.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "Jak działają formuły?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Importuj formuły",
@@ -376,7 +410,7 @@
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "Log czyszczenia nie znaleziony",
+    "message": "Log czyszczenia nieznaleziony",
     "description": "No Cleanup Logs Found"
   }
 }

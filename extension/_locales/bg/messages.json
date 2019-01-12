@@ -173,6 +173,20 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Частично изчистване заради съвпадащо $matchedExpression$ в $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
     "message": "или в който и да е отворен подпрозорец",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
@@ -209,9 +223,25 @@
     "message": "Включване на дневника за изчистване и брояча",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Запазване на местното хранилище",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Запазване на всички бисквитки",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
     "message": "Изчистване на дневниците",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Грешка!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Възстановяване",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Показване на броя бисквитки на домейна",
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "При изнасяне, ще бъде добавено времето към името на файла.\nПри проблеми, щракнете с дясно копче върху този бутон и изберете 'Запазване на препратката като...'",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "Как работят изразите?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Внасяне на изрази",

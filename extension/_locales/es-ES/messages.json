@@ -173,6 +173,20 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
     "message": "o en cualquiera pestañas abiertas",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
@@ -209,9 +223,25 @@
     "message": "Activar el registro de limpieza y el contador",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Keep Localstorage",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Keep All Cookies",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
     "message": "Limpiar registros",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Error!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Restore",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Mostrar número de cookies para ese dominio",
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "Una marca de tiempo se anexa al nombre de archivo de exportación. ¿Tienes problemas para descargar?  Haga clic derecho en este botón y haga clic en 'Guardar enlace como...' para descargar.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "How do Expressions work?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Importación de Expresiones",

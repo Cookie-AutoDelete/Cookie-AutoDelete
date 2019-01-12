@@ -120,7 +120,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "保留，因为*.$mainDomain$在打开的标签页中",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -130,7 +130,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "message": "清理，因为自启动清理同时$hostname$不在白灰名单中",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -140,7 +140,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "清理，因为自启动清理同时$matchedExpression$在灰名单中",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -150,7 +150,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "message": "清理，因为$hostname$不在白灰名单中",
     "description": "Clean because sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -160,7 +160,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "保留因为匹配了$listType$中的$matchedExpression$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -173,12 +173,26 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "或者在任何已打开的标签页中",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "同时已打开的标签页被忽略",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
@@ -209,9 +223,25 @@
     "message": "启用清理日志和计数器",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Keep Localstorage",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Keep All Cookies",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
     "message": "清除日志",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Error!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Restore",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "显示该域名的 Cookie 数量",
@@ -250,7 +280,7 @@
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "绿名单",
+    "message": "灰名单",
     "description": "Greylist"
   },
   "toWhiteListText": {
@@ -258,7 +288,7 @@
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "添加到绿名单（浏览器重启时清理）",
+    "message": "添加到灰名单（浏览器重启时清理）",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "导出时将会在文件名后面追加一个时间戳。\n下载有问题？右击此按钮，选择“链接另存为...”来下载。",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "How do Expressions work?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "导入表达式",

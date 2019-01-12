@@ -30,7 +30,7 @@
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Kein Filter",
     "description": "None"
   },
   "cleanText": {
@@ -38,7 +38,7 @@
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Behalten",
     "description": "Keep"
   },
   "cookieCleanupText": {
@@ -98,7 +98,7 @@
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Cleanup Log",
+    "message": "Aufräum-Protokoll",
     "description": "Cleanup Log"
   },
   "aboutText": {
@@ -120,7 +120,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "Aufgrund von offenen Tabs auf *.$mainDomain$ behalten",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -130,7 +130,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "message": "Aufräumen, da Aufräumen beim Start aktiv und $hostname$ nicht in einer Whitelist\/Greylist ist",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -140,7 +140,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "Aufräumen, da Aufräumen beim Start aktiv und $matchedExpression$ in der Greylist ist",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -150,7 +150,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "message": "Aufräumen, da $hostname$ sich nicht in einer Whitelist\/Greylist befindet",
     "description": "Clean because sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -160,7 +160,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "Behalten, da $matchedExpression$ mit der $listType$ übereinstimmt",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -173,12 +173,26 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "oder in geöffneten Tabs",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "und zudem wurden geöffnete Tabs ignoriert",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
@@ -202,16 +216,32 @@
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
+    "message": "Aufräumen beim Wechsel der Domain aktivieren",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
+    "message": "Aufräum-Protokoll und Aufräum-Zähler aktivieren",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Keep Localstorage",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Keep All Cookies",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
-    "message": "Clear Logs",
+    "message": "Protokolle leeren",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Error!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Restore",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Zeige die Anzahl der Cookies einer Domain in der Symbolleiste",
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "Dem Dateinamen wird beim Export ein Zeitstempel angehängt.\nProbleme beim Herunterladen? Tätige einen Rechtsklick auf diese Schaltfläche und wähle \"Ziel speichern unter...\" zum Herunterladen.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "How do Expressions work?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Ausdrücke importieren",
@@ -376,7 +410,7 @@
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "No Cleanup Logs Found",
+    "message": "Keine Aufräum-Protokolle gefunden",
     "description": "No Cleanup Logs Found"
   }
 }

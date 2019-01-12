@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies were deleted!",
+    "message": "Cookie AutoDelete: Τα cookies διαγράφθηκαν!",
     "description": "Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "message": "$Num$ Διαγραφή cookies απο: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -26,27 +26,27 @@
     }
   },
   "filterText": {
-    "message": "Filter",
+    "message": "Φίλτρο",
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Κανένα",
     "description": "None"
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "Καθαρισμός",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Διατήρηση",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "Εκτέλεση καθαρισμού τώρα",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "Καθαρισμός, μαζι και οι ανοιχτές καρτέλες",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
@@ -173,6 +173,20 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
     "message": "or in any open tabs",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
@@ -209,9 +223,25 @@
     "message": "Enable Cleanup Log and Counter",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Keep Localstorage",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Keep All Cookies",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
     "message": "Clear Logs",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Error!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Restore",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Show Number of Cookies for that Domain",
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "How do Expressions work?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Import Expressions",

@@ -173,6 +173,20 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Delvis sletning pga. matchet $matchedExpression$ i $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
     "message": "eller i nogle åbne faner",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
@@ -209,9 +223,25 @@
     "message": "Aktiver sletningslog og tæller",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Behold Localstorage",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Behold alle cookies",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
     "message": "Slet logger",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Fejl!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Gendan",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Vis antal cookies for det domæne",
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "Et tidsstempel vil blive tilføjet til filnavnet ved eksport.\nProblemer med at hente? Højreklik denne knap og klik 'Gem link som...' for at hente.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "Hvordan virker udtryk?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Importer udtryk",

@@ -120,7 +120,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "Behouden omdat er een open tabblad wijst naar *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -130,7 +130,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "message": "Opschonen omdat opschonen gestart is en $hostname$ komt niet voor in de white\/gray lijsten",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -140,7 +140,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "Opschonen omdat gestart is en $matchedExpression$ komt voor in de gray lijst",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -150,7 +150,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "message": "Opschonen omdat $hostname$ niet voor komt in de white\/gray lijsten",
     "description": "Clean because sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -160,7 +160,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "Behouden omdat overeenkomende $matchedExpression$ voorkomt in de $listType$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -173,12 +173,26 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Gedeeltelijk verwijderen omdat $matchedExpression$ overeenkomt in de $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "of in enige open tabbladen",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "en ook open tabbladen zijn genegeerd",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
@@ -202,16 +216,32 @@
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
+    "message": "Opschonen inschakelen bij domeinwijziging",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
+    "message": "Opschonen logboek en teller inschakelen",
     "description": "Enable Cleanup Log and Counter"
+  },
+  "keepLocalstorageText": {
+    "message": "Lokale opslag behouden",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Alle cookies behouden",
+    "description": "Keep All Cookies"
   },
   "clearLogsText": {
     "message": "Logboek wissen",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Fout!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Herstellen",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Toon het aantal cookies voor dat domein",
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "Een tijdstempel zal toegevoegd worden aan de bestandsnaam bij uitvoer. Ondervindt u problemen met downloaden?  Klik dan met de rechtermuisknop op deze knop en klik op \"Link opslaan als...\" om te downloaden.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "Hoe werken de expressies?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Importeer expressies",

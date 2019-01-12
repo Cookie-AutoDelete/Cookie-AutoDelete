@@ -4,7 +4,7 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Управляйте вашими куками! Автоматически очищайте неиспользуемые куки закрытых вкладок, оставляя только те, которые вам нужны.",
+    "message": "Контролируйте ваши куки! Автоматически очищайте неиспользуемые куки закрытых вкладок, оставляя только те, которые вам нужны.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
@@ -12,7 +12,7 @@
     "description": "Cookie AutoDelete: Cookies were deleted!"
   },
   "notificationContent": {
-    "message": "$Num$ куки были удалены от: $Websites$",
+    "message": "Куки от $Websites$ было удалено: $Num$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -106,7 +106,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "За время данной сессии с помощью Cookie AutoDelete было удалено $sessionDeleted$ куков, за все время удалено $totalDeleted$ куков.",
+    "message": "Привет! За время данной сессии с помощью Cookie AutoDelete было удалено $sessionDeleted$ куки, а общее количество удалённых куки - $totalDeleted$.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -120,7 +120,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "Оставлено по причине открытой вкладки для *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -130,7 +130,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
+    "message": "Очищено по причине очистки при запуске и отсутствия $hostname$ в белом\/сером списках",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -140,7 +140,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "Очищено по причине очистки при запуске и наличия $matchedExpression$ в сером списке",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -150,7 +150,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White\/Grey lists",
+    "message": "Очищено по причине отсутствия $hostname$ в белом\/сером списках",
     "description": "Clean because sub.google.com is not in the White\/Grey lists",
     "placeholders": {
       "hostname": {
@@ -160,7 +160,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "Оставлено по причине наличия $matchedExpression$ в $listType$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -173,12 +173,26 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Частичная очистка из-за наличия $matchedExpression$ в $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "или в какой-либо открытой вкладке",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "а открытые вкладки были проигнорированы",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
@@ -198,7 +212,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Секунд",
+    "message": "секунд(ы)",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
@@ -206,19 +220,35 @@
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Включить журнал событий и счетчик",
+    "message": "Включить журнал очистки и счётчик",
     "description": "Enable Cleanup Log and Counter"
+  },
+  "keepLocalstorageText": {
+    "message": "Оставить содержимое локального хранилища",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Оставить все куки",
+    "description": "Keep All Cookies"
   },
   "clearLogsText": {
     "message": "Очистить журнал",
     "description": "Clear Logs"
   },
+  "errorText": {
+    "message": "Ошибка!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Восстановить",
+    "description": "Ex: Restore Cleanup"
+  },
   "showNumberOfCookiesInIconText": {
-    "message": "Показывать количество кук для этого домена",
+    "message": "Показывать количество куки для этого домена",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Показывать уведомление после очистки кук",
+    "message": "Показывать уведомление после очистки куки",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
@@ -270,8 +300,12 @@
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "К имени экспортируемого файла будет добавляться отметка времени. Возникли проблемы при загрузке?  Щелкните правой кнопкой мыши эту кнопку и нажмите «Сохранить ссылку как...» для загрузки.",
+    "message": "К имени экспортируемого файла будет добавлена отметка времени. Возникли проблемы при загрузке?  Щелкните правой кнопкой мыши эту кнопку и нажмите 'Сохранить ссылку как...' для загрузки.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "Как работают правила?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Импортировать правила",
@@ -296,7 +330,7 @@
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Помощь",
+    "message": "Внести свой вклад",
     "description": "Contribute"
   },
   "domainExpressionsText": {
@@ -376,7 +410,7 @@
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "Записи в журнале отсутствуют",
+    "message": "Журналов очистки не найдено",
     "description": "No Cleanup Logs Found"
   }
 }

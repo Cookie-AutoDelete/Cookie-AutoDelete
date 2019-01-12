@@ -26,11 +26,11 @@
     }
   },
   "filterText": {
-    "message": "Filter",
+    "message": "فلتر",
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "لا شيء",
     "description": "None"
   },
   "cleanText": {
@@ -38,11 +38,11 @@
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "احتفظ",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "تشغيل المسح الآن",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
@@ -94,11 +94,11 @@
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "List of Expressions",
+    "message": "قائمة التعبيرات",
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Cleanup Log",
+    "message": "مسح السجل",
     "description": "Cleanup Log"
   },
   "aboutText": {
@@ -173,12 +173,26 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "أو في أي علامات تبويب مفتوحة",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "و كذلك تم تجاهل علامات التبويب المفتوحة",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
@@ -186,19 +200,19 @@
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Release Notes",
+    "message": "ملاحظات الإصدار",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message": "تمكين التنظيف التلقائي؟ تأخير قبل التنظيف:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minute(s)",
+    "message": "دقيقة",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "ثانية",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
@@ -209,9 +223,25 @@
     "message": "Enable Cleanup Log and Counter",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Keep Localstorage",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Keep All Cookies",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
-    "message": "Clear Logs",
+    "message": "مَسح السجلات",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "خطأ!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "إستعادة",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Show Number of Cookies for that Domain",
@@ -250,7 +280,7 @@
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "Greylist",
+    "message": "القائمة الرمادية",
     "description": "Greylist"
   },
   "toWhiteListText": {
@@ -273,16 +303,20 @@
     "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
+  "questionExpression": {
+    "message": "How do Expressions work?",
+    "description": "How do Expressions work?"
+  },
   "importURLSText": {
     "message": "Import Expressions",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Report issues and suggest features",
+    "message": "الإبلاغ عن المشكلات واقتراح الميزات",
     "description": "Report issues and suggest features"
   },
   "versionText": {
-    "message": "$browser$ version",
+    "message": "إصدار $browser$",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -292,7 +326,7 @@
     }
   },
   "contributorsText": {
-    "message": "Contributors:",
+    "message": "المساهمون:",
     "description": "Contributors:"
   },
   "contributeText": {
@@ -312,7 +346,7 @@
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "List Type",
+    "message": "نوع القائمة",
     "description": "List Type"
   },
   "domainPlaceholderText": {
@@ -324,7 +358,7 @@
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Remove expression",
+    "message": "حفظ الصيغة",
     "description": "Remove expression"
   },
   "stopEditingText": {
@@ -340,43 +374,43 @@
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Toggle to greylist",
+    "message": "تبديل إلى القائمة الرمادية",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Toggle to whitelist",
+    "message": "تبديل إلى القائمة الرمادية",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Auto-clean enabled",
+    "message": "تم تمكين التنظيف التلقائي",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Auto-clean disabled",
+    "message": "المسح التلقائي معطل",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Toggle to disable automatic cleanup (manual mode)",
+    "message": "انقر لتعطيل المسح التلقائي (الوضع اليدوي)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Toggle to enable automatic cleanup (automatic mode)",
+    "message": "انقر لتمكين المسح التلقائي (الوضع التلقائي)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notification enabled",
+    "message": "تم تمكين الإشعار",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notification disabled",
+    "message": "الإشعارات معطلة",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Toggle to enable or disable notifications",
+    "message": "انقر لتمكين الإشعارات أو تعطيلها",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "No Cleanup Logs Found",
+    "message": "لم يتم العثور على سجلات مسح",
     "description": "No Cleanup Logs Found"
   }
 }

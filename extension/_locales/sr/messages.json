@@ -173,6 +173,20 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Делимично очишћено због подударања у изразу $matchedExpression$ са списка $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
     "message": "или у било ком отвореном језичку",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
@@ -209,9 +223,25 @@
     "message": "Омогући записник чишћења и бројач",
     "description": "Enable Cleanup Log and Counter"
   },
+  "keepLocalstorageText": {
+    "message": "Задржи локално складиште",
+    "description": "Keep Localstorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Задржи колачиће",
+    "description": "Keep All Cookies"
+  },
   "clearLogsText": {
     "message": "Очисти записнике",
     "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Грешка!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Обнови",
+    "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
     "message": "Прикажи број колачића за дати домен",
@@ -272,6 +302,10 @@
   "exportURLSTitle": {
     "message": "Временски жиг ће бити додат на назив датотеке приликом извоза.\nИмате проблема са преузимањем? Десни клик на ово дугме па изаберите „Сачувај везу као…“ да бисте преузели.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "Како изрази раде?",
+    "description": "How do Expressions work?"
   },
   "importURLSText": {
     "message": "Увези изразе",
