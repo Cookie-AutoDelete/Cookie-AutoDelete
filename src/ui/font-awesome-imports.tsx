@@ -15,6 +15,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons/faPowerOff';
 import { faSave } from '@fortawesome/free-solid-svg-icons/faSave';
+import { faSkullCrossbones } from '@fortawesome/free-solid-svg-icons/faSkullCrossbones';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { faUndo } from '@fortawesome/free-solid-svg-icons/faUndo';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
@@ -35,6 +36,7 @@ export default () => {
     faPlus,
     faPowerOff,
     faSave,
+    faSkullCrossbones,
     faTrash,
     faUndo,
     faUpload,

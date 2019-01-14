@@ -12,17 +12,27 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { resetSettings } from '../../redux/Actions';
+import { resetAll } from '../../redux/Actions';
+import { sleep } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
+import { exportAppendTimestamp } from '../UILibs';
+import IconButton from './IconButton';
 
 interface DispatchProps {
   onResetButtonClick: () => void;
 }
 
-class ErrorBoundary extends React.Component<DispatchProps> {
+interface StateProps {
+  state: State;
+}
+
+type ErrorBoundaryProps = DispatchProps & StateProps;
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
   public state = {
     hasError: false,
     message: '',
+    resetButtonText: browser.i18n.getMessage('resetExtensionDataText'),
   };
 
   public componentDidCatch(error: any) {
@@ -39,11 +49,16 @@ class ErrorBoundary extends React.Component<DispatchProps> {
     }
   }
 
-  public resetButton() {
+  public async resetExtensionData() {
+    await browser.storage.local.clear();
     this.props.onResetButtonClick();
     this.setState({
-      hasError: false,
+      resetButtonText: `${browser.i18n.getMessage(
+        'restartYourBrowserText',
+      )} ${browser.i18n.getMessage('pageWillReloadText')}`,
     });
+    await sleep(5000);
+    location.reload();
   }
 
   public render() {
@@ -55,12 +70,29 @@ class ErrorBoundary extends React.Component<DispatchProps> {
           <p>{this.state.message}</p>
           <hr />
           <p className="mb-0">
-            <button
-              className="btn btn-danger"
-              onClick={() => this.resetButton()}
-            >
-              <span>{browser.i18n.getMessage('defaultSettingsText')}</span>
-            </button>
+            <IconButton
+              tag="a"
+              className="btn-primary"
+              iconName="download"
+              href={`data:text/plain;charset=utf-8,${encodeURIComponent(
+                JSON.stringify(this.props.state.lists, null, '  '),
+              )}`}
+              download="CAD_Expressions_Expressions.json"
+              role="button"
+              target="_blank"
+              onClick={d => exportAppendTimestamp(d.target)}
+              onContextMenu={d => exportAppendTimestamp(d.target)}
+              title={browser.i18n.getMessage('exportURLSTitle')}
+              text={browser.i18n.getMessage('exportURLSText')}
+              styleReact={{ marginRight: '5px' }}
+            />
+            <IconButton
+              tag="a"
+              className="btn-danger"
+              iconName="skull-crossbones"
+              onClick={() => this.resetExtensionData()}
+              text={this.state.resetButtonText}
+            />
           </p>
         </div>
       );
@@ -69,13 +101,19 @@ class ErrorBoundary extends React.Component<DispatchProps> {
   }
 }
 
+const mapStateToProps = (state: State) => {
+  return {
+    state,
+  };
+};
+
 const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   onResetButtonClick() {
-    dispatch(resetSettings());
+    dispatch(resetAll());
   },
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ErrorBoundary);

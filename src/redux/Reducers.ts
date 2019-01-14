@@ -87,6 +87,9 @@ export const expressions = (
     case ReduxConstants.REMOVE_EXPRESSION:
       return state.filter(expObj => expObj.id !== action.payload.id);
 
+    case ReduxConstants.RESET_ALL:
+      return [];
+
     default:
       return state;
   }
@@ -109,6 +112,9 @@ export const lists = (
       );
       return newListObject;
 
+    case ReduxConstants.RESET_ALL:
+      return {};
+
     default:
       return state;
   }
@@ -130,8 +136,11 @@ export const settings = (
       };
       return newObject;
     }
+
+    case ReduxConstants.RESET_ALL:
     case ReduxConstants.RESET_SETTINGS:
       return initialState.settings;
+
     default:
       return state;
   }
@@ -147,6 +156,7 @@ export const cookieDeletedCounterTotal = (
       return state + incrementBy;
     }
 
+    case ReduxConstants.RESET_ALL:
     case ReduxConstants.RESET_COOKIE_DELETED_COUNTER:
       return 0;
     default:
@@ -163,6 +173,8 @@ export const cookieDeletedCounterSession = (
       const incrementBy = action.payload === undefined ? 1 : action.payload;
       return state + incrementBy;
     }
+
+    case ReduxConstants.RESET_ALL:
     case ReduxConstants.ON_STARTUP:
     case ReduxConstants.RESET_COOKIE_DELETED_COUNTER:
       return 0;
@@ -185,6 +197,8 @@ export const activityLog = (
     case ReduxConstants.REMOVE_ACTIVITY_LOG: {
       return state.filter(log => log.dateTime !== action.payload.dateTime);
     }
+
+    case ReduxConstants.RESET_ALL:
     case ReduxConstants.RESET_COOKIE_DELETED_COUNTER:
       return [];
     default:
@@ -201,6 +215,9 @@ export const cache = (state: CacheMap = {}, action: ReduxAction) => {
       newCacheObject[`${action.payload.key}`] = action.payload.value;
       return newCacheObject;
     }
+
+    case ReduxConstants.RESET_ALL:
+      return {};
 
     default:
       return state;

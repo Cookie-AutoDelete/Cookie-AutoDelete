@@ -105,6 +105,11 @@
     "description": "Settings"
   },
 
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
+
   "settingsText": {
     "message": "Cookie Settings",
     "description": "Cookie Settings"
@@ -322,6 +327,21 @@
   "defaultSettingsText": {
     "message": "Restore Default Settings",
     "description": "Restore Default Settings"
+  },
+
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
+  },
+
+  "restartYourBrowserText": {
+    "message": "Please restart your browser.",
+    "description": "Please restart your browser."
+  },
+
+  "pageWillReloadText": {
+    "message": "This page will reload soon.",
+    "description": "This page will reload soon."
   },
 
   "whiteListWordText": {

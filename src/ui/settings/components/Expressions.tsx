@@ -17,7 +17,7 @@ import { getSetting } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
-
+import { exportAppendTimestamp } from '../../UILibs';
 const styles = {
   tableContainer: {
     height: `${window.innerHeight - 210}px`,
@@ -110,21 +110,6 @@ class Expressions extends React.Component<ExpressionProps> {
     }
   }
 
-  // Dynamically generate and append timestamp to download filename
-  public exportAppendTimestamp(element: HTMLElement) {
-    // We take into account the timezone offset since using Date.toISOString() returns in UTC/GMT.
-    element.setAttribute(
-      'download',
-      `CAD_Expressions_${new Date(
-        new Date().getTime() - new Date().getTimezoneOffset() * 60000,
-      )
-        .toISOString()
-        .slice(0, -5)
-        .replace('T', '_')
-        .replace(/:/g, '.')}.json`,
-    );
-  }
-
   public render() {
     const { style, lists, contextualIdentities } = this.props;
     const { error, contextualIdentitiesObjects, storeId } = this.state;
@@ -192,8 +177,8 @@ class Expressions extends React.Component<ExpressionProps> {
               download="CAD_Expressions_Expressions.json"
               role="button"
               target="_blank"
-              onClick={d => this.exportAppendTimestamp(d.target)}
-              onContextMenu={d => this.exportAppendTimestamp(d.target)}
+              onClick={d => exportAppendTimestamp(d.target)}
+              onContextMenu={d => exportAppendTimestamp(d.target)}
               title={browser.i18n.getMessage('exportURLSTitle')}
               text={browser.i18n.getMessage('exportURLSText')}
               styleReact={{

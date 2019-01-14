@@ -23,6 +23,7 @@ import {
   ReduxConstants,
   REMOVE_ACTIVITY_LOG,
   REMOVE_EXPRESSION,
+  RESET_ALL,
   RESET_COOKIE_DELETED_COUNTER,
   RESET_SETTINGS,
   UPDATE_EXPRESSION,
@@ -119,6 +120,10 @@ export const updateSetting = (payload: Setting): UPDATE_SETTING => ({
 
 export const resetSettings = (): RESET_SETTINGS => ({
   type: ReduxConstants.RESET_SETTINGS,
+});
+
+export const resetAll = (): RESET_ALL => ({
+  type: ReduxConstants.RESET_ALL,
 });
 
 // Validates the setting object and adds missing settings if it doesn't already exist in the initialState.json
