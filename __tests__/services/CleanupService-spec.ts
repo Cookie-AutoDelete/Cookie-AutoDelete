@@ -1,6 +1,7 @@
 import { when } from 'jest-when';
 import { initialState } from '../../src/redux/State';
 import {
+  filterLocalstorage,
   isSafeToClean,
   returnSetOfOpenTabDomains,
 } from '../../src/services/CleanupService';
@@ -76,14 +77,14 @@ const sampleState: State = {
 };
 
 const mockCookie: CookiePropertiesCleanup = {
-  domain: '',
+  domain: 'test.com',
   hostOnly: true,
-  hostname: '',
+  hostname: 'test.com',
   httpOnly: true,
-  mainDomain: '',
+  mainDomain: 'test.com',
   name: 'key',
   path: '/',
-  preparedCookieDomain: '',
+  preparedCookieDomain: 'https://test.com/',
   secure: true,
   session: true,
   storeId: 'firefox-default',
@@ -517,6 +518,96 @@ describe('CleanupService', () => {
 
     afterAll(() => {
       delete global.browser;
+    });
+  });
+
+  describe('filterLocalstorage()', () => {
+    it('should return false for a blank cookie hostname', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+          hostname: '',
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.NoMatchedExpression,
+      };
+      const result = filterLocalstorage(cleanReasonObj);
+      expect(result).toBe(false);
+    });
+
+    it('should return true because of no matched expression', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.NoMatchedExpression,
+      };
+      const result = filterLocalstorage(cleanReasonObj);
+      expect(result).toBe(true);
+    });
+
+    it('should return false because of a matched expression', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        expression: {
+          expression: '',
+          listType: ListType.WHITE,
+          storeId: 'default',
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonKeep.MatchedExpression,
+      };
+      const result = filterLocalstorage(cleanReasonObj);
+      expect(result).toBe(false);
+    });
+
+    it('should return true because of a matched expression but do not keep localstorage', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        expression: {
+          cleanLocalStorage: true,
+          expression: '',
+          listType: ListType.WHITE,
+          storeId: 'default',
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonKeep.MatchedExpression,
+      };
+      const result = filterLocalstorage(cleanReasonObj);
+      expect(result).toBe(true);
+    });
+
+    it('should return false because of a matched expression but do not keep localstorage + in an open tab', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        expression: {
+          cleanLocalStorage: true,
+          expression: '',
+          listType: ListType.WHITE,
+          storeId: 'default',
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonKeep.OpenTabs,
+      };
+      const result = filterLocalstorage(cleanReasonObj);
+      expect(result).toBe(false);
     });
   });
 

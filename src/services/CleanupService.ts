@@ -177,6 +177,26 @@ export const otherBrowsingDataCleanup = async (
   }
 };
 
+/** Setup Localstorage cleaning */
+export const cleanLocalstorage = (bool?: boolean) => {
+  if (bool === undefined) return false;
+  return bool;
+};
+
+/** Filter the deleted cookies */
+export const filterLocalstorage = (obj: CleanReasonObject) => {
+  const notProtectedByOpenTab = obj.reason !== ReasonKeep.OpenTabs;
+  const notInAnyLists = obj.reason === ReasonClean.NoMatchedExpression;
+  const listCleanLocalstorage = cleanLocalstorage(
+    obj.expression ? obj.expression.cleanLocalStorage : undefined,
+  );
+  const nonBlankCookieHostName = obj.cookie.hostname !== '';
+  return (
+    (notInAnyLists || (notProtectedByOpenTab && listCleanLocalstorage)) &&
+    nonBlankCookieHostName
+  );
+};
+
 /** Store all tabs' host domains to prevent cookie deletion from those domains */
 export const returnSetOfOpenTabDomains = async (ignoreOpenTabs: boolean) => {
   if (ignoreOpenTabs) {
@@ -248,30 +268,20 @@ export const cleanCookiesOperation = async (
       return isSafeToClean(state, prepareCookie(cookie), newCleanupProperties);
     });
     const markedForDeletion = isSafeToCleanObjects.filter(
-      obj => obj.cleanCookie,
+      obj => obj.cleanCookie && obj.cookie.hostname !== '',
     );
 
     try {
       await cleanCookies(state, markedForDeletion);
     } catch (e) {
-      console.error(e);
+      console.error(e, markedForDeletion);
       throwErrorNotification(e);
       return undefined;
     }
 
-    // Setup Localstorage cleaning
-    const cleanLocalstorage = (bool?: boolean) => {
-      if (bool === undefined) return false;
-      return bool;
-    };
-    const markedForLocalStorageDeletion = isSafeToCleanObjects.filter(obj => {
-      const notProtectedByOpenTab = obj.reason !== ReasonKeep.OpenTabs;
-      const notInAnyLists = obj.reason === ReasonClean.NoMatchedExpression;
-      const listCleanLocalstorage = cleanLocalstorage(
-        obj.expression ? obj.expression.cleanLocalStorage : undefined,
-      );
-      return notInAnyLists || (notProtectedByOpenTab && listCleanLocalstorage);
-    });
+    const markedForLocalStorageDeletion = isSafeToCleanObjects.filter(
+      filterLocalstorage,
+    );
 
     // Side effects
     allLocalstorageToClean = [
@@ -291,13 +301,15 @@ export const cleanCookiesOperation = async (
     });
   }
 
+  // Clean other browsingdata
+  const hostnamesToClean = allLocalstorageToClean.map(
+    obj => obj.cookie.hostname,
+  );
+
   try {
-    await otherBrowsingDataCleanup(
-      state,
-      allLocalstorageToClean.map(obj => obj.cookie.hostname),
-    );
+    await otherBrowsingDataCleanup(state, hostnamesToClean);
   } catch (e) {
-    console.error(e);
+    console.error(e, hostnamesToClean);
     // if it reaches this point then cookies were deleted, so don't return undefined
     throwErrorNotification(e);
   }
