@@ -346,6 +346,16 @@ describe('Library Functions', () => {
       const regExp = new RegExp(globExpressionToRegExp('*.git*b.com'));
       expect(regExp.test('sub.gitlab.com')).toBe(true);
     });
+    it('should match [2a03:4000:6:310e:216:3eff:fe53:99b3] with [*]', () => {
+      const regExp = new RegExp(globExpressionToRegExp('[*]'));
+      expect(regExp.test('[2a03:4000:6:310e:216:3eff:fe53:99b3]')).toBe(true);
+    });
+    it('should match [2a03:4000:6:310e:216:3eff:fe53:99b3] with itself', () => {
+      const regExp = new RegExp(
+        globExpressionToRegExp('[2a03:4000:6:310e:216:3eff:fe53:99b3]'),
+      );
+      expect(regExp.test('[2a03:4000:6:310e:216:3eff:fe53:99b3]')).toBe(true);
+    });
   });
 
   describe('returnMatchedExpressionObject ()', () => {

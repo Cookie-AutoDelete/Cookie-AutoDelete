@@ -160,7 +160,11 @@ export const globExpressionToRegExp = (glob: string) => {
       .replace(/\./g, '\\.')
       .replace(/\*/g, '.*')}$`;
   }
-  return `^${normalizedGlob.replace(/\./g, '\\.').replace(/\*/g, '.*')}$`;
+  return `^${normalizedGlob
+    .replace(/\./g, '\\.')
+    .replace(/\*/g, '.*')
+    .replace(/\[/g, '\\[')
+    .replace(/\]/g, '\\]')}$`;
 };
 
 /**
