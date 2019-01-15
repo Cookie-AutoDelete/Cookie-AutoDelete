@@ -164,7 +164,7 @@ export const otherBrowsingDataCleanup = async (
 ) => {
   if (
     state.cache.browserDetect === 'Firefox' &&
-    browser.browsingData.removeLocalStorage &&
+    state.cache.platformOs !== 'android' &&
     getSetting(state, 'localstorageCleanup')
   ) {
     await browser.browsingData

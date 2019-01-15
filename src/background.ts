@@ -114,6 +114,17 @@ const onStartUp = async () => {
     type: ReduxConstants.ADD_CACHE,
   });
 
+  // Store platform in cache
+  const platformInfo = await browser.runtime.getPlatformInfo();
+  store.dispatch({
+    payload: {
+      key: 'platformOs',
+      // @ts-ignore TODO: Make a type for this
+      value: platformInfo.os,
+    },
+    type: ReduxConstants.ADD_CACHE,
+  });
+
   // Temporary fix until contextualIdentities events land
   if (getSetting(store.getState(), 'contextualIdentities')) {
     store.dispatch<any>(cacheCookieStoreIdNames());

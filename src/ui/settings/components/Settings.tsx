@@ -32,6 +32,7 @@ interface StateProps {
   settings: MapToSettingObject;
   browserDetect: string;
   browserVersion: string;
+  platformOs: string;
 }
 
 interface DispatchProps {
@@ -48,6 +49,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
     onUpdateSetting,
     onResetButtonClick,
     browserDetect,
+    platformOs,
     browserVersion,
   } = props;
   return (
@@ -186,7 +188,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
         </div>
       </div>
 
-      {browserDetect === 'Firefox' && (
+      {browserDetect === 'Firefox' && platformOs !== 'android' && (
         <div className="row" style={styles.rowOverrides}>
           <div className="col-md-12">
             <CheckboxSetting
@@ -206,7 +208,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
 
       {browserDetect === 'Firefox' &&
         browserVersion >= '58' &&
-        browser.browsingData.removeLocalStorage && (
+        platformOs !== 'android' && (
           <div className="row" style={styles.rowOverrides}>
             <div className="col-md-12">
               <CheckboxSetting
@@ -254,6 +256,7 @@ const mapStateToProps = (state: State) => {
   return {
     browserDetect: cache.browserDetect,
     browserVersion: cache.browserVersion,
+    platformOs: cache.platformOs,
     settings,
   };
 };
