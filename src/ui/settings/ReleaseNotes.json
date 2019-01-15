@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "3.0.1",
+      "notes": [
+        "Added: A Fallback error message and actions for when the extension data is corrupted in the settings or popup",
+        "Fixed: Cookie/Localstorage Cleanup relating to blank hostnames",
+        "Fixed: White/Grey listing IPv6 sites",
+        "Disabled: Localstorage cleanup on Firefox Android"
+      ]
+    },
+    {
       "version": "3.0.0",
       "notes": [
         "Added: Ability to keep individual cookies or localstorage per expression",
