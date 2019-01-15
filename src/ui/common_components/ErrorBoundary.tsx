@@ -13,7 +13,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { resetAll } from '../../redux/Actions';
-import { sleep } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 import { exportAppendTimestamp } from '../UILibs';
 import IconButton from './IconButton';
@@ -52,13 +51,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
   public async resetExtensionData() {
     await browser.storage.local.clear();
     this.props.onResetButtonClick();
-    this.setState({
-      resetButtonText: `${browser.i18n.getMessage(
-        'restartYourBrowserText',
-      )} ${browser.i18n.getMessage('pageWillReloadText')}`,
-    });
-    await sleep(5000);
-    location.reload();
+    browser.runtime.reload();
   }
 
   public render() {

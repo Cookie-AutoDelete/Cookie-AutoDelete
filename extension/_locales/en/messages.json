@@ -334,16 +334,6 @@
     "description": "Reset Extension Data"
   },
 
-  "restartYourBrowserText": {
-    "message": "Please restart your browser.",
-    "description": "Please restart your browser."
-  },
-
-  "pageWillReloadText": {
-    "message": "This page will reload soon.",
-    "description": "This page will reload soon."
-  },
-
   "whiteListWordText": {
     "message": "Whitelist",
     "description": "Whitelist"
