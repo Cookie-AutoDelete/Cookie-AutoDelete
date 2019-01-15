@@ -159,36 +159,37 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
 
   public render() {
     const { cookies } = this.state;
-    const { expression } = this.props;
+    const { expression, state } = this.props;
 
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
       <div>
-        {this.props.state.cache.browserDetect === 'Firefox' && (
-          <div className={'checkbox'}>
-            <span
-              className={'addHover'}
-              onClick={() =>
-                this.toggleCleanLocalstorage(!expression.cleanLocalStorage)
-              }
-            >
-              {!expression.cleanLocalStorage ? (
-                <FontAwesomeIcon
-                  style={styles.checkbox}
-                  size={'lg'}
-                  icon={['far', 'check-square']}
-                />
-              ) : (
-                <FontAwesomeIcon
-                  style={styles.checkbox}
-                  size={'lg'}
-                  icon={['far', 'square']}
-                />
-              )}
-              <label>{browser.i18n.getMessage('keepLocalstorageText')}</label>
-            </span>
-          </div>
-        )}
+        {state.cache.browserDetect === 'Firefox' &&
+          state.cache.platformOs !== 'android' && (
+            <div className={'checkbox'}>
+              <span
+                className={'addHover'}
+                onClick={() =>
+                  this.toggleCleanLocalstorage(!expression.cleanLocalStorage)
+                }
+              >
+                {!expression.cleanLocalStorage ? (
+                  <FontAwesomeIcon
+                    style={styles.checkbox}
+                    size={'lg'}
+                    icon={['far', 'check-square']}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    style={styles.checkbox}
+                    size={'lg'}
+                    icon={['far', 'square']}
+                  />
+                )}
+                <label>{browser.i18n.getMessage('keepLocalstorageText')}</label>
+              </span>
+            </div>
+          )}
         {}
         <div className={'checkbox'}>
           <span
