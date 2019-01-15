@@ -14,6 +14,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createUIStore } from 'redux-webext';
 import { sleep } from '../../services/Libs';
+import ErrorBoundary from '../common_components/ErrorBoundary';
 import fontAwesomeImports from '../font-awesome-imports';
 import App from './App';
 
@@ -34,7 +35,9 @@ async function initApp() {
 
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </Provider>,
     mountNode,
   );
