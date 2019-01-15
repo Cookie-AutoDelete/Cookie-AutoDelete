@@ -136,6 +136,8 @@ const onStartUp = async () => {
   // This is important to initialize the Store for all classes that extend from this
   StoreUser.init(store);
 
+  store.dispatch<any>(validateSettings());
+
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
@@ -150,7 +152,6 @@ browser.runtime.onStartup.addListener(async () => {
 browser.runtime.onInstalled.addListener(async details => {
   await awaitStore();
   if (details.reason === 'update') {
-    store.dispatch<any>(validateSettings());
     if (convertVersionToNumber(details.previousVersion) < 300) {
       store.dispatch({
         type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
