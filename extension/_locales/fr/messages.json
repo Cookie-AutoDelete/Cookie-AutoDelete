@@ -89,6 +89,10 @@
     "message": "Paramètres",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Paramètres des témoins",
     "description": "Cookie Settings"

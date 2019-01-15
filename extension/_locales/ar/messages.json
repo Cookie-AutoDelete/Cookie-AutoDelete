@@ -89,6 +89,10 @@
     "message": "الإعدادات",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "إعدادات سجل الكوكيز",
     "description": "Cookie Settings"

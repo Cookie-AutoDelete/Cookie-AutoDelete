@@ -89,6 +89,10 @@
     "message": "Einstellungen",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Optionen",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Cookie-Einstellungen",
     "description": "Cookie Settings"
@@ -174,7 +178,7 @@
     }
   },
   "reasonCleanCookieName": {
-    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "message": "Teilweise aufräumen, da $matchedExpression$ mit der $listType$ übereinstimmt",
     "description": "Partial clean because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -224,11 +228,11 @@
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Keep Localstorage",
+    "message": "Localstorage behalten",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
-    "message": "Keep All Cookies",
+    "message": "Alle Cookies behalten",
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
@@ -236,11 +240,11 @@
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Error!",
+    "message": "Fehler!",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Restore",
+    "message": "Wiederherstellen",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
@@ -304,7 +308,7 @@
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
-    "message": "How do Expressions work?",
+    "message": "Wie funktionieren Ausdrücke?",
     "description": "How do Expressions work?"
   },
   "importURLSText": {

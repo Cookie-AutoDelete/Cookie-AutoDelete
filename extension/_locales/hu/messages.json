@@ -89,6 +89,10 @@
     "message": "Beállítások",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Cookie Settings",
     "description": "Cookie Settings"

@@ -89,6 +89,10 @@
     "message": "設定",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "設定",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Cookie の設定",
     "description": "Cookie Settings"
@@ -232,7 +236,7 @@
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
-    "message": "ログ",
+    "message": "ログを削除",
     "description": "Clear Logs"
   },
   "errorText": {

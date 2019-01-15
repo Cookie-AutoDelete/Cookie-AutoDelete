@@ -89,6 +89,10 @@
     "message": "Instellingen",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Cookie-instellingen",
     "description": "Cookie Settings"

@@ -89,6 +89,10 @@
     "message": "Pengaturan",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Pengaturan Kuki",
     "description": "Cookie Settings"

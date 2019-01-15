@@ -89,6 +89,10 @@
     "message": "設定",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Cookie 設定",
     "description": "Cookie Settings"

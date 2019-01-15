@@ -89,6 +89,10 @@
     "message": "Definições",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Definições dos cookies",
     "description": "Cookie Settings"
@@ -220,7 +224,7 @@
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Ativar limpeza de registo e contador",
+    "message": "Ativar registo de limpeza e contador",
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {

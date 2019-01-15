@@ -89,6 +89,10 @@
     "message": "Подешавања",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Подешавања колачића",
     "description": "Cookie Settings"

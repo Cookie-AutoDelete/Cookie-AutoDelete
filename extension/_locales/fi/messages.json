@@ -89,6 +89,10 @@
     "message": "Asetukset",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Evästeasetukset",
     "description": "Cookie Settings"
