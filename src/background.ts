@@ -66,7 +66,7 @@ const onSettingsChange = () => {
 };
 
 const onStartUp = async () => {
-  browser.browserAction.setTitle({ title: `${await browser.browserAction.getTitle({})} {browser.runtime.getManifest().version}` });
+  browser.browserAction.setTitle({ title: `${await browser.browserAction.getTitle({})} ${browser.runtime.getManifest().version}` });
   const storage = await browser.storage.local.get();
   let stateFromStorage;
   try {
