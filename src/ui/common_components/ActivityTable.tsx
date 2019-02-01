@@ -211,7 +211,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
                   aria-expanded="false"
                   aria-controls={`collapse${index}`}
                 >
-                  {`${new Date(log.dateTime).toLocaleString()} - ${message}`}
+                  {`${new Date(log.dateTime).toLocaleString([], { timeZoneName: 'short' })} - ${message}`}
                 </button>
               </h5>
             </div>
