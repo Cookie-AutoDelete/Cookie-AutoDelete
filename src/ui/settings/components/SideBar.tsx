@@ -116,6 +116,7 @@ class SideBar extends React.Component<OwnProps> {
                 <span>{`${element.tabText}`}</span>
               </div>
             ))}
+
             <div
               style={{
                 bottom: '5px',
@@ -129,7 +130,8 @@ class SideBar extends React.Component<OwnProps> {
                 style={{
                   textAlign: 'center',
                   width: '100%',
-                }}>
+                }}
+              >
                 {browser.i18n.getMessage('contributeText')}
               </a>
             </div>
