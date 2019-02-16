@@ -95,6 +95,15 @@ class SideBar extends React.Component<OwnProps> {
 
         <div id="menu">
           <div className="pure-menu">
+            <div
+              className="sidebar-version"
+              style={{
+                  textAlign: 'center',
+                  width: '100%',
+              }}
+            >
+              <span>CAD {browser.i18n.getMessage('versionText', [''])} <b>{browser.runtime.getManifest().version}</b></span>
+            </div>
             {sideBarTabs.map((element, index) => (
               <div
                 key={element.tabId}

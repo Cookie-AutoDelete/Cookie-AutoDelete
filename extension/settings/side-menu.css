@@ -7,6 +7,10 @@ body {
   height: auto;
 }
 
+.sidebar-version {
+  padding-bottom: 1em;
+}
+
 /*
 Add transition to containers so they can push in and out.
 */

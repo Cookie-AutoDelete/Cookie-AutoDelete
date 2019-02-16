@@ -503,5 +503,10 @@
   "noCleanupLogText": {
     "message": "No Cleanup Logs Found",
     "description": "No Cleanup Logs Found"
+  },
+
+  "versionExtText": {
+    "message": "version",
+    "description": "version"
   }
 }
