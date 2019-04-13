@@ -167,7 +167,7 @@ export const otherBrowsingDataCleanup = async (
     state.cache.platformOs !== 'android' &&
     getSetting(state, 'localstorageCleanup')
   ) {
-    await browser.browsingData
+    browser.browsingData
       .removeLocalStorage({
         hostnames,
       })
