@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "3.0.2",
+      "notes": [
+        "Added: Version Number to some UI elements",
+        "Added: Timezone to cleanup log timestamps",
+        "Fixed: Notifications not showing up with Localstorage cleanup in Firefox 57 and higher"
+      ]
+    },
+    {
       "version": "3.0.1",
       "notes": [
         "Added: A Fallback error message and actions for when the extension data is corrupted in the settings or popup",
