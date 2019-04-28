@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: 已清除 cookie！",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "已清除 $Num$ 個來自下列網站的 cookie：$Websites$",
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "恢復預設設定",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "白名單",

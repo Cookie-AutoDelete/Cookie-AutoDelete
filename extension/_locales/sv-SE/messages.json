@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: Cookies har tagits bort!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ borttagna cookies från: $Websites$",
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Återställ standardinställningar",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Vitlista",

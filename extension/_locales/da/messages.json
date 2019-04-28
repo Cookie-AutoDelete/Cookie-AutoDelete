@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: Cookies blev slettet!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ slettede cookies fra: $Websites$",
@@ -90,7 +96,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Indstillinger",
     "description": "Options"
   },
   "settingsText": {
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Gendan standard opsætning",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Nulstil udvidelsesdata",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Hvidliste",

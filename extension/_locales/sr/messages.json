@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: колачићи су обрисани!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ обрисаних колачића са сајтова: $Websites$",
@@ -90,7 +96,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Опције",
     "description": "Options"
   },
   "settingsText": {
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Врати подразумевана подешавања",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Бели списак",

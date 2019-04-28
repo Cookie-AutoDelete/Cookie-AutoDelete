@@ -8,11 +8,17 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Suppression automatique des fichiers témoins : les témoins ont été supprimés !",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "message": "Cookie AutoDelete : des témoins ont été supprimés !",
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
-    "message": "$Num$ fichiers témoins ont été supprimés pour : $Websites$",
+    "message": "$Num$ cookies ont été supprimés pour : $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -50,7 +56,7 @@
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Nettoyer maintenant, y compris les témoins des onglets ouverts",
+    "message": "Nettoyer maintenant, y compris les cookies des onglets ouverts",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
@@ -94,7 +100,7 @@
     "description": "Options"
   },
   "settingsText": {
-    "message": "Paramètres des témoins",
+    "message": "Paramètres des cookies",
     "description": "Cookie Settings"
   },
   "whiteListText": {
@@ -110,7 +116,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Bonjour ! Lors de cette session, la suppression automatique des fichiers témoins a supprimé $sessionDeleted$ témoins, pour un total de $totalDeleted$ témoins.",
+    "message": "Bonjour ! Lors de cette session, Cookie AutoDelete a supprimé $sessionDeleted$ cookies, pour un total de $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -232,7 +238,7 @@
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
-    "message": "Garder tous les Cookies",
+    "message": "Garder tous les cookies",
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
@@ -248,15 +254,15 @@
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Afficher le nombre de témoins pour ce domaine",
+    "message": "Afficher le nombre de cookies pour ce domaine",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Afficher une notification après nettoyage des témoins",
+    "message": "Afficher une notification après nettoyage des cookies",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Nettoyer les témoins des onglets ouverts lors du démarrage",
+    "message": "Nettoyer les cookies des onglets ouverts lors du démarrage",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
@@ -268,16 +274,20 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Nettoyer la mémoire locale (Firefox 58+)",
+    "message": "Nettoyer le Localstorage (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Activer à la fois le nettoyage de la mémoire locale et des onglets contextuels de Firefox peut causer des effets indésirables en raison de restrictions de l’API",
+    "message": "Activer à la fois le nettoyage du localstorage et des onglets contextuels de Firefox peut causer des effets indésirables en raison de limitations de l’API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Restaurer les paramètres par défaut",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Liste blanche",
@@ -304,7 +314,7 @@
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "Une estampille temporelle sera ajoutée au nom de fichier lors de l’exportation.\nÉprouvez-vous des problèmes de téléchargement ? Cliquez à droite sur ce bouton et cliquez sur « Enregistrer la cible du lien sous… » pour le télécharger.",
+    "message": "Un horodatage sera ajouté au nom de fichier lors de l’exportation.\nVous rencontrez des difficultés de téléchargement ? Faites un clic-droit sur ce bouton et cliquez sur « enregistrer la cible du lien sous… » pour le télécharger.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {

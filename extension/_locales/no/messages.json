@@ -4,12 +4,18 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Kontroller informasjonskapslene dine! Auto-Slett ubrukt informasjonskapsler fra de lukkede fanene dine automatisk mens du holder de du vil.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies were deleted!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "message": "Cookie AutoSlett: Informasjonskapsler ble slettet!",
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ Deleted Cookies from: $Websites$",
@@ -30,27 +36,27 @@
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Ingen",
     "description": "None"
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "Fjern",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Behold",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "Kjør opprydding nå",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "Rengjør, inkluderer åpne faner",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
+    "message": "Kjør opprydding nå, inkludere informasjonskapsler fra åpne faner",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
@@ -86,11 +92,11 @@
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Settings",
+    "message": "Innstillinger",
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Alternativer",
     "description": "Options"
   },
   "settingsText": {
@@ -102,7 +108,7 @@
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Cleanup Log",
+    "message": "Opprydningslogg",
     "description": "Cleanup Log"
   },
   "aboutText": {
@@ -192,19 +198,19 @@
     }
   },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "eller i noen åpne faner",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "og også åpne faner ble ignorert",
     "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message": "Takk for at du har prøvd Cookie AutoDelete. Hvis du likte det, vennligst gi en anmeldelse.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Release Notes",
+    "message": "Utgivelsesnotater",
     "description": "Release Notes"
   },
   "activeModeText": {
@@ -216,7 +222,7 @@
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Sekund(er)",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
@@ -228,7 +234,7 @@
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Keep Localstorage",
+    "message": "Behold Lokal lagring",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
@@ -240,11 +246,11 @@
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Error!",
+    "message": "Feil!",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Restore",
+    "message": "Gjenopprett",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Restore Default Settings",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Whitelist",
@@ -366,15 +376,15 @@
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Stop editing",
+    "message": "Stopp redigering",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Save expression",
+    "message": "Lagre uttrykk",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Edit expression",
+    "message": "Rediger uttrykk",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
@@ -414,7 +424,7 @@
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "No Cleanup Logs Found",
+    "message": "Ingen opprydningslogger funnet",
     "description": "No Cleanup Logs Found"
   }
 }

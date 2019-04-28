@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: クッキーが削除された!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ 個のクッキーを $Websites$ から削除",
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "初期設定に戻す",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "ホワイトリスト",

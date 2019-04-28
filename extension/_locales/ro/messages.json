@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: Cookie-urile au fost șterse!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ cookie-uri șterse de la: $Websites$",
@@ -90,7 +96,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Opțiuni",
     "description": "Options"
   },
   "settingsText": {
@@ -228,7 +234,7 @@
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Keep Localstorage",
+    "message": "Păstrează Localstorage",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Restabilește configurările predefinite",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Lista albă",

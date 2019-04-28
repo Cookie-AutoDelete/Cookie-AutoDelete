@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: Tarayıcı çerezlerin temizlendi!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "\"$Websites$\" sitesinden $Num$ adet çerez temizlendi",
@@ -90,7 +96,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Ayarlar",
     "description": "Options"
   },
   "settingsText": {
@@ -178,7 +184,7 @@
     }
   },
   "reasonCleanCookieName": {
-    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "message": "$matchedExpression$ alan adı $listType$ içinde bulunduğu için kısmen temizlendi",
     "description": "Partial clean because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -228,11 +234,11 @@
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Keep Localstorage",
+    "message": "Yerel Depolama bilgilerini koru",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
-    "message": "Keep All Cookies",
+    "message": "Çerez bilgilerini koru",
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
@@ -240,11 +246,11 @@
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Error!",
+    "message": "Hata oluştu!",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Restore",
+    "message": "Geri yükle",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
@@ -279,6 +285,10 @@
     "message": "Varsayılan ayarları geri yükle",
     "description": "Restore Default Settings"
   },
+  "resetExtensionDataText": {
+    "message": "Eklenti Verisini Sıfırla",
+    "description": "Reset Extension Data"
+  },
   "whiteListWordText": {
     "message": "Whitelist (Güvenilir-liste)",
     "description": "Whitelist"
@@ -308,7 +318,7 @@
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
-    "message": "How do Expressions work?",
+    "message": "Kuralların nasıl çalıştığını öğrenmek ister misin?",
     "description": "How do Expressions work?"
   },
   "importURLSText": {

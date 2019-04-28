@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: куки удалены!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "Куки от $Websites$ было удалено: $Num$",
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Восстановить первоначальные настройки",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Сбросить данные расширения",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Белый список",

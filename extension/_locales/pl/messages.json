@@ -9,7 +9,13 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete: ciasteczka zostały usunięte!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ usuniętych ciasteczek z: $Websites$",
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Przywróć ustawienia domyślne",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Resetuj dane rozszerzenia",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Biała lista",

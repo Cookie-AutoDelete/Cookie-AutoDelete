@@ -8,8 +8,14 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies were deleted!",
-    "description": "Cookie AutoDelete: Cookies were deleted!"
+    "message": "Cookie AutoDelete $Ver$: Cookies were deleted!",
+    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
+    "placeholders": {
+      "ver": {
+        "content": "$1",
+        "example": "3.0.0"
+      }
+    }
   },
   "notificationContent": {
     "message": "$Num$ Deleted Cookies from: $Websites$",
@@ -278,6 +284,10 @@
   "defaultSettingsText": {
     "message": "Restore Default Settings",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Whitelist",
