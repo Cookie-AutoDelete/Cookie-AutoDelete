@@ -60,3 +60,6 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 1. Run `npm install` (if you haven't already)
 2. Run `npm run build`
 3. The build files should be in a new folder called `/builds`
+
+## Documentation
+Full documentation can be found in the [wiki](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation).
