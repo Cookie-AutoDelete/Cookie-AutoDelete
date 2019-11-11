@@ -88,7 +88,7 @@ const mockCookie: CookiePropertiesCleanup = {
   name: 'key',
   path: '/',
   preparedCookieDomain: 'https://test.com/',
-  sameSite: 'strict',
+  sameSite: 'no_restriction',
   secure: true,
   session: true,
   storeId: 'firefox-default',
