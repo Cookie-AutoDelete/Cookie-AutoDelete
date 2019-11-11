@@ -3,6 +3,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
   entry: {
     background: `${__dirname}/src/background.ts`,
     popup: `${__dirname}/src/ui/popup/index.tsx`,
@@ -36,7 +37,7 @@ module.exports = {
   plugins: [
     new webpack.BannerPlugin(`
       Copyright (c) 2019 Kenny Do
-  
+
       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,7 +45,7 @@ module.exports = {
       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
       SOFTWARE.
-  
+
     `),
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static',

@@ -1,4 +1,5 @@
 import { when } from 'jest-when';
+import { mocked } from 'ts-jest/utils';
 import { initialState } from '../../src/redux/State';
 import {
   filterLocalstorage,
@@ -9,6 +10,8 @@ import * as Lib from '../../src/services/Libs';
 // ToDo: cleanCookiesOperation
 
 jest.mock('../../src/services/Libs');
+
+const mockedLib = mocked(Lib, true);
 
 const wildCardWhiteListGoogle: Expression = {
   expression: '*.google.com',
@@ -85,6 +88,7 @@ const mockCookie: CookiePropertiesCleanup = {
   name: 'key',
   path: '/',
   preparedCookieDomain: 'https://test.com/',
+  sameSite: 'strict',
   secure: true,
   session: true,
   storeId: 'firefox-default',
@@ -130,36 +134,36 @@ describe('CleanupService', () => {
           ],
         },
       };
-      when(Lib.isAWebpage)
+      when(mockedLib.isAWebpage)
         .calledWith('https://google.com/search')
         .mockReturnValue(true);
-      when(Lib.isAWebpage)
+      when(mockedLib.isAWebpage)
         .calledWith('http://facebook.com/search')
         .mockReturnValue(true);
-      when(Lib.isAWebpage)
+      when(mockedLib.isAWebpage)
         .calledWith('http://sub.domain.com')
         .mockReturnValue(true);
-      when(Lib.isAWebpage)
+      when(mockedLib.isAWebpage)
         .calledWith('moz-extension://test/settings/settings.html')
         .mockReturnValue(false);
 
-      when(Lib.getHostname)
+      when(mockedLib.getHostname)
         .calledWith('https://google.com/search')
         .mockReturnValue('google.com');
-      when(Lib.getHostname)
+      when(mockedLib.getHostname)
         .calledWith('http://facebook.com/search')
         .mockReturnValue('facebook.com');
-      when(Lib.getHostname)
+      when(mockedLib.getHostname)
         .calledWith('http://sub.domain.com')
         .mockReturnValue('sub.domain.com');
 
-      when(Lib.extractMainDomain)
+      when(mockedLib.extractMainDomain)
         .calledWith('google.com')
         .mockReturnValue('google.com');
-      when(Lib.extractMainDomain)
+      when(mockedLib.extractMainDomain)
         .calledWith('facebook.com')
         .mockReturnValue('facebook.com');
-      when(Lib.extractMainDomain)
+      when(mockedLib.extractMainDomain)
         .calledWith('sub.domain.com')
         .mockReturnValue('domain.com');
     });
@@ -224,39 +228,39 @@ describe('CleanupService', () => {
           getMessage: () => '',
         },
       };
-      when(Lib.undefinedIsTrue)
+      when(mockedLib.undefinedIsTrue)
         .calledWith(undefined)
         .mockReturnValue(true);
-      when(Lib.undefinedIsTrue)
+      when(mockedLib.undefinedIsTrue)
         .calledWith(true)
         .mockReturnValue(true);
-      when(Lib.undefinedIsTrue)
+      when(mockedLib.undefinedIsTrue)
         .calledWith(false)
         .mockReturnValue(false);
 
-      when(Lib.returnMatchedExpressionObject)
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'default', 'youtube.com')
         .mockReturnValue(whiteListYoutube);
-      when(Lib.returnMatchedExpressionObject)
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'default', 'google.com')
         .mockReturnValue(wildCardWhiteListGoogle);
-      when(Lib.returnMatchedExpressionObject)
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'default', 'sub.google.com')
         .mockReturnValue(wildCardWhiteListGoogle);
-      when(Lib.returnMatchedExpressionObject)
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'firefox-container-1', 'facebook.com')
         .mockReturnValue(wildCardGreyFacebook);
-      when(Lib.returnMatchedExpressionObject)
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'default', 'examplewithcookiename.com')
         .mockReturnValue(exampleWithCookieName);
-      when(Lib.returnMatchedExpressionObject)
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(
           sampleState,
           'default',
           'exampleWithCookieNameCleanAllCookiesTrue.com',
         )
         .mockReturnValue(exampleWithCookieNameCleanAllCookiesTrue);
-      when(Lib.returnMatchedExpressionObject)
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(
           sampleState,
           'firefox-container-1',

@@ -105,7 +105,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
         firstPartyDomain: hostname,
         storeId: cookieStoreId,
       }),
-    )) as browser.cookies.CookieProperties[];
+    ));
 
     if (cookies.length > 0) {
       cookies.forEach(cookie =>
