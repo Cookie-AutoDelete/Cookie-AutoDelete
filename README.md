@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete.svg?branch=2.X.X-Branch)](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete)
+[![Build Status](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete.svg?branch=3.X.X-Branch)](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete)
 [![Coverage Status](https://coveralls.io/repos/github/mrdokenny/Cookie-AutoDelete/badge.svg?branch=master)](https://coveralls.io/github/mrdokenny/Cookie-AutoDelete?branch=master)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cookie-autodelete/localized.svg)](https://crowdin.com/project/cookie-autodelete)
 
@@ -19,31 +19,36 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 2. Enable “Active Mode” in the popup or settings
 3. Watch those unused cookies disappear :)
 
-## Other versions
-[Google Chrome](https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh)
+## Installation
+### via Official Channels
+- [Google Chrome](https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh)
+- [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
 
-[Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
+### via Self Installation
+- [Github Releases](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/releases)
 
-### Contributing
+> Please keep in mind that at this time only Mozilla Firefox and Google Chrome (as well as its development branches e.g. Developer Edition, Canary) will be supported.  While you may be able to install this extension on other browsers (i.e. Varations of Edge, Chrome, Firefox, Android),  there will be no official support from the authors and maintainers through Github Issues.
 
-#### Internationalization (i18n)
+## Contributing
+
+### Internationalization (i18n)
 
 [Translate Cookie AutoDelete in your language or help fix a translation on Crowdin!](https://crowdin.com/project/cookie-autodelete)
 
-#### Contributing code
+### Contributing code
 
-##### Requirements
+#### Requirements
 - Bash (cause there's some .sh scripts, otherwise you can't do `npm run build`, but can still do `npm run dev`)
 - Latest version of Node.js
 
-##### Development
+#### Development
 - `npm install` - Installs all dependencies
 - `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.js` and its dependencies to `/extension`
 - `npm run lint` - Runs the eslinter for JS files
 - `npm test` - Runs the test suite located in `/test`
 - `npm run build` - Builds the Firefox (.xpi) and Chrome (.zip) builds
 
-##### Testing
+#### Testing
 1. Run `npm install` (if you haven't already)
 2. Run `npm run dev`
 3. Load the extension in the browser
@@ -55,7 +60,7 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 - Chrome
   - In the extension tab, enable Developer Mode, then `load unpacked extension` and load the `/extension` folder
 
-##### Building
+#### Building
 
 1. Run `npm install` (if you haven't already)
 2. Run `npm run build`
