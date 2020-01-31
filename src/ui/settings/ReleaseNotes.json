@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "3.0.3",
+      "notes": [
+        "Updated:  Third-Party dependencies.",
+        "Fixed:  Bugs due to third-party dependency updates."
+      ]
+    },
+    {
       "version": "3.0.2",
       "notes": [
         "Added: Version Number to some UI elements",

@@ -23,7 +23,7 @@ import {
 } from './Libs';
 
 /** Prepare a cookie for deletion */
-const prepareCookie = (cookie: browser.cookies.CookieProperties) => {
+const prepareCookie = (cookie: browser.cookies.Cookie) => {
   const cookieProperties = {
     ...cookie,
     hostname: '',
@@ -239,7 +239,7 @@ export const cleanCookiesOperation = async (
     openTabDomains,
   };
 
-  const cookieStoreIds = new Set();
+  const cookieStoreIds = new Set<string>();
   // Store cookieStoreIds from the contextualIdentities API
   if (getSetting(state, 'contextualIdentities')) {
     const contextualIdentitiesObjects = await browser.contextualIdentities.query(

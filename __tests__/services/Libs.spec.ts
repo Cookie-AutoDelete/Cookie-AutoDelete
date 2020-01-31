@@ -22,6 +22,7 @@ const mockCookie: browser.cookies.Cookie = {
   httpOnly: true,
   name: 'blah',
   path: '/',
+  sameSite: 'no_restriction',
   secure: true,
   session: true,
   storeId: 'default',
