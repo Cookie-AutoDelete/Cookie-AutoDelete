@@ -31,6 +31,10 @@ const mockCookie: browser.cookies.Cookie = {
 
 describe('Library Functions', () => {
   describe('extractMainDomain()', () => {
+    it('should return workplace.com from work-12345678.workplace.com', () => {
+      expect(extractMainDomain('work-12345678.workplace.com')).toBe('workplace.com');
+    });
+
     it('should return domain.com from domain.com', () => {
       expect(extractMainDomain('domain.com')).toBe('domain.com');
     });
@@ -264,6 +268,10 @@ describe('Library Functions', () => {
   });
 
   describe('isAnIP()', () => {
+    it('should return false from https://work-12345678.workplace.com', () => {
+      expect(isAnIP('https://work-12345678.workplace.com')).toBe(false);
+    });
+
     it('should return false from https://en.wikipedia.org/wiki/Cat', () => {
       expect(isAnIP('https://en.wikipedia.org/wiki/Cat')).toBe(false);
     });
