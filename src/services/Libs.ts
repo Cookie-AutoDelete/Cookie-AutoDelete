@@ -9,7 +9,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+import ipRegex from 'ip-regex';
 /**
  * Returns the host name of the url. Etc. "https://en.wikipedia.org/wiki/Cat" becomes en.wikipedia.org
  */
@@ -50,11 +50,7 @@ export const isAnIP = (URL: string | undefined) => {
     return false;
   }
   const hostname = getHostname(URL);
-  const reIP = new RegExp('[0-9]+.[0-9]+.[0-9]+.[0-9]+');
-  if (reIP.test(hostname)) {
-    return true;
-  }
-  return false;
+  return ipRegex({exact: true, includeBoundaries: true}).test(hostname);
 };
 
 /**
@@ -77,8 +73,7 @@ export const extractMainDomain = (domain: string) => {
     return '';
   }
   // Return the domain if it is an ip address
-  const reIP = new RegExp('[0-9]+.[0-9]+.[0-9]+.[0-9]+');
-  if (reIP.test(domain)) {
+  if (ipRegex({exact: true, includeBoundaries: true}).test(domain)) {
     return domain;
   }
   // Delete a '.' if domain contains it at the end
