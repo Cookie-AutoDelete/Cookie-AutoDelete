@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: FAQ - Common Questions and Issues
+    url: https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues
+    about: Please check to see if your question/issue has been answered already!
+  - name: Documentation
+    url: https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation
+    about: Make sure that you have already read the Documentation on the available features and what they do.
