@@ -2,8 +2,8 @@
 name: Support Request
 about: It's not a bug, but you still need help.  Check the FAQ and Documentation first
   before proceeding.
-title: "[SUPPORT]"
-labels: question
+title: "[SUPPORT]  "
+labels: support
 assignees: kennethtran93
 
 ---
