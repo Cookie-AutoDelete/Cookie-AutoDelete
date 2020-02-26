@@ -77,12 +77,9 @@ const Welcome: React.FunctionComponent<OwnProps> = ({
       <h2>{browser.i18n.getMessage('releaseNotesText')}</h2>
 
       <div className="row">
-        {displayReleaseNotes(releases.slice(0, releases.length / 2))}
-
-        {displayReleaseNotes(
-          releases.slice(releases.length / 2, releases.length),
-        )}
+        {displayReleaseNotes(releases.slice(0, 5))}
       </div>
+      <p>{browser.i18n.getMessage('oldReleasesText')} <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/releases" target="_blank">GitHub</a></p>
     </div>
   );
 };

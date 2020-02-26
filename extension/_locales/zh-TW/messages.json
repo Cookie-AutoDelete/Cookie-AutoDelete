@@ -129,6 +129,10 @@
       }
     }
   },
+  "oldReleasesText": {
+    "message": "Older release notes can be viewed online at",
+    "description": "Older release notes can be viewed online at"
+  },
   "reasonKeepOpenTab": {
     "message": "保留，因為 *.$mainDomain$ 在打開的標籤頁中",
     "description": "Keep because of open tabs of *.google.com",
@@ -328,6 +332,14 @@
   "reportIssuesText": {
     "message": "彙報問題及建議新功能",
     "description": "Report issues and suggest features"
+  },
+  "documentationText": {
+    "message": "Documentation",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Frequently Asked Questions, Common issues and solutions",
+    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "$browser$ 版本",

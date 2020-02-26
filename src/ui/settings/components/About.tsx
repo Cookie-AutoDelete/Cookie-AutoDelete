@@ -27,6 +27,15 @@ const About: React.FunctionComponent<OwnProps> = props => {
       </a>{' '}
       <br />
       <br />
+      <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation">
+        <span>{`${browser.i18n.getMessage('documentationText')}`}</span>
+      </a>
+      <br />
+      <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues">
+        <span>{`${browser.i18n.getMessage('faqText')}`}</span>
+      </a>
+      <br />
+      <br />{' '}
       <a href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh">
         <span>{`${browser.i18n.getMessage('versionText', ['Chrome'])}`}</span>{' '}
       </a>
@@ -42,7 +51,7 @@ const About: React.FunctionComponent<OwnProps> = props => {
         <li>
           seansfkelley (UI Redesign of Expression Table Settings and Popup)
         </li>
-        <li>kennethtran93 (UI bug fixes)</li>
+        <li>kennethtran93 (UI bug fixes and then some)</li>
         <li>
           <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">
             GitHub Contributors

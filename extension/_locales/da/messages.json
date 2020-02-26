@@ -129,6 +129,10 @@
       }
     }
   },
+  "oldReleasesText": {
+    "message": "Older release notes can be viewed online at",
+    "description": "Older release notes can be viewed online at"
+  },
   "reasonKeepOpenTab": {
     "message": "Behold pga. åbne faner for *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
@@ -328,6 +332,14 @@
   "reportIssuesText": {
     "message": "Rapporter fejl og mangler, og foreslå funktionalitet",
     "description": "Report issues and suggest features"
+  },
+  "documentationText": {
+    "message": "Documentation",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Frequently Asked Questions, Common issues and solutions",
+    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "$browser$ version",
