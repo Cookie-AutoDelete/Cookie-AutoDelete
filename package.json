@@ -1,6 +1,6 @@
 {
   "name": "cookie-autodelete",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Firefox and Chrome browser extension that manages Cookies",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",

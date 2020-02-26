@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "3.0.4",
+      "notes": [
+        "Fixed:  IP Regex Bug #539.",
+        "Added:  Documentation and FAQ links to About Page, along with its Locale Additions.  This was based on PR #240 for the 2.X.X Branch.",
+        "Added:  CAD Badge count should no longer include the cookie that CAD creates to cleanup localstorage.  Per #611.",
+        "Changed:  Welcome Page should now only show the last 5 version change logs.",
+        "Updated:  Dependency Updates"
+      ]
+    },
+    {
       "version": "3.0.3",
       "notes": [
         "Updated:  Third-Party dependencies.",
