@@ -92,16 +92,23 @@ export default class TabEvents extends StoreUser {
         {
           expirationDate: Math.floor(Date.now() / 1000 + 31557600),
           firstPartyDomain: extractMainDomain(getHostname(tab.url)),
-          name: 'CookieAutoDelete',
+          name: 'CookieAutoDeleteLocalStorageCleanup',
           path: `/${shortid.generate()}`,
           storeId: tab.cookieStoreId,
           value: 'cookieForLocalstorageCleanup',
         },
       );
       browser.cookies.set({ ...cookiesAttributes, url: tab.url || '' });
-      cookieLength = 1;
+      // cookieLength = 1;
+      // The code above was previously used to indicate a cookie is set for the domain.
+      // While it may be useful, the cookie count should probably reflect the
+      // actual cookie from that site.
     }
     if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon')) {
+      if (cookies.length === 1 && cookies[0].name === 'CookieAutoDeleteLocalStorageCleanup') {
+        // Hide our CAD cookie from count.
+        cookieLength = 0;
+      }
       showNumberOfCookiesInIcon(tab, cookieLength);
     } else {
       browser.browserAction.setBadgeText({
