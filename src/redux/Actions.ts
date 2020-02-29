@@ -203,7 +203,7 @@ export const cookieCleanup: ActionCreator<
     browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
       iconUrl: browser.extension.getURL('icons/icon_48.png'),
       message: notifyMessage,
-      title: browser.i18n.getMessage('notificationTitle', [browser.runtime.getManifest().version]),
+      title: `${browser.i18n.getMessage('extensionName')} ${browser.runtime.getManifest().version}:  ${browser.i18n.getMessage('notificationTitle')}`,
       type: 'basic',
     });
     const seconds = parseInt(
