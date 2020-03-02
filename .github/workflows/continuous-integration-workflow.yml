@@ -30,12 +30,12 @@ jobs:
     - name: Run Build
       run: npm run build --if-present
     - name: Archive Production Build Artifacts
-      uses: actions/upload-artifacts@v1
+      uses: actions/upload-artifact@v1
       with:
         name: build
         path: build
     - name: Archive Code Coverage Results
-      uses: actions/upload-artifacts@v1
+      uses: actions/upload-artifact@v1
       with:
         name: coverage
         path: coverage
