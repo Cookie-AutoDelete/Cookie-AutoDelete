@@ -50,9 +50,9 @@ interface StateProps {
 }
 
 class InitialState {
+  public cookieCount: number = 0;
   public tab: browser.tabs.Tab | undefined = undefined;
   public storeId: string = 'default';
-  public cookieCount: number = 0;
 }
 
 type PopupAppComponentProps = DispatchProps & StateProps;
@@ -68,13 +68,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     });
 
     this.setState({
+      cookieCount: 0,
       storeId:
         !this.props.contextualIdentities ||
         (tabs[0].cookieStoreId && tabs[0].cookieStoreId === 'firefox-default')
           ? 'default'
           : tabs[0].cookieStoreId || 'default',
       tab: tabs[0],
-      cookieCount: 0,
     });
   }
 
@@ -400,8 +400,8 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           <div
             className="col-3"
             style={{
-              textAlign: 'center',
               fontSize: '18px',
+              textAlign: 'center',
             }}
             >
             <span id='CADCookieText'>{browser.i18n.getMessage('popupCookieCountText')}</span>
