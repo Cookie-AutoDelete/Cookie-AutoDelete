@@ -28,9 +28,10 @@ jobs:
     - name: Run TSLint
       run: npm run lint
     - name: Run Build
-      run: npm run build --if-present
-      run: pwd
-      run: ls -lR
+      run: |
+        npm run build --if-present
+        pwd
+        ls -lR
     - name: Archive Production Build Artifacts
       uses: actions/upload-artifact@v1
       with:
