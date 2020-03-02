@@ -10,7 +10,7 @@ jobs:
     - name: Checkout Commit
       uses: actions/checkout@v2
     - name: Use Node.js 13.x
-      uses: actions/setup-node@v1.4
+      uses: actions/setup-node@v1.4.0
       with:
         node-version: '13.x'
     - name: Cache Node.js Modules
