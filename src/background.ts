@@ -17,10 +17,10 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
+import CookieEvents from './services/CookieEvents';
 import { convertVersionToNumber, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
-import CookieEvents from './services/CookieEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
 
 let store: Store<State, ReduxAction>;
