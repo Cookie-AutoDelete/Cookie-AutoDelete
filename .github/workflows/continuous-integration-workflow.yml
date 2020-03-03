@@ -1,10 +1,10 @@
 name: Node.js CI
 
-on: [ push ]
+on: [ push, pull_request ]
 
 jobs:
-  test_and_build:
-    name: All Tests and Build
+  all_jobs:
+    name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Commit
@@ -39,5 +39,9 @@ jobs:
       with:
         name: coverage
         path: coverage
+    - name: Coveralls.io Coverage Upload
+      uses: coverallsapp/github-action@v1.0.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
       env:
         CI: true
