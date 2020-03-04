@@ -36,6 +36,25 @@ export const showNumberOfCookiesInIcon = (
   }
 };
 
+// Set BrowserAction Title with number of cookies in square brackets.
+export const showNumberofCookiesinTitle = async (
+  tab: browser.tabs.Tab,
+  cookieLength: number
+) => {
+  const tabTitle = await browser.browserAction.getTitle({tabId: tab.id});
+  if (tabTitle.search(/\[ \d+ \]/) === -1) {
+    browser.browserAction.setTitle({
+      tabId: tab.id,
+      title: `${tabTitle}  [ ${cookieLength} ]`,
+    });
+  } else {
+    browser.browserAction.setTitle({
+      tabId: tab.id,
+      title: `${tabTitle.replace(/\[ \d+ \]/,`[ ${cookieLength} ]`)}`,
+    });
+  }
+}
+
 // Set background icon to yellow
 const setIconYellow = (tab: browser.tabs.Tab) => {
   browser.browserAction.setIcon({
