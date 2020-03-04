@@ -4,10 +4,10 @@ append_commit_message: false
 files:
   - source: /_locales/en/*.json
     translation: /_locales/%two_letters_code%/%original_file_name%
-    update_option: "update_without_changes"
+    update_option: update_without_changes
     languages_mapping:
-      two_letters_code:
-        - pt-BR: pt_BR
-          pt-PT: pt_PT
-          zh-CN: zh_CN
-          zh-TW: zh_TW
+      - two_letters_code:
+         - pt-BR: pt_BR
+           pt-PT: pt_PT
+           zh-CN: zh_CN
+           zh-TW: zh_TW
