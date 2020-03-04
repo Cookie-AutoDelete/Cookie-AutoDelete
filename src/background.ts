@@ -17,6 +17,7 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
+import CookieEvents from './services/CookieEvents';
 import { convertVersionToNumber, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
@@ -143,6 +144,9 @@ const onStartUp = async () => {
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
   browser.tabs.onRemoved.addListener(TabEvents.cleanFromFromTabEvents);
+
+  // This should update the cookie badge count when cookies are changed.
+  browser.cookies.onChanged.addListener(CookieEvents.onCookieChanged);
 };
 
 onStartUp();

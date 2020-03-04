@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "unreleased",
+      "notes": [
+        "Added:  Webextension Title and Version to popup.",
+        "Added:  BrowserAction Title now also contains the number of cookies for that domain in square brackets.  This is more helpful in Firefox mobile to see the amount of cookies there are.",
+        "Added:  Cookie Count is now listed inside the popup as well.",
+        "Changed/Fixed:  Cookie Badge Count should now reflect an accurate cookie count when cookies are added/removed.  This includes cookies removed manually or by CAD.",
+        "Added/Changed:  Locale strings.  This would technically fix the version number in notification titles that may not have been shown in certain locales.",
+        "Updated:  The usual third-party dependency updates.",
+        "Translator Notice:  Crowdin now has the latest additions and minor modifications.  Please check and update any translations accordingly."
+      ]
+    },
+    {
       "version": "3.0.4",
       "notes": [
         "Fixed:  IP Regex Bug #539.",

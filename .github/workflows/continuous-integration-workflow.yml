@@ -1,0 +1,59 @@
+name: Node.js CI
+
+on:
+  push:
+    branches-ignore:
+      - 'l10n_*'
+    paths-ignore:
+      - '**/README.md'
+      - '**/_locales/**'
+  pull_request:
+    branches-ignore: 
+      - 'l10n_*'
+    paths-ignore: 
+      - '**/README.md'
+      - '**/_locales/**'
+
+jobs:
+  all_jobs:
+    name: Tests, Builds, Coverage
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Commit
+      uses: actions/checkout@v2
+    - name: Use Node.js 13.x
+      uses: actions/setup-node@v1.4.0
+      with:
+        node-version: '13.x'
+    - name: Cache Node.js
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}
+    - name: Install dependencies (npm ci)
+      run: npm ci
+    - name: Run Tests
+      run: npm run test
+    - name: Run TSLint
+      run: npm run lint
+    - name: Run Build
+      run: npm run build
+      env:
+        CI: true
+    - name: Archive Production Build Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: builds
+        path: builds
+    - name: Archive Code Coverage Results
+      uses: actions/upload-artifact@v1
+      with:
+        name: coverage
+        path: coverage
+    - name: Coveralls.io Coverage Upload
+      uses: coverallsapp/github-action@v1.0.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
