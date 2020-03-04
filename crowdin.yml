@@ -1,6 +1,6 @@
 base_path: /extension
-commit_message: Fix:  New translations (%language%) from Crowdin
-append_commit_message: false
+commit_message: "Fix:  New translations for (%language%) from Crowdin"
+append_commit_message: "false"
 files:
   - source: /_locales/en/*.json
     translation: /_locales/%locale%/%original_file_name%
