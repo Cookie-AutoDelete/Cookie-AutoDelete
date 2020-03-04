@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Controle os seus cookies! Apague automaticamente cookies não utilizados dos seus separadores fechados, enquanto mantém os que pretende.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookies were deleted!",
+    "message": "Cookies foram apagados!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "message": "$Num$ cookies apagados de: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -30,35 +30,35 @@
     "description": "Cookie(s)"
   },
   "filterText": {
-    "message": "Filter",
+    "message": "Filtro",
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Nenhum",
     "description": "None"
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "Limpar",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Manter",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "Executar limpeza agora",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "Limpar, incluir separadores abertos",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
+    "message": "Executar limpeza agora, incluir cookies de separadores abertos",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Limpar $siteData$ para este domínio",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -68,7 +68,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Limpar todos os $siteData$ para $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -82,19 +82,19 @@
     }
   },
   "noRulesText": {
-    "message": "No rules matched this domain",
+    "message": "Nenhuma regra corresponde a este domínio",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Welcome",
+    "message": "Boas vindas",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Settings",
+    "message": "Definições",
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Opções",
     "description": "Options"
   },
   "settingsText": {
@@ -128,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "As notas de lançamento mais antigas podem ser vistas online em",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -288,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Repor dados da extensão",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -332,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Documentação",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Perguntas frequentes, problemas e soluções comuns",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
