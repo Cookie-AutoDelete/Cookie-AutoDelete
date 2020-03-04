@@ -8,7 +8,7 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete $Ver$: Cookies were deleted!",
+    "message": "Cookie AutoDelete $Ver$: 已清除 cookie！",
     "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
     "placeholders": {
       "ver": {
