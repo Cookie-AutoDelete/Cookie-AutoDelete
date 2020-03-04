@@ -4,21 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Hallitse evästeitäsi! Poista käyttämättömät evästeet automaattisesti suljetuilta välilehdiltä, kuitenkin säilyttäen valitsemasi evästeet.",
+    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Evästeet poistettu!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Cookies were deleted!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "Poistettu $Num$ evästettä sivulta $Websites$",
+    "message": "$Num$ Deleted Cookies from: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -31,6 +25,10 @@
       }
     }
   },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
+  },
   "filterText": {
     "message": "Filter",
     "description": "Filter"
@@ -40,7 +38,7 @@
     "description": "None"
   },
   "cleanText": {
-    "message": "Puhdista",
+    "message": "Clean",
     "description": "Clean"
   },
   "keepText": {
@@ -48,15 +46,15 @@
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Puhdista nyt",
+    "message": "Run cleanup now",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Puhdista kaikki",
+    "message": "Clean, include open tabs",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Puhdista kaikki, avointen välilehtien evästeet myös",
+    "message": "Run cleanup now, include cookies from open tabs",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
@@ -84,15 +82,15 @@
     }
   },
   "noRulesText": {
-    "message": "Ei sääntöjä tällä domainilla",
+    "message": "No rules matched this domain",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Tervetuloa",
+    "message": "Welcome",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Asetukset",
+    "message": "Settings",
     "description": "Settings"
   },
   "optionsText": {
@@ -100,11 +98,11 @@
     "description": "Options"
   },
   "settingsText": {
-    "message": "Evästeasetukset",
+    "message": "Cookie Settings",
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "Sääntölista",
+    "message": "List of Expressions",
     "description": "List of Expressions"
   },
   "cleanupLogText": {
@@ -112,11 +110,11 @@
     "description": "Cleanup Log"
   },
   "aboutText": {
-    "message": "Tietoa",
+    "message": "About",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Moikka! Tämän istunnon aikana Cookie AutoDelete on poistanut $sessionDeleted$ evästettä ja yhteensä $totalDeleted$ evästettä.",
+    "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White\/Grey lists",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Clean because $hostname$ is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,26 +201,26 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "or in any open tabs",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "and also open tabs were ignored",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Kiitos kun käytät Cookie AutoDeleteä. Jos pidit siitä, niin jätä arvostelu.",
+    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Julkaisutiedot",
+    "message": "Release Notes",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Käytä automaattista puhdistusta? Viive ennen puhdistusta:",
+    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minuutti(a)",
+    "message": "Minute(s)",
     "description": "Minute(s)"
   },
   "secondsText": {
@@ -294,27 +292,27 @@
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
-    "message": "Sallitut sivut",
+    "message": "Whitelist",
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "Harmaa lista",
+    "message": "Greylist",
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Lisää valkoiselle listalle (älä puhdista)",
+    "message": "Add to Whitelist (Never Clean)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Lisää harmaalle listalle (puhdista selaimen käynnistyksessä)",
+    "message": "Add to Greylist (Clean on Browser Restart)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Poista kaikki",
+    "message": "Remove All",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Vie eväste säännöt",
+    "message": "Export Expressions",
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
@@ -326,11 +324,11 @@
     "description": "How do Expressions work?"
   },
   "importURLSText": {
-    "message": "Tuo eväste säännöt",
+    "message": "Import Expressions",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Ilmoita ongelmista ja ehdota ominaisuuksia",
+    "message": "Report issues and suggest features",
     "description": "Report issues and suggest features"
   },
   "documentationText": {
@@ -342,7 +340,7 @@
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
-    "message": "$browser$ versio",
+    "message": "$browser$ version",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -352,7 +350,7 @@
     }
   },
   "contributorsText": {
-    "message": "Avustajat:",
+    "message": "Contributors:",
     "description": "Contributors:"
   },
   "contributeText": {
@@ -360,7 +358,7 @@
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Domain sääntö",
+    "message": "Domain Expression",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
@@ -372,7 +370,7 @@
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "Tyyppi",
+    "message": "List Type",
     "description": "List Type"
   },
   "domainPlaceholderText": {
@@ -384,19 +382,19 @@
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Poista sääntö",
+    "message": "Remove expression",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Lopeta muokkaus",
+    "message": "Stop editing",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Tallenna sääntö",
+    "message": "Save expression",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Muokkaa sääntöä",
+    "message": "Edit expression",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
@@ -408,7 +406,7 @@
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Automaattinen puhdistus käytössä",
+    "message": "Auto-clean enabled",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
