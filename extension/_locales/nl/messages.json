@@ -4,21 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Krijg controle over uw cookies! Automatisch verwijderen van ongebruikte cookies van gesloten tabbladen met behoud van belangrijke cookies.",
+    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies zijn verwijderd!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Cookies were deleted!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "Er zijn $Num$ Cookies verwijderd van: $Websites$",
+    "message": "$Num$ Deleted Cookies from: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -31,36 +25,40 @@
       }
     }
   },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
+  },
   "filterText": {
     "message": "Filter",
     "description": "Filter"
   },
   "noneText": {
-    "message": "Geen",
+    "message": "None",
     "description": "None"
   },
   "cleanText": {
-    "message": "Schoonmaken",
+    "message": "Clean",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Behouden",
+    "message": "Keep",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Ruim cookies nu op",
+    "message": "Run cleanup now",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Ruim op, inclusief open tabbladen",
+    "message": "Clean, include open tabs",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Ruim op, inclusief cookies van open tabbladen",
+    "message": "Run cleanup now, include cookies from open tabs",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Ruim op $siteData$ voor dit domein",
+    "message": "Clear $siteData$ for this domain",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -70,7 +68,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Ruim alles op $siteData$ voor $domain$",
+    "message": "Clear all $siteData$ for $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -84,15 +82,15 @@
     }
   },
   "noRulesText": {
-    "message": "Geen regels komen overeen met dit domein",
+    "message": "No rules matched this domain",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Welkom",
+    "message": "Welcome",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Instellingen",
+    "message": "Settings",
     "description": "Settings"
   },
   "optionsText": {
@@ -100,23 +98,23 @@
     "description": "Options"
   },
   "settingsText": {
-    "message": "Cookie-instellingen",
+    "message": "Cookie Settings",
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "Lijst met expressies",
+    "message": "List of Expressions",
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Opschonen logboek",
+    "message": "Cleanup Log",
     "description": "Cleanup Log"
   },
   "aboutText": {
-    "message": "Over",
+    "message": "About",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hoi! Tijdens deze sessie heeft Cookie AutoDelete $sessionDeleted$ cookies verwijderd en in het totaal $totalDeleted$ cookies.",
+    "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -134,7 +132,7 @@
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
-    "message": "Behouden omdat er een open tabblad wijst naar *.$mainDomain$",
+    "message": "Keep because of open tabs of *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Opschonen omdat opschonen gestart is en $hostname$ komt niet voor in de white\/gray lijsten",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -154,7 +152,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Opschonen omdat gestart is en $matchedExpression$ komt voor in de gray lijst",
+    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Opschonen omdat $hostname$ niet voor komt in de white\/gray lijsten",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Clean because $hostname$ is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -174,7 +172,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Behouden omdat overeenkomende $matchedExpression$ voorkomt in de $listType$",
+    "message": "Keep because of matched $matchedExpression$ in the $listType$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -188,7 +186,7 @@
     }
   },
   "reasonCleanCookieName": {
-    "message": "Gedeeltelijk verwijderen omdat $matchedExpression$ overeenkomt in de $listType$",
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
     "description": "Partial clean because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -202,91 +200,91 @@
     }
   },
   "reasonTabsWereNotIgnored": {
-    "message": "of in enige open tabbladen",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "message": "or in any open tabs",
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "en ook open tabbladen zijn genegeerd",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "message": "and also open tabs were ignored",
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Bedankt voor het uitproberen van Cookie AutoDelete. Indien u het leuk vindt dan beoordeel het alsublieft.",
+    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Uitgave opmerkingen",
+    "message": "Release Notes",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Activeer automatisch opschonen? Stel de vertraging in voor het automatisch schoonmaken:",
+    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minu(u)t(en)",
+    "message": "Minute(s)",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Seconde(n)",
+    "message": "Second(s)",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Opschonen inschakelen bij domeinwijziging",
+    "message": "Enable Cleanup on Domain Change",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Opschonen logboek en teller inschakelen",
+    "message": "Enable Cleanup Log and Counter",
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Lokale opslag behouden",
+    "message": "Keep Localstorage",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
-    "message": "Alle cookies behouden",
+    "message": "Keep All Cookies",
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
-    "message": "Logboek wissen",
+    "message": "Clear Logs",
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Fout!",
+    "message": "Error!",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Herstellen",
+    "message": "Restore",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Toon het aantal cookies voor dat domein",
+    "message": "Show Number of Cookies for that Domain",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Melding weergeven na het opschonen van cookies",
+    "message": "Show Notification After Cookie Cleanup",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Ruim cookies op van openstaande tabbladen bij het starten",
+    "message": "Clean Cookies from Open Tabs on Startup",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Activeer check op subdomein",
+    "message": "Enable Check for Subdomains",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Ondersteuning voor Firefox Container tabbladen inschakelen",
+    "message": "Enable Support for Firefox's Container Tabs",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58 +)",
+    "message": "Localstorage Cleanup (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Het inschakelen van zowel de Localstorage opruimen en de Container tabbladen kan sommige ongewenste bijwerkingen veroorzaken als gevolg van beperkingen van de API",
+    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
-    "message": "Standaardinstellingen herstellen",
+    "message": "Restore Default Settings",
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
@@ -302,35 +300,35 @@
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Toevoegen aan Whitelist (ruim cookie nooit op)",
+    "message": "Add to Whitelist (Never Clean)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Toevoegen aan Greylist (ruim cookie op na browser herstart)",
+    "message": "Add to Greylist (Clean on Browser Restart)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Alles verwijderen",
+    "message": "Remove All",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Exporteer expressies",
+    "message": "Export Expressions",
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "Een tijdstempel zal toegevoegd worden aan de bestandsnaam bij uitvoer. Ondervindt u problemen met downloaden?  Klik dan met de rechtermuisknop op deze knop en klik op \"Link opslaan als...\" om te downloaden.",
+    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
-    "message": "Hoe werken de expressies?",
+    "message": "How do Expressions work?",
     "description": "How do Expressions work?"
   },
   "importURLSText": {
-    "message": "Importeer expressies",
+    "message": "Import Expressions",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Problemen rapporteren en voorstellen van functies",
+    "message": "Report issues and suggest features",
     "description": "Report issues and suggest features"
   },
   "documentationText": {
@@ -342,7 +340,7 @@
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
-    "message": "$browser$ versie",
+    "message": "$browser$ version",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -352,91 +350,91 @@
     }
   },
   "contributorsText": {
-    "message": "Bijdragers:",
+    "message": "Contributors:",
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Bijdragen",
+    "message": "Contribute",
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Domein expressie",
+    "message": "Domain Expression",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Overeenkomende domein expressie",
+    "message": "Matched Domain Expression",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Equivalent van de reguliere expressie",
+    "message": "Regular Expression Equivalent",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "Lijst Type",
+    "message": "List Type",
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "example.com, subdomein.example.com, *. example.com",
+    "message": "example.com, subdomain.example.com, *.example.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "Geen expressies gedefinieerd.",
+    "message": "No expressions defined.",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Verwijder expressie",
+    "message": "Remove expression",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Stoppen met bewerken",
+    "message": "Stop editing",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Opslaan expressie",
+    "message": "Save expression",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Expressie bewerken",
+    "message": "Edit expression",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Schakel naar greylist",
+    "message": "Toggle to greylist",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Schakel naar whitelist",
+    "message": "Toggle to whitelist",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Automatisch opruimen ingeschakeld",
+    "message": "Auto-clean enabled",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Automatisch opruimen uitgeschakeld",
+    "message": "Auto-clean disabled",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Schakel automatische opruimen uit (handmatige modus)",
+    "message": "Toggle to disable automatic cleanup (manual mode)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Schakel automatische opruimen in (automatisch modus)",
+    "message": "Toggle to enable automatic cleanup (automatic mode)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Meldingen ingeschaked",
+    "message": "Notification enabled",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Meldingen uitgeschakeld",
+    "message": "Notification disabled",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "In-\/ uitschakelen van meldingen",
+    "message": "Toggle to enable or disable notifications",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "Geen logboeken gevonden om op te schonen",
+    "message": "No Cleanup Logs Found",
     "description": "No Cleanup Logs Found"
   }
 }
