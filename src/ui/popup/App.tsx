@@ -50,6 +50,7 @@ interface StateProps {
 }
 
 class InitialState {
+  public cookieCount: number = 0;
   public tab: browser.tabs.Tab | undefined = undefined;
   public storeId: string = 'default';
 }
@@ -65,7 +66,9 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
       active: true,
       currentWindow: true,
     });
+
     this.setState({
+      cookieCount: 0,
       storeId:
         !this.props.contextualIdentities ||
         (tabs[0].cookieStoreId && tabs[0].cookieStoreId === 'firefox-default')
@@ -93,6 +96,23 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
         // Ignore, we just won't animate anything.
       }
     }
+  }
+
+  public async setPopupCookieCount(hostname: string) {
+    const { state } = this.props;
+    if (!this.state.tab) return false;
+    const { cookieStoreId } = this.state.tab;
+    const cookies = (await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(state, {
+        domain: hostname,
+        firstPartyDomain: hostname,
+        storeId: cookieStoreId,
+      }),
+    ));
+    this.setState({
+      cookieCount: cookies.length,
+    });
+    return true;
   }
 
   public async clearCookiesForThisDomain(hostname: string) {
@@ -156,6 +176,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     if (hostname !== '' && !isAnIP(tab.url)) {
       addableHostnames.push(`*.${hostname}`);
     }
+    this.setPopupCookieCount(hostname);
 
     return (
       <div
@@ -169,10 +190,22 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           style={{
             alignItems: 'center',
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            justifyContent: 'center',
+            paddingTop: '8px',
+          }}
+        >
+          <span id='CADTitle'>{browser.i18n.getMessage('extensionName')}</span>
+          &nbsp;
+          <span id='CADVersion' style={{fontWeight: 'bold',}}>{browser.runtime.getManifest().version}</span>
+        </div>
+        <div
+          className="row"
+          style={{
+            alignItems: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
             borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
             justifyContent: 'center',
             paddingBottom: '8px',
-            paddingTop: '8px',
           }}
         >
           <IconButton
@@ -241,6 +274,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                   ignoreOpenTabs: false,
                 });
                 this.animateFlash(this.cleanButtonContainerRef, true);
+                this.setPopupCookieCount(hostname);
               }}
               title={browser.i18n.getMessage('cookieCleanupText')}
               text={browser.i18n.getMessage('cleanText')}
@@ -265,6 +299,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                       ignoreOpenTabs: true,
                     });
                     this.animateFlash(this.cleanButtonContainerRef, true);
+                    this.setPopupCookieCount(hostname);
                   }}
                   title={browser.i18n.getMessage(
                     'cookieCleanupIgnoreOpenTabsText',
@@ -280,6 +315,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                       hostname,
                     );
                     this.animateFlash(this.cleanButtonContainerRef, success);
+                    this.setPopupCookieCount(hostname);
                   }}
                   title={browser.i18n.getMessage('clearSiteDataForDomainText', [
                     'cookies',
@@ -296,6 +332,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                       hostname,
                     );
                     this.animateFlash(this.cleanButtonContainerRef, success);
+                    this.setPopupCookieCount(hostname);
                   }}
                   title={browser.i18n.getMessage('clearSiteDataForDomainText', [
                     'localstorage',
@@ -325,7 +362,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
         </div>
 
         <div
-          className="row"
+          className="row no-gutters"
           style={{
             alignItems: 'center',
             margin: '8px 0',
@@ -342,22 +379,41 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
               }}
             />
           )}
-          <span
+          <div className="col">
+            <span
+              style={{
+                fontSize: '20px',
+                marginRight: '8px',
+                verticalAlign: 'middle',
+              }}
+              >
+              {
+                // Temporary fix until contextualIdentities events land
+              }
+              {!contextualIdentities
+                ? `${hostname}`
+                : `${hostname} ${
+                    cache[storeId] !== undefined ? `(${cache[storeId]})` : ''
+                  }`}
+            </span>
+          </div>
+          <div
+            className="col-3"
             style={{
-              fontSize: '20px',
-              marginRight: '8px',
-              verticalAlign: 'middle',
+              fontSize: '18px',
+              textAlign: 'center',
             }}
-          >
-            {
-              // Temporary fix until contextualIdentities events land
-            }
-            {!contextualIdentities
-              ? `${hostname}`
-              : `${hostname} ${
-                  cache[storeId] !== undefined ? `(${cache[storeId]})` : ''
-                }`}
-          </span>
+            >
+            <span id='CADCookieText'>{browser.i18n.getMessage('popupCookieCountText')}</span>
+            :&nbsp;
+            <span
+              id='CADCookieCount'
+              style={{
+                fontWeight: 'bold',
+              }}>
+              {this.state.cookieCount}
+            </span>
+          </div>
         </div>
 
         {addableHostnames.map(addableHostname => (

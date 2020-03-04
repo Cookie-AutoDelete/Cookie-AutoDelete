@@ -3,6 +3,7 @@ import AlarmEvents from './AlarmEvents';
 import {
   checkIfProtected,
   showNumberOfCookiesInIcon,
+  showNumberofCookiesinTitle,
 } from './BrowserActionService';
 import {
   extractMainDomain,
@@ -116,6 +117,7 @@ export default class TabEvents extends StoreUser {
         text: '',
       });
     }
+    showNumberofCookiesinTitle(tab, cookieLength);
   }
   // Add a delay to prevent multiple spawns of the localstorage cookie
   private static onTabUpdateDelay = false;
