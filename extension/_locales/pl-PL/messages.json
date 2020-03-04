@@ -8,7 +8,7 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookies were deleted!",
+    "message": "Ciasteczka zostały usunięte!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
