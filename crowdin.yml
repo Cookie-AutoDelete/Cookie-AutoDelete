@@ -1,6 +1,6 @@
 "base_path": "/extension"
 "commit_message": "[ci skip]"
-"files" [
+"files": [
   {
     "source" : "/_locales/en/*.json",
     "translation" : "/_locales/%locale%/%original_file_name%"
