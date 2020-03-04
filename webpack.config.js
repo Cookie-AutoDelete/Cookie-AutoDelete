@@ -36,7 +36,7 @@ module.exports = {
   },
   plugins: [
     new webpack.BannerPlugin(`
-      Copyright (c) 2019 Kenny Do
+      Copyright (c) 2019-20 Kenny Do and CAD Team
 
       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
