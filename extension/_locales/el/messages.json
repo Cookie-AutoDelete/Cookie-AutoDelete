@@ -4,21 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
+    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Τα cookies διαγράφθηκαν!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Cookies were deleted!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "$Num$ Διαγραφή cookies απο: $Websites$",
+    "message": "$Num$ Deleted Cookies from: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -31,28 +25,32 @@
       }
     }
   },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
+  },
   "filterText": {
-    "message": "Φίλτρο",
+    "message": "Filter",
     "description": "Filter"
   },
   "noneText": {
-    "message": "Κανένα",
+    "message": "None",
     "description": "None"
   },
   "cleanText": {
-    "message": "Καθαρισμός",
+    "message": "Clean",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Διατήρηση",
+    "message": "Keep",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Εκτέλεση καθαρισμού τώρα",
+    "message": "Run cleanup now",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Καθαρισμός, μαζι και οι ανοιχτές καρτέλες",
+    "message": "Clean, include open tabs",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White\/Grey lists",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White\/Grey lists",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Clean because $hostname$ is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "or in any open tabs",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "and also open tabs were ignored",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
