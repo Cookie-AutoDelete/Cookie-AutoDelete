@@ -29,6 +29,8 @@ jobs:
       run: npm run lint
     - name: Run Build
       run: npm run build
+      env:
+        CI: true
     - name: Archive Production Build Artifacts
       uses: actions/upload-artifact@v1
       with:
@@ -43,5 +45,3 @@ jobs:
       uses: coverallsapp/github-action@v1.0.1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-      env:
-        CI: true
