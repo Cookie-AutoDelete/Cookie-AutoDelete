@@ -1,4 +1,4 @@
-![Node.js CI](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Node.js%20CI/badge.svg?branch=3.X.X-Branch)
+[![Node.js CI](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Node.js%20CI/badge.svg?branch=3.X.X-Branch)](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/actions?query=workflow%3A%22Node.js+CI%22+branch%3A3.X.X-Branch)
 [![Travis CI Build Status](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete.svg?branch=3.X.X-Branch)](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cookie-autodelete/localized.svg)](https://crowdin.com/project/cookie-autodelete)
 
