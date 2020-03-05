@@ -90,7 +90,7 @@
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Settings",
+    "message": "Beállítások",
     "description": "Settings"
   },
   "optionsText": {
@@ -340,7 +340,7 @@
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
-    "message": "$browser$ version",
+    "message": "$browser$ verzió",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -354,7 +354,7 @@
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Contribute",
+    "message": "Hozzájárulás",
     "description": "Contribute"
   },
   "domainExpressionsText": {
@@ -374,7 +374,7 @@
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
+    "message": "example.com, aldomain.example.com, *. example.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
