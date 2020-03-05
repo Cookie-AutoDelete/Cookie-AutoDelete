@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Controle seus cookies! Apague automaticamente cookies não utilizados de suas abas abertas mantendo os que você quiser.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookies were deleted!",
+    "message": "Cookies foram apagados!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "message": "$Num$ cookies apagados de: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -38,7 +38,7 @@
     "description": "None"
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "Limpar",
     "description": "Clean"
   },
   "keepText": {
@@ -46,19 +46,19 @@
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "Executar limpeza agora",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "Limpar, incluindo abas abertas",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
+    "message": "Executar limpeza agora, incluindo cookies de abas abertas",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Limpar $siteData$ deste domínio",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -68,7 +68,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Limpar todos os $siteData$ de $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -82,15 +82,15 @@
     }
   },
   "noRulesText": {
-    "message": "No rules matched this domain",
+    "message": "Nenhuma regra afeta este domínio",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Welcome",
+    "message": "Bem-vindo",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Settings",
+    "message": "Configurações",
     "description": "Settings"
   },
   "optionsText": {
@@ -98,11 +98,11 @@
     "description": "Options"
   },
   "settingsText": {
-    "message": "Cookie Settings",
+    "message": "Configurações dos cookies",
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "List of Expressions",
+    "message": "Lista de Expressões",
     "description": "List of Expressions"
   },
   "cleanupLogText": {
@@ -110,11 +110,11 @@
     "description": "Cleanup Log"
   },
   "aboutText": {
-    "message": "About",
+    "message": "Sobre",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
+    "message": "Olá! Durante esta sessão, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -208,23 +208,23 @@
     "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message": "Obrigado por experimentar o Cookie AutoDelete. Se você gostou, por favor faça uma avaliação.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Release Notes",
+    "message": "Notas da versão",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message": "Ativar Limpeza Automática? Atraso Antes da Limpeza:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minute(s)",
+    "message": "Minuto(s)",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Segundo(s)",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
@@ -256,35 +256,35 @@
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Show Number of Cookies for that Domain",
+    "message": "Mostrar número de cookies para esse domínio",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie Cleanup",
+    "message": "Mostrar Notificação Após Limpeza de Cookes",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on Startup",
+    "message": "Limpar Cookies de Abas Abertas ao Iniciar",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Enable Check for Subdomains",
+    "message": "Habilitar verificação por subdomínios",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
+    "message": "Ativar Suporte á Abas de Contêiner do Firefox",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Limpeza de Local Storage (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Habilitar limpeza de Local Storage e Abas Contêiner pode causar efeitos indesejados devido a limitações de API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
-    "message": "Restore Default Settings",
+    "message": "Restaurar configurações padrão",
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
@@ -292,31 +292,31 @@
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
-    "message": "Whitelist",
+    "message": "Lista branca",
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "Greylist",
+    "message": "Lista cinza",
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Add to Whitelist (Never Clean)",
+    "message": "Adicionar à Lista Branca (Nunca Limpar)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Add to Greylist (Clean on Browser Restart)",
+    "message": "Adicionar à Lista cinza (Limpar ao Reiniciar o Navegador)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Remove All",
+    "message": "Remover todos",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Export Expressions",
+    "message": "Exportar Expressões",
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "message": "Um timestamp será anexado ao nome do arquivo a ser exportado.\nEstá tendo problemas em baixar o arquivo? Clique com o botão direito do mouse nesse botão e vá em 'Salvar link como...' para baixar.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
@@ -324,11 +324,11 @@
     "description": "How do Expressions work?"
   },
   "importURLSText": {
-    "message": "Import Expressions",
+    "message": "Importar Expressões",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Report issues and suggest features",
+    "message": "Reporte problemas e sugira funcionalidades",
     "description": "Report issues and suggest features"
   },
   "documentationText": {
@@ -340,7 +340,7 @@
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
-    "message": "$browser$ version",
+    "message": "Versão $browser$",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -350,87 +350,87 @@
     }
   },
   "contributorsText": {
-    "message": "Contributors:",
+    "message": "Contribuidores:",
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Contribute",
+    "message": "Contribua",
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Domain Expression",
+    "message": "Expressão de Domínio",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Matched Domain Expression",
+    "message": "Expressão de Domínio Correspondente",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Regular Expression Equivalent",
+    "message": "Expressão Regular Equivalente",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "List Type",
+    "message": "Tipo de Lista",
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
+    "message": "exemplo.com, subdominio.exemplo.com, *.exemplo.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "No expressions defined.",
+    "message": "Nenhuma expressão definida.",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Remove expression",
+    "message": "Remover expressão",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Stop editing",
+    "message": "Parar edição",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Save expression",
+    "message": "Salvar expressão",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Edit expression",
+    "message": "Editar expressão",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Toggle to greylist",
+    "message": "Mover para lista cinza",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Toggle to whitelist",
+    "message": "Mover para lista branca",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Auto-clean enabled",
+    "message": "Limpeza automática ligada",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Auto-clean disabled",
+    "message": "Limpeza automática desligada",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Toggle to disable automatic cleanup (manual mode)",
+    "message": "Alterne para desativar limpeza automática (modo manual)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Toggle to enable automatic cleanup (automatic mode)",
+    "message": "Alterne para ativar limpeza automática (modo automático)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notification enabled",
+    "message": "Notificações habilitadas",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notification disabled",
+    "message": "Notificações desabilitadas",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Toggle to enable or disable notifications",
+    "message": "Alterne para habilitar ou desabilitar notificações",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
