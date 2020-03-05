@@ -35,7 +35,7 @@ A clear and concise description of what you expected to happen.
 
 **Screenshots**
 
-Add screenshots to help explain your problem, notably the settings and any related errors.
+Add screenshots to help explain your problem, notably the settings and any related errors.  For showing cookie counts, it would be helpful to also include a screenshot of the Storage Inspector that you can access through Development Tools (F12) WHILE on that tab/site.
 
 **Your System Info (please complete the following information):**
 
