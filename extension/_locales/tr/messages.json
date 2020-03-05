@@ -374,7 +374,7 @@
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
+    "message": "örnek-site.com, alt-site.örnek.com, *.örnek-site.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
