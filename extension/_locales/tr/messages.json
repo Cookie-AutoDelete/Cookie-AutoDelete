@@ -4,7 +4,7 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Tarayıcı çerezlerini kontrol edebilirsin! Kapatılan sekmelerindeki kullanılmayan çerezler için \"Cookie Auto-delete\" seçeneğini kullanabilir, kullanmaya devam ettiğin çerezleri tarayıcında tutmaya devam edebilirsin.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
@@ -12,7 +12,7 @@
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "message": "\"$Websites$\" sitesinden $Num$ adet çerez temizlendi",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -26,39 +26,39 @@
     }
   },
   "popupCookieCountText": {
-    "message": "Cookie(s)",
+    "message": "Çerezler",
     "description": "Cookie(s)"
   },
   "filterText": {
-    "message": "Filter",
+    "message": "Filtre",
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Hiç biri",
     "description": "None"
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "Temizle",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Koru",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "Temizlemeyi başlat",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "Temizle, açık sekmeleri de temizle",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
+    "message": "Temizlemeyi başlat, açık sekmelerdeki çerezleri de temizle",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Alan adı için $siteData$leri temizle",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
