@@ -68,7 +68,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Xoá $siteData$ của $domain$",
+    "message": "Clear all $siteData$ for $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
