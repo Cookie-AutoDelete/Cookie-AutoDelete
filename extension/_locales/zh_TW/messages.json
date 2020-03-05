@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
   "extensionDescription": {
     "message": "掌控您的 cookie！關閉分頁後自動清除沒用的 cookie，同時保留有用的 cookie。",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
@@ -24,10 +20,6 @@
         "example": "google.com, facebook.com"
       }
     }
-  },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "過濾器",
@@ -93,10 +85,6 @@
     "message": "設定",
     "description": "Settings"
   },
-  "optionsText": {
-    "message": "Options",
-    "description": "Options"
-  },
   "settingsText": {
     "message": "Cookie 設定",
     "description": "Cookie Settings"
@@ -126,10 +114,6 @@
         "example": "456"
       }
     }
-  },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "保留，因為 *.$mainDomain$ 在打開的標籤頁中",
@@ -287,10 +271,6 @@
     "message": "恢復預設設定",
     "description": "Restore Default Settings"
   },
-  "resetExtensionDataText": {
-    "message": "Reset Extension Data",
-    "description": "Reset Extension Data"
-  },
   "whiteListWordText": {
     "message": "白名單",
     "description": "Whitelist"
@@ -330,14 +310,6 @@
   "reportIssuesText": {
     "message": "彙報問題及建議新功能",
     "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Documentation",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "$browser$ 版本",
