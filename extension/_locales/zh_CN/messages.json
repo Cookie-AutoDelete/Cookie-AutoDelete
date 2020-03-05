@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "掌控你的 Cookie！关闭标签页后自动删除未想保留的 Cookie。您可以设置想要保留的白名单。",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookies were deleted!",
+    "message": "Cookie 已删除！",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "message": "已删除 $Num$ 个下列网站的 Cookie：$Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -30,35 +30,35 @@
     "description": "Cookie(s)"
   },
   "filterText": {
-    "message": "Filter",
+    "message": "过滤",
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "无",
     "description": "None"
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "清理",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "保留",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "立即清理",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "清理，包括已打开标签页",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
+    "message": "立即清理，包括已打开标签页的 Cookie",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "清除此域的 $siteData$",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -68,7 +68,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "清除 $domain$ 的 $siteData$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -82,39 +82,39 @@
     }
   },
   "noRulesText": {
-    "message": "No rules matched this domain",
+    "message": "没有匹配此域的规则",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Welcome",
+    "message": "欢迎使用",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Settings",
+    "message": "设置",
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "选项",
     "description": "Options"
   },
   "settingsText": {
-    "message": "Cookie Settings",
+    "message": "Cookie 设置",
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "List of Expressions",
+    "message": "例外名单",
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Cleanup Log",
+    "message": "清理日志",
     "description": "Cleanup Log"
   },
   "aboutText": {
-    "message": "About",
+    "message": "关于",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
+    "message": "Cookie AutoDelete 在本次会话期间已删除 $sessionDeleted$ 个 Cookie；累计已删除 $totalDeleted$ 个 Cookie。",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -128,11 +128,11 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "更早的发布便笺可以在线查看",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "保留，因为 *.$mainDomain$ 在打开的标签页中",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -142,7 +142,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
+    "message": "清理，因为自启动清理同时 $hostname$ 不在白灰名单中",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
@@ -152,7 +152,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "清理，因为自启动清理同时 $matchedExpression$ 在灰名单中",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -162,7 +162,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White/Grey lists",
+    "message": "清理，因为 $hostname$ 不在白灰名单中",
     "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
@@ -172,7 +172,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "保留因为匹配了 $listType$ 中的 $matchedExpression$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -200,139 +200,139 @@
     }
   },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "或者在任何已打开的标签页中",
     "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "同时已打开的标签页被忽略",
     "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message": "感谢您尝试 Cookie AutoDelete。如果您喜欢，请来评价吧。",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Release Notes",
+    "message": "发行日志",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message": "启用主动模式？清理前延迟：",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minute(s)",
+    "message": "分钟",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "秒",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
+    "message": "启用域变更时清理",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
+    "message": "启用清理日志和计数器",
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Keep Localstorage",
+    "message": "保存在本地",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
-    "message": "Keep All Cookies",
+    "message": "保存所有 Cookies",
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
-    "message": "Clear Logs",
+    "message": "清除日志",
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Error!",
+    "message": "错误！",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Restore",
+    "message": "还原",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Show Number of Cookies for that Domain",
+    "message": "显示该域名的 Cookie 数量",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie Cleanup",
+    "message": "清理 Cookie 后显示通知",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on Startup",
+    "message": "启动时清理打开标签页的 Cookie",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Enable Check for Subdomains",
+    "message": "启用对子域的检查",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
+    "message": "启用对 Firefox 身份（容器）功能的支持",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "本地存储清理（Firefox 58+）",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "由于 API 限制，同时启用本地存储清理和容器（身份）标签页可能导致一些不想要的副作用",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
-    "message": "Restore Default Settings",
+    "message": "恢复默认设置",
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "还原扩展数据",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
-    "message": "Whitelist",
+    "message": "白名单",
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "Greylist",
+    "message": "灰名单",
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Add to Whitelist (Never Clean)",
+    "message": "添加到白名单（永不清理）",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Add to Greylist (Clean on Browser Restart)",
+    "message": "添加到灰名单（浏览器重启时清理）",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Remove All",
+    "message": "全部移除",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Export Expressions",
+    "message": "导出表达式",
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "message": "导出时将会在文件名后面追加一个时间戳。\n下载有问题？右击此按钮，选择“链接另存为...”来下载。",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
-    "message": "How do Expressions work?",
+    "message": "表达式怎么工作的？",
     "description": "How do Expressions work?"
   },
   "importURLSText": {
-    "message": "Import Expressions",
+    "message": "导入表达式",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Report issues and suggest features",
+    "message": "报告问题和建议功能",
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "文档",
     "description": "Documentation"
   },
   "faqText": {
@@ -340,7 +340,7 @@
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
-    "message": "$browser$ version",
+    "message": "$browser$ 版本",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -350,27 +350,27 @@
     }
   },
   "contributorsText": {
-    "message": "Contributors:",
+    "message": "贡献者：",
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Contribute",
+    "message": "捐助",
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Domain Expression",
+    "message": "域名表达式",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Matched Domain Expression",
+    "message": "匹配的域名表达式",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Regular Expression Equivalent",
+    "message": "正则表达式等效",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "List Type",
+    "message": "列表类型",
     "description": "List Type"
   },
   "domainPlaceholderText": {
@@ -378,63 +378,63 @@
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "No expressions defined.",
+    "message": "未定义表达式。",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Remove expression",
+    "message": "移除表达式",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Stop editing",
+    "message": "停止编辑",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Save expression",
+    "message": "保存表达式",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Edit expression",
+    "message": "编辑表达式",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Toggle to greylist",
+    "message": "切换到绿名单",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Toggle to whitelist",
+    "message": "切换到白名单",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Auto-clean enabled",
+    "message": "自动清理已启用",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Auto-clean disabled",
+    "message": "自动清理已禁用",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Toggle to disable automatic cleanup (manual mode)",
+    "message": "切换来禁用自动清理（手动模式）",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Toggle to enable automatic cleanup (automatic mode)",
+    "message": "切换来启用自动清理（自动模式）",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notification enabled",
+    "message": "通知已启用",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notification disabled",
+    "message": "通知已停用",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Toggle to enable or disable notifications",
+    "message": "切换以启用或禁用通知",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "No Cleanup Logs Found",
+    "message": "没有找到清理日志",
     "description": "No Cleanup Logs Found"
   }
 }
