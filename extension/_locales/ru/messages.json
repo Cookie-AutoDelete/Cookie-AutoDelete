@@ -25,10 +25,6 @@
       }
     }
   },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
-  },
   "filterText": {
     "message": "Фильтр",
     "description": "Filter"
@@ -126,10 +122,6 @@
         "example": "456"
       }
     }
-  },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Оставлено по причине открытой вкладки для *.$mainDomain$",
@@ -330,14 +322,6 @@
   "reportIssuesText": {
     "message": "Сообщить об ошибке или предложить идею",
     "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Documentation",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "Версия $browser$",
