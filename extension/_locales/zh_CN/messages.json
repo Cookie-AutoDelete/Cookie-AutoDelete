@@ -186,7 +186,7 @@
     }
   },
   "reasonCleanCookieName": {
-    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "message": "因为在 $listType$ 设置了 $matchedExpression$ 从而只清理了一部分",
     "description": "Partial clean because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
