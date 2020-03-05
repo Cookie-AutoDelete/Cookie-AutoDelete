@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
   "extensionDescription": {
     "message": "Beheer jou koekies! Skrap ongebruikte koekies outomaties van jou geslote oortjies en behou die wat u nog wil gebruik.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
@@ -127,10 +123,6 @@
       }
     }
   },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
-  },
   "reasonKeepOpenTab": {
     "message": "Hou as gevolg van oop oortjies van *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
@@ -138,64 +130,6 @@
       "mainDomain": {
         "content": "$1",
         "example": "google.com"
-      }
-    }
-  },
-  "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      }
-    }
-  },
-  "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White/Grey lists",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
-    "description": "Keep because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonCleanCookieName": {
-    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
       }
     }
   },
@@ -215,10 +149,6 @@
     "message": "Vrystelling Notas",
     "description": "Release Notes"
   },
-  "activeModeText": {
-    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
-    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
-  },
   "minutesText": {
     "message": "Minuut (e)",
     "description": "Minute(s)"
@@ -226,22 +156,6 @@
   "secondsText": {
     "message": "Sekonde (s)",
     "description": "Second(s)"
-  },
-  "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
-    "description": "Enable Cleanup on Domain Change"
-  },
-  "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
-    "description": "Enable Cleanup Log and Counter"
-  },
-  "keepLocalstorageText": {
-    "message": "Keep Localstorage",
-    "description": "Keep Localstorage"
-  },
-  "keepAllCookiesText": {
-    "message": "Keep All Cookies",
-    "description": "Keep All Cookies"
   },
   "clearLogsText": {
     "message": "Maak log skoon",
@@ -251,45 +165,13 @@
     "message": "Fout!",
     "description": "Error!"
   },
-  "restoreText": {
-    "message": "Restore",
-    "description": "Ex: Restore Cleanup"
-  },
-  "showNumberOfCookiesInIconText": {
-    "message": "Show Number of Cookies for that Domain",
-    "description": "Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie Cleanup",
-    "description": "Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on Startup",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText": {
-    "message": "Enable Check for Subdomains",
-    "description": "Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
-    "description": "Enable Support for Firefox's Container Tabs"
-  },
   "localstorageCleanupText": {
     "message": "Localstorage skoonmaak (Firefox 58 +)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
-  },
   "defaultSettingsText": {
     "message": "Herstel oorspronklike instellings",
     "description": "Restore Default Settings"
-  },
-  "resetExtensionDataText": {
-    "message": "Reset Extension Data",
-    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "Witlys",
@@ -319,10 +201,6 @@
     "message": "'n Tydstempel sal aan die lêernaam aangeheg word op uitvoer.\nSukkel om af te laai?  Regs-klik hierdie knoppie en klik 'Stoor Skakel as...' om af te laai.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
-  "questionExpression": {
-    "message": "How do Expressions work?",
-    "description": "How do Expressions work?"
-  },
   "importURLSText": {
     "message": "Voer uitdrukkings in",
     "description": "Import Expressions"
@@ -334,10 +212,6 @@
   "documentationText": {
     "message": "Dokumentasie",
     "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "$browser$ weergawe",
