@@ -8,14 +8,8 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete $Ver$: Tarayıcı çerezlerin temizlendi!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Tarayıcı çerezlerin temizlendi!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
     "message": "\"$Websites$\" sitesinden $Num$ adet çerez temizlendi",
@@ -30,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Çerezler",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filtre",
@@ -60,7 +58,7 @@
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Alan adı için $siteData$leri temizle",
+    "message": "Alan adı için $siteData$ leri temizle",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -145,7 +143,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Temizlendi, çünkü 'Başlangıç Temizliği' yapıldı ve $matchedExpression$ alan adı Greylist içinde değildi.",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "$hostname$ alan adı Whitelist\/Greylist'te bulunamadığı için temizlendi",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "$hostname$ alan adı Whitelist/Greylist'te bulunamadığı için temizlendi",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "veya diğer açık sekmelerde değildi",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "ayrıca diğer açık sekmeler göz ardı edildi",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "\"Cookie AutoDelete\"yi denediğin için teşekkür ederiz. Beğendiysen yorum yazarak destek olabilirsin.",
@@ -274,7 +272,7 @@
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "\"Firefox sekme kapsayıcı\" desteğini etkinleştir (Bkz. \"Firefox's Container Tabs\")",
+    "message": "Habilitar Suporte para Abas de Contêiner do Firefox",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
@@ -334,7 +332,7 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Dökümanlar",
     "description": "Documentation"
   },
   "faqText": {

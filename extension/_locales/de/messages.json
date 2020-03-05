@@ -8,14 +8,8 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies wurden gelöscht!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Cookies wurden gelöscht!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
     "message": "$Num$ Cookies gelöscht von: $Websites$",
@@ -30,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filter",
@@ -130,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Ältere Versionshinweise können online eingesehen werden unter",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Aufräumen, da Aufräumen beim Start aktiv und $hostname$ nicht in einer Whitelist\/Greylist ist",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Aufräumen, da Aufräumen beim Start aktiv und $hostname$ nicht in einer Whitelist/Greylist ist",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Aufräumen, da $hostname$ sich nicht in einer Whitelist\/Greylist befindet",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Aufräumen, da $hostname$ sich nicht in einer Whitelist/Greylist befindet",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "oder in geöffneten Tabs",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "und zudem wurden geöffnete Tabs ignoriert",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Danke, dass Du Cookie AutoDelete ausprobierst! Falls es dir gefällt, gib bitte eine Bewertung ab.",
@@ -238,7 +236,7 @@
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Localstorage behalten",
+    "message": "Local Storage behalten",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
@@ -278,11 +276,11 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage aufräumen (Firefox 58+)",
+    "message": "Local Storage aufräumen (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Die gleichzeitige Aktivierung von \"Localstorage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen",
+    "message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
@@ -290,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Erweiterungsdaten zurücksetzen",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -334,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Dokumentation",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Häufig gestellte Fragen, allgemeine Probleme und Lösungen",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {

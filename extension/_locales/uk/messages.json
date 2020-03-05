@@ -8,14 +8,8 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: куки видалено!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Куки видалено!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
     "message": "$Num$ видалено куки від: $Websites$",
@@ -30,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Фільтр",
@@ -96,7 +94,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Параметри",
     "description": "Options"
   },
   "settingsText": {
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Очистити, через очищення при запуску і $hostname$ не наявне у Білому\/Сірому списках",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Очистити, через очищення при запуску і $hostname$ не наявне у Білому/Сірому списках",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Очистити, тому що $hostname$ не наявне у Білому\/Сірому списках",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Очистити, тому що $hostname$ не наявне у Білому/Сірому списках",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "або в будь-яких відкритих вкладках",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "а також відкриті вкладки були проігноровані",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Дякуємо за використання Cookie AutoDelete. Якщо вам сподобалося, будь ласка, залиште відгук.",
@@ -250,11 +248,11 @@
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Error!",
+    "message": "Помилка!",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Restore",
+    "message": "Відновити",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
@@ -290,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Скинути дані розширення",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -334,7 +332,7 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Документація",
     "description": "Documentation"
   },
   "faqText": {
@@ -376,7 +374,7 @@
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *. example.com",
+    "message": "example.com, subdomain.example.com, *.example.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {

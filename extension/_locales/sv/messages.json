@@ -8,14 +8,8 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies har tagits bort!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Cookies har tagits bort!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
     "message": "$Num$ borttagna cookies från: $Websites$",
@@ -30,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filtrera",
@@ -96,7 +94,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Alternativ",
     "description": "Options"
   },
   "settingsText": {
@@ -130,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Äldre versionsfakta kan ses online på",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Rensa eftersom uppstartsrensning och $hostname$ inte finns i vit-\/grålistan",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Rensa eftersom uppstartsrensning och $hostname$ inte finns i vit-/grålistan",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Rensa eftersom $hostname$ inte finns i vit-\/grålistan",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Rensa eftersom $hostname$ inte finns i vit-/grålistan",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "eller i någon öppen flik",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "och även öppna flikar ignorerades",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Tack för att du provar Cookie AutoDelete. Om du gillar det, kanske du vill lämna en recension.",
@@ -290,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Återställ tilläggsdata",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -334,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Dokumentation",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Vanliga frågor, vanliga problem och lösningar",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
@@ -376,7 +374,7 @@
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "exempel.com, underdomän.exempel.com, *. exempel.se",
+    "message": "example.com, subdomain.example.com, *.example.com",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
@@ -432,7 +430,7 @@
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Aktivera\/Inaktivera aviseringar",
+    "message": "Aktivera/Inaktivera aviseringar",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {

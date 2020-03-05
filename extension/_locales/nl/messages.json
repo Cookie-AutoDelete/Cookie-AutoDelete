@@ -8,14 +8,8 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Cookies zijn verwijderd!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Cookies zijn verwijderd!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
     "message": "Er zijn $Num$ Cookies verwijderd van: $Websites$",
@@ -30,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filter",
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Opschonen omdat opschonen gestart is en $hostname$ komt niet voor in de white\/gray lijsten",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Opschonen omdat opschonen gestart is en $hostname$ komt niet voor in de white/gray lijsten",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Opschonen omdat $hostname$ niet voor komt in de white\/gray lijsten",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Opschonen omdat $hostname$ niet voor komt in de white/gray lijsten",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "of in enige open tabbladen",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "en ook open tabbladen zijn genegeerd",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Bedankt voor het uitproberen van Cookie AutoDelete. Indien u het leuk vindt dan beoordeel het alsublieft.",
@@ -432,7 +430,7 @@
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "In-\/ uitschakelen van meldingen",
+    "message": "In-/ uitschakelen van meldingen",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {

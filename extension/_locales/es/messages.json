@@ -9,13 +9,7 @@
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete $Ver$: ¡Las cookies fueron borradas!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
     "message": "$Num$ cookies borradas de: $Websites$",
@@ -30,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filtro",
@@ -130,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Las notas de la versión anterior se pueden ver en línea en",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -145,7 +143,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Limpieza de $hostname$ debido a la limpieza de inicio y que no está en la lista de blanca o gris",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -165,7 +163,7 @@
   },
   "reasonCleanNoList": {
     "message": "Limpieza de $hostname$ debido a que no está en la lista de blanca o gris",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "o en cualquier pestaña abierta",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "y también se ignoraron las pestañas abiertas",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Gracias por utilizar Cookie AutoDelete. Si te gustó, por favor deja una reseña.",
@@ -222,11 +220,11 @@
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minuto\/s",
+    "message": "Minuto/s",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Segundo\/s",
+    "message": "Segundo/s",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
@@ -334,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Documentación",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Preguntas frecuentes, problemas y soluciones comunes",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {

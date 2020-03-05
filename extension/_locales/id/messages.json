@@ -8,14 +8,8 @@
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete: Kuki telah dihapus!",
-    "description": "Cookie AutoDelete 3.X.X: Cookies were deleted!",
-    "placeholders": {
-      "ver": {
-        "content": "$1",
-        "example": "3.0.0"
-      }
-    }
+    "message": "Kuki telah dihapus!",
+    "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
     "message": "$Num$ Kuki Dihapus dari: $Websites$",
@@ -30,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Kuki",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filter",
@@ -96,7 +94,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Opsi",
     "description": "Options"
   },
   "settingsText": {
@@ -130,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Catatan perubahan versi yang lama bisa dilihat di",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -144,8 +142,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Dihapus karena penghapusan saat memulai dan $hostname$ tidak ada di dalam daftar Putih\/Abu-abu",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White\/Grey lists",
+    "message": "Dihapus karena penghapusan saat memulai dan $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -164,8 +162,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Dihapus karena $hostname$ tidak ada di dalam daftar Putih\/Abu-abu",
-    "description": "Clean because sub.google.com is not in the White\/Grey lists",
+    "message": "Dihapus karena $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
+    "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -203,11 +201,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "atau di dalam tab yang terbuka manapun",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "dan tab yang terbuka juga diabaikan",
-    "description": "Clean because of sub.google.com is not in the White\/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Terima kasih telah mencoba Cookie AutoDelete. Jika anda menyukainya, silakan berikan tinjauan.",
@@ -290,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Setel Ulang Data Ekstensi",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -334,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Dokumentasi",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Pertanyaan yang Sering Diajukan, Permasalahan umum dan solusinya",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
