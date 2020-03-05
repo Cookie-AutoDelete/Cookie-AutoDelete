@@ -94,7 +94,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "خيارات",
     "description": "Options"
   },
   "settingsText": {
@@ -332,7 +332,7 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "الوثائق",
     "description": "Documentation"
   },
   "faqText": {
