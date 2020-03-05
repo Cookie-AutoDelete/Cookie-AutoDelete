@@ -1,14 +1,14 @@
 {
   "extensionName": {
-    "message": "Cookie AutoDelete",
+    "message": "Tự động Xoá sạch Cookie",
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Kiểm soát các cookies! Tự động Xoá sạch các cookies không dùng tới từ các trang đã đóng đồng thời giữ lại các cookies bạn cần.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookies were deleted!",
+    "message": "Các Cookie đã bị xoá!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
