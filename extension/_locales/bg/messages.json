@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Cookie AutoDelete",
+    "message": "Cookie AutoDelete (Автоматично изтриване на бисквитки)",
     "description": "Name of the extension."
   },
   "extensionDescription": {
@@ -128,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Бележките към по-старите издания могат да бъдат прочетени онлайн на",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -288,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Нулиране на данните",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -336,7 +336,7 @@
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Често задавани въпроси, трудности и техните решения",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
