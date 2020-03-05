@@ -4,15 +4,15 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want.",
+    "message": "Kelola kuki anda! Otomatis hapus kuki yang tidak digunakan dari tab yang ditutup dan tetap simpan yang anda inginkan.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookies were deleted!",
+    "message": "Kuki telah dihapus!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
+    "message": "$Num$ Kuki Dihapus dari: $Websites$",
     "description": "123 Deleted Cookies from: google.com, facebook.com",
     "placeholders": {
       "num": {
@@ -26,7 +26,7 @@
     }
   },
   "popupCookieCountText": {
-    "message": "Cookie(s)",
+    "message": "Kuki",
     "description": "Cookie(s)"
   },
   "filterText": {
@@ -34,31 +34,31 @@
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Nihil",
     "description": "None"
   },
   "cleanText": {
-    "message": "Clean",
+    "message": "Hapus",
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Simpan",
     "description": "Keep"
   },
   "cookieCleanupText": {
-    "message": "Run cleanup now",
+    "message": "Hapus sekarang",
     "description": "Run cleanup now"
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Clean, include open tabs",
+    "message": "Hapus, termasuk tab yang terbuka",
     "description": "Clean, include open tabs"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
+    "message": "Hapus sekarang, termasuk kuki dari tab yang terbuka",
     "description": "Run cleanup now, include cookies from open tabs"
   },
   "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
+    "message": "Hapus $siteData$ untuk domain ini",
     "description": "Clear cookies for this domain",
     "placeholders": {
       "siteData": {
@@ -68,7 +68,7 @@
     }
   },
   "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
+    "message": "Hapus semua $siteData$ untuk $domain$",
     "description": "Clear all cookies for example.com",
     "placeholders": {
       "siteData": {
@@ -82,39 +82,39 @@
     }
   },
   "noRulesText": {
-    "message": "No rules matched this domain",
+    "message": "Tidak ada aturan yang cocok dengan domain ini",
     "description": "No rules matched this domain"
   },
   "welcomeText": {
-    "message": "Welcome",
+    "message": "Selamat Datang",
     "description": "Welcome"
   },
   "preferencesText": {
-    "message": "Settings",
+    "message": "Pengaturan",
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Opsi",
     "description": "Options"
   },
   "settingsText": {
-    "message": "Cookie Settings",
+    "message": "Pengaturan Kuki",
     "description": "Cookie Settings"
   },
   "whiteListText": {
-    "message": "List of Expressions",
+    "message": "Daftar Ekspresi",
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Cleanup Log",
+    "message": "Catatan Penghapusan",
     "description": "Cleanup Log"
   },
   "aboutText": {
-    "message": "About",
+    "message": "Tentang",
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
+    "message": "Hai! Sepanjang sesi ini, Cookie AutoDelete telah menghapus $sessionDeleted$ kuki dan total $totalDeleted$ kuki.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "sessionDeleted": {
@@ -128,11 +128,11 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Catatan perubahan versi yang lama bisa dilihat di",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "Disimpan karena tab yang terbuka dari *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -142,7 +142,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
+    "message": "Dihapus karena penghapusan saat memulai dan $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
@@ -152,7 +152,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "Dihapus karena penghapusan saat memulai dan $matchedExpression$ ada di dalam daftar Abu-abu",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -162,7 +162,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White/Grey lists",
+    "message": "Dihapus karena $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
     "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
@@ -172,7 +172,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "Disimpan karena $matchedExpression$ ada di dalam $listType$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -186,7 +186,7 @@
     }
   },
   "reasonCleanCookieName": {
-    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "message": "Dihapus sebagian karena cocok dengan $matchedExpression$ di dalam $listType$",
     "description": "Partial clean because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -200,147 +200,147 @@
     }
   },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "atau di dalam tab yang terbuka manapun",
     "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "dan tab yang terbuka juga diabaikan",
     "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "message": "Terima kasih telah mencoba Cookie AutoDelete. Jika anda menyukainya, silakan berikan tinjauan.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
-    "message": "Release Notes",
+    "message": "Catatan Rilis",
     "description": "Release Notes"
   },
   "activeModeText": {
-    "message": "Enable Automatic Cleaning? Delay Before Cleaning:",
+    "message": "Aktifkan Hapus Otomatis? Penundaan Sebelum Menghapus:",
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minute(s)",
+    "message": "Menit",
     "description": "Minute(s)"
   },
   "secondsText": {
-    "message": "Second(s)",
+    "message": "Detik",
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
+    "message": "Aktifkan Hapus saat Domain Berubah",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
+    "message": "Aktifkan Penghitung dan Catatan Penghapusan",
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Keep Localstorage",
+    "message": "Simpan Localstorage",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
-    "message": "Keep All Cookies",
+    "message": "Simpan Semua Kuki",
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
-    "message": "Clear Logs",
+    "message": "Hapus Catatan",
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Error!",
+    "message": "Galat!",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Restore",
+    "message": "Pulihkan",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Show Number of Cookies for that Domain",
+    "message": "Tampilkan Jumlah Kuki untuk Domain tersebut",
     "description": "Show Number of Cookies for that Domain"
   },
   "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie Cleanup",
+    "message": "Tampilkan Notifikasi Setelah Menghapus Kuki",
     "description": "Show Notification After Cookie Cleanup"
   },
   "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on Startup",
+    "message": "Hapus Kuki dari Tab yang Terbuka saat Memulai",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Enable Check for Subdomains",
+    "message": "Aktifkan Pengecekan Subdomain",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
+    "message": "Aktifkan Dukungan untuk Tab Container Firefox",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
+    "message": "Hapus Localstorage (Firefox 58+)",
     "description": "Localstorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
+    "message": "Mengaktifkan Penghapusan Localstorage dan Tab Container mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API",
     "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
-    "message": "Restore Default Settings",
+    "message": "Kembalikan ke Pengaturan Bawaan",
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Setel Ulang Data Ekstensi",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
-    "message": "Whitelist",
+    "message": "Daftar Putih",
     "description": "Whitelist"
   },
   "greyListWordText": {
-    "message": "Greylist",
+    "message": "Daftar Abu-abu",
     "description": "Greylist"
   },
   "toWhiteListText": {
-    "message": "Add to Whitelist (Never Clean)",
+    "message": "Tambahkan ke Daftar Putih (Tidak Dihapus)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toGreyListText": {
-    "message": "Add to Greylist (Clean on Browser Restart)",
+    "message": "Tambahkan ke Daftar Abu-abu (Dihapus saat Memulai Ulang Peramban)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "clearURLText": {
-    "message": "Remove All",
+    "message": "Buang Semua",
     "description": "Remove All"
   },
   "exportURLSText": {
-    "message": "Export Expressions",
+    "message": "Ekspor Ekspresi",
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
+    "message": "Waktu akan ditambahkan ke berkas nama saat mengekspor.\nKesulitan mengunduh? Klik kanan tombol ini dan klik 'Simpan Tautan Sebagai...' untuk mengunduh.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
-    "message": "How do Expressions work?",
+    "message": "Bagaimana Ekspresi bekerja?",
     "description": "How do Expressions work?"
   },
   "importURLSText": {
-    "message": "Import Expressions",
+    "message": "Impor Ekspresi",
     "description": "Import Expressions"
   },
   "reportIssuesText": {
-    "message": "Report issues and suggest features",
+    "message": "Laporkan masalah dan sarankan fitur",
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Dokumentasi",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Pertanyaan yang Sering Diajukan, Permasalahan umum dan solusinya",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
-    "message": "$browser$ version",
+    "message": "Versi $browser$",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -350,27 +350,27 @@
     }
   },
   "contributorsText": {
-    "message": "Contributors:",
+    "message": "Kontributor:",
     "description": "Contributors:"
   },
   "contributeText": {
-    "message": "Contribute",
+    "message": "Kontribusi",
     "description": "Contribute"
   },
   "domainExpressionsText": {
-    "message": "Domain Expression",
+    "message": "Ekspresi Domain",
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Matched Domain Expression",
+    "message": "Ekspresi Domain yang Cocok",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
-    "message": "Regular Expression Equivalent",
+    "message": "Padanan Ekspresi Reguler",
     "description": "Regular Expression Equivalent"
   },
   "listTypeText": {
-    "message": "List Type",
+    "message": "Tipe Daftar",
     "description": "List Type"
   },
   "domainPlaceholderText": {
@@ -378,63 +378,63 @@
     "description": "Domain Expression"
   },
   "noExpressionsText": {
-    "message": "No expressions defined.",
+    "message": "Belum ada ekspresi.",
     "description": "No expressions defined."
   },
   "removeExpressionText": {
-    "message": "Remove expression",
+    "message": "Buang ekspresi",
     "description": "Remove expression"
   },
   "stopEditingText": {
-    "message": "Stop editing",
+    "message": "Setop menyunting",
     "description": "Stop editing"
   },
   "saveExpressionText": {
-    "message": "Save expression",
+    "message": "Simpan ekspresi",
     "description": "Save expression"
   },
   "editExpressionText": {
-    "message": "Edit expression",
+    "message": "Sunting ekspresi",
     "description": "Edit expression"
   },
   "toggleToGreyListWordText": {
-    "message": "Toggle to greylist",
+    "message": "Ubah ke daftar abu-abu",
     "description": "Toggle to greylist"
   },
   "toggleToWhiteListWordText": {
-    "message": "Toggle to whitelist",
+    "message": "Ubah ke daftar putih",
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Auto-clean enabled",
+    "message": "Hapus otomatis aktif",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Auto-clean disabled",
+    "message": "Hapus otomatis nonaktif",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
-    "message": "Toggle to disable automatic cleanup (manual mode)",
+    "message": "Klik untuk menonaktifkan hapus otomatis (mode manual)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Toggle to enable automatic cleanup (automatic mode)",
+    "message": "Klik untuk mengaktifkan hapus otomatis (mode otomatis)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notification enabled",
+    "message": "Notifikasi aktif",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notification disabled",
+    "message": "Notifikasi nonaktif",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
-    "message": "Toggle to enable or disable notifications",
+    "message": "Klik untuk mengaktifkan atau menonaktifkan notifikasi",
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "No Cleanup Logs Found",
+    "message": "Tidak Ada Catatan Penghapusan yang Ditemukan",
     "description": "No Cleanup Logs Found"
   }
 }
