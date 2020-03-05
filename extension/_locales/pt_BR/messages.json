@@ -30,11 +30,11 @@
     "description": "Cookie(s)"
   },
   "filterText": {
-    "message": "Filter",
+    "message": "Filtrar",
     "description": "Filter"
   },
   "noneText": {
-    "message": "None",
+    "message": "Nenhum",
     "description": "None"
   },
   "cleanText": {
@@ -42,7 +42,7 @@
     "description": "Clean"
   },
   "keepText": {
-    "message": "Keep",
+    "message": "Manter",
     "description": "Keep"
   },
   "cookieCleanupText": {
@@ -94,7 +94,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "Opções",
     "description": "Options"
   },
   "settingsText": {
@@ -106,7 +106,7 @@
     "description": "List of Expressions"
   },
   "cleanupLogText": {
-    "message": "Cleanup Log",
+    "message": "Registro de Limpeza",
     "description": "Cleanup Log"
   },
   "aboutText": {
@@ -128,11 +128,11 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "As notas de lançamento mais antigas podem ser vistas online em",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
+    "message": "Manter por causa de abas abertas de *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
     "placeholders": {
       "mainDomain": {
@@ -142,7 +142,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
+    "message": "Limpar por causa da limpeza de arranque e $hostname$ não está nas listas branca/cinza",
     "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
@@ -152,7 +152,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
+    "message": "Limpar por causa da limpeza de arranque e $matchedExpression$ está lista cinza",
     "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
     "placeholders": {
       "matchedExpression": {
@@ -162,7 +162,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White/Grey lists",
+    "message": "Limpar porque $hostname$ não está nas listas branca/cinza",
     "description": "Clean because sub.google.com is not in the White/Grey lists",
     "placeholders": {
       "hostname": {
@@ -172,7 +172,7 @@
     }
   },
   "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
+    "message": "Manter por causa de $matchedExpression$ correspondentes na $listType$",
     "description": "Keep because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -186,7 +186,7 @@
     }
   },
   "reasonCleanCookieName": {
-    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "message": "Limpeza parcial devido a $matchedExpression$ correspondente na $listType$",
     "description": "Partial clean because of matched *.google.com in the Whitelist",
     "placeholders": {
       "matchedExpression": {
@@ -200,11 +200,11 @@
     }
   },
   "reasonTabsWereNotIgnored": {
-    "message": "or in any open tabs",
+    "message": "ou em quaisquer abas abertas",
     "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
-    "message": "and also open tabs were ignored",
+    "message": "e também separadores abertos foram ignorados",
     "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
@@ -228,31 +228,31 @@
     "description": "Second(s)"
   },
   "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
+    "message": "Ativar limpeza na mudança de domínio",
     "description": "Enable Cleanup on Domain Change"
   },
   "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
+    "message": "Ativar registo de limpeza e contador",
     "description": "Enable Cleanup Log and Counter"
   },
   "keepLocalstorageText": {
-    "message": "Keep Localstorage",
+    "message": "Manter localstorage",
     "description": "Keep Localstorage"
   },
   "keepAllCookiesText": {
-    "message": "Keep All Cookies",
+    "message": "Manter todos os cookies",
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
-    "message": "Clear Logs",
+    "message": "Limpar Registros",
     "description": "Clear Logs"
   },
   "errorText": {
-    "message": "Error!",
+    "message": "Erro!",
     "description": "Error!"
   },
   "restoreText": {
-    "message": "Restore",
+    "message": "Restaurar",
     "description": "Ex: Restore Cleanup"
   },
   "showNumberOfCookiesInIconText": {
@@ -288,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Repor dados da extensão",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -320,7 +320,7 @@
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
-    "message": "How do Expressions work?",
+    "message": "Como é que as expressões funcionam?",
     "description": "How do Expressions work?"
   },
   "importURLSText": {
@@ -332,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Documentação",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Perguntas frequentes, problemas e soluções comuns",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
@@ -434,7 +434,7 @@
     "description": "Toggle to enable or disable notifications"
   },
   "noCleanupLogText": {
-    "message": "No Cleanup Logs Found",
+    "message": "Nenhum registro de limpeza encontrado",
     "description": "No Cleanup Logs Found"
   }
 }
