@@ -272,7 +272,7 @@
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
+    "message": "Povolení podpory pro Firefox je Kontejnerové Tabs",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
