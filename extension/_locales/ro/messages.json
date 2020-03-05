@@ -127,10 +127,6 @@
       }
     }
   },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
-  },
   "reasonKeepOpenTab": {
     "message": "Păstrată datorită filelor deschise pentru *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
@@ -334,10 +330,6 @@
   "documentationText": {
     "message": "Documentaţie",
     "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "Versiunea $browser$",
