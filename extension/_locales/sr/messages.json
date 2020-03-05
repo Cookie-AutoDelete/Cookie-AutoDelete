@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
   "extensionDescription": {
     "message": "Управљајте вашим колачићима. Аутоматски бришите некоришћене колачиће из ваших затворених језичака а задржите оне које желите.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
@@ -24,10 +20,6 @@
         "example": "google.com, facebook.com"
       }
     }
-  },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Филтер",
@@ -126,10 +118,6 @@
         "example": "456"
       }
     }
-  },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Задржи због отворених језичака домена *.$mainDomain$",
@@ -287,10 +275,6 @@
     "message": "Врати подразумевана подешавања",
     "description": "Restore Default Settings"
   },
-  "resetExtensionDataText": {
-    "message": "Reset Extension Data",
-    "description": "Reset Extension Data"
-  },
   "whiteListWordText": {
     "message": "Бели списак",
     "description": "Whitelist"
@@ -330,14 +314,6 @@
   "reportIssuesText": {
     "message": "Пријавите проблеме и предложите могућности",
     "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Documentation",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "Издање $browser$ прегледача",
