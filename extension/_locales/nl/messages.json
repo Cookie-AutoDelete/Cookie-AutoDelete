@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
   "extensionDescription": {
     "message": "Krijg controle over uw cookies! Automatisch verwijderen van ongebruikte cookies van gesloten tabbladen met behoud van belangrijke cookies.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
@@ -28,10 +24,6 @@
   "popupCookieCountText": {
     "message": "Cookie(s)",
     "description": "Cookie(s)"
-  },
-  "filterText": {
-    "message": "Filter",
-    "description": "Filter"
   },
   "noneText": {
     "message": "Geen",
@@ -93,10 +85,6 @@
     "message": "Instellingen",
     "description": "Settings"
   },
-  "optionsText": {
-    "message": "Options",
-    "description": "Options"
-  },
   "settingsText": {
     "message": "Cookie-instellingen",
     "description": "Cookie Settings"
@@ -126,10 +114,6 @@
         "example": "456"
       }
     }
-  },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Behouden omdat er een open tabblad wijst naar *.$mainDomain$",
@@ -287,18 +271,6 @@
     "message": "Standaardinstellingen herstellen",
     "description": "Restore Default Settings"
   },
-  "resetExtensionDataText": {
-    "message": "Reset Extension Data",
-    "description": "Reset Extension Data"
-  },
-  "whiteListWordText": {
-    "message": "Whitelist",
-    "description": "Whitelist"
-  },
-  "greyListWordText": {
-    "message": "Greylist",
-    "description": "Greylist"
-  },
   "toWhiteListText": {
     "message": "Toevoegen aan Whitelist (ruim cookie nooit op)",
     "description": "Add to Whitelist (Never Clean)"
@@ -330,14 +302,6 @@
   "reportIssuesText": {
     "message": "Problemen rapporteren en voorstellen van functies",
     "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Documentation",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "$browser$ versie",
