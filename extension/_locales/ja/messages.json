@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "cookieをコントロールしよう！タブを閉じたら、使用していないcookieを自動で削除。任意で残すこともできます。",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
