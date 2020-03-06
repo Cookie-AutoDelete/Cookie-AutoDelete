@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
   "extensionDescription": {
     "message": "Prendi il controllo dei tuoi cookie! Elimina automaticamente i cookie inutilizzati dalle schede chiuse e mantieni solo quelli che vuoi.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
@@ -24,10 +20,6 @@
         "example": "google.com, facebook.com"
       }
     }
-  },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filtro",
@@ -126,10 +118,6 @@
         "example": "456"
       }
     }
-  },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Mantieni a causa delle schede aperte di *.$mainDomain$",
@@ -330,14 +318,6 @@
   "reportIssuesText": {
     "message": "Segnala problemi e suggerisci funzionalità",
     "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Documentation",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "Versione $browser$",

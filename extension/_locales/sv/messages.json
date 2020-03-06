@@ -373,10 +373,6 @@
     "message": "Listtyp",
     "description": "List Type"
   },
-  "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
-    "description": "Domain Expression"
-  },
   "noExpressionsText": {
     "message": "Inget uttryck definierat.",
     "description": "No expressions defined."
