@@ -29,6 +29,10 @@
     "message": "Cookie(s)",
     "description": "Cookie(s)"
   },
+  "filterText": {
+    "message": "Filter",
+    "description": "Filter"
+  },
   "noneText": {
     "message": "Intet",
     "description": "None"
