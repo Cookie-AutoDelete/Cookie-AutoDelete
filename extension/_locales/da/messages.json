@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Styr dine cookies! Slet ubrugte cookies automatisk når du lukker dine faner, og behold dem du vil beholde.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
@@ -20,6 +24,14 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
+  },
+  "filterText": {
+    "message": "Filter",
+    "description": "Filter"
   },
   "noneText": {
     "message": "Intet",
@@ -114,6 +126,10 @@
         "example": "456"
       }
     }
+  },
+  "oldReleasesText": {
+    "message": "Gamle udgivelsesnoter kan ses online på",
+    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Behold pga. åbne faner for *.$mainDomain$",
@@ -315,6 +331,24 @@
     "message": "Rapporter fejl og mangler, og foreslå funktionalitet",
     "description": "Report issues and suggest features"
   },
+  "documentationText": {
+    "message": "Dokumentation",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Ofte stillede spørgsmål, problemer og løsninger",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "versionText": {
+    "message": "$browser$ version",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
   "contributorsText": {
     "message": "Bidragydere:",
     "description": "Contributors:"
@@ -338,6 +372,10 @@
   "listTypeText": {
     "message": "Listetype",
     "description": "List Type"
+  },
+  "domainPlaceholderText": {
+    "message": "example.com, subdomain.example.com, *.example.com",
+    "description": "Domain Expression"
   },
   "noExpressionsText": {
     "message": "Ingen udtryk defineret.",
