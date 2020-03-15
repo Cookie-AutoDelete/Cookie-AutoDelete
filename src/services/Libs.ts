@@ -149,6 +149,11 @@ export const getStoreId = (state: State, storeId: string) => {
  */
 export const globExpressionToRegExp = (glob: string) => {
   const normalizedGlob = glob.trim().toLowerCase();
+  if (normalizedGlob.slice(0, 1) === '/' && normalizedGlob.slice(-1) === '/') {
+    // Treat /str/ as regular exprssion str
+    return normalizedGlob.slice(1, -1);
+  }
+
   if (normalizedGlob.startsWith('*.')) {
     return `${normalizedGlob
       .replace('*.', '(^|.)')
