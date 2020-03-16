@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2017 Kenny Do
+ * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -14,10 +15,11 @@ import * as React from 'react';
 const styles = {
   hamburger: {
     color: 'white',
-    transform: 'translateX(-14px)',
   },
   menuLink: {
-    padding: '0.65em 2em',
+    padding: '0.5em 1em',
+    textAlign: 'center' as const,
+    width: '100%',
   },
 };
 
@@ -84,14 +86,21 @@ class SideBar extends React.Component<OwnProps> {
     const { activeTab, switchTabs } = this.props;
     return (
       <div>
-        <span
+        <div
           style={styles.menuLink}
           onClick={() => this.toggleAll()}
           id="menuLink"
           className="menu-link"
         >
-          <FontAwesomeIcon size={'3x'} style={styles.hamburger} icon="bars" />
-        </span>
+          <FontAwesomeIcon size={'3x'} style={styles.hamburger} icon="bars" /><br />
+          <div
+            style={{
+              color: 'white',
+              fontSize: '16px',
+            }}>
+              {browser.i18n.getMessage('menuText')}
+          </div>
+        </div>
 
         <div id="menu">
           <div className="pure-menu">

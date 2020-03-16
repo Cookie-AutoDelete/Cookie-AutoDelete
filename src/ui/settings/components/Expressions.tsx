@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2017 Kenny Do
+ * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -19,6 +20,11 @@ import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
 import { exportAppendTimestamp } from '../../UILibs';
 const styles = {
+  buttonStyle: {
+    height: 'max-content',
+    padding: '0.75em',
+    width: 'max-content',
+  },
   tableContainer: {
     height: `${window.innerHeight - 210}px`,
     overflow: 'auto',
@@ -155,13 +161,14 @@ class Expressions extends React.Component<ExpressionProps> {
         <div
           className="row"
           style={{
+            columnGap: '0.5em',
             justifyContent: 'space-between',
             paddingBottom: '8px',
             paddingTop: '8px',
           }}
         >
           <div
-            className="col-sm-auto btn-group"
+            className="col-sm col-md-auto btn-group"
             style={{
               paddingLeft: 0,
               paddingRight: 0,
@@ -181,10 +188,7 @@ class Expressions extends React.Component<ExpressionProps> {
               onContextMenu={d => exportAppendTimestamp(d.target)}
               title={browser.i18n.getMessage('exportURLSTitle')}
               text={browser.i18n.getMessage('exportURLSText')}
-              styleReact={{
-                height: '38px',
-                width: '50%',
-              }}
+              styleReact={styles.buttonStyle}
             />
 
             <IconButton
@@ -194,13 +198,11 @@ class Expressions extends React.Component<ExpressionProps> {
               type="file"
               onChange={e => this.importExpressions(e.target.files)}
               text={browser.i18n.getMessage('importURLSText')}
-              styleReact={{
-                width: '50%',
-              }}
+              styleReact={styles.buttonStyle}
             />
           </div>
           <div
-            className="col-sm-auto btn-group"
+            className="col-sm col-md-auto btn-group"
             style={{
               justifyContent: 'flex-end',
               paddingLeft: 0,
@@ -216,10 +218,7 @@ class Expressions extends React.Component<ExpressionProps> {
                   storeId,
                 });
               }}
-              styleReact={{
-                height: '38px',
-                width: '50%',
-              }}
+              styleReact={styles.buttonStyle}
               iconName="plus"
               title={browser.i18n.getMessage('toGreyListText')}
               text={browser.i18n.getMessage('greyListWordText')}
@@ -234,10 +233,7 @@ class Expressions extends React.Component<ExpressionProps> {
                   storeId,
                 });
               }}
-              styleReact={{
-                height: '38px',
-                width: '50%',
-              }}
+              styleReact={styles.buttonStyle}
               iconName="plus"
               title={browser.i18n.getMessage('toWhiteListText')}
               text={browser.i18n.getMessage('whiteListWordText')}
