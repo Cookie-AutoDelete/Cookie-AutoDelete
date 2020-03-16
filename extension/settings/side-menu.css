@@ -253,6 +253,10 @@ Hides the menu at `48em`, but modify this based on your app's needs
          * Make the window large again
   */
 
+  #layout {
+    margin-top: 5em;
+  }
+
   #layout.active {
     position: relative;
     margin-left: 150px;

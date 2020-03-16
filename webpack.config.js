@@ -1,5 +1,6 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -36,7 +37,8 @@ module.exports = {
   },
   plugins: [
     new webpack.BannerPlugin(`
-      Copyright (c) 2019-20 Kenny Do and CAD Team
+      Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+      Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
 
       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -50,6 +52,35 @@ module.exports = {
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static',
     // }),
+    new CopyPlugin([
+        {
+          flatten: true,
+          force: true,
+          from: 'bootstrap/dist/css/bootstrap.min.css*',
+          to: '../../extension/global_files/',
+        },
+        {
+          flatten: true,
+          force: true,
+          from: 'bootstrap/dist/js/bootstrap.bundle.min.js*',
+          to: '../../extension/global_files/',
+        },
+        {
+          flatten: true,
+          force: true,
+          from: 'jquery/dist/jquery.slim.min*',
+          to: '../../extension/global_files/',
+        },
+        {
+          flatten: true,
+          force: true,
+          from: 'webextension-polyfill/dist/browser-polyfill.min.js*',
+          to: '../../extension/global_files/',
+        },
+      ],{
+        context: `${__dirname}/node_modules`,
+        logLevel: 'info',
+      }),
   ],
   resolve: {
     extensions: ['.mjs', '.tsx', '.ts', '.js', '.json', '.png'],

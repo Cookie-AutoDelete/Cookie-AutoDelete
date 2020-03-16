@@ -1,5 +1,6 @@
-/**
- * Copyright (c) 2017 Kenny Do
+/**welcomeMessage
+ * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -16,10 +17,11 @@ import ReleaseNotes from '../ReleaseNotes.json';
 
 const displayReleaseNotes = (releases: ReleaseNote[]) => {
   return (
-    <div className="col-md-6">
+    <div className="col">
       {releases.map((release, index) => [
         <span
           style={{
+            fontWeight: 'bold',
             marginLeft: '10px',
           }}
           key={`release1${index}`}
@@ -66,12 +68,13 @@ const Welcome: React.FunctionComponent<OwnProps> = ({
 
       <p>
         {browser.i18n.getMessage('welcomeMessage', [
+          browser.i18n.getMessage('extensionName'),
           cookieDeletedCounterSession.toString(),
           cookieDeletedCounterTotal.toString(),
         ])}
       </p>
       <a href={getReviewLink(browserDetect)}>
-        {browser.i18n.getMessage('reviewLinkMessage')}
+        {browser.i18n.getMessage('reviewLinkMessage', browser.i18n.getMessage('extensionName'))}
       </a>
 
       <h2>{browser.i18n.getMessage('releaseNotesText')}</h2>
