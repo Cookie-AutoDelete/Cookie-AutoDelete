@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2017 Kenny Do
+ * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -45,7 +46,7 @@ const About: React.FunctionComponent<OwnProps> = props => {
       </a>{' '}
       <br />
       <br />
-      <span>{`${browser.i18n.getMessage('contributorsText')}`}</span>
+      <span>{`${browser.i18n.getMessage('contributorsText')}`}:</span>
       <ul>
         <li>Kenny Do (Creator)</li>
         <li>

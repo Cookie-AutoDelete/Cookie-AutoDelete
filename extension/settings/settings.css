@@ -192,3 +192,9 @@ input[type='file'] {
 .expressionTable tr:hover .showOnRowHover {
   visibility: visible;
 }
+
+@media (max-width: 755px) {
+  .btn-group > .btn {
+    max-width: 50%;
+  }
+}
