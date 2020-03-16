@@ -26,7 +26,7 @@
     }
   },
   "popupCookieCountText": {
-    "message": "Cookie(s)",
+    "message": "Колачић(и)",
     "description": "Cookie(s)"
   },
   "filterText": {
@@ -128,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Старије белешке о издању се могу видети на адреси",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -288,7 +288,7 @@
     "description": "Restore Default Settings"
   },
   "resetExtensionDataText": {
-    "message": "Reset Extension Data",
+    "message": "Поново постави податке о проширењу",
     "description": "Reset Extension Data"
   },
   "whiteListWordText": {
@@ -332,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Документација",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Често постављана питања, чести проблеми и решења",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {

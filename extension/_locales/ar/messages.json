@@ -1,8 +1,4 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
   "extensionDescription": {
     "message": "تحكم في سجلات الكوكيز! تلقائيا حذف سجلات الكوكيز الغير المستخدمة من علامات التبويب المغلقة مع الحفاظ على تلك التي تريدها.",
     "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
@@ -10,24 +6,6 @@
   "notificationTitle": {
     "message": "Cookies were deleted!",
     "description": "Cookies were deleted!  Used in Notification Title."
-  },
-  "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "فلتر",
@@ -53,34 +31,6 @@
     "message": "مسح، إدراج علامات التبويب المفتوحة",
     "description": "Clean, include open tabs"
   },
-  "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Run cleanup now, include cookies from open tabs",
-    "description": "Run cleanup now, include cookies from open tabs"
-  },
-  "clearSiteDataText": {
-    "message": "Clear $siteData$ for this domain",
-    "description": "Clear cookies for this domain",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      }
-    }
-  },
-  "clearSiteDataForDomainText": {
-    "message": "Clear all $siteData$ for $domain$",
-    "description": "Clear all cookies for example.com",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
   "noRulesText": {
     "message": "لم تتم مطابقة أي قواعد مع هذا النطاق",
     "description": "No rules matched this domain"
@@ -94,7 +44,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Options",
+    "message": "خيارات",
     "description": "Options"
   },
   "settingsText": {
@@ -113,92 +63,6 @@
     "message": "حول",
     "description": "About"
   },
-  "welcomeMessage": {
-    "message": "Hi there! During this session, Cookie AutoDelete has deleted $sessionDeleted$ cookies and in total $totalDeleted$ cookies.",
-    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders": {
-      "sessionDeleted": {
-        "content": "$1",
-        "example": "123"
-      },
-      "totalDeleted": {
-        "content": "$2",
-        "example": "456"
-      }
-    }
-  },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
-  },
-  "reasonKeepOpenTab": {
-    "message": "Keep because of open tabs of *.$mainDomain$",
-    "description": "Keep because of open tabs of *.google.com",
-    "placeholders": {
-      "mainDomain": {
-        "content": "$1",
-        "example": "google.com"
-      }
-    }
-  },
-  "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White/Grey lists",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      }
-    }
-  },
-  "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White/Grey lists",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonKeep": {
-    "message": "Keep because of matched $matchedExpression$ in the $listType$",
-    "description": "Keep because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonCleanCookieName": {
-    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
   "reasonTabsWereNotIgnored": {
     "message": "أو في أي علامات تبويب مفتوحة",
     "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
@@ -206,10 +70,6 @@
   "reasonTabsWereIgnored": {
     "message": "و كذلك تم تجاهل علامات التبويب المفتوحة",
     "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
-  },
-  "reviewLinkMessage": {
-    "message": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
   },
   "releaseNotesText": {
     "message": "ملاحظات الإصدار",
@@ -227,22 +87,6 @@
     "message": "ثانية",
     "description": "Second(s)"
   },
-  "cleanupDomainChangeText": {
-    "message": "Enable Cleanup on Domain Change",
-    "description": "Enable Cleanup on Domain Change"
-  },
-  "enableCleanupLogText": {
-    "message": "Enable Cleanup Log and Counter",
-    "description": "Enable Cleanup Log and Counter"
-  },
-  "keepLocalstorageText": {
-    "message": "Keep Localstorage",
-    "description": "Keep Localstorage"
-  },
-  "keepAllCookiesText": {
-    "message": "Keep All Cookies",
-    "description": "Keep All Cookies"
-  },
   "clearLogsText": {
     "message": "مَسح السجلات",
     "description": "Clear Logs"
@@ -255,41 +99,9 @@
     "message": "إستعادة",
     "description": "Ex: Restore Cleanup"
   },
-  "showNumberOfCookiesInIconText": {
-    "message": "Show Number of Cookies for that Domain",
-    "description": "Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie Cleanup",
-    "description": "Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on Startup",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText": {
-    "message": "Enable Check for Subdomains",
-    "description": "Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
-    "description": "Enable Support for Firefox's Container Tabs"
-  },
-  "localstorageCleanupText": {
-    "message": "Localstorage Cleanup (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
-  },
   "defaultSettingsText": {
     "message": "إستعادة الإعدادات الإفتراضية",
     "description": "Restore Default Settings"
-  },
-  "resetExtensionDataText": {
-    "message": "Reset Extension Data",
-    "description": "Reset Extension Data"
   },
   "whiteListWordText": {
     "message": "القائمة البيضاء",
@@ -299,45 +111,17 @@
     "message": "القائمة الرمادية",
     "description": "Greylist"
   },
-  "toWhiteListText": {
-    "message": "Add to Whitelist (Never Clean)",
-    "description": "Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText": {
-    "message": "Add to Greylist (Clean on Browser Restart)",
-    "description": "Add to Greylist (Clean on Browser Restart)"
-  },
   "clearURLText": {
     "message": "حذف الكل",
     "description": "Remove All"
-  },
-  "exportURLSText": {
-    "message": "Export Expressions",
-    "description": "Export Expressions"
-  },
-  "exportURLSTitle": {
-    "message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
-    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
-  },
-  "questionExpression": {
-    "message": "How do Expressions work?",
-    "description": "How do Expressions work?"
-  },
-  "importURLSText": {
-    "message": "Import Expressions",
-    "description": "Import Expressions"
   },
   "reportIssuesText": {
     "message": "الإبلاغ عن المشكلات واقتراح الميزات",
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "الوثائق",
     "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "إصدار $browser$",
@@ -357,29 +141,9 @@
     "message": "ساهم",
     "description": "Contribute"
   },
-  "domainExpressionsText": {
-    "message": "Domain Expression",
-    "description": "Domain Expression"
-  },
-  "matchedDomainExpressionText": {
-    "message": "Matched Domain Expression",
-    "description": "Matched Domain Expression"
-  },
-  "regularExpressionEquivalentText": {
-    "message": "Regular Expression Equivalent",
-    "description": "Regular Expression Equivalent"
-  },
   "listTypeText": {
     "message": "نوع القائمة",
     "description": "List Type"
-  },
-  "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
-    "description": "Domain Expression"
-  },
-  "noExpressionsText": {
-    "message": "No expressions defined.",
-    "description": "No expressions defined."
   },
   "removeExpressionText": {
     "message": "حفظ الصيغة",

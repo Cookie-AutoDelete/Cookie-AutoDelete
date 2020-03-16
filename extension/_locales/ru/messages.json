@@ -26,7 +26,7 @@
     }
   },
   "popupCookieCountText": {
-    "message": "Cookie(s)",
+    "message": "Куки",
     "description": "Cookie(s)"
   },
   "filterText": {
@@ -128,7 +128,7 @@
     }
   },
   "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
+    "message": "Примечания к старым релизам можно посмотреть онлайн",
     "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
@@ -332,11 +332,11 @@
     "description": "Report issues and suggest features"
   },
   "documentationText": {
-    "message": "Documentation",
+    "message": "Документация",
     "description": "Documentation"
   },
   "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
+    "message": "Часто задаваемые вопросы, распространенные проблемы и решения",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
