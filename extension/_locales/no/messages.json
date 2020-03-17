@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "Kontroller informasjonskapslene dine! Auto-Slett ubrukt informasjonskapsler fra de lukkede fanene dine automatisk mens du holder de du vil.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Informasjonskapsler ble slettet!",
@@ -117,12 +117,16 @@
     "message": "Hei der! Under denne sesjonen har Cookie AutoDelete slettet $sessionDeleted$ informasjonskapsler og totalt $totalDeleted$ informasjonskapsler.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -139,7 +143,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Rengjør på grunn av oppstartopprydding og $hostname$ er ikke i de hvite/grå listene",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -159,7 +163,7 @@
   },
   "reasonCleanNoList": {
     "message": "Rengjør fordi $hostname$ ikke er i listen Hvite/Grå listene",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -197,15 +201,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "eller i noen åpne faner",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "og også åpne faner ble ignorert",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Takk for at du har prøvd Cookie AutoDelete. Hvis du likte det, vennligst gi en anmeldelse.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Utgivelsesnotater",
@@ -217,11 +227,11 @@
   },
   "minutesText": {
     "message": "Minutt(er)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Sekund(er)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Aktiver opprydding på domeneendring",
@@ -233,7 +243,7 @@
   },
   "keepLocalstorageText": {
     "message": "Behold Lokal lagring",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Behold alle informasjonskapsler",
@@ -273,11 +283,11 @@
   },
   "localstorageCleanupText": {
     "message": "Lokal lagring Opprydding (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Aktivering av både Lokal lagring Rengjør og Container Faner kan føre til noen uønskede bivirkninger på grunn av API-begrensninger",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Gjenopprett standardinnstillinger",
@@ -343,7 +353,7 @@
   },
   "contributorsText": {
     "message": "Medvirkende:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Bidra",
