@@ -7,7 +7,7 @@
         "Added:  BrowserAction Title now also contains the number of cookies for that domain in square brackets.  This is more helpful in Firefox mobile to see the amount of cookies there are.",
         "Added:  Cookie Count is now listed inside the popup as well.",
         "Added:  Crowdin Integration.  Previously it was manually compiled.",
-        "Added:  Regular Expression usage!  Thanks to maltsev PR#649.  Regular Expression must start and end with '/'. **WARNING:  Cookes with same name on different sites will both be kept!**",
+        "Added:  Regular Expression usage!  Thanks to maltsev PR#649.  Regular Expression must start and end with '/'. **WARNING:  Cookes with same name on different sites will both be treated the same!**",
         "Added:  A \"Menu\" string below the hamburger icon.  The menu button itself is now expanded to the entire top of the screen.",
         "Changed:  (Dev Build Changes) Webpack will now copy jQuery, bootstrap, and browser-polyfill js and css from their npm dist folders.  Previously was manually updated.",
         "Changed:  Locale strings.  This would technically fix the version number in notification titles that may not have been shown in certain locales.",
