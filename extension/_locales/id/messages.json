@@ -114,7 +114,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hai! Sepanjang sesi ini, Cookie AutoDelete telah menghapus $sessionDeleted$ kuki dan total $totalDeleted$ kuki.",
+    "message": "Hai! Sepanjang sesi ini, $cadTitle$ telah menghapus $sessionDeleted$ kuki dan total $totalDeleted$ kuki.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -212,7 +212,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Terima kasih telah mencoba Cookie AutoDelete. Jika anda menyukainya, silakan berikan tinjauan.",
+    "message": "Terima kasih telah mencoba $cadTitle$. Jika anda menyukainya, silakan berikan tinjauan.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
@@ -446,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Tidak Ada Catatan Penghapusan yang Ditemukan",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
