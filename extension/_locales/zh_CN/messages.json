@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "掌控你的 Cookie！关闭标签页后自动删除未想保留的 Cookie。您可以设置想要保留的白名单。",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Cookie 已删除！",
@@ -113,12 +113,16 @@
     "message": "Cookie AutoDelete 在本次会话期间已删除 $sessionDeleted$ 个 Cookie；累计已删除 $totalDeleted$ 个 Cookie。",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -139,7 +143,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "清理，因为自启动清理同时 $hostname$ 不在白灰名单中",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -159,7 +163,7 @@
   },
   "reasonCleanNoList": {
     "message": "清理，因为 $hostname$ 不在白灰名单中",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -197,15 +201,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "或者在任何已打开的标签页中",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "同时已打开的标签页被忽略",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "感谢您尝试 Cookie AutoDelete。如果您喜欢，请来评价吧。",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "发行日志",
@@ -217,11 +227,11 @@
   },
   "minutesText": {
     "message": "分钟",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "秒",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "启用域变更时清理",
@@ -233,7 +243,7 @@
   },
   "keepLocalstorageText": {
     "message": "保存在本地",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "保存所有 Cookies",
@@ -273,11 +283,11 @@
   },
   "localstorageCleanupText": {
     "message": "本地存储清理（Firefox 58+）",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "由于 API 限制，同时启用本地存储清理和容器（身份）标签页可能导致一些不想要的副作用",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "恢复默认设置",
@@ -343,7 +353,7 @@
   },
   "contributorsText": {
     "message": "贡献者：",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "捐助",
