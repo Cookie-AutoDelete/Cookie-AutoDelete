@@ -1,6 +1,6 @@
 {
-  "notificationTitle": {
-    "message": "Cookies were deleted!",
-    "description": "Cookies were deleted!  Used in Notification Title."
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
   }
 }

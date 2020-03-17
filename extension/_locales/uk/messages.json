@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Керуйте вашими куками! Автоматично очищайте невикористовувані куки закритих вкладок, залишаючи тільки ті, які вам потрібні.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
@@ -106,7 +110,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "За час цієї сесії за допомогою Cookie AutoDelete видалено $sessionDeleted$ куків, за весь час видалено $totalDeleted$ куків.",
+    "message": "За час цієї сесії за допомогою $cadTitle$ видалено $sessionDeleted$ куків, за весь час видалено $totalDeleted$ куків.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -186,7 +190,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Дякуємо за використання Cookie AutoDelete. Якщо вам сподобалося, будь ласка, залиште відгук.",
+    "message": "Дякуємо за використання $cadTitle$. Якщо вам сподобалося, будь ласка, залиште відгук.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {

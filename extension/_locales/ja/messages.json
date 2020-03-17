@@ -113,24 +113,6 @@
     "message": "このプログラムについて",
     "description": "About"
   },
-  "welcomeMessage": {
-    "message": "こんにちは、このセッション中に $sessionDeleted$ 個のクッキーを削除、合計 $totalDeleted$ 個のクッキーを削除しました。",
-    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      },
-      "sessionDeleted": {
-        "content": "$2",
-        "example": "123"
-      },
-      "totalDeleted": {
-        "content": "$3",
-        "example": "456"
-      }
-    }
-  },
   "oldReleasesText": {
     "message": "古いリリースノートは、オンラインで表示できます。",
     "description": "Older release notes can be viewed online at"
@@ -212,7 +194,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Cookie AutoDelete を使用いただきありがとうございます。 お気に召しましたらレビューをお書きください。",
+    "message": "$cadTitle$ を使用いただきありがとうございます。 お気に召しましたらレビューをお書きください。",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {

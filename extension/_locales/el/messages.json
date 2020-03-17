@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."

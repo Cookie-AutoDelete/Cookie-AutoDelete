@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Krijg controle over uw cookies! Automatisch verwijderen van ongebruikte cookies van gesloten tabbladen met behoud van belangrijke cookies.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
@@ -102,7 +106,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hoi! Tijdens deze sessie heeft Cookie AutoDelete $sessionDeleted$ cookies verwijderd en in het totaal $totalDeleted$ cookies.",
+    "message": "Hoi! Tijdens deze sessie heeft $cadTitle$ $sessionDeleted$ cookies verwijderd en in het totaal $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -196,7 +200,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Bedankt voor het uitproberen van Cookie AutoDelete. Indien u het leuk vindt dan beoordeel het alsublieft.",
+    "message": "Bedankt voor het uitproberen van $cadTitle$. Indien u het leuk vindt dan beoordeel het alsublieft.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {

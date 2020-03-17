@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "تحكم في سجلات الكوكيز! تلقائيا حذف سجلات الكوكيز الغير المستخدمة من علامات التبويب المغلقة مع الحفاظ على تلك التي تريدها.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."

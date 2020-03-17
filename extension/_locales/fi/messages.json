@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Hallitse evästeitäsi! Poista käyttämättömät evästeet automaattisesti suljetuilta välilehdiltä, kuitenkin säilyttäen valitsemasi evästeet.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
@@ -62,7 +66,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Moikka! Tämän istunnon aikana Cookie AutoDelete on poistanut $sessionDeleted$ evästettä ja yhteensä $totalDeleted$ evästettä.",
+    "message": "Moikka! Tämän istunnon aikana $cadTitle$ on poistanut $sessionDeleted$ evästettä ja yhteensä $totalDeleted$ evästettä.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -80,7 +84,7 @@
     }
   },
   "reviewLinkMessage": {
-    "message": "Kiitos kun käytät Cookie AutoDeleteä. Jos pidit siitä, niin jätä arvostelu.",
+    "message": "Kiitos kun käytät $cadTitle$ä. Jos pidit siitä, niin jätä arvostelu.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
