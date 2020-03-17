@@ -278,11 +278,11 @@
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "enableGlobalSubdomainText": {
-    "message": "Habilitar la búsqueda de subdominios",
+    "message": "Habilitar verificación de subdominios",
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Habilitar el soporte para los contenedores de pestañas de Firefox",
+    "message": "Habilitar soporte para los contenedores de pestañas de Firefox",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
@@ -326,7 +326,7 @@
     "description": "Export Expressions"
   },
   "exportURLSTitle": {
-    "message": "Una marca de tiempo se anexa al nombre de archivo de exportación. ¿Tienes problemas para descargar?  Haga clic derecho en este botón y haga clic en 'Guardar enlace como...' para descargar.",
+    "message": "Una marca de tiempo se anexa al nombre de archivo a exportar.\n¿Tienes problemas para descargar?  Haga clic derecho en este botón y haga clic en 'Guardar enlace como...' para descargar.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
   "questionExpression": {
