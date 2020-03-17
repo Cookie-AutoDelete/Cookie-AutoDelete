@@ -446,5 +446,9 @@
   "noCleanupLogText": {
     "message": "No hay registros de limpieza encontrados",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menú",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
