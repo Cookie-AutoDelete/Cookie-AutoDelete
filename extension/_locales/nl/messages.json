@@ -1,7 +1,7 @@
 {
   "extensionDescription": {
     "message": "Krijg controle over uw cookies! Automatisch verwijderen van ongebruikte cookies van gesloten tabbladen met behoud van belangrijke cookies.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Cookies zijn verwijderd!",
@@ -105,12 +105,16 @@
     "message": "Hoi! Tijdens deze sessie heeft Cookie AutoDelete $sessionDeleted$ cookies verwijderd en in het totaal $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -127,7 +131,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Opschonen omdat opschonen gestart is en $hostname$ komt niet voor in de white/gray lijsten",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -147,7 +151,7 @@
   },
   "reasonCleanNoList": {
     "message": "Opschonen omdat $hostname$ niet voor komt in de white/gray lijsten",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -185,15 +189,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "of in enige open tabbladen",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "en ook open tabbladen zijn genegeerd",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Bedankt voor het uitproberen van Cookie AutoDelete. Indien u het leuk vindt dan beoordeel het alsublieft.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Uitgave opmerkingen",
@@ -205,11 +215,11 @@
   },
   "minutesText": {
     "message": "Minu(u)t(en)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Seconde(n)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Opschonen inschakelen bij domeinwijziging",
@@ -221,7 +231,7 @@
   },
   "keepLocalstorageText": {
     "message": "Lokale opslag behouden",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Alle cookies behouden",
@@ -261,11 +271,11 @@
   },
   "localstorageCleanupText": {
     "message": "Localstorage Cleanup (Firefox 58 +)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Het inschakelen van zowel de Localstorage opruimen en de Container tabbladen kan sommige ongewenste bijwerkingen veroorzaken als gevolg van beperkingen van de API",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Standaardinstellingen herstellen",
@@ -315,7 +325,7 @@
   },
   "contributorsText": {
     "message": "Bijdragers:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Bijdragen",
