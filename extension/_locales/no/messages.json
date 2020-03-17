@@ -114,7 +114,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hei der! Under denne sesjonen har Cookie AutoDelete slettet $sessionDeleted$ informasjonskapsler og totalt $totalDeleted$ informasjonskapsler.",
+    "message": "Hei der! Under denne sesjonen har $cadTitle$ slettet $sessionDeleted$ informasjonskapsler og totalt $totalDeleted$ informasjonskapsler.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -130,6 +130,10 @@
         "example": "456"
       }
     }
+  },
+  "oldReleasesText": {
+    "message": "Older release notes can be viewed online at",
+    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Behold på grunn av åpne faner av *.$mainDomain$",
@@ -208,7 +212,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Takk for at du har prøvd Cookie AutoDelete. Hvis du likte det, vennligst gi en anmeldelse.",
+    "message": "Takk for at du har prøvd $cadTitle$. Hvis du likte det, vennligst gi en anmeldelse.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
@@ -341,6 +345,10 @@
     "message": "Dokumentasjon",
     "description": "Documentation"
   },
+  "faqText": {
+    "message": "Frequently Asked Questions, Common issues and solutions",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
   "versionText": {
     "message": "$browser$ versjon",
     "description": "Firefox version",
@@ -438,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Ingen opprydningslogger funnet",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
