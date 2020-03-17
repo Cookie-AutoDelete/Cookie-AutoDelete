@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2017 Kenny Do
+ * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -9,6 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+ 
 import ipRegex from 'ip-regex';
 /**
  * Returns the host name of the url. Etc. "https://en.wikipedia.org/wiki/Cat" becomes en.wikipedia.org
@@ -149,6 +151,11 @@ export const getStoreId = (state: State, storeId: string) => {
  */
 export const globExpressionToRegExp = (glob: string) => {
   const normalizedGlob = glob.trim().toLowerCase();
+  if (normalizedGlob.slice(0, 1) === '/' && normalizedGlob.slice(-1) === '/') {
+    // Treat /str/ as regular exprssion str
+    return normalizedGlob.slice(1, -1);
+  }
+
   if (normalizedGlob.startsWith('*.')) {
     return `${normalizedGlob
       .replace('*.', '(^|.)')
