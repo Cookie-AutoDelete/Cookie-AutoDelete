@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "Управљајте вашим колачићима. Аутоматски бришите некоришћене колачиће из ваших затворених језичака а задржите оне које желите.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Колачићи су обрисани!",
@@ -117,12 +117,16 @@
     "message": "Здраво! У току ове сесије је Самобрисач Колачића обрисао $sessionDeleted$ колачића а свеукупно $totalDeleted$ колачића.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -143,7 +147,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Очисти због чишћења при покретању и зато што домен $hostname$ није на сивом или белом списку",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -163,7 +167,7 @@
   },
   "reasonCleanNoList": {
     "message": "Очисти зато што домен $hostname$ није на сивом или белом списку",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -201,15 +205,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "или у било ком отвореном језичку",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "и такође су отворени језичци занемарени",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Хвала вам што сте пробали Cookie AutoDelete. Ако вам се свиђа, оставите рецензију.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Белешке о издању",
@@ -221,11 +231,11 @@
   },
   "minutesText": {
     "message": "Минут(а)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Секунд(е)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Омогући чишћење при промени домена",
@@ -237,7 +247,7 @@
   },
   "keepLocalstorageText": {
     "message": "Задржи локално складиште",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Задржи колачиће",
@@ -277,11 +287,11 @@
   },
   "localstorageCleanupText": {
     "message": "Чишћење локалног складишта (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Омогућавање чишћења локалног складишта и контејнерских језичака може изазвати нежељена дејства због ограничења АПИ-ја",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Врати подразумевана подешавања",
@@ -351,7 +361,7 @@
   },
   "contributorsText": {
     "message": "Доприносиоци:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Допринесите",
