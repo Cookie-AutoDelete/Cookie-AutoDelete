@@ -1,8 +1,7 @@
 language: node_js
 os:
   - linux
-dist:
-  - bionic
+dist: bionic
 node_js:
   - '13'
 cache:
