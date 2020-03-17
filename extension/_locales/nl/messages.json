@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Krijg controle over uw cookies! Automatisch verwijderen van ongebruikte cookies van gesloten tabbladen met behoud van belangrijke cookies.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
@@ -24,6 +28,10 @@
   "popupCookieCountText": {
     "message": "Cookie(s)",
     "description": "Cookie(s)"
+  },
+  "filterText": {
+    "message": "Filter",
+    "description": "Filter"
   },
   "noneText": {
     "message": "Geen",
@@ -85,6 +93,10 @@
     "message": "Instellingen",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Options",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Cookie-instellingen",
     "description": "Cookie Settings"
@@ -102,7 +114,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Hoi! Tijdens deze sessie heeft Cookie AutoDelete $sessionDeleted$ cookies verwijderd en in het totaal $totalDeleted$ cookies.",
+    "message": "Hoi! Tijdens deze sessie heeft $cadTitle$ $sessionDeleted$ cookies verwijderd en in het totaal $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -118,6 +130,10 @@
         "example": "456"
       }
     }
+  },
+  "oldReleasesText": {
+    "message": "Older release notes can be viewed online at",
+    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Behouden omdat er een open tabblad wijst naar *.$mainDomain$",
@@ -196,7 +212,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Bedankt voor het uitproberen van Cookie AutoDelete. Indien u het leuk vindt dan beoordeel het alsublieft.",
+    "message": "Bedankt voor het uitproberen van $cadTitle$. Indien u het leuk vindt dan beoordeel het alsublieft.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
@@ -281,6 +297,18 @@
     "message": "Standaardinstellingen herstellen",
     "description": "Restore Default Settings"
   },
+  "resetExtensionDataText": {
+    "message": "Reset Extension Data",
+    "description": "Reset Extension Data"
+  },
+  "whiteListWordText": {
+    "message": "Whitelist",
+    "description": "Whitelist"
+  },
+  "greyListWordText": {
+    "message": "Greylist",
+    "description": "Greylist"
+  },
   "toWhiteListText": {
     "message": "Toevoegen aan Whitelist (ruim cookie nooit op)",
     "description": "Add to Whitelist (Never Clean)"
@@ -312,6 +340,14 @@
   "reportIssuesText": {
     "message": "Problemen rapporteren en voorstellen van functies",
     "description": "Report issues and suggest features"
+  },
+  "documentationText": {
+    "message": "Documentation",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Frequently Asked Questions, Common issues and solutions",
+    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "$browser$ versie",
@@ -410,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Geen logboeken gevonden om op te schonen",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
