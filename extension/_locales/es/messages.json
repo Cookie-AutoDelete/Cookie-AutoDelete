@@ -8,7 +8,7 @@
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
-    "message": "Cookie AutoDelete $Ver$: ¡Las cookies fueron borradas!",
+    "message": "¡Las cookies fueron borradas!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationContent": {
@@ -114,7 +114,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "¡Hola! Durante esta sesión, Cookie AutoDelete ha borrado $sessionDeleted$ cookies y en total $totalDeleted$ cookies.",
+    "message": "¡Hola! Durante esta sesión, $cadTitle$ ha borrado $sessionDeleted$ cookies y en total $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -212,7 +212,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Gracias por utilizar Cookie AutoDelete. Si te gustó, por favor deja una reseña.",
+    "message": "Gracias por utilizar $cadTitle$. Si te gustó, por favor deja una reseña.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
@@ -230,11 +230,11 @@
     "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
   },
   "minutesText": {
-    "message": "Minuto/s",
+    "message": "minuto/s",
     "description": "minute(s)"
   },
   "secondsText": {
-    "message": "Segundo/s",
+    "message": "segundo/s",
     "description": "second(s)"
   },
   "cleanupDomainChangeText": {
@@ -286,7 +286,7 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Limpieza de almacenamiento local (Firefox) 58+",
+    "message": "Limpieza del almacenamiento local (Firefox 58+)",
     "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
@@ -360,7 +360,7 @@
     }
   },
   "contributorsText": {
-    "message": "Colaboradores:",
+    "message": "Colaboradores",
     "description": "Contributors"
   },
   "contributeText": {
@@ -372,7 +372,7 @@
     "description": "Domain Expression"
   },
   "matchedDomainExpressionText": {
-    "message": "Expresión de dominio coincidente",
+    "message": "Expresión del dominio coincidente",
     "description": "Matched Domain Expression"
   },
   "regularExpressionEquivalentText": {
@@ -432,11 +432,11 @@
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Las notificaciones están habilitadas",
+    "message": "Notificaciones habilitadas",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Las notificaciones están deshabilitadas",
+    "message": "Notificaciones deshabilitadas",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
