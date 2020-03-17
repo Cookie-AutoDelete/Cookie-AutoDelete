@@ -79,7 +79,6 @@ module.exports = {
         },
       ],{
         context: `${__dirname}/node_modules`,
-        logLevel: 'info',
       }),
   ],
   resolve: {

@@ -69,9 +69,15 @@ class Expressions extends React.Component<ExpressionProps> {
         const newExpressions: StoreIdToExpressionList = JSON.parse(result);
         const storeIds = Object.keys(newExpressions);
         storeIds.forEach(storeId =>
-          newExpressions[storeId].forEach(expression =>
-            onNewExpression(expression),
-          ),
+          newExpressions[storeId].forEach(expression => {
+            const exps = expression.expression.split(',');
+            exps.forEach(exp => {
+              onNewExpression({
+                ...expression,
+                expression: exp.trim(),
+              });
+            });
+          }),
         );
       } catch (error) {
         this.setState({
@@ -86,7 +92,13 @@ class Expressions extends React.Component<ExpressionProps> {
   // Add the expression using the + button or the Enter key
   public addExpressionByInput(payload: Expression) {
     const { onNewExpression } = this.props;
-    onNewExpression(payload);
+    const exps = payload.expression.split(',');
+    exps.forEach(exp => {
+      onNewExpression({
+        ...payload,
+        expression: exp.trim(),
+      });
+    });
     this.setState({
       expressionInput: '',
     });

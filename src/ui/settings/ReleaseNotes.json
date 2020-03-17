@@ -14,6 +14,7 @@
         "Chore:  Updated copyright year, added GitHub Contributors and License links in most source code headers",
         "Fixed:  Cookie Badge Count should now reflect an accurate cookie count when cookies are added/removed.  This includes cookies removed manually or by CAD.",
         "Fixed:  A Cookie List Bug due to Regular Expression Usage.",
+        "Fixed:  Multiple expressions using comma-separated values are now supported in new expression textbox AND in Import Expressions.  Fixes #567.",
         "Updated:  The usual third-party dependency updates.",
         "Updated:  Per Webpack configuration update, latest minified versions of Bootstrap v4.4.1, browser-polfill (webextension-polyfill) v0.6.0, jQuery 3.4.1 (the bundle version with popper.js).",
         "Updated:  (Dev Test) jest v25.1.0, @types/jest v25.1.4, ts-jest v25.2.1, tslint 6.1.0.",
