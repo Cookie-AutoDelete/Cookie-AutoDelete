@@ -110,7 +110,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Haai daar! Tydens hierdie sessie, het Cookie AutoDelete $sessionDeleted$ koekies geskrap. In totaal is $totalDeleted$ koekies geskrap.",
+    "message": "Haai daar! Tydens hierdie sessie, het $cadTitle$ $sessionDeleted$ koekies geskrap. In totaal is $totalDeleted$ koekies geskrap.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -146,7 +146,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Dankie dat u Cookie AutoDelete probeer het. As u daarvan hou, gee asseblief 'n resensie.",
+    "message": "Dankie dat u $cadTitle$ probeer het. As u daarvan hou, gee asseblief 'n resensie.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
