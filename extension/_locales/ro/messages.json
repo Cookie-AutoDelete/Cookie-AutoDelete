@@ -131,10 +131,6 @@
       }
     }
   },
-  "oldReleasesText": {
-    "message": "Older release notes can be viewed online at",
-    "description": "Older release notes can be viewed online at"
-  },
   "reasonKeepOpenTab": {
     "message": "Păstrată datorită filelor deschise pentru *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
@@ -345,10 +341,6 @@
     "message": "Documentaţie",
     "description": "Documentation"
   },
-  "faqText": {
-    "message": "Frequently Asked Questions, Common issues and solutions",
-    "description": "Frequently Asked Questions, Common issues and solutions"
-  },
   "versionText": {
     "message": "Versiunea $browser$",
     "description": "Firefox version",
@@ -446,9 +438,5 @@
   "noCleanupLogText": {
     "message": "Nu există jurnale de ștergere",
     "description": "No Cleanup Logs Found"
-  },
-  "menuText": {
-    "message": "Menu",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
