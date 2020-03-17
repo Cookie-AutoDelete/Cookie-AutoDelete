@@ -384,7 +384,7 @@
     "description": "List Type"
   },
   "domainPlaceholderText": {
-    "message": "ejemplo.com, subdominio.ejemplo.com, *.ejemplo.com",
+    "message": "ejemplo.com, subdominio.ejemplo.com, *.ejemplo.com, /(^|.)ejemplo\\.com/",
     "description": "Domain Expression"
   },
   "noExpressionsText": {
