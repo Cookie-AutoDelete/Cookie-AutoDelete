@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "Controlează cookie-urile! Șterge automat cookie-urile nefolosite din filele închise și în același timp le păstrează pe cele dorite.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Cookie-urile au fost șterse!",
@@ -117,12 +117,16 @@
     "message": "Salut! În timpul acestei sesiuni Cookie AutoDelete a șters $sessionDeleted$ cookie-uri și în total $totalDeleted$ cookie-uri.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -139,7 +143,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Curăță datorită ștergerii la pornire și $hostname$ nu se regăsește în lista albă/gri",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -159,7 +163,7 @@
   },
   "reasonCleanNoList": {
     "message": "Curăță deoarece $hostname$ nu este în lista albă/gri",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -197,15 +201,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "sau în orice filă deschisă",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "iar filele deschise au fost ignorate",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Mulțumiri pentru că ai încercat Cookie AutoDelete. Dacă ți-a plăcut, scrie te rog o recenzie.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Note de lansare",
@@ -217,11 +227,11 @@
   },
   "minutesText": {
     "message": "Minut(e)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Secundă(e)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Activează ștergerea la schimbarea domeniului",
@@ -233,7 +243,7 @@
   },
   "keepLocalstorageText": {
     "message": "Păstrează Localstorage",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Păstrează toate cookie-urile",
@@ -273,11 +283,11 @@
   },
   "localstorageCleanupText": {
     "message": "Ștergere Localstorage (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Activarea curățării spațiului de stocare cât și a filelor de container poate avea efecte secundare asupra limitărilor API",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Restabilește configurările predefinite",
@@ -343,7 +353,7 @@
   },
   "contributorsText": {
     "message": "Contribuitori:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Contribuie",
