@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "Controle seus cookies! Apague automaticamente cookies não utilizados de suas abas abertas mantendo os que você quiser.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Cookies foram apagados!",
@@ -117,12 +117,16 @@
     "message": "Olá! Durante esta sessão, o Cookie AutoDelete apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -143,7 +147,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Limpar por causa da limpeza de arranque e $hostname$ não está nas listas branca/cinza",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -163,7 +167,7 @@
   },
   "reasonCleanNoList": {
     "message": "Limpar porque $hostname$ não está nas listas branca/cinza",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -201,15 +205,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "ou em quaisquer abas abertas",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "e também separadores abertos foram ignorados",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Obrigado por experimentar o Cookie AutoDelete. Se você gostou, por favor faça uma avaliação.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Notas da versão",
@@ -221,11 +231,11 @@
   },
   "minutesText": {
     "message": "Minuto(s)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Segundo(s)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Ativar limpeza na mudança de domínio",
@@ -237,7 +247,7 @@
   },
   "keepLocalstorageText": {
     "message": "Manter localstorage",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Manter todos os cookies",
@@ -277,11 +287,11 @@
   },
   "localstorageCleanupText": {
     "message": "Limpeza de Local Storage (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Habilitar limpeza de Local Storage e Abas Contêiner pode causar efeitos indesejados devido a limitações de API",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Restaurar configurações padrão",
@@ -351,7 +361,7 @@
   },
   "contributorsText": {
     "message": "Contribuidores:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Contribua",
