@@ -1,7 +1,7 @@
 {
   "extensionDescription": {
     "message": "Beheer jou koekies! Skrap ongebruikte koekies outomaties van jou geslote oortjies en behou die wat u nog wil gebruik.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Koekies is geskrap!",
@@ -110,15 +110,19 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Haai daar! Tydens hierdie sessie, het Cookie AutoDelete $sessionDeleted$ koekies geskrap. In totaal is $totalDeleted$ koekies geskrap.",
+    "message": "Haai daar! Tydens hierdie sessie, het $cadTitle$ $sessionDeleted$ koekies geskrap. In totaal is $totalDeleted$ koekies geskrap.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -135,15 +139,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "of in enige oop oortjies",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "en oop oortjies is ook geïgnoreer",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Dankie dat u Cookie AutoDelete probeer het. As u daarvan hou, gee asseblief 'n resensie.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "message": "Dankie dat u $cadTitle$ probeer het. As u daarvan hou, gee asseblief 'n resensie.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Vrystelling Notas",
@@ -151,11 +161,11 @@
   },
   "minutesText": {
     "message": "Minuut (e)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Sekonde (s)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "clearLogsText": {
     "message": "Maak log skoon",
@@ -167,7 +177,7 @@
   },
   "localstorageCleanupText": {
     "message": "Localstorage skoonmaak (Firefox 58 +)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "defaultSettingsText": {
     "message": "Herstel oorspronklike instellings",
@@ -225,7 +235,7 @@
   },
   "contributorsText": {
     "message": "Bydraers:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Dra By",

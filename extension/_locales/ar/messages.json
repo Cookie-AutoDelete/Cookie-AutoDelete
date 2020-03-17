@@ -1,7 +1,7 @@
 {
   "extensionDescription": {
     "message": "تحكم في سجلات الكوكيز! تلقائيا حذف سجلات الكوكيز الغير المستخدمة من علامات التبويب المغلقة مع الحفاظ على تلك التي تريدها.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Cookies were deleted!",
@@ -65,11 +65,11 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "أو في أي علامات تبويب مفتوحة",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "و كذلك تم تجاهل علامات التبويب المفتوحة",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "releaseNotesText": {
     "message": "ملاحظات الإصدار",
@@ -81,11 +81,11 @@
   },
   "minutesText": {
     "message": "دقيقة",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "ثانية",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "clearLogsText": {
     "message": "مَسح السجلات",
@@ -135,7 +135,7 @@
   },
   "contributorsText": {
     "message": "المساهمون:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "ساهم",
