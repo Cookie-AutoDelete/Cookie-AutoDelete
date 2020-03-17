@@ -34,6 +34,13 @@ const wildCardGreyFacebook: Expression = {
   storeId: 'firefox-container-1',
 };
 
+const whiteListAllExceptTwitter: Expression = {
+  expression: '/^((?!twitter\.com).)+$/',
+  id: '6',
+  listType: ListType.WHITE,
+  storeId: 'default',
+};
+
 const greyMessenger: Expression = {
   expression: 'messenger.com',
   id: '4',
@@ -68,6 +75,7 @@ const sampleState: State = {
     default: [
       wildCardWhiteListGoogle,
       whiteListYoutube,
+      whiteListAllExceptTwitter,
       exampleWithCookieName,
       exampleWithCookieNameCleanAllCookiesTrue,
     ],
@@ -166,6 +174,9 @@ describe('CleanupService', () => {
       when(mockedLib.extractMainDomain)
         .calledWith('sub.domain.com')
         .mockReturnValue('domain.com');
+      when(mockedLib.extractMainDomain)
+        .calledWith('github.com')
+        .mockReturnValue('github.com');
     });
 
     it('should have google.com in set', () => {
@@ -248,6 +259,9 @@ describe('CleanupService', () => {
         .calledWith(sampleState, 'default', 'sub.google.com')
         .mockReturnValue(wildCardWhiteListGoogle);
       when(mockedLib.returnMatchedExpressionObject)
+        .calledWith(sampleState, 'default', 'github.com')
+        .mockReturnValue(whiteListAllExceptTwitter);
+      when(mockedLib.returnMatchedExpressionObject)
         .calledWith(sampleState, 'firefox-container-1', 'facebook.com')
         .mockReturnValue(wildCardGreyFacebook);
       when(mockedLib.returnMatchedExpressionObject)
@@ -326,6 +340,36 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonKeep.MatchedExpression);
       expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return false for github.com', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'github.com',
+        mainDomain: 'github.com',
+        storeId: 'default',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return true for twitter.com', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'twitter.com',
+        mainDomain: 'twitter.com',
+        storeId: 'default',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
     });
 
     it('should return true for google.com in Personal', () => {

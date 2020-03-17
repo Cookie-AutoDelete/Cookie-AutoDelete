@@ -365,6 +365,10 @@ describe('Library Functions', () => {
       );
       expect(regExp.test('[2a03:4000:6:310e:216:3eff:fe53:99b3]')).toBe(true);
     });
+    it('should match github.com with /^git[hub]{3}\.com$/', () => {
+      const regExp = new RegExp(globExpressionToRegExp('/^git[hub]{3}\.com$/'));
+      expect(regExp.test('github.com')).toBe(true);
+    });
   });
 
   describe('returnMatchedExpressionObject ()', () => {
