@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Керуйте вашими куками! Автоматично очищайте невикористовувані куки закритих вкладок, залишаючи тільки ті, які вам потрібні.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
@@ -20,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Фільтр",
@@ -106,7 +114,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "За час цієї сесії за допомогою Cookie AutoDelete видалено $sessionDeleted$ куків, за весь час видалено $totalDeleted$ куків.",
+    "message": "За час цієї сесії за допомогою $cadTitle$ видалено $sessionDeleted$ куків, за весь час видалено $totalDeleted$ куків.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -122,6 +130,10 @@
         "example": "456"
       }
     }
+  },
+  "oldReleasesText": {
+    "message": "Older release notes can be viewed online at",
+    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Зберігати, тому що відкриті вкладки *.$mainDomain$",
@@ -177,6 +189,20 @@
       }
     }
   },
+  "reasonCleanCookieName": {
+    "message": "Partial clean because of matched $matchedExpression$ in the $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
   "reasonTabsWereNotIgnored": {
     "message": "або в будь-яких відкритих вкладках",
     "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
@@ -186,7 +212,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Дякуємо за використання Cookie AutoDelete. Якщо вам сподобалося, будь ласка, залиште відгук.",
+    "message": "Дякуємо за використання $cadTitle$. Якщо вам сподобалося, будь ласка, залиште відгук.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
@@ -218,6 +244,14 @@
   "enableCleanupLogText": {
     "message": "Включити журнал подій і лічильник",
     "description": "Enable Cleanup Log and Counter"
+  },
+  "keepLocalstorageText": {
+    "message": "Keep LocalStorage",
+    "description": "Keep LocalStorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Keep All Cookies",
+    "description": "Keep All Cookies"
   },
   "clearLogsText": {
     "message": "Очистити журнал",
@@ -295,6 +329,10 @@
     "message": "До імені експортованого файлу буде додаватися відмітка часу. Виникли проблеми при завантаженні? Клацніть правою кнопкою миші цю кнопку і натисніть «Зберегти посилання як...» для завантаження.",
     "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
   },
+  "questionExpression": {
+    "message": "How do Expressions work?",
+    "description": "How do Expressions work?"
+  },
   "importURLSText": {
     "message": "Імпортувати правила",
     "description": "Import Expressions"
@@ -306,6 +344,10 @@
   "documentationText": {
     "message": "Документація",
     "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Frequently Asked Questions, Common issues and solutions",
+    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "Версія $browser$",
@@ -340,6 +382,10 @@
   "listTypeText": {
     "message": "Тип списку",
     "description": "List Type"
+  },
+  "domainPlaceholderText": {
+    "message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
+    "description": "Domain Expression"
   },
   "noExpressionsText": {
     "message": "Правила не задані.",
@@ -400,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Записи в журналі відсутні",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
