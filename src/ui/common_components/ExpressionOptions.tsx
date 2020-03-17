@@ -77,12 +77,25 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
 
   public async getAllCookies() {
     const { expression } = this.props;
-    const cookies = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(this.props.state, {
-        domain: trimDotAndStar(expression.expression),
-        storeId: this.toPublicStoreId(expression.storeId),
-      }),
-    );
+    const exp = expression.expression;
+    let cookies: browser.cookies.CookieProperties[] = [];
+    if (exp.startsWith('/') && exp.endsWith('/')) {
+      // Treat expression as regular expression.  Get all cookies then regex domain.
+      const allCookies = await browser.cookies.getAll(
+        returnOptionalCookieAPIAttributes(this.props.state, {
+          storeId: this.toPublicStoreId(expression.storeId),
+        }),
+      );
+      const regExp = new RegExp(exp.slice(1, -1));
+      cookies = allCookies.filter(cookie => regExp.test(cookie.domain));
+    } else {
+      cookies = await browser.cookies.getAll(
+        returnOptionalCookieAPIAttributes(this.props.state, {
+          domain: trimDotAndStar(exp),
+          storeId: this.toPublicStoreId(expression.storeId),
+        }),
+      );
+    }
     this.setState({ cookies });
   }
 
