@@ -1,7 +1,7 @@
 {
   "extensionDescription": {
     "message": "Hallitse evästeitäsi! Poista käyttämättömät evästeet automaattisesti suljetuilta välilehdiltä, kuitenkin säilyttäen valitsemasi evästeet.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Evästeet poistettu!",
@@ -65,19 +65,29 @@
     "message": "Moikka! Tämän istunnon aikana Cookie AutoDelete on poistanut $sessionDeleted$ evästettä ja yhteensä $totalDeleted$ evästettä.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
   },
   "reviewLinkMessage": {
     "message": "Kiitos kun käytät Cookie AutoDeleteä. Jos pidit siitä, niin jätä arvostelu.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Julkaisutiedot",
@@ -89,7 +99,7 @@
   },
   "minutesText": {
     "message": "Minuutti(a)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "whiteListWordText": {
     "message": "Sallitut sivut",
@@ -135,7 +145,7 @@
   },
   "contributorsText": {
     "message": "Avustajat:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "domainExpressionsText": {
     "message": "Domain sääntö",
