@@ -1,7 +1,7 @@
 {
   "releases": [
     {
-      "version": "unreleased",
+      "version": "3.1.0",
       "notes": [
         "Added:  Webextension Title and Version to popup.",
         "Added:  BrowserAction Title now also contains the number of cookies for that domain in square brackets.  This is more helpful in Firefox mobile to see the amount of cookies there are.",
