@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "¡Controla tus cookies! Borra automáticamente las cookies no utilizadas de las pestañas cerradas mientras conservas las que deseas.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Cookie AutoDelete $Ver$: ¡Las cookies fueron borradas!",
@@ -117,12 +117,16 @@
     "message": "¡Hola! Durante esta sesión, Cookie AutoDelete ha borrado $sessionDeleted$ cookies y en total $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -143,7 +147,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Limpieza de $hostname$ debido a la limpieza de inicio y que no está en la lista de blanca o gris",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -163,7 +167,7 @@
   },
   "reasonCleanNoList": {
     "message": "Limpieza de $hostname$ debido a que no está en la lista de blanca o gris",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -201,15 +205,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "o en cualquier pestaña abierta",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "y también se ignoraron las pestañas abiertas",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Gracias por utilizar Cookie AutoDelete. Si te gustó, por favor deja una reseña.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Notas de la versión",
@@ -221,11 +231,11 @@
   },
   "minutesText": {
     "message": "Minuto/s",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Segundo/s",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Habilitar la limpieza en el cambio de dominio",
@@ -237,7 +247,7 @@
   },
   "keepLocalstorageText": {
     "message": "Conservar el almacenamiento local",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Conservar todas las cookies",
@@ -277,11 +287,11 @@
   },
   "localstorageCleanupText": {
     "message": "Limpieza de almacenamiento local (Firefox) 58+",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Habilitar la limpieza del almacenamiento local y contenedores de pestañas puede causar algunos efectos secundarios no deseados debido a las limitaciones de la API",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Restaurar ajustes predeterminados",
@@ -351,7 +361,7 @@
   },
   "contributorsText": {
     "message": "Colaboradores:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Contribuir",
