@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "Kiểm soát các cookies! Tự động Xoá sạch các cookies không dùng tới từ các trang đã đóng đồng thời giữ lại các cookies bạn cần.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Các Cookie đã bị xoá!",
@@ -103,12 +103,16 @@
     "message": "Chào bạn! Trong phiên này, Cookie Tự Động Xoá sạch đã xoá $sessionDeleted$ cookie và tổng cộng $totalDeleted$ cookie.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -125,7 +129,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Dọn lúc khởi động dọn dẹp và $hostname$ không trong các danh sách Trắng/Xám",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -145,7 +149,7 @@
   },
   "reasonCleanNoList": {
     "message": "Dọn vì $hostname$ không nằm trong các danh sách Trắng/Xám",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -183,15 +187,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "hoặc trong bất kỳ các trang đang mở",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "và cả các trang bị bỏ qua",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Cảm ơn đã thử dùng Tự động Xoá sạch Cookie. Nếu bạn cảm thấy thích, xin vui lòng cho nhận xét.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Ghi chú Phát hành",
@@ -203,11 +213,11 @@
   },
   "minutesText": {
     "message": "Phút(s)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "Giây(s)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Bật dọn dẹp khi tên miền thay đổi",
@@ -219,7 +229,7 @@
   },
   "keepLocalstorageText": {
     "message": "Lưu trữ cục bộ",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Lưu trữ tất cả các cookie",
@@ -259,11 +269,11 @@
   },
   "localstorageCleanupText": {
     "message": "Dọn dẹp lưu trữ cục bộ (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Bật cả Lưu trữ cục bộ và Trang tách biệt có thể dẫn đến nhiều điều ngoài ý muốn do Hạn chế API",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Hoàn lại cài đặt ban đầu",
@@ -329,7 +339,7 @@
   },
   "contributorsText": {
     "message": "Những người tham gia đóng góp:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Đóng góp",
