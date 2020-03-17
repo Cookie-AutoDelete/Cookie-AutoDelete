@@ -5,7 +5,7 @@
   },
   "extensionDescription": {
     "message": "cookieをコントロールしよう！タブを閉じたら、使用していないcookieを自動で削除。任意で残すこともできます。",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "クッキーが削除された!",
@@ -117,12 +117,16 @@
     "message": "こんにちは、このセッション中に $sessionDeleted$ 個のクッキーを削除、合計 $totalDeleted$ 個のクッキーを削除しました。",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -143,7 +147,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "$hostname$ はホワイト/グレイリストに含まれないので再起動時に消去します",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -163,7 +167,7 @@
   },
   "reasonCleanNoList": {
     "message": "$hostname$ はホワイト/グレイリストに含まれないので消去します",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -201,15 +205,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "もしくは開いているタブで",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "開いているタブは無視されました。",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Cookie AutoDelete を使用いただきありがとうございます。 お気に召しましたらレビューをお書きください。",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "更新履歴",
@@ -221,11 +231,11 @@
   },
   "minutesText": {
     "message": "分",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "秒",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "ドメイン変更のクリーンアップを有効にします。",
@@ -237,7 +247,7 @@
   },
   "keepLocalstorageText": {
     "message": "ローカルストレージを維持する",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "すべてのクッキーを維持する",
@@ -277,11 +287,11 @@
   },
   "localstorageCleanupText": {
     "message": "ローカルストレージのクリーンアップ (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "ローカルストレージのクリーンアップとコンテナタブの両方を有効にすると、APIの制限により障害が発生することがあります。",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "初期設定に戻す",
@@ -351,7 +361,7 @@
   },
   "contributorsText": {
     "message": "貢献した人:",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "貢献",
