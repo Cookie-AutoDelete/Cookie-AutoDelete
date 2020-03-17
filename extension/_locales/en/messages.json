@@ -456,7 +456,7 @@
   },
 
   "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
+    "message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
     "description": "Domain Expression"
   },
 
