@@ -1,4 +1,8 @@
 {
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
   "extensionDescription": {
     "message": "Prendi il controllo dei tuoi cookie! Elimina automaticamente i cookie inutilizzati dalle schede chiuse e mantieni solo quelli che vuoi.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
@@ -20,6 +24,10 @@
         "example": "google.com, facebook.com"
       }
     }
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
   },
   "filterText": {
     "message": "Filtro",
@@ -106,7 +114,7 @@
     "description": "About"
   },
   "welcomeMessage": {
-    "message": "Ehilà! Durante questa sessione, Cookie AutoDelete ha eliminato $sessionDeleted$ cookie e in totale $totalDeleted$ cookie.",
+    "message": "Ehilà! Durante questa sessione, $cadTitle$ ha eliminato $sessionDeleted$ cookie e in totale $totalDeleted$ cookie.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
@@ -122,6 +130,10 @@
         "example": "456"
       }
     }
+  },
+  "oldReleasesText": {
+    "message": "Older release notes can be viewed online at",
+    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Mantieni a causa delle schede aperte di *.$mainDomain$",
@@ -200,7 +212,7 @@
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
-    "message": "Grazie per avere provato Cookie AutoDelete. Se ti è piaciuto, scrivi una recensione.",
+    "message": "Grazie per avere provato $cadTitle$. Se ti è piaciuto, scrivi una recensione.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
@@ -329,6 +341,14 @@
     "message": "Segnala problemi e suggerisci funzionalità",
     "description": "Report issues and suggest features"
   },
+  "documentationText": {
+    "message": "Documentation",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Frequently Asked Questions, Common issues and solutions",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
   "versionText": {
     "message": "Versione $browser$",
     "description": "Firefox version",
@@ -426,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Nessun registro delle puliture trovato",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
