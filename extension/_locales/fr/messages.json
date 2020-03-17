@@ -1,7 +1,7 @@
 {
   "extensionDescription": {
     "message": "Contrôlez vos fichiers témoins ! Supprimez automatiquement les fichiers témoins non utilisés de vos onglets fermés tout en gardant ceux que vous voulez.",
-    "description": "Control your cookies! Auto-delete unused cookies from your closed tabs while keeping the ones you want."
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "notificationTitle": {
     "message": "Cookies des témoins ont été supprimés !",
@@ -105,12 +105,16 @@
     "message": "Bonjour ! Lors de cette session, Cookie AutoDelete a supprimé $sessionDeleted$ cookies, pour un total de $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
-      "sessionDeleted": {
+      "cadTitle": {
         "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
         "example": "123"
       },
       "totalDeleted": {
-        "content": "$2",
+        "content": "$3",
         "example": "456"
       }
     }
@@ -127,7 +131,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Nettoyer en raison du nettoyage au démarrage et parce que $hostname$ n’est pas dans les listes blanches/grises",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White/Grey lists",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -147,7 +151,7 @@
   },
   "reasonCleanNoList": {
     "message": "Nettoyer, car $hostname$ n’est pas dans les listes blanches/grises",
-    "description": "Clean because sub.google.com is not in the White/Grey lists",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -185,15 +189,21 @@
   },
   "reasonTabsWereNotIgnored": {
     "message": "ni dans aucun onglet ouvert",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists or in any open tabs"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
   },
   "reasonTabsWereIgnored": {
     "message": "et les onglets ouverts ont été ignorés",
-    "description": "Clean because of sub.google.com is not in the White/Grey lists and also open tabs were ignored"
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
   },
   "reviewLinkMessage": {
     "message": "Nous vous remercions d’essayer la suppression automatique des fichiers témoins. Si elle vous plaît, veuillez rédiger une critique.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review."
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Notes de version",
@@ -205,11 +215,11 @@
   },
   "minutesText": {
     "message": "minute(s)",
-    "description": "Minute(s)"
+    "description": "minute(s)"
   },
   "secondsText": {
     "message": "seconde(s)",
-    "description": "Second(s)"
+    "description": "second(s)"
   },
   "cleanupDomainChangeText": {
     "message": "Activer le nettoyage lors d’un changement de domaine",
@@ -221,7 +231,7 @@
   },
   "keepLocalstorageText": {
     "message": "Garder la mémoire locale",
-    "description": "Keep Localstorage"
+    "description": "Keep LocalStorage"
   },
   "keepAllCookiesText": {
     "message": "Garder tous les cookies",
@@ -261,11 +271,11 @@
   },
   "localstorageCleanupText": {
     "message": "Nettoyer le Localstorage (Firefox 58+)",
-    "description": "Localstorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Activer à la fois le nettoyage du localstorage et des onglets contextuels de Firefox peut causer des effets indésirables en raison de limitations de l’API",
-    "description": "Enabling both Localstorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Restaurer les paramètres par défaut",
@@ -323,7 +333,7 @@
   },
   "contributorsText": {
     "message": "Contributeurs :",
-    "description": "Contributors:"
+    "description": "Contributors"
   },
   "contributeText": {
     "message": "Contribuer",
