@@ -25,6 +25,10 @@
       }
     }
   },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
+  },
   "filterText": {
     "message": "Filtre",
     "description": "Filter"
@@ -89,6 +93,10 @@
     "message": "Paramètres",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Paramètres",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Paramètres des cookies",
     "description": "Cookie Settings"
@@ -122,6 +130,10 @@
         "example": "456"
       }
     }
+  },
+  "oldReleasesText": {
+    "message": "Les anciennes notes de version peuvent être consultées en ligne à l'adresse",
+    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Conserver en raison d’onglets ouverts de $mainDomain$",
@@ -275,6 +287,10 @@
     "message": "Restaurer les paramètres par défaut",
     "description": "Restore Default Settings"
   },
+  "resetExtensionDataText": {
+    "message": "Réinitialiser les données de l'extension",
+    "description": "Reset Extension Data"
+  },
   "whiteListWordText": {
     "message": "Liste blanche",
     "description": "Whitelist"
@@ -314,6 +330,14 @@
   "reportIssuesText": {
     "message": "Signaler des problèmes et suggérer des fonctions",
     "description": "Report issues and suggest features"
+  },
+  "documentationText": {
+    "message": "Documentation",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Question fréquentes, problèmes courants et solutions",
+    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "Version pour $browser$",
@@ -412,5 +436,9 @@
   "noCleanupLogText": {
     "message": "Aucun journal de nettoyage n’a été trouvé",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
