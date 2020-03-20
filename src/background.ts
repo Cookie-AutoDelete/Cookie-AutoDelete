@@ -122,7 +122,6 @@ const onStartUp = async () => {
   store.dispatch({
     payload: {
       key: 'platformOs',
-      // @ts-ignore TODO: Make a type for this
       value: platformInfo.os,
     },
     type: ReduxConstants.ADD_CACHE,
@@ -163,6 +162,7 @@ browser.runtime.onInstalled.addListener(async details => {
         type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
       });
     }
+    const openUpdatedPage = browser.runtime.openOptionsPage();
   }
 });
 
