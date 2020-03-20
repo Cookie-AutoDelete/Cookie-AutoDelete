@@ -7,7 +7,7 @@
         "Fixed:  Automatic cleaning on Google Chrome.",
         "Changed:  Some minor CSS formatting on the sidemenu in settings.  Make PayPal Link fall in line with the othe menu items.",
         "Updated:  Third-Party Dependencies (React and React-dom to 16.13.1)",
-      ],
+      ]
     },
     {
       "version": "3.1.0",
