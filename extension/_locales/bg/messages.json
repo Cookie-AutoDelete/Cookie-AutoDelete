@@ -113,6 +113,24 @@
     "message": "Относно",
     "description": "About"
   },
+  "welcomeMessage": {
+    "message": "Здравейте! По време на тази сесия от добавката $cadTitle$ са изтрити $sessionDeleted$ бисквитки, а общо за всички сесии - $totalDeleted$.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
   "oldReleasesText": {
     "message": "Бележките към по-старите издания могат да бъдат прочетени онлайн на",
     "description": "Older release notes can be viewed online at"
@@ -192,6 +210,16 @@
   "reasonTabsWereIgnored": {
     "message": "и отворените подпрозорци са пренебрегнати",
     "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+  },
+  "reviewLinkMessage": {
+    "message": "Благодарим ви, че пробвахте добавката $cadTitle$. Ако я харесвате, моля, напишете отзив.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
   },
   "releaseNotesText": {
     "message": "Бележки по изданието",
@@ -418,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Не са намерени дневници за изчистване",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Меню",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }

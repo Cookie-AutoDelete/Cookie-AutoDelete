@@ -428,5 +428,9 @@
   "noCleanupLogText": {
     "message": "ログが見つかりません。",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "メニュー",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }

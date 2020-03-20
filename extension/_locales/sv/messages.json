@@ -442,5 +442,9 @@
   "noCleanupLogText": {
     "message": "Inga rensningsloggar hittades",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Meny",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }
