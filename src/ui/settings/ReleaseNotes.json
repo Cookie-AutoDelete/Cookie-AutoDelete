@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "3.1.1",
+      "notes": [
+        "Added:  The welcome page with release notes will now open up whenever a new version is released.",
+        "Fixed:  Automatic cleaning on Google Chrome.",
+        "Changed:  Some minor CSS formatting on the sidemenu in settings.  Make PayPal Link fall in line with the othe menu items.",
+        "Updated:  Third-Party Dependencies (React and React-dom to 16.13.1)",
+      ],
+    },
+    {
       "version": "3.1.0",
       "notes": [
         "Added:  Webextension Title and Version to popup.",

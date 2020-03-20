@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 import shortid from 'shortid';
 import AlarmEvents from './AlarmEvents';
 import {
@@ -73,14 +73,7 @@ export default class TabEvents extends StoreUser {
   public static cleanFromFromTabEvents = async () => {
     if (getSetting(StoreUser.store.getState(), 'activeMode')) {
       const alarm = await browser.alarms.get('activeModeAlarm');
-      // This is to resolve differences between Firefox and Chrome implementation of browser.alarms.get()
-      // in chrome, it returns an array
-      if (
-        StoreUser.store.getState().cache.browserDetect === 'Firefox' &&
-        !alarm
-      ) {
-        AlarmEvents.createActiveModeAlarm();
-      } else if (alarm && alarm.name !== 'activeModeAlarm') {
+      if (!alarm || (alarm.name && alarm.name !== 'activeModeAlarm')) {
         AlarmEvents.createActiveModeAlarm();
       }
     }

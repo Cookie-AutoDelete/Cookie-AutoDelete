@@ -35,8 +35,12 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
 *.zip
 *.xpi
 report.html
 *Bundle.js
 *bundle.js
+builds/
+
+.directory
