@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { checkIfProtected } from '../services/BrowserActionService';
@@ -53,9 +53,20 @@ export const addExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ) => {
+  const localStorageDefault = (listType: string) => {
+    switch(listType) {
+      case 'GREY':
+        return getSetting(getState(), 'greyCleanLocalstorage') === true;
+      case 'WHITE':
+        return getSetting(getState(), 'whiteCleanLocalstorage') === true;
+      default:
+        return true;
+    }
+  };
   dispatch({
     payload: {
       ...payload,
+      cleanLocalStorage: localStorageDefault(payload.listType),
       // Sanitize the payload's storeId
       storeId: getStoreId(getState(), payload.storeId),
     },

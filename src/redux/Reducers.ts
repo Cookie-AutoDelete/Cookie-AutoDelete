@@ -10,11 +10,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 import { combineReducers } from 'redux';
 import shortid from 'shortid';
 import { ReduxAction, ReduxConstants } from '../typings/ReduxConstants';
 import { initialState } from './State';
+
 
 // Tests if the expression already exists in the list
 const hasExpression = (
@@ -134,7 +135,6 @@ export const settings = (
       };
       newObject[name] = {
         ...action.payload,
-        id: shortid.generate(),
       };
       return newObject;
     }

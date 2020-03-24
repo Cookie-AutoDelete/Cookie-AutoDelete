@@ -68,6 +68,21 @@ export const initialState: State = {
       value: false,
       id: 10,
     },
+    greyCleanLocalstorage: {
+      name: 'greyCleanLocalstorage',
+      value: false,
+      id: 11,
+    },
+    whiteCleanLocalstorage: {
+      name: 'whiteCleanLocalstorage',
+      value: false,
+      id: 12,
+    },
+    disableNewVersionPopup: {
+      name: 'disableNewVersionPopup',
+      value: false,
+      id: 13,
+    }
   },
   activityLog: [],
   cache: {},
