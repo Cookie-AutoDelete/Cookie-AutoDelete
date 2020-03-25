@@ -131,6 +131,10 @@
       }
     }
   },
+  "oldReleasesText": {
+    "message": "Eldre utgivelsesnotater kan sees online på",
+    "description": "Older release notes can be viewed online at"
+  },
   "reasonKeepOpenTab": {
     "message": "Behold på grunn av åpne faner av *.$mainDomain$",
     "description": "Keep because of open tabs of *.google.com",
@@ -341,6 +345,10 @@
     "message": "Dokumentasjon",
     "description": "Documentation"
   },
+  "faqText": {
+    "message": "Ofte stilte spørsmål, vanlige problemer og løsninger",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
   "versionText": {
     "message": "$browser$ versjon",
     "description": "Firefox version",
@@ -438,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Ingen opprydningslogger funnet",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Meny",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }

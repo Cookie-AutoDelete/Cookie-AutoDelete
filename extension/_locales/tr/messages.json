@@ -282,7 +282,7 @@
     "description": "Enable Check for Subdomains"
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Habilitar Suporte para Abas de Contêiner do Firefox",
+    "message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
@@ -416,11 +416,11 @@
     "description": "Toggle to whitelist"
   },
   "autoDeleteEnabledText": {
-    "message": "Otomatik-temizlemeyi aç",
+    "message": "Otomatik Temizleme Açık",
     "description": "Auto-clean enabled"
   },
   "autoDeleteDisabledText": {
-    "message": "Otomatik-temizlemeyi kapat",
+    "message": "Otomatik Temizleme Kapalı",
     "description": "Auto-clean disabled"
   },
   "disableAutoDeleteText": {
@@ -428,7 +428,7 @@
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "enableAutoDeleteText": {
-    "message": "Otomatik temizliği etkinleştirmeye geçiş yap (Otomatik mod)",
+    "message": "Otomatik temizliği etkinleştirmek için geçiş yap (Otomatik mod)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
