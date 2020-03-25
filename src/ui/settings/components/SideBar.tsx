@@ -16,11 +16,6 @@ const styles = {
   hamburger: {
     color: 'white',
   },
-  menuLink: {
-    padding: '0.5em 1em',
-    textAlign: 'center' as const,
-    width: '100%',
-  },
 };
 
 const sideBarTabs = [
@@ -87,7 +82,6 @@ class SideBar extends React.Component<OwnProps> {
     return (
       <div>
         <div
-          style={styles.menuLink}
           onClick={() => this.toggleAll()}
           id="menuLink"
           className="menu-link"

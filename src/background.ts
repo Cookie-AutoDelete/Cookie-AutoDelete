@@ -162,7 +162,9 @@ browser.runtime.onInstalled.addListener(async details => {
         type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
       });
     }
-    const openUpdatedPage = browser.runtime.openOptionsPage();
+    if (! getSetting(store.getState(),'disableNewVersionPopup')) {
+      const openUpdatedPage = browser.runtime.openOptionsPage();
+    }
   }
 });
 

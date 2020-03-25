@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "3.2.0",
+      "notes": [
+        "Added:  Option to disable new version popup.  Per Feature Request #661.",
+        "Added:  Option to have 'Keep LocalStorage' unchecked as default for new expressions.  Per Feature Request #561.",
+        "Changed:  CSS for top menu in settings.  The icon is now centered even after the sidemenu appears.",
+        "Changed:  Settings Tooltip links now more streamlined in backend (Internal changes - shouldn't affect anyone).",
+        "Removed:  Regeneration of setting ID after each update. (Internal stuff - shouldn't affect anyone.)",
+        "Updated:  Crowdin Translations",
+        "Updated:  Third-Party Dependencies:  React TypeScript, Font Awesome Icons, ts-loader"
+      ]
+    },
+    {
       "version": "3.1.1",
       "notes": [
         "Added:  The welcome page with release notes will now open up whenever a new version is released.",

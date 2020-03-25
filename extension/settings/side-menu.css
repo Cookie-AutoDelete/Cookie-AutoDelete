@@ -40,6 +40,7 @@ This is the parent `<div>` that contains the menu and the content area.
 
 #layout.active .menu-link {
   left: 150px;
+  width: calc(100% - 150px);
 }
 
 /*
@@ -181,9 +182,10 @@ small screens.
   background: rgba(0, 0, 0, 0.7);
   font-size: 10px;  /* Change this value to increase/decrease button size */
   z-index: 10;
-  width: 2em;
+  width: 100%;
   height: auto;
-  padding: 2.1em 1.6em;
+  padding: 0.5em 1em;
+  text-align: center;
 }
 
 .menu-link:hover, .menu-link:focus {
