@@ -125,25 +125,15 @@ class SideBar extends React.Component<OwnProps> {
                 <span>{`${element.tabText}`}</span>
               </div>
             ))}
-
-            <div
-              style={{
-                bottom: '5px',
-                position: 'absolute',
-                width: '100%',
-              }}
+            <a
+              href="https://www.paypal.me/mrkennyd/5"
             >
-              <a
-                href="https://www.paypal.me/mrkennyd/5"
-                className="btn"
-                style={{
-                  textAlign: 'center',
-                  width: '100%',
-                }}
+              <div
+                className={`pure-menu-item`}
               >
-                {browser.i18n.getMessage('contributeText')}
-              </a>
-            </div>
+                <span>{browser.i18n.getMessage('contributeText')}</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
