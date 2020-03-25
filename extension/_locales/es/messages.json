@@ -450,5 +450,13 @@
   "menuText": {
     "message": "Menú",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "greyCleanLocalstorage": {
+    "message": "Desmarcar 'Conservar el almacenamiento local' en las nuevas expresiones de la lista gris",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Desmarcar 'Conservar el almacenamiento local' en las nuevas expresiones de la lista blanca",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   }
 }
