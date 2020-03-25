@@ -42,7 +42,7 @@
     "tslint-react": "^4.2.0",
     "typescript": "^3.8.3",
     "web-ext-types": "^3.2.1",
-    "webpack": "^4.42.0",
+    "webpack": "^4.42.1",
     "webpack-bundle-analyzer": "^3.6.1",
     "webpack-cli": "^3.3.11"
   },
