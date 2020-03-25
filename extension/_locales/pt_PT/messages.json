@@ -450,5 +450,17 @@
   "menuText": {
     "message": "Menu",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "greyCleanLocalstorage": {
+    "message": "Desmarcar 'Manter localstorage' em novas expressões da lista cinza",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Desmarcar 'Manter localstorage' em novas expressões da lista branca",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "disableNewVersionPopup": {
+    "message": "Desativar popup quando a nova versão é lançada",
+    "description": "Disable Popup when New Version is Released"
   }
 }
