@@ -156,15 +156,22 @@ browser.runtime.onStartup.addListener(async () => {
 });
 browser.runtime.onInstalled.addListener(async details => {
   await awaitStore();
-  if (details.reason === 'update') {
-    if (convertVersionToNumber(details.previousVersion) < 300) {
-      store.dispatch({
-        type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
-      });
-    }
-    if (! getSetting(store.getState(),'disableNewVersionPopup')) {
-      const openUpdatedPage = browser.runtime.openOptionsPage();
-    }
+  switch (details.reason) {
+    case 'install':
+      browser.runtime.openOptionsPage();
+      break;
+    case 'update':
+      if (convertVersionToNumber(details.previousVersion) < 300) {
+        store.dispatch({
+          type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+        });
+      }
+      if (getSetting(store.getState(),'enableNewVersionPopup')) {
+        browser.runtime.openOptionsPage();
+      }
+      break;
+    default:
+      break;
   }
 });
 

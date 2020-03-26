@@ -3,8 +3,10 @@
     {
       "version": "3.2.0",
       "notes": [
-        "Added:  Option to disable new version popup.  Per Feature Request #661.",
+        "Added:  Option to disable new version popup.  Per Feature Request #661.  Further discussions resulted up being an 'opt-in to enable' feature.",
+        "Added:  New Tab Popup to the Welcome/Release Notes once on new installations.",
         "Added:  Option to have 'Keep LocalStorage' unchecked as default for new expressions.  Per Feature Request #561.",
+        "Added:  A warning in settings if LocalStorage is currently disabled so that users know that all LocalStorage will be cleared upon enabling that setting.  The warning was previously only seen online on the Documentation on GitHub.",
         "Changed:  CSS for top menu in settings.  The icon is now centered even after the sidemenu appears.",
         "Changed:  Settings Tooltip links now more streamlined in backend (Internal changes - shouldn't affect anyone).",
         "Removed:  Regeneration of setting ID after each update. (Internal stuff - shouldn't affect anyone.)",
