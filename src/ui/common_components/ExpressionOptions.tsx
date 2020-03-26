@@ -178,8 +178,10 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
       <div>
-        {state.cache.browserDetect === 'Firefox' &&
-          state.cache.platformOs !== 'android' && (
+        {((state.cache.browserDetect === 'Firefox' &&
+          state.cache.browserVersion >= '57' &&
+          state.cache.platformOs !== 'android') ||
+          state.cache.browserDetect === 'Chrome') && (
             <div className={'checkbox'}>
               <span
                 className={'addHover'}
