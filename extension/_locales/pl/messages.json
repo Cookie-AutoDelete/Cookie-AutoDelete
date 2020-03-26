@@ -458,5 +458,13 @@
   "whiteCleanLocalstorage": {
     "message": "Odznacz 'Odznacz 'Zachowaj localStorage' w nowych formułach białej listy",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "enableNewVersionPopup": {
+    "message": "Pokazuj popup z informacjami o nowej wersji po każdej aktualizacji",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Uwaga:  wszystkie dane w localStorage zostaną usunięte przy włączeniu opcji \"Wyczyść localStorage\".",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }
