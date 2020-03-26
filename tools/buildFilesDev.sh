@@ -21,7 +21,6 @@ echo "Preparing to build Google Chrome version..."
 echo "Removing manifest.json lines not needed in Google Chrome..."
 sed -i '/contextualIdentities/d' manifest.json
 sed -i '/privacy/d' manifest.json
-sed -i '/browsingData/d' manifest.json
 sed -i '/applications/,+5d' manifest.json
 echo "Lines removed."
 

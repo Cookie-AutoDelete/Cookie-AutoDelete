@@ -31,6 +31,7 @@
       "strict_min_version": "63.0"
     }
   },
+  "minimum_chrome_version": "74",
   "options_ui": {
     "page": "settings/settings.html",
     "open_in_tab": true
@@ -49,5 +50,5 @@
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "3.1.1"
+  "version": "3.2.0"
 }

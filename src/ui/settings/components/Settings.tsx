@@ -207,9 +207,10 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
         </div>
       )}
 
-      {browserDetect === 'Firefox' &&
+      {((browserDetect === 'Firefox' &&
         browserVersion >= '58' &&
-        platformOs !== 'android' && (
+        platformOs !== 'android') ||
+        browserDetect === 'Chrome') && (
           <div className="row" style={styles.rowOverrides}>
             <div className="col">
               <CheckboxSetting
@@ -227,9 +228,10 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           </div>
         )}
 
-      {browserDetect === 'Firefox' &&
+      {((browserDetect === 'Firefox' &&
         browserVersion >= '58' &&
-        platformOs !== 'android' && !settings.localstorageCleanup.value && (
+        platformOs !== 'android') ||
+        browserDetect === 'Chrome') && !settings.localstorageCleanup.value && (
         <div className="alert alert-warning">
           {browser.i18n.getMessage('localstorageCleanupWarning',)}
         </div>

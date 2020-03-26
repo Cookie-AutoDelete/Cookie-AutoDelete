@@ -163,18 +163,29 @@ export const otherBrowsingDataCleanup = async (
   state: State,
   hostnames: string[],
 ) => {
-  if (
-    state.cache.browserDetect === 'Firefox' &&
-    state.cache.platformOs !== 'android' &&
-    getSetting(state, 'localstorageCleanup')
-  ) {
-    browser.browsingData
-      .removeLocalStorage({
-        hostnames,
-      })
-      .catch(e => {
-        throw e;
-      });
+  if (getSetting(state, 'localstorageCleanup')) {
+    if (
+      state.cache.browserDetect === 'Firefox' &&
+      state.cache.browserVersion >= '58' &&
+      state.cache.platformOs !== 'android'
+    ) {
+      browser.browsingData
+        .removeLocalStorage({
+          hostnames,
+        })
+        .catch(e => {
+          throw e;
+        });
+    } else if (
+      state.cache.browserDetect === 'Chrome'
+    ) {
+      browser.browsingData
+        .removeLocalStorage({
+          origins: hostnames,
+        }).catch(e => {
+          throw e;
+        });
+    }
   }
 };
 

@@ -335,8 +335,8 @@
   },
 
   "localstorageCleanupText": {
-    "message": "LocalStorage Cleanup (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "LocalStorage Cleanup (Firefox 58+, Chrome 74+)",
+    "description": "LocalStorage Cleanup (Firefox 58+, Chrome 74+)"
   },
 
   "localstorageAndContextualIdentitiesWarning": {
