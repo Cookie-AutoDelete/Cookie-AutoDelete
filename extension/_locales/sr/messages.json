@@ -113,6 +113,24 @@
     "message": "О програму",
     "description": "About"
   },
+  "welcomeMessage": {
+    "message": "Здраво! Током ове сесије, $cadTitle$ је обрисао $sessionDeleted$ колачића, укупно $totalDeleted$ колачића.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
   "oldReleasesText": {
     "message": "Старије белешке о издању се могу видети на адреси",
     "description": "Older release notes can be viewed online at"
@@ -428,5 +446,9 @@
   "noCleanupLogText": {
     "message": "Нема записника о чишћењу",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Мени",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   }
 }

@@ -57,7 +57,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
     <div style={style}>
       <h1>{browser.i18n.getMessage('settingsText')}</h1>
       <div className="row" style={styles.rowOverrides}>
-        <div className="col-md-12">
+        <div className="col">
           <CheckboxSetting
             text={browser.i18n.getMessage('activeModeText')}
             inline={true}
@@ -84,14 +84,14 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           <span>{browser.i18n.getMessage('secondsText')}</span>
           <SettingsTooltip
             hrefURL={
-              'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-automatic-cleaning'
+              '#enable-automatic-cleaning'
             }
           />
         </div>
       </div>
 
       <div className="row" style={styles.rowOverrides}>
-        <div className="col-md-12">
+        <div className="col">
           <CheckboxSetting
             text={browser.i18n.getMessage('cleanupDomainChangeText')}
             settingObject={settings.domainChangeCleanup}
@@ -100,14 +100,14 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
           <SettingsTooltip
             hrefURL={
-              'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-cleanup-on-domain-change'
+              '#enable-cleanup-on-domain-change'
             }
           />
         </div>
       </div>
 
       <div className="row" style={styles.rowOverrides}>
-        <div className="col-md-12">
+        <div className="col">
           <CheckboxSetting
             text={browser.i18n.getMessage('enableCleanupLogText')}
             settingObject={settings.statLogging}
@@ -116,14 +116,14 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
           <SettingsTooltip
             hrefURL={
-              'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-cleanup-log-and-counter'
+              '#enable-cleanup-log-and-counter'
             }
           />
         </div>
       </div>
 
       <div className="row" style={styles.rowOverrides}>
-        <div className="col-md-12">
+        <div className="col">
           <CheckboxSetting
             text={browser.i18n.getMessage('showNumberOfCookiesInIconText')}
             settingObject={settings.showNumOfCookiesInIcon}
@@ -132,14 +132,14 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
           <SettingsTooltip
             hrefURL={
-              'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#show-number-of-cookies-for-that-domain'
+              '#show-number-of-cookies-for-that-domain'
             }
           />
         </div>
       </div>
 
       <div className="row" style={styles.rowOverrides}>
-        <div className="col-md-12">
+        <div className="col">
           <CheckboxSetting
             text={browser.i18n.getMessage('notifyCookieCleanUpText')}
             settingObject={settings.showNotificationAfterCleanup}
@@ -167,14 +167,14 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           <span>{browser.i18n.getMessage('secondsText')}</span>
           <SettingsTooltip
             hrefURL={
-              'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#show-notification-after-cookie-cleanup'
+              '#show-notification-after-cookie-cleanup'
             }
           />
         </div>
       </div>
 
       <div className="row" style={styles.rowOverrides}>
-        <div className="col-md-12">
+        <div className="col">
           <CheckboxSetting
             text={browser.i18n.getMessage('cookieCleanUpOnStartText')}
             settingObject={settings.cleanCookiesFromOpenTabsOnStartup}
@@ -183,7 +183,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
           <SettingsTooltip
             hrefURL={
-              'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#clean-cookies-from-open-tabs-on-startup'
+              '#clean-cookies-from-open-tabs-on-startup'
             }
           />
         </div>
@@ -191,7 +191,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
 
       {browserDetect === 'Firefox' && platformOs !== 'android' && (
         <div className="row" style={styles.rowOverrides}>
-          <div className="col-md-12">
+          <div className="col">
             <CheckboxSetting
               text={browser.i18n.getMessage('contextualIdentitiesEnabledText')}
               settingObject={settings.contextualIdentities}
@@ -200,7 +200,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
             />
             <SettingsTooltip
               hrefURL={
-                'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-support-for-firefoxs-container-tabs-firefox-only'
+                '#enable-support-for-firefoxs-container-tabs-firefox-only'
               }
             />
           </div>
@@ -211,7 +211,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
         browserVersion >= '58' &&
         platformOs !== 'android' && (
           <div className="row" style={styles.rowOverrides}>
-            <div className="col-md-12">
+            <div className="col">
               <CheckboxSetting
                 text={browser.i18n.getMessage('localstorageCleanupText')}
                 settingObject={settings.localstorageCleanup}
@@ -220,7 +220,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
               />
               <SettingsTooltip
                 hrefURL={
-                  'https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enable-localstorage-support'
+                  '#enable-localstorage-support'
                 }
               />
             </div>
@@ -235,11 +235,57 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
             )}
           </div>
         )}
+      <div className="row" style={styles.rowOverrides}>
+        <div className="col">
+          <CheckboxSetting
+            text={browser.i18n.getMessage('disableNewVersionPopup')}
+            settingObject={settings.disableNewVersionPopup}
+            inline={true}
+            updateSetting={payload => onUpdateSetting(payload)}
+          />
+          <SettingsTooltip
+            hrefURL={
+              '#'
+            }
+          />
+        </div>
+      </div>
+      <div className="row" style={styles.rowOverrides}>
+        <div className="col">
+          <CheckboxSetting
+            text={browser.i18n.getMessage('greyCleanLocalstorage')}
+            settingObject={settings.greyCleanLocalstorage}
+            inline={true}
+            updateSetting={payload => onUpdateSetting(payload)}
+          />
+          <SettingsTooltip
+            hrefURL={
+              '#'
+            }
+          />
+        </div>
+      </div>
+      <div className="row" style={styles.rowOverrides}>
+        <div className="col">
+          <CheckboxSetting
+            text={browser.i18n.getMessage('whiteCleanLocalstorage')}
+            settingObject={settings.whiteCleanLocalstorage}
+            inline={true}
+            updateSetting={payload => onUpdateSetting(payload)}
+          />
+          <SettingsTooltip
+            hrefURL={
+              '#'
+            }
+          />
+        </div>
+      </div>
+
 
       <br />
       <br />
       <div className="row">
-        <div className="col-md-12">
+        <div className="col">
           <IconButton
             className="btn-danger"
             onClick={() => onResetButtonClick()}
