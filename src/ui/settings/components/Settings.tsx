@@ -227,6 +227,14 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           </div>
         )}
 
+      {browserDetect === 'Firefox' &&
+        browserVersion >= '58' &&
+        platformOs !== 'android' && !settings.localstorageCleanup.value && (
+        <div className="alert alert-warning">
+          {browser.i18n.getMessage('localstorageCleanupWarning',)}
+        </div>
+      )}
+
       {settings.contextualIdentities.value &&
         settings.localstorageCleanup.value && (
           <div className="alert alert-warning">
@@ -238,14 +246,14 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
       <div className="row" style={styles.rowOverrides}>
         <div className="col">
           <CheckboxSetting
-            text={browser.i18n.getMessage('disableNewVersionPopup')}
-            settingObject={settings.disableNewVersionPopup}
+            text={browser.i18n.getMessage('enableNewVersionPopup')}
+            settingObject={settings.enableNewVersionPopup}
             inline={true}
             updateSetting={payload => onUpdateSetting(payload)}
           />
           <SettingsTooltip
             hrefURL={
-              '#'
+              '#enable-popup-when-new-version-is-released'
             }
           />
         </div>
@@ -260,7 +268,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
           <SettingsTooltip
             hrefURL={
-              '#'
+              '#uncheck-keep-localstorage-on-new-greylist-expressions'
             }
           />
         </div>
@@ -275,7 +283,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
           <SettingsTooltip
             hrefURL={
-              '#'
+              '#uncheck-keep-localstorage-on-new-whitelist-expressions'
             }
           />
         </div>
