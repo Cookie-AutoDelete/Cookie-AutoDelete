@@ -169,6 +169,8 @@ export const otherBrowsingDataCleanup = async (
       state.cache.browserVersion >= '58' &&
       state.cache.platformOs !== 'android'
     ) {
+      console.info('localstorage hostnames to try and delete:');
+      console.info(hostnames);
       browser.browsingData
         .removeLocalStorage({
           hostnames,
@@ -179,9 +181,14 @@ export const otherBrowsingDataCleanup = async (
     } else if (
       state.cache.browserDetect === 'Chrome'
     ) {
+      const origins: string[] = [];
+      hostnames.forEach(hostname => {
+        origins.push(`https://${hostname}`);
+        origins.push(`http://${hostname}`);
+      });
       browser.browsingData
         .removeLocalStorage({
-          origins: hostnames,
+          origins,
         }).catch(e => {
           throw e;
         });
