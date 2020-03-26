@@ -3,7 +3,7 @@
     {
       "version": "3.2.0",
       "notes": [
-        "Added:  LocalStorage Cleaning for Google Chrome!  Minimum Chrome Version is now 74 for cleaning by hostname."
+        "Added:  LocalStorage Cleaning for Google Chrome!  Minimum Chrome Version is now 74 for cleaning by hostname.",
         "Added:  Option to disable new version popup.  Per Feature Request #661.  Further discussions resulted up being an 'opt-in to enable' feature.",
         "Added:  New Tab Popup to the Welcome/Release Notes once on new installations.",
         "Added:  Option to have 'Keep LocalStorage' unchecked as default for new expressions.  Per Feature Request #561.",
@@ -12,7 +12,7 @@
         "Changed:  Settings Tooltip links now more streamlined in backend (Internal changes - shouldn't affect anyone).",
         "Removed:  Regeneration of setting ID after each update. (Internal stuff - shouldn't affect anyone.)",
         "Updated:  Crowdin Translations",
-        "Updated:  Third-Party Dependencies:  React TypeScript, Font Awesome Icons, ts-loader"
+        "Updated:  Third-Party Dependencies:  React TypeScript, Font Awesome Icons, ts-loader, jest"
       ]
     },
     {
