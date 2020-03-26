@@ -254,7 +254,7 @@
     "description": "Keep All Cookies"
   },
   "clearLogsText": {
-    "message": "Limpiar registros",
+    "message": "Borrar registros",
     "description": "Clear Logs"
   },
   "errorText": {
@@ -458,5 +458,13 @@
   "whiteCleanLocalstorage": {
     "message": "Desmarcar 'Conservar el almacenamiento local' en las nuevas expresiones de la lista blanca",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "enableNewVersionPopup": {
+    "message": "Habilitar ventana emergente cuando se lance una nueva versión",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Advertencia: TODO el almacenamiento local existente se borrará al habilitar la limpieza del almacenamiento local.",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }
