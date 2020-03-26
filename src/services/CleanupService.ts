@@ -186,6 +186,7 @@ export const otherBrowsingDataCleanup = async (
         origins.push(`https://${hostname}`);
         origins.push(`http://${hostname}`);
       });
+      console.info(origins);
       browser.browsingData
         .removeLocalStorage({
           origins,
