@@ -169,8 +169,6 @@ export const otherBrowsingDataCleanup = async (
       state.cache.browserVersion >= '58' &&
       state.cache.platformOs !== 'android'
     ) {
-      console.info('localstorage hostnames to try and delete:');
-      console.info(hostnames);
       browser.browsingData
         .removeLocalStorage({
           hostnames,
@@ -186,7 +184,6 @@ export const otherBrowsingDataCleanup = async (
         origins.push(`https://${hostname}`);
         origins.push(`http://${hostname}`);
       });
-      console.info(origins);
       browser.browsingData
         .removeLocalStorage({
           origins,
@@ -262,9 +259,7 @@ export const cleanCookiesOperation = async (
   const cookieStoreIds = new Set<string>();
   // Store cookieStoreIds from the contextualIdentities API
   if (getSetting(state, 'contextualIdentities')) {
-    const contextualIdentitiesObjects = await browser.contextualIdentities.query(
-      {},
-    );
+    const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
 
     for (const object of contextualIdentitiesObjects) {
       cookieStoreIds.add(object.cookieStoreId);
@@ -321,15 +316,15 @@ export const cleanCookiesOperation = async (
     });
   }
 
-  // Clean other browsingdata
-  const hostnamesToClean = allLocalstorageToClean.map(
-    obj => obj.cookie.hostname,
+  // Clean other browsingdata.  Pass in Domain for specific cleanup for LocalStorage.
+  const domainsToClean = allLocalstorageToClean.map(
+    obj => obj.cookie.domain,
   );
 
   try {
-    await otherBrowsingDataCleanup(state, hostnamesToClean);
+    await otherBrowsingDataCleanup(state, domainsToClean);
   } catch (e) {
-    console.error(e, hostnamesToClean);
+    console.error(e, domainsToClean);
     // if it reaches this point then cookies were deleted, so don't return undefined
     throwErrorNotification(e);
   }
