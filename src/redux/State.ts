@@ -78,8 +78,8 @@ export const initialState: State = {
       value: false,
       id: 12,
     },
-    disableNewVersionPopup: {
-      name: 'disableNewVersionPopup',
+    enableNewVersionPopup: {
+      name: 'enableNewVersionPopup',
       value: false,
       id: 13,
     }
