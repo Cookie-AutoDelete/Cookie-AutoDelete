@@ -458,9 +458,5 @@
   "whiteCleanLocalstorage": {
     "message": "Дештиклирајте „Чувај LocalStorage“ на новом белом списку израза",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "disableNewVersionPopup": {
-    "message": "Онемогући искачући прозор када се објави ново издање",
-    "description": "Disable Popup when New Version is Released"
   }
 }
