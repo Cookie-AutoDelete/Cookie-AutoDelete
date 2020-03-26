@@ -458,9 +458,5 @@
   "whiteCleanLocalstorage": {
     "message": "Odznacz 'Odznacz 'Zachowaj localStorage' w nowych formułach białej listy",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "disableNewVersionPopup": {
-    "message": "Wyłącz popup z informacjami o nowej wersji",
-    "description": "Disable Popup when New Version is Released"
   }
 }
