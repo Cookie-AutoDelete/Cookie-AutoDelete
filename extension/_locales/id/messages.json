@@ -450,5 +450,13 @@
   "menuText": {
     "message": "Menu",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "greyCleanLocalstorage": {
+    "message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Abu-abu Baru",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Putih Baru",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   }
 }
