@@ -450,5 +450,13 @@
   "menuText": {
     "message": "Меню",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "greyCleanLocalstorage": {
+    "message": "Снять флажок 'Сохранять локальное хранилище' для новых записей в сером списке",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Снять флажок 'Сохранять локальное хранилище' для новых записей в белом списке",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   }
 }
