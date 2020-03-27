@@ -214,7 +214,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           <div className="row" style={styles.rowOverrides}>
             <div className="col">
               <CheckboxSetting
-                text={browser.i18n.getMessage('localstorageCleanupText')}
+                text={`${browser.i18n.getMessage('localstorageCleanupText')} (Firefox 58+, Chrome 74+)`}
                 settingObject={settings.localstorageCleanup}
                 inline={true}
                 updateSetting={payload => onUpdateSetting(payload)}
