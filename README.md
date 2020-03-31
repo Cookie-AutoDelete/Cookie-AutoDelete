@@ -25,7 +25,7 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 ### via Official Channels
 - [Google Chrome](https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh)
 - [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
-- Microsoft Edge Chromium (Extension Page Setup/Upload in Progress.)
+- [Microsoft Edge Chromium](https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo) (Exactly the same as Google Chrome for the time being)
 
 ### via Self Installation
 - [Github Releases](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/releases)
