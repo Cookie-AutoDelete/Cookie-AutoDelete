@@ -23,7 +23,7 @@ const ROOTDIR = process.cwd();
 const BUILDDIR = path.join(ROOTDIR, BUILDS);
 const EXTDIR = path.join(ROOTDIR, EXT);
 
-console.log("Using NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
+console.log("\n\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
 console.log("Current Root Directory is:  %s", ROOTDIR);
 
 if (process.env.TRAVIS_TAG === undefined) {
