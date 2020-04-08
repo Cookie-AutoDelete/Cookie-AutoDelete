@@ -14,9 +14,10 @@ jobs:
         env:
           GH_CXT: ${{ toJson(github) }}
         run:  echo "$GH_CXT"
+      -
       - name: Echo Fun
         env:
-          CI: true
+          CI: ${{ true }}
           GH: ${{ github }}
           GH_OBJ: ${{ github }}
           GH_ACTIONS: ${{ github.actions }}
