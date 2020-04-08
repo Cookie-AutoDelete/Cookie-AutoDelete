@@ -450,5 +450,9 @@
   "menuText": {
     "message": "Menu",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "enableNewVersionPopup": {
+    "message": "Ativar popup quando uma nova versão for lançada",
+    "description": "Enable Popup when New Version is Released"
   }
 }
