@@ -41,15 +41,14 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 ### Contributing code
 
 #### Requirements
-- Bash (cause there's some .sh scripts, otherwise you can't do `npm run build`, but can still do `npm run dev`)
 - Latest version of Node.js
 
 #### Development
 - `npm install` - Installs all dependencies
-- `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.js` and its dependencies to `/extension`
+- `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.ts`, popup, and setting items and its dependencies to `/extension`
 - `npm run lint` - Runs the eslinter for JS files
 - `npm test` - Runs the test suite located in `/test`
-- `npm run build` - Builds the Firefox (.xpi) and Chrome (.zip) builds
+- `npm run build` - Builds the Firefox (.xpi/.zip) and Chrome (.zip) builds
 
 #### Testing
 1. Run `npm install` (if you haven't already)
