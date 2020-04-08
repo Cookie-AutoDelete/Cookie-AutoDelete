@@ -94,7 +94,7 @@
     "description": "Settings"
   },
   "optionsText": {
-    "message": "Опции",
+    "message": "Настройки",
     "description": "Options"
   },
   "settingsText": {
@@ -222,7 +222,7 @@
     }
   },
   "releaseNotesText": {
-    "message": "Заметки к релизу",
+    "message": "Примечания к выпуску",
     "description": "Release Notes"
   },
   "activeModeText": {
@@ -458,5 +458,13 @@
   "whiteCleanLocalstorage": {
     "message": "Снять флажок 'Сохранять локальное хранилище' для новых записей в белом списке",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "enableNewVersionPopup": {
+    "message": "Включить всплывающее окно при выпуске новой версии",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Предупреждение: ВСЁ существующее локальное хранилище будет очищаться после включения очистки локального хранилища.",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }
