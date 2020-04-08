@@ -11,8 +11,7 @@ install:
 script:
   - npm run test-all
 before_deploy:
-  - chmod +x ./tools/buildFilesDev.sh
-  - bash tools/replaceVersionNumber.sh
+  - node ./tools/replaceVersionNumber.js
   - npm run-script build
 deploy:
   provider: releases

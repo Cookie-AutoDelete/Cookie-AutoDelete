@@ -8,9 +8,9 @@ on:
       - '**/README.md'
       - '**/_locales/**'
   pull_request:
-    branches-ignore: 
+    branches-ignore:
       - 'l10n_*'
-    paths-ignore: 
+    paths-ignore:
       - '**/README.md'
       - '**/_locales/**'
 
@@ -22,7 +22,7 @@ jobs:
     - name: Checkout Commit
       uses: actions/checkout@v2
     - name: Use Node.js 13.x
-      uses: actions/setup-node@v1.4.0
+      uses: actions/setup-node@v1.4.1
       with:
         node-version: '13.x'
     - name: Cache Node.js
