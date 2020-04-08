@@ -6,16 +6,21 @@ on:
       - 'ga_*'
 
 jobs:
-  all_jobs:
+  one:
     name: Tests
     runs-on: ubuntu-latest
     steps:
-    - name: Echo Fun
-      env:
-        CI: true
-        GITHUB_OBJ: ${{ github }}
-        GITHUB_ACTIONS: ${{ github.actions }}
-        GITHUB_REF: ${{ github.ref }}
-        GITHUB_SECRETS: ${{ secrets }}
-      run:  |
-        echo "CI $CI\nGithub: $GITHUB\nGH_OBJ: $GITHUB_OBJ\nSecrets: $SECRETS\nGH_SEC: $GITHUB_SECRETS"
+      - name: Dump GitHub Context
+        env:
+          GH_CXT: ${{ toJson(github) }}
+        run:  echo "$GH_CXT"
+      - name: Echo Fun
+        env:
+          CI: true
+          GH: ${{ github }}
+          GH_OBJ: ${{ github }}
+          GH_ACTIONS: ${{ github.actions }}
+          GH_REF: ${{ github.ref }}
+          GH_SECRETS: ${{ secrets }}
+        run:  |
+          echo "CI $CI\nGitHub:  $GITHUB\nGH_OBJ: $GITHUB_OBJ\nSecrets: $SECRETS\nGH_SEC: $GITHUB_SECRETS"
