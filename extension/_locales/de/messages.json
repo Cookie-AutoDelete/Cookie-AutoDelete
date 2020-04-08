@@ -450,5 +450,21 @@
   "menuText": {
     "message": "Menü",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "greyCleanLocalstorage": {
+    "message": "'Local Storage behalten' bei neuen Greylist-Ausdrücken abwählen",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "'Local Storage behalten' bei neuen Whitelist-Ausdrücken abwählen",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "enableNewVersionPopup": {
+    "message": "Pop-up bei Veröffentlichung neuer Versionen aktivieren",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Warnung: Bei aktiviertem Aufräumen des Local Storage wird der GESAMTE vorhandene Local Storage gelöscht.",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }

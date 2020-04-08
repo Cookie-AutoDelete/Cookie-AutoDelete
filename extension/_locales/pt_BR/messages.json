@@ -450,5 +450,13 @@
   "menuText": {
     "message": "Menu",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "enableNewVersionPopup": {
+    "message": "Ativar popup quando uma nova versão for lançada",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Atenção: TODO o armazenamento local existente será removido após ativação da \"Limpeza de Armazenamento Local\".",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }
