@@ -18,9 +18,8 @@ jobs:
         env:
           CI: ${{ true }}
           GH: ${{ toJson(github) }}
-          GH_OBJ: ${{ github }}
           GH_ACTIONS: ${{ github.actions }}
           GH_REF: ${{ github.ref }}
           GH_SECRETS: ${{ toJson(secrets) }}
         run:  |
-          echo "CI $CI\nGitHub:  $GITHUB\nGH_OBJ: $GITHUB_OBJ\nSecrets: $SECRETS\nGH_SEC: $GITHUB_SECRETS"
+          echo "CI $CI\nGitHub:  $GH\nActions:  $GH_ACTIONS\nRef: $GH_REF\nSecrets: $GH_SECRETS\nGH_SEC: $GITHUB_SECRETS"
