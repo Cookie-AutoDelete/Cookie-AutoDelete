@@ -79,7 +79,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
               })
             }
             value={settings.delayBeforeClean.value as number}
-            min="0"
+            min="1"
           />
           <span>{browser.i18n.getMessage('secondsText')}</span>
           <SettingsTooltip
