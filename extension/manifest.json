@@ -11,7 +11,7 @@
   },
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/Cookie-AutoDelete/Cookie-AutoDelete",
-  "author": "Kenny Do",
+  "author": "CAD Team",
   "default_locale": "en",
   "browser_action": {
     "browser_style": true,
