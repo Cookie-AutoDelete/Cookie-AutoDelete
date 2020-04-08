@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Echo Fun
-      run:  |
-        echo "CI $CI\nGithub: $GITHUB\nGH_OBJ: $GITHUB_OBJ\nSecrets: $SECRETS\nGH_SEC: $GITHUB_SECRETS"
       env:
         CI: true
         GITHUB_OBJ: ${{ github }}
         GITHUB_ACTIONS: ${{ github.actions }}
         GITHUB_REF: ${{ github.ref }}
         GITHUB_SECRETS: ${{ secrets }}
+      run:  |
+        echo "CI $CI\nGithub: $GITHUB\nGH_OBJ: $GITHUB_OBJ\nSecrets: $SECRETS\nGH_SEC: $GITHUB_SECRETS"
