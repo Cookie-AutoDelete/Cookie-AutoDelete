@@ -3,12 +3,46 @@
     "message": "Cookie AutoDelete",
     "description": "Name of the extension."
   },
+  "extensionDescription": {
+    "message": "Ovládejte soubory cookie! Automaticky odstraňte nechtěné soubory cookie z uzavřených karet při zachování toho, co chcete.",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
   "notificationTitle": {
     "message": "Cookies were deleted!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
+  "notificationContent": {
+    "message": "$Num$ smazal soubory cookie z: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookie(s)"
+  },
+  "filterText": {
+    "message": "Filtr",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Nic",
+    "description": "None"
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Povolení podpory pro Firefox je Kontejnerové Tabs",
     "description": "Enable Support for Firefox's Container Tabs"
+  },
+  "resetExtensionDataText": {
+    "message": "Resetovat data rozšíření",
+    "description": "Reset Extension Data"
   }
 }
