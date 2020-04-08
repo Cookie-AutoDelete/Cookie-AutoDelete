@@ -3,12 +3,468 @@
     "message": "Cookie AutoDelete",
     "description": "Name of the extension."
   },
+  "extensionDescription": {
+    "message": "Ovládejte soubory cookie! Automaticky odstraňte nechtěné soubory cookie z uzavřených karet při zachování toho, co chcete.",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
   "notificationTitle": {
     "message": "Cookies were deleted!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
+  "notificationContent": {
+    "message": "$Num$ smazal soubory cookie z: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookie(s)"
+  },
+  "filterText": {
+    "message": "Filtr",
+    "description": "Filter"
+  },
+  "noneText": {
+    "message": "Nic",
+    "description": "None"
+  },
+  "cleanText": {
+    "message": "Vyčistit",
+    "description": "Clean"
+  },
+  "keepText": {
+    "message": "Zachovat",
+    "description": "Keep"
+  },
+  "cookieCleanupText": {
+    "message": "Spustit vyčištění",
+    "description": "Run cleanup now"
+  },
+  "cleanIgnoringOpenTabsText": {
+    "message": "Čiré, včetně otevřených panelů",
+    "description": "Clean, include open tabs"
+  },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Spustit čištění nyní, včetně cookies z otevřených panelů",
+    "description": "Run cleanup now, include cookies from open tabs"
+  },
+  "clearSiteDataText": {
+    "message": "Vymazat $siteData$ pro tuto doménu",
+    "description": "Clear cookies for this domain",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
+      }
+    }
+  },
+  "clearSiteDataForDomainText": {
+    "message": "Vymazat vše $siteData$ pro $domain$",
+    "description": "Clear all cookies for example.com",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
+      },
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "noRulesText": {
+    "message": "Žádná pravidla neodpovídají této doméně",
+    "description": "No rules matched this domain"
+  },
+  "welcomeText": {
+    "message": "Vítejte",
+    "description": "Welcome"
+  },
+  "preferencesText": {
+    "message": "Nastavení",
+    "description": "Settings"
+  },
+  "optionsText": {
+    "message": "Možnosti",
+    "description": "Options"
+  },
+  "settingsText": {
+    "message": "Nastavení cookie",
+    "description": "Cookie Settings"
+  },
+  "whiteListText": {
+    "message": "Seznam výrazů",
+    "description": "List of Expressions"
+  },
+  "cleanupLogText": {
+    "message": "Vyčistit protokol",
+    "description": "Cleanup Log"
+  },
+  "aboutText": {
+    "message": "O aplikaci",
+    "description": "About"
+  },
+  "welcomeMessage": {
+    "message": "Ahoj! Během této relace $cadTitle$ odstranil $sessionDeleted$ cookies a celkem $totalDeleted$ cookies.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
+  "oldReleasesText": {
+    "message": "Starší poznámky k vydání lze zobrazit online na",
+    "description": "Older release notes can be viewed online at"
+  },
+  "reasonKeepOpenTab": {
+    "message": "Ponechat z otevřených panelů *.$mainDomain$",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Vyčistit kvůli startu a $hostname$ není v bílém nebo šedém seznamu",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Vyčistit kvůli čištění startu a $matchedExpression$ je v Greylist",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Vyčistit, protože $hostname$ není v bílém nebo šedém seznamu",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Ponechat z důvodu shodnosti $matchedExpression$ v $listType$",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonCleanCookieName": {
+    "message": "Částečné čištění z důvodu shodnosti $matchedExpression$ v $listType$",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "nebo v jakémkoliv otevřeném panelu",
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+  },
+  "reasonTabsWereIgnored": {
+    "message": "a také otevřené panely byly ignorovány",
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+  },
+  "reviewLinkMessage": {
+    "message": "Děkujeme, že jste vyzkoušeli $cadTitle$. Pokud se vám líbí, pak prosím podejte recenzi.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
+  },
+  "releaseNotesText": {
+    "message": "Poznámky k vydání",
+    "description": "Release Notes"
+  },
+  "activeModeText": {
+    "message": "Povolit automatické čištění? Zpoždění před čištěním:",
+    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
+  },
+  "minutesText": {
+    "message": "minut(y)",
+    "description": "minute(s)"
+  },
+  "secondsText": {
+    "message": "sekund(y)",
+    "description": "second(s)"
+  },
+  "cleanupDomainChangeText": {
+    "message": "Povolit čištění při změně domény",
+    "description": "Enable Cleanup on Domain Change"
+  },
+  "enableCleanupLogText": {
+    "message": "Povolit vyčištění logu a počítadla",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "keepLocalstorageText": {
+    "message": "Ponechat lokální úložiště",
+    "description": "Keep LocalStorage"
+  },
+  "keepAllCookiesText": {
+    "message": "Zachovat všechny cookies",
+    "description": "Keep All Cookies"
+  },
+  "clearLogsText": {
+    "message": "Vymazat protokoly",
+    "description": "Clear Logs"
+  },
+  "errorText": {
+    "message": "Chyba!",
+    "description": "Error!"
+  },
+  "restoreText": {
+    "message": "Obnovit",
+    "description": "Ex: Restore Cleanup"
+  },
+  "showNumberOfCookiesInIconText": {
+    "message": "Zobrazit počet souborů cookie pro danou doménu",
+    "description": "Show Number of Cookies for that Domain"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Zobrazit oznámení po vyčištění cookie",
+    "description": "Show Notification After Cookie Cleanup"
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "Vyčistit soubory cookie z otevřených panelů při spuštění",
+    "description": "Clean Cookies from Open Tabs on Startup"
+  },
+  "enableGlobalSubdomainText": {
+    "message": "Povolit kontrolu poddomén",
+    "description": "Enable Check for Subdomains"
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Povolení podpory pro Firefox je Kontejnerové Tabs",
     "description": "Enable Support for Firefox's Container Tabs"
+  },
+  "localstorageCleanupText": {
+    "message": "LocalStorage čištění (Firefox 58+)",
+    "description": "LocalStorage Cleanup (Firefox 58+)"
+  },
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "Povolení LocalStorage Cleanup a Container Tabs by mohlo způsobit některé nežádoucí vedlejší efekty kvůli API omezením",
+    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+  },
+  "defaultSettingsText": {
+    "message": "Obnovit výchozí nastavení",
+    "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Resetovat data rozšíření",
+    "description": "Reset Extension Data"
+  },
+  "whiteListWordText": {
+    "message": "Seznam povolených",
+    "description": "Whitelist"
+  },
+  "greyListWordText": {
+    "message": "Greylist",
+    "description": "Greylist"
+  },
+  "toWhiteListText": {
+    "message": "Přidat do Whitelist (nečistit)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toGreyListText": {
+    "message": "Přidat do Greylist (Clean on Browser Restart)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "clearURLText": {
+    "message": "Odstranit vše",
+    "description": "Remove All"
+  },
+  "exportURLSText": {
+    "message": "Exportovat výrazy",
+    "description": "Export Expressions"
+  },
+  "exportURLSTitle": {
+    "message": "Časová značka bude připojena k názvu souboru při exportu.\nPotíže se stahováním? Klikněte pravým tlačítkem na toto tlačítko a klikněte na 'Uložit odkaz jako...' pro stažení.",
+    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+  },
+  "questionExpression": {
+    "message": "Jak fungují výrazy?",
+    "description": "How do Expressions work?"
+  },
+  "importURLSText": {
+    "message": "Importovat výrazy",
+    "description": "Import Expressions"
+  },
+  "reportIssuesText": {
+    "message": "Nahlásit problémy a navrhnout funkce",
+    "description": "Report issues and suggest features"
+  },
+  "documentationText": {
+    "message": "Dokumentace",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Často kladené otázky, společné otázky a řešení",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "versionText": {
+    "message": "$browser$ verze",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "contributorsText": {
+    "message": "Přispěvatelé",
+    "description": "Contributors"
+  },
+  "contributeText": {
+    "message": "Přispějte",
+    "description": "Contribute"
+  },
+  "domainExpressionsText": {
+    "message": "Výraz domény",
+    "description": "Domain Expression"
+  },
+  "matchedDomainExpressionText": {
+    "message": "Odpovídající výraz domény",
+    "description": "Matched Domain Expression"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "Ekvivalentní výraz Regular výraz",
+    "description": "Regular Expression Equivalent"
+  },
+  "listTypeText": {
+    "message": "Typ seznamu",
+    "description": "List Type"
+  },
+  "domainPlaceholderText": {
+    "message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
+    "description": "Domain Expression"
+  },
+  "noExpressionsText": {
+    "message": "Nebyly definovány žádné výrazy.",
+    "description": "No expressions defined."
+  },
+  "removeExpressionText": {
+    "message": "Odstranit výraz",
+    "description": "Remove expression"
+  },
+  "stopEditingText": {
+    "message": "Zastavit úpravy",
+    "description": "Stop editing"
+  },
+  "saveExpressionText": {
+    "message": "Uložit výraz",
+    "description": "Save expression"
+  },
+  "editExpressionText": {
+    "message": "Upravit výraz",
+    "description": "Edit expression"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Přepnout na greylist",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Přepnout na seznam povolených",
+    "description": "Toggle to whitelist"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Automatické čištění povoleno",
+    "description": "Auto-clean enabled"
+  },
+  "autoDeleteDisabledText": {
+    "message": "Automatické čištění zakázáno",
+    "description": "Auto-clean disabled"
+  },
+  "disableAutoDeleteText": {
+    "message": "Přepnout pro vypnutí automatického čištění (ruční režim)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "enableAutoDeleteText": {
+    "message": "Zapnout/zapnout automatické čištění (automatický režim)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "notificationEnabledText": {
+    "message": "Oznámení povoleno",
+    "description": "Notification enabled"
+  },
+  "notificationDisabledText": {
+    "message": "Oznámení zakázáno",
+    "description": "Notification disabled"
+  },
+  "toggleNotificationText": {
+    "message": "Zapnout nebo vypnout oznámení",
+    "description": "Toggle to enable or disable notifications"
+  },
+  "noCleanupLogText": {
+    "message": "Nebyly nalezeny žádné čistící protokoly",
+    "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "greyCleanLocalstorage": {
+    "message": "Zrušte zaškrtnutí 'Ponechat LocalStorage' na Novém greylistu výrazů",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Zrušte zaškrtnutí 'Ponechat LocalStorage' na Novém Whitelistu výrazů",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "enableNewVersionPopup": {
+    "message": "Povolit vyskakovací okno, když je vydána nová verze",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Upozornění: VŠECHNY stávající LocalStorage bude vymazáno při povolení vyčištění LocalStorage.",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }

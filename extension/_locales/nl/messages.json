@@ -29,6 +29,10 @@
     "message": "Cookie(s)",
     "description": "Cookie(s)"
   },
+  "filterText": {
+    "message": "Filter",
+    "description": "Filter"
+  },
   "noneText": {
     "message": "Geen",
     "description": "None"
@@ -89,6 +93,10 @@
     "message": "Instellingen",
     "description": "Settings"
   },
+  "optionsText": {
+    "message": "Opties",
+    "description": "Options"
+  },
   "settingsText": {
     "message": "Cookie-instellingen",
     "description": "Cookie Settings"
@@ -122,6 +130,10 @@
         "example": "456"
       }
     }
+  },
+  "oldReleasesText": {
+    "message": "Oudere uitgaveopmerkingen kunnen online worden bekeken op",
+    "description": "Older release notes can be viewed online at"
   },
   "reasonKeepOpenTab": {
     "message": "Behouden omdat er een open tabblad wijst naar *.$mainDomain$",
@@ -278,12 +290,24 @@
     "description": "LocalStorage Cleanup (Firefox 58+)"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Het inschakelen van zowel de Localstorage opruimen en de Container tabbladen kan sommige ongewenste bijwerkingen veroorzaken als gevolg van beperkingen van de API",
+    "message": "Het inschakelen van zowel het opruimen van de lokale opslag en de container tabbladen kan sommige ongewenste bijwerkingen veroorzaken als gevolg van beperkingen van de API",
     "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
   },
   "defaultSettingsText": {
     "message": "Standaardinstellingen herstellen",
     "description": "Restore Default Settings"
+  },
+  "resetExtensionDataText": {
+    "message": "Extensiegegevens resetten",
+    "description": "Reset Extension Data"
+  },
+  "whiteListWordText": {
+    "message": "Whitelist",
+    "description": "Whitelist"
+  },
+  "greyListWordText": {
+    "message": "Greylist",
+    "description": "Greylist"
   },
   "toWhiteListText": {
     "message": "Toevoegen aan Whitelist (ruim cookie nooit op)",
@@ -316,6 +340,14 @@
   "reportIssuesText": {
     "message": "Problemen rapporteren en voorstellen van functies",
     "description": "Report issues and suggest features"
+  },
+  "documentationText": {
+    "message": "Documentatie",
+    "description": "Documentation"
+  },
+  "faqText": {
+    "message": "Veelgestelde vragen, gemeenschappelijke problemen en oplossingen",
+    "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
     "message": "$browser$ versie",
@@ -414,5 +446,25 @@
   "noCleanupLogText": {
     "message": "Geen logboeken gevonden om op te schonen",
     "description": "No Cleanup Logs Found"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "greyCleanLocalstorage": {
+    "message": "Vink 'lokale opslag behouden' uit bij nieuwe Greylist Expressies",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Vink 'lokale opslag behouden' uit bij nieuwe Whitelist Expressies",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "enableNewVersionPopup": {
+    "message": "Melding inschakelen wanneer nieuwe versie wordt vrijgegeven",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Waarschuwing: ALLE bestaande lokale opslag zal worden gewist bij inschakelen van lokale opslag opruimen.",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }
