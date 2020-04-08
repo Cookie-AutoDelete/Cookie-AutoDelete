@@ -25,11 +25,12 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 ### via Official Channels
 - [Google Chrome](https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh)
 - [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
+- [Microsoft Edge Chromium](https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo) (Exactly the same as Google Chrome for the time being)
 
 ### via Self Installation
 - [Github Releases](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/releases)
 
-> Please keep in mind that at this time only Mozilla Firefox and Google Chrome (as well as its development branches e.g. Developer Edition, Canary) will be supported.  While you may be able to install this extension on other browsers (i.e. Varations of Edge, Chrome, Firefox, Android),  there will be no official support from the authors and maintainers through Github Issues.
+> Please keep in mind that at this time only Mozilla Firefox and Google Chrome (as well as its development branches e.g. Developer Edition, Canary) will be supported.  Microsoft Edge Chromium will be considered initially as partially official as it is using the same code as Google Chrome for now.  While you may be able to install this extension on other browsers (i.e. Varations of Edge, Chrome, Firefox, Android),  there will be no official support from the authors and maintainers through Github Issues.
 
 ## Contributing
 
