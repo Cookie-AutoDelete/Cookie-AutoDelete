@@ -19,13 +19,24 @@ export const getHostname = (urlToGetHostName: string | undefined) => {
   if (!urlToGetHostName) {
     return '';
   }
-  try {
-    // Strip "www." if the URL starts with it.
-    const hostname = new URL(urlToGetHostName).hostname.replace(
+  try { 
+ 	// Adding support for the great suspender extension (klbibkeccnjlkjkiokjodocebajanakg)
+	 if (new URL(urlToGetHostName).hostname == 'klbibkeccnjlkjkiokjodocebajanakg') {
+	   const hostnameSuspenderExt = urlToGetHostName.replace(
+      /^chrome-extension:\/\/klbibkeccnjlkjkiokjodocebajanakg.*uri=/,
+      '',
+      );
+		  return new URL(hostnameSuspenderExt).hostname.replace(
       /^www[a-z0-9]?\./,
       '',
-    );
-    return hostname;
+      );
+ 	}
+  // Strip "www." if the URL starts with it.
+  const hostname = new URL(urlToGetHostName).hostname.replace(
+    /^www[a-z0-9]?\./,
+    '',
+  );
+	 return hostname;
   } catch (error) {
     return '';
   }
@@ -38,7 +49,7 @@ export const isAWebpage = (URL: string | undefined) => {
   if (!URL) {
     return false;
   }
-  if (URL.match(/^http:/) || URL.match(/^https:/)) {
+  if (URL.match(/^http:/) || URL.match(/^https:/) || URL.match(/^chrome-extension:\/\/klbibkeccnjlkjkiokjodocebajanakg.*uri=http/)) {
     return true;
   }
   return false;
