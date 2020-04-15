@@ -2,10 +2,8 @@ name: GitHub Actions Testing
 
 on:
   push:
-    branches:
-      - 'ga_*'
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   one:
