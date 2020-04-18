@@ -10,10 +10,12 @@ function changeVersion(filename, version) {
   console.log('Finished updating version number on: ' + filename);
 }
 
-console.log('Checking if CI_TAG exists...');
-if (process.env.TRAVIS_TAG !== undefined) {
-  let versionTag = process.env.TRAVIS_TAG;
-  console.log('CI_TAG exists - %s', versionTag);
+console.log('Checking if a CI TAG exists...');
+if (process.env.TRAVIS_TAG !== undefined || process.env.GITHUB_REF !== undefined) {
+  console.log('GITHUB_REF:  %s', process.env.GITHUB_REF);
+  console.log('TRAVIS_TAG:  %s', process.env.TRAVIS_TAG);
+  let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG;
+  console.log('TAG exists - %s', versionTag);
   if (versionTag.startsWith('v')) {
     versionTag = versionTag.splice(1);
   }
@@ -21,7 +23,9 @@ if (process.env.TRAVIS_TAG !== undefined) {
   console.log('Replacing...');
   changeVersion('../package.json', versionTag);
   changeVersion('../extension/manifest.json', versionTag);
-  console.log('Replacement done with ' + versionTag);
+  console.log('Replacements done with ' + versionTag);
 } else {
-  console.log("CI_TAG does not exist.  No Replacements done.");
+  console.log("CI TAG does not exist.  No Replacements done.");
+  console.log(process.env);
+  return -1;
 }
