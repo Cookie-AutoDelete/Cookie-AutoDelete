@@ -17,11 +17,9 @@ jobs:
       - name: Echo Fun
         env:
           CI: ${{ true }}
-          GH_REF: ${{ github.ref }}
           GH_SECRETS: ${{ toJson(secrets) }}
         run:  |
           echo "CI $CI"
-          echo "Ref: $GH_REF"
           echo "GITHUB_Ref:  $GITHUB_REF"
           echo "Secrets: $GH_SECRETS"
           echo "GITHUB_SECRETS: $GITHUB_SECRETS"
