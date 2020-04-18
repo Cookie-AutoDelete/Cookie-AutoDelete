@@ -63,7 +63,7 @@ jobs:
           builds/Cookie-AutoDelete_Chrome_*.zip
           builds/Cookie-AutoDelete_Firefox_*.xpi
     - name: Google Chrome WebStore Upload
-      uses: Passiverecords/chrome-extension-upload-action@v1.4.1
+      uses: Passiverecords/chrome-extension-upload-action@1.4.1
       with:
         app-id: 'fhcgjolkccmbidfldomjliifgaodjagh'
         file-name: 'builds/Cookie-AutoDelete_Chrome.zip'
