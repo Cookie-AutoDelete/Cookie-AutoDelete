@@ -16,13 +16,16 @@ if (process.env.TRAVIS_TAG !== undefined || process.env.GITHUB_REF !== undefined
   console.log('TRAVIS_TAG:  %s', process.env.TRAVIS_TAG);
   let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG;
   console.log('TAG exists - %s', versionTag);
+  if (versionTag.startsWith('refs/tags/') {
+    versionTag = versionTag.splice(10);
+  }
   if (versionTag.startsWith('v')) {
     versionTag = versionTag.splice(1);
   }
   console.log('New Version Number: ', versionTag);
   console.log('Replacing...');
-  changeVersion('../package.json', versionTag);
-  changeVersion('../extension/manifest.json', versionTag);
+  changeVersion('package.json', versionTag);
+  changeVersion('extension/manifest.json', versionTag);
   console.log('Replacements done with ' + versionTag);
 } else {
   console.log("CI TAG does not exist.  No Replacements done.");
