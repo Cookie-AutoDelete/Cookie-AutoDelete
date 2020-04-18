@@ -1,18 +1,14 @@
-name: Node.js CI
+name: Node.js CI Tests
 
 on:
   push:
     branches-ignore:
-      - 'l10n_*'
-    paths-ignore:
-      - '**/README.md'
-      - '**/_locales/**'
+      - '_archived_**'
   pull_request:
     branches-ignore:
-      - 'l10n_*'
+      - '_archived__**'
     paths-ignore:
       - '**/README.md'
-      - '**/_locales/**'
 
 jobs:
   all_jobs:
@@ -22,7 +18,7 @@ jobs:
     - name: Checkout Commit
       uses: actions/checkout@v2
     - name: Use Node.js 13.x
-      uses: actions/setup-node@v1.4.1
+      uses: actions/setup-node@v1
       with:
         node-version: '13.x'
     - name: Cache Node.js

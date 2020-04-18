@@ -10,14 +10,18 @@ function changeVersion(filename, version) {
   console.log('Finished updating version number on: ' + filename);
 }
 
-console.log('Checking if TRAVIS_TAG exists...');
+console.log('Checking if CI_TAG exists...');
 if (process.env.TRAVIS_TAG !== undefined) {
-  const versionTag = process.env.TRAVIS_TAG;
-  console.log('TRAVIS_TAG exists - New Version Number: ', versionTag);
+  let versionTag = process.env.TRAVIS_TAG;
+  console.log('CI_TAG exists - %s', versionTag);
+  if (versionTag.startsWith('v')) {
+    versionTag = versionTag.splice(1);
+  }
+  console.log('New Version Number: ', versionTag);
   console.log('Replacing...');
-  changeVersion('./package.json', versionTag);
-  changeVersion('extension/manifest.json', versionTag);
+  changeVersion('../package.json', versionTag);
+  changeVersion('../extension/manifest.json', versionTag);
   console.log('Replacement done with ' + versionTag);
 } else {
-  console.log("TRAVIS_TAG does not exist.  No Replacements done.");
+  console.log("CI_TAG does not exist.  No Replacements done.");
 }
