@@ -1,3 +1,5 @@
+const ROOTDIR = process.cwd();
+
 function changeVersion(filename, version) {
   const fs = require('fs');
   var jsonData = require(filename);
@@ -9,8 +11,9 @@ function changeVersion(filename, version) {
   fs.writeFileSync(filename, JSON.stringify(jsonData, null, 2));
   console.log('Finished updating version number on: ' + filename);
 }
-
-console.log("\nCurrent Process Directory:  %s", process.cwd());
+console.log('\nreplaceVersionNumber.js log');
+console.log("\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
+console.log("\nCurrent Process Directory:  %s", ROOTDIR);
 console.log('Checking if a CI TAG exists...');
 if (process.env.TRAVIS_TAG !== undefined || process.env.GITHUB_REF !== undefined) {
   console.log('GITHUB_REF:  %s', process.env.GITHUB_REF);
@@ -18,10 +21,10 @@ if (process.env.TRAVIS_TAG !== undefined || process.env.GITHUB_REF !== undefined
   let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG;
   console.log('TAG exists - %s', versionTag);
   if (versionTag.startsWith('refs/tags/')) {
-    versionTag = versionTag.splice(10);
+    versionTag = versionTag.slice(10);
   }
   if (versionTag.startsWith('v')) {
-    versionTag = versionTag.splice(1);
+    versionTag = versionTag.slice(1);
   }
   console.log('New Version Number: ', versionTag);
   console.log('Replacing...');
