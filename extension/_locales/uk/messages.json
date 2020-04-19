@@ -257,7 +257,7 @@
   },
   "localstorageCleanupText": {
     "message": "Очищення локального сховища (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Включення очищення локального сховища і контейнерів може викликати деякі небажані побічні ефекти через обмеження API",
