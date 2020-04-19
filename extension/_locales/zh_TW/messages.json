@@ -275,7 +275,7 @@
   },
   "localstorageCleanupText": {
     "message": "本地儲存清理（Firefox 58+）",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "由於 API 的限制，同時啟用本地存儲清理和容器（身份）標籤頁可能導致一些不必要的副作用",
