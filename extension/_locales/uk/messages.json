@@ -256,7 +256,7 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Очищення локального сховища (Firefox 58+)",
+    "message": "Очищення локального сховища",
     "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
