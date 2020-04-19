@@ -31,13 +31,15 @@ console.log("TRAVIS_TAG:  %s", process.env.TRAVIS_TAG);
 
 let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG;
 
+if (versionTag.startsWith('refs/tags/')) {
+  versionTag = '_' + versionTag.slice(10) + '_';
+} else if (!process.env.TRAVIS_TAG){
+  console.log('Tag is not a version.')
+  versionTag = '';
+}
+
 if (!versionTag) {
-  console.log('Neither GITHUB_REF or TRAVIS_TAG not found.  Adding _Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
-} else {
-  if (versionTag.startsWith('refs/tags/')) {
-    versionTag = versionTag.slice(10);
-  }
-  versionTag = '_' + versionTag + '_';
+  console.log('Neither GITHUB_REF Tag or TRAVIS_TAG was found.  Adding _Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
 }
 
 const TAG = versionTag || ('_Dev_' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/T/,'_').replace(/-|:|\..+/g,'') + '_');
