@@ -287,7 +287,7 @@
   },
   "localstorageCleanupText": {
     "message": "Localstorage Cleanup (Firefox 58 +)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Het inschakelen van zowel het opruimen van de lokale opslag en de container tabbladen kan sommige ongewenste bijwerkingen veroorzaken als gevolg van beperkingen van de API",
