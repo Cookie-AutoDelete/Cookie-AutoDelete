@@ -28,8 +28,8 @@ if (process.env.TRAVIS_TAG !== undefined || process.env.GITHUB_REF !== undefined
   }
   console.log('New Version Number: ', versionTag);
   console.log('Replacing...');
-  changeVersion('package.json', versionTag);
-  changeVersion('extension/manifest.json', versionTag);
+  changeVersion('./package.json', versionTag);
+  changeVersion('./extension/manifest.json', versionTag);
   console.log('Replacements done with ' + versionTag);
 } else {
   console.log("CI TAG does not exist.  No Replacements done.");
