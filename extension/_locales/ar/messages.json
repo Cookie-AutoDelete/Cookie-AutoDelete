@@ -103,6 +103,10 @@
     "message": "إستعادة",
     "description": "Ex: Restore Cleanup"
   },
+  "localstorageCleanupText": {
+    "message": "تنظيف التخزين المحلي",
+    "description": "LocalStorage Cleanup"
+  },
   "defaultSettingsText": {
     "message": "إستعادة الإعدادات الإفتراضية",
     "description": "Restore Default Settings"
