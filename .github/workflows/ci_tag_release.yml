@@ -56,11 +56,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        draft: true
         files: |
           builds/Cookie-AutoDelete_*_Chrome.zip
           builds/Cookie-AutoDelete_*_Firefox.xpi
-        body: This is an auto-generated release - Change log will be manually inserted soon!
+        body: This is an auto-generated release with simultaneous upload to Chrome WebStore and Mozilla Firefox Addons (pending approval)- Change log will be manually inserted soon!
     - name: Google Chrome WebStore Upload
       uses: Passiverecords/chrome-extension-upload-action@1.4.1
       with:
