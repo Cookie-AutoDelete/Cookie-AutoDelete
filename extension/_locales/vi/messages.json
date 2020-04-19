@@ -269,7 +269,7 @@
   },
   "localstorageCleanupText": {
     "message": "Dọn dẹp lưu trữ cục bộ (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Bật cả Lưu trữ cục bộ và Trang tách biệt có thể dẫn đến nhiều điều ngoài ý muốn do Hạn chế API",
