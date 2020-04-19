@@ -268,7 +268,7 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Dọn dẹp lưu trữ cục bộ (Firefox 58+)",
+    "message": "Dọn dẹp lưu trữ cục bộ",
     "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
