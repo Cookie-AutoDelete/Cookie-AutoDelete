@@ -10,10 +10,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 declare namespace browser.browsingData {
   function removeLocalStorage(removalOptions: {
     hostnames?: string[];
+    origins?: string[]; // Added in Chrome 74+
     since?: number;
   }): Promise<void>;
 }

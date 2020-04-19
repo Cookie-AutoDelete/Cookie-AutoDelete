@@ -163,18 +163,34 @@ export const otherBrowsingDataCleanup = async (
   state: State,
   hostnames: string[],
 ) => {
-  if (
-    state.cache.browserDetect === 'Firefox' &&
-    state.cache.platformOs !== 'android' &&
-    getSetting(state, 'localstorageCleanup')
-  ) {
-    browser.browsingData
-      .removeLocalStorage({
-        hostnames,
-      })
-      .catch(e => {
-        throw e;
+  if (getSetting(state, 'localstorageCleanup')) {
+    if (
+      state.cache.browserDetect === 'Firefox' &&
+      state.cache.browserVersion >= '58' &&
+      state.cache.platformOs !== 'android'
+    ) {
+      browser.browsingData
+        .removeLocalStorage({
+          hostnames,
+        })
+        .catch(e => {
+          throw e;
+        });
+    } else if (
+      state.cache.browserDetect === 'Chrome'
+    ) {
+      const origins: string[] = [];
+      hostnames.forEach(hostname => {
+        origins.push(`https://${hostname}`);
+        origins.push(`http://${hostname}`);
       });
+      browser.browsingData
+        .removeLocalStorage({
+          origins,
+        }).catch(e => {
+          throw e;
+        });
+    }
   }
 };
 
@@ -243,9 +259,7 @@ export const cleanCookiesOperation = async (
   const cookieStoreIds = new Set<string>();
   // Store cookieStoreIds from the contextualIdentities API
   if (getSetting(state, 'contextualIdentities')) {
-    const contextualIdentitiesObjects = await browser.contextualIdentities.query(
-      {},
-    );
+    const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
 
     for (const object of contextualIdentitiesObjects) {
       cookieStoreIds.add(object.cookieStoreId);
@@ -302,15 +316,15 @@ export const cleanCookiesOperation = async (
     });
   }
 
-  // Clean other browsingdata
-  const hostnamesToClean = allLocalstorageToClean.map(
-    obj => obj.cookie.hostname,
+  // Clean other browsingdata.  Pass in Domain for specific cleanup for LocalStorage.
+  const domainsToClean = allLocalstorageToClean.map(
+    obj => obj.cookie.domain,
   );
 
   try {
-    await otherBrowsingDataCleanup(state, hostnamesToClean);
+    await otherBrowsingDataCleanup(state, domainsToClean);
   } catch (e) {
-    console.error(e, hostnamesToClean);
+    console.error(e, domainsToClean);
     // if it reaches this point then cookies were deleted, so don't return undefined
     throwErrorNotification(e);
   }
