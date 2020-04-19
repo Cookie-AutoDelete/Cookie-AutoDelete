@@ -33,12 +33,12 @@ let versionTag = process.env.GITHUB_REF;
 if (versionTag && versionTag.startsWith('refs/tags/')) {
   versionTag = versionTag.slice(10) + '_';
 } else {
-  console.log('Tag is not a version.')
+  console.log('GITHUB_REF does not exist or is not a version tag.');
   versionTag = '';
 }
 
 if (!versionTag) {
-  console.log('GITHUB_REF Tag did not contain a valid semver version.  Presuming non-publishing version.  Adding _Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
+  console.log('GITHUB_REF Tag did not contain a valid semver version.  Presuming non-publishing version.  Adding Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
 }
 
 const TAG = versionTag || ('Dev_' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/T/,'_').replace(/-|:|\..+/g,'') + '_');
