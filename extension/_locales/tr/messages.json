@@ -287,7 +287,7 @@
   },
   "localstorageCleanupText": {
     "message": "Yerel Depolama içeriğini temizle (Firefox 58+ sürümlerde kullanılabilir)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "\"Yerel Depolama\" ve \"Container Tabs\"in birlikte kullanılması 'API Limitleri' nedeniyle beklenmeyen hatalara neden olabilir",
