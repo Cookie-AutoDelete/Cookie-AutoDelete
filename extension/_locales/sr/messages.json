@@ -287,7 +287,7 @@
   },
   "localstorageCleanupText": {
     "message": "Чишћење локалног складишта (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Омогућавање чишћења локалног складишта и контејнерских језичака може изазвати нежељена дејства због ограничења АПИ-ја",
