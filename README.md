@@ -1,5 +1,4 @@
-[![Node.js CI](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Node.js%20CI/badge.svg?branch=3.X.X-Branch)](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/actions?query=workflow%3A%22Node.js+CI%22+branch%3A3.X.X-Branch)
-[![Travis CI Build Status](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete.svg?branch=3.X.X-Branch)](https://travis-ci.org/Cookie-AutoDelete/Cookie-AutoDelete)
+![Node.js CI Tests](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Node.js%20CI%20Tests/badge.svg?branch=3.X.X-Branch)
 [![dependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete)
 [![devDependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/dev-status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete?type=dev)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cookie-autodelete/localized.svg)](https://crowdin.com/project/cookie-autodelete)
@@ -41,15 +40,14 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 ### Contributing code
 
 #### Requirements
-- Bash (cause there's some .sh scripts, otherwise you can't do `npm run build`, but can still do `npm run dev`)
 - Latest version of Node.js
 
 #### Development
 - `npm install` - Installs all dependencies
-- `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.js` and its dependencies to `/extension`
+- `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.ts`, popup, and setting items and its dependencies to `/extension`
 - `npm run lint` - Runs the eslinter for JS files
 - `npm test` - Runs the test suite located in `/test`
-- `npm run build` - Builds the Firefox (.xpi) and Chrome (.zip) builds
+- `npm run build` - Builds the Firefox (.xpi/.zip) and Chrome (.zip) builds
 
 #### Testing
 1. Run `npm install` (if you haven't already)

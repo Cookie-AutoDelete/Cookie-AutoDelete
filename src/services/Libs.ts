@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 import ipRegex from 'ip-regex';
 /**
  * Returns the host name of the url. Etc. "https://en.wikipedia.org/wiki/Cat" becomes en.wikipedia.org
@@ -230,10 +230,10 @@ export const undefinedIsTrue = (bool: boolean | undefined) => {
 };
 
 /**
- * Sleep execution for ms
+ * Sleep execution for ms.  Ensures no 0 second setTimeout otherwise side effects.
  */
 export const sleep = (ms: number) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, (ms < 250 ? 250 : ms)));
 };
 
 /**

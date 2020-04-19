@@ -1,6 +1,6 @@
 {
   "name": "cookie-autodelete",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "Firefox and Chrome browser extension that manages Cookies",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
@@ -21,21 +21,22 @@
     "webextension-polyfill": "^0.6.0"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.4",
-    "@types/jest-when": "^2.7.0",
-    "@types/react": "^16.9.25",
-    "@types/react-dom": "^16.9.5",
+    "@types/jest": "^25.2.1",
+    "@types/jest-when": "^2.7.1",
+    "@types/react": "^16.9.32",
+    "@types/react-dom": "^16.9.6",
     "@types/react-redux": "^7.1.7",
     "@types/redux-thunk": "^2.1.0",
     "@types/shortid": "0.0.29",
     "ajv": "^6.12.0",
+    "archiver": "^3.1.1",
     "copy-webpack-plugin": "^5.1.1",
-    "jest": "^25.2.0",
-    "jest-when": "^2.7.0",
+    "jest": "^25.2.7",
+    "jest-when": "^2.7.1",
     "source-map-loader": "^0.2.4",
-    "ts-jest": "^25.2.1",
+    "ts-jest": "^25.3.1",
     "ts-loader": "^6.2.2",
-    "tslint": "^6.1.0",
+    "tslint": "^6.1.1",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-immutable": "^6.0.1",
@@ -48,7 +49,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "webpack --config webpack.config.js && ./tools/buildFilesDev.sh",
+    "build": "webpack --config webpack.config.js && node ./tools/buildFilesDev.js",
     "dev": "webpack --config webpack.config.js --progress --colors --watch",
     "lint": "tslint --project tsconfig.json",
     "test-all": "npm run test && npm run lint"

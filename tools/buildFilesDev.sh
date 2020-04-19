@@ -15,13 +15,13 @@ cd extension/
 
 echo "Building Mozilla Firefox version..."
 zip -r ../$DES/${FIREFOXFILENAME}.xpi *
+cp ../$DES/${FIREFOXFILENAME}.xpi ../$DES/${FIREFOXFILENAME}.zip
 echo "Mozilla Firefox Build done."
 
 echo "Preparing to build Google Chrome version..."
 echo "Removing manifest.json lines not needed in Google Chrome..."
 sed -i '/contextualIdentities/d' manifest.json
 sed -i '/privacy/d' manifest.json
-sed -i '/browsingData/d' manifest.json
 sed -i '/applications/,+5d' manifest.json
 echo "Lines removed."
 
