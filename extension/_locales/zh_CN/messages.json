@@ -286,8 +286,8 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "本地存储清理（Firefox 58+）",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "本地存储清理",
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "由于 API 限制，同时启用本地存储清理和容器（身份）标签页可能导致一些不想要的副作用",
@@ -458,6 +458,10 @@
   "whiteCleanLocalstorage": {
     "message": "在新白名单表达式中取消勾选 \"保留本地存储\"",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "enableNewVersionPopup": {
+    "message": "当新版本发布时启用弹窗提醒",
+    "description": "Enable Popup when New Version is Released"
   },
   "localstorageCleanupWarning": {
     "message": "警告：启用本地存储清理后，所有现有的本地存储将被清除。",

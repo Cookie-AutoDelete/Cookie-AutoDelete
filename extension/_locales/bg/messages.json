@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "Cookie AutoDelete (Автоматично изтриване на бисквитки)",
+    "message": "Самоизтриване на бисквитките",
     "description": "Name of the extension."
   },
   "extensionDescription": {
@@ -286,8 +286,8 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Изчистване на локалното хранилище (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "Изчистване на локалното хранилище",
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Едновременното включване на изчистването на локалното хранилище и изолираните раздели може да доведе до нежелани ефекти поради ограниченията на ППИ",
@@ -451,12 +451,20 @@
     "message": "Меню",
     "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   },
+  "greyCleanLocalstorage": {
+    "message": "Размаркиране на 'Запазване на местното хранилище' в новия сив списък с изрази",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Размаркиране на 'Запазване на местното хранилище' в новия бял списък с изрази",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
   "enableNewVersionPopup": {
     "message": "Показване на известие при ново издание на добавката",
     "description": "Enable Popup when New Version is Released"
   },
   "localstorageCleanupWarning": {
-    "message": "Внимание: ЦЯЛОТО съдържание на LocalStorage ще бъде премахнато при избиране на отметката „Изчистване на LocalStorage“.",
+    "message": "Внимание: ЦЯЛОТО съдържание в местното хранилище ще бъде премахнато при избиране на отметката „Изчистване на местното хранилище“.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   }
 }

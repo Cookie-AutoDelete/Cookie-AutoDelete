@@ -286,8 +286,8 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Limpeza da localstorage (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "Limpeza da localstorage",
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Ativar a limpeza da localstorage e separadores contentores pode causar alguns efeitos secundários indesejados devido a limitações de API",

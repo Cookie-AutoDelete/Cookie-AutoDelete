@@ -286,8 +286,8 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Yerel Depolama içeriğini temizle (Firefox 58+ sürümlerde kullanılabilir)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "Yerel Depolama içeriğini temizle",
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "\"Yerel Depolama\" ve \"Container Tabs\"in birlikte kullanılması 'API Limitleri' nedeniyle beklenmeyen hatalara neden olabilir",

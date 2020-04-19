@@ -286,8 +286,8 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Lokal lagring Opprydding (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "Lokal lagring opprydding",
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Aktivering av både Lokal lagring Rengjør og Container Faner kan føre til noen uønskede bivirkninger på grunn av API-begrensninger",

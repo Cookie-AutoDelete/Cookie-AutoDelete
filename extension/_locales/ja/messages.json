@@ -268,8 +268,8 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "ローカルストレージのクリーンアップ (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "ローカルストレージのクリーンアップ",
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "ローカルストレージのクリーンアップとコンテナタブの両方を有効にすると、APIの制限により障害が発生することがあります。",

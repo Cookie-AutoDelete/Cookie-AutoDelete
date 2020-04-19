@@ -286,8 +286,8 @@
     "description": "Enable Support for Firefox's Container Tabs"
   },
   "localstorageCleanupText": {
-    "message": "Nettoyer le Localstorage (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "message": "Nettoyer la mémoire locale",
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Activer à la fois le nettoyage du localstorage et des onglets contextuels de Firefox peut causer des effets indésirables en raison de limitations de l’API",
