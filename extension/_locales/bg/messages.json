@@ -287,7 +287,7 @@
   },
   "localstorageCleanupText": {
     "message": "Изчистване на локалното хранилище (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Едновременното включване на изчистването на локалното хранилище и изолираните раздели може да доведе до нежелани ефекти поради ограниченията на ППИ",
