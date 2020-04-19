@@ -27,19 +27,18 @@ console.log("\n\nUsing NodeJS Version %s on %s %s", process.version, process.pla
 console.log("Current Root Directory is:  %s", ROOTDIR);
 
 console.log("GITHUB_REF:  %s", process.env.GITHUB_REF);
-console.log("TRAVIS_TAG:  %s", process.env.TRAVIS_TAG);
 
-let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG;
+let versionTag = process.env.GITHUB_REF;
 
-if (versionTag.startsWith('refs/tags/')) {
+if (versionTag && versionTag.startsWith('refs/tags/')) {
   versionTag = versionTag.slice(10) + '_';
-} else if (!process.env.TRAVIS_TAG){
+} else {
   console.log('Tag is not a version.')
   versionTag = '';
 }
 
 if (!versionTag) {
-  console.log('Neither GITHUB_REF Tag or TRAVIS_TAG was found.  Adding _Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
+  console.log('GITHUB_REF Tag did not contain a valid semver version.  Presuming non-publishing version.  Adding _Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
 }
 
 const TAG = versionTag || ('Dev_' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/T/,'_').replace(/-|:|\..+/g,'') + '_');

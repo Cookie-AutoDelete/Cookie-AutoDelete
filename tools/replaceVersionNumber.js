@@ -19,11 +19,10 @@ function changeVersion(filename, version) {
 }
 console.log("\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
 console.log("\nCurrent Process Directory:  %s", ROOTDIR);
-console.log('Checking if a CI TAG exists...');
-if (process.env.TRAVIS_TAG !== undefined || process.env.GITHUB_REF !== undefined) {
+console.log('Checking if GITHUB_REF TAG exists...');
+if (process.env.GITHUB_REF !== undefined) {
   console.log('GITHUB_REF:  %s', process.env.GITHUB_REF);
-  console.log('TRAVIS_TAG:  %s', process.env.TRAVIS_TAG);
-  let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG;
+  let versionTag = process.env.GITHUB_REF;
   console.log('TAG exists - %s', versionTag);
   if (versionTag.startsWith('refs/tags/')) {
     versionTag = versionTag.slice(10);
