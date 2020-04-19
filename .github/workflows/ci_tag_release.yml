@@ -1,9 +1,7 @@
-name: Tag CI Release
+name: Tagged Release Distribution
 
 on:
   push:
-    branches:
-      - '3.X.X-Branch'
     tags:
       - 'v*.*.*'
 
@@ -26,13 +24,13 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
           ${{ runner.OS }}
-    - name: Install dependencies (npm ci)
+    - name: Install Dependencies (npm ci)
       run: npm ci
     - name: Run Tests
       run: npm run test
     - name: Run TSLint
       run: npm run lint
-    - name: Ensure Version is updated
+    - name: Ensure Version is Updated
       run: node ./tools/replaceVersionNumber.js
     - name: Run Build
       run: npm run build
@@ -62,6 +60,7 @@ jobs:
         files: |
           builds/Cookie-AutoDelete_*_Chrome.zip
           builds/Cookie-AutoDelete_*_Firefox.xpi
+        body: This is an auto-generated release - Change log will be manually inserted soon!
     - name: Google Chrome WebStore Upload
       uses: Passiverecords/chrome-extension-upload-action@1.4.1
       with:

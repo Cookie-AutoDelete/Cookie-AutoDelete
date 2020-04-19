@@ -8,9 +8,14 @@ function changeVersion(filename, version) {
     console.error('ERROR:  No version key found');
     return -1;
   }
-  jsonData.version = version;
-  fs.writeFileSync(filename, JSON.stringify(jsonData, null, 2));
-  console.log('Finished updating version number on: ' + filename);
+  if (jsonData.version === version) {
+    console.log('Version is already updated to %s.', version);
+  } else {
+    console.log('Replacing old version number: %s', jsonData.version);
+    jsonData.version = version;
+    fs.writeFileSync(filename, JSON.stringify(jsonData, null, 2));
+    console.log('Finished updating version number to %s on:  %s', version, filename);
+  }
 }
 console.log("\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
 console.log("\nCurrent Process Directory:  %s", ROOTDIR);
