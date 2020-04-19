@@ -60,8 +60,8 @@ jobs:
       with:
         draft: true
         files: |
-          builds/Cookie-AutoDelete_Chrome_*.zip
-          builds/Cookie-AutoDelete_Firefox_*.xpi
+          builds/Cookie-AutoDelete_*_Chrome.zip
+          builds/Cookie-AutoDelete_*_Firefox.xpi
     - name: Google Chrome WebStore Upload
       uses: Passiverecords/chrome-extension-upload-action@1.4.1
       with:

@@ -12,7 +12,6 @@ function changeVersion(filename, version) {
   fs.writeFileSync(filename, JSON.stringify(jsonData, null, 2));
   console.log('Finished updating version number on: ' + filename);
 }
-console.log('\nreplaceVersionNumber.js log');
 console.log("\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
 console.log("\nCurrent Process Directory:  %s", ROOTDIR);
 console.log('Checking if a CI TAG exists...');
