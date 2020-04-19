@@ -9,7 +9,7 @@ function changeVersion(filename, version) {
     return -1;
   }
   if (jsonData.version === version) {
-    console.log('Version is already updated to %s.', version);
+    console.log('Version is already updated to %s on %s', version, filename);
   } else {
     console.log('Replacing old version number: %s', jsonData.version);
     jsonData.version = version;
