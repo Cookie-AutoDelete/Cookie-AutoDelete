@@ -287,7 +287,7 @@
   },
   "localstorageCleanupText": {
     "message": "Pulitura del localstorage (Firefox 58+)",
-    "description": "LocalStorage Cleanup (Firefox 58+)"
+    "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Attivare la pulitura sia del localstorage sia delle schede contenitore potrebbe avere effetti indesiderati per limitazioni delle API",
