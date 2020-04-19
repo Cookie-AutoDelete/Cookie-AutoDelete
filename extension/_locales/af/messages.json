@@ -180,7 +180,7 @@
     "description": "Error!"
   },
   "localstorageCleanupText": {
-    "message": "Localstorage skoonmaak (Firefox 58 +)",
+    "message": "Localstorage skoonmaak",
     "description": "LocalStorage Cleanup"
   },
   "defaultSettingsText": {
