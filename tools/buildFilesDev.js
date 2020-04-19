@@ -26,15 +26,25 @@ const EXTDIR = path.join(ROOTDIR, EXT);
 console.log("\n\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
 console.log("Current Root Directory is:  %s", ROOTDIR);
 
-if (process.env.TRAVIS_TAG === undefined) {
-  console.log('TRAVIS_TAG not found.  Adding _Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
+console.log("GITHUB_REF:  %s", process.env.GITHUB_REF);
+console.log("TRAVIS_TAG:  %s", process.env.TRAVIS_TAG);
+
+let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG;
+
+if (!versionTag) {
+  console.log('Neither GITHUB_REF or TRAVIS_TAG not found.  Adding _Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
+} else {
+  if (versionTag.startsWith('refs/tags/')) {
+    versionTag = versionTag.slice(10);
+  }
+  versionTag = '_' + versionTag + '_';
 }
 
-const TAG = process.env.TRAVIS_TAG || ('_Dev_' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/T/,'_').replace(/-|:|\..+/g,''));
+const TAG = versionTag || ('_Dev_' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/T/,'_').replace(/-|:|\..+/g,'') + '_');
 console.log('TAG to append:  %s\n', TAG);
 
-const FIREFOXFILENAME = EXTNAME + 'Firefox' + TAG;
-const CHROMEFILENAME = EXTNAME + 'Chrome' + TAG;
+const CHROMEFILENAME = EXTNAME + TAG + 'Chrome';
+const FIREFOXFILENAME = EXTNAME + TAG + 'Firefox';
 
 function archiverZip(cb, filename) {
   if (typeof(cb) !== 'function') {

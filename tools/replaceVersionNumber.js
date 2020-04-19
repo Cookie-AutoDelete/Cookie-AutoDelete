@@ -29,7 +29,7 @@ if (process.env.TRAVIS_TAG !== undefined || process.env.GITHUB_REF !== undefined
   }
   console.log('New Version Number: ', versionTag);
   console.log('Replacing...');
-  changeVersion(path.join(ROOTDIR, 'package.json'), versionTag);
+  //changeVersion(path.join(ROOTDIR, 'package.json'), versionTag);
   changeVersion(path.join(ROOTDIR, 'extension', 'manifest.json'), versionTag);
   console.log('Replacements done with ' + versionTag);
 } else {
