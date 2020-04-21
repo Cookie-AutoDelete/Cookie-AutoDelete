@@ -23,6 +23,7 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
+  LSCLEANUPNAME,
   returnOptionalCookieAPIAttributes,
 } from './Libs';
 import StoreUser from './StoreUser';
@@ -99,7 +100,7 @@ export default class TabEvents extends StoreUser {
         {
           expirationDate: Math.floor(Date.now() / 1000 + 31557600),
           firstPartyDomain: extractMainDomain(getHostname(tab.url)),
-          name: 'CookieAutoDeleteLocalStorageCleanup',
+          name: LSCLEANUPNAME,
           path: `/${shortid.generate()}`,
           storeId: tab.cookieStoreId,
           value: 'cookieForLocalstorageCleanup',
@@ -112,7 +113,7 @@ export default class TabEvents extends StoreUser {
       // actual cookie from that site.
     }
     if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon')) {
-      if (cookies.length === 1 && cookies[0].name === 'CookieAutoDeleteLocalStorageCleanup') {
+      if (cookies.length === 1 && cookies[0].name === LSCLEANUPNAME) {
         // Hide our CAD cookie from count.
         cookieLength = 0;
       }

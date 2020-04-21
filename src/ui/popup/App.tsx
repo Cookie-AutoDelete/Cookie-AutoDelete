@@ -24,6 +24,7 @@ import {
   getHostname,
   getSetting,
   isAnIP,
+  LSCLEANUPNAME,
   prepareCookieDomain,
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
@@ -60,6 +61,7 @@ type PopupAppComponentProps = DispatchProps & StateProps;
 
 class App extends React.Component<PopupAppComponentProps, InitialState> {
   public state = new InitialState();
+  public port: browser.runtime.Port | null = null;
   private cleanButtonContainerRef: React.ReactInstance | null = null;
 
   public async componentDidMount() {
@@ -69,7 +71,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     });
 
     this.setState({
-      cookieCount: 0,
       storeId:
         !this.props.contextualIdentities ||
         (tabs[0].cookieStoreId && tabs[0].cookieStoreId === 'firefox-default')
@@ -77,6 +78,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           : tabs[0].cookieStoreId || 'default',
       tab: tabs[0],
     });
+  }
+
+  public componentWillUnmount() {
+    if (this.port) {
+      this.port.disconnect();
+      this.port = null;
+    }
   }
 
   public animateFlash(ref: React.ReactInstance | null, success: boolean) {
@@ -97,23 +105,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
         // Ignore, we just won't animate anything.
       }
     }
-  }
-
-  public async setPopupCookieCount(hostname: string) {
-    const { state } = this.props;
-    if (!this.state.tab) return false;
-    const { cookieStoreId } = this.state.tab;
-    const cookies = (await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
-        domain: hostname,
-        firstPartyDomain: hostname,
-        storeId: cookieStoreId,
-      }),
-    ));
-    this.setState({
-      cookieCount: cookies.length,
-    });
-    return true;
   }
 
   public async clearCookiesForThisDomain(hostname: string) {
@@ -155,6 +146,22 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     return true;
   }
 
+  public async setPopupCookieCount(hostname: string) {
+    const { state } = this.props;
+    if (!this.state.tab) return;
+    const { cookieStoreId } = this.state.tab;
+    const cookies = (await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(state, {
+        domain: hostname,
+        firstPartyDomain: hostname,
+        storeId: cookieStoreId,
+      }),
+    ));
+    this.setState({
+      cookieCount: cookies.length - cookies.filter(cookie => cookie.name === LSCLEANUPNAME).length,
+    });
+  }
+
   public render() {
     const { tab, storeId } = this.state;
     if (!tab) {
@@ -177,7 +184,21 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     if (hostname !== '' && !isAnIP(tab.url)) {
       addableHostnames.push(`*.${hostname}`);
     }
-    this.setPopupCookieCount(hostname);
+
+    if (!this.port) {
+      if (hostname) {
+        this.port = browser.runtime.connect({name: `popupCAD_${hostname},${storeId.replace(',','-')}`});
+        this.port.onMessage.addListener((m) => {
+          const msg = m as CookieCountMsg;
+          if (msg.cookieUpdated !== undefined && msg.cookieUpdated) {
+            this.setPopupCookieCount(hostname);
+          }
+        });
+        this.port.onDisconnect.addListener((p) => {
+          this.port = null;
+        });
+      }
+    }
 
     return (
       <div
@@ -275,7 +296,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                   ignoreOpenTabs: false,
                 });
                 this.animateFlash(this.cleanButtonContainerRef, true);
-                this.setPopupCookieCount(hostname);
               }}
               title={browser.i18n.getMessage('cookieCleanupText')}
               text={browser.i18n.getMessage('cleanText')}
@@ -300,7 +320,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                       ignoreOpenTabs: true,
                     });
                     this.animateFlash(this.cleanButtonContainerRef, true);
-                    this.setPopupCookieCount(hostname);
                   }}
                   title={browser.i18n.getMessage(
                     'cookieCleanupIgnoreOpenTabsText',
@@ -316,7 +335,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                       hostname,
                     );
                     this.animateFlash(this.cleanButtonContainerRef, success);
-                    this.setPopupCookieCount(hostname);
                   }}
                   title={browser.i18n.getMessage('clearSiteDataForDomainText', [
                     'cookies',
@@ -333,7 +351,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                       hostname,
                     );
                     this.animateFlash(this.cleanButtonContainerRef, success);
-                    this.setPopupCookieCount(hostname);
                   }}
                   title={browser.i18n.getMessage('clearSiteDataForDomainText', [
                     'localstorage',
