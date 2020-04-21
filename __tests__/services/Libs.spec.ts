@@ -543,6 +543,17 @@ describe('Library Functions', () => {
       const result = await sleep(1);
       expect(result).toBe(undefined);
     });
+    it('should return after 1.5 seconds (max 15 ms past)', () => {
+      expect.assertions(3);
+      const start = new Date().getTime();
+      const result = sleep(1500);
+      return result.then(data => {
+        const duration = new Date().getTime() - start;
+        expect(duration).toBeGreaterThanOrEqual(1500);
+        expect(duration).toBeLessThan(1515);
+        expect(data).toBe(undefined);
+      })
+    })
   });
 
   describe('throwErrorNotification()', () => {
