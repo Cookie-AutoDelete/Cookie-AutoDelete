@@ -143,7 +143,7 @@ export const resetAll = (): RESET_ALL => ({
 export const validateSettings: ActionCreator<
   ThunkAction<void, State, null, ReduxAction>
 > = () => (dispatch, getState) => {
-  const { settings } = getState();
+  const { cache, settings } = getState();
   const initialSettings = initialState.settings;
   const settingKeys = Object.keys(settings);
   const initialSettingKeys = Object.keys(initialSettings);
@@ -172,6 +172,29 @@ export const validateSettings: ActionCreator<
         });
       }
     });
+  }
+
+  function disableSettingIfTrue(s: Setting) {
+    if (s && s.value){
+      dispatch({
+        payload: {
+          ...s,
+          value: false,
+        },
+        type: ReduxConstants.UPDATE_SETTING,
+      });
+    }
+  }
+
+  // Disable unusable setting in Chrome
+  if (cache.browserDetect === 'Chrome') {
+    disableSettingIfTrue(settings.contextualIdentities);
+  }
+  // Disable unusable setting in Firefox Android
+  if (cache.browserDetect === 'Firefox' && cache.platformOs === 'android') {
+    disableSettingIfTrue(settings.showNumOfCookiesInIcon);
+    disableSettingIfTrue(settings.localstorageCleanup);
+    disableSettingIfTrue(settings.contextualIdentities);
   }
 };
 

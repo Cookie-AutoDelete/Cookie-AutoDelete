@@ -122,21 +122,24 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
         </div>
       </div>
 
-      <div className="row" style={styles.rowOverrides}>
-        <div className="col">
-          <CheckboxSetting
-            text={browser.i18n.getMessage('showNumberOfCookiesInIconText')}
-            settingObject={settings.showNumOfCookiesInIcon}
-            inline={true}
-            updateSetting={payload => onUpdateSetting(payload)}
-          />
-          <SettingsTooltip
-            hrefURL={
-              '#show-number-of-cookies-for-that-domain'
-            }
-          />
+      {(browserDetect !== 'Firefox' || platformOs !== 'android') && (
+        <div className="row" style={styles.rowOverrides}>
+          <div className="col">
+            <CheckboxSetting
+              text={browser.i18n.getMessage('showNumberOfCookiesInIconText')}
+              settingObject={settings.showNumOfCookiesInIcon}
+              inline={true}
+              updateSetting={payload => onUpdateSetting(payload)}
+            />
+            <SettingsTooltip
+              hrefURL={
+                '#show-number-of-cookies-for-that-domain'
+              }
+            />
+          </div>
         </div>
-      </div>
+      )}
+
 
       <div className="row" style={styles.rowOverrides}>
         <div className="col">
