@@ -35,16 +35,16 @@ if (versionTag.startsWith('refs/tags/')) {
   versionTag = versionTag.slice(10);
 }
 
-if (!RegExp(/^v?\d+\.\d+\.\d+$/).test(versionTag)) {
+if (versionTag && !RegExp(/^v?\d+\.\d+\.\d+$/).test(versionTag)) {
   console.warn('Version [ %s ] is not in valid semver form.', versionTag);
   versionTag = '';
 }
 
 if (!versionTag) {
-  console.log('Neither GITHUB_REF nor TRAVIS_TAG contained a valid semver version.  Presuming non-publishing version.  Adding Dev_ and using Date Format YYYYMMDD_HHMMSS as TAG');
+  console.log('Neither GITHUB_REF nor TRAVIS_TAG contained a valid semver version.  Presuming non-publishing version.\nAdding Dev_ and using Date Format YYYYMMDD_HHMMSS as tag.');
 }
 
-const TAG = versionTag || ('Dev_' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/T/,'_').replace(/-|:|\..+/g,'')) + '_';
+const TAG = (versionTag || 'Dev_' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/T/,'_').replace(/-|:|\..+/g,'')) + '_';
 console.log('TAG to append:  %s\n', TAG);
 
 const CHROMEFILENAME = EXTNAME + TAG + 'Chrome';
