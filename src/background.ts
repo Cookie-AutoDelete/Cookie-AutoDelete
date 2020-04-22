@@ -19,7 +19,7 @@ import {
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
 import CookieEvents from './services/CookieEvents';
-import { convertVersionToNumber, getSetting, sleep } from './services/Libs';
+import { convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
@@ -148,6 +148,59 @@ const onStartUp = async () => {
   // This should update the cookie badge count when cookies are changed.
   browser.cookies.onChanged.addListener(CookieEvents.onCookieChanged);
 };
+
+// Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
+const cookiePopupPorts: browser.runtime.Port[] = [];
+
+async function onCookiePopupUpdates(
+  changeInfo: {
+    removed: boolean,
+    cookie:  browser.cookies.Cookie,
+    cause: browser.cookies.OnChangedCause,
+  }
+) {
+  const cDomain = extractMainDomain(changeInfo.cookie.domain);
+  cookiePopupPorts.forEach((p) => {
+    if (!p.name) return;
+    if (!p.name.startsWith('popupCAD_')) return;
+    const pn = p.name.slice(9).split(',');
+    if (pn[0].endsWith(changeInfo.cookie.domain) || pn[0].endsWith(cDomain)) {
+      p.postMessage({cookieUpdated: true});
+    }
+  });
+}
+
+function handleConnect(p: browser.runtime.Port) {
+  if (!p.name || !p.name.startsWith('popupCAD_')) return;
+  
+  if (!browser.cookies.onChanged.hasListener(onCookiePopupUpdates)) {
+    browser.cookies.onChanged.addListener(onCookiePopupUpdates);
+  }
+
+  p.onMessage.addListener((m) => {
+    console.warn('Received Unexpected message from CAD Popup')
+    console.warn(JSON.stringify(m));
+  });
+  p.onDisconnect.addListener((dp: browser.runtime.Port) => {
+    if (
+      (cookiePopupPorts.length - 1) === 0 && browser.cookies.onChanged.hasListener(onCookiePopupUpdates)
+    ) {
+      browser.cookies.onChanged.removeListener(onCookiePopupUpdates);
+    }
+    if (!dp.name) return;
+    const i: number = cookiePopupPorts.findIndex((pp: browser.runtime.Port) => {
+      if (!pp.name) return false;
+      return pp.name === dp.name;
+    });
+    if (i !== -1) {
+      cookiePopupPorts.splice(i, 1);
+    }
+  });
+  p.postMessage({cookieUpdated: true});
+  cookiePopupPorts.push(p);
+}
+
+browser.runtime.onConnect.addListener(handleConnect);
 
 onStartUp();
 browser.runtime.onStartup.addListener(async () => {
