@@ -40,18 +40,18 @@
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-immutable": "^6.0.1",
-    "tslint-react": "^4.2.0",
+    "tslint-react": "^5.0.0",
     "typescript": "^3.8.3",
     "web-ext-types": "^3.2.1",
-    "webpack": "^4.42.1",
+    "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "test": "jest --coverage",
     "build": "webpack --config webpack.config.js && node ./tools/buildFilesDev.js",
     "dev": "webpack --config webpack.config.js --progress --colors --watch",
     "lint": "tslint --project tsconfig.json",
+    "test": "jest --coverage",
     "test-all": "npm run test && npm run lint"
   },
   "repository": {
