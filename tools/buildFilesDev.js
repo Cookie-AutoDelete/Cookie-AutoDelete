@@ -36,7 +36,7 @@ if (versionTag.startsWith('refs/tags/')) {
 }
 
 if (!versionTag.match(/^v\d+\.\d+\.\d+$/)) {
-  console.warn('Version [ %s ] is not in valid form.', versionTag);
+  console.warn('Version [ %s ] is not in valid semver form.', versionTag);
   versionTag = '';
 }
 
