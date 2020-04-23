@@ -33,7 +33,10 @@ jobs:
     - name: Ensure Version is Updated
       run: node ./tools/replaceVersionNumber.js
     - name: Run Build
-      run: npm run build
+      id: runbuild
+      run: |
+        npm run build
+        echo "::set-output name=ffxpi::$(ls builds/*Firefox.xpi)"
     - name: Archive Production Build Artifacts
       if: success()
       uses: actions/upload-artifact@v1
@@ -75,5 +78,5 @@ jobs:
         api-key: ${{ secrets.FIREFOX_API_KEY }}
         api-secret: ${{ secrets.FIREFOX_API_SECRET }}
         uuid: 'CookieAutoDelete@kennydo.com'
-        xpi: builds/Cookie-AutoDelete_*_Firefox.xpi
+        xpi: ${{ steps.runbuild.outputs.ffxpi }}
         manifest: extension/manifest.json
