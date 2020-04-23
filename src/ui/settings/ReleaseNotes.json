@@ -14,7 +14,7 @@
         "Changed:  Wording on using both LocalStorage Cleanup and Containers (Firefox).",
         "Fixed:  High CPU Usage due to cookie count in popup introduced in 3.1.0",
         "Removed:  Regeneration of setting ID after each update. (Internal stuff - shouldn't affect anyone.)",
-        "Updated:  Crowdin Translations",
+        "Updated:  Crowdin Translations.  Some translations on Crowdin require changing as the meaning was clarified.  Please update accordingly.",
         "Updated:  Third-Party Dependencies"
       ]
     },
