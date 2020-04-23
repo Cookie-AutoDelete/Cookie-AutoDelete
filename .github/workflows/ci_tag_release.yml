@@ -33,7 +33,10 @@ jobs:
     - name: Ensure Version is Updated
       run: node ./tools/replaceVersionNumber.js
     - name: Run Build
-      run: npm run build
+      id: runbuild
+      run: |
+        npm run build
+        echo "::set-output name=ffxpi::$(ls builds/*Firefox.xpi)"
     - name: Archive Production Build Artifacts
       if: success()
       uses: actions/upload-artifact@v1
@@ -64,7 +67,7 @@ jobs:
       uses: Passiverecords/chrome-extension-upload-action@1.4.1
       with:
         app-id: 'fhcgjolkccmbidfldomjliifgaodjagh'
-        file-name: 'builds/Cookie-AutoDelete_Chrome.zip'
+        file-name: 'builds/Cookie-AutoDelete_*_Chrome.zip'
         client-id: ${{ secrets.CHROME_CLIENT_ID }}
         client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
         refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
@@ -75,5 +78,5 @@ jobs:
         api-key: ${{ secrets.FIREFOX_API_KEY }}
         api-secret: ${{ secrets.FIREFOX_API_SECRET }}
         uuid: 'CookieAutoDelete@kennydo.com'
-        xpi: builds/Cookie-AutoDelete_Firefox.xpi
+        xpi: ${{ steps.runbuild.outputs.ffxpi }}
         manifest: extension/manifest.json

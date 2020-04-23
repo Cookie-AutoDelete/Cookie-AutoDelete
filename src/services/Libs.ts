@@ -12,6 +12,8 @@
  */
 
 import ipRegex from 'ip-regex';
+
+export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
 /**
  * Returns the host name of the url. Etc. "https://en.wikipedia.org/wiki/Cat" becomes en.wikipedia.org
  */

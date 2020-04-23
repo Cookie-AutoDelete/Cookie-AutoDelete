@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 declare module '*.json';
 declare var global: any;
 declare var browserDetect: () => string;
@@ -57,7 +57,12 @@ declare const enum ListType {
   GREY = 'GREY',
 }
 
-type ReleaseNote = {
-  version: string;
-  notes: string[];
+interface ReleaseNote {
+  readonly version: string;
+  readonly notes: string[];
 };
+
+type CookieCountMsg = Readonly<{
+  popupHostname?: string;
+  cookieUpdated?: boolean;
+}>;
