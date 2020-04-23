@@ -1,3 +1,4 @@
+![Tagged Release Distribution](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Tagged%20Release%20Distribution/badge.svg)
 ![Node.js CI Tests](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Node.js%20CI%20Tests/badge.svg?branch=3.X.X-Branch)
 [![dependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete)
 [![devDependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/dev-status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete?type=dev)
