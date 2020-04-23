@@ -291,7 +291,7 @@
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Attivare la pulitura sia del localstorage sia delle schede contenitore potrebbe avere effetti indesiderati per limitazioni delle API",
-    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
   "defaultSettingsText": {
     "message": "Ripristina impostazioni predefinite",

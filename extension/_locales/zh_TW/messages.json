@@ -279,7 +279,7 @@
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "由於 API 的限制，同時啟用本地存儲清理和容器（身份）標籤頁可能導致一些不必要的副作用",
-    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
   "defaultSettingsText": {
     "message": "恢復預設設定",

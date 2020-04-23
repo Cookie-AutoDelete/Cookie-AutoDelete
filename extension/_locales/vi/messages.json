@@ -273,7 +273,7 @@
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Bật cả Lưu trữ cục bộ và Trang tách biệt có thể dẫn đến nhiều điều ngoài ý muốn do Hạn chế API",
-    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
   "defaultSettingsText": {
     "message": "Hoàn lại cài đặt ban đầu",
