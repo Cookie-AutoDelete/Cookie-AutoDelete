@@ -38,15 +38,15 @@
   },
   "permissions": [
     "activeTab",
-    "cookies",
-    "contextualIdentities",
-    "<all_urls>",
-    "tabs",
-    "storage",
-    "notifications",
+    "alarms",
     "browsingData",
+    "contextualIdentities",
+    "cookies",
+    "notifications",
     "privacy",
-    "alarms"
+    "storage",
+    "tabs",
+    "<all_urls>"
   ],
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
