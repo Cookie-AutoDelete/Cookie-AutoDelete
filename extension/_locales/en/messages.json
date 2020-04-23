@@ -340,8 +340,8 @@
   },
 
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations",
-    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "message": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers.",
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
 
   "defaultSettingsText": {
