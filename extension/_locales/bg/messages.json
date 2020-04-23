@@ -291,7 +291,7 @@
   },
   "localstorageAndContextualIdentitiesWarning": {
     "message": "Едновременното включване на изчистването на локалното хранилище и изолираните раздели може да доведе до нежелани ефекти поради ограниченията на ППИ",
-    "description": "Enabling both LocalStorage Cleanup and Container Tabs might cause some unwanted side effects due to API Limitations"
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
   "defaultSettingsText": {
     "message": "Възстановяване на първоначалните настройки",
