@@ -290,7 +290,7 @@
     "description": "LocalStorage Cleanup"
   },
   "localstorageAndContextualIdentitiesWarning": {
-    "message": "Habilitar la limpieza del almacenamiento local y contenedores de pestañas puede causar algunos efectos secundarios no deseados debido a las limitaciones de la API",
+    "message": "ADVERTENCIA: Habilitar tanto la limpieza del almacenamiento local como los contenedores de pestañas puede causar algunos efectos secundarios no deseados debido a las limitaciones de la API. El almacenamiento local se borrará por nombre de host en TODOS los contenedores.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
   "defaultSettingsText": {
