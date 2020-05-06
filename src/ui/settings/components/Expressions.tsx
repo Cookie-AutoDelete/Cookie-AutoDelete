@@ -119,7 +119,6 @@ class Expressions extends React.Component<ExpressionProps> {
     if (r !== null && r === 'yes') {
       onClearExpressions(this.props.lists);
     }
-
   }
 
   public getDerivedStateFromProps(nextProps: ExpressionProps) {

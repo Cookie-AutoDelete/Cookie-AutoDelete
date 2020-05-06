@@ -86,7 +86,12 @@ export const initialState: State = {
     debugMode: {
       name: 'debugMode',
       value: false,
-      id: 14
+      id: 14,
+    },
+    enableGreyListCleanup: {
+      name: 'enableGreyListCleanup',
+      value: true,
+      id: 15,
     }
   },
   activityLog: [],

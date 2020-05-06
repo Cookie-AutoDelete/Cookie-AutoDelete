@@ -212,7 +212,28 @@ browser.runtime.onConnect.addListener(handleConnect);
 onStartUp();
 browser.runtime.onStartup.addListener(async () => {
   await awaitStore();
-  greyCleanup();
+  if (getSetting(store.getState(), 'activeMode') === true) {
+      if (getSetting(store.getState(), 'enableGreyListCleanup') === true) {
+      let isFFSessionRestore = false;
+      const startupTabs = await browser.tabs.query({});
+      startupTabs.forEach(tab => {
+        if (tab.url === 'about:sessionrestore') isFFSessionRestore = true;
+      });
+      if (!isFFSessionRestore) {
+        greyCleanup();
+      } else {
+        cadLog({
+          msg: 'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
+          type: 'info',
+        });
+      }
+    } else {
+      cadLog({
+        msg: 'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
+        type: 'info',
+      });
+    }
+  }
 });
 browser.runtime.onInstalled.addListener(async details => {
   await awaitStore();

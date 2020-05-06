@@ -185,6 +185,22 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
       <div className="row" style={styles.rowOverrides}>
         <div className="col">
           <CheckboxSetting
+            text={browser.i18n.getMessage('enableGreyListCleanup')}
+            settingObject={settings.enableGreyListCleanup}
+            inline={true}
+            updateSetting={payload => onUpdateSetting(payload)}
+          />
+          <SettingsTooltip
+            hrefURL={
+              '#clean-cookies-from-open-tabs-on-startup'
+            }
+          />
+        </div>
+      </div>
+
+      <div className="row" style={styles.rowOverrides}>
+        <div className="col">
+          <CheckboxSetting
             text={browser.i18n.getMessage('cookieCleanUpOnStartText')}
             settingObject={settings.cleanCookiesFromOpenTabsOnStartup}
             inline={true}

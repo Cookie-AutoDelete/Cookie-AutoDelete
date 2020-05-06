@@ -135,6 +135,10 @@
 		"message": "Enable Check for Subdomains",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Enable Greylist Cleanup on Browser Restart",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Enable Popup when New Version is Released",
 		"description": "Enable Popup when New Version is Released"
