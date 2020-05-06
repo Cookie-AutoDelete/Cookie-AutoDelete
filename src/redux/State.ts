@@ -82,6 +82,11 @@ export const initialState: State = {
       name: 'enableNewVersionPopup',
       value: false,
       id: 13,
+    },
+    debugMode: {
+      name: 'debugMode',
+      value: false,
+      id: 14
     }
   },
   activityLog: [],

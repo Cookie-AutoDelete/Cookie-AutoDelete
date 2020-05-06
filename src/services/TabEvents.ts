@@ -19,6 +19,7 @@ import {
   showNumberofCookiesinTitle,
 } from './BrowserActionService';
 import {
+  cadLog,
   extractMainDomain,
   getHostname,
   getSetting,
@@ -35,13 +36,40 @@ export default class TabEvents extends StoreUser {
     tab: browser.tabs.Tab,
   ) {
     if (tab.status === 'complete') {
+      const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+      const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
+      const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
       checkIfProtected(TabEvents.store.getState(), tab);
       if (!TabEvents.onTabUpdateDelay) {
         TabEvents.onTabUpdateDelay = true;
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.onTabUpdate: action delay has been set for ~750 ms.',
+            x: {tabId, changeInfo, partialTabInfo,},
+          });
+        }
         setTimeout(() => {
+          if (debug) {
+            cadLog({
+              msg: 'TabEvents.onTabUpdate: actions will now commence.',
+              x: {tabId, changeInfo, partialTabInfo,},
+            });
+          }
           TabEvents.getAllCookieActions(tab);
           TabEvents.onTabUpdateDelay = false;
+          if (debug) {
+            cadLog({
+              msg: 'TabEvents.onTabUpdate: actions have been processed and flag cleared.',
+            });
+          }
         }, 750);
+      } else {
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.onTabUpdate: actions delay is pending already.',
+            x: {tabId, changeInfo, partialTabInfo,},
+          });
+        }
       }
     }
   }
@@ -51,49 +79,135 @@ export default class TabEvents extends StoreUser {
     changeInfo: any,
     tab: browser.tabs.Tab,
   ) {
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
     if (tab.status === 'complete') {
+      const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
+      const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
       const mainDomain = extractMainDomain(getHostname(tab.url));
       if (TabEvents.tabToDomain[tabId] === undefined && mainDomain !== '') {
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.onDomainChange: First mainDomain set.',
+            x: {tabId, changeInfo, mainDomain, partialTabInfo,},
+          });
+        }
         TabEvents.tabToDomain[tabId] = mainDomain;
       } else if (
         TabEvents.tabToDomain[tabId] !== mainDomain &&
         mainDomain !== ''
       ) {
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
+            x: {tabId, changeInfo, oldMainDomain: TabEvents.tabToDomain[tabId], mainDomain, partialTabInfo,},
+          });
+        }
         TabEvents.tabToDomain[tabId] = mainDomain;
         if (getSetting(StoreUser.store.getState(), 'domainChangeCleanup')) {
           TabEvents.cleanFromFromTabEvents();
+        }
+      } else {
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.onDomainChange: mainDomain has not changed yet.',
+            x: {tabId, changeInfo, mainDomain, partialTabInfo,},
+          });
         }
       }
     }
   }
 
-  public static onDomainChangeRemove(tabId: number) {
+  public static onDomainChangeRemove(tabId: number, removeInfo: {windowId: number, isWindowClosing: boolean}) {
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+    if (debug) {
+      cadLog({
+        msg: 'TabEvents.onDomainChangeRemove: Tab was closed.  Removing old tabToDomain info.',
+        x: {tabId, mainDomain: TabEvents.tabToDomain[tabId] || '', removeInfo,},
+      });
+    }
     delete TabEvents.tabToDomain[tabId];
   }
 
   public static cleanFromFromTabEvents = async () => {
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
     if (getSetting(StoreUser.store.getState(), 'activeMode')) {
       const alarm = await browser.alarms.get('activeModeAlarm');
       if (!alarm || (alarm.name && alarm.name !== 'activeModeAlarm')) {
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.cleanFromFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
+          });
+        }
         AlarmEvents.createActiveModeAlarm();
+      } else {
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.cleanFromFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
+            x: alarm,
+          });
+        }
       }
     }
   };
 
   public static async getAllCookieActions(tab: browser.tabs.Tab) {
+    if (!tab.url) return;
+    if (tab.url === '') return;
+    if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+    const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
+    const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
     const hostname = getHostname(tab.url);
-    const cookies = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
-        domain: hostname,
-        firstPartyDomain: extractMainDomain(hostname),
-        storeId: tab.cookieStoreId,
-      }),
-    );
-    let cookieLength = cookies.length;
+    if (hostname === '') {
+      if (debug) {
+        cadLog({
+          msg: 'TabEvents.getAllCookieActions: hostname parsed empty for tab url.  Skipping Cookie Actions.',
+          x: {partialTabInfo, hostname,},
+        });
+      }
+      return;
+    }
+    let cookies = [];
+    if (hostname.startsWith('file:')){
+      const allCookies = await browser.cookies.getAll(
+        returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
+          storeId: tab.cookieStoreId,
+        }),
+      );
+      const regExp = new RegExp(hostname.slice(7)); // take out file://
+      if (debug) {
+        cadLog({
+          msg: 'TabEvents.getAllCookieActions:  Local File Regex to test on cookie.path',
+          x: {partialTabInfo, hostname, regExp: regExp.toString(),},
+        });
+      }
+      cookies = allCookies.filter(cookie => cookie.domain === '' && regExp.test(cookie.path));
+    } else {
+      if (debug) {
+        cadLog({
+          msg: 'TabEvents.getAllCookieActions:  browser.cookies.getAll for domain.',
+          x: {partialTabInfo, domain: hostname, firstPartyDomain: extractMainDomain(hostname),},
+        });
+      }
+      cookies = await browser.cookies.getAll(
+        returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
+          domain: hostname,
+          firstPartyDomain: extractMainDomain(hostname),
+          storeId: tab.cookieStoreId,
+        }),
+      );
+    }
+    if (debug) {
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions:  Filtered Cookie Count',
+        x: { partialTabInfo, tabURL: tab.url, hostname, cookieCount: cookies.length,},
+      });
+    }
+
     if (
       cookies.length === 0 &&
       getSetting(AlarmEvents.store.getState(), 'localstorageCleanup') &&
-      isAWebpage(tab.url)
+      isAWebpage(tab.url) && ! tab.url.startsWith('file:')
     ) {
       const cookiesAttributes = returnOptionalCookieAPIAttributes(
         StoreUser.store.getState(),
@@ -103,28 +217,54 @@ export default class TabEvents extends StoreUser {
           name: LSCLEANUPNAME,
           path: `/${shortid.generate()}`,
           storeId: tab.cookieStoreId,
+          url: tab.url || '',
           value: 'cookieForLocalstorageCleanup',
         },
       );
       browser.cookies.set({ ...cookiesAttributes, url: tab.url || '' });
-      // cookieLength = 1;
-      // The code above was previously used to indicate a cookie is set for the domain.
-      // While it may be useful, the cookie count should probably reflect the
-      // actual cookie from that site.
-    }
-    if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon')) {
-      if (cookies.length === 1 && cookies[0].name === LSCLEANUPNAME) {
-        // Hide our CAD cookie from count.
-        cookieLength = 0;
+      if (debug) {
+        cadLog({
+          msg: 'TabEvents.getAllCookieActions:  A temporary cookie has been set for future LocalStorage cleaning as the site did not set any cookies yet.',
+          x: {partialTabInfo, cadLSCookie: cookiesAttributes,},
+        });
       }
-      showNumberOfCookiesInIcon(tab, cookieLength);
-    } else {
-      browser.browserAction.setBadgeText({
-        tabId: tab.id,
-        text: '',
+    }
+    // Filter out cookie(s) that were set by this extension.
+    const cookieLength = cookies.length - cookies.filter(cookie => cookie.name === LSCLEANUPNAME).length;
+    if (debug && cookies.length !== cookieLength) {
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions:  New Cookie Count after filtering out cookie set by extension',
+        x: { preFilterCount: cookies.length, newCookieCount: cookieLength,},
+      });
+    }
+    if (debug) {
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions: executing showNumberofCookiesinTitle.',
       });
     }
     showNumberofCookiesinTitle(tab, cookieLength);
+
+    if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon')) {
+      if (debug) {
+        cadLog({
+          msg: 'TabEvents.getAllCookieActions: executing showNumberOfCookiesInIcon.',
+        });
+      }
+      showNumberOfCookiesInIcon(tab, cookieLength);
+    } else {
+      // Exclude Firefox Android.
+      if (browser.browserAction.setBadgeText) {
+        browser.browserAction.setBadgeText({
+          tabId: tab.id,
+          text: '',
+        });
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.getAllCookieActions:  setBadgeText has been cleared.',
+          });
+        }
+      }
+    }
   }
   // Add a delay to prevent multiple spawns of the localstorage cookie
   private static onTabUpdateDelay = false;

@@ -32,7 +32,7 @@ jobs:
     - name: Install dependencies (npm ci)
       run: npm ci
     - name: Run Tests
-      run: npm run test
+      run: npm run test -- --verbose
     - name: Run TSLint
       run: npm run lint
     - name: Run Build

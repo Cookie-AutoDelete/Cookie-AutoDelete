@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeActivity } from '../../redux/Actions';
 import {
+  cadLog,
   getSetting,
   returnOptionalCookieAPIAttributes,
   throwErrorNotification,
@@ -118,10 +119,33 @@ const restoreCookies = async (
   log: ActivityLog,
   onRemoveActvity: ActivityAction,
 ) => {
+  const debug = getSetting(state, 'debugMode');
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
   for (const cleanReasonObjs of cleanReasonObjsArrays) {
     for (const obj of cleanReasonObjs) {
+      // Cannot set cookies from file:// protocols
+      if (obj.cookie.preparedCookieDomain.startsWith('file:')) {
+        if (debug) {
+          cadLog({
+            msg: 'Cookie appears to come from a local file.  Cannot be restored normally.',
+            type: 'warn',
+            x: obj.cookie,
+          });
+        }
+        continue;
+      }
+      // Silently ignore cookies with no domain
+      if (obj.cookie.preparedCookieDomain.trim() === '') {
+        if (debug) {
+          cadLog({
+            msg: 'Cookie appears to have no domain.  Cannot restore.',
+            type: 'warn',
+            x: obj.cookie,
+          });
+        }
+        continue;
+      }
       const {
         expirationDate,
         firstPartyDomain,
@@ -148,12 +172,21 @@ const restoreCookies = async (
     }
   }
   try {
+    // If any error/rejection was thrown, the rest of the promises are not processed.
+    // FUTURE:  Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled to process all regardless of rejection. ** Perhaps too early to implement at this time 2020-May-03 **
     await Promise.all(promiseArr).catch(e => {
       throwErrorNotification(e);
-      console.error(e);
+      if (debug) {
+        cadLog({
+          msg: 'An Error occurred while trying to restore cookie(s).  The rest of the cookies to restore are not processed.',
+          type: 'error',
+          x: e,
+        });
+      }
       throw e;
     });
   } catch (e) {
+    console.error(e);
     return;
   }
   // Restore didn't fail
@@ -165,7 +198,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
-        <i>{browser.i18n.getMessage('noCleanupLogText')}</i>
+        <i>{browser.i18n.getMessage('noCleanupLogText')}.  {browser.i18n.getMessage('noPrivateLogging')}.</i>
       </div>
     );
   }

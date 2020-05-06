@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 import { applyMiddleware, createStore } from 'redux';
 // tslint:disable-next-line:import-name
 import thunk from 'redux-thunk';
@@ -18,6 +18,7 @@ import { createBackgroundStore } from 'redux-webext';
 import { ReduxConstants } from '../typings/ReduxConstants';
 import {
   addExpression,
+  clearExpressions,
   cookieCleanup,
   removeActivity,
   removeExpression,
@@ -44,6 +45,7 @@ const consoleMessages = (store: any) => (next: any) => (action: any) => {
 
 const actions: { [key in ReduxConstants]?: any } = {
   ADD_EXPRESSION: addExpression,
+  CLEAR_EXPRESSIONS: clearExpressions,
   COOKIE_CLEANUP: cookieCleanup,
   REMOVE_ACTIVITY_LOG: removeActivity,
   REMOVE_EXPRESSION: removeExpression,

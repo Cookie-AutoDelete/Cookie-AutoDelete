@@ -43,10 +43,10 @@ export const showNumberofCookiesinTitle = async (
   cookieLength: number
 ) => {
   const tabTitle = await browser.browserAction.getTitle({tabId: tab.id});
-  if (tabTitle.search(/\[ \d+ \]/) === -1) {
+  if (tabTitle.search(/\[ \d+ \]$/) === -1) {
     browser.browserAction.setTitle({
       tabId: tab.id,
-      title: `${tabTitle}  [ ${cookieLength} ]`,
+      title: `${tabTitle} [ ${cookieLength} ]`,
     });
   } else {
     browser.browserAction.setTitle({

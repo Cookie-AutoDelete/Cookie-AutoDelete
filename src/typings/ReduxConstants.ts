@@ -10,9 +10,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 export const enum ReduxConstants {
   ADD_EXPRESSION = 'ADD_EXPRESSION',
+  CLEAR_EXPRESSIONS = 'CLEAR_EXPRESSIONS',
   REMOVE_EXPRESSION = 'REMOVE_EXPRESSION',
   UPDATE_EXPRESSION = 'UPDATE_EXPRESSION',
   COOKIE_CLEANUP = 'COOKIE_CLEANUP',
@@ -29,6 +30,7 @@ export const enum ReduxConstants {
 
 export type ReduxAction =
   | ADD_EXPRESSION
+  | CLEAR_EXPRESSIONS
   | REMOVE_EXPRESSION
   | UPDATE_EXPRESSION
   | COOKIE_CLEANUP
@@ -45,6 +47,10 @@ export type ReduxAction =
 export type ADD_EXPRESSION = Readonly<{
   type: ReduxConstants.ADD_EXPRESSION;
   payload: Expression;
+}>;
+export type CLEAR_EXPRESSIONS = Readonly<{
+  type: ReduxConstants.CLEAR_EXPRESSIONS;
+  payload: {};
 }>;
 export type REMOVE_EXPRESSION = Readonly<{
   type: ReduxConstants.REMOVE_EXPRESSION;

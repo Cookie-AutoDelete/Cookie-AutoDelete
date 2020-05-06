@@ -20,10 +20,12 @@ import {
   updateSetting,
 } from '../../redux/Actions';
 import {
+  cadLog,
   extractMainDomain,
   getHostname,
   getSetting,
   isAnIP,
+  localFileToRegex,
   LSCLEANUPNAME,
   prepareCookieDomain,
   returnOptionalCookieAPIAttributes,
@@ -150,6 +152,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     const { state } = this.props;
     if (!this.state.tab) return;
     const { cookieStoreId } = this.state.tab;
+    
     const cookies = (await browser.cookies.getAll(
       returnOptionalCookieAPIAttributes(state, {
         domain: hostname,
@@ -181,7 +184,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
       hostname === mainDomain ? undefined : `*.${mainDomain}`,
       hostname,
     ].filter(Boolean) as string[];
-    if (hostname !== '' && !isAnIP(tab.url)) {
+    if (hostname !== '' && !isAnIP(tab.url) && !hostname.startsWith('file:')) {
       addableHostnames.push(`*.${hostname}`);
     }
 
@@ -461,7 +464,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 className="btn-secondary"
                 onClick={() => {
                   onNewExpression({
-                    expression: addableHostname,
+                    expression: localFileToRegex(addableHostname),
                     listType: ListType.GREY,
                     storeId,
                   });
@@ -475,7 +478,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 className="btn-primary"
                 onClick={() => {
                   onNewExpression({
-                    expression: addableHostname,
+                    expression: localFileToRegex(addableHostname),
                     listType: ListType.WHITE,
                     storeId,
                   });

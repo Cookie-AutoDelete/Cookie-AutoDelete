@@ -66,3 +66,10 @@ type CookieCountMsg = Readonly<{
   popupHostname?: string;
   cookieUpdated?: boolean;
 }>;
+
+type CADLogItem = Readonly<{
+  type?: string = 'debug';
+  level?: number = 0;
+  msg?: string;
+  x?: any;
+}>;

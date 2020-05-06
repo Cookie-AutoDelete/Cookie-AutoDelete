@@ -19,6 +19,7 @@ import { getSetting, getStoreId } from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
   ADD_EXPRESSION,
+  CLEAR_EXPRESSIONS,
   COOKIE_CLEANUP,
   INCREMENT_COOKIE_DELETED_COUNTER,
   ReduxAction,
@@ -38,6 +39,11 @@ const COOKIE_CLEANUP_NOTIFICATION = 'COOKIE_CLEANUP_NOTIFICATION';
 export const addExpressionUI = (payload: Expression): ADD_EXPRESSION => ({
   payload,
   type: ReduxConstants.ADD_EXPRESSION,
+});
+
+export const clearExpressionsUI = (payload: StoreIdToExpressionList): CLEAR_EXPRESSIONS => ({
+  payload,
+  type: ReduxConstants.CLEAR_EXPRESSIONS,
 });
 
 export const removeExpressionUI = (payload: Expression): REMOVE_EXPRESSION => ({
@@ -71,6 +77,17 @@ export const addExpression = (payload: Expression) => (
       storeId: getStoreId(getState(), payload.storeId),
     },
     type: ReduxConstants.ADD_EXPRESSION,
+  });
+  checkIfProtected(getState());
+};
+
+export const clearExpressions = (payload: StoreIdToExpressionList) => (
+  dispatch: Dispatch<ReduxAction>,
+  getState: GetState,
+) => {
+  dispatch({
+    payload,
+    type: ReduxConstants.CLEAR_EXPRESSIONS,
   });
   checkIfProtected(getState());
 };
@@ -195,6 +212,27 @@ export const validateSettings: ActionCreator<
     disableSettingIfTrue(settings.showNumOfCookiesInIcon);
     disableSettingIfTrue(settings.localstorageCleanup);
     disableSettingIfTrue(settings.contextualIdentities);
+  }
+
+  // Minimum 1 second autoclean delay.
+  if (settings.delayBeforeClean.value < 0) {
+    dispatch({
+      payload: {
+        ...settings.delayBeforeClean,
+        value: 1,
+      },
+      type: ReduxConstants.UPDATE_SETTING,
+    });
+  }
+  // Maximum 2147483 seconds due to signed 32-bit Integer (ms x 1000)
+  if (settings.delayBeforeClean.value > 2147483) {
+    dispatch({
+      payload: {
+        ...settings.delayBeforeClean,
+        value: 2147483,
+      },
+      type: ReduxConstants.UPDATE_SETTING,
+    });
   }
 };
 

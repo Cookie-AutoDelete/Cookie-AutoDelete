@@ -80,6 +80,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
             }
             value={settings.delayBeforeClean.value as number}
             min="1"
+            max="2147483"
           />
           <span>{browser.i18n.getMessage('secondsText')}</span>
           <SettingsTooltip
@@ -121,6 +122,11 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
         </div>
       </div>
+      {settings.statLogging.value && (
+        <div className="alert alert-warning">
+          {browser.i18n.getMessage('noPrivateLogging')}
+        </div>
+      )}
 
       {(browserDetect !== 'Firefox' || platformOs !== 'android') && (
         <div className="row" style={styles.rowOverrides}>
@@ -242,12 +248,12 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
 
       {settings.contextualIdentities.value &&
         settings.localstorageCleanup.value && (
-          <div className="alert alert-warning">
-            {browser.i18n.getMessage(
-              'localstorageAndContextualIdentitiesWarning',
-            )}
-          </div>
-        )}
+        <div className="alert alert-warning">
+          {browser.i18n.getMessage(
+            'localstorageAndContextualIdentitiesWarning',
+          )}
+        </div>
+      )}
       <div className="row" style={styles.rowOverrides}>
         <div className="col">
           <CheckboxSetting
@@ -293,6 +299,35 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
         </div>
       </div>
+
+      {((browserDetect === 'Firefox' && platformOs !== 'android') ||
+        browserDetect === 'Chrome') && (
+        <div className="row" style={styles.rowOverrides}>
+          <div className="col">
+            <CheckboxSetting
+              text={browser.i18n.getMessage('debugMode')}
+              settingObject={settings.debugMode}
+              inline={true}
+              updateSetting={payload => onUpdateSetting(payload)}
+            />
+            <SettingsTooltip
+              hrefURL={
+                '#debug-mode'
+              }
+            />
+          </div>
+        </div>
+      )}
+      {settings.debugMode.value && (
+        <div className="alert alert-info">
+          <p>{browser.i18n.getMessage('openDebugMode')}</p>
+          <pre><b>{(browserDetect === 'Firefox') && 'about:devtools-toolbox?type=extension&id='  || (browserDetect === 'Chrome') && `chrome://extensions/?id=`}{encodeURIComponent(browser.runtime.id)}</b></pre>
+          {(browserDetect === 'Chrome') && <p>{browser.i18n.getMessage('chromeDebugMode')}</p>}
+          <p>{browser.i18n.getMessage('consoleDebugMode')}.  {browser.i18n.getMessage('filterDebugMode')} <b>CAD_</b></p>
+        </div>
+      )}
+
+
 
 
       <br />

@@ -115,6 +115,7 @@ export const lists = (
       );
       return newListObject;
 
+    case ReduxConstants.CLEAR_EXPRESSIONS:
     case ReduxConstants.RESET_ALL:
       return {};
 

@@ -19,7 +19,7 @@ import {
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
 import CookieEvents from './services/CookieEvents';
-import { convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
+import { cadLog, convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
@@ -60,11 +60,20 @@ const onSettingsChange = () => {
     browser.browsingData.removeLocalStorage({
       since: 0,
     });
+    if (currentSettings.debugMode.value) {
+      cadLog({
+        msg: 'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
+        type: 'info',
+      });
+    }
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
     browser.alarms.clear('activeModeAlarm');
   }
+
+  // Validate Settings again
+  store.dispatch<any>(validateSettings());
 };
 
 const onStartUp = async () => {
@@ -172,11 +181,9 @@ async function onCookiePopupUpdates(
 
 function handleConnect(p: browser.runtime.Port) {
   if (!p.name || !p.name.startsWith('popupCAD_')) return;
-  
   if (!browser.cookies.onChanged.hasListener(onCookiePopupUpdates)) {
     browser.cookies.onChanged.addListener(onCookiePopupUpdates);
   }
-
   p.onMessage.addListener((m) => {
     console.warn('Received Unexpected message from CAD Popup')
     console.warn(JSON.stringify(m));
