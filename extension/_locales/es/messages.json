@@ -350,7 +350,7 @@
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
   "versionText": {
-    "message": "Versión de $browser$",
+    "message": "Versión para $browser$",
     "description": "Firefox version",
     "placeholders": {
       "browser": {
@@ -432,11 +432,11 @@
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "notificationEnabledText": {
-    "message": "Notificaciones habilitadas",
+    "message": "Notificación habilitada",
     "description": "Notification enabled"
   },
   "notificationDisabledText": {
-    "message": "Notificaciones deshabilitadas",
+    "message": "Notificación deshabilitada",
     "description": "Notification disabled"
   },
   "toggleNotificationText": {
@@ -460,7 +460,7 @@
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "enableNewVersionPopup": {
-    "message": "Habilitar ventana emergente cuando se lance una nueva versión",
+    "message": "Habilitar ventana emergente cuando se publique una nueva versión",
     "description": "Enable Popup when New Version is Released"
   },
   "localstorageCleanupWarning": {
