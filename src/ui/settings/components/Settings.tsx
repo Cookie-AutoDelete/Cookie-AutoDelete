@@ -146,6 +146,24 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
         </div>
       )}
 
+      {((browserDetect !== 'Firefox' || platformOs !== 'android') && settings.showNumOfCookiesInIcon.value === true) && (
+        <div className="row" style={styles.rowOverrides}>
+          <div className="col">
+            <CheckboxSetting
+              text={browser.i18n.getMessage('keepDefaultIcon')}
+              settingObject={settings.keepDefaultIcon}
+              inline={true}
+              updateSetting={payload => onUpdateSetting(payload)}
+            />
+            <SettingsTooltip
+              hrefURL={
+                '#keep-default-icon'
+              }
+            />
+          </div>
+        </div>
+      )}
+
 
       <div className="row" style={styles.rowOverrides}>
         <div className="col">
@@ -192,7 +210,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
           <SettingsTooltip
             hrefURL={
-              '#clean-cookies-from-open-tabs-on-startup'
+              '#enable-greylist-cleanup-on-browser-restart'
             }
           />
         </div>
@@ -358,6 +376,8 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
           />
         </div>
       </div>
+      <br />
+      <br />
     </div>
   );
 };

@@ -46,7 +46,6 @@ const prepareCookie = (cookie: browser.cookies.Cookie, debug: boolean = false) =
       x: { domain: cookie.domain, path: cookie.path, preparedCookieDomain: cookieProperties.preparedCookieDomain, mainDomain: cookieProperties.mainDomain, hostname: cookieProperties.hostname},
     });
   }
-  console.debug(cookieProperties);
   return cookieProperties;
 };
 
@@ -347,14 +346,24 @@ export const cleanCookiesOperation = async (
   };
 
   const cookieStoreIds = new Set<string>();
+
+  // Manually add default containers.
+  cookieStoreIds.add('default');
+  cookieStoreIds.add('firefox-default');
+  if (await browser.extension.isAllowedIncognitoAccess()) {
+    cookieStoreIds.add('firefox-private');
+    cookieStoreIds.add('private');
+  }
+
   // Store cookieStoreIds from the contextualIdentities API
   if (getSetting(state, 'contextualIdentities')) {
     const contextualIdentitiesObjects = await browser.contextualIdentities.query({});
 
-    for (const object of contextualIdentitiesObjects) {
-      cookieStoreIds.add(object.cookieStoreId);
+    for (const cio of contextualIdentitiesObjects) {
+      cookieStoreIds.add(cio.cookieStoreId);
     }
   }
+
 
   // Store cookieStoreIds from the cookies API
   const cookieStores = await browser.cookies.getAllCookieStores();

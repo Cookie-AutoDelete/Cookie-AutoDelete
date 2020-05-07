@@ -18,93 +18,95 @@ export const showNumberOfCookiesInIcon = (
   tab: browser.tabs.Tab,
   cookieLength: number,
 ) => {
-  if (cookieLength === 0) {
-    browser.browserAction.setBadgeText({
+  browser.browserAction.setBadgeText({
+    tabId: tab.id,
+    text: `${cookieLength === 0 ? '' : cookieLength.toString()}`,
+  });
+  if (browser.browserAction.setBadgeTextColor) {
+    browser.browserAction.setBadgeTextColor({
+      color: 'white',
       tabId: tab.id,
-      text: '',
     });
-  } else {
-    browser.browserAction.setBadgeText({
-      tabId: tab.id,
-      text: cookieLength.toString(),
-    });
-    if (browser.browserAction.setBadgeTextColor) {
-      browser.browserAction.setBadgeTextColor({
-        color: 'white',
-        tabId: tab.id,
-      });
-    }
   }
 };
 
 // Set BrowserAction Title with number of cookies in square brackets.
 export const showNumberofCookiesinTitle = async (
   tab: browser.tabs.Tab,
-  cookieLength: number
+  otherInfo: {
+    cookieLength?: number,
+    listType?: string,
+    platformOS?: string,
+  },
 ) => {
-  const tabTitle = await browser.browserAction.getTitle({tabId: tab.id});
-  if (tabTitle.search(/\[ \d+ \]$/) === -1) {
-    browser.browserAction.setTitle({
+  const mf = browser.runtime.getManifest();
+  // Use Shortened Extension name for mobile.
+  const tabTitle = `${((otherInfo.platformOS === 'android') ? 'CAD' : mf.name)} ${mf.version}`;
+
+  const curData = /\[(.*)\] \((\d*)\)/.exec(await browser.browserAction.getTitle({
+    tabId: tab.id,
+  }));
+  const newData = {
+    cookies: otherInfo.cookieLength || (curData && curData[2]) || 0,
+    list: otherInfo.listType || (curData && curData[1]) || 'NO LIST',
+  };
+
+  browser.browserAction.setTitle({
+    tabId: tab.id,
+    title: `${tabTitle} [${newData.list}] (${newData.cookies})`,
+  });
+}
+
+// Set Background icon color and badgeBackgroundColor accordingly.
+const setIconColor = (tab: browser.tabs.Tab, keepDefault: boolean = false, color: string = 'default') => {
+  const badgeBackgroundColor: {[key:string]: string} = {
+    default: 'blue',
+    red: 'red',
+    yellow: '#e6a32e',
+  };
+  if (browser.browserAction.setIcon) {
+    browser.browserAction.setIcon({
+      path: {
+        48: `icons/icon_48${(keepDefault || color === 'default') ? '' : `_${color}`}.png`,
+      },
       tabId: tab.id,
-      title: `${tabTitle} [ ${cookieLength} ]`,
     });
-  } else {
-    browser.browserAction.setTitle({
+  }
+
+  if (browser.browserAction.setBadgeBackgroundColor) {
+    browser.browserAction.setBadgeBackgroundColor({
+      color: badgeBackgroundColor[color],
       tabId: tab.id,
-      title: `${tabTitle.replace(/\[ \d+ \]/,`[ ${cookieLength} ]`)}`,
+    })
+  }
+};
+
+// Set background icon for browser.
+export const setGlobalIcon = async (enabled: boolean) => {
+  // This sets global icon
+  if (browser.browserAction.setIcon) {
+    const tabAwait = await browser.tabs.query({
+      active: true,
+      windowType: 'normal',
+    });
+    tabAwait.forEach(tab => {
+      if (tab.id !== browser.tabs.TAB_ID_NONE) {
+        browser.browserAction.setIcon({
+          path: {
+            48: `icons/icon_48${enabled ? '' : '_greyscale'}.png`,
+          },
+          tabId: tab.id,
+        });
+      }
     });
   }
 }
 
-// Set background icon to yellow
-const setIconYellow = (tab: browser.tabs.Tab) => {
-  browser.browserAction.setIcon({
-    path: {
-      48: 'icons/icon_yellow_48.png',
-    },
-    tabId: tab.id,
-  });
-
-  browser.browserAction.setBadgeBackgroundColor({
-    color: '#e6a32e',
-    tabId: tab.id,
-  });
-};
-
-// Set background icon to red
-export const setIconRed = (tab: browser.tabs.Tab) => {
-  browser.browserAction.setIcon({
-    path: {
-      48: 'icons/icon_red_48.png',
-    },
-    tabId: tab.id,
-  });
-
-  browser.browserAction.setBadgeBackgroundColor({
-    color: 'red',
-    tabId: tab.id,
-  });
-};
-
-// Set background icon to blue
-const setIconDefault = (tab: browser.tabs.Tab) => {
-  browser.browserAction.setIcon({
-    path: {
-      48: 'icons/icon_48.png',
-    },
-    tabId: tab.id,
-  });
-
-  browser.browserAction.setBadgeBackgroundColor({
-    color: 'blue',
-    tabId: tab.id,
-  });
-};
-
-// Check if the site is protected and adjust the icon appropriately
+// Check if the site is protected and adjust the icon and titles appropriately
 export const checkIfProtected = async (
   state: State,
   tab: browser.tabs.Tab | undefined = undefined,
+  cookieLength: number = 0,
 ) => {
   let currentTab: browser.tabs.Tab;
 
@@ -118,20 +120,92 @@ export const checkIfProtected = async (
     currentTab = tab;
   }
 
-  const hostname = getHostname(currentTab.url || '');
+  setGlobalIcon(true);
+
+  const otherWindows: browser.tabs.Tab[] = await browser.tabs.query({
+    active: true,
+    currentWindow: false,
+  });
+
+  otherWindows.forEach(owt => {
+    if (state.settings.activeMode.value === false) {
+      showNumberofCookiesinTitle(owt, {platformOS: state.cache.platformOs, listType: 'DISABLED'});
+      setGlobalIcon(false);
+      return;
+    }
+
+    const matched = returnMatchedExpressionObject(
+      state,
+      currentTab.cookieStoreId || 'default',
+      getHostname(owt.url || ''),
+    );
+    if (matched) {
+      showNumberofCookiesinTitle(owt, {platformOS: state.cache.platformOs, listType: matched.listType});
+      // Can't set icons on Android.
+      if (state.cache.platformOs && state.cache.platformOs === 'android') {
+        return;
+      }
+      switch (matched.listType) {
+        case ListType.WHITE:
+          setIconColor(owt);
+          break;
+        case ListType.GREY:
+          setIconColor(owt, state.settings.keepDefaultIcon.value as boolean, 'yellow');
+          break;
+        default:
+          setIconColor(owt, state.settings.keepDefaultIcon.value as boolean, 'red');
+          break;
+      }
+    } else {
+      showNumberofCookiesinTitle(owt, {platformOS: state.cache.platformOs, listType: 'NO LIST'});
+      // Can't set icons on Android.
+      if (state.cache.platformOs && state.cache.platformOs === 'android') {
+        return;
+      }
+      setIconColor(owt);
+    }
+  });
+
+  if (state.settings.activeMode.value === false) {
+    showNumberofCookiesinTitle(currentTab, {platformOS: state.cache.platformOs, listType: 'DISABLED', cookieLength});
+    setGlobalIcon(false);
+    return;
+  }
+
   const matchedExpression = returnMatchedExpressionObject(
     state,
     currentTab.cookieStoreId || 'default',
-    hostname,
+    getHostname(currentTab.url || ''),
   );
-  if (matchedExpression && matchedExpression.listType === ListType.WHITE) {
-    setIconDefault(currentTab);
-  } else if (
-    matchedExpression &&
-    matchedExpression.listType === ListType.GREY
-  ) {
-    setIconYellow(currentTab);
+
+  if (matchedExpression) {
+    showNumberofCookiesinTitle(currentTab, {platformOS: state.cache.platformOs, listType: matchedExpression.listType, cookieLength});
   } else {
-    setIconRed(currentTab);
+    showNumberofCookiesinTitle(currentTab, {platformOS: state.cache.platformOs, listType: 'NO LIST', cookieLength});
+  }
+
+  // Can't set icons on Android.
+  if (state.cache.platformOs && state.cache.platformOs === 'android') {
+    return;
+  }
+
+  if (matchedExpression) {
+    switch (matchedExpression.listType) {
+      case ListType.WHITE:
+        setIconColor(currentTab);
+        break;
+      case ListType.GREY:
+        setIconColor(currentTab, state.settings.keepDefaultIcon.value as boolean, 'yellow');
+        break;
+      default:
+        setIconColor(currentTab, state.settings.keepDefaultIcon.value as boolean, 'red');
+        break;
+    }
+  } else {
+    if (cookieLength === 0) {
+      setIconColor(currentTab);
+    } else {
+      setIconColor(currentTab, state.settings.keepDefaultIcon.value as boolean, 'red');
+    }
   }
 };

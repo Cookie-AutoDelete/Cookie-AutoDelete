@@ -14,7 +14,7 @@
   "author": "CAD Team",
   "default_locale": "en",
   "browser_action": {
-    "browser_style": true,
+    "browser_style": false,
     "default_icon": {
       "48": "icons/icon_48.png"
     },

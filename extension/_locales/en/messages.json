@@ -191,6 +191,10 @@
 		"message": "Keep All Cookies",
 		"description": "Keep All Cookies"
 	},
+	"keepDefaultIcon": {
+		"message": "Keep Default Icons on all list types",
+		"description": "Keep Default Icons on all list types"
+	},
 	"keepLocalstorageText": {
 		"message": "Keep LocalStorage",
 		"description": "Keep LocalStorage"
@@ -442,8 +446,8 @@
 		"description": "Cookie Settings"
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Show Number of Cookies for that Domain",
-		"description": "Show Number of Cookies for that Domain"
+		"message": "Show Number of Cookies for that Domain over the Icon",
+		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
 		"message": "Stop editing",

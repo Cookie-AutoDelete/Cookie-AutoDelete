@@ -1,6 +1,31 @@
 {
   "releases": [
     {
+      "version": "3.3.0-alpha",
+      "notes": [
+        "Added:  More unit testing for functions.",
+        "Added:  Debug Logging  (excludes Firefox Android).  This goes to the browser extension console and is for advanced users.",
+        "Added:  Settings Validation again after each setting change.",
+        "Added:  Cleanup on Browser Restart (GreyList) can be disabled.  Closes #463.",
+        "Added:  If the browser crashed / a tab `about:sessionrestore` (Firefox) is part of the opened tabs, then greylist cleanup will not run. Closes #463.",
+        "Added:  Delete All Expressions Button in Settings->Expressions.  This action cannot be undone so make sure you have exported a backup first! Closes #712.",
+        "Added:  Cookies (not localstorage) created by local html files can now be cleared through expressions.  Make sure to include 'file://' for local files.",
+        "Added:  A note about cleanup logs not generated for tabs in Private Browsing.",
+        "Added:  BrowserAction Title now includes the list type if the domain matches an expression",
+        "Added:  Keep Default Icon option (i.e. no red or yellow icons). If cookie count in icon is disabled, this is also disabled. Closes #76.",
+        "Added:  Greyscale Icon if autoclean is disabled.  BrowserAction Title will show 'DISABLED' instead of matching WHITE/GREY list.  Closes #454.",
+        "Changed:  CSS Buttons in Expression Table to be more colorful.",
+        "Fixed:  Minimum cleanup delay to 1 second and max cleanup delay to 2147483 seconds (setTimeout limitations).",
+        "Fixed:  Domains accessed with a dot in the end will also be cleared.  This will not affect existing expressions so new ones will need to be created for domains ending in a dot.  Closes #701.",
+        "Fixed:  Another attempt at blindly cleaning localstorage.  Cookies from 'sub.domain.com' will also clean localstorage from 'www.sub.domain.com' and '.sub.domain.com'.  Possibly closes #699, 581, and others.",
+        "Fixed:  CSS Styling for UI Buttons in Expressions To make it side by side.  Closes #399.",
+        "Fixed:  Texts in Firefox Popup not selectable.  Closes #622.",
+        "Fixed:  More checks for functions unavailable on Firefox Android.",
+        "Fixed:  Cookies in default container may not be cleared if no tabs on default container is open.  Closes #625.",
+        "Fixed:  Navigating to about:newtab / about:blank / about:home from another domain will trigger cleanup now, as long as clean on Domain Change is enabled."
+      ]
+    },
+    {
       "version": "3.2.0",
       "notes": [
         "Added:  LocalStorage Cleaning for Google Chrome!  Minimum Chrome Version is now 74 for cleaning by hostname.",

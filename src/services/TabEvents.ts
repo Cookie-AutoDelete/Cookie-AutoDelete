@@ -39,7 +39,6 @@ export default class TabEvents extends StoreUser {
       const debug = getSetting(StoreUser.store.getState(), 'debugMode');
       const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
       const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
-      checkIfProtected(TabEvents.store.getState(), tab);
       if (!TabEvents.onTabUpdateDelay) {
         TabEvents.onTabUpdateDelay = true;
         if (debug) {
@@ -92,19 +91,39 @@ export default class TabEvents extends StoreUser {
           });
         }
         TabEvents.tabToDomain[tabId] = mainDomain;
-      } else if (
-        TabEvents.tabToDomain[tabId] !== mainDomain &&
-        mainDomain !== ''
-      ) {
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
-            x: {tabId, changeInfo, oldMainDomain: TabEvents.tabToDomain[tabId], mainDomain, partialTabInfo,},
-          });
-        }
+      } else if (TabEvents.tabToDomain[tabId] !== mainDomain
+        && (mainDomain !== '' ||
+          tab.url === 'about:blank' ||
+          tab.url === 'about:home' ||
+          tab.url === 'about:newtab' ||
+          tab.url === 'chrome://newtab/'))
+      {
+        const oldMainDomain = TabEvents.tabToDomain[tabId];
         TabEvents.tabToDomain[tabId] = mainDomain;
         if (getSetting(StoreUser.store.getState(), 'domainChangeCleanup')) {
+          if (oldMainDomain === '') {
+            if (debug) {
+              cadLog({
+                msg: 'TabEvents.onDomainChange: mainDomain has changed, but previous domain may have been a blank or new tab.  Not executing domainChangeCleanup',
+                x: {tabId, changeInfo, partialTabInfo,},
+              });
+            }
+            return;
+          }
+          if (debug) {
+            cadLog({
+              msg: 'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
+              x: {tabId, changeInfo, oldMainDomain: TabEvents.tabToDomain[tabId], mainDomain, partialTabInfo,},
+            });
+          }
           TabEvents.cleanFromFromTabEvents();
+        } else {
+          if (debug) {
+            cadLog({
+              msg: 'TabEvents.onDomainChange: mainDomain has changed, but cleanOnDomainChange is not enabled.  Not cleaning.',
+              x: {tabId, changeInfo, oldMainDomain: TabEvents.tabToDomain[tabId], mainDomain, partialTabInfo,},
+            });
+          }
         }
       } else {
         if (debug) {
@@ -239,12 +258,13 @@ export default class TabEvents extends StoreUser {
     }
     if (debug) {
       cadLog({
-        msg: 'TabEvents.getAllCookieActions: executing showNumberofCookiesinTitle.',
+        msg: 'TabEvents.getAllCookieActions: executing checkIfProtected to update Icons and Title.',
       });
     }
-    showNumberofCookiesinTitle(tab, cookieLength);
+    checkIfProtected(StoreUser.store.getState(), tab, cookieLength);
 
-    if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon')) {
+    // Exclude Firefox Android for browser icons and badge texts
+    if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon') && (StoreUser.store.getState().cache.platformOs || '') !== 'android') {
       if (debug) {
         cadLog({
           msg: 'TabEvents.getAllCookieActions: executing showNumberOfCookiesInIcon.',
@@ -252,17 +272,14 @@ export default class TabEvents extends StoreUser {
       }
       showNumberOfCookiesInIcon(tab, cookieLength);
     } else {
-      // Exclude Firefox Android.
-      if (browser.browserAction.setBadgeText) {
-        browser.browserAction.setBadgeText({
-          tabId: tab.id,
-          text: '',
+      browser.browserAction.setBadgeText({
+        tabId: tab.id,
+        text: '',
+      });
+      if (debug) {
+        cadLog({
+          msg: 'TabEvents.getAllCookieActions:  setBadgeText has been cleared.',
         });
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.getAllCookieActions:  setBadgeText has been cleared.',
-          });
-        }
       }
     }
   }

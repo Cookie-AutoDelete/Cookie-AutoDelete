@@ -129,7 +129,7 @@ class ExpressionTable extends React.Component<
               >
                 <IconButton
                   title={browser.i18n.getMessage('removeExpressionText')}
-                  className="btn-light"
+                  className="btn-outline-danger"
                   iconName="trash"
                   onClick={() => {
                     onRemoveExpression(expression);
@@ -156,12 +156,12 @@ class ExpressionTable extends React.Component<
                       display: 'inline-block',
                       margin: 0,
                       verticalAlign: 'middle',
-                      width: 'calc(100% - 70px)',
+                      width: 'calc(100% - 95px)',
                     }}
                   />
                   <IconButton
                     title={browser.i18n.getMessage('stopEditingText')}
-                    className="btn-light"
+                    className="btn-outline-danger"
                     iconName="ban"
                     styleReact={{
                       float: 'right',
@@ -173,7 +173,7 @@ class ExpressionTable extends React.Component<
                   />
                   <IconButton
                     title={browser.i18n.getMessage('saveExpressionText')}
-                    className="btn-light"
+                    className="btn-outline-success"
                     iconName="save"
                     styleReact={{
                       float: 'right',
@@ -197,7 +197,7 @@ class ExpressionTable extends React.Component<
                   <IconButton
                     title={browser.i18n.getMessage('editExpressionText')}
                     iconName="pen"
-                    className="btn-light showOnRowHover"
+                    className="btn-outline-info showOnRowHover"
                     styleReact={{
                       float: 'right',
                       marginLeft: '5px',
@@ -237,7 +237,7 @@ class ExpressionTable extends React.Component<
                       : browser.i18n.getMessage('toggleToWhiteListWordText')
                   }`}
                   iconName="exchange-alt"
-                  className="btn-light showOnRowHover"
+                  className="btn-outline-dark showOnRowHover"
                   styleReact={{
                     float: 'right',
                     marginLeft: '5px',

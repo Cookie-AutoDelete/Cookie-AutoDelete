@@ -18,6 +18,7 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
+import { checkIfProtected } from './services/BrowserActionService';
 import CookieEvents from './services/CookieEvents';
 import { cadLog, convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
@@ -71,13 +72,15 @@ const onSettingsChange = () => {
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
     browser.alarms.clear('activeModeAlarm');
   }
+  checkIfProtected(store.getState());
 
   // Validate Settings again
   store.dispatch<any>(validateSettings());
 };
 
 const onStartUp = async () => {
-  browser.browserAction.setTitle({ title: `${await browser.browserAction.getTitle({})} ${browser.runtime.getManifest().version}` });
+  const mf = browser.runtime.getManifest();
+  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [STARTING UP...] (0)` });
   const storage = await browser.storage.local.get();
   let stateFromStorage;
   try {
@@ -149,6 +152,8 @@ const onStartUp = async () => {
 
   store.dispatch<any>(validateSettings());
 
+  checkIfProtected(store.getState());
+
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
@@ -213,7 +218,7 @@ onStartUp();
 browser.runtime.onStartup.addListener(async () => {
   await awaitStore();
   if (getSetting(store.getState(), 'activeMode') === true) {
-      if (getSetting(store.getState(), 'enableGreyListCleanup') === true) {
+    if (getSetting(store.getState(), 'enableGreyListCleanup') === true) {
       let isFFSessionRestore = false;
       const startupTabs = await browser.tabs.query({});
       startupTabs.forEach(tab => {
@@ -234,9 +239,11 @@ browser.runtime.onStartup.addListener(async () => {
       });
     }
   }
+  checkIfProtected(store.getState());
 });
 browser.runtime.onInstalled.addListener(async details => {
   await awaitStore();
+  checkIfProtected(store.getState());
   switch (details.reason) {
     case 'install':
       browser.runtime.openOptionsPage();

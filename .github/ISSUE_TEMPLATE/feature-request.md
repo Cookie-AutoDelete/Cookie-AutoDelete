@@ -6,6 +6,7 @@ labels: "Feature Request"
 assignees: ''
 
 ---
+<!-- Please keep the ** headers ** when posting the request -->
 
 **Is your feature request related to a problem? Please describe.**
 

@@ -92,6 +92,11 @@ export const initialState: State = {
       name: 'enableGreyListCleanup',
       value: true,
       id: 15,
+    },
+    keepDefaultIcon: {
+      name: 'keepDefaultIcon',
+      value: false,
+      id: 16,
     }
   },
   activityLog: [],

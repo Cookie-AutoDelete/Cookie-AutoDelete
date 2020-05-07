@@ -234,6 +234,17 @@ export const validateSettings: ActionCreator<
       type: ReduxConstants.UPDATE_SETTING,
     });
   }
+
+  // If show cookie count in badge is disabled, force change icon color instead
+  if (settings.showNumOfCookiesInIcon.value === false && settings.keepDefaultIcon.value === true) {
+    dispatch({
+      payload: {
+        ...settings.keepDefaultIcon,
+        value: false,
+      },
+      type: ReduxConstants.UPDATE_SETTING,
+    });
+  }
 };
 
 export const cookieCleanupUI = (
