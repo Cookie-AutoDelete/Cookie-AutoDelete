@@ -364,7 +364,6 @@ export const cleanCookiesOperation = async (
     }
   }
 
-
   // Store cookieStoreIds from the cookies API
   const cookieStores = await browser.cookies.getAllCookieStores();
   for (const store of cookieStores) {

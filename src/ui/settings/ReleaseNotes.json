@@ -22,7 +22,7 @@
         "Fixed:  Texts in Firefox Popup not selectable.  Closes #622.",
         "Fixed:  More checks for functions unavailable on Firefox Android.",
         "Fixed:  Cookies in default container may not be cleared if no tabs on default container is open.  Closes #625.",
-        "Fixed:  Navigating to about:newtab / about:blank / about:home from another domain will trigger cleanup now, as long as clean on Domain Change is enabled."
+        "Fixed:  Navigating to about:newtab / about:blank / about:home from another domain will trigger cleanup now, as long as clean on Domain Change is enabled.  Closes #459."
       ]
     },
     {

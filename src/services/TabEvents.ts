@@ -272,14 +272,16 @@ export default class TabEvents extends StoreUser {
       }
       showNumberOfCookiesInIcon(tab, cookieLength);
     } else {
-      browser.browserAction.setBadgeText({
-        tabId: tab.id,
-        text: '',
-      });
-      if (debug) {
-        cadLog({
-          msg: 'TabEvents.getAllCookieActions:  setBadgeText has been cleared.',
+      if (browser.browserAction.setBadgeText) {
+        browser.browserAction.setBadgeText({
+          tabId: tab.id,
+          text: '',
         });
+        if (debug) {
+          cadLog({
+            msg: `TabEvents.getAllCookieActions:  BadgeText has been cleared for tab ${tab.id}.`,
+          });
+        }
       }
     }
   }
