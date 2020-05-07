@@ -2,20 +2,28 @@ button:hover {
   cursor: pointer;
 }
 
-label:hover {
-  background-color: #d3d3d3;
-  cursor: pointer;
-}
-
-input {
-  margin-top: 5px;
-  margin-bottom: 2px;
-}
-
 h1 {
   border-bottom: 1px solid #808080;
   padding-bottom: 4px;
   text-align: center;
+}
+
+input {
+  margin-bottom: 2px;
+  margin-top: 5px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+input[type='number'] {
+  width: 5em;
+}
+
+label:hover {
+  background-color: #d3d3d3;
+  cursor: pointer;
 }
 
 table {
@@ -23,28 +31,18 @@ table {
 }
 
 td {
-  margin: 5px;
   border-collapse: collapse;
+  margin: 5px;
   max-height: 10px;
 }
 
 #tableContainer {
-  margin-top: 2em;
-  margin-bottom: 2em;
-  height: 15em;
-  overflow: auto;
   border: 1px solid black;
-}
-
-.removeIcon {
-  margin-left: 0.5em;
-  margin-right: 1em;
-}
-
-.removeIcon:hover {
-  cursor: pointer;
-  opacity: 0.5;
-  transition-duration: 0.15s;
+  box-sizing: border-box;
+  height: 15em;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  overflow: auto;
 }
 
 .content {
@@ -52,49 +50,35 @@ td {
   width: 40em;
 }
 
-#welcomeContent h2 {
-  font-size: 3rem;
-}
-
-#welcomeContent span {
-  font-weight: bold;
-}
-
-input[type='number'] {
-  width: 5em;
-}
-
 .file-upload {
+  background-image: none;
+  border: 1px solid transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 4px;
+  border-right-color: transparent;
+  border-top-color: transparent;
   color: #337ab7;
-  text-decoration: none;
+  cursor: pointer;
   display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.42857143;
+  margin-bottom: 0;
+  padding: 6px 12px;
   text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
+  text-decoration: none;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-top-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-  border-radius: 4px;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
-input[type='file'] {
-  display: none;
-}
+
 
 #menu {
   background-color: #26292e;
@@ -107,16 +91,16 @@ input[type='file'] {
 }
 
 .pure-menu-item {
-  padding-top: 1em;
-  padding-left: 1em;
   padding-bottom: 1em;
+  padding-left: 1em;
+  padding-top: 1em;
 }
 
 .pure-menu-item:hover {
+  background-color: #808080;
   cursor: pointer;
   transition: background-color;
   transition-duration: 0.15s;
-  background-color: #808080;
 }
 
 .pure-menu-item span {
@@ -127,52 +111,15 @@ input[type='file'] {
 .pure-menu-selected {
   background: #808080 !important;
   background-color: #808080;
-  border-style: none none none solid;
   border-left-color: #0288d1;
-}
-
-/* The close button */
-
-.removeButton {
-  /*
-  color: white;
-  float: right;
-  */
-  font-weight: bold;
-  font-size: 2em;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-sizing: border-box;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-/* When moving the mouse over the close button */
-
-.removeButton:hover {
-  color: #808080;
-}
-
-.fadeOut {
-  -webkit-animation-name: fadeOut;
-  animation-name: fadeOut;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  border-style: none none none solid;
 }
 
 .tooltipCustom {
-  font-size: 18px;
-  font-weight: 700;
   color: #777;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
   margin-left: 5px;
   text-decoration: none;
 }
@@ -196,5 +143,11 @@ input[type='file'] {
 @media (max-width: 755px) {
   .btn-group > .btn {
     max-width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-top: 1em;
   }
 }

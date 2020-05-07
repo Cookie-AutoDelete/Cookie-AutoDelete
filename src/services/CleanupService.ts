@@ -403,15 +403,6 @@ export const cleanCookiesOperation = async (
       return undefined;
     }
 
-    const markedForLocalStorageDeletion = isSafeToCleanObjects.filter(
-      filterLocalstorage,
-    );
-
-    // Side effects
-    allLocalstorageToClean = [
-      ...allLocalstorageToClean,
-      ...markedForLocalStorageDeletion,
-    ];
     if (markedForDeletion.length !== 0) {
       cachedResults.storeIds[id] = markedForDeletion;
     }
@@ -423,22 +414,32 @@ export const cleanCookiesOperation = async (
           : obj.cookie.hostname,
       );
     });
-  }
 
-  // Clean other browsingdata.  Pass in Domain for specific cleanup for LocalStorage.
-  const domainsToClean = allLocalstorageToClean.map(
-    obj => obj.cookie.domain
-  ).filter(domain => domain.trim() !== '');
+    const markedForLocalStorageDeletion = isSafeToCleanObjects.filter(
+      filterLocalstorage,
+    );
 
-  try {
-    await otherBrowsingDataCleanup(state, domainsToClean);
-  } catch (e) {
-    cadLog({
-      type: 'error',
-      x: {e, domainsToClean,},
-    });
-    // if it reaches this point then cookies were deleted, so don't return undefined
-    throwErrorNotification(e);
+    // Side effects
+    allLocalstorageToClean = [
+      ...allLocalstorageToClean,
+      ...markedForLocalStorageDeletion,
+    ];
+
+    // Clean other browsingdata.  Pass in Domain for specific cleanup for LocalStorage.
+    const domainsToClean = allLocalstorageToClean.map(
+      obj => obj.cookie.domain
+    ).filter(domain => domain.trim() !== '');
+
+    try {
+      await otherBrowsingDataCleanup(state, domainsToClean);
+    } catch (e) {
+      cadLog({
+        type: 'error',
+        x: {e, domainsToClean,},
+      });
+      // if it reaches this point then cookies were deleted, so don't return undefined
+      throwErrorNotification(e);
+    }
   }
 
   // Scrub private cookieStores

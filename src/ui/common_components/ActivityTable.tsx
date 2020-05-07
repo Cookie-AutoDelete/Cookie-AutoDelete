@@ -198,7 +198,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
-        <i>{browser.i18n.getMessage('noCleanupLogText')}.  {browser.i18n.getMessage('noPrivateLogging')}.</i>
+        <i>{browser.i18n.getMessage('noCleanupLogText')}.<br /> {browser.i18n.getMessage('noPrivateLogging')}.</i>
       </div>
     );
   }

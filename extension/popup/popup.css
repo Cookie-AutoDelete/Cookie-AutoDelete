@@ -7,12 +7,6 @@ label:hover {
   cursor: pointer;
 }
 
-span.userAction {
-  font-size: 16px;
-  font-weight: 300;
-  text-align: center;
-}
-
 @keyframes successAnimation {
   0% {
   }

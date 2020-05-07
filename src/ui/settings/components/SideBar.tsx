@@ -121,6 +121,7 @@ class SideBar extends React.Component<OwnProps> {
             ))}
             <a
               href="https://www.paypal.me/mrkennyd/5"
+              target="_blank"
             >
               <div
                 className={`pure-menu-item`}
