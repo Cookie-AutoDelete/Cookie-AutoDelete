@@ -22,7 +22,6 @@
     "bootstrap": "^4.4.1",
     "ip-regex": "^4.1.0",
     "jquery": "3.4.1",
-    "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
