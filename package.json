@@ -47,7 +47,7 @@
     "jest-when": "^2.7.1",
     "source-map-loader": "^0.2.4",
     "ts-jest": "25.4.0",
-    "ts-loader": "^7.0.1",
+    "ts-loader": "^7.0.3",
     "tslint": "^6.1.2",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
