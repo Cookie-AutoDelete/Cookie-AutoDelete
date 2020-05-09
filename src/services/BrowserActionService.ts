@@ -99,6 +99,12 @@ export const setGlobalIcon = async (enabled: boolean) => {
         });
       }
     });
+    // Set Global Icon
+    browser.browserAction.setIcon({
+      path: {
+        48: `icons/icon_48${enabled ? '' : '_greyscale'}.png`,
+      },
+    });
   }
 }
 

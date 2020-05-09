@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { resetAll } from '../../redux/Actions';
 import { ReduxAction } from '../../typings/ReduxConstants';
-import { exportAppendTimestamp } from '../UILibs';
+import { downloadObjectAsJSON } from '../UILibs';
 import IconButton from './IconButton';
 
 interface DispatchProps {
@@ -67,18 +67,11 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
           <hr />
           <p className="mb-0">
             <IconButton
-              tag="a"
               className="btn-primary"
               iconName="download"
-              href={`data:text/plain;charset=utf-8,${encodeURIComponent(
-                JSON.stringify(this.props.state.lists, null, '  '),
-              )}`}
-              download="CAD_Expressions_Expressions.json"
               role="button"
-              target="_blank"
-              onClick={d => exportAppendTimestamp(d.target)}
-              onContextMenu={d => exportAppendTimestamp(d.target)}
-              title={browser.i18n.getMessage('exportURLSTitle')}
+              onClick={() => downloadObjectAsJSON(this.props.state.lists, 'CAD_Expressions')}
+              title={browser.i18n.getMessage('exportTitleTimestamp')}
               text={browser.i18n.getMessage('exportURLSText')}
               styleReact={{ marginRight: '5px' }}
             />

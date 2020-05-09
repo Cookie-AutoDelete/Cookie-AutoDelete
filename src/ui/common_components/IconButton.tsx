@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
 interface IconButtonProps {
+  accept?: string;
   iconName: IconProp;
   className: string;
   styleReact?: React.CSSProperties;
@@ -33,14 +34,8 @@ interface IconButtonProps {
 
 export default class IconButton extends React.Component<IconButtonProps> {
   public render() {
-    const { iconName, className, styleReact, text, tag } = this.props;
+    const { className, iconName, styleReact, tag, text, ...nativeProps } = this.props;
 
-    const nativeProps = {
-      ...this.props,
-      iconName: undefined,
-      tag: undefined,
-      text: undefined,
-    };
     // Has to be PascalCase, else JSX will think it's a tag named 'tagName'.
     const TagName = tag === 'input' ? 'label' : tag || 'button';
     return (
@@ -50,6 +45,7 @@ export default class IconButton extends React.Component<IconButtonProps> {
         className={`btn ${className || ''}`}
         style={{
           cursor: tag === 'input' ? 'pointer' : undefined,
+          margin: '0 2px',
           ...styleReact,
         }}
       >

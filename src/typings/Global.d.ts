@@ -47,7 +47,7 @@ type Expression = Readonly<{
 }>;
 
 type Setting = Readonly<{
-  id: string | number;
+  id?: string | number;
   name: string;
   value: boolean | number | string;
 }>;

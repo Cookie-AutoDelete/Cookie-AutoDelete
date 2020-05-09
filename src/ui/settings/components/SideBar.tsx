@@ -96,15 +96,9 @@ class SideBar extends React.Component<OwnProps> {
           </div>
         </div>
 
-        <div id="menu">
-          <div className="pure-menu">
-            <div
-              className="sidebar-version"
-              style={{
-                  textAlign: 'center',
-                  width: '100%',
-              }}
-            >
+        <div id="menu" className="menu">
+          <div className="pure-menu nav flex-column">
+            <div className="sidebar-version">
               <span>CAD {browser.i18n.getMessage('versionText', [''])} <b>{browser.runtime.getManifest().version}</b></span>
             </div>
             {sideBarTabs.map((element, index) => (
@@ -119,15 +113,9 @@ class SideBar extends React.Component<OwnProps> {
                 <span>{`${element.tabText}`}</span>
               </div>
             ))}
-            <a
-              href="https://www.paypal.me/mrkennyd/5"
-              target="_blank"
-            >
-              <div
-                className={`pure-menu-item`}
-              >
-                <span>{browser.i18n.getMessage('contributeText')}</span>
-              </div>
+            <br />
+            <a className={`pure-menu-item`} href="https://www.paypal.me/mrkennyd/5" target="_blank">
+              <span>{browser.i18n.getMessage('contributeText')}</span>
             </a>
           </div>
         </div>

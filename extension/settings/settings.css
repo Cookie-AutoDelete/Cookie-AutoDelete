@@ -36,15 +36,6 @@ td {
   max-height: 10px;
 }
 
-#tableContainer {
-  border: 1px solid black;
-  box-sizing: border-box;
-  height: 15em;
-  margin-bottom: 2em;
-  margin-top: 2em;
-  overflow: auto;
-}
-
 .content {
   padding-left: 12em;
   width: 40em;
@@ -78,16 +69,14 @@ td {
   white-space: nowrap;
 }
 
-
-
-#menu {
+.menu {
   background-color: #26292e;
   height: 100%;
   position: fixed;
 }
 
 .pure-menu {
-  padding-top: 2em;
+  padding-top: 0.5em;
 }
 
 .pure-menu-item {

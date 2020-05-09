@@ -18,7 +18,7 @@ import { getSetting } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
-import { exportAppendTimestamp } from '../../UILibs';
+import { downloadObjectAsJSON } from '../../UILibs';
 const styles = {
   buttonStyle: {
     height: 'max-content',
@@ -82,7 +82,7 @@ class Expressions extends React.Component<ExpressionProps> {
         );
       } catch (error) {
         this.setState({
-          error: error.toString(),
+          error: `${(files[0] as File).name} - ${error.toString()}.`,
         });
       }
     };
@@ -112,12 +112,16 @@ class Expressions extends React.Component<ExpressionProps> {
     listKeys.forEach(k => {
       expCount += lists[k].length;
     });
-    console.info(listKeys.length);
-    console.info(expCount);
-    const r = window.prompt(browser.i18n.getMessage('removeAllExpressionsConfirm', [ expCount.toString(), listKeys.length.toString()]));
-    console.info(`Clear Expressions Prompt returned [ ${r} ]`)
-    if (r !== null && r === 'yes') {
-      onClearExpressions(this.props.lists);
+    if (listKeys.length === 0 && expCount === 0) {
+      this.setState({
+        error: browser.i18n.getMessage('removeAllExpressionsNoneFound'),
+      });
+    } else {
+      const r = window.prompt(browser.i18n.getMessage('removeAllExpressionsConfirm', [ expCount.toString(), listKeys.length.toString()]));
+      console.info(`Clear Expressions Prompt returned [ ${r} ]`)
+      if (r !== null && r === 'yes') {
+        onClearExpressions(this.props.lists);
+      }
     }
   }
 
@@ -204,33 +208,25 @@ class Expressions extends React.Component<ExpressionProps> {
             }}
           >
             <IconButton
-              tag="a"
               className="btn-primary"
               iconName="download"
-              href={`data:text/plain;charset=utf-8,${encodeURIComponent(
-                JSON.stringify(this.props.lists, null, '  '),
-              )}`}
-              download="CAD_Expressions_Expressions.json"
               role="button"
-              target="_blank"
-              onClick={d => exportAppendTimestamp(d.target)}
-              onContextMenu={d => exportAppendTimestamp(d.target)}
-              title={browser.i18n.getMessage('exportURLSTitle')}
+              onClick={() => downloadObjectAsJSON(this.props.lists, 'Expressions')}
+              title={browser.i18n.getMessage('exportTitleTimestamp')}
               text={browser.i18n.getMessage('exportURLSText')}
               styleReact={styles.buttonStyle}
             />
-
             <IconButton
               tag="input"
               className="btn-info"
               iconName="upload"
               type="file"
+              accept="text/json"
               onChange={e => this.importExpressions(e.target.files)}
               text={browser.i18n.getMessage('importURLSText')}
               title={browser.i18n.getMessage('importURLSText')}
               styleReact={styles.buttonStyle}
             />
-
             <IconButton
               tag="button"
               className="btn-danger"

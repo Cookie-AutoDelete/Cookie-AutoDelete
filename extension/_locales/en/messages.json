@@ -3,9 +3,13 @@
 		"message": "About",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Delay Before Automatic Cleaning",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
-		"message": "Enable Automatic Cleaning? Delay Before Cleaning:",
-		"description": "Enable Automatic Cleaning? Delay Before Cleaning:"
+		"message": "Enable Automatic Cleaning",
+		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
 		"message": "Auto-clean disabled",
@@ -30,6 +34,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Enable Cleanup on Domain Change",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message":  "Warning - Actions below ignore settings!",
+		"description":  "Warning - Actions below ignore settings!"
 	},
 	"cleanupLogText": {
 		"message": "Cleanup Log",
@@ -119,6 +127,10 @@
 		"message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
 		"description": "Domain Expression"
 	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Toggle Additional Cleaning Actions Dropdown",
+		"description":  "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
 	"editExpressionText": {
 		"message": "Edit expression",
 		"description": "Edit expression"
@@ -147,13 +159,17 @@
 		"message": "Error!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Export Core Settings",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Export Expressions",
 		"description": "Export Expressions"
 	},
-	"exportURLSTitle": {
-		"message": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download.",
-		"description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
+	"exportTitleTimestamp": {
+		"message": "A timestamp will be appended to the filename on export.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want.",
@@ -182,6 +198,18 @@
 	"greyListWordText": {
 		"message": "Greylist",
 		"description": "Greylist"
+	},
+	"importCoreSettingsFailed": {
+		"message": "Import Core Settings Failed - Unknown setting(s) found",
+		"description":  "Import Core Settings Failed - Unknown settings(s) found"
+	},
+	"importCoreSettingsSuccess": {
+		"message": "Import Core Settings Successful",
+		"description":  "Import Core Settings Successful"
+	},
+	"importCoreSettingsText": {
+		"message": "Import Core Settings",
+		"description": "Import Core Settings"
 	},
 	"importURLSText": {
 		"message": "Import Expressions",
@@ -276,6 +304,10 @@
 	"notificationTitle": {
 		"message": "Cookies were deleted!",
 		"description": "Cookies were deleted!  Used in Notification Title."
+	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Duration for Notifications",
+		"description": "Duration for Notifications"
 	},
 	"notifyCookieCleanUpText": {
 		"message": "Show Notification After Cookie Cleanup",
@@ -407,6 +439,10 @@
 			}
 		}
 	},
+	"removeAllExpressionsNoneFound": {
+		"message": "No expressions to remove!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Remove expression",
 		"description": "Remove expression"
@@ -441,9 +477,25 @@
 		"message": "second(s)",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Automatic Cleaning Options",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Expression Options",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Extension Options",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Other Browsing Data Cleanup Options",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
-		"message": "Cookie Settings",
-		"description": "Cookie Settings"
+		"message": "CAD Settings",
+		"description": "CAD Settings"
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Show Number of Cookies for that Domain over the Icon",

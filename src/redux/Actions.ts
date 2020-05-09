@@ -156,7 +156,7 @@ export const resetAll = (): RESET_ALL => ({
   type: ReduxConstants.RESET_ALL,
 });
 
-// Validates the setting object and adds missing settings if it doesn't already exist in the initialState.json
+// Validates the setting object and adds missing settings if it doesn't already exist in the initialState
 export const validateSettings: ActionCreator<
   ThunkAction<void, State, null, ReduxAction>
 > = () => (dispatch, getState) => {
@@ -165,26 +165,25 @@ export const validateSettings: ActionCreator<
   const settingKeys = Object.keys(settings);
   const initialSettingKeys = Object.keys(initialSettings);
 
-  const invividalSettingKeysMatch =
-    Object.keys(settings[settingKeys[0]]).length ===
-    Object.keys(initialSettings[initialSettingKeys[0]]).length;
-
-  // Missing a property in a individual setting
-  if (!invividalSettingKeysMatch) {
-    settingKeys.forEach(element => {
+  settingKeys.forEach(k => {
+    // Properties in a individual setting do not match up.  Repopulate from the default one and reuse existing value
+    if (Object.keys(settings[k]).length !== Object.keys(initialSettings[k]).length) {
       dispatch({
-        payload: settings[element],
+        payload: {
+          ...initialSettings[k],
+          value: settings[k].value,
+        },
         type: ReduxConstants.UPDATE_SETTING,
       });
-    });
-  }
+    }
+  });
 
   // Missing a setting
   if (settingKeys.length !== initialSettingKeys.length) {
-    initialSettingKeys.forEach(element => {
-      if (settings[element] === undefined) {
+    initialSettingKeys.forEach(k => {
+      if (settings[k] === undefined) {
         dispatch({
-          payload: initialSettings[element],
+          payload: initialSettings[k],
           type: ReduxConstants.UPDATE_SETTING,
         });
       }
@@ -237,13 +236,7 @@ export const validateSettings: ActionCreator<
 
   // If show cookie count in badge is disabled, force change icon color instead
   if (settings.showNumOfCookiesInIcon.value === false && settings.keepDefaultIcon.value === true) {
-    dispatch({
-      payload: {
-        ...settings.keepDefaultIcon,
-        value: false,
-      },
-      type: ReduxConstants.UPDATE_SETTING,
-    });
+    disableSettingIfTrue(settings.keepDefaultIcon);
   }
 };
 
