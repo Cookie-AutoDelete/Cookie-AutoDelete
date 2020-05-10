@@ -51,7 +51,7 @@ export default class TabEvents extends StoreUser {
     changeInfo: any,
     tab: browser.tabs.Tab,
   ) {
-    if (tab.discarded) {
+    if (tab.discarded && getSetting(StoreUser.store.getState(), 'discardedCleanup')) {
       // Do the magic !
       TabEvents.cleanFromFromTabEvents();
     }
