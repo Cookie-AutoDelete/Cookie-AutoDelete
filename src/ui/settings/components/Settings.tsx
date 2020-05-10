@@ -109,8 +109,7 @@ const Settings: React.FunctionComponent<SettingProps> = props => {
       <div className="row" style={styles.rowOverrides}>
         <div className="col">
           <CheckboxSetting
-            text='Delete cookies from discarded'
-            // text={browser.i18n.getMessage('cleanupDiscardedText')}
+            text={browser.i18n.getMessage('cleanupDiscardedText')}
             settingObject={settings.discardedCleanup}
             inline={true}
             updateSetting={payload => onUpdateSetting(payload)}

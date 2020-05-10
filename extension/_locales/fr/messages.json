@@ -241,6 +241,10 @@
     "message": "Activer le nettoyage lors d’un changement de domaine",
     "description": "Enable Cleanup on Domain Change"
   },
+  "cleanupDiscardedText": {
+    "message": "Activer le nettoyage au déchargement d'un onglet"
+    "description": "Enable Cleanup for Discarded Tabs"
+  },
   "enableCleanupLogText": {
     "message": "Activer le journal et le compteur de nettoyage",
     "description": "Enable Cleanup Log and Counter"

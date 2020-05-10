@@ -279,6 +279,11 @@
     "description": "Enable Cleanup on Domain Change"
   },
 
+  "cleanupDiscardedText": {
+    "message": "Enable Cleanup for Discarded Tabs",
+    "description": "Enable Cleanup for Discarded Tabs"
+  },
+
   "enableCleanupLogText": {
     "message": "Enable Cleanup Log and Counter",
     "description": "Enable Cleanup Log and Counter"
