@@ -139,6 +139,10 @@ describe('CleanupService', () => {
             {
               url: 'moz-extension://test/settings/settings.html',
             },
+            {
+              url: 'https://opensource.org',
+              discarded: true,
+            },
           ],
         },
       };
@@ -154,6 +158,9 @@ describe('CleanupService', () => {
       when(mockedLib.isAWebpage)
         .calledWith('moz-extension://test/settings/settings.html')
         .mockReturnValue(false);
+      when(mockedLib.isAWebpage)
+        .calledWith('https://opensource.org')
+        .mockReturnValue(true);
 
       when(mockedLib.getHostname)
         .calledWith('https://google.com/search')
@@ -164,6 +171,9 @@ describe('CleanupService', () => {
       when(mockedLib.getHostname)
         .calledWith('http://sub.domain.com')
         .mockReturnValue('sub.domain.com');
+      when(mockedLib.getHostname)
+        .calledWith('https://opensource.org')
+        .mockReturnValue('opensource.org');
 
       when(mockedLib.extractMainDomain)
         .calledWith('google.com')
@@ -177,6 +187,9 @@ describe('CleanupService', () => {
       when(mockedLib.extractMainDomain)
         .calledWith('github.com')
         .mockReturnValue('github.com');
+      when(mockedLib.extractMainDomain)
+        .calledWith('opensource.org')
+        .mockReturnValue('opensource.org');
     });
 
     it('should have google.com in set', () => {
@@ -200,9 +213,30 @@ describe('CleanupService', () => {
       });
     });
 
-    it('should have length 3 in set', () => {
+    it('should have opensource.org in set', () => {
       return returnSetOfOpenTabDomains(false, false).then(results => {
+        expect(results.has('opensource.org')).toBe(true);
+        return Promise.resolve();
+      });
+    });
+
+    it('should have length 4 in set', () => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
+        expect(results.size).toBe(4);
+        return Promise.resolve();
+      });
+    });
+
+    it('should have length 3 in set', () => {
+      return returnSetOfOpenTabDomains(false, true).then(results => {
         expect(results.size).toBe(3);
+        return Promise.resolve();
+      });
+    });
+
+    it('should not have opensource.org in set', () => {
+      return returnSetOfOpenTabDomains(false, true).then(results => {
+        expect(results.has('opensource.org')).toBe(false);
         return Promise.resolve();
       });
     });
