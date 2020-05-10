@@ -215,7 +215,10 @@ export const filterLocalstorage = (obj: CleanReasonObject) => {
 };
 
 /** Store all tabs' host domains to prevent cookie deletion from those domains */
-export const returnSetOfOpenTabDomains = async (ignoreOpenTabs: boolean) => {
+export const returnSetOfOpenTabDomains = async (
+  ignoreOpenTabs: boolean,
+  ignoreDiscarded: boolean,
+) => {
   if (ignoreOpenTabs) {
     return new Set<string>();
   }
@@ -224,7 +227,8 @@ export const returnSetOfOpenTabDomains = async (ignoreOpenTabs: boolean) => {
   });
   const setOfTabURLS = new Set<string>();
   tabs.forEach((currentValue, index, array) => {
-    if (isAWebpage(currentValue.url)) {
+    if (isAWebpage(currentValue.url)
+      && (!ignoreDiscarded || !currentValue.discarded )) {
       let hostURL = getHostname(currentValue.url);
       hostURL = extractMainDomain(hostURL);
       setOfTabURLS.add(hostURL);
@@ -248,8 +252,10 @@ export const cleanCookiesOperation = async (
     recentlyCleaned: 0,
     storeIds: {},
   };
+  const ignoreDiscarded = getSetting(state, 'discardedCleanup') === true;
   const openTabDomains = await returnSetOfOpenTabDomains(
     cleanupProperties.ignoreOpenTabs,
+    ignoreDiscarded,
   );
   const newCleanupProperties: CleanupPropertiesInternal = {
     ...cleanupProperties,

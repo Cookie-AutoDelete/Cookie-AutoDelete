@@ -180,35 +180,35 @@ describe('CleanupService', () => {
     });
 
     it('should have google.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
         expect(results.has('google.com')).toBe(true);
         return Promise.resolve();
       });
     });
 
     it('should have facebook.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
         expect(results.has('facebook.com')).toBe(true);
         return Promise.resolve();
       });
     });
 
     it('should have domain.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
         expect(results.has('domain.com')).toBe(true);
         return Promise.resolve();
       });
     });
 
     it('should have length 3 in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
         expect(results.size).toBe(3);
         return Promise.resolve();
       });
     });
 
     it('should not have youtube.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
         expect(results.has('youtube.com')).toBe(false);
         return Promise.resolve();
       });
