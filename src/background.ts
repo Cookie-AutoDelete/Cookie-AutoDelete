@@ -142,6 +142,9 @@ const onStartUp = async () => {
 
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
+  if (getSetting(StoreUser.store.getState(), 'discardedCleanup')) {
+    browser.tabs.onUpdated.addListener(TabEvents.onTabDiscarded);
+  }
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
   browser.tabs.onRemoved.addListener(TabEvents.cleanFromFromTabEvents);
 

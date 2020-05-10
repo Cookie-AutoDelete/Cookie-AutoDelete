@@ -46,6 +46,18 @@ export default class TabEvents extends StoreUser {
     }
   }
 
+  public static onTabDiscarded(
+    tabId: number,
+    changeInfo: any,
+    tab: browser.tabs.Tab,
+  ) {
+    if (tab.discarded) {
+      // Do the magic !
+      TabEvents.cleanFromFromTabEvents();
+    }
+  }
+
+
   public static onDomainChange(
     tabId: number,
     changeInfo: any,
