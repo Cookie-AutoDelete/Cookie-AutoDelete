@@ -200,16 +200,24 @@
 		"description": "Greylist"
 	},
 	"importCoreSettingsFailed": {
-		"message": "Import Core Settings Failed - Unknown setting(s) found",
-		"description":  "Import Core Settings Failed - Unknown settings(s) found"
-	},
-	"importCoreSettingsSuccess": {
-		"message": "Import Core Settings Successful",
-		"description":  "Import Core Settings Successful"
+		"message": "Import Core Settings Failed - Found unknown setting",
+		"description":  "Import Core Settings Failed - Found unknown setting"
 	},
 	"importCoreSettingsText": {
 		"message": "Import Core Settings",
 		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "File given is not a type we handle",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "File given failed validation",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message":  "Missing identifier",
+		"description": "Missing identifier"
 	},
 	"importURLSText": {
 		"message": "Import Expressions",
@@ -504,6 +512,10 @@
 	"stopEditingText": {
 		"message": "Stop editing",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message":  "Success!",
+		"description":  "Success!"
 	},
 	"toGreyListText": {
 		"message": "Add to Greylist (Clean on Browser Restart)",

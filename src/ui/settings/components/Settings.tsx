@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { resetSettings, updateSetting } from '../../../redux/Actions';
 import { initialState } from '../../../redux/State';
+import { cadLog } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import CheckboxSetting from '../../common_components/CheckboxSetting';
 import IconButton from '../../common_components/IconButton';
@@ -63,7 +64,23 @@ class Settings extends React.Component<SettingProps> {
   public state = new InitialState();
 
   // Import Settings
-  public importCoreSettings(files: Blob[]) {
+  public importCoreSettings(importFile: File) {
+    const { settings } = this.props;
+    const debug = settings.debugMode.value;
+    if (debug) {
+      cadLog({
+        msg: 'Import Core Settings received file for parsing.',
+        x: {name: importFile.name, size: importFile.size, type: importFile.type},
+      });
+    }
+    // Do check for import first!
+    if (importFile.type !== 'application/json') {
+      this.setState({
+        error: `${browser.i18n.getMessage('errorText')} ${browser.i18n.getMessage('importFileTypeInvalid')}:  ${importFile.name} (${importFile.type})`,
+        success: '',
+      });
+      return;
+    }
     const { onUpdateSetting } = this.props;
     const initialSettingKeys = Object.keys(initialState.settings);
     const reader = new FileReader();
@@ -71,25 +88,75 @@ class Settings extends React.Component<SettingProps> {
       try {
         if (!file.target) throw Error('File Not Found!');
         // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
-        const target: any = file.target;
-        const result: string = target.result;
-        const newSettings: MapToSettingObject = JSON.parse(result);
+        const target: FileReader = file.target;
+        const result: string = target.result as string;
+        const jsonImport: {[k: string]: object} = JSON.parse(result);
+        if (!jsonImport.settings) {
+          if (debug) {
+            cadLog({
+              msg: 'importCoreSettings:  Imported JSON does not have "settings" array',
+              x: jsonImport,
+            });
+          }
+          throw new Error(`${browser.i18n.getMessage('importFileValidationFailed')}. ${browser.i18n.getMessage('importMissingKey')} 'settings': ${importFile.name}`);
+        }
+        // from { name, value } to name:{ name, value }
+        const newSettings:MapToSettingObject = (jsonImport.settings as Setting[]).reduce((a: {[k: string]: Setting} , c: Setting) => {
+          a[c.name] = c;
+          return a;
+        }, {});
         const settingKeys = Object.keys(newSettings);
         const unknownKeys = settingKeys.filter(key => !initialSettingKeys.includes(key));
         if (unknownKeys.length > 0) {
           throw new Error(`${browser.i18n.getMessage('importCoreSettingsFailed')}:  ${unknownKeys.join(', ')}`);
         }
-        settingKeys.forEach(setting => onUpdateSetting(newSettings[setting]));
+        settingKeys.forEach(setting => {
+          if (settings[setting].value !== newSettings[setting].value) {
+            if (debug) {
+              cadLog({
+                msg: `Setting updated:  ${setting} (${settings[setting].value} => ${newSettings[setting].value})`
+              });
+            }
+            onUpdateSetting(newSettings[setting]);
+          } else {
+            if (debug) {
+              cadLog({
+                msg: `Setting remains unchanged:  ${setting} (${settings[setting].value})`
+              });
+            }
+          }
+        });
         this.setState({
-          success: browser.i18n.getMessage('importCoreSettingsSuccess'),
+          error: '',
+          success: browser.i18n.getMessage('importCoreSettingsText'),
         });
       } catch (error) {
         this.setState({
           error: error.toString(),
+          success: '',
         });
       }
     }
-    reader.readAsText(files[0]);
+
+    reader.readAsText(importFile);
+  }
+
+  public exportCoreSettings() {
+    const { settings } = this.props;
+    // Convert from name:{name, value} to {name, value}
+    const exportSettings: Setting[] = Object.values(settings);
+    const r = downloadObjectAsJSON({settings: exportSettings}, 'CoreSettings');
+    if (settings.debugMode.value) {
+      cadLog({
+        msg: 'exportCoreSettings: Core Settings Exported.',
+        type: 'info',
+        x: r,
+      });
+    }
+    this.setState({
+      error: '',
+      success: `${browser.i18n.getMessage('exportSettingsText')}: ${r.downloadName}`,
+    });
   }
 
   public render() {
@@ -105,7 +172,7 @@ class Settings extends React.Component<SettingProps> {
               className="btn-primary"
               iconName="download"
               role="button"
-              onClick={() => downloadObjectAsJSON(this.props.settings, 'CoreSettings')}
+              onClick={() => this.exportCoreSettings()}
               title={browser.i18n.getMessage('exportTitleTimestamp')}
               text={browser.i18n.getMessage('exportSettingsText')}
               styleReact={styles.buttonStyle}
@@ -115,17 +182,24 @@ class Settings extends React.Component<SettingProps> {
               className="btn-info"
               iconName="upload"
               type="file"
-              accept="text/json"
-              onChange={e => this.importCoreSettings(e.target.files)}
-              title={browser.i18n.getMessage('exportTitleTimestamp')}
+              accept="application/json, .json"
+              onChange={e => this.importCoreSettings(e.target.files[0])}
+              title={browser.i18n.getMessage('importCoreSettingsText')}
               text={browser.i18n.getMessage('importCoreSettingsText')}
               styleReact={styles.buttonStyle}
             />
             <IconButton
               className="btn-danger"
               role="button"
-              onClick={() => onResetButtonClick()}
+              onClick={() => {
+                onResetButtonClick();
+                this.setState({
+                  error: '',
+                  success: browser.i18n.getMessage('defaultSettingsText'),
+                });
+              }}
               iconName="undo"
+              title={browser.i18n.getMessage('defaultSettingsText')}
               text={browser.i18n.getMessage('defaultSettingsText')}
               styleReact={styles.buttonStyle}
             />
@@ -134,11 +208,7 @@ class Settings extends React.Component<SettingProps> {
         <br />
         {error !== '' ? (
           <div
-            onClick={() =>
-              this.setState({
-                error: '',
-              })
-            }
+            onClick={() => this.setState({error: '',})}
             className="row alert alert-danger"
           >
             {error}
@@ -155,7 +225,7 @@ class Settings extends React.Component<SettingProps> {
             }
             className="row alert alert-success"
           >
-            {success}
+            {browser.i18n.getMessage('successText')} {success}
           </div>
         ) : (
           ''

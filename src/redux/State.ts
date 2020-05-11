@@ -22,28 +22,40 @@ export const initialState: State = {
       name: 'activeMode',
       value: false,
     },
-    delayBeforeClean: {
-      name: 'delayBeforeClean',
-      value: 15,
-    },
-    statLogging: {
-      name: 'statLogging',
-      value: true,
-    },
-    showNumOfCookiesInIcon: {
-      name: 'showNumOfCookiesInIcon',
-      value: true,
-    },
-    showNotificationAfterCleanup: {
-      name: 'showNotificationAfterCleanup',
-      value: true,
-    },
     cleanCookiesFromOpenTabsOnStartup: {
       name: 'cleanCookiesFromOpenTabsOnStartup',
       value: false,
     },
     contextualIdentities: {
       name: 'contextualIdentities',
+      value: false,
+    },
+    debugMode: {
+      name: 'debugMode',
+      value: false,
+    },
+    delayBeforeClean: {
+      name: 'delayBeforeClean',
+      value: 15,
+    },
+    domainChangeCleanup: {
+      name: 'domainChangeCleanup',
+      value: false,
+    },
+    enableGreyListCleanup: {
+      name: 'enableGreyListCleanup',
+      value: true,
+    },
+    enableNewVersionPopup: {
+      name: 'enableNewVersionPopup',
+      value: false,
+    },
+    greyCleanLocalstorage: {
+      name: 'greyCleanLocalstorage',
+      value: false,
+    },
+    keepDefaultIcon: {
+      name: 'keepDefaultIcon',
       value: false,
     },
     localstorageCleanup: {
@@ -54,34 +66,22 @@ export const initialState: State = {
       name: 'notificationOnScreen',
       value: 3,
     },
-    domainChangeCleanup: {
-      name: 'domainChangeCleanup',
-      value: false,
+    showNotificationAfterCleanup: {
+      name: 'showNotificationAfterCleanup',
+      value: true,
     },
-    greyCleanLocalstorage: {
-      name: 'greyCleanLocalstorage',
-      value: false,
+    showNumOfCookiesInIcon: {
+      name: 'showNumOfCookiesInIcon',
+      value: true,
+    },
+    statLogging: {
+      name: 'statLogging',
+      value: true,
     },
     whiteCleanLocalstorage: {
       name: 'whiteCleanLocalstorage',
       value: false,
     },
-    enableNewVersionPopup: {
-      name: 'enableNewVersionPopup',
-      value: false,
-    },
-    debugMode: {
-      name: 'debugMode',
-      value: false,
-    },
-    enableGreyListCleanup: {
-      name: 'enableGreyListCleanup',
-      value: true,
-    },
-    keepDefaultIcon: {
-      name: 'keepDefaultIcon',
-      value: false,
-    }
   },
   activityLog: [],
   cache: {},
