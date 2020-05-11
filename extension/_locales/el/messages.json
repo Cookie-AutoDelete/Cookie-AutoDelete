@@ -1,52 +1,52 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
-  "extensionDescription": {
-    "message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
-    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-  },
-  "notificationTitle": {
-    "message": "Τα cookies διαγράφθηκαν!",
-    "description": "Cookies were deleted!  Used in Notification Title."
-  },
-  "notificationContent": {
-    "message": "$Num$ Διαγραφή cookies απο: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
-  "filterText": {
-    "message": "Φίλτρο",
-    "description": "Filter"
-  },
-  "noneText": {
-    "message": "Κανένα",
-    "description": "None"
-  },
-  "cleanText": {
-    "message": "Καθαρισμός",
-    "description": "Clean"
-  },
-  "keepText": {
-    "message": "Διατήρηση",
-    "description": "Keep"
-  },
-  "cookieCleanupText": {
-    "message": "Εκτέλεση καθαρισμού τώρα",
-    "description": "Run cleanup now"
-  },
-  "cleanIgnoringOpenTabsText": {
-    "message": "Καθαρισμός, μαζι και οι ανοιχτές καρτέλες",
-    "description": "Clean, include open tabs"
-  }
+	"cleanIgnoringOpenTabsText": {
+		"message": "Καθαρισμός, μαζι και οι ανοιχτές καρτέλες",
+		"description": "Clean, include open tabs"
+	},
+	"cleanText": {
+		"message": "Καθαρισμός",
+		"description": "Clean"
+	},
+	"cookieCleanupText": {
+		"message": "Εκτέλεση καθαρισμού τώρα",
+		"description": "Run cleanup now"
+	},
+	"extensionDescription": {
+		"message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
+		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+	},
+	"extensionName": {
+		"message": "Cookie AutoDelete",
+		"description": "Name of the extension."
+	},
+	"filterText": {
+		"message": "Φίλτρο",
+		"description": "Filter"
+	},
+	"keepText": {
+		"message": "Διατήρηση",
+		"description": "Keep"
+	},
+	"noneText": {
+		"message": "Κανένα",
+		"description": "None"
+	},
+	"notificationContent": {
+		"message": "$Num$ Διαγραφή cookies απο: $Websites$",
+		"description": "123 Deleted Cookies from: google.com, facebook.com",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "123"
+			},
+			"websites": {
+				"content": "$2",
+				"example": "google.com, facebook.com"
+			}
+		}
+	},
+	"notificationTitle": {
+		"message": "Τα cookies διαγράφθηκαν!",
+		"description": "Cookies were deleted!  Used in Notification Title."
+	}
 }
