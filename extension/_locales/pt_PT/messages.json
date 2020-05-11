@@ -3,6 +3,10 @@
 		"message": "Acerca",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Atraso antes da limpeza automática",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Ativar limpeza automática? Atraso antes da limpeza:",
 		"description": "Enable Automatic Cleaning"
@@ -26,6 +30,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Ativar limpeza na mudança de domínio",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Aviso - As ações abaixo ignoram as definições!",
+		"description": "Warning - Actions below ignore settings!"
 	},
 	"cleanupLogText": {
 		"message": "Registo de limpeza",
@@ -63,6 +71,10 @@
 		"message": "Remover todos",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Clique no separador da consola",
+		"description": "Click on the Console Tab"
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Ativar suporte para os separadores contentores do Firefox",
 		"description": "Enable Support for Firefox's Container Tabs"
@@ -87,6 +99,10 @@
 		"message": "Executar limpeza agora",
 		"description": "Run cleanup now"
 	},
+	"debugMode": {
+		"message": "Ativar modo de depuração (saídas da consola adicionais)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Restaurar predefinições",
 		"description": "Restore Default Settings"
@@ -107,6 +123,10 @@
 		"message": "exemplo.com, subdomínio.exemplo.com, *.exemplo.com",
 		"description": "Domain Expression"
 	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Alternar menu de ações de limpeza adicionais",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
 	"editExpressionText": {
 		"message": "Editar expressão",
 		"description": "Edit expression"
@@ -123,6 +143,10 @@
 		"message": "Ativar verificação por subdomínios",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Ativar limpeza da lista cinza ao reiniciar o navegador",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Ativar popup quando a nova versão é lançada",
 		"description": "Enable Popup when New Version is Released"
@@ -131,9 +155,17 @@
 		"message": "Erro!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Definições nucleares de exportação",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Exportar expressões",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Uma marca temporal irá ser adicionada ao nome do ficheiro ao exportar.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Controle os seus cookies! Apague automaticamente cookies não utilizados dos seus separadores fechados, enquanto mantém os que pretende.",
@@ -147,6 +179,10 @@
 		"message": "Perguntas frequentes, problemas e soluções comuns",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Para ver apenas as saídas de depuração desta extensão, filtrar a saída por",
+		"description": "To see only debug outputs by this extension, filter output by"
+	},
 	"filterText": {
 		"message": "Filtro",
 		"description": "Filter"
@@ -159,6 +195,26 @@
 		"message": "Lista cinza",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Exportação das definições nucleares falhou - Definição desconhecida encontrada",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Importar definições nucleares",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Ficheiro fornecido não é de um tipo que manuseamos",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Ficheiro fornecido falhou validação",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Identificador em falta",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Importar expressões",
 		"description": "Import Expressions"
@@ -166,6 +222,10 @@
 	"keepAllCookiesText": {
 		"message": "Manter todos os cookies",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Manter ícones predefinidos em todos os tipos de listas",
+		"description": "Keep Default Icons on all list types"
 	},
 	"keepLocalstorageText": {
 		"message": "Manter localstorage",
@@ -245,6 +305,10 @@
 		"message": "Cookies foram apagados!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Duração das notificações",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Mostrar notificação após limpeza de cookies",
 		"description": "Show Notification After Cookie Cleanup"
@@ -252,6 +316,10 @@
 	"oldReleasesText": {
 		"message": "As notas de lançamento mais antigas podem ser vistas online em",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Para ver as saídas de depuração, abra um novo separador e visite",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Opções",
@@ -353,6 +421,14 @@
 		"message": "Notas de lançamento",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Remover todas as expressões",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Nenhuma expressão para remover!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Remover expressão",
 		"description": "Remove expression"
@@ -387,6 +463,22 @@
 		"message": "Segundo(s)",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Opções de limpeza automática",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Opções da expressão",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Opções da extensão",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Outras opções de limpeza de dados de navegação",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
 		"message": "Definições dos cookies",
 		"description": "CAD Settings"
@@ -398,6 +490,10 @@
 	"stopEditingText": {
 		"message": "Parar de editar",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Sucesso!",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Adicionar à lista cinza (limpar no reinício do navegador)",
