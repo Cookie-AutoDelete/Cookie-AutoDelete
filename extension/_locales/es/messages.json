@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeText": {
-		"message": "¿Habilitar la limpieza automática? Retraso antes de la limpieza:",
+		"message": "Habilitar la limpieza automática",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -388,11 +388,11 @@
 		"description": "second(s)"
 	},
 	"settingsText": {
-		"message": "Configuración de cookies",
+		"message": "Configuración de CAD",
 		"description": "CAD Settings"
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Mostrar número de cookies para ese dominio",
+		"message": "Mostrar el número de cookies de ese dominio en el icono",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
