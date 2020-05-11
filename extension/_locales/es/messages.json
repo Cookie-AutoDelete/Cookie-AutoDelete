@@ -3,6 +3,10 @@
 		"message": "Acerca de",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Retraso antes de la limpieza automática",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Habilitar la limpieza automática",
 		"description": "Enable Automatic Cleaning"
@@ -14,6 +18,10 @@
 	"autoDeleteEnabledText": {
 		"message": "Limpieza automática habilitada",
 		"description": "Auto-clean enabled"
+	},
+	"chromeDebugMode": {
+		"message": "Asegúrate de que el 'Modo de desarrollo' esté habilitado, y luego haz clic en 'página en segundo plano' en inspeccionar vistas",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View"
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Limpiar, incluye pestañas abiertas",
@@ -63,6 +71,10 @@
 		"message": "Borrar todo",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Haz clic en la pestaña de la consola",
+		"description": "Click on the Console Tab"
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Habilitar soporte para los contenedores de pestañas de Firefox",
 		"description": "Enable Support for Firefox's Container Tabs"
@@ -87,6 +99,10 @@
 		"message": "Ejecutar limpieza ahora",
 		"description": "Run cleanup now"
 	},
+	"debugMode": {
+		"message": "Habilitar el modo de depuración (salidas de consola adicionales)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Restaurar ajustes predeterminados",
 		"description": "Restore Default Settings"
@@ -107,6 +123,10 @@
 		"message": "ejemplo.com, subdominio.ejemplo.com, *.ejemplo.com, /(^|.)ejemplo\\.com/",
 		"description": "Domain Expression"
 	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Alternar la lista desplegable de acciones de limpieza adicionales",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
 	"editExpressionText": {
 		"message": "Editar expresión",
 		"description": "Edit expression"
@@ -123,6 +143,10 @@
 		"message": "Habilitar verificación de subdominios",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Habilitar la limpieza de la lista gris al reinicio del navegador",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Habilitar ventana emergente cuando se publique una nueva versión",
 		"description": "Enable Popup when New Version is Released"
@@ -131,9 +155,17 @@
 		"message": "¡Error!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Exportar configuración principal",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Exportar expresiones",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Se añadirá una marca de tiempo al nombre del archivo al exportar.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "¡Controla tus cookies! Borra automáticamente las cookies no utilizadas de las pestañas cerradas mientras conservas las que deseas.",
@@ -147,6 +179,10 @@
 		"message": "Preguntas frecuentes, problemas comunes y soluciones",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Para ver solo las salidas de depuración por esta extensión, filtrar salida por",
+		"description": "To see only debug outputs by this extension, filter output by"
+	},
 	"filterText": {
 		"message": "Filtro",
 		"description": "Filter"
@@ -159,6 +195,18 @@
 		"message": "Lista gris",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Error al importar la configuración principal - Se encontró una configuración desconocida",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Importar configuración principal",
+		"description": "Import Core Settings"
+	},
+	"importMissingKey": {
+		"message": "Identificador faltante",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Importar expresiones",
 		"description": "Import Expressions"
@@ -166,6 +214,10 @@
 	"keepAllCookiesText": {
 		"message": "Conservar todas las cookies",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Conservar iconos predeterminados en todos los tipos de listas",
+		"description": "Keep Default Icons on all list types"
 	},
 	"keepLocalstorageText": {
 		"message": "Conservar el almacenamiento local",
@@ -211,6 +263,10 @@
 		"message": "No hay expresiones definidas.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Los registros de limpieza no se generarán para pestañas en navegación privada",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "No hay reglas que coincidan con este dominio",
 		"description": "No rules matched this domain"
@@ -245,6 +301,10 @@
 		"message": "¡Las cookies fueron borradas!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Duración de las notificaciones",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Mostrar notificación después de la limpieza de cookies",
 		"description": "Show Notification After Cookie Cleanup"
@@ -252,6 +312,10 @@
 	"oldReleasesText": {
 		"message": "Las notas de la versión anterior se pueden ver en línea en",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Para ver las salidas de depuración, abre una nueva pestaña y entra ella",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Opciones",
@@ -353,6 +417,28 @@
 		"message": "Notas de la versión",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Borrar todas las expresiones",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "¿Estás seguro de que deseas borrar TODAS ($expressionCount$) las expresiones guardadas en ($listCount$) lista/s?\n\n¡ESTO NO SE PUEDE DESHACER!\n\nEscribe [ sí ] y haz clic en Aceptar para borrar.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expressions from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ yes ] and click OK to delete.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "¡No hay expresiones para borrar!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Borrar expresión",
 		"description": "Remove expression"
@@ -386,6 +472,22 @@
 	"secondsText": {
 		"message": "segundo/s",
 		"description": "second(s)"
+	},
+	"settingGroupAutoClean": {
+		"message": "Opciones de limpieza automática",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Opciones de expresión",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Opciones de la extensión",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Otras opciones de limpieza de datos de navegación",
+		"description": "Other Browsing Data Cleanup Options"
 	},
 	"settingsText": {
 		"message": "Configuración de CAD",
