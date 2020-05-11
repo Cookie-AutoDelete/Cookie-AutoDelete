@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Asegúrate de que el 'Modo de desarrollo' esté habilitado, y luego haz clic en 'página en segundo plano' en inspeccionar vistas",
+		"message": "Asegúrate de que el 'Modo de desarrollador' esté habilitado, y luego haz clic en 'página en segundo plano' en inspeccionar vistas",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View"
 	},
 	"cleanIgnoringOpenTabsText": {
