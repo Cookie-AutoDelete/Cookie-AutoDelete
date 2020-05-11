@@ -361,7 +361,6 @@ export const cleanCookiesOperation = async (
   const cookieStoreIds = new Set<string>();
 
   // Manually add default containers.
-  console.info(state.cache);
   switch(state.cache.browserDetect) {
     case 'Firefox':
       cookieStoreIds.add('default');
@@ -398,11 +397,25 @@ export const cleanCookiesOperation = async (
 
   // Clean for each cookieStore jar
   for (const id of cookieStoreIds) {
-    const cookies = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
-        storeId: id,
-      }),
-    );
+    let cookies;
+    try {
+      cookies = await browser.cookies.getAll(
+        returnOptionalCookieAPIAttributes(state, {
+          storeId: id,
+        }),
+      );
+    } catch(e) {
+      if (debug) {
+        cadLog({
+          msg: `CleanupService.cleanCookiesOperation:  browser.cookies.getAll for id: ${id} threw an error.`,
+          type: 'warn',
+          x: e,
+        })
+      }
+      // skip and move to next id
+      continue;
+    }
+
     const isSafeToCleanObjects = cookies.map(cookie => {
       return isSafeToClean(state, prepareCookie(cookie, debug), newCleanupProperties);
     });
