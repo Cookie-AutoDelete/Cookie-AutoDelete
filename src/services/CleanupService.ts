@@ -305,7 +305,7 @@ export const filterLocalstorage = (obj: CleanReasonObject, debug: boolean = fals
   const nonBlankCookieHostName = obj.cookie.hostname.trim() !== '';
   if (debug) {
     cadLog({
-      msg: 'CleanupService.filterLocalstorage results.',
+      msg: 'CleanupService.filterLocalstorage: debug data.',
       x: {notProtectedByOpenTab, notInAnyLists, listCleanLocalstorage, nonBlankCookieHostName, clean1: notInAnyLists, clean2: (notProtectedByOpenTab && listCleanLocalstorage) , CleanReasonObject: obj},
     });
   }
@@ -436,7 +436,7 @@ export const cleanCookiesOperation = async (
       const r = filterLocalstorage(obj, debug);
       if (debug) {
         cadLog({
-          msg: `CleanupService.filterLocalstorage returned: ${r} for ${obj.cookie.hostname}`
+          msg: `CleanupService.filterLocalstorage: returned ${r} for ${obj.cookie.hostname}`
         });
       }
       return r;
