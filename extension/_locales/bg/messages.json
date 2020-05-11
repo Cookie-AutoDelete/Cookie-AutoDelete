@@ -1,470 +1,466 @@
 {
-  "extensionName": {
-    "message": "Самоизтриване на бисквитките",
-    "description": "Name of the extension."
-  },
-  "extensionDescription": {
-    "message": "Поемете контрола над бисквитките! Автоматично изтрива неизползваните бисквитки от затворените подпрозорци и запазва тези, които искате.",
-    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-  },
-  "notificationTitle": {
-    "message": "Бисквитките са изтрити!",
-    "description": "Cookies were deleted!  Used in Notification Title."
-  },
-  "notificationContent": {
-    "message": "Изтрити са $Num$ бисквитки от: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
-  "popupCookieCountText": {
-    "message": "Бисквитки",
-    "description": "Cookie(s)"
-  },
-  "filterText": {
-    "message": "Филтриране",
-    "description": "Filter"
-  },
-  "noneText": {
-    "message": "Без",
-    "description": "None"
-  },
-  "cleanText": {
-    "message": "Изчистване",
-    "description": "Clean"
-  },
-  "keepText": {
-    "message": "Запазване",
-    "description": "Keep"
-  },
-  "cookieCleanupText": {
-    "message": "Изчистване",
-    "description": "Run cleanup now"
-  },
-  "cleanIgnoringOpenTabsText": {
-    "message": "Изчистване, включително отворените подпрозорци",
-    "description": "Clean, include open tabs"
-  },
-  "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Изчиства всички бисквитки, включително и от отворените раздели",
-    "description": "Run cleanup now, include cookies from open tabs"
-  },
-  "clearSiteDataText": {
-    "message": "Изчистване на $siteData$ за този домейн",
-    "description": "Clear cookies for this domain",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      }
-    }
-  },
-  "clearSiteDataForDomainText": {
-    "message": "Изчистване на всички $siteData$ за $domain$",
-    "description": "Clear all cookies for example.com",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "noRulesText": {
-    "message": "Няма изрази, съвпадащи с домейна",
-    "description": "No rules matched this domain"
-  },
-  "welcomeText": {
-    "message": "Добре дошли",
-    "description": "Welcome"
-  },
-  "preferencesText": {
-    "message": "Настройки",
-    "description": "Settings"
-  },
-  "optionsText": {
-    "message": "Опции",
-    "description": "Options"
-  },
-  "settingsText": {
-    "message": "Настройки",
-    "description": "Cookie Settings"
-  },
-  "whiteListText": {
-    "message": "Списък с изрази",
-    "description": "List of Expressions"
-  },
-  "cleanupLogText": {
-    "message": "Дневник на изчистванията",
-    "description": "Cleanup Log"
-  },
-  "aboutText": {
-    "message": "Относно",
-    "description": "About"
-  },
-  "welcomeMessage": {
-    "message": "Здравейте! По време на тази сесия от добавката $cadTitle$ са изтрити $sessionDeleted$ бисквитки, а общо за всички сесии - $totalDeleted$.",
-    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      },
-      "sessionDeleted": {
-        "content": "$2",
-        "example": "123"
-      },
-      "totalDeleted": {
-        "content": "$3",
-        "example": "456"
-      }
-    }
-  },
-  "oldReleasesText": {
-    "message": "Бележките към по-старите издания могат да бъдат прочетени онлайн на",
-    "description": "Older release notes can be viewed online at"
-  },
-  "reasonKeepOpenTab": {
-    "message": "Запазване заради отворени подпрозорци на *.$mainDomain$",
-    "description": "Keep because of open tabs of *.google.com",
-    "placeholders": {
-      "mainDomain": {
-        "content": "$1",
-        "example": "google.com"
-      }
-    }
-  },
-  "reasonCleanStartupNoList": {
-    "message": "Изчистване заради началното почистване и $hostname$ не е в бял или сив списък",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonCleanGreyList": {
-    "message": "Изчистване заради началното почистване и $matchedExpression$ не е в сив списък",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      }
-    }
-  },
-  "reasonCleanNoList": {
-    "message": "Изчистване, защото $hostname$ не е в бял или сив списък",
-    "description": "Clean because sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonKeep": {
-    "message": "Запазване заради съвпадащо $matchedExpression$ в $listType$",
-    "description": "Keep because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonCleanCookieName": {
-    "message": "Частично изчистване заради съвпадащо $matchedExpression$ в $listType$",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonTabsWereNotIgnored": {
-    "message": "или в който и да е отворен подпрозорец",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-  },
-  "reasonTabsWereIgnored": {
-    "message": "и отворените подпрозорци са пренебрегнати",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-  },
-  "reviewLinkMessage": {
-    "message": "Благодарим ви, че пробвахте добавката $cadTitle$. Ако я харесвате, моля, напишете отзив.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      }
-    }
-  },
-  "releaseNotesText": {
-    "message": "Бележки по изданието",
-    "description": "Release Notes"
-  },
-  "activeModeText": {
-    "message": "Да бъде ли включено автоматичното изчистване? Изчакване преди изчистване:",
-    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
-  },
-  "minutesText": {
-    "message": "минута(и)",
-    "description": "minute(s)"
-  },
-  "secondsText": {
-    "message": "секунди",
-    "description": "second(s)"
-  },
-  "cleanupDomainChangeText": {
-    "message": "Включване на изчистването при промяна на домейна",
-    "description": "Enable Cleanup on Domain Change"
-  },
-  "enableCleanupLogText": {
-    "message": "Включване на дневника за изчистване и брояча",
-    "description": "Enable Cleanup Log and Counter"
-  },
-  "keepLocalstorageText": {
-    "message": "Запазване на местното хранилище",
-    "description": "Keep LocalStorage"
-  },
-  "keepAllCookiesText": {
-    "message": "Запазване на всички бисквитки",
-    "description": "Keep All Cookies"
-  },
-  "clearLogsText": {
-    "message": "Изчистване на дневниците",
-    "description": "Clear Logs"
-  },
-  "errorText": {
-    "message": "Грешка!",
-    "description": "Error!"
-  },
-  "restoreText": {
-    "message": "Възстановяване",
-    "description": "Ex: Restore Cleanup"
-  },
-  "showNumberOfCookiesInIconText": {
-    "message": "Показване на броя бисквитки на домейна",
-    "description": "Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Показване на известия след изчистване на бисквитки",
-    "description": "Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Изчистване на бисквитките от отворените подпрозорци при пускане",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText": {
-    "message": "Проверяване за поддомейни",
-    "description": "Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Поддръжка за изолирани раздели във Файърфокс",
-    "description": "Enable Support for Firefox's Container Tabs"
-  },
-  "localstorageCleanupText": {
-    "message": "Изчистване на локалното хранилище",
-    "description": "LocalStorage Cleanup"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Едновременното включване на изчистването на локалното хранилище и изолираните раздели може да доведе до нежелани ефекти поради ограниченията на ППИ",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "defaultSettingsText": {
-    "message": "Възстановяване на първоначалните настройки",
-    "description": "Restore Default Settings"
-  },
-  "resetExtensionDataText": {
-    "message": "Нулиране на данните",
-    "description": "Reset Extension Data"
-  },
-  "whiteListWordText": {
-    "message": "Бял списък",
-    "description": "Whitelist"
-  },
-  "greyListWordText": {
-    "message": "Сив списък",
-    "description": "Greylist"
-  },
-  "toWhiteListText": {
-    "message": "Бисквитките никога не се изчистват",
-    "description": "Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText": {
-    "message": "Бисквитките се изчистват след рестартиране на браузъра",
-    "description": "Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText": {
-    "message": "Премахване на всички",
-    "description": "Remove All"
-  },
-  "exportURLSText": {
-    "message": "Изнасяне на изрази",
-    "description": "Export Expressions"
-  },
-  "exportURLSTitle": {
-    "message": "При изнасяне, ще бъде добавено времето към името на файла.\nПри проблеми, щракнете с дясно копче върху този бутон и изберете 'Запазване на препратката като...'",
-    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
-  },
-  "questionExpression": {
-    "message": "Как работят изразите?",
-    "description": "How do Expressions work?"
-  },
-  "importURLSText": {
-    "message": "Внасяне на изрази",
-    "description": "Import Expressions"
-  },
-  "reportIssuesText": {
-    "message": "Докладване за дефекти и предлагане на възможности",
-    "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Документация",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Често задавани въпроси, трудности и техните решения",
-    "description": "Frequently Asked Questions, Common issues and solutions"
-  },
-  "versionText": {
-    "message": "Версия за $browser$",
-    "description": "Firefox version",
-    "placeholders": {
-      "browser": {
-        "content": "$1",
-        "example": "Firefox"
-      }
-    }
-  },
-  "contributorsText": {
-    "message": "Допринесли:",
-    "description": "Contributors"
-  },
-  "contributeText": {
-    "message": "Допринасяне",
-    "description": "Contribute"
-  },
-  "domainExpressionsText": {
-    "message": "Домейни",
-    "description": "Domain Expression"
-  },
-  "matchedDomainExpressionText": {
-    "message": "Изрази, съвпадащи с домейна",
-    "description": "Matched Domain Expression"
-  },
-  "regularExpressionEquivalentText": {
-    "message": "Еквивалент на регулярен израз",
-    "description": "Regular Expression Equivalent"
-  },
-  "listTypeText": {
-    "message": "Тип списък",
-    "description": "List Type"
-  },
-  "domainPlaceholderText": {
-    "message": "example.com, subdomain.example.com, *.example.com",
-    "description": "Domain Expression"
-  },
-  "noExpressionsText": {
-    "message": "Няма зададени изрази.",
-    "description": "No expressions defined."
-  },
-  "removeExpressionText": {
-    "message": "Премахване на израза",
-    "description": "Remove expression"
-  },
-  "stopEditingText": {
-    "message": "Отказ",
-    "description": "Stop editing"
-  },
-  "saveExpressionText": {
-    "message": "Запазване на израза",
-    "description": "Save expression"
-  },
-  "editExpressionText": {
-    "message": "Редактиране на израза",
-    "description": "Edit expression"
-  },
-  "toggleToGreyListWordText": {
-    "message": "Преместване в сивия списък",
-    "description": "Toggle to greylist"
-  },
-  "toggleToWhiteListWordText": {
-    "message": "Преместване в белия списък",
-    "description": "Toggle to whitelist"
-  },
-  "autoDeleteEnabledText": {
-    "message": "Автоматичното изчистване е включено",
-    "description": "Auto-clean enabled"
-  },
-  "autoDeleteDisabledText": {
-    "message": "Автоматичното изчистване е изключено",
-    "description": "Auto-clean disabled"
-  },
-  "disableAutoDeleteText": {
-    "message": "Щракнете за да преминете в ръчен режим",
-    "description": "Toggle to disable automatic cleanup (manual mode)"
-  },
-  "enableAutoDeleteText": {
-    "message": "Щракнете за да преминете в автоматичен режим",
-    "description": "Toggle to enable automatic cleanup (automatic mode)"
-  },
-  "notificationEnabledText": {
-    "message": "С известия",
-    "description": "Notification enabled"
-  },
-  "notificationDisabledText": {
-    "message": "Без известия",
-    "description": "Notification disabled"
-  },
-  "toggleNotificationText": {
-    "message": "Включва / изключва известяването",
-    "description": "Toggle to enable or disable notifications"
-  },
-  "noCleanupLogText": {
-    "message": "Не са намерени дневници за изчистване",
-    "description": "No Cleanup Logs Found"
-  },
-  "menuText": {
-    "message": "Меню",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
-  },
-  "greyCleanLocalstorage": {
-    "message": "Размаркиране на 'Запазване на местното хранилище' в новия сив списък с изрази",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Размаркиране на 'Запазване на местното хранилище' в новия бял списък с изрази",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "enableNewVersionPopup": {
-    "message": "Показване на известие при ново издание на добавката",
-    "description": "Enable Popup when New Version is Released"
-  },
-  "localstorageCleanupWarning": {
-    "message": "Внимание: ЦЯЛОТО съдържание в местното хранилище ще бъде премахнато при избиране на отметката „Изчистване на местното хранилище“.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  }
+	"aboutText": {
+		"message": "Относно",
+		"description": "About"
+	},
+	"activeModeText": {
+		"message": "Да бъде ли включено автоматичното изчистване? Изчакване преди изчистване:",
+		"description": "Enable Automatic Cleaning"
+	},
+	"autoDeleteDisabledText": {
+		"message": "Автоматичното изчистване е изключено",
+		"description": "Auto-clean disabled"
+	},
+	"autoDeleteEnabledText": {
+		"message": "Автоматичното изчистване е включено",
+		"description": "Auto-clean enabled"
+	},
+	"cleanIgnoringOpenTabsText": {
+		"message": "Изчистване, включително отворените подпрозорци",
+		"description": "Clean, include open tabs"
+	},
+	"cleanText": {
+		"message": "Изчистване",
+		"description": "Clean"
+	},
+	"cleanupDomainChangeText": {
+		"message": "Включване на изчистването при промяна на домейна",
+		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupLogText": {
+		"message": "Дневник на изчистванията",
+		"description": "Cleanup Log"
+	},
+	"clearLogsText": {
+		"message": "Изчистване на дневниците",
+		"description": "Clear Logs"
+	},
+	"clearSiteDataForDomainText": {
+		"message": "Изчистване на всички $siteData$ за $domain$",
+		"description": "Clear all cookies for example.com",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"domain": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"clearSiteDataText": {
+		"message": "Изчистване на $siteData$ за този домейн",
+		"description": "Clear cookies for this domain",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"clearURLText": {
+		"message": "Премахване на всички",
+		"description": "Remove All"
+	},
+	"contextualIdentitiesEnabledText": {
+		"message": "Поддръжка за изолирани раздели във Файърфокс",
+		"description": "Enable Support for Firefox's Container Tabs"
+	},
+	"contributeText": {
+		"message": "Допринасяне",
+		"description": "Contribute"
+	},
+	"contributorsText": {
+		"message": "Допринесли:",
+		"description": "Contributors"
+	},
+	"cookieCleanUpOnStartText": {
+		"message": "Изчистване на бисквитките от отворените подпрозорци при пускане",
+		"description": "Clean Cookies from Open Tabs on Startup"
+	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Изчиства всички бисквитки, включително и от отворените раздели",
+		"description": "Run cleanup now, include cookies from open tabs"
+	},
+	"cookieCleanupText": {
+		"message": "Изчистване",
+		"description": "Run cleanup now"
+	},
+	"defaultSettingsText": {
+		"message": "Възстановяване на първоначалните настройки",
+		"description": "Restore Default Settings"
+	},
+	"disableAutoDeleteText": {
+		"message": "Щракнете за да преминете в ръчен режим",
+		"description": "Toggle to disable automatic cleanup (manual mode)"
+	},
+	"documentationText": {
+		"message": "Документация",
+		"description": "Documentation"
+	},
+	"domainExpressionsText": {
+		"message": "Домейни",
+		"description": "Domain Expression"
+	},
+	"domainPlaceholderText": {
+		"message": "example.com, subdomain.example.com, *.example.com",
+		"description": "Domain Expression"
+	},
+	"editExpressionText": {
+		"message": "Редактиране на израза",
+		"description": "Edit expression"
+	},
+	"enableAutoDeleteText": {
+		"message": "Щракнете за да преминете в автоматичен режим",
+		"description": "Toggle to enable automatic cleanup (automatic mode)"
+	},
+	"enableCleanupLogText": {
+		"message": "Включване на дневника за изчистване и брояча",
+		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableGlobalSubdomainText": {
+		"message": "Проверяване за поддомейни",
+		"description": "Enable Check for Subdomains"
+	},
+	"enableNewVersionPopup": {
+		"message": "Показване на известие при ново издание на добавката",
+		"description": "Enable Popup when New Version is Released"
+	},
+	"errorText": {
+		"message": "Грешка!",
+		"description": "Error!"
+	},
+	"exportURLSText": {
+		"message": "Изнасяне на изрази",
+		"description": "Export Expressions"
+	},
+	"extensionDescription": {
+		"message": "Поемете контрола над бисквитките! Автоматично изтрива неизползваните бисквитки от затворените подпрозорци и запазва тези, които искате.",
+		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+	},
+	"extensionName": {
+		"message": "Самоизтриване на бисквитките",
+		"description": "Name of the extension."
+	},
+	"faqText": {
+		"message": "Често задавани въпроси, трудности и техните решения",
+		"description": "Frequently Asked Questions, Common issues and solutions"
+	},
+	"filterText": {
+		"message": "Филтриране",
+		"description": "Filter"
+	},
+	"greyCleanLocalstorage": {
+		"message": "Размаркиране на 'Запазване на местното хранилище' в новия сив списък с изрази",
+		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+	},
+	"greyListWordText": {
+		"message": "Сив списък",
+		"description": "Greylist"
+	},
+	"importURLSText": {
+		"message": "Внасяне на изрази",
+		"description": "Import Expressions"
+	},
+	"keepAllCookiesText": {
+		"message": "Запазване на всички бисквитки",
+		"description": "Keep All Cookies"
+	},
+	"keepLocalstorageText": {
+		"message": "Запазване на местното хранилище",
+		"description": "Keep LocalStorage"
+	},
+	"keepText": {
+		"message": "Запазване",
+		"description": "Keep"
+	},
+	"listTypeText": {
+		"message": "Тип списък",
+		"description": "List Type"
+	},
+	"localstorageAndContextualIdentitiesWarning": {
+		"message": "Едновременното включване на изчистването на локалното хранилище и изолираните раздели може да доведе до нежелани ефекти поради ограниченията на ППИ",
+		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+	},
+	"localstorageCleanupText": {
+		"message": "Изчистване на локалното хранилище",
+		"description": "LocalStorage Cleanup"
+	},
+	"localstorageCleanupWarning": {
+		"message": "Внимание: ЦЯЛОТО съдържание в местното хранилище ще бъде премахнато при избиране на отметката „Изчистване на местното хранилище“.",
+		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"matchedDomainExpressionText": {
+		"message": "Изрази, съвпадащи с домейна",
+		"description": "Matched Domain Expression"
+	},
+	"menuText": {
+		"message": "Меню",
+		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+	},
+	"minutesText": {
+		"message": "минута(и)",
+		"description": "minute(s)"
+	},
+	"noCleanupLogText": {
+		"message": "Не са намерени дневници за изчистване",
+		"description": "No Cleanup Logs Found"
+	},
+	"noExpressionsText": {
+		"message": "Няма зададени изрази.",
+		"description": "No expressions defined."
+	},
+	"noRulesText": {
+		"message": "Няма изрази, съвпадащи с домейна",
+		"description": "No rules matched this domain"
+	},
+	"noneText": {
+		"message": "Без",
+		"description": "None"
+	},
+	"notificationContent": {
+		"message": "Изтрити са $Num$ бисквитки от: $Websites$",
+		"description": "123 Deleted Cookies from: google.com, facebook.com",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "123"
+			},
+			"websites": {
+				"content": "$2",
+				"example": "google.com, facebook.com"
+			}
+		}
+	},
+	"notificationDisabledText": {
+		"message": "Без известия",
+		"description": "Notification disabled"
+	},
+	"notificationEnabledText": {
+		"message": "С известия",
+		"description": "Notification enabled"
+	},
+	"notificationTitle": {
+		"message": "Бисквитките са изтрити!",
+		"description": "Cookies were deleted!  Used in Notification Title."
+	},
+	"notifyCookieCleanUpText": {
+		"message": "Показване на известия след изчистване на бисквитки",
+		"description": "Show Notification After Cookie Cleanup"
+	},
+	"oldReleasesText": {
+		"message": "Бележките към по-старите издания могат да бъдат прочетени онлайн на",
+		"description": "Older release notes can be viewed online at"
+	},
+	"optionsText": {
+		"message": "Опции",
+		"description": "Options"
+	},
+	"popupCookieCountText": {
+		"message": "Бисквитки",
+		"description": "Cookie(s)"
+	},
+	"preferencesText": {
+		"message": "Настройки",
+		"description": "Settings"
+	},
+	"questionExpression": {
+		"message": "Как работят изразите?",
+		"description": "How do Expressions work?"
+	},
+	"reasonCleanCookieName": {
+		"message": "Частично изчистване заради съвпадащо $matchedExpression$ в $listType$",
+		"description": "Partial clean because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonCleanGreyList": {
+		"message": "Изчистване заради началното почистване и $matchedExpression$ не е в сив списък",
+		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			}
+		}
+	},
+	"reasonCleanNoList": {
+		"message": "Изчистване, защото $hostname$ не е в бял или сив списък",
+		"description": "Clean because sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonCleanStartupNoList": {
+		"message": "Изчистване заради началното почистване и $hostname$ не е в бял или сив списък",
+		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonKeep": {
+		"message": "Запазване заради съвпадащо $matchedExpression$ в $listType$",
+		"description": "Keep because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonKeepOpenTab": {
+		"message": "Запазване заради отворени подпрозорци на *.$mainDomain$",
+		"description": "Keep because of open tabs of *.google.com",
+		"placeholders": {
+			"mainDomain": {
+				"content": "$1",
+				"example": "google.com"
+			}
+		}
+	},
+	"reasonTabsWereIgnored": {
+		"message": "и отворените подпрозорци са пренебрегнати",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+	},
+	"reasonTabsWereNotIgnored": {
+		"message": "или в който и да е отворен подпрозорец",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+	},
+	"regularExpressionEquivalentText": {
+		"message": "Еквивалент на регулярен израз",
+		"description": "Regular Expression Equivalent"
+	},
+	"releaseNotesText": {
+		"message": "Бележки по изданието",
+		"description": "Release Notes"
+	},
+	"removeExpressionText": {
+		"message": "Премахване на израза",
+		"description": "Remove expression"
+	},
+	"reportIssuesText": {
+		"message": "Докладване за дефекти и предлагане на възможности",
+		"description": "Report issues and suggest features"
+	},
+	"resetExtensionDataText": {
+		"message": "Нулиране на данните",
+		"description": "Reset Extension Data"
+	},
+	"restoreText": {
+		"message": "Възстановяване",
+		"description": "Ex: Restore Cleanup"
+	},
+	"reviewLinkMessage": {
+		"message": "Благодарим ви, че пробвахте добавката $cadTitle$. Ако я харесвате, моля, напишете отзив.",
+		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			}
+		}
+	},
+	"saveExpressionText": {
+		"message": "Запазване на израза",
+		"description": "Save expression"
+	},
+	"secondsText": {
+		"message": "секунди",
+		"description": "second(s)"
+	},
+	"settingsText": {
+		"message": "Настройки",
+		"description": "CAD Settings"
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "Показване на броя бисквитки на домейна",
+		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"stopEditingText": {
+		"message": "Отказ",
+		"description": "Stop editing"
+	},
+	"toGreyListText": {
+		"message": "Бисквитките се изчистват след рестартиране на браузъра",
+		"description": "Add to Greylist (Clean on Browser Restart)"
+	},
+	"toWhiteListText": {
+		"message": "Бисквитките никога не се изчистват",
+		"description": "Add to Whitelist (Never Clean)"
+	},
+	"toggleNotificationText": {
+		"message": "Включва / изключва известяването",
+		"description": "Toggle to enable or disable notifications"
+	},
+	"toggleToGreyListWordText": {
+		"message": "Преместване в сивия списък",
+		"description": "Toggle to greylist"
+	},
+	"toggleToWhiteListWordText": {
+		"message": "Преместване в белия списък",
+		"description": "Toggle to whitelist"
+	},
+	"versionText": {
+		"message": "Версия за $browser$",
+		"description": "Firefox version",
+		"placeholders": {
+			"browser": {
+				"content": "$1",
+				"example": "Firefox"
+			}
+		}
+	},
+	"welcomeMessage": {
+		"message": "Здравейте! По време на тази сесия от добавката $cadTitle$ са изтрити $sessionDeleted$ бисквитки, а общо за всички сесии - $totalDeleted$.",
+		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			},
+			"sessionDeleted": {
+				"content": "$2",
+				"example": "123"
+			},
+			"totalDeleted": {
+				"content": "$3",
+				"example": "456"
+			}
+		}
+	},
+	"welcomeText": {
+		"message": "Добре дошли",
+		"description": "Welcome"
+	},
+	"whiteCleanLocalstorage": {
+		"message": "Размаркиране на 'Запазване на местното хранилище' в новия бял списък с изрази",
+		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+	},
+	"whiteListText": {
+		"message": "Списък с изрази",
+		"description": "List of Expressions"
+	},
+	"whiteListWordText": {
+		"message": "Бял списък",
+		"description": "Whitelist"
+	}
 }
