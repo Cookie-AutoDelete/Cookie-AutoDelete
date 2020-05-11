@@ -113,7 +113,7 @@ export default class TabEvents extends StoreUser {
           if (debug) {
             cadLog({
               msg: 'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
-              x: {tabId, changeInfo, oldMainDomain: TabEvents.tabToDomain[tabId], mainDomain, partialTabInfo,},
+              x: {tabId, changeInfo, oldMainDomain, mainDomain, partialTabInfo,},
             });
           }
           TabEvents.cleanFromFromTabEvents();
@@ -121,7 +121,7 @@ export default class TabEvents extends StoreUser {
           if (debug) {
             cadLog({
               msg: 'TabEvents.onDomainChange: mainDomain has changed, but cleanOnDomainChange is not enabled.  Not cleaning.',
-              x: {tabId, changeInfo, oldMainDomain: TabEvents.tabToDomain[tabId], mainDomain, partialTabInfo,},
+              x: {tabId, changeInfo, oldMainDomain, mainDomain, partialTabInfo,},
             });
           }
         }
