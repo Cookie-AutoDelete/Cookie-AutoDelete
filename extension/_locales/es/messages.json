@@ -35,6 +35,10 @@
 		"message": "Habilitar la limpieza en el cambio de dominio",
 		"description": "Enable Cleanup on Domain Change"
 	},
+	"cleanupActionsBypass": {
+		"message": "Advertencia - ¡Las acciones a continuación ignorarán la configuración!",
+		"description": "Warning - Actions below ignore settings!"
+	},
 	"cleanupLogText": {
 		"message": "Registro de limpieza",
 		"description": "Cleanup Log"
@@ -202,6 +206,14 @@
 	"importCoreSettingsText": {
 		"message": "Importar configuración principal",
 		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "El tipo de archivo proporcionado no es compatible",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Error al validar el archivo proporcionado",
+		"description": "File given failed validation"
 	},
 	"importMissingKey": {
 		"message": "Identificador faltante",
