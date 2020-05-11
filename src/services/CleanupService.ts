@@ -361,11 +361,24 @@ export const cleanCookiesOperation = async (
   const cookieStoreIds = new Set<string>();
 
   // Manually add default containers.
-  cookieStoreIds.add('default');
-  cookieStoreIds.add('firefox-default');
-  if (await browser.extension.isAllowedIncognitoAccess()) {
-    cookieStoreIds.add('firefox-private');
-    cookieStoreIds.add('private');
+  console.info(state.cache);
+  switch(state.cache.browserDetect) {
+    case 'Firefox':
+      cookieStoreIds.add('default');
+      cookieStoreIds.add('firefox-default');
+      if (await browser.extension.isAllowedIncognitoAccess()) {
+        cookieStoreIds.add('firefox-private');
+        cookieStoreIds.add('private');
+      }
+      break;
+    case 'Chrome':
+      cookieStoreIds.add('0');
+      if (await browser.extension.isAllowedIncognitoAccess()) {
+        cookieStoreIds.add('1');
+      }
+      break;
+    default:
+      break;
   }
 
   // Store cookieStoreIds from the contextualIdentities API
