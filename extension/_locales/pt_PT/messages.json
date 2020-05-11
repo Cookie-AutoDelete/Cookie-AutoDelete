@@ -19,6 +19,10 @@
 		"message": "Limpeza automática ativada",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Certifique-se de que o 'Modo de programador' está ativado, depois clique em 'página em segundo plano' debaixo de Inspeção de Visualização",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View"
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Limpar, incluir separadores abertos",
 		"description": "Clean, include open tabs"
@@ -271,6 +275,10 @@
 		"message": "Nenhuma expressão definida.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Os registos de limpeza não serão gerados para separadores em navegação privada",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "Nenhuma regra corresponde a este domínio",
 		"description": "No rules matched this domain"
@@ -424,6 +432,20 @@
 	"removeAllExpressions": {
 		"message": "Remover todas as expressões",
 		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Tem certeza de que pretende remover TODAS as ($expressionCount$) expressões guardadas de ($listCount$) lista(s)?\n\nISTO NÃO PODE SER DESFEITO!\n\nEscreva [ yes ] e clique OK para apagar.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expressions from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ yes ] and click OK to delete.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
 	},
 	"removeAllExpressionsNoneFound": {
 		"message": "Nenhuma expressão para remover!",
