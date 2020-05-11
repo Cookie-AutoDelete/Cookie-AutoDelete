@@ -513,6 +513,10 @@
 		"message": "Dejar de editar",
 		"description": "Stop editing"
 	},
+	"successText": {
+		"message": "¡Completado!",
+		"description": "Success!"
+	},
 	"toGreyListText": {
 		"message": "Añadir a la lista gris (limpieza al reinicio del navegador)",
 		"description": "Add to Greylist (Clean on Browser Restart)"
