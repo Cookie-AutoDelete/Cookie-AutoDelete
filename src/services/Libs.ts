@@ -263,9 +263,7 @@ export const prepareCookieDomain = (cookie: browser.cookies.Cookie) => {
 
   const sDot = cookieDomain.startsWith('.') ? 1 : 0;
 
-  return cookie.secure
-    ? `https://${cookieDomain.slice(sDot)}${cookie.path}`
-    : `http://${cookieDomain.slice(sDot)}${cookie.path}`;
+  return `http${cookie.secure ? 's' : ''}://${cookieDomain.slice(sDot)}${cookie.path}`;
 };
 
 /**

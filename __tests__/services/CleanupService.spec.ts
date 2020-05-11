@@ -4,6 +4,7 @@ import { initialState } from '../../src/redux/State';
 import {
   filterLocalstorage,
   isSafeToClean,
+  prepareCookie,
   returnSetOfOpenTabDomains,
 } from '../../src/services/CleanupService';
 import * as Lib from '../../src/services/Libs';
@@ -104,25 +105,10 @@ const mockCookie: CookiePropertiesCleanup = {
 };
 
 describe('CleanupService', () => {
+  afterEach(() => {
+    mockedLib.cadLog.mockClear();
+  });
   describe('returnSetOfOpenTabDomains()', () => {
-    // const stub1 = sinon.stub(UsefulFunctions, 'getHostname');
-    // stub1.withArgs('https://google.com/search').returns('google.com');
-    // stub1.withArgs('http://facebook.com/search').returns('facebook.com');
-    // stub1.withArgs('http://sub.domain.com').returns('sub.domain.com');
-
-    // const stub2 = sinon.stub(UsefulFunctions, 'extractMainDomain');
-    // stub2.withArgs('google.com').returns('google.com');
-    // stub2.withArgs('facebook.com').returns('facebook.com');
-    // stub2.withArgs('sub.domain.com').returns('domain.com');
-
-    // const stub3 = sinon.stub(UsefulFunctions, 'isAWebpage');
-    // stub3.withArgs('https://google.com/search').returns(true);
-    // stub3.withArgs('http://facebook.com/search').returns(true);
-    // stub3.withArgs('http://sub.domain.com').returns(true);
-    // stub3
-    //   .withArgs('moz-extension://test/settings/settings.html')
-    //   .returns(false);
-
     beforeAll(() => {
       global.browser = {
         tabs: {
@@ -177,6 +163,18 @@ describe('CleanupService', () => {
       when(mockedLib.extractMainDomain)
         .calledWith('github.com')
         .mockReturnValue('github.com');
+    });
+    afterAll(() => {
+      mockedLib.isAWebpage.mockClear();
+      mockedLib.getHostname.mockClear();
+      mockedLib.extractMainDomain.mockClear();
+    })
+
+    it('should return empty set if ignoreOpenTabs is true', () => {
+      return returnSetOfOpenTabDomains(true).then(results => {
+        expect(Array.from(results).length).toEqual(0);
+        return Promise.resolve();
+      });
     });
 
     it('should have google.com in set', () => {
@@ -282,6 +280,10 @@ describe('CleanupService', () => {
         )
         .mockReturnValue(exampleWithCookieNameGrey);
     });
+    afterAll(() => {
+      mockedLib.undefinedIsTrue.mockClear();
+      mockedLib.returnMatchedExpressionObject.mockClear();
+    });
 
     it('should return true for yahoo.com', () => {
       const cookieProperty: CookiePropertiesCleanup = {
@@ -297,6 +299,26 @@ describe('CleanupService', () => {
       expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
       expect(result.cleanCookie).toBe(true);
     });
+    it('should return true for yahoo.com and be output through debug', () => {
+      const cookieProperty: CookiePropertiesCleanup = {
+        ...mockCookie,
+        hostname: 'yahoo.com',
+        mainDomain: 'yahoo.com',
+        storeId: 'default',
+      };
+
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+      when(mockedLib.getSetting)
+        .calledWith(sampleState, 'debugMode')
+        .mockReturnValue(true);
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(2);
+    });
 
     it('should return false for youtube.com', () => {
       const cookieProperty = {
@@ -310,6 +332,27 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonKeep.MatchedExpression);
       expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return false for youtube.com and output through debug', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'youtube.com',
+        mainDomain: 'youtube.com',
+        storeId: 'default',
+      };
+
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+      when(mockedLib.getSetting)
+        .calledWith(sampleState, 'debugMode')
+        .mockReturnValue(true);
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(2);
     });
 
     it('should return true for sub.youtube.com', () => {
@@ -402,7 +445,7 @@ describe('CleanupService', () => {
       expect(result.cleanCookie).toBe(false);
     });
 
-    it('should return false for example.com', () => {
+    it('should return false for example.com because of opentab', () => {
       const cookieProperty = {
         ...mockCookie,
         hostname: 'example.com',
@@ -415,6 +458,27 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonKeep.OpenTabs);
       expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return false for example.com because of opentab and output to debug', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'example.com',
+        mainDomain: 'example.com',
+        storeId: 'default',
+      };
+
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+      when(mockedLib.getSetting)
+        .calledWith(sampleState, 'debugMode')
+        .mockReturnValue(true);
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.OpenTabs);
+      expect(result.cleanCookie).toBe(false);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(2);
     });
 
     it('should return false for sub.example.com', () => {
@@ -467,6 +531,28 @@ describe('CleanupService', () => {
       expect(result.cleanCookie).toBe(true);
     });
 
+    it('should return true for Facebook in Personal onStartup with Facebook in the Greylist and output debug', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'facebook.com',
+        mainDomain: 'facebook.com',
+        storeId: 'firefox-container-1',
+      };
+
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+      when(mockedLib.getSetting)
+        .calledWith(sampleState, 'debugMode')
+        .mockReturnValue(true);
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+        greyCleanup: true,
+      });
+      expect(result.reason).toBe(ReasonClean.StartupCleanupAndGreyList);
+      expect(result.cleanCookie).toBe(true);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(2);
+    });
+
     it('should return true for startup cleanup and no matched expression', () => {
       const cookieProperty = {
         ...mockCookie,
@@ -480,6 +566,27 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonClean.StartupNoMatchedExpression);
       expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return true for startup cleanup and no matched expression and debug output', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'nomatch.com',
+        mainDomain: 'nomatch.com',
+      };
+
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+      when(mockedLib.getSetting)
+        .calledWith(sampleState, 'debugMode')
+        .mockReturnValue(true);
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+        greyCleanup: true,
+      });
+      expect(result.reason).toBe(ReasonClean.StartupNoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(2);
     });
 
     it('should return false for examplewithcookiename.com because it has a cookie name in the list (keepAllCookies: false)', () => {
@@ -512,6 +619,28 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonClean.MatchedExpressionButNoCookieName);
       expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return true for examplewithcookiename.com because it does not have a cookie name in the list (keepAllCookies: false) and call cadLog for debug', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'examplewithcookiename.com',
+        mainDomain: 'examplewithcookiename.com',
+        name: 'not-in-cookie-names',
+        storeId: 'default',
+      };
+
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+      when(mockedLib.getSetting)
+        .calledWith(sampleState, 'debugMode')
+        .mockReturnValue(true);
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.MatchedExpressionButNoCookieName);
+      expect(result.cleanCookie).toBe(true);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(2);
     });
 
     it('should return false for exampleWithCookieNameCleanAllCookiesTrue.com because of (keepAllCookies: true)', () => {
@@ -570,6 +699,20 @@ describe('CleanupService', () => {
   });
 
   describe('filterLocalstorage()', () => {
+    it('should execute cadLog if debug is enabled', () => {
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.NoMatchedExpression,
+      };
+      const result = filterLocalstorage(cleanReasonObj, true);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(1);
+    });
     it('should return false for a blank cookie hostname', () => {
       const cleanReasonObj: CleanReasonObject = {
         cached: false,
@@ -656,6 +799,77 @@ describe('CleanupService', () => {
       };
       const result = filterLocalstorage(cleanReasonObj);
       expect(result).toBe(false);
+    });
+  });
+
+  describe('prepareCookie()', () => {
+    afterEach(() => {
+      mockedLib.prepareCookieDomain.mockClear();
+      mockedLib.getHostname.mockClear();
+      mockedLib.extractMainDomain.mockClear();
+    })
+    it('should call all three relevant functions by default', () => {
+      expect(mockedLib.prepareCookieDomain).not.toHaveBeenCalled();
+      expect(mockedLib.getHostname).not.toHaveBeenCalled();
+      expect(mockedLib.extractMainDomain).not.toHaveBeenCalled();
+
+      when(mockedLib.prepareCookieDomain)
+        .calledWith(mockCookie)
+        .mockReturnValue('https://test.com');
+      when(mockedLib.getHostname)
+        .calledWith('https://test.com')
+        .mockReturnValue('test.com');
+      when(mockedLib.extractMainDomain)
+        .calledWith('test.com')
+        .mockReturnValue('test.com');
+
+      prepareCookie(mockCookie);
+      expect(mockedLib.prepareCookieDomain).toHaveBeenCalledTimes(1);
+      expect(mockedLib.getHostname).toHaveBeenCalledTimes(1);
+      expect(mockedLib.extractMainDomain).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call cadLog if debug is true', () => {
+      expect(mockedLib.cadLog).not.toHaveBeenCalled();
+
+      when(mockedLib.prepareCookieDomain)
+        .calledWith(mockCookie)
+        .mockReturnValue('https://test.com');
+      when(mockedLib.getHostname)
+        .calledWith('https://test.com')
+        .mockReturnValue('test.com');
+      when(mockedLib.extractMainDomain)
+        .calledWith('test.com')
+        .mockReturnValue('test.com');
+
+      prepareCookie(mockCookie, true);
+      expect(mockedLib.cadLog).toHaveBeenCalledTimes(1);
+    });
+
+    it('should only call one function for all three properties if it is a local file', () => {
+      expect(mockedLib.prepareCookieDomain).not.toHaveBeenCalled();
+      expect(mockedLib.getHostname).not.toHaveBeenCalled();
+      expect(mockedLib.extractMainDomain).not.toHaveBeenCalled();
+
+      const mockFileCookie = {
+        ...mockCookie,
+        domain: '',
+        path: '/folder/file.html'
+      }
+
+      when(mockedLib.prepareCookieDomain)
+        .calledWith(mockFileCookie)
+        .mockReturnValue('file:///folder/file.html');
+
+      const result = prepareCookie(mockFileCookie);
+      expect(mockedLib.prepareCookieDomain).toHaveBeenCalledTimes(1);
+      expect(mockedLib.getHostname).not.toHaveBeenCalled();
+      expect(mockedLib.extractMainDomain).not.toHaveBeenCalled();
+
+      expect(result.preparedCookieDomain).toBe('file:///folder/file.html');
+      expect(result.hostname).toBe('file:///folder/file.html');
+      expect(result.mainDomain).toBe('file:///folder/file.html');
+
     });
   });
 

@@ -174,3 +174,4 @@ module.exports = {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
+process.env = Object.assign(process.env, { JEST_TEST: true });
