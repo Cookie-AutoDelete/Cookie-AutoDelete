@@ -18,8 +18,9 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
+import { checkIfProtected } from './services/BrowserActionService';
 import CookieEvents from './services/CookieEvents';
-import { convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
+import { cadLog, convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
@@ -60,15 +61,26 @@ const onSettingsChange = () => {
     browser.browsingData.removeLocalStorage({
       since: 0,
     });
+    if (currentSettings.debugMode.value) {
+      cadLog({
+        msg: 'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
+        type: 'info',
+      });
+    }
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
     browser.alarms.clear('activeModeAlarm');
   }
+  checkIfProtected(store.getState());
+
+  // Validate Settings again
+  store.dispatch<any>(validateSettings());
 };
 
 const onStartUp = async () => {
-  browser.browserAction.setTitle({ title: `${await browser.browserAction.getTitle({})} ${browser.runtime.getManifest().version}` });
+  const mf = browser.runtime.getManifest();
+  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [STARTING UP...] (0)` });
   const storage = await browser.storage.local.get();
   let stateFromStorage;
   try {
@@ -140,6 +152,8 @@ const onStartUp = async () => {
 
   store.dispatch<any>(validateSettings());
 
+  checkIfProtected(store.getState());
+
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
@@ -172,11 +186,9 @@ async function onCookiePopupUpdates(
 
 function handleConnect(p: browser.runtime.Port) {
   if (!p.name || !p.name.startsWith('popupCAD_')) return;
-  
   if (!browser.cookies.onChanged.hasListener(onCookiePopupUpdates)) {
     browser.cookies.onChanged.addListener(onCookiePopupUpdates);
   }
-
   p.onMessage.addListener((m) => {
     console.warn('Received Unexpected message from CAD Popup')
     console.warn(JSON.stringify(m));
@@ -205,10 +217,33 @@ browser.runtime.onConnect.addListener(handleConnect);
 onStartUp();
 browser.runtime.onStartup.addListener(async () => {
   await awaitStore();
-  greyCleanup();
+  if (getSetting(store.getState(), 'activeMode') === true) {
+    if (getSetting(store.getState(), 'enableGreyListCleanup') === true) {
+      let isFFSessionRestore = false;
+      const startupTabs = await browser.tabs.query({});
+      startupTabs.forEach(tab => {
+        if (tab.url === 'about:sessionrestore') isFFSessionRestore = true;
+      });
+      if (!isFFSessionRestore) {
+        greyCleanup();
+      } else {
+        cadLog({
+          msg: 'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
+          type: 'info',
+        });
+      }
+    } else {
+      cadLog({
+        msg: 'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
+        type: 'info',
+      });
+    }
+  }
+  checkIfProtected(store.getState());
 });
 browser.runtime.onInstalled.addListener(async details => {
   await awaitStore();
+  checkIfProtected(store.getState());
   switch (details.reason) {
     case 'install':
       browser.runtime.openOptionsPage();

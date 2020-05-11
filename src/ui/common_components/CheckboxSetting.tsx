@@ -33,38 +33,28 @@ const CheckboxSetting: React.FunctionComponent<OwnProps> = ({
   text,
   updateSetting,
 }) => {
-  const { id, name, value } = settingObject;
-  const inlineElement = inline
-    ? {
-        display: 'inline',
-      }
-    : {};
+  const { name, value } = settingObject;
+  const inlineElement = inline ? {display: 'inline',} : {};
   return (
     <span style={inlineElement} className={'checkbox'}>
       <span
         className={'addHover'}
         onClick={() =>
           updateSetting({
-            id,
             name,
             value: !value,
           })
         }
       >
-        {value ? (
-          <FontAwesomeIcon
-            style={styles.checkbox}
-            size={'lg'}
-            icon={['far', 'check-square']}
-          />
-        ) : (
-          <FontAwesomeIcon
-            style={styles.checkbox}
-            size={'lg'}
-            icon={['far', 'square']}
-          />
-        )}
-        <label>{text}</label>
+        <FontAwesomeIcon
+          id={name}
+          style={styles.checkbox}
+          size={'lg'}
+          icon={['far', value ? 'check-square' : 'square']}
+          role="checkbox"
+          aria-checked={value as boolean}
+        />
+        <label htmlFor={name} aria-labelledby={name}>{text}</label>
       </span>
     </span>
   );

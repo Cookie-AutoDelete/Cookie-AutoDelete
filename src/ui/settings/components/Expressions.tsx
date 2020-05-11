@@ -13,12 +13,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { addExpressionUI } from '../../../redux/Actions';
+import { addExpressionUI, clearExpressionsUI } from '../../../redux/Actions';
 import { getSetting } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
-import { exportAppendTimestamp } from '../../UILibs';
+import { downloadObjectAsJSON } from '../../UILibs';
 const styles = {
   buttonStyle: {
     height: 'max-content',
@@ -41,6 +41,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
+  onClearExpressions: (lists: StoreIdToExpressionList) => void;
   onNewExpression: (expression: Expression) => void;
 }
 
@@ -81,7 +82,7 @@ class Expressions extends React.Component<ExpressionProps> {
         );
       } catch (error) {
         this.setState({
-          error: error.toString(),
+          error: `${(files[0] as File).name} - ${error.toString()}.`,
         });
       }
     };
@@ -102,6 +103,26 @@ class Expressions extends React.Component<ExpressionProps> {
     this.setState({
       expressionInput: '',
     });
+  }
+
+  public clearListsConfirmation(lists: StoreIdToExpressionList) {
+    const { onClearExpressions } = this.props;
+    const listKeys = Object.keys(lists);
+    let expCount = 0;
+    listKeys.forEach(k => {
+      expCount += lists[k].length;
+    });
+    if (listKeys.length === 0 && expCount === 0) {
+      this.setState({
+        error: browser.i18n.getMessage('removeAllExpressionsNoneFound'),
+      });
+    } else {
+      const r = window.prompt(browser.i18n.getMessage('removeAllExpressionsConfirm', [ expCount.toString(), listKeys.length.toString()]));
+      console.info(`Clear Expressions Prompt returned [ ${r} ]`)
+      if (r !== null && r === 'yes') {
+        onClearExpressions(this.props.lists);
+      }
+    }
   }
 
   public getDerivedStateFromProps(nextProps: ExpressionProps) {
@@ -187,29 +208,33 @@ class Expressions extends React.Component<ExpressionProps> {
             }}
           >
             <IconButton
-              tag="a"
               className="btn-primary"
               iconName="download"
-              href={`data:text/plain;charset=utf-8,${encodeURIComponent(
-                JSON.stringify(this.props.lists, null, '  '),
-              )}`}
-              download="CAD_Expressions_Expressions.json"
               role="button"
-              target="_blank"
-              onClick={d => exportAppendTimestamp(d.target)}
-              onContextMenu={d => exportAppendTimestamp(d.target)}
-              title={browser.i18n.getMessage('exportURLSTitle')}
+              onClick={() => downloadObjectAsJSON(this.props.lists, 'Expressions')}
+              title={browser.i18n.getMessage('exportTitleTimestamp')}
               text={browser.i18n.getMessage('exportURLSText')}
               styleReact={styles.buttonStyle}
             />
-
             <IconButton
               tag="input"
               className="btn-info"
               iconName="upload"
               type="file"
+              accept="text/json"
               onChange={e => this.importExpressions(e.target.files)}
               text={browser.i18n.getMessage('importURLSText')}
+              title={browser.i18n.getMessage('importURLSText')}
+              styleReact={styles.buttonStyle}
+            />
+            <IconButton
+              tag="button"
+              className="btn-danger"
+              iconName="trash"
+              role="button"
+              onClick={() => this.clearListsConfirmation(this.props.lists)}
+              text={browser.i18n.getMessage('removeAllExpressions')}
+              title={browser.i18n.getMessage('removeAllExpressions')}
               styleReact={styles.buttonStyle}
             />
           </div>
@@ -331,6 +356,9 @@ const mapStateToProps = (state: State) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+  onClearExpressions(payload: StoreIdToExpressionList) {
+    dispatch(clearExpressionsUI(payload));
+  },
   onNewExpression(payload: Expression) {
     dispatch(addExpressionUI(payload));
   },

@@ -19,6 +19,7 @@ import { getSetting, getStoreId } from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
   ADD_EXPRESSION,
+  CLEAR_EXPRESSIONS,
   COOKIE_CLEANUP,
   INCREMENT_COOKIE_DELETED_COUNTER,
   ReduxAction,
@@ -38,6 +39,11 @@ const COOKIE_CLEANUP_NOTIFICATION = 'COOKIE_CLEANUP_NOTIFICATION';
 export const addExpressionUI = (payload: Expression): ADD_EXPRESSION => ({
   payload,
   type: ReduxConstants.ADD_EXPRESSION,
+});
+
+export const clearExpressionsUI = (payload: StoreIdToExpressionList): CLEAR_EXPRESSIONS => ({
+  payload,
+  type: ReduxConstants.CLEAR_EXPRESSIONS,
 });
 
 export const removeExpressionUI = (payload: Expression): REMOVE_EXPRESSION => ({
@@ -71,6 +77,17 @@ export const addExpression = (payload: Expression) => (
       storeId: getStoreId(getState(), payload.storeId),
     },
     type: ReduxConstants.ADD_EXPRESSION,
+  });
+  checkIfProtected(getState());
+};
+
+export const clearExpressions = (payload: StoreIdToExpressionList) => (
+  dispatch: Dispatch<ReduxAction>,
+  getState: GetState,
+) => {
+  dispatch({
+    payload,
+    type: ReduxConstants.CLEAR_EXPRESSIONS,
   });
   checkIfProtected(getState());
 };
@@ -139,7 +156,7 @@ export const resetAll = (): RESET_ALL => ({
   type: ReduxConstants.RESET_ALL,
 });
 
-// Validates the setting object and adds missing settings if it doesn't already exist in the initialState.json
+// Validates the setting object and adds missing settings if it doesn't already exist in the initialState
 export const validateSettings: ActionCreator<
   ThunkAction<void, State, null, ReduxAction>
 > = () => (dispatch, getState) => {
@@ -148,26 +165,25 @@ export const validateSettings: ActionCreator<
   const settingKeys = Object.keys(settings);
   const initialSettingKeys = Object.keys(initialSettings);
 
-  const invividalSettingKeysMatch =
-    Object.keys(settings[settingKeys[0]]).length ===
-    Object.keys(initialSettings[initialSettingKeys[0]]).length;
-
-  // Missing a property in a individual setting
-  if (!invividalSettingKeysMatch) {
-    settingKeys.forEach(element => {
+  settingKeys.forEach(k => {
+    // Properties in a individual setting do not match up.  Repopulate from the default one and reuse existing value
+    if (Object.keys(settings[k]).length !== Object.keys(initialSettings[k]).length) {
       dispatch({
-        payload: settings[element],
+        payload: {
+          ...initialSettings[k],
+          value: settings[k].value,
+        },
         type: ReduxConstants.UPDATE_SETTING,
       });
-    });
-  }
+    }
+  });
 
   // Missing a setting
   if (settingKeys.length !== initialSettingKeys.length) {
-    initialSettingKeys.forEach(element => {
-      if (settings[element] === undefined) {
+    initialSettingKeys.forEach(k => {
+      if (settings[k] === undefined) {
         dispatch({
-          payload: initialSettings[element],
+          payload: initialSettings[k],
           type: ReduxConstants.UPDATE_SETTING,
         });
       }
@@ -195,6 +211,32 @@ export const validateSettings: ActionCreator<
     disableSettingIfTrue(settings.showNumOfCookiesInIcon);
     disableSettingIfTrue(settings.localstorageCleanup);
     disableSettingIfTrue(settings.contextualIdentities);
+  }
+
+  // Minimum 1 second autoclean delay.
+  if (settings.delayBeforeClean.value < 0) {
+    dispatch({
+      payload: {
+        ...settings.delayBeforeClean,
+        value: 1,
+      },
+      type: ReduxConstants.UPDATE_SETTING,
+    });
+  }
+  // Maximum 2147483 seconds due to signed 32-bit Integer (ms x 1000)
+  if (settings.delayBeforeClean.value > 2147483) {
+    dispatch({
+      payload: {
+        ...settings.delayBeforeClean,
+        value: 2147483,
+      },
+      type: ReduxConstants.UPDATE_SETTING,
+    });
+  }
+
+  // If show cookie count in badge is disabled, force change icon color instead
+  if (settings.showNumOfCookiesInIcon.value === false && settings.keepDefaultIcon.value === true) {
+    disableSettingIfTrue(settings.keepDefaultIcon);
   }
 };
 

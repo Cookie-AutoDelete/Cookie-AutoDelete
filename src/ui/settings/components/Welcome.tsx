@@ -40,13 +40,16 @@ const displayReleaseNotes = (releases: ReleaseNote[]) => {
 
 // Get the review link for different browsers
 const getReviewLink = (browserDetect: string) => {
-  if (browserDetect === 'Firefox') {
-    return 'https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/';
+  switch(browserDetect) {
+    case 'Chrome':
+      return 'https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews';
+    case 'EdgeChromium':
+      return 'https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo#reviewList';
+    case 'Firefox':
+      return 'https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/';
+    default:
+      return '';
   }
-  if (browserDetect === 'Chrome') {
-    return 'https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews';
-  }
-  return '';
 };
 
 interface OwnProps {

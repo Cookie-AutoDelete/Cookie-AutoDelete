@@ -55,7 +55,7 @@ class App extends React.Component {
   public render() {
     const { activeTab } = this.state;
     return (
-      <div id="layout">
+      <div id="layout" className="layout">
         <SideBar
           switchTabs={tab => this.switchTabs(tab)}
           activeTab={activeTab}

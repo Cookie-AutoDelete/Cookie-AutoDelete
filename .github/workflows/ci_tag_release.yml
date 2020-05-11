@@ -27,7 +27,7 @@ jobs:
     - name: Install Dependencies (npm ci)
       run: npm ci
     - name: Run Tests
-      run: npm run test
+      run: npm run test -- --verbose
     - name: Run TSLint
       run: npm run lint
     - name: Ensure Version is Updated
@@ -62,9 +62,12 @@ jobs:
         files: |
           builds/Cookie-AutoDelete_*_Chrome.zip
           builds/Cookie-AutoDelete_*_Firefox.xpi
-        body: This is an auto-generated release with simultaneous upload to Chrome WebStore and Mozilla Firefox Addons (pending approval) - Change log will be manually inserted soon!
+        body: This is an auto-generated tagged release - Change log will be manually inserted soon!
+        prerelease: ${{ endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta') }}
     - name: Google Chrome WebStore Upload
       uses: Passiverecords/chrome-extension-upload-action@1.4.1
+      if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
+
       with:
         app-id: 'fhcgjolkccmbidfldomjliifgaodjagh'
         file-name: 'builds/Cookie-AutoDelete_*_Chrome.zip'
@@ -74,6 +77,8 @@ jobs:
         publish: false
     - name: Mozilla Firefox AMO Upload
       uses: trmcnvn/firefox-addon@v1
+      if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
+
       with:
         api-key: ${{ secrets.FIREFOX_API_KEY }}
         api-secret: ${{ secrets.FIREFOX_API_SECRET }}

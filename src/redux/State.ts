@@ -21,68 +21,67 @@ export const initialState: State = {
     activeMode: {
       name: 'activeMode',
       value: false,
-      id: 1,
-    },
-    delayBeforeClean: {
-      name: 'delayBeforeClean',
-      value: 15,
-      id: 2,
-    },
-    statLogging: {
-      name: 'statLogging',
-      value: true,
-      id: 3,
-    },
-    showNumOfCookiesInIcon: {
-      name: 'showNumOfCookiesInIcon',
-      value: true,
-      id: 4,
-    },
-    showNotificationAfterCleanup: {
-      name: 'showNotificationAfterCleanup',
-      value: true,
-      id: 5,
     },
     cleanCookiesFromOpenTabsOnStartup: {
       name: 'cleanCookiesFromOpenTabsOnStartup',
       value: false,
-      id: 6,
     },
     contextualIdentities: {
       name: 'contextualIdentities',
       value: false,
-      id: 7,
     },
-    localstorageCleanup: {
-      name: 'localstorageCleanup',
+    debugMode: {
+      name: 'debugMode',
       value: false,
-      id: 8,
     },
-    notificationOnScreen: {
-      name: 'notificationOnScreen',
-      value: 3,
-      id: 9,
+    delayBeforeClean: {
+      name: 'delayBeforeClean',
+      value: 15,
     },
     domainChangeCleanup: {
       name: 'domainChangeCleanup',
       value: false,
-      id: 10,
     },
-    greyCleanLocalstorage: {
-      name: 'greyCleanLocalstorage',
-      value: false,
-      id: 11,
-    },
-    whiteCleanLocalstorage: {
-      name: 'whiteCleanLocalstorage',
-      value: false,
-      id: 12,
+    enableGreyListCleanup: {
+      name: 'enableGreyListCleanup',
+      value: true,
     },
     enableNewVersionPopup: {
       name: 'enableNewVersionPopup',
       value: false,
-      id: 13,
-    }
+    },
+    greyCleanLocalstorage: {
+      name: 'greyCleanLocalstorage',
+      value: false,
+    },
+    keepDefaultIcon: {
+      name: 'keepDefaultIcon',
+      value: false,
+    },
+    localstorageCleanup: {
+      name: 'localstorageCleanup',
+      value: false,
+    },
+    notificationOnScreen: {
+      name: 'notificationOnScreen',
+      value: 3,
+    },
+    showNotificationAfterCleanup: {
+      name: 'showNotificationAfterCleanup',
+      value: true,
+    },
+    showNumOfCookiesInIcon: {
+      name: 'showNumOfCookiesInIcon',
+      value: true,
+    },
+    statLogging: {
+      name: 'statLogging',
+      value: true,
+    },
+    whiteCleanLocalstorage: {
+      name: 'whiteCleanLocalstorage',
+      value: false,
+    },
   },
   activityLog: [],
   cache: {},

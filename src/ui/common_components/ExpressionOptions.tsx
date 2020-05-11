@@ -86,12 +86,26 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
           storeId: this.toPublicStoreId(expression.storeId),
         }),
       );
-      const regExp = new RegExp(exp.slice(1, -1));
-      cookies = allCookies.filter(cookie => regExp.test(cookie.domain));
+      if (exp.slice(1).startsWith('file:')) {
+        // Regex with Local Directories
+        const regExp = new RegExp(exp.slice(8, -1)); // take out file://
+        cookies = allCookies.filter(cookie => cookie.domain === '' && regExp.test(cookie.path));
+      } else {
+        const regExp = new RegExp(exp.slice(1, -1));
+        cookies = allCookies.filter(cookie => regExp.test(cookie.domain));
+      }
+    } else if (exp.startsWith('file:')) {
+      const allCookies = await browser.cookies.getAll(
+        returnOptionalCookieAPIAttributes(this.props.state, {
+          storeId: this.toPublicStoreId(expression.storeId),
+        }),
+      );
+      const regExp = new RegExp(exp.slice(7)); // take out file://
+      cookies = allCookies.filter(cookie => cookie.domain === '' && regExp.test(cookie.path));
     } else {
       cookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(this.props.state, {
-          domain: trimDotAndStar(exp),
+          domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
           storeId: this.toPublicStoreId(expression.storeId),
         }),
       );
@@ -178,10 +192,10 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
       <div>
-        {((state.cache.browserDetect === 'Firefox' &&
+        {(! expression.expression.startsWith('file:') && ((state.cache.browserDetect === 'Firefox' &&
           state.cache.browserVersion >= '57' &&
           state.cache.platformOs !== 'android') ||
-          state.cache.browserDetect === 'Chrome') && (
+          state.cache.browserDetect === 'Chrome')) && (
             <div className={'checkbox'}>
               <span
                 className={'addHover'}

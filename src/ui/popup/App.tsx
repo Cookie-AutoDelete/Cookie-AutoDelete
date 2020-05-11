@@ -20,10 +20,12 @@ import {
   updateSetting,
 } from '../../redux/Actions';
 import {
+  cadLog,
   extractMainDomain,
   getHostname,
   getSetting,
   isAnIP,
+  localFileToRegex,
   LSCLEANUPNAME,
   prepareCookieDomain,
   returnOptionalCookieAPIAttributes,
@@ -33,12 +35,6 @@ import { ReduxAction } from '../../typings/ReduxConstants';
 import ActivityTable from '../common_components/ActivityTable';
 import IconButton from '../common_components/IconButton';
 import FilteredExpression from './components/FilteredExpression';
-
-const styles = {
-  buttonStyle: {
-    margin: '4px 4px',
-  },
-};
 
 interface DispatchProps {
   onUpdateSetting: (newSetting: Setting) => void;
@@ -150,6 +146,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     const { state } = this.props;
     if (!this.state.tab) return;
     const { cookieStoreId } = this.state.tab;
+
     const cookies = (await browser.cookies.getAll(
       returnOptionalCookieAPIAttributes(state, {
         domain: hostname,
@@ -181,7 +178,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
       hostname === mainDomain ? undefined : `*.${mainDomain}`,
       hostname,
     ].filter(Boolean) as string[];
-    if (hostname !== '' && !isAnIP(tab.url)) {
+    if (hostname !== '' && !isAnIP(tab.url) && !hostname.startsWith('file:')) {
       addableHostnames.push(`*.${hostname}`);
     }
 
@@ -227,13 +224,12 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
             justifyContent: 'center',
-            paddingBottom: '8px',
+            padding: '4px 4px 8px 4px'
           }}
         >
           <IconButton
             iconName="power-off"
             className={settings.activeMode.value ? 'btn-success' : 'btn-danger'}
-            styleReact={styles.buttonStyle}
             onClick={() =>
               onUpdateSetting({
                 ...settings.activeMode,
@@ -263,7 +259,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 ? 'btn-success'
                 : 'btn-danger'
             }
-            styleReact={styles.buttonStyle}
             onClick={() =>
               onUpdateSetting({
                 ...settings.showNotificationAfterCleanup,
@@ -303,17 +298,21 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
 
             <div className="dropdown">
               <button
+                aria-haspopup="true"
+                aria-expanded="false"
                 className="btn btn-warning dropdown-toggle dropdown-toggle-split"
                 data-toggle="dropdown"
                 data-disabled="true"
+                role="menu"
                 style={{
                   transform: 'translate3d(-3px, 0px, 0px)',
                 }}
-              />
+              >
+                <span className="sr-only">{browser.i18n.getMessage('dropdownAdditionalCleaningOptions')}</span>
+              </button>
               <div className="dropdown-menu dropdown-menu-right">
-                <a
+                <button
                   className="dropdown-item"
-                  href="#"
                   onClick={() => {
                     onCookieCleanup({
                       greyCleanup: false,
@@ -324,12 +323,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                   title={browser.i18n.getMessage(
                     'cookieCleanupIgnoreOpenTabsText',
                   )}
+                  type="button"
                 >
                   {browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
-                </a>
-                <a
+                </button>
+                <h6 className="dropdown-header">{browser.i18n.getMessage('cleanupActionsBypass')}</h6>
+                <button
                   className="dropdown-item"
-                  href="#"
                   onClick={async () => {
                     const success = await this.clearCookiesForThisDomain(
                       hostname,
@@ -340,12 +340,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                     'cookies',
                     hostname,
                   ])}
+                  type="button"
                 >
                   {browser.i18n.getMessage('clearSiteDataText', ['cookies'])}
-                </a>
-                <a
+                </button>
+                <div className="dropdown-header" />
+                <button
                   className="dropdown-item"
-                  href="#"
                   onClick={async () => {
                     const success = await this.clearLocalstorageForThisDomain(
                       hostname,
@@ -356,18 +357,18 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                     'localstorage',
                     hostname,
                   ])}
+                  type="button"
                 >
                   {browser.i18n.getMessage('clearSiteDataText', [
                     'localstorage',
                   ])}
-                </a>
+                </button>
               </div>
             </div>
           </div>
           <IconButton
             iconName="cog"
             className="btn-info"
-            styleReact={styles.buttonStyle}
             onClick={() => {
               browser.tabs.create({
                 url: '/settings/settings.html#tabSettings',
@@ -461,7 +462,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 className="btn-secondary"
                 onClick={() => {
                   onNewExpression({
-                    expression: addableHostname,
+                    expression: localFileToRegex(addableHostname),
                     listType: ListType.GREY,
                     storeId,
                   });
@@ -475,7 +476,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 className="btn-primary"
                 onClick={() => {
                   onNewExpression({
-                    expression: addableHostname,
+                    expression: localFileToRegex(addableHostname),
                     listType: ListType.WHITE,
                     storeId,
                   });

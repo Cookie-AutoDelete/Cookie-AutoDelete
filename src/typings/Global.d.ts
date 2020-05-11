@@ -47,7 +47,7 @@ type Expression = Readonly<{
 }>;
 
 type Setting = Readonly<{
-  id: string | number;
+  id?: string | number;
   name: string;
   value: boolean | number | string;
 }>;
@@ -65,4 +65,11 @@ interface ReleaseNote {
 type CookieCountMsg = Readonly<{
   popupHostname?: string;
   cookieUpdated?: boolean;
+}>;
+
+type CADLogItem = Readonly<{
+  type?: string = 'debug';
+  level?: number = 0;
+  msg?: string;
+  x?: any;
 }>;
