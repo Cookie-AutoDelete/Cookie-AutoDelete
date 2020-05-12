@@ -17,7 +17,7 @@
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Rengjør, inkluderer åpne faner",
-		"description": "Clean, include open tabs"
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
 	},
 	"cleanText": {
 		"message": "Fjern",
@@ -37,7 +37,7 @@
 	},
 	"clearSiteDataForDomainText": {
 		"message": "Slett alle $siteData$ for $domain$",
-		"description": "Clear all cookies for example.com",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -51,7 +51,7 @@
 	},
 	"clearSiteDataText": {
 		"message": "Fjern $siteData$ for dette domenet",
-		"description": "Clear cookies for this domain",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -65,7 +65,7 @@
 	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktiver støtte for Firefox sine containerfaner",
-		"description": "Enable Support for Firefox's Container Tabs"
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
 	},
 	"contributeText": {
 		"message": "Bidra",
@@ -81,11 +81,11 @@
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
 		"message": "Kjør opprydding nå, inkludere informasjonskapsler fra åpne faner",
-		"description": "Run cleanup now, include cookies from open tabs"
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
 		"message": "Kjør opprydding nå",
-		"description": "Run cleanup now"
+		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
 	"defaultSettingsText": {
 		"message": "Gjenopprett standardinnstillinger",
