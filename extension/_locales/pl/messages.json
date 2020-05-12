@@ -1,470 +1,476 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
-  "extensionDescription": {
-    "message": "Kontroluj swoje ciasteczka! Automatycznie usuwaj nieużywane ciasteczka z zamkniętych kart, zostawiając tylko te, które chcesz.",
-    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-  },
-  "notificationTitle": {
-    "message": "Ciasteczka zostały usunięte!",
-    "description": "Cookies were deleted!  Used in Notification Title."
-  },
-  "notificationContent": {
-    "message": "$Num$ usuniętych ciasteczek z: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
-  "popupCookieCountText": {
-    "message": "Ciasteczka",
-    "description": "Cookie(s)"
-  },
-  "filterText": {
-    "message": "Filtr",
-    "description": "Filter"
-  },
-  "noneText": {
-    "message": "Brak",
-    "description": "None"
-  },
-  "cleanText": {
-    "message": "Wyczyść",
-    "description": "Clean"
-  },
-  "keepText": {
-    "message": "Zachowaj",
-    "description": "Keep"
-  },
-  "cookieCleanupText": {
-    "message": "Wyczyść teraz",
-    "description": "Run cleanup now"
-  },
-  "cleanIgnoringOpenTabsText": {
-    "message": "Wyczyść, włącznie z otwartymi kartami",
-    "description": "Clean, include open tabs"
-  },
-  "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Wyczyść teraz, włącznie z otwartymi kartami",
-    "description": "Run cleanup now, include cookies from open tabs"
-  },
-  "clearSiteDataText": {
-    "message": "Wyczyść $siteData$ dla tej domeny",
-    "description": "Clear cookies for this domain",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      }
-    }
-  },
-  "clearSiteDataForDomainText": {
-    "message": "Wyczyść całość $siteData$ dla $domain$",
-    "description": "Clear all cookies for example.com",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "noRulesText": {
-    "message": "Brak reguł pasujących do tej domeny",
-    "description": "No rules matched this domain"
-  },
-  "welcomeText": {
-    "message": "Witaj",
-    "description": "Welcome"
-  },
-  "preferencesText": {
-    "message": "Ustawienia",
-    "description": "Settings"
-  },
-  "optionsText": {
-    "message": "Opcje",
-    "description": "Options"
-  },
-  "settingsText": {
-    "message": "Ustawienia ciasteczek",
-    "description": "Cookie Settings"
-  },
-  "whiteListText": {
-    "message": "Lista formuł",
-    "description": "List of Expressions"
-  },
-  "cleanupLogText": {
-    "message": "Log czyszczenia",
-    "description": "Cleanup Log"
-  },
-  "aboutText": {
-    "message": "Informacje",
-    "description": "About"
-  },
-  "welcomeMessage": {
-    "message": "Cześć! W czasie tej sesji, $cadTitle$ usunął $sessionDeleted$ ciasteczek, a od instalacji $totalDeleted$.",
-    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      },
-      "sessionDeleted": {
-        "content": "$2",
-        "example": "123"
-      },
-      "totalDeleted": {
-        "content": "$3",
-        "example": "456"
-      }
-    }
-  },
-  "oldReleasesText": {
-    "message": "Starsze notatki o wydaniu można oglądać online na",
-    "description": "Older release notes can be viewed online at"
-  },
-  "reasonKeepOpenTab": {
-    "message": "Zachowane z powodu obecności otwartych kart z *.$mainDomain$",
-    "description": "Keep because of open tabs of *.google.com",
-    "placeholders": {
-      "mainDomain": {
-        "content": "$1",
-        "example": "google.com"
-      }
-    }
-  },
-  "reasonCleanStartupNoList": {
-    "message": "Wyczyszczone z powodu czyszczenia przy starcie oraz braku $hostname$ na białej/szarej liście",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonCleanGreyList": {
-    "message": "Wyczyszczone z powodu czyszczenia na starcie oraz obecności $matchedExpression$ na szarej liście",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      }
-    }
-  },
-  "reasonCleanNoList": {
-    "message": "Wyczyszczone z powodu braku $hostname$ na białej/szarej liście",
-    "description": "Clean because sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonKeep": {
-    "message": "Zachowane z powodu obecności $matchedExpression$ na $listType$",
-    "description": "Keep because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonCleanCookieName": {
-    "message": "Częściowo wyczyszczone z powodu obecności $matchedExpression$ na $listType$",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonTabsWereNotIgnored": {
-    "message": "lub w otwartej karcie",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-  },
-  "reasonTabsWereIgnored": {
-    "message": "oraz otwarte karty zostały zignorowane",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-  },
-  "reviewLinkMessage": {
-    "message": "Dzięki za wypróbowanie $cadTitle$. Jeśli ci się podoba, proszę o recenzję.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      }
-    }
-  },
-  "releaseNotesText": {
-    "message": "Informacje o wersji",
-    "description": "Release Notes"
-  },
-  "activeModeText": {
-    "message": "Włączyć automatyczne czyszczenie? Opóźnienie przed czyszczeniem:",
-    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
-  },
-  "minutesText": {
-    "message": "minut",
-    "description": "minute(s)"
-  },
-  "secondsText": {
-    "message": "sekund",
-    "description": "second(s)"
-  },
-  "cleanupDomainChangeText": {
-    "message": "Włącz czyszczenie przy zmianie domeny",
-    "description": "Enable Cleanup on Domain Change"
-  },
-  "enableCleanupLogText": {
-    "message": "Włącz log czyszczenia i licznik",
-    "description": "Enable Cleanup Log and Counter"
-  },
-  "keepLocalstorageText": {
-    "message": "Zachowaj localStorage",
-    "description": "Keep LocalStorage"
-  },
-  "keepAllCookiesText": {
-    "message": "Zachowaj wszystkie ciasteczka",
-    "description": "Keep All Cookies"
-  },
-  "clearLogsText": {
-    "message": "Wyczyść log",
-    "description": "Clear Logs"
-  },
-  "errorText": {
-    "message": "Błąd!",
-    "description": "Error!"
-  },
-  "restoreText": {
-    "message": "Przywróć",
-    "description": "Ex: Restore Cleanup"
-  },
-  "showNumberOfCookiesInIconText": {
-    "message": "Pokaż liczbę ciasteczek z tej domeny",
-    "description": "Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Pokaż powiadomienie po wyczyszczeniu ciasteczek",
-    "description": "Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Wyczyść ciasteczka z otwartych kart przy starcie",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText": {
-    "message": "Włącz sprawdzanie subdomen",
-    "description": "Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Włącz obsługę kontenerów kart Firefoksa",
-    "description": "Enable Support for Firefox's Container Tabs"
-  },
-  "localstorageCleanupText": {
-    "message": "Wyczyść localStorage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Jednoczesne włączenie czyszczenia localStorage i obsługi kontenerów kart w Firefoksie może powodować niepożądane efekty uboczne z powodu ograniczeń API",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "defaultSettingsText": {
-    "message": "Przywróć ustawienia domyślne",
-    "description": "Restore Default Settings"
-  },
-  "resetExtensionDataText": {
-    "message": "Resetuj dane rozszerzenia",
-    "description": "Reset Extension Data"
-  },
-  "whiteListWordText": {
-    "message": "Biała lista",
-    "description": "Whitelist"
-  },
-  "greyListWordText": {
-    "message": "Szara lista",
-    "description": "Greylist"
-  },
-  "toWhiteListText": {
-    "message": "Dodaj do białej listy (nie czyść)",
-    "description": "Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText": {
-    "message": "Dodaj do szarej listy (czyść przy restarcie)",
-    "description": "Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText": {
-    "message": "Usuń wszystko",
-    "description": "Remove All"
-  },
-  "exportURLSText": {
-    "message": "Eksportuj formuły",
-    "description": "Export Expressions"
-  },
-  "exportURLSTitle": {
-    "message": "Do nazwy eksportowanego pliku dodana będzie aktualna data.\nMasz problem z pobraniem pliku?  Kliknij prawym klawiszem na przycisk i wybierz 'Zapisz element docelowy jako...'.",
-    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
-  },
-  "questionExpression": {
-    "message": "Jak działają formuły?",
-    "description": "How do Expressions work?"
-  },
-  "importURLSText": {
-    "message": "Importuj formuły",
-    "description": "Import Expressions"
-  },
-  "reportIssuesText": {
-    "message": "Zgłoś problemy i sugestie",
-    "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Dokumentacja",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Najczęściej zadawane pytania, wspólne kwestie i rozwiązania",
-    "description": "Frequently Asked Questions, Common issues and solutions"
-  },
-  "versionText": {
-    "message": "Wersja dla $browser$",
-    "description": "Firefox version",
-    "placeholders": {
-      "browser": {
-        "content": "$1",
-        "example": "Firefox"
-      }
-    }
-  },
-  "contributorsText": {
-    "message": "Współtwórcy:",
-    "description": "Contributors"
-  },
-  "contributeText": {
-    "message": "Wspomóż",
-    "description": "Contribute"
-  },
-  "domainExpressionsText": {
-    "message": "Formuła domeny",
-    "description": "Domain Expression"
-  },
-  "matchedDomainExpressionText": {
-    "message": "Pasująca formuła domeny",
-    "description": "Matched Domain Expression"
-  },
-  "regularExpressionEquivalentText": {
-    "message": "Równoważne wyrażenie regularne",
-    "description": "Regular Expression Equivalent"
-  },
-  "listTypeText": {
-    "message": "Typ listy",
-    "description": "List Type"
-  },
-  "domainPlaceholderText": {
-    "message": "example.com, subdomena.example.com, *.example.com",
-    "description": "Domain Expression"
-  },
-  "noExpressionsText": {
-    "message": "Brak zdefiniowanych formuł.",
-    "description": "No expressions defined."
-  },
-  "removeExpressionText": {
-    "message": "Usuń formułę",
-    "description": "Remove expression"
-  },
-  "stopEditingText": {
-    "message": "Zakończ edycję",
-    "description": "Stop editing"
-  },
-  "saveExpressionText": {
-    "message": "Zapisz formułę",
-    "description": "Save expression"
-  },
-  "editExpressionText": {
-    "message": "Edytuj formułę",
-    "description": "Edit expression"
-  },
-  "toggleToGreyListWordText": {
-    "message": "Przełącz na szarą listę",
-    "description": "Toggle to greylist"
-  },
-  "toggleToWhiteListWordText": {
-    "message": "Przełącz na białą listę",
-    "description": "Toggle to whitelist"
-  },
-  "autoDeleteEnabledText": {
-    "message": "Auto-czyszczenie włączone",
-    "description": "Auto-clean enabled"
-  },
-  "autoDeleteDisabledText": {
-    "message": "Auto-czyszczenie wyłączone",
-    "description": "Auto-clean disabled"
-  },
-  "disableAutoDeleteText": {
-    "message": "Przełącz by wyłączyć automatyczne czyszczenie (tryb ręczny)",
-    "description": "Toggle to disable automatic cleanup (manual mode)"
-  },
-  "enableAutoDeleteText": {
-    "message": "Przełącz by włączyć automatyczne czyszczenie (tryb automatyczny)",
-    "description": "Toggle to enable automatic cleanup (automatic mode)"
-  },
-  "notificationEnabledText": {
-    "message": "Powiadomienia włączone",
-    "description": "Notification enabled"
-  },
-  "notificationDisabledText": {
-    "message": "Powiadomienia wyłączone",
-    "description": "Notification disabled"
-  },
-  "toggleNotificationText": {
-    "message": "Przełącz, aby włączyć lub wyłączyć powiadomienia",
-    "description": "Toggle to enable or disable notifications"
-  },
-  "noCleanupLogText": {
-    "message": "Log czyszczenia nieznaleziony",
-    "description": "No Cleanup Logs Found"
-  },
-  "menuText": {
-    "message": "Menu",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
-  },
-  "greyCleanLocalstorage": {
-    "message": "Odznacz 'Zachowaj localStorage' w nowych formułach szarej listy",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Odznacz 'Odznacz 'Zachowaj localStorage' w nowych formułach białej listy",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "enableNewVersionPopup": {
-    "message": "Pokazuj popup z informacjami o nowej wersji po każdej aktualizacji",
-    "description": "Enable Popup when New Version is Released"
-  },
-  "localstorageCleanupWarning": {
-    "message": "Uwaga:  wszystkie dane w localStorage zostaną usunięte przy włączeniu opcji \"Wyczyść localStorage\".",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  }
+	"aboutText": {
+		"message": "Informacje",
+		"description": "About"
+	},
+	"activeModeText": {
+		"message": "Włączyć automatyczne czyszczenie? Opóźnienie przed czyszczeniem:",
+		"description": "Enable Automatic Cleaning"
+	},
+	"autoDeleteDisabledText": {
+		"message": "Auto-czyszczenie wyłączone",
+		"description": "Auto-clean disabled"
+	},
+	"autoDeleteEnabledText": {
+		"message": "Auto-czyszczenie włączone",
+		"description": "Auto-clean enabled"
+	},
+	"cleanIgnoringOpenTabsText": {
+		"message": "Wyczyść, włącznie z otwartymi kartami",
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+	},
+	"cleanText": {
+		"message": "Wyczyść",
+		"description": "Clean"
+	},
+	"cleanupDomainChangeText": {
+		"message": "Włącz czyszczenie przy zmianie domeny",
+		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Uwaga - poniższe akcje ignorują ustawienia!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+	},
+	"cleanupLogText": {
+		"message": "Log czyszczenia",
+		"description": "Cleanup Log"
+	},
+	"clearLogsText": {
+		"message": "Wyczyść log",
+		"description": "Clear Logs"
+	},
+	"clearSiteDataForDomainText": {
+		"message": "Wyczyść całość $siteData$ dla $domain$",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"domain": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"clearSiteDataText": {
+		"message": "Wyczyść $siteData$ dla tej domeny",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"clearURLText": {
+		"message": "Usuń wszystko",
+		"description": "Remove All"
+	},
+	"contextualIdentitiesEnabledText": {
+		"message": "Włącz obsługę kontenerów kart Firefoksa",
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+	},
+	"contributeText": {
+		"message": "Wspomóż",
+		"description": "Contribute"
+	},
+	"contributorsText": {
+		"message": "Współtwórcy:",
+		"description": "Contributors"
+	},
+	"cookieCleanUpOnStartText": {
+		"message": "Wyczyść ciasteczka z otwartych kart przy starcie",
+		"description": "Clean Cookies from Open Tabs on Startup"
+	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Wyczyść teraz, włącznie z otwartymi kartami",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Wyczyść teraz",
+		"description": "Run cleanup now. This is shown on mouseover on the button."
+	},
+	"defaultSettingsText": {
+		"message": "Przywróć ustawienia domyślne",
+		"description": "Restore Default Settings"
+	},
+	"disableAutoDeleteText": {
+		"message": "Przełącz by wyłączyć automatyczne czyszczenie (tryb ręczny)",
+		"description": "Toggle to disable automatic cleanup (manual mode)"
+	},
+	"documentationText": {
+		"message": "Dokumentacja",
+		"description": "Documentation"
+	},
+	"domainExpressionsText": {
+		"message": "Formuła domeny",
+		"description": "Domain Expression"
+	},
+	"domainPlaceholderText": {
+		"message": "example.com, subdomena.example.com, *.example.com",
+		"description": "Domain Expression"
+	},
+	"editExpressionText": {
+		"message": "Edytuj formułę",
+		"description": "Edit expression"
+	},
+	"enableAutoDeleteText": {
+		"message": "Przełącz by włączyć automatyczne czyszczenie (tryb automatyczny)",
+		"description": "Toggle to enable automatic cleanup (automatic mode)"
+	},
+	"enableCleanupLogText": {
+		"message": "Włącz log czyszczenia i licznik",
+		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableGlobalSubdomainText": {
+		"message": "Włącz sprawdzanie subdomen",
+		"description": "Enable Check for Subdomains"
+	},
+	"enableNewVersionPopup": {
+		"message": "Pokazuj popup z informacjami o nowej wersji po każdej aktualizacji",
+		"description": "Enable Popup when New Version is Released"
+	},
+	"errorText": {
+		"message": "Błąd!",
+		"description": "Error!"
+	},
+	"exportURLSText": {
+		"message": "Eksportuj formuły",
+		"description": "Export Expressions"
+	},
+	"extensionDescription": {
+		"message": "Kontroluj swoje ciasteczka! Automatycznie usuwaj nieużywane ciasteczka z zamkniętych kart, zostawiając tylko te, które chcesz.",
+		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+	},
+	"extensionName": {
+		"message": "Cookie AutoDelete",
+		"description": "Name of the extension."
+	},
+	"faqText": {
+		"message": "Najczęściej zadawane pytania, wspólne kwestie i rozwiązania",
+		"description": "Frequently Asked Questions, Common issues and solutions"
+	},
+	"filterText": {
+		"message": "Filtr",
+		"description": "Filter"
+	},
+	"greyCleanLocalstorage": {
+		"message": "Odznacz 'Zachowaj localStorage' w nowych formułach szarej listy",
+		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+	},
+	"greyListWordText": {
+		"message": "Szara lista",
+		"description": "Greylist"
+	},
+	"importURLSText": {
+		"message": "Importuj formuły",
+		"description": "Import Expressions"
+	},
+	"keepAllCookiesText": {
+		"message": "Zachowaj wszystkie ciasteczka",
+		"description": "Keep All Cookies"
+	},
+	"keepLocalstorageText": {
+		"message": "Zachowaj localStorage",
+		"description": "Keep LocalStorage"
+	},
+	"keepText": {
+		"message": "Zachowaj",
+		"description": "Keep"
+	},
+	"listTypeText": {
+		"message": "Typ listy",
+		"description": "List Type"
+	},
+	"localstorageAndContextualIdentitiesWarning": {
+		"message": "Jednoczesne włączenie czyszczenia localStorage i obsługi kontenerów kart w Firefoksie może powodować niepożądane efekty uboczne z powodu ograniczeń API",
+		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+	},
+	"localstorageCleanupText": {
+		"message": "Wyczyść localStorage",
+		"description": "LocalStorage Cleanup"
+	},
+	"localstorageCleanupWarning": {
+		"message": "Uwaga:  wszystkie istniejące dane w localStorage zostaną usunięte przy włączeniu opcji \"Wyczyść localStorage\".",
+		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"matchedDomainExpressionText": {
+		"message": "Pasująca formuła domeny",
+		"description": "Matched Domain Expression"
+	},
+	"menuText": {
+		"message": "Menu",
+		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+	},
+	"minutesText": {
+		"message": "minut",
+		"description": "minute(s)"
+	},
+	"noCleanupLogText": {
+		"message": "Log czyszczenia nieznaleziony",
+		"description": "No Cleanup Logs Found"
+	},
+	"noExpressionsText": {
+		"message": "Brak zdefiniowanych formuł.",
+		"description": "No expressions defined."
+	},
+	"noRulesText": {
+		"message": "Brak reguł pasujących do tej domeny",
+		"description": "No rules matched this domain"
+	},
+	"noneText": {
+		"message": "Brak",
+		"description": "None"
+	},
+	"notificationContent": {
+		"message": "$Num$ usuniętych ciasteczek z: $Websites$",
+		"description": "123 Deleted Cookies from: google.com, facebook.com",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "123"
+			},
+			"websites": {
+				"content": "$2",
+				"example": "google.com, facebook.com"
+			}
+		}
+	},
+	"notificationDisabledText": {
+		"message": "Powiadomienia wyłączone",
+		"description": "Notification disabled"
+	},
+	"notificationEnabledText": {
+		"message": "Powiadomienia włączone",
+		"description": "Notification enabled"
+	},
+	"notificationTitle": {
+		"message": "Ciasteczka zostały usunięte!",
+		"description": "Cookies were deleted!  Used in Notification Title."
+	},
+	"notifyCookieCleanUpText": {
+		"message": "Pokaż powiadomienie po wyczyszczeniu ciasteczek",
+		"description": "Show Notification After Cookie Cleanup"
+	},
+	"oldReleasesText": {
+		"message": "Starsze notatki o wydaniu można oglądać online na",
+		"description": "Older release notes can be viewed online at"
+	},
+	"optionsText": {
+		"message": "Opcje",
+		"description": "Options"
+	},
+	"popupCookieCountText": {
+		"message": "Ciasteczka",
+		"description": "Cookie(s)"
+	},
+	"preferencesText": {
+		"message": "Ustawienia",
+		"description": "Settings"
+	},
+	"questionExpression": {
+		"message": "Jak działają formuły?",
+		"description": "How do Expressions work?"
+	},
+	"reasonCleanCookieName": {
+		"message": "Częściowo wyczyszczone z powodu obecności $matchedExpression$ na $listType$",
+		"description": "Partial clean because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonCleanGreyList": {
+		"message": "Wyczyszczone z powodu czyszczenia na starcie oraz obecności $matchedExpression$ na szarej liście",
+		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			}
+		}
+	},
+	"reasonCleanNoList": {
+		"message": "Wyczyszczone z powodu braku $hostname$ na białej/szarej liście",
+		"description": "Clean because sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonCleanStartupNoList": {
+		"message": "Wyczyszczone z powodu czyszczenia przy starcie oraz braku $hostname$ na białej/szarej liście",
+		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonKeep": {
+		"message": "Zachowane z powodu obecności $matchedExpression$ na $listType$",
+		"description": "Keep because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonKeepOpenTab": {
+		"message": "Zachowane z powodu obecności otwartych kart z *.$mainDomain$",
+		"description": "Keep because of open tabs of *.google.com",
+		"placeholders": {
+			"mainDomain": {
+				"content": "$1",
+				"example": "google.com"
+			}
+		}
+	},
+	"reasonTabsWereIgnored": {
+		"message": "oraz otwarte karty zostały zignorowane",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+	},
+	"reasonTabsWereNotIgnored": {
+		"message": "lub w otwartej karcie",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+	},
+	"regularExpressionEquivalentText": {
+		"message": "Równoważne wyrażenie regularne",
+		"description": "Regular Expression Equivalent"
+	},
+	"releaseNotesText": {
+		"message": "Informacje o wersji",
+		"description": "Release Notes"
+	},
+	"removeExpressionText": {
+		"message": "Usuń formułę",
+		"description": "Remove expression"
+	},
+	"reportIssuesText": {
+		"message": "Zgłoś problemy i sugestie",
+		"description": "Report issues and suggest features"
+	},
+	"resetExtensionDataText": {
+		"message": "Resetuj dane rozszerzenia",
+		"description": "Reset Extension Data"
+	},
+	"restoreText": {
+		"message": "Przywróć",
+		"description": "Ex: Restore Cleanup"
+	},
+	"reviewLinkMessage": {
+		"message": "Dzięki za wypróbowanie $cadTitle$. Jeśli ci się podoba, proszę o recenzję.",
+		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			}
+		}
+	},
+	"saveExpressionText": {
+		"message": "Zapisz formułę",
+		"description": "Save expression"
+	},
+	"secondsText": {
+		"message": "sekund",
+		"description": "second(s)"
+	},
+	"settingsText": {
+		"message": "Ustawienia ciasteczek",
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "Pokaż liczbę ciasteczek z tej domeny",
+		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"stopEditingText": {
+		"message": "Zakończ edycję",
+		"description": "Stop editing"
+	},
+	"toGreyListText": {
+		"message": "Dodaj do szarej listy (czyść przy restarcie)",
+		"description": "Add to Greylist (Clean on Browser Restart)"
+	},
+	"toWhiteListText": {
+		"message": "Dodaj do białej listy (nie czyść)",
+		"description": "Add to Whitelist (Never Clean)"
+	},
+	"toggleNotificationText": {
+		"message": "Przełącz, aby włączyć lub wyłączyć powiadomienia",
+		"description": "Toggle to enable or disable notifications"
+	},
+	"toggleToGreyListWordText": {
+		"message": "Przełącz na szarą listę",
+		"description": "Toggle to greylist"
+	},
+	"toggleToWhiteListWordText": {
+		"message": "Przełącz na białą listę",
+		"description": "Toggle to whitelist"
+	},
+	"versionText": {
+		"message": "Wersja dla $browser$",
+		"description": "Firefox version",
+		"placeholders": {
+			"browser": {
+				"content": "$1",
+				"example": "Firefox"
+			}
+		}
+	},
+	"welcomeMessage": {
+		"message": "Cześć! W czasie tej sesji, $cadTitle$ usunął $sessionDeleted$ ciasteczek, a od instalacji $totalDeleted$.",
+		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			},
+			"sessionDeleted": {
+				"content": "$2",
+				"example": "123"
+			},
+			"totalDeleted": {
+				"content": "$3",
+				"example": "456"
+			}
+		}
+	},
+	"welcomeText": {
+		"message": "Witaj",
+		"description": "Welcome"
+	},
+	"whiteCleanLocalstorage": {
+		"message": "Odznacz 'Zachowaj localStorage' w nowych formułach białej listy",
+		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+	},
+	"whiteListText": {
+		"message": "Lista formuł",
+		"description": "List of Expressions"
+	},
+	"whiteListWordText": {
+		"message": "Biała lista",
+		"description": "Whitelist"
+	}
 }
