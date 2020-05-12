@@ -3,6 +3,10 @@
 		"message": "Относно",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Забавяне преди автоматично почистване",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Активиране на автоматичното почистване",
 		"description": "Enable Automatic Cleaning"
@@ -15,6 +19,10 @@
 		"message": "Автоматичното изчистване е включено",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Уверете се, че „Режимът за разработчици“ е активиран, след което щракнете върху „фонова страница“ в Разгледайте изгледа",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Изчистване, включително отворените подпрозорци",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -26,6 +34,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Включване на изчистването при промяна на домейна",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Предупреждение - Действия по-долу игнорирайте настройките!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
 		"message": "Дневник на изчистванията",
@@ -63,6 +75,10 @@
 		"message": "Премахване на всички",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Кликнете върху раздела Конзола",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Поддръжка за изолирани раздели във Файърфокс",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -87,6 +103,10 @@
 		"message": "Изчистване",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
+	"debugMode": {
+		"message": "Активиране на режима за отстраняване на грешки (допълнителни изходи на конзолата)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Възстановяване на първоначалните настройки",
 		"description": "Restore Default Settings"
@@ -107,6 +127,10 @@
 		"message": "example.com, subdomain.example.com, *.example.com",
 		"description": "Domain Expression"
 	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Toggle Additional Cleaning Actions Dropdown",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
 	"editExpressionText": {
 		"message": "Редактиране на израза",
 		"description": "Edit expression"
@@ -123,6 +147,10 @@
 		"message": "Проверяване за поддомейни",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Активирайте почистването на Greylist при рестартиране на браузъра",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Показване на известие при ново издание на добавката",
 		"description": "Enable Popup when New Version is Released"
@@ -131,9 +159,17 @@
 		"message": "Грешка!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Експорт на основните настройки",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Изнасяне на изрази",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Към името на файла при експортиране ще се добави времева марка.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Поемете контрола над бисквитките! Автоматично изтрива неизползваните бисквитки от затворените подпрозорци и запазва тези, които искате.",
@@ -163,6 +199,26 @@
 		"message": "Сив списък",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Импортиране на основни настройки не е успешно - намерена неизвестна настройка",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Импортиране на основните настройки",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Даденият файл не е тип, който обработваме",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Файлът е дал неуспешна проверка",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Липсва идентификатор",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Внасяне на изрази",
 		"description": "Import Expressions"
@@ -170,6 +226,10 @@
 	"keepAllCookiesText": {
 		"message": "Запазване на всички бисквитки",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Запазете иконите по подразбиране за всички видове списъци",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Запазване на местното хранилище",
@@ -215,6 +275,10 @@
 		"message": "Няма зададени изрази.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Полетата за почистване няма да се генерират за раздели в частно сърфиране",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "Няма изрази, съвпадащи с домейна",
 		"description": "No rules matched this domain"
@@ -249,6 +313,10 @@
 		"message": "Бисквитките са изтрити!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Времетраене за известия",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Показване на известия след изчистване на бисквитки",
 		"description": "Show Notification After Cookie Cleanup"
@@ -256,6 +324,10 @@
 	"oldReleasesText": {
 		"message": "Бележките към по-старите издания могат да бъдат прочетени онлайн на",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "За да видите изходите за отстраняване на грешки, отворете нов раздел и посетете",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Опции",
@@ -357,6 +429,10 @@
 		"message": "Бележки по изданието",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Премахване на всички изрази",
+		"description": "Remove All Expressions"
+	},
 	"removeAllExpressionsConfirm": {
 		"message": "Сигурни ли сте, че искате да премахнете ВСИЧКИ ($expressionCount$) запазени изрази(и) от списъка (ите) ($listCount$)? \n\nТОВА НЕ МОЖЕ ДА БЪДЕ ОТМЕНЕНО! \n\nВъведете [$expressionCount$] и щракнете върху OK, за да изтриете.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
@@ -370,6 +446,10 @@
 				"example": "5"
 			}
 		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Няма изрази за премахване!",
+		"description": "No expressions to remove!"
 	},
 	"removeExpressionText": {
 		"message": "Премахване на израза",
@@ -405,6 +485,22 @@
 		"message": "секунди",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Опции за автоматично изчистване",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Опции на изрази",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Опции на разширението",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Други опции за почистване на данните за сърфиране",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
 		"message": "$CAD$ Настройки",
 		"description": "$CAD$ Settings",
@@ -422,6 +518,10 @@
 	"stopEditingText": {
 		"message": "Отказ",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Успяхме!",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Бисквитките се изчистват след рестартиране на браузъра",
