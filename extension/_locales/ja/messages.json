@@ -389,7 +389,13 @@
 	},
 	"settingsText": {
 		"message": "Cookie の設定",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "ドメインの Cookie の数を表示する",
