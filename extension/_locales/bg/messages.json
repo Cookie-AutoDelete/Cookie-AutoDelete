@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeText": {
-		"message": "Да бъде ли включено автоматичното изчистване? Изчакване преди изчистване:",
+		"message": "Активиране на автоматичното почистване",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
