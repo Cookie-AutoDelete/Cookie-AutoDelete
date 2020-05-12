@@ -389,7 +389,13 @@
 	},
 	"settingsText": {
 		"message": "Подешавања колачића",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Прикажи број колачића за дати домен",
