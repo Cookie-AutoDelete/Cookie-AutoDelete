@@ -229,7 +229,7 @@
 	},
 	"keepDefaultIcon": {
 		"message": "Conservar iconos predeterminados en todos los tipos de listas",
-		"description": "Keep Default Icons on all list types"
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Conservar el almacenamiento local",
