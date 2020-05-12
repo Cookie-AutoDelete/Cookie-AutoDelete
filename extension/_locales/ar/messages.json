@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeText": {
-		"message": "تمكين التنظيف التلقائي؟ تأخير قبل التنظيف:",
+		"message": "تمكين التنظيف التلقائي",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -168,8 +168,12 @@
 		"description": "second(s)"
 	},
 	"settingsText": {
-		"message": "إعدادات سجل الكوكيز",
+		"message": "إعدادات CAD",
 		"description": "CAD Settings"
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "إظهار عدد ملفات تعريف الارتباط لهذا المجال عبر الرمز",
+		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
 		"message": "إيقاف التعديل",
