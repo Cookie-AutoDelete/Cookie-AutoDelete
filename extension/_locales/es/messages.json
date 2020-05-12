@@ -543,6 +543,16 @@
 		"message": "Cambiar a la lista blanca",
 		"description": "Toggle to whitelist"
 	},
+	"versionNumberText": {
+		"message": "$CAD$ versión",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
+	},
 	"versionText": {
 		"message": "Versión para $browser$",
 		"description": "Firefox version",
