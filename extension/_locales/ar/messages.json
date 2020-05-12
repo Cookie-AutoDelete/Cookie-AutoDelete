@@ -79,6 +79,10 @@
 		"message": "Cookie AutoDelete",
 		"description": "Name of the extension."
 	},
+	"filterDebugMode": {
+		"message": "لمشاهدة نواتج التصحيح فقط عن طريق هذا الملحق، فلتر الإخراج بالسطر التالي.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "فلتر",
 		"description": "Filter"
@@ -146,6 +150,20 @@
 	"releaseNotesText": {
 		"message": "ملاحظات الإصدار",
 		"description": "Release Notes"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "هل أنت متأكد من أنك تريد إزالة كل ($expressionCount$) التعابير المحفوظة من قائمة ($listCount$) ؟\n\nلا يمكن إلغاء هذا!\n\nاكتب [ $expressionCount$ ] وانقر موافق للحذف.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
 	},
 	"removeExpressionText": {
 		"message": "حفظ الصيغة",
