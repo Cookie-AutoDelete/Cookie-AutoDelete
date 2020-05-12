@@ -434,7 +434,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "¿Estás seguro de que deseas borrar TODAS ($expressionCount$) las expresiones guardadas en ($listCount$) lista/s?\n\n¡ESTO NO SE PUEDE DESHACER!\n\nEscribe [ $expressionCount$ ] y haz clic en Aceptar para borrar.",
+		"message": "¿Estás seguro de que deseas borrar TODAS las ($expressionCount$) expresiones guardadas en ($listCount$) lista/s?\n\n¡ESTO NO SE PUEDE DESHACER!\n\nEscribe [ $expressionCount$ ] y haz clic en Aceptar para borrar.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
