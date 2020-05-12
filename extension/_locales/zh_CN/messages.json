@@ -123,10 +123,6 @@
 		"message": "域名表达式",
 		"description": "Domain Expression"
 	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
-		"description": "Domain Expression"
-	},
 	"dropdownAdditionalCleaningOptions": {
 		"message": "切换额外的清理操作下拉列表",
 		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
@@ -310,7 +306,7 @@
 		"description": "Notification enabled"
 	},
 	"notificationTitle": {
-		"message": "Cookie 已删除！",
+		"message": "Cookie 已被删除！",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
 	"notifyCookieCleanupDelayText": {
