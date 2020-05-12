@@ -365,7 +365,13 @@
 	},
 	"settingsText": {
 		"message": "Configurări cookie-uri",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Arată numărul de cookie-uri pentru acel domeniu",
