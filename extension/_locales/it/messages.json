@@ -17,7 +17,7 @@
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Pulisci, incluse le schede aperte",
-		"description": "Clean, include open tabs"
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
 	},
 	"cleanText": {
 		"message": "Pulisci",
@@ -37,7 +37,7 @@
 	},
 	"clearSiteDataForDomainText": {
 		"message": "Elimina tutti i $siteData$ di $domain$",
-		"description": "Clear all cookies for example.com",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -51,7 +51,7 @@
 	},
 	"clearSiteDataText": {
 		"message": "Elimina $siteData$ di questo dominio",
-		"description": "Clear cookies for this domain",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -65,7 +65,7 @@
 	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Attiva il supporto per le schede contenitore di Firefox",
-		"description": "Enable Support for Firefox's Container Tabs"
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
 	},
 	"contributeText": {
 		"message": "Contribuisci",
@@ -81,11 +81,11 @@
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
 		"message": "Pulisci adesso, inclusi i cookie delle schede aperte",
-		"description": "Run cleanup now, include cookies from open tabs"
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
 		"message": "Pulisci adesso",
-		"description": "Run cleanup now"
+		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
 	"defaultSettingsText": {
 		"message": "Ripristina impostazioni predefinite",
