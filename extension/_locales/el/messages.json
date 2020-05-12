@@ -1,7 +1,7 @@
 {
 	"cleanIgnoringOpenTabsText": {
 		"message": "Καθαρισμός, μαζι και οι ανοιχτές καρτέλες",
-		"description": "Clean, include open tabs"
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
 	},
 	"cleanText": {
 		"message": "Καθαρισμός",
@@ -9,7 +9,7 @@
 	},
 	"cookieCleanupText": {
 		"message": "Εκτέλεση καθαρισμού τώρα",
-		"description": "Run cleanup now"
+		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
 	"extensionDescription": {
 		"message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
