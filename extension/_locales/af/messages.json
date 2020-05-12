@@ -19,6 +19,10 @@
 		"message": "Outo-skoonmaak geaktiveer",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Maak seker dat 'ontwikkelaarmodus' geaktiveer is, en klik dan op 'agtergrondbladsy' onder Inspekteer",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View"
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Maak skoon, insluitend oop oortjies",
 		"description": "Clean, include open tabs"
