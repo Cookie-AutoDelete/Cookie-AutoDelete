@@ -1,7 +1,11 @@
 {
 	"aboutText": {
-		"message": "Oor",
+		"message": "Aangaande",
 		"description": "About"
+	},
+	"activeModeDelayText": {
+		"message": "Vertraag voordat outomatiese skoonmaak",
+		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
 		"message": "Aktiveer outomatiese skoonmaak",
