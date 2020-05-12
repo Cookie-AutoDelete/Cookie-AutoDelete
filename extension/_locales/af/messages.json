@@ -119,6 +119,10 @@
 		"message": "Cookie AutoDelete",
 		"description": "Name of the extension."
 	},
+	"filterDebugMode": {
+		"message": "Filter slegs uitsette deur hierdie uitbreiding, filter die uitset volgens die volgende reël.",
+		"description": "To see only debug outputs by this extension, filter output by the following line."
+	},
 	"filterText": {
 		"message": "Filter",
 		"description": "Filter"
@@ -231,6 +235,20 @@
 		"message": "Vrystelling Notas",
 		"description": "Release Notes"
 	},
+	"removeAllExpressionsConfirm": {
+		"message": "Is u seker dat u ALLE ($expressionCount$) gestoorde uitdrukking(s) van ($listCount$) lys(s) wil verwyder? DIT KAN NIE ONGEDAAN GEMAAK WORD NIE! Tik [ $expressionCount$ ] en klik OK om te verwyder.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
 	"removeExpressionText": {
 		"message": "Verwyder uitdrukking",
 		"description": "Remove expression"
@@ -258,7 +276,7 @@
 		"description": "second(s)"
 	},
 	"settingsText": {
-		"message": "CAD Opstelling",
+		"message": "$CAD$ Opstelling",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
