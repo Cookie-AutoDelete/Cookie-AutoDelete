@@ -3,6 +3,10 @@
 		"message": "Informacje",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Opóźnienie przed automatycznym czyszczeniem",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Włączyć automatyczne czyszczenie? Opóźnienie przed czyszczeniem:",
 		"description": "Enable Automatic Cleaning"
@@ -14,6 +18,10 @@
 	"autoDeleteEnabledText": {
 		"message": "Auto-czyszczenie włączone",
 		"description": "Auto-clean enabled"
+	},
+	"chromeDebugMode": {
+		"message": "Upewnij się, że 'Tryb programisty' jest włączony, następnie kliknij na 'strona w tle' pod 'Zobacz widoki'",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Wyczyść, włącznie z otwartymi kartami",
@@ -67,6 +75,10 @@
 		"message": "Usuń wszystko",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Kliknij na kartę \"Konsola\"",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Włącz obsługę kontenerów kart Firefoksa",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -91,6 +103,10 @@
 		"message": "Wyczyść teraz",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
+	"debugMode": {
+		"message": "Włącz tryb debugowania (dodatkowe komunikaty w konsoli)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Przywróć ustawienia domyślne",
 		"description": "Restore Default Settings"
@@ -111,6 +127,10 @@
 		"message": "example.com, subdomena.example.com, *.example.com",
 		"description": "Domain Expression"
 	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Pokaż listę dodatkowych akcji czyszczenia",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
 	"editExpressionText": {
 		"message": "Edytuj formułę",
 		"description": "Edit expression"
@@ -127,6 +147,10 @@
 		"message": "Włącz sprawdzanie subdomen",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Włącz czyszczenie szarej listy przy restarcie przeglądarki",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Pokazuj popup z informacjami o nowej wersji po każdej aktualizacji",
 		"description": "Enable Popup when New Version is Released"
@@ -134,6 +158,10 @@
 	"errorText": {
 		"message": "Błąd!",
 		"description": "Error!"
+	},
+	"exportSettingsText": {
+		"message": "Eksportuj ustawienia",
+		"description": "Export Core Settings"
 	},
 	"exportURLSText": {
 		"message": "Eksportuj formuły",
