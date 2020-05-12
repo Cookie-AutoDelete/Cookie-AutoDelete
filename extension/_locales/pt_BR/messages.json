@@ -385,7 +385,13 @@
 	},
 	"settingsText": {
 		"message": "Configurações dos cookies",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Mostrar número de cookies para esse domínio",
