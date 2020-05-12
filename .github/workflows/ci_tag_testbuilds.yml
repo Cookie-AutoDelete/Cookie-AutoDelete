@@ -49,5 +49,5 @@ jobs:
         files: |
           builds/Cookie-AutoDelete_*_Chrome.zip
           builds/Cookie-AutoDelete_*_Firefox.xpi
-        body: This is an automatically generated build based on the tag pushed.  See commits for changes.
+        body: This is an automatically generated test build.  See commits for changes.
         prerelease: true
