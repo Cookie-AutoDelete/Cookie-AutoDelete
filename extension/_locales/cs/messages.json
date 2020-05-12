@@ -3,6 +3,10 @@
 		"message": "O aplikaci",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Zpoždění před automatickým čištěním",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Povolit automatické čištění? Zpoždění před čištěním:",
 		"description": "Enable Automatic Cleaning"
@@ -15,6 +19,10 @@
 		"message": "Automatické čištění povoleno",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Ujistěte se, že 'Vývojářský režim' je povolen, poté klikněte na 'stránku na pozadí' v rámci prohlídky",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Čiré, včetně otevřených panelů",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -26,6 +34,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Povolit čištění při změně domény",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Varování - Akce níže ignorují nastavení!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
 		"message": "Vyčistit protokol",
@@ -63,6 +75,10 @@
 		"message": "Odstranit vše",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Klikněte na záložku konzole",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Povolení podpory pro Firefox je Kontejnerové Tabs",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -87,6 +103,10 @@
 		"message": "Spustit vyčištění",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
+	"debugMode": {
+		"message": "Povolit režim ladění (další výstupy konzoly)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Obnovit výchozí nastavení",
 		"description": "Restore Default Settings"
@@ -103,9 +123,9 @@
 		"message": "Výraz domény",
 		"description": "Domain Expression"
 	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
-		"description": "Domain Expression"
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Přepnout rozbalovací seznam dodatečných čistících akcí",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
 	},
 	"editExpressionText": {
 		"message": "Upravit výraz",
@@ -123,6 +143,10 @@
 		"message": "Povolit kontrolu poddomén",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Povolit čištění Greylist při restartu prohlížeče",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Povolit vyskakovací okno, když je vydána nová verze",
 		"description": "Enable Popup when New Version is Released"
@@ -131,9 +155,17 @@
 		"message": "Chyba!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Exportovat jádro",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Exportovat výrazy",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Časové razítko bude připojeno k názvu souboru při vývozu.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Ovládejte soubory cookie! Automaticky odstraňte nechtěné soubory cookie z uzavřených karet při zachování toho, co chcete.",
@@ -147,6 +179,10 @@
 		"message": "Často kladené otázky, společné otázky a řešení",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Chcete-li zobrazit pouze ladící výstupy podle tohoto rozšíření, filtrujte výstup podle následujícího řádku.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filtr",
 		"description": "Filter"
@@ -159,6 +195,26 @@
 		"message": "Greylist",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Nastavení importu jádra selhalo - Nalezeno neznámé nastavení",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Nastavení jádra importu",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Uvedený soubor není typ, kterým se zabýváme",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Zadaný soubor se nepodařilo ověřit",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Chybějící identifikátor",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Importovat výrazy",
 		"description": "Import Expressions"
@@ -166,6 +222,10 @@
 	"keepAllCookiesText": {
 		"message": "Zachovat všechny cookies",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Ponechat výchozí ikony ve všech typech seznamu",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Ponechat lokální úložiště",
@@ -211,6 +271,10 @@
 		"message": "Nebyly definovány žádné výrazy.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Vyčistit protokoly nebudou generovány pro karty v Anonymním prohlížení",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "Žádná pravidla neodpovídají této doméně",
 		"description": "No rules matched this domain"
@@ -245,6 +309,10 @@
 		"message": "Cookies were deleted!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Doba trvání oznámení",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Zobrazit oznámení po vyčištění cookie",
 		"description": "Show Notification After Cookie Cleanup"
@@ -252,6 +320,10 @@
 	"oldReleasesText": {
 		"message": "Starší poznámky k vydání lze zobrazit online na",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Chcete-li zobrazit výstupy ladění, otevřete novou kartu a navštivte",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Možnosti",
@@ -353,6 +425,28 @@
 		"message": "Poznámky k vydání",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Odstranit všechny výrazy",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Jste si jisti, že chcete odstranit VŠECHNY ($expressionCount$) uložené výrazy ze seznamů ($listCount$) ?\n\nNEMŮŽE BÝT NEDONE!\n\nNapište [ $expressionCount$ ] a klepněte na tlačítko OK pro odstranění.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Žádné výrazy k odstranění!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Odstranit výraz",
 		"description": "Remove expression"
@@ -387,6 +481,22 @@
 		"message": "sekund(y)",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Možnosti automatického čištění",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Možnosti výrazu",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Možnosti rozšíření",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Další možnosti čištění dat",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
 		"message": "Nastavení cookie",
 		"description": "$CAD$ Settings",
@@ -404,6 +514,10 @@
 	"stopEditingText": {
 		"message": "Zastavit úpravy",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Úspěch!",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Přidat do Greylist (Clean on Browser Restart)",
