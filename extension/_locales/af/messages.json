@@ -434,7 +434,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Is u seker dat u ALLE ($expressionCount$) gestoorde uitdrukking(s) van ($listCount$) lys(s) wil verwyder? DIT KAN NIE ONGEDAAN GEMAAK WORD NIE! Tik [ $expressionCount$ ] en klik OK om te verwyder.",
+		"message": "Is u seker dat u ALLE ($expressionCount$) gestoorde uitdrukking(s) van ($listCount$) lys(s) wil verwyder? \n\nDIT KAN NIE ONGEDAAN GEMAAK WORD NIE! \n\nTik [ $expressionCount$ ] en klik OK om te verwyder.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
