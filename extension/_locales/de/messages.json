@@ -103,10 +103,6 @@
 		"message": "Domain-Ausdruck",
 		"description": "Domain Expression"
 	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *. example.com",
-		"description": "Domain Expression"
-	},
 	"editExpressionText": {
 		"message": "Ausdruck bearbeiten",
 		"description": "Edit expression"
