@@ -119,7 +119,7 @@ class Expressions extends React.Component<ExpressionProps> {
     } else {
       const r = window.prompt(browser.i18n.getMessage('removeAllExpressionsConfirm', [ expCount.toString(), listKeys.length.toString()]));
       console.info(`Clear Expressions Prompt returned [ ${r} ]`)
-      if (r !== null && r === 'yes') {
+      if (r !== null && r === expCount.toString()) {
         onClearExpressions(this.props.lists);
       }
     }
@@ -221,7 +221,7 @@ class Expressions extends React.Component<ExpressionProps> {
               className="btn-info"
               iconName="upload"
               type="file"
-              accept="text/json"
+              accept="application/json"
               onChange={e => this.importExpressions(e.target.files)}
               text={browser.i18n.getMessage('importURLSText')}
               title={browser.i18n.getMessage('importURLSText')}

@@ -299,6 +299,7 @@ class Settings extends React.Component<SettingProps> {
             />
           </div>
         </fieldset>
+        <hr />
         <fieldset>
           <legend>{browser.i18n.getMessage('settingGroupExpression')}</legend>
           <div className="form-group">
@@ -324,6 +325,7 @@ class Settings extends React.Component<SettingProps> {
             />
           </div>
         </fieldset>
+        <hr />
         <fieldset>
           <legend>{browser.i18n.getMessage('settingGroupOtherBrowsing')}</legend>
           {browserDetect === 'Firefox' && platformOs !== 'android' && (
@@ -369,6 +371,7 @@ class Settings extends React.Component<SettingProps> {
             </div>
           )}
         </fieldset>
+        <hr />
         <fieldset>
           <legend>{browser.i18n.getMessage('settingGroupExtension')}</legend>
           <div className="form-group">
@@ -474,7 +477,8 @@ class Settings extends React.Component<SettingProps> {
                   <p>{browser.i18n.getMessage('openDebugMode')}</p>
                   <pre><b>{(browserDetect === 'Firefox') && 'about:devtools-toolbox?type=extension&id='  || (browserDetect === 'Chrome') && `chrome://extensions/?id=`}{encodeURIComponent(browser.runtime.id)}</b></pre>
                   {(browserDetect === 'Chrome') && <p>{browser.i18n.getMessage('chromeDebugMode')}</p>}
-                  <p>{browser.i18n.getMessage('consoleDebugMode')}.  {browser.i18n.getMessage('filterDebugMode')} <b>CAD_</b></p>
+                  <p>{browser.i18n.getMessage('consoleDebugMode')}.  {browser.i18n.getMessage('filterDebugMode')}</p>
+                  <p><b>CAD_</b></p>
                 </div>
               )}
             </div>
