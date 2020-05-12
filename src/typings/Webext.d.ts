@@ -22,7 +22,6 @@ declare namespace browser.browsingData {
 declare namespace browser.cookies {
   interface CookieProperties extends browser.cookies.Cookie {
     firstPartyDomain?: string;
-    sameSite?: string;
   }
   type OptionalCookieProperties = Partial<CookieProperties>;
 }
