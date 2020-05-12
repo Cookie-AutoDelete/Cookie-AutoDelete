@@ -103,10 +103,6 @@
 		"message": "Expression de domaine",
 		"description": "Domain Expression"
 	},
-	"domainPlaceholderText": {
-		"message": "exemple.com, sousdomaine.exemple.com, *.exemple.com",
-		"description": "Domain Expression"
-	},
 	"editExpressionText": {
 		"message": "Modifier l’expression",
 		"description": "Edit expression"
@@ -388,7 +384,7 @@
 		"description": "second(s)"
 	},
 	"settingsText": {
-		"message": "Paramètres des cookies",
+		"message": "Paramètres des $CAD$",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -398,7 +394,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Afficher le nombre de cookies pour ce domaine",
+		"message": "Afficher le nombre de cookies pour ce domaine sur l'icône",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
