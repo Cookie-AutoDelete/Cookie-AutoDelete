@@ -539,6 +539,16 @@
 		"message": "Přepnout na seznam povolených",
 		"description": "Toggle to whitelist"
 	},
+	"versionNumberText": {
+		"message": "$CAD$ verze",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
+	},
 	"versionText": {
 		"message": "$browser$ verze",
 		"description": "Firefox version",
