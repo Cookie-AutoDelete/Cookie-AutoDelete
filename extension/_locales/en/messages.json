@@ -502,8 +502,15 @@
 		"description": "Other Browsing Data Cleanup Options"
 	},
 	"settingsText": {
-		"message": "CAD Settings",
-		"description": "CAD Settings"
+		"message": "$CAD$ Settings",
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			},
+
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Show Number of Cookies for that Domain over the Icon",
