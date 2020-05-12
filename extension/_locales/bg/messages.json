@@ -147,6 +147,10 @@
 		"message": "Често задавани въпроси, трудности и техните решения",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "За да видите само изходни грешки от това разширение, филтрирайте изхода от следващия ред.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Филтриране",
 		"description": "Filter"
@@ -353,6 +357,20 @@
 		"message": "Бележки по изданието",
 		"description": "Release Notes"
 	},
+	"removeAllExpressionsConfirm": {
+		"message": "Сигурни ли сте, че искате да премахнете ВСИЧКИ ($expressionCount$) запазени изрази(и) от списъка (ите) ($listCount$)? \n\nТОВА НЕ МОЖЕ ДА БЪДЕ ОТМЕНЕНО! \n\nВъведете [$expressionCount$] и щракнете върху OK, за да изтриете.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
 	"removeExpressionText": {
 		"message": "Премахване на израза",
 		"description": "Remove expression"
@@ -388,7 +406,7 @@
 		"description": "second(s)"
 	},
 	"settingsText": {
-		"message": "Настройки",
+		"message": "$CAD$ Настройки",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
