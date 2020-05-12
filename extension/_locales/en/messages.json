@@ -184,8 +184,8 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "To see only debug outputs by this extension, filter output by",
-		"description": "To see only debug outputs by this extension, filter output by"
+		"message": "To see only debug outputs by this extension, filter output by the following line.",
+		"description": "To see only debug outputs by this extension, filter output by the following line."
 	},
 	"filterText": {
 		"message": "Filter",
@@ -434,8 +434,8 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Are you sure you want to remove ALL ($expressionCount$) saved expressions from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ yes ] and click OK to delete.",
-		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expressions from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ yes ] and click OK to delete.",
+		"message": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.",
 		"placeholders": {
 			"expressionCount": {
 				"content": "$1",
