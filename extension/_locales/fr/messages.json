@@ -3,6 +3,10 @@
 		"message": "À propos",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Délai avant nettoyage automatique",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Activer le nettoyage automatique",
 		"description": "Enable Automatic Cleaning"
@@ -15,6 +19,10 @@
 		"message": "Le nettoyage automatique est activé",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Assurez-vous que le 'Mode Développeur' est activé, puis cliquez sur 'Page d'arrière-plan' dans la vue Inspecter",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Nettoyer, y compris les onglets ouverts",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -26,6 +34,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Activer le nettoyage lors d’un changement de domaine",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Attention - Les actions ci-dessous ignorent les paramètres !",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
 		"message": "Journal de nettoyage",
@@ -63,6 +75,10 @@
 		"message": "Tout supprimer",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Cliquez sur l'onglet Console",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Activer la prise en charge des onglets contextuels de Firefox",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -87,6 +103,10 @@
 		"message": "Nettoyer maintenant",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
+	"debugMode": {
+		"message": "Activer le mode débogage (sorties dans la console supplémentaires)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Restaurer les paramètres par défaut",
 		"description": "Restore Default Settings"
@@ -102,6 +122,10 @@
 	"domainExpressionsText": {
 		"message": "Expression de domaine",
 		"description": "Domain Expression"
+	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Activer/désactiver la liste déroulante des actions de nettoyage supplémentaires",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
 	},
 	"editExpressionText": {
 		"message": "Modifier l’expression",
@@ -119,6 +143,10 @@
 		"message": "Activer la vérification des sous-domaines",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Activer le nettoyage des listes grises au redémarrage du navigateur",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Activer la popup lorsqu'une nouvelle version est disponible",
 		"description": "Enable Popup when New Version is Released"
@@ -127,9 +155,17 @@
 		"message": "Erreur!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Exporter les paramètres de base",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Exporter les expressions",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Un horodatage sera ajouté au nom du fichier lors de l'exportation.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Contrôlez vos fichiers témoins ! Supprimez automatiquement les fichiers témoins non utilisés de vos onglets fermés tout en gardant ceux que vous voulez.",
@@ -159,6 +195,26 @@
 		"message": "Liste grise",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Échec de l'importation des paramètres de base - paramètre inconnu trouvé",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Importer les paramètres de base",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Le fichier fourni n'est pas un type que nous gérons",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "La validation du fichier fourni a échoué",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Identifiant manquant",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Importer des expressions",
 		"description": "Import Expressions"
@@ -166,6 +222,10 @@
 	"keepAllCookiesText": {
 		"message": "Garder tous les cookies",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Garder les icônes par défaut sur tous les types de listes",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Garder la mémoire locale",
@@ -211,6 +271,10 @@
 		"message": "Aucune expression n’a été définie.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Les journaux de nettoyage ne seront pas générés pour les onglets dans la navigation privée",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "Aucune règle ne correspond à ce domaine",
 		"description": "No rules matched this domain"
@@ -245,6 +309,10 @@
 		"message": "Cookies des témoins ont été supprimés !",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Durée des notifications",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Afficher une notification après nettoyage des cookies",
 		"description": "Show Notification After Cookie Cleanup"
@@ -252,6 +320,10 @@
 	"oldReleasesText": {
 		"message": "Les anciennes notes de version peuvent être consultées en ligne à l'adresse",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Pour afficher les sorties de débogage, ouvrez un nouvel onglet et visitez",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Paramètres",
@@ -353,6 +425,28 @@
 		"message": "Notes de version",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Supprimer toutes les expressions",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Êtes-vous sûr de vouloir supprimer les ($expressionCount$) expressions enregistrées de(s) ($listCount$) liste(s)?\n\nCET NE PEUT PAS ÊTRE ANNULÉS !\n\nTapez [ $expressionCount$ ] et cliquez sur OK pour supprimer.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Aucune expression à supprimer !",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Supprimer l’expression",
 		"description": "Remove expression"
@@ -387,6 +481,22 @@
 		"message": "seconde(s)",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Options de nettoyage automatique",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Options d'expressions",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Options de l'extension",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Autres options de nettoyage des données de navigation",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
 		"message": "Paramètres des $CAD$",
 		"description": "$CAD$ Settings",
@@ -404,6 +514,10 @@
 	"stopEditingText": {
 		"message": "Annuler la modification",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Réussi !",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Ajouter à la liste grise (nettoyer lors du redémarrage du navigateur)",
@@ -424,6 +538,16 @@
 	"toggleToWhiteListWordText": {
 		"message": "Passer en liste blanche",
 		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "Version $CAD$",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
 	},
 	"versionText": {
 		"message": "Version pour $browser$",
