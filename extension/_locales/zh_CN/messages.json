@@ -17,7 +17,7 @@
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "清理，包括已打开标签页",
-		"description": "Clean, include open tabs"
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
 	},
 	"cleanText": {
 		"message": "清理",
@@ -37,7 +37,7 @@
 	},
 	"clearSiteDataForDomainText": {
 		"message": "清除 $domain$ 的 $siteData$",
-		"description": "Clear all cookies for example.com",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -51,7 +51,7 @@
 	},
 	"clearSiteDataText": {
 		"message": "清除此域的 $siteData$",
-		"description": "Clear cookies for this domain",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -65,7 +65,7 @@
 	},
 	"contextualIdentitiesEnabledText": {
 		"message": "启用对 Firefox 标签页容器功能的支持",
-		"description": "Enable Support for Firefox's Container Tabs"
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
 	},
 	"contributeText": {
 		"message": "捐助",
@@ -81,11 +81,11 @@
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
 		"message": "立即清理，包括已打开标签页的 Cookie",
-		"description": "Run cleanup now, include cookies from open tabs"
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
 		"message": "立即清理",
-		"description": "Run cleanup now"
+		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
 	"defaultSettingsText": {
 		"message": "恢复默认设置",
