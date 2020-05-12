@@ -185,7 +185,7 @@
 	},
 	"filterDebugMode": {
 		"message": "Para ver apenas as saídas de depuração desta extensão, filtrar a saída por",
-		"description": "To see only debug outputs by this extension, filter output by"
+		"description": "To see only debug outputs by this extension, filter output by the following line."
 	},
 	"filterText": {
 		"message": "Filtro",
@@ -435,7 +435,7 @@
 	},
 	"removeAllExpressionsConfirm": {
 		"message": "Tem certeza de que pretende remover TODAS as ($expressionCount$) expressões guardadas de ($listCount$) lista(s)?\n\nISTO NÃO PODE SER DESFEITO!\n\nEscreva [ yes ] e clique OK para apagar.",
-		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expressions from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ yes ] and click OK to delete.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.",
 		"placeholders": {
 			"expressionCount": {
 				"content": "$1",
@@ -503,7 +503,13 @@
 	},
 	"settingsText": {
 		"message": "Definições dos cookies",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Mostrar número de cookies para esse domínio",
