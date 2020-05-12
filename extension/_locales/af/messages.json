@@ -259,7 +259,13 @@
 	},
 	"settingsText": {
 		"message": "CAD Opstelling",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Toon aantal koekies vir daardie domein op die ikoon",
