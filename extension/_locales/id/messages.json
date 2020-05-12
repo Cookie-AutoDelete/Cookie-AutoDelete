@@ -389,7 +389,13 @@
 	},
 	"settingsText": {
 		"message": "Pengaturan Kuki",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "Tampilkan Jumlah Kuki untuk Domain tersebut",
