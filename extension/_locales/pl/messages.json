@@ -167,6 +167,10 @@
 		"message": "Eksportuj formuły",
 		"description": "Export Expressions"
 	},
+	"exportTitleTimestamp": {
+		"message": "Znacznik czasu zostanie dołączony do nazwy pliku przy eksporcie.",
+		"description": "A timestamp will be appended to the filename on export."
+	},
 	"extensionDescription": {
 		"message": "Kontroluj swoje ciasteczka! Automatycznie usuwaj nieużywane ciasteczka z zamkniętych kart, zostawiając tylko te, które chcesz.",
 		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
@@ -178,6 +182,10 @@
 	"faqText": {
 		"message": "Najczęściej zadawane pytania, wspólne kwestie i rozwiązania",
 		"description": "Frequently Asked Questions, Common issues and solutions"
+	},
+	"filterDebugMode": {
+		"message": "By widzieć wpisy tylko tego rozszerzenia, filtruj komunikaty konsoli używając",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
 		"message": "Filtr",
@@ -191,6 +199,26 @@
 		"message": "Szara lista",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Zaimportowanie ustawień nie powiodło się - znaleziono nieznane ustawienia",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Importuj ustawienia",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Podany plik nie jest w obsługiwanym formacie",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Weryfikacja pliku nie powiodła się",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Brakujący identyfikator",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Importuj formuły",
 		"description": "Import Expressions"
@@ -198,6 +226,10 @@
 	"keepAllCookiesText": {
 		"message": "Zachowaj wszystkie ciasteczka",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Użyj domyślnej ikony dla wszystkich typów list",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Zachowaj localStorage",
@@ -243,6 +275,10 @@
 		"message": "Brak zdefiniowanych formuł.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Logi czyszczenia nie będą generowane dla kart w trybie prywatnym",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "Brak reguł pasujących do tej domeny",
 		"description": "No rules matched this domain"
@@ -277,6 +313,10 @@
 		"message": "Ciasteczka zostały usunięte!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Czas trwania powiadomień",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Pokaż powiadomienie po wyczyszczeniu ciasteczek",
 		"description": "Show Notification After Cookie Cleanup"
@@ -284,6 +324,10 @@
 	"oldReleasesText": {
 		"message": "Starsze notatki o wydaniu można oglądać online na",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Aby wyświetlić komunikaty debugowania, otwórz nową kartę i przejdź do",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Opcje",
@@ -385,6 +429,28 @@
 		"message": "Informacje o wersji",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Usuń wszystkie formuły",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Czy na pewno chcesz usunąć WSZYSTKIE ($expressionCount$) zapisane wyrażenia z ($listCount$) list(y)?\n\nTO NIE MOŻE BYĆ COFNIĘTE!\n\nWpisz [ $expressionCount$ ] i kliknij OK, aby usunąć.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Brak wyrażeń do usunięcia!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Usuń formułę",
 		"description": "Remove expression"
@@ -419,6 +485,22 @@
 		"message": "sekund",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Opcje automatycznego czyszczenia",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Opcje formuł",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Opcje rozszerzenia",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Opcje czyszczenia innych danych",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
 		"message": "Ustawienia ciasteczek",
 		"description": "$CAD$ Settings",
@@ -436,6 +518,10 @@
 	"stopEditingText": {
 		"message": "Zakończ edycję",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Sukces!",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Dodaj do szarej listy (czyść przy restarcie)",
