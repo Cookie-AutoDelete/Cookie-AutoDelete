@@ -508,8 +508,7 @@
 			"CAD": {
 				"content": "CAD",
 				"example": "CAD - Short form of Cookie AutoDelete"
-			},
-
+			}
 		}
 	},
 	"showNumberOfCookiesInIconText": {
