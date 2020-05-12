@@ -17,7 +17,7 @@
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Изчистване, включително отворените подпрозорци",
-		"description": "Clean, include open tabs"
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
 	},
 	"cleanText": {
 		"message": "Изчистване",
@@ -37,7 +37,7 @@
 	},
 	"clearSiteDataForDomainText": {
 		"message": "Изчистване на всички $siteData$ за $domain$",
-		"description": "Clear all cookies for example.com",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -51,7 +51,7 @@
 	},
 	"clearSiteDataText": {
 		"message": "Изчистване на $siteData$ за този домейн",
-		"description": "Clear cookies for this domain",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
 				"content": "$1",
@@ -65,7 +65,7 @@
 	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Поддръжка за изолирани раздели във Файърфокс",
-		"description": "Enable Support for Firefox's Container Tabs"
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
 	},
 	"contributeText": {
 		"message": "Допринасяне",
@@ -81,11 +81,11 @@
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
 		"message": "Изчиства всички бисквитки, включително и от отворените раздели",
-		"description": "Run cleanup now, include cookies from open tabs"
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
 		"message": "Изчистване",
-		"description": "Run cleanup now"
+		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
 	"defaultSettingsText": {
 		"message": "Възстановяване на първоначалните настройки",
