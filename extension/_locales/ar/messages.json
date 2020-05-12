@@ -169,7 +169,13 @@
 	},
 	"settingsText": {
 		"message": "إعدادات CAD",
-		"description": "CAD Settings"
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
 	},
 	"showNumberOfCookiesInIconText": {
 		"message": "إظهار عدد ملفات تعريف الارتباط لهذا المجال عبر الرمز",
