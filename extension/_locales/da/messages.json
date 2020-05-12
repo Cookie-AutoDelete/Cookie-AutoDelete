@@ -123,10 +123,6 @@
 		"message": "Domæneudtryk",
 		"description": "Domain Expression"
 	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *.example.com",
-		"description": "Domain Expression"
-	},
 	"dropdownAdditionalCleaningOptions": {
 		"message": "Skift dropdown for yderligere rengøringshandlinger",
 		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
@@ -538,6 +534,16 @@
 	"toggleToWhiteListWordText": {
 		"message": "Skift til hvidliste",
 		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "$CAD$ version",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
 	},
 	"versionText": {
 		"message": "$browser$ version",
