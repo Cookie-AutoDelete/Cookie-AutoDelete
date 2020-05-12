@@ -240,7 +240,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "由于 API 限制，同时启用本地存储清理和容器（身份）标签页可能导致一些不想要的副作用",
+		"message": "警告：由于API限制，同时启用 LocalStorage Cleanup 和 Container Tab 可能会导致有害的副作用。 LocalStorage 将通过所有容器上的主机名清除。",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
