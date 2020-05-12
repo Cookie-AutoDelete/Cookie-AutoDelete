@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeText": {
-		"message": "Activer le nettoyage automatique ? Délai avant nettoyage :",
+		"message": "Activer le nettoyage automatique",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -72,7 +72,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Contributeurs :",
+		"message": "Contributeurs",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -142,6 +142,10 @@
 	"faqText": {
 		"message": "Question fréquentes, problèmes courants et solutions",
 		"description": "Frequently Asked Questions, Common issues and solutions"
+	},
+	"filterDebugMode": {
+		"message": "Pour ne voir que les sorties de débogage de cette extension, filtrez la sortie par la ligne suivante.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
 		"message": "Filtre",
