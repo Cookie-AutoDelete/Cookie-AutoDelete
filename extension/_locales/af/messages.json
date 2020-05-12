@@ -3,6 +3,10 @@
 		"message": "Oor",
 		"description": "About"
 	},
+	"activeModeText": {
+		"message": "Aktiveer outomatiese skoonmaak",
+		"description": "Enable Automatic Cleaning"
+	},
 	"autoDeleteDisabledText": {
 		"message": "Outo-skoonmaak gedeaktiveer",
 		"description": "Auto-clean disabled"
@@ -254,8 +258,12 @@
 		"description": "second(s)"
 	},
 	"settingsText": {
-		"message": "Koekie-instellings",
+		"message": "CAD Opstelling",
 		"description": "CAD Settings"
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "Toon aantal koekies vir daardie domein op die ikoon",
+		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
 		"message": "Hou op wysig",
