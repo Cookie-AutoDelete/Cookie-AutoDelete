@@ -1,18 +1,18 @@
 {
 	"cleanIgnoringOpenTabsText": {
-		"message": "Καθαρισμός, μαζι και οι ανοιχτές καρτέλες",
+		"message": "Καθαρίστε, συμπεριλάβετε ανοιχτές καρτέλες",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
 	},
 	"cleanText": {
-		"message": "Καθαρισμός",
+		"message": "Εκκαθάριση",
 		"description": "Clean"
 	},
 	"cookieCleanupText": {
-		"message": "Εκτέλεση καθαρισμού τώρα",
+		"message": "Εκτελέστε εκκαθάριση τώρα",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
 	"extensionDescription": {
-		"message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
+		"message": "Ελέγξτε τα cookie σας! Διαγράψτε αυτόματα τα ανεπιθύμητα cookie από τις κλειστές καρτέλες ενώ διατηρείτε αυτά που θέλετε.",
 		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
 	},
 	"extensionName": {
