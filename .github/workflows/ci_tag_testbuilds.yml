@@ -3,8 +3,8 @@ name: Tagged Test Builds
 on:
   push:
     tags:
-      - 'v[0-9].[0-9]+.[0-9]+-alpha'
-      - 'v[0-9].[0-9]+.[0-9]+-beta'
+      - 'v[0-9].[0-9]+.[0-9]+-alpha*'
+      - 'v[0-9].[0-9]+.[0-9]+-beta*'
 
 jobs:
   all_jobs:

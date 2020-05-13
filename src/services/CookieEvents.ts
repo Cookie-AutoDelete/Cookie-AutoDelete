@@ -24,7 +24,7 @@ export default class CookieEvents extends StoreUser {
       cause: browser.cookies.OnChangedCause,
     }
   ) {
-    // Get the current active tab of current window
+    // Get the current active tab(s)
     const tabQuery = await browser.tabs.query({
       active: true,
       windowType: 'normal',
