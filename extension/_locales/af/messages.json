@@ -539,6 +539,16 @@
 		"message": "Verwissel na witlys",
 		"description": "Toggle to whitelist"
 	},
+	"versionNumberText": {
+		"message": "$CAD$ weergawe",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
+	},
 	"versionText": {
 		"message": "$browser$ weergawe",
 		"description": "Firefox version",
