@@ -25,11 +25,15 @@ export default class CookieEvents extends StoreUser {
     }
   ) {
     // Get the current active tab of current window
-    const tabQuery = await browser.tabs.query({active: true, currentWindow: true,});
-    const tab = tabQuery[0];
-    if (extractMainDomain(getHostname(tab.url || '')) === extractMainDomain(changeInfo.cookie.domain)) {
-      // Force Tab Update function
-      TabEvents.onTabUpdate(tab.id || 0, {cookieChanged: changeInfo}, tab);
-    }
+    const tabQuery = await browser.tabs.query({
+      active: true,
+      windowType: 'normal',
+    });
+    tabQuery.forEach(tab => {
+      if (extractMainDomain(getHostname(tab.url || '')) === extractMainDomain(changeInfo.cookie.domain)) {
+        // Force Tab Update function
+        TabEvents.onTabUpdate(tab.id || 0, {cookieChanged: changeInfo}, tab);
+      }
+    });
   }
 }
