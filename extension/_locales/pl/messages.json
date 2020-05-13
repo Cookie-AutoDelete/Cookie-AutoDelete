@@ -244,7 +244,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Jednoczesne włączenie czyszczenia localStorage i obsługi kontenerów kart w Firefoksie może powodować niepożądane efekty uboczne z powodu ograniczeń API",
+		"message": "UWAGA: jednoczesne włączenie czyszczenia localStorage i obsługi kontenerów kart w Firefoksie może powodować niepożądane efekty uboczne z powodu ograniczeń API. localStorage będzie czyszczony według hostów we wszystkich kontenerach.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
