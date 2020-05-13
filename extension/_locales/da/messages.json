@@ -536,7 +536,7 @@
 		"description": "Toggle to whitelist"
 	},
 	"versionNumberText": {
-		"message": "$CAD$ version",
+		"message": "$CAD$-version",
 		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
 		"placeholders": {
 			"CAD": {
