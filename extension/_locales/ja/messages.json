@@ -28,7 +28,7 @@
 		"description": "Enable Cleanup on Domain Change"
 	},
 	"cleanupLogText": {
-		"message": "ログ",
+		"message": "クリーンアップのログ",
 		"description": "Cleanup Log"
 	},
 	"clearLogsText": {
@@ -204,7 +204,7 @@
 		"description": "minute(s)"
 	},
 	"noCleanupLogText": {
-		"message": "ログが見つかりません。",
+		"message": "クリーンアップのログが見つかりません",
 		"description": "No Cleanup Logs Found"
 	},
 	"noExpressionsText": {
@@ -254,7 +254,7 @@
 		"description": "Older release notes can be viewed online at"
 	},
 	"optionsText": {
-		"message": "設定",
+		"message": "オプション",
 		"description": "Options"
 	},
 	"popupCookieCountText": {
