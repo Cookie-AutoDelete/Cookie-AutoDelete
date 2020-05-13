@@ -3,8 +3,12 @@
 		"message": "Über",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Verzögerung vor automatischer Aufräumen",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
-		"message": "Automatisches Aufräumen aktivieren? Verzögerung bis zum Aufräumen:",
+		"message": "Automatische Reinigung aktivieren",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -14,6 +18,10 @@
 	"autoDeleteEnabledText": {
 		"message": "Automatisches Aufräumen aktiviert",
 		"description": "Auto-clean enabled"
+	},
+	"chromeDebugMode": {
+		"message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' in der Inspect Ansicht",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Aufräumen, inklusive offener Tabs",
@@ -26,6 +34,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Aufräumen beim Wechsel der Domain aktivieren",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Warnung - Aktionen unten ignorieren Einstellungen!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
 		"message": "Aufräum-Protokoll",
@@ -63,6 +75,10 @@
 		"message": "Alle löschen",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Klicken Sie auf den Konsolen-Tab",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Unterstützung für Firefox' Container-Tabs",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -72,7 +88,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Mitwirkende:",
+		"message": "Mitwirkende",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -86,6 +102,10 @@
 	"cookieCleanupText": {
 		"message": "Jetzt aufräumen",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
+	},
+	"debugMode": {
+		"message": "Debug-Modus aktivieren (zusätzliche Konsolen-Ausgabe)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
 	},
 	"defaultSettingsText": {
 		"message": "Standardeinstellungen wiederherstellen",
@@ -103,6 +123,10 @@
 		"message": "Domain-Ausdruck",
 		"description": "Domain Expression"
 	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Dropdown für zusätzliche Reinigungsaktionen umschalten",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
 	"editExpressionText": {
 		"message": "Ausdruck bearbeiten",
 		"description": "Edit expression"
@@ -119,6 +143,10 @@
 		"message": "Subdomain-Prüfung aktivieren",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Greylist Aufräumen beim Browser-Neustart aktivieren",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Pop-up bei Veröffentlichung neuer Versionen aktivieren",
 		"description": "Enable Popup when New Version is Released"
@@ -127,9 +155,17 @@
 		"message": "Fehler!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Export Core-Einstellungen",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Ausdrücke exportieren",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Beim Export wird ein Zeitstempel an den Dateinamen angehängt.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Beherrsche deine Cookies! Lasse ungenutzte Cookies deiner geschlossenen Tabs automatisch löschen und behalte nur die gewünschten.",
@@ -143,6 +179,10 @@
 		"message": "Häufig gestellte Fragen, allgemeine Probleme und Lösungen",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Um nur Debug-Ausgaben dieser Erweiterung zu sehen, filtern Sie die Ausgabe nach der folgenden Zeile.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filter",
 		"description": "Filter"
@@ -155,6 +195,26 @@
 		"message": "Greylist",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Import Core-Einstellungen fehlgeschlagen - Unbekannte Einstellung gefunden",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Einstellungen Importieren",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Die angegebene Datei ist kein Typ, den wir behandeln",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Datei mit fehlgeschlagener Validierung",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Fehlender Bezeichner",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Ausdrücke importieren",
 		"description": "Import Expressions"
@@ -162,6 +222,10 @@
 	"keepAllCookiesText": {
 		"message": "Alle Cookies behalten",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Standardsymbole bei allen Listentypen behalten",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Local Storage behalten",
@@ -176,7 +240,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen",
+		"message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen. Lokalspeicherung wird mit dem Hostnamen auf ALLEN Containern gelöscht.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -206,6 +270,10 @@
 	"noExpressionsText": {
 		"message": "Keine Ausdrücke definiert.",
 		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Aufräum-Protokoll werden nicht für Tabs im privaten Browsing generiert",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
 	},
 	"noRulesText": {
 		"message": "Keine Regeln passen zu dieser Domain",
@@ -241,6 +309,10 @@
 		"message": "Cookies wurden gelöscht!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Dauer für Benachrichtigungen",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Zeige Benachrichtigung nach Aufräumen von Cookies",
 		"description": "Show Notification After Cookie Cleanup"
@@ -248,6 +320,10 @@
 	"oldReleasesText": {
 		"message": "Ältere Versionshinweise können online eingesehen werden unter",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Um die Debug-Ausgaben zu sehen, öffnen Sie einen neuen Tab und besuchen Sie",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Optionen",
@@ -349,6 +425,28 @@
 		"message": "Versionshinweise",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Alle Ausdrücke entfernen",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Sind Sie sicher, dass Sie ALLE ($expressionCount$) gespeicherten Ausdruck(en) von ($listCount$) Liste(n) entfernen möchten?\n\nDIESE NICHT UNTERNEHMEN WERDEN!\n\nTippe [ $expressionCount$ ] und klicke auf OK, um sie zu löschen.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Keine Ausdrücke zu entfernen!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Ausdruck entfernen",
 		"description": "Remove expression"
@@ -383,8 +481,24 @@
 		"message": "Sekunde(n)",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Automatische Reinigungsoptionen",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Ausdruck-Optionen",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Erweiterungs-Optionen",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Andere Optionen zur Datenbereinigung",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
-		"message": "Cookie-Einstellungen",
+		"message": "$CAD$ Einstellungen",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -394,12 +508,16 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Zeige die Anzahl der Cookies einer Domain in der Symbolleiste",
+		"message": "Anzahl der Cookies für diese Domain über das Symbol anzeigen",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
 		"message": "Bearbeiten beenden",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Erfolgreich!",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Zur Greylist hinzufügen (bei Neustart des Browsers aufräumen)",
@@ -420,6 +538,16 @@
 	"toggleToWhiteListWordText": {
 		"message": "Umstellen auf Whitelist",
 		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "$CAD$ Version",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
 	},
 	"versionText": {
 		"message": "$browser$-Version",
