@@ -1,4 +1,8 @@
 {
+	"activeModeText": {
+		"message": "Ενεργοποίηση αυτόματου καθαρισμού",
+		"description": "Enable Automatic Cleaning"
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Καθαρίστε, συμπεριλάβετε ανοιχτές καρτέλες",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -6,6 +10,10 @@
 	"cleanText": {
 		"message": "Εκκαθάριση",
 		"description": "Clean"
+	},
+	"contributorsText": {
+		"message": "Συντελεστής",
+		"description": "Contributors"
 	},
 	"cookieCleanupText": {
 		"message": "Εκτελέστε εκκαθάριση τώρα",
@@ -19,13 +27,33 @@
 		"message": "Cookie AutoDelete",
 		"description": "Name of the extension."
 	},
+	"filterDebugMode": {
+		"message": "Για να δείτε μόνο έξοδο εντοπισμού σφαλμάτων από αυτήν την επέκταση, φιλτράρετε την έξοδο από την ακόλουθη γραμμή.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Φίλτρο",
 		"description": "Filter"
 	},
+	"keepLocalstorageText": {
+		"message": "Διατηρήστε το LocalStorage",
+		"description": "Keep LocalStorage"
+	},
 	"keepText": {
 		"message": "Διατήρηση",
 		"description": "Keep"
+	},
+	"localstorageAndContextualIdentitiesWarning": {
+		"message": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η ενεργοποίηση τόσο του LocalStorage Cleanup όσο και του Container Tabs μπορεί να προκαλέσει ανεπιθύμητες παρενέργειες λόγω των περιορισμών API. Το LocalStorage θα διαγραφεί από το όνομα κεντρικού υπολογιστή σε ΟΛΑ τα κοντέινερ.",
+		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+	},
+	"localstorageCleanupText": {
+		"message": "Εκκαθάριση LocalStorage",
+		"description": "LocalStorage Cleanup"
+	},
+	"minutesText": {
+		"message": "λεπτά",
+		"description": "minute(s)"
 	},
 	"noneText": {
 		"message": "Κανένα",
@@ -48,5 +76,85 @@
 	"notificationTitle": {
 		"message": "Τα cookies διαγράφθηκαν!",
 		"description": "Cookies were deleted!  Used in Notification Title."
+	},
+	"reasonCleanNoList": {
+		"message": "Καθαρίστε γιατί το $hostname$ δεν περιλαμβάνεται στις λίστες Λευκό ή Γκρι",
+		"description": "Clean because sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonCleanStartupNoList": {
+		"message": "Καθαρίστε λόγω εκκαθάρισης εκκίνησης και το $hostname$ δεν περιλαμβάνεται στις λίστες Λευκό ή Γκρι",
+		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Είστε βέβαιοι ότι θέλετε να καταργήσετε ΟΛΕΣ τις ($expressionCount$) αποθηκευμένες εκφράσεις από τις λίστες ($listCount$); \n\nΑΥΤΟ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ! \n\nΠληκτρολογήστε [$expressionCount$] και κάντε κλικ στο OK για διαγραφή.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"reviewLinkMessage": {
+		"message": "Ευχαριστούμε που δοκιμάσατε το $cadTitle$. Εάν σας άρεσε, δώστε μια κριτική.",
+		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			}
+		}
+	},
+	"secondsText": {
+		"message": "δευτερόλεπτα",
+		"description": "second(s)"
+	},
+	"settingsText": {
+		"message": "$CAD$ Ρυθμίσεις",
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "Ενεργοποίηση γνωστοποίησης καθαρισμού",
+		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"welcomeMessage": {
+		"message": "Γεια σου! Κατά τη διάρκεια αυτής της περιόδου λειτουργίας, το $cadTitle$ διέγραψε τα cookie $sessionDeleted$ και συνολικά τα cookie $totalDeleted$.",
+		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			},
+			"sessionDeleted": {
+				"content": "$2",
+				"example": "123"
+			},
+			"totalDeleted": {
+				"content": "$3",
+				"example": "456"
+			}
+		}
 	}
 }
