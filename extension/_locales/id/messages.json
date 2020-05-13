@@ -72,7 +72,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Kontributor:",
+		"message": "Kontributor",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -101,10 +101,6 @@
 	},
 	"domainExpressionsText": {
 		"message": "Ekspresi Domain",
-		"description": "Domain Expression"
-	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *.example.com",
 		"description": "Domain Expression"
 	},
 	"editExpressionText": {
