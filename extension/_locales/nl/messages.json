@@ -239,10 +239,6 @@
 		"message": "Lijst Type",
 		"description": "List Type"
 	},
-	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Het inschakelen van zowel het opruimen van de lokale opslag en de container tabbladen kan sommige ongewenste bijwerkingen veroorzaken als gevolg van beperkingen van de API",
-		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-	},
 	"localstorageCleanupText": {
 		"message": "Opruimen van lokale opslag",
 		"description": "LocalStorage Cleanup"
