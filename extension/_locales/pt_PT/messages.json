@@ -8,7 +8,7 @@
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
-		"message": "Ativar limpeza automática? Atraso antes da limpeza:",
+		"message": "Ativar limpeza automática",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -88,7 +88,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Contribuidores:",
+		"message": "Colaboradores",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -121,10 +121,6 @@
 	},
 	"domainExpressionsText": {
 		"message": "Expressão do domínio",
-		"description": "Domain Expression"
-	},
-	"domainPlaceholderText": {
-		"message": "exemplo.com, subdomínio.exemplo.com, *.exemplo.com",
 		"description": "Domain Expression"
 	},
 	"dropdownAdditionalCleaningOptions": {
@@ -184,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "Para ver apenas as saídas de depuração desta extensão, filtrar a saída por",
+		"message": "Para ver apenas as saídas de depuração desta extensão, filtre a saída com a seguinte linha.",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -244,7 +240,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Ativar a limpeza da localstorage e separadores contentores pode causar alguns efeitos secundários indesejados devido a limitações de API",
+		"message": "AVISO: Habilitando a Limpeza de Local Storage e Abas Contêiner pode causar efeitos indesejados devido a Limitação de API. LocalStorage será limpo pelo nome de host em TODOS os contêineres.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -370,7 +366,7 @@
 		}
 	},
 	"reasonCleanNoList": {
-		"message": "Limpar porque $hostname$ não está nas listas branca/cinza",
+		"message": "Limpar porque $hostname$ não está nas listas Branca ou Cinza",
 		"description": "Clean because sub.google.com is not in the White or Grey lists",
 		"placeholders": {
 			"hostname": {
@@ -434,7 +430,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Tem certeza de que pretende remover TODAS as ($expressionCount$) expressões guardadas de ($listCount$) lista(s)?\n\nISTO NÃO PODE SER DESFEITO!\n\nEscreva [ yes ] e clique OK para apagar.",
+		"message": "Tem certeza de que pretende remover TODAS as ($expressionCount$) expressões guardadas de ($listCount$) lista(s)?\n\nISTO NÃO PODE SER DESFEITO!\n\nEscreva [ $expressionCount$ ] e clique OK para apagar.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
@@ -502,7 +498,7 @@
 		"description": "Other Browsing Data Cleanup Options"
 	},
 	"settingsText": {
-		"message": "Definições dos cookies",
+		"message": "Configurações de $CAD$",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -512,7 +508,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Mostrar número de cookies para esse domínio",
+		"message": "Mostrar o número de cookies para esse domínio sobre o ícone",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
