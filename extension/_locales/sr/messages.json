@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeText": {
-		"message": "Омогућити аутоматско чишћење? Застој пре чишћења:",
+		"message": "Омогући аутоматско чишћење",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -72,7 +72,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Доприносиоци:",
+		"message": "Доприносиоци",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -101,10 +101,6 @@
 	},
 	"domainExpressionsText": {
 		"message": "Доменски израз",
-		"description": "Domain Expression"
-	},
-	"domainPlaceholderText": {
-		"message": "primer.rs, poddomen.primer.rs, *.primer.rs, пример.срб",
 		"description": "Domain Expression"
 	},
 	"editExpressionText": {
@@ -180,7 +176,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Омогућавање чишћења локалног складишта и контејнерских језичака може изазвати нежељена дејства због ограничења АПИ-ја",
+		"message": "УПОЗОРЕЊЕ: Омогућивање локалног чишћења и картица контејнера може проузроковати нежељене нежељене ефекте због ограничења АПИ-ја. ЛоцалСтораге ће бити обрисано именом хоста на СВИМ контејнерима.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -398,7 +394,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Прикажи број колачића за дати домен",
+		"message": "Покажите број колачића за тај домен преко иконе",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
