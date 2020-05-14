@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeText": {
-		"message": "Activează curățarea automată? Întârziere înainte de curățare:",
+		"message": "Activează curățarea automată",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -72,7 +72,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Contribuitori:",
+		"message": "Colaboratori",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -101,10 +101,6 @@
 	},
 	"domainExpressionsText": {
 		"message": "Expresie pentru domeniu",
-		"description": "Domain Expression"
-	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *.example.com",
 		"description": "Domain Expression"
 	},
 	"editExpressionText": {
@@ -168,7 +164,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Activarea curățării spațiului de stocare cât și a filelor de container poate avea efecte secundare asupra limitărilor API",
+		"message": "AVERTISMENT: Activarea curățării locale de stocare și a filelor de container poate provoca efecte secundare nedorite din cauza limitărilor API. LocalStorage va fi golit de hostname pe TOATE containerele.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -270,7 +266,7 @@
 		}
 	},
 	"reasonCleanNoList": {
-		"message": "Curăță deoarece $hostname$ nu este în lista albă/gri",
+		"message": "Curăță pentru că $hostname$ nu este în lista albă sau gri",
 		"description": "Clean because sub.google.com is not in the White or Grey lists",
 		"placeholders": {
 			"hostname": {
@@ -280,7 +276,7 @@
 		}
 	},
 	"reasonCleanStartupNoList": {
-		"message": "Curăță datorită ștergerii la pornire și $hostname$ nu se regăsește în lista albă/gri",
+		"message": "Curăță din cauza curățării de pornire și $hostname$ nu este în lista albă sau gri",
 		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
 		"placeholders": {
 			"hostname": {
@@ -374,7 +370,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Arată numărul de cookie-uri pentru acel domeniu",
+		"message": "Arată numărul de cookie-uri pentru acest domeniu prin pictogramă",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
