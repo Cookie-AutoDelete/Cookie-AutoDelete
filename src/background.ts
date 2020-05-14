@@ -220,7 +220,7 @@ browser.runtime.onStartup.addListener(async () => {
   if (getSetting(store.getState(), 'activeMode') === true) {
     if (getSetting(store.getState(), 'enableGreyListCleanup') === true) {
       let isFFSessionRestore = false;
-      const startupTabs = await browser.tabs.query({});
+      const startupTabs = await browser.tabs.query({windowType: 'normal'});
       startupTabs.forEach(tab => {
         if (tab.url === 'about:sessionrestore') isFFSessionRestore = true;
       });

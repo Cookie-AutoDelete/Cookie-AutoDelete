@@ -20,7 +20,8 @@ const About: React.FunctionComponent<OwnProps> = props => {
     <div style={style}>
       <h1>{browser.i18n.getMessage('aboutText')}</h1>
       <h5>
-        CAD {browser.i18n.getMessage('versionText', [''])}:{' '}
+        {browser.i18n.getMessage('versionNumberText', ['CAD'])}:
+        <br />
         <b>{browser.runtime.getManifest().version}</b>
       </h5>
       <a href="https://github.com/mrdokenny/Cookie-AutoDelete/issues">
