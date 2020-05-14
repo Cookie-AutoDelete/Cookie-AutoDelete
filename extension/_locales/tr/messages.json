@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeText": {
-		"message": "Otomatik temizlemeyi etkinleştir. Temizleme için beklenecek süre:",
+		"message": "Otomatik Temizlemeyi Etkinleştir",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -72,7 +72,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Katkıda Bulunanlar:",
+		"message": "Katkıda Bulunanlar",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -101,10 +101,6 @@
 	},
 	"domainExpressionsText": {
 		"message": "Site kuralı",
-		"description": "Domain Expression"
-	},
-	"domainPlaceholderText": {
-		"message": "örnek-site.com, alt-site.örnek.com, *.örnek-site.com",
 		"description": "Domain Expression"
 	},
 	"editExpressionText": {
@@ -180,7 +176,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "\"Yerel Depolama\" ve \"Container Tabs\"in birlikte kullanılması 'API Limitleri' nedeniyle beklenmeyen hatalara neden olabilir",
+		"message": "UYARI: Hem LocalStorage Cleanup hem de Container Sekmelerinin etkinleştirilmesi, API Sınırlamaları nedeniyle istenmeyen yan etkilere neden olabilir. LocalStorage, TÜM kapsayıcılardaki ana bilgisayar adıyla silinir.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -388,7 +384,7 @@
 		"description": "second(s)"
 	},
 	"settingsText": {
-		"message": "Çerez Ayarları",
+		"message": "$CAD$ Ayarlar",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -398,7 +394,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Sitedeki çerez sayısını göster",
+		"message": "Bu Etki Alanı için Çerez Sayısını Simge Üzerinde Göster",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
