@@ -179,6 +179,10 @@
 		"message": "Veelgestelde vragen, gemeenschappelijke problemen en oplossingen",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Om alleen debug output van deze extensie te zien, filter de uitvoer met de volgende regel.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filter",
 		"description": "Filter"
