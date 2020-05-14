@@ -183,10 +183,6 @@
 		"message": "Najczęściej zadawane pytania, wspólne kwestie i rozwiązania",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
-	"filterDebugMode": {
-		"message": "By widzieć wpisy tylko tego rozszerzenia, filtruj komunikaty konsoli używając",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
 	"filterText": {
 		"message": "Filtr",
 		"description": "Filter"
@@ -502,7 +498,7 @@
 		"description": "Other Browsing Data Cleanup Options"
 	},
 	"settingsText": {
-		"message": "Ustawienia ciasteczek",
+		"message": "Ustawienia $CAD$",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -512,7 +508,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Pokaż liczbę ciasteczek z tej domeny",
+		"message": "Pokaż liczbę ciasteczek dla tej domeny nad ikoną",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"stopEditingText": {
