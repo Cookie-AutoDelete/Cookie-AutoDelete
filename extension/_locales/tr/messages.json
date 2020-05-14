@@ -3,6 +3,10 @@
 		"message": "Hakkımızda",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Otomatik Temizlemeden Önce Gecikme",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Otomatik Temizlemeyi Etkinleştir",
 		"description": "Enable Automatic Cleaning"
@@ -15,6 +19,10 @@
 		"message": "Otomatik Temizleme Açık",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "'Geliştirici Modu'nun etkinleştirildiğinden emin olun, ardından Görünümü Denetle altında' arka plan sayfasını 'tıklayın",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Temizle, açık sekmeleri de temizle",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -26,6 +34,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Alan adı değiştiğinde temizlemeyi etkinleştir",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Uyarı - Aşağıdaki işlemler ayarları yoksay!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
 		"message": "Temizlenen kayıtları",
@@ -63,6 +75,10 @@
 		"message": "Hepsini sil",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Konsol Sekmesine tıklayın",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -87,6 +103,10 @@
 		"message": "Temizlemeyi başlat",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
+	"debugMode": {
+		"message": "Hata Ayıklama Modunu Etkinleştir (Ek Konsol Çıkışları)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Varsayılan ayarları geri yükle",
 		"description": "Restore Default Settings"
@@ -102,6 +122,10 @@
 	"domainExpressionsText": {
 		"message": "Site kuralı",
 		"description": "Domain Expression"
+	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Ek Temizleme İşlemleri Açılır Menüsünü Aç / Kapat",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
 	},
 	"editExpressionText": {
 		"message": "Kuralı düzenle",
@@ -119,6 +143,10 @@
 		"message": "Alt-siteleri kontrolü etkinleştir (Bkz. \"Subdomain\")",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Tarayıcı Yeniden Başlatıldığında Gri Liste Temizlemeyi Etkinleştir",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Yeni Sürüm Yayınlandığında Popup Göstermeyi Aktifleştir",
 		"description": "Enable Popup when New Version is Released"
@@ -127,9 +155,17 @@
 		"message": "Hata oluştu!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Temel Ayarları Dışa Aktar",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Kuralları yedekle",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Dışa aktarma sırasında dosya adına bir zaman damgası eklenir.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Tarayıcı çerezlerini kontrol edebilirsin! Kapatılan sekmelerindeki kullanılmayan çerezler için \"Cookie Auto-delete\" seçeneğini kullanabilir, kullanmaya devam ettiğin çerezleri tarayıcında tutmaya devam edebilirsin.",
@@ -143,6 +179,10 @@
 		"message": "Sıkça Sorulan Sorular, Yaygın sorunlar ve çözümleri",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Yalnızca bu uzantıdaki hata ayıklama çıktılarını görmek için, çıktıyı aşağıdaki satıra göre filtreleyin.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filtre",
 		"description": "Filter"
@@ -155,6 +195,26 @@
 		"message": "Greylist (Gri-liste)",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Çekirdek Ayarları İçe Aktarma Başarısız - Bilinmeyen ayar bulundu",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Temel Ayarları İçe Aktar",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Verilen dosya işlediğimiz bir tür değil",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Dosya doğrulanamadı",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Eksik tanımlayıcı",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Kuralları yedekten geri yükle",
 		"description": "Import Expressions"
@@ -162,6 +222,10 @@
 	"keepAllCookiesText": {
 		"message": "Çerez bilgilerini koru",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Tüm liste türlerinde Varsayılan Simgeleri Koru",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Yerel Depolama bilgilerini koru",
@@ -207,6 +271,10 @@
 		"message": "Kural belirlenmedi.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Özel Tarama'daki sekmeler için Temizleme Günlükleri oluşturulmayacak",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "Site için kural bulunamadı",
 		"description": "No rules matched this domain"
@@ -241,6 +309,10 @@
 		"message": "Tarayıcı çerezlerin temizlendi!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Bildirim Süresi",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Çerezleri temizledikten sonra bildirim göster",
 		"description": "Show Notification After Cookie Cleanup"
@@ -248,6 +320,10 @@
 	"oldReleasesText": {
 		"message": "Eski sürüm notları çevrimiçi olarak şurada görülebilir",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Hata ayıklama çıktılarını görüntülemek için yeni bir sekme açın ve",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Ayarlar",
@@ -349,6 +425,28 @@
 		"message": "Sürüm Hakkında",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Tüm İfadeleri Kaldır",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "TÜM ($expressionCount$) kaydedilmiş ifadeyi ($listCount$) listesinden kaldırmak istediğinizden emin misiniz? \n\nBU GERİ ALINAMAZ! \n\n[$expressionCount$] yazın ve silmek için Tamam'ı tıklayın.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Kaldırılacak ifade yok!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Kuralı temizle",
 		"description": "Remove expression"
@@ -383,6 +481,22 @@
 		"message": "Saniye",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Otomatik Temizlik Seçenekleri",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "İfade Seçenekleri",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Uzantı Seçenekleri",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Diğer Tarama Verilerini Temizleme Seçenekleri",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
 		"message": "$CAD$ Ayarlar",
 		"description": "$CAD$ Settings",
@@ -400,6 +514,10 @@
 	"stopEditingText": {
 		"message": "Düzenlemeyi durdur",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Başarı!",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Greylist'e ekle (Tarayıcı yeniden başlatıldığında çerezleri temizle)",
@@ -420,6 +538,16 @@
 	"toggleToWhiteListWordText": {
 		"message": "Whitelist'e geçiş yap",
 		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "$CAD$ sürüm",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
 	},
 	"versionText": {
 		"message": "$browser$ sürümü",
