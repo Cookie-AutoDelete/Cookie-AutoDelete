@@ -179,6 +179,10 @@
 		"message": "Ofte stillede spørgsmål, problemer og løsninger",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "For kun at se aflusningsuddata ved denne udvidelse, filtrer uddata ved følgende linje.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filter",
 		"description": "Filter"
