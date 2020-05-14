@@ -3,6 +3,10 @@
 		"message": "О програму",
 		"description": "About"
 	},
+	"activeModeDelayText": {
+		"message": "Одложите пре аутоматског чишћења",
+		"description": "Delay Before Automatic Cleaning"
+	},
 	"activeModeText": {
 		"message": "Омогући аутоматско чишћење",
 		"description": "Enable Automatic Cleaning"
@@ -15,6 +19,10 @@
 		"message": "Самочишћење омогућено",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Уверите се да је „Развојни начин за програмере“ омогућен, а затим кликните на „позадинску страницу“ у делу „Преглед прегледа“",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Очисти и отворене језичке",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -26,6 +34,10 @@
 	"cleanupDomainChangeText": {
 		"message": "Омогући чишћење при промени домена",
 		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Упозорење - Радње испод подешавања занемаривања!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
 		"message": "Записник чишћења",
@@ -63,6 +75,10 @@
 		"message": "Уклони све",
 		"description": "Remove All"
 	},
+	"consoleDebugMode": {
+		"message": "Кликните на картицу Конзола",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Омогући подршку за Firefox-ове контејнер језичке",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -87,6 +103,10 @@
 		"message": "Покрени чишћење сада",
 		"description": "Run cleanup now. This is shown on mouseover on the button."
 	},
+	"debugMode": {
+		"message": "Омогућите режим уклањања погрешака (додатни излази конзоле)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
 	"defaultSettingsText": {
 		"message": "Врати подразумевана подешавања",
 		"description": "Restore Default Settings"
@@ -102,6 +122,10 @@
 	"domainExpressionsText": {
 		"message": "Доменски израз",
 		"description": "Domain Expression"
+	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Укључите падајуће додатне акције чишћења",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
 	},
 	"editExpressionText": {
 		"message": "Уреди израз",
@@ -119,6 +143,10 @@
 		"message": "Омогући проверу за поддомен",
 		"description": "Enable Check for Subdomains"
 	},
+	"enableGreyListCleanup": {
+		"message": "Омогућите чишћење греилиста приликом поновног покретања прегледача",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
 	"enableNewVersionPopup": {
 		"message": "Омогући искачући прозор када се објави ново издање",
 		"description": "Enable Popup when New Version is Released"
@@ -127,9 +155,17 @@
 		"message": "Грешка!",
 		"description": "Error!"
 	},
+	"exportSettingsText": {
+		"message": "Извоз основних поставки",
+		"description": "Export Core Settings"
+	},
 	"exportURLSText": {
 		"message": "Извези изразе",
 		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Временска ознака биће додата имену датотеке при извозу.",
+		"description": "A timestamp will be appended to the filename on export."
 	},
 	"extensionDescription": {
 		"message": "Управљајте вашим колачићима. Аутоматски бришите некоришћене колачиће из ваших затворених језичака а задржите оне које желите.",
@@ -143,6 +179,10 @@
 		"message": "Често постављана питања, чести проблеми и решења",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Да бисте видели само излаз за уклањање погрешака помоћу овог проширења, филтрирајте излаз сљедећим редом.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Филтер",
 		"description": "Filter"
@@ -155,6 +195,26 @@
 		"message": "Сиви списак",
 		"description": "Greylist"
 	},
+	"importCoreSettingsFailed": {
+		"message": "Увоз основних поставки није успео - пронађено је непознато подешавање",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Увоз основних поставки",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Датотека није врста којом се бавимо",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Фајлу је дата неуспешна провјера ваљаности",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Недостаје идентификатор",
+		"description": "Missing identifier"
+	},
 	"importURLSText": {
 		"message": "Увези изразе",
 		"description": "Import Expressions"
@@ -162,6 +222,10 @@
 	"keepAllCookiesText": {
 		"message": "Задржи колачиће",
 		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Задржите подразумеване иконе на свим врстама листе",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
 		"message": "Задржи локално складиште",
@@ -207,6 +271,10 @@
 		"message": "Нема наведених израза.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Дневници чишћења неће се генерирати за картице у приватном прегледавању",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
 	"noRulesText": {
 		"message": "Нема нађених правила за овај домен",
 		"description": "No rules matched this domain"
@@ -241,6 +309,10 @@
 		"message": "Колачићи су обрисани!",
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Трајање обавештења",
+		"description": "Duration for Notifications"
+	},
 	"notifyCookieCleanUpText": {
 		"message": "Прикажи обавештење након брисања колачића",
 		"description": "Show Notification After Cookie Cleanup"
@@ -248,6 +320,10 @@
 	"oldReleasesText": {
 		"message": "Старије белешке о издању се могу видети на адреси",
 		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Да бисте погледали излазне исправке, отворите нову картицу и посетите",
+		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
 		"message": "Опције",
@@ -349,6 +425,28 @@
 		"message": "Белешке о издању",
 		"description": "Release Notes"
 	},
+	"removeAllExpressions": {
+		"message": "Уклоните све изразе",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Јесте ли сигурни да желите уклонити СВЕ ($expressionCount$) сачуване изразе (е) са (е) листе ($listCount$)? \n\nОВО СЕ НЕ МОЖЕ ПОНИШТИТИ! \n\nОткуцајте [$expressionCount$] и кликните ОК да бисте избрисали.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Нема израза за уклањање!",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "Уклони израз",
 		"description": "Remove expression"
@@ -383,8 +481,24 @@
 		"message": "Секунд(е)",
 		"description": "second(s)"
 	},
+	"settingGroupAutoClean": {
+		"message": "Опције аутоматског чишћења",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Опције изражавања",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Опције проширења",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Остале могућности чишћења података прегледавања",
+		"description": "Other Browsing Data Cleanup Options"
+	},
 	"settingsText": {
-		"message": "Подешавања колачића",
+		"message": "Подешавања $CAD$",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -400,6 +514,10 @@
 	"stopEditingText": {
 		"message": "Престани са уређивањем",
 		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Успех!",
+		"description": "Success!"
 	},
 	"toGreyListText": {
 		"message": "Додај на сиви списак (чисти при поновном покретању прегледача)",
@@ -420,6 +538,16 @@
 	"toggleToWhiteListWordText": {
 		"message": "Пребаци на бели списак",
 		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "$CAD$ верзија",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
 	},
 	"versionText": {
 		"message": "Издање $browser$ прегледача",
