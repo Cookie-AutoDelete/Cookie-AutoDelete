@@ -8,7 +8,7 @@
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
-		"message": "Włączyć automatyczne czyszczenie? Opóźnienie przed czyszczeniem:",
+		"message": "Włącz automatyczne czyszczenie",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -88,7 +88,7 @@
 		"description": "Contribute"
 	},
 	"contributorsText": {
-		"message": "Współtwórcy:",
+		"message": "Współtwórcy",
 		"description": "Contributors"
 	},
 	"cookieCleanUpOnStartText": {
@@ -366,7 +366,7 @@
 		}
 	},
 	"reasonCleanNoList": {
-		"message": "Wyczyszczone z powodu braku $hostname$ na białej/szarej liście",
+		"message": "Wyczyść ponieważ $hostname$ nie jest na białej lub szarej liście",
 		"description": "Clean because sub.google.com is not in the White or Grey lists",
 		"placeholders": {
 			"hostname": {
@@ -376,7 +376,7 @@
 		}
 	},
 	"reasonCleanStartupNoList": {
-		"message": "Wyczyszczone z powodu czyszczenia przy starcie oraz braku $hostname$ na białej/szarej liście",
+		"message": "Wyczyść z powodu czyszczenia rozruchu i $hostname$ nie jest na białej lub szarej liście",
 		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
 		"placeholders": {
 			"hostname": {
