@@ -37,6 +37,7 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 ### Internationalization (i18n)
 
 [Translate Cookie AutoDelete in your language or help fix a translation on Crowdin!](https://crowdin.com/project/cookie-autodelete)
+Some translations were taken from Machine Translations - if you believe there is a better translation for them, please submit an updated translation and raise an issue through CrowdIn.
 
 ### Contributing code
 
