@@ -1,470 +1,596 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
-  "extensionDescription": {
-    "message": "Tarayıcı çerezlerini kontrol edebilirsin! Kapatılan sekmelerindeki kullanılmayan çerezler için \"Cookie Auto-delete\" seçeneğini kullanabilir, kullanmaya devam ettiğin çerezleri tarayıcında tutmaya devam edebilirsin.",
-    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-  },
-  "notificationTitle": {
-    "message": "Tarayıcı çerezlerin temizlendi!",
-    "description": "Cookies were deleted!  Used in Notification Title."
-  },
-  "notificationContent": {
-    "message": "\"$Websites$\" sitesinden $Num$ adet çerez temizlendi",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
-  "popupCookieCountText": {
-    "message": "Çerezler",
-    "description": "Cookie(s)"
-  },
-  "filterText": {
-    "message": "Filtre",
-    "description": "Filter"
-  },
-  "noneText": {
-    "message": "Hiç biri",
-    "description": "None"
-  },
-  "cleanText": {
-    "message": "Temizle",
-    "description": "Clean"
-  },
-  "keepText": {
-    "message": "Koru",
-    "description": "Keep"
-  },
-  "cookieCleanupText": {
-    "message": "Temizlemeyi başlat",
-    "description": "Run cleanup now"
-  },
-  "cleanIgnoringOpenTabsText": {
-    "message": "Temizle, açık sekmeleri de temizle",
-    "description": "Clean, include open tabs"
-  },
-  "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Temizlemeyi başlat, açık sekmelerdeki çerezleri de temizle",
-    "description": "Run cleanup now, include cookies from open tabs"
-  },
-  "clearSiteDataText": {
-    "message": "Alan adı için $siteData$ leri temizle",
-    "description": "Clear cookies for this domain",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      }
-    }
-  },
-  "clearSiteDataForDomainText": {
-    "message": "$domain$ alan adı için tüm $siteData$leri temizle",
-    "description": "Clear all cookies for example.com",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "noRulesText": {
-    "message": "Site için kural bulunamadı",
-    "description": "No rules matched this domain"
-  },
-  "welcomeText": {
-    "message": "Hoşgeldiniz",
-    "description": "Welcome"
-  },
-  "preferencesText": {
-    "message": "Ayarlar",
-    "description": "Settings"
-  },
-  "optionsText": {
-    "message": "Ayarlar",
-    "description": "Options"
-  },
-  "settingsText": {
-    "message": "Çerez Ayarları",
-    "description": "Cookie Settings"
-  },
-  "whiteListText": {
-    "message": "Kural Listesi",
-    "description": "List of Expressions"
-  },
-  "cleanupLogText": {
-    "message": "Temizlenen kayıtları",
-    "description": "Cleanup Log"
-  },
-  "aboutText": {
-    "message": "Hakkımızda",
-    "description": "About"
-  },
-  "welcomeMessage": {
-    "message": "Hoşgeldiniz. \"$cadTitle$\" kullanım süresince $sessionDeleted$ çerezi ve toplamda $totalDeleted$ çerezi temizledi.",
-    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      },
-      "sessionDeleted": {
-        "content": "$2",
-        "example": "123"
-      },
-      "totalDeleted": {
-        "content": "$3",
-        "example": "456"
-      }
-    }
-  },
-  "oldReleasesText": {
-    "message": "Eski sürüm notları çevrimiçi olarak şurada görülebilir",
-    "description": "Older release notes can be viewed online at"
-  },
-  "reasonKeepOpenTab": {
-    "message": "*.$mainDomain$ alan adı sekmede açık olduğu için korundu",
-    "description": "Keep because of open tabs of *.google.com",
-    "placeholders": {
-      "mainDomain": {
-        "content": "$1",
-        "example": "google.com"
-      }
-    }
-  },
-  "reasonCleanStartupNoList": {
-    "message": "Temizlendi, çünkü 'Başlangıç Temizliği' yapıldı ve $matchedExpression$ alan adı Greylist içinde değildi.",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonCleanGreyList": {
-    "message": "Temizlendi, çünkü 'Başlangıç Temizliği' yapıldı ve $matchedExpression$ alan adı Greylist içindeydi.",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      }
-    }
-  },
-  "reasonCleanNoList": {
-    "message": "$hostname$ alan adı Whitelist/Greylist'te bulunamadığı için temizlendi",
-    "description": "Clean because sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonKeep": {
-    "message": "$matchedExpression$ alan adı $listType$ içinde bulunduğu için korundu",
-    "description": "Keep because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonCleanCookieName": {
-    "message": "$matchedExpression$ alan adı $listType$ içinde bulunduğu için kısmen temizlendi",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonTabsWereNotIgnored": {
-    "message": "veya diğer açık sekmelerde değildi",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-  },
-  "reasonTabsWereIgnored": {
-    "message": "ayrıca diğer açık sekmeler göz ardı edildi",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-  },
-  "reviewLinkMessage": {
-    "message": "\"$cadTitle$\"yi denediğin için teşekkür ederiz. Beğendiysen yorum yazarak destek olabilirsin.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      }
-    }
-  },
-  "releaseNotesText": {
-    "message": "Sürüm Hakkında",
-    "description": "Release Notes"
-  },
-  "activeModeText": {
-    "message": "Otomatik temizlemeyi etkinleştir. Temizleme için beklenecek süre:",
-    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
-  },
-  "minutesText": {
-    "message": "Dakika",
-    "description": "minute(s)"
-  },
-  "secondsText": {
-    "message": "Saniye",
-    "description": "second(s)"
-  },
-  "cleanupDomainChangeText": {
-    "message": "Alan adı değiştiğinde temizlemeyi etkinleştir",
-    "description": "Enable Cleanup on Domain Change"
-  },
-  "enableCleanupLogText": {
-    "message": "Temizleme kaydını ve sayacını etkinleştir",
-    "description": "Enable Cleanup Log and Counter"
-  },
-  "keepLocalstorageText": {
-    "message": "Yerel Depolama bilgilerini koru",
-    "description": "Keep LocalStorage"
-  },
-  "keepAllCookiesText": {
-    "message": "Çerez bilgilerini koru",
-    "description": "Keep All Cookies"
-  },
-  "clearLogsText": {
-    "message": "Kayıtları temizle",
-    "description": "Clear Logs"
-  },
-  "errorText": {
-    "message": "Hata oluştu!",
-    "description": "Error!"
-  },
-  "restoreText": {
-    "message": "Geri yükle",
-    "description": "Ex: Restore Cleanup"
-  },
-  "showNumberOfCookiesInIconText": {
-    "message": "Sitedeki çerez sayısını göster",
-    "description": "Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Çerezleri temizledikten sonra bildirim göster",
-    "description": "Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Tarayıcı başlatıldığında açık sekmelerdeki çerezleri temizle",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText": {
-    "message": "Alt-siteleri kontrolü etkinleştir (Bkz. \"Subdomain\")",
-    "description": "Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
-    "description": "Enable Support for Firefox's Container Tabs"
-  },
-  "localstorageCleanupText": {
-    "message": "Yerel Depolama içeriğini temizle",
-    "description": "LocalStorage Cleanup"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "\"Yerel Depolama\" ve \"Container Tabs\"in birlikte kullanılması 'API Limitleri' nedeniyle beklenmeyen hatalara neden olabilir",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "defaultSettingsText": {
-    "message": "Varsayılan ayarları geri yükle",
-    "description": "Restore Default Settings"
-  },
-  "resetExtensionDataText": {
-    "message": "Eklenti Verisini Sıfırla",
-    "description": "Reset Extension Data"
-  },
-  "whiteListWordText": {
-    "message": "Whitelist (Güvenilir-liste)",
-    "description": "Whitelist"
-  },
-  "greyListWordText": {
-    "message": "Greylist (Gri-liste)",
-    "description": "Greylist"
-  },
-  "toWhiteListText": {
-    "message": "Whitelist'e ekle (Çerezleri asla temizleme)",
-    "description": "Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText": {
-    "message": "Greylist'e ekle (Tarayıcı yeniden başlatıldığında çerezleri temizle)",
-    "description": "Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText": {
-    "message": "Hepsini sil",
-    "description": "Remove All"
-  },
-  "exportURLSText": {
-    "message": "Kuralları yedekle",
-    "description": "Export Expressions"
-  },
-  "exportURLSTitle": {
-    "message": "Dışa aktarırken zaman eki dosya adına eklenecek.\nDosyayı indirirken sorun mu yaşıyorsunuz?\n>Lütfen bu düğmeye \"sağ tık\"layın ve 'Bağlantıyı farklı kaydet...'e tıklayın.",
-    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
-  },
-  "questionExpression": {
-    "message": "Kuralların nasıl çalıştığını öğrenmek ister misin?",
-    "description": "How do Expressions work?"
-  },
-  "importURLSText": {
-    "message": "Kuralları yedekten geri yükle",
-    "description": "Import Expressions"
-  },
-  "reportIssuesText": {
-    "message": "Buradan sorunları bildirebilir veya sonraki sürümlerde görmek isteyeceğiniz önerilerde bulunabilirsiniz",
-    "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Dökümanlar",
-    "description": "Documentation"
-  },
-  "faqText": {
-    "message": "Sıkça Sorulan Sorular, Yaygın sorunlar ve çözümleri",
-    "description": "Frequently Asked Questions, Common issues and solutions"
-  },
-  "versionText": {
-    "message": "$browser$ sürümü",
-    "description": "Firefox version",
-    "placeholders": {
-      "browser": {
-        "content": "$1",
-        "example": "Firefox"
-      }
-    }
-  },
-  "contributorsText": {
-    "message": "Katkıda Bulunanlar:",
-    "description": "Contributors"
-  },
-  "contributeText": {
-    "message": "Destek olabilirsiniz",
-    "description": "Contribute"
-  },
-  "domainExpressionsText": {
-    "message": "Site kuralı",
-    "description": "Domain Expression"
-  },
-  "matchedDomainExpressionText": {
-    "message": "Eşleşen site kuralı",
-    "description": "Matched Domain Expression"
-  },
-  "regularExpressionEquivalentText": {
-    "message": "Düzenlenmiş kural görünümü",
-    "description": "Regular Expression Equivalent"
-  },
-  "listTypeText": {
-    "message": "Liste türü",
-    "description": "List Type"
-  },
-  "domainPlaceholderText": {
-    "message": "örnek-site.com, alt-site.örnek.com, *.örnek-site.com",
-    "description": "Domain Expression"
-  },
-  "noExpressionsText": {
-    "message": "Kural belirlenmedi.",
-    "description": "No expressions defined."
-  },
-  "removeExpressionText": {
-    "message": "Kuralı temizle",
-    "description": "Remove expression"
-  },
-  "stopEditingText": {
-    "message": "Düzenlemeyi durdur",
-    "description": "Stop editing"
-  },
-  "saveExpressionText": {
-    "message": "Kuralı kaydet",
-    "description": "Save expression"
-  },
-  "editExpressionText": {
-    "message": "Kuralı düzenle",
-    "description": "Edit expression"
-  },
-  "toggleToGreyListWordText": {
-    "message": "Greylist'e geçiş yap",
-    "description": "Toggle to greylist"
-  },
-  "toggleToWhiteListWordText": {
-    "message": "Whitelist'e geçiş yap",
-    "description": "Toggle to whitelist"
-  },
-  "autoDeleteEnabledText": {
-    "message": "Otomatik Temizleme Açık",
-    "description": "Auto-clean enabled"
-  },
-  "autoDeleteDisabledText": {
-    "message": "Otomatik Temizleme Kapalı",
-    "description": "Auto-clean disabled"
-  },
-  "disableAutoDeleteText": {
-    "message": "Otomatik temizliği devre dışı bırakmaya geçiş yap (Manuel mod)",
-    "description": "Toggle to disable automatic cleanup (manual mode)"
-  },
-  "enableAutoDeleteText": {
-    "message": "Otomatik temizliği etkinleştirmek için geçiş yap (Otomatik mod)",
-    "description": "Toggle to enable automatic cleanup (automatic mode)"
-  },
-  "notificationEnabledText": {
-    "message": "Bildirimler açıldı",
-    "description": "Notification enabled"
-  },
-  "notificationDisabledText": {
-    "message": "Bildirimler kapatıldı",
-    "description": "Notification disabled"
-  },
-  "toggleNotificationText": {
-    "message": "Bildirimleri etkinleştirmek veya devre dışı bırakmak için değiştirin",
-    "description": "Toggle to enable or disable notifications"
-  },
-  "noCleanupLogText": {
-    "message": "Temizleme kaydı bulunamadı",
-    "description": "No Cleanup Logs Found"
-  },
-  "menuText": {
-    "message": "Menü",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
-  },
-  "greyCleanLocalstorage": {
-    "message": "Yeni Gri Liste Kurallarında \"Yerel Depolama bilgilerini koru\" işaretini kaldır",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Yeni Beyaz Liste Kurallarında \"Yerel Depolama bilgilerini koru\" işaretini kaldır",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "enableNewVersionPopup": {
-    "message": "Yeni Sürüm Yayınlandığında Popup Göstermeyi Aktifleştir",
-    "description": "Enable Popup when New Version is Released"
-  },
-  "localstorageCleanupWarning": {
-    "message": "Dikkat: Yerel Depolama Bilgileri Temizliği aktifleştirildiğinde, tüm mevcut Yerel Depolama Bilgileri silinecektir.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  }
+	"aboutText": {
+		"message": "Hakkımızda",
+		"description": "About"
+	},
+	"activeModeDelayText": {
+		"message": "Otomatik Temizlemeden Önce Gecikme",
+		"description": "Delay Before Automatic Cleaning"
+	},
+	"activeModeText": {
+		"message": "Otomatik Temizlemeyi Etkinleştir",
+		"description": "Enable Automatic Cleaning"
+	},
+	"autoDeleteDisabledText": {
+		"message": "Otomatik Temizleme Kapalı",
+		"description": "Auto-clean disabled"
+	},
+	"autoDeleteEnabledText": {
+		"message": "Otomatik Temizleme Açık",
+		"description": "Auto-clean enabled"
+	},
+	"chromeDebugMode": {
+		"message": "'Geliştirici Modu'nun etkinleştirildiğinden emin olun, ardından Görünümü Denetle altında' arka plan sayfasını 'tıklayın",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanIgnoringOpenTabsText": {
+		"message": "Temizle, açık sekmeleri de temizle",
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+	},
+	"cleanText": {
+		"message": "Temizle",
+		"description": "Clean"
+	},
+	"cleanupDomainChangeText": {
+		"message": "Alan adı değiştiğinde temizlemeyi etkinleştir",
+		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Uyarı - Aşağıdaki işlemler ayarları yoksay!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+	},
+	"cleanupLogText": {
+		"message": "Temizlenen kayıtları",
+		"description": "Cleanup Log"
+	},
+	"clearLogsText": {
+		"message": "Kayıtları temizle",
+		"description": "Clear Logs"
+	},
+	"clearSiteDataForDomainText": {
+		"message": "$domain$ alan adı için tüm $siteData$leri temizle",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"domain": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"clearSiteDataText": {
+		"message": "Alan adı için $siteData$ leri temizle",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"clearURLText": {
+		"message": "Hepsini sil",
+		"description": "Remove All"
+	},
+	"consoleDebugMode": {
+		"message": "Konsol Sekmesine tıklayın",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
+	"contextualIdentitiesEnabledText": {
+		"message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+	},
+	"contributeText": {
+		"message": "Destek olabilirsiniz",
+		"description": "Contribute"
+	},
+	"contributorsText": {
+		"message": "Katkıda Bulunanlar",
+		"description": "Contributors"
+	},
+	"cookieCleanUpOnStartText": {
+		"message": "Tarayıcı başlatıldığında açık sekmelerdeki çerezleri temizle",
+		"description": "Clean Cookies from Open Tabs on Startup"
+	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Temizlemeyi başlat, açık sekmelerdeki çerezleri de temizle",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Temizlemeyi başlat",
+		"description": "Run cleanup now. This is shown on mouseover on the button."
+	},
+	"debugMode": {
+		"message": "Hata Ayıklama Modunu Etkinleştir (Ek Konsol Çıkışları)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
+	"defaultSettingsText": {
+		"message": "Varsayılan ayarları geri yükle",
+		"description": "Restore Default Settings"
+	},
+	"disableAutoDeleteText": {
+		"message": "Otomatik temizliği devre dışı bırakmaya geçiş yap (Manuel mod)",
+		"description": "Toggle to disable automatic cleanup (manual mode)"
+	},
+	"documentationText": {
+		"message": "Dökümanlar",
+		"description": "Documentation"
+	},
+	"domainExpressionsText": {
+		"message": "Site kuralı",
+		"description": "Domain Expression"
+	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Ek Temizleme İşlemleri Açılır Menüsünü Aç / Kapat",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
+	"editExpressionText": {
+		"message": "Kuralı düzenle",
+		"description": "Edit expression"
+	},
+	"enableAutoDeleteText": {
+		"message": "Otomatik temizliği etkinleştirmek için geçiş yap (Otomatik mod)",
+		"description": "Toggle to enable automatic cleanup (automatic mode)"
+	},
+	"enableCleanupLogText": {
+		"message": "Temizleme kaydını ve sayacını etkinleştir",
+		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableGlobalSubdomainText": {
+		"message": "Alt-siteleri kontrolü etkinleştir (Bkz. \"Subdomain\")",
+		"description": "Enable Check for Subdomains"
+	},
+	"enableGreyListCleanup": {
+		"message": "Tarayıcı Yeniden Başlatıldığında Gri Liste Temizlemeyi Etkinleştir",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
+	"enableNewVersionPopup": {
+		"message": "Yeni Sürüm Yayınlandığında Popup Göstermeyi Aktifleştir",
+		"description": "Enable Popup when New Version is Released"
+	},
+	"errorText": {
+		"message": "Hata oluştu!",
+		"description": "Error!"
+	},
+	"exportSettingsText": {
+		"message": "Temel Ayarları Dışa Aktar",
+		"description": "Export Core Settings"
+	},
+	"exportURLSText": {
+		"message": "Kuralları yedekle",
+		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Dışa aktarma sırasında dosya adına bir zaman damgası eklenir.",
+		"description": "A timestamp will be appended to the filename on export."
+	},
+	"extensionDescription": {
+		"message": "Tarayıcı çerezlerini kontrol edebilirsin! Kapatılan sekmelerindeki kullanılmayan çerezler için \"Cookie Auto-delete\" seçeneğini kullanabilir, kullanmaya devam ettiğin çerezleri tarayıcında tutmaya devam edebilirsin.",
+		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+	},
+	"extensionName": {
+		"message": "Cookie AutoDelete",
+		"description": "Name of the extension."
+	},
+	"faqText": {
+		"message": "Sıkça Sorulan Sorular, Yaygın sorunlar ve çözümleri",
+		"description": "Frequently Asked Questions, Common issues and solutions"
+	},
+	"filterDebugMode": {
+		"message": "Yalnızca bu uzantıdaki hata ayıklama çıktılarını görmek için, çıktıyı aşağıdaki satıra göre filtreleyin.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
+	"filterText": {
+		"message": "Filtre",
+		"description": "Filter"
+	},
+	"greyCleanLocalstorage": {
+		"message": "Yeni Gri Liste Kurallarında \"Yerel Depolama bilgilerini koru\" işaretini kaldır",
+		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+	},
+	"greyListWordText": {
+		"message": "Greylist (Gri-liste)",
+		"description": "Greylist"
+	},
+	"importCoreSettingsFailed": {
+		"message": "Çekirdek Ayarları İçe Aktarma Başarısız - Bilinmeyen ayar bulundu",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Temel Ayarları İçe Aktar",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Verilen dosya işlediğimiz bir tür değil",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Dosya doğrulanamadı",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Eksik tanımlayıcı",
+		"description": "Missing identifier"
+	},
+	"importURLSText": {
+		"message": "Kuralları yedekten geri yükle",
+		"description": "Import Expressions"
+	},
+	"keepAllCookiesText": {
+		"message": "Çerez bilgilerini koru",
+		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Tüm liste türlerinde Varsayılan Simgeleri Koru",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+	},
+	"keepLocalstorageText": {
+		"message": "Yerel Depolama bilgilerini koru",
+		"description": "Keep LocalStorage"
+	},
+	"keepText": {
+		"message": "Koru",
+		"description": "Keep"
+	},
+	"listTypeText": {
+		"message": "Liste türü",
+		"description": "List Type"
+	},
+	"localstorageAndContextualIdentitiesWarning": {
+		"message": "UYARI: Hem LocalStorage Cleanup hem de Container Sekmelerinin etkinleştirilmesi, API Sınırlamaları nedeniyle istenmeyen yan etkilere neden olabilir. LocalStorage, TÜM kapsayıcılardaki ana bilgisayar adıyla silinir.",
+		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+	},
+	"localstorageCleanupText": {
+		"message": "Yerel Depolama içeriğini temizle",
+		"description": "LocalStorage Cleanup"
+	},
+	"localstorageCleanupWarning": {
+		"message": "Dikkat: Yerel Depolama Bilgileri Temizliği aktifleştirildiğinde, tüm mevcut Yerel Depolama Bilgileri silinecektir.",
+		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"matchedDomainExpressionText": {
+		"message": "Eşleşen site kuralı",
+		"description": "Matched Domain Expression"
+	},
+	"menuText": {
+		"message": "Menü",
+		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+	},
+	"minutesText": {
+		"message": "Dakika",
+		"description": "minute(s)"
+	},
+	"noCleanupLogText": {
+		"message": "Temizleme kaydı bulunamadı",
+		"description": "No Cleanup Logs Found"
+	},
+	"noExpressionsText": {
+		"message": "Kural belirlenmedi.",
+		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Özel Tarama'daki sekmeler için Temizleme Günlükleri oluşturulmayacak",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
+	"noRulesText": {
+		"message": "Site için kural bulunamadı",
+		"description": "No rules matched this domain"
+	},
+	"noneText": {
+		"message": "Hiç biri",
+		"description": "None"
+	},
+	"notificationContent": {
+		"message": "\"$Websites$\" sitesinden $Num$ adet çerez temizlendi",
+		"description": "123 Deleted Cookies from: google.com, facebook.com",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "123"
+			},
+			"websites": {
+				"content": "$2",
+				"example": "google.com, facebook.com"
+			}
+		}
+	},
+	"notificationDisabledText": {
+		"message": "Bildirimler kapatıldı",
+		"description": "Notification disabled"
+	},
+	"notificationEnabledText": {
+		"message": "Bildirimler açıldı",
+		"description": "Notification enabled"
+	},
+	"notificationTitle": {
+		"message": "Tarayıcı çerezlerin temizlendi!",
+		"description": "Cookies were deleted!  Used in Notification Title."
+	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Bildirim Süresi",
+		"description": "Duration for Notifications"
+	},
+	"notifyCookieCleanUpText": {
+		"message": "Çerezleri temizledikten sonra bildirim göster",
+		"description": "Show Notification After Cookie Cleanup"
+	},
+	"oldReleasesText": {
+		"message": "Eski sürüm notları çevrimiçi olarak şurada görülebilir",
+		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Hata ayıklama çıktılarını görüntülemek için yeni bir sekme açın ve",
+		"description": "To view the debug outputs, open a new tab and visit"
+	},
+	"optionsText": {
+		"message": "Ayarlar",
+		"description": "Options"
+	},
+	"popupCookieCountText": {
+		"message": "Çerezler",
+		"description": "Cookie(s)"
+	},
+	"preferencesText": {
+		"message": "Ayarlar",
+		"description": "Settings"
+	},
+	"questionExpression": {
+		"message": "Kuralların nasıl çalıştığını öğrenmek ister misin?",
+		"description": "How do Expressions work?"
+	},
+	"reasonCleanCookieName": {
+		"message": "$matchedExpression$ alan adı $listType$ içinde bulunduğu için kısmen temizlendi",
+		"description": "Partial clean because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonCleanGreyList": {
+		"message": "Temizlendi, çünkü 'Başlangıç Temizliği' yapıldı ve $matchedExpression$ alan adı Greylist içindeydi.",
+		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			}
+		}
+	},
+	"reasonCleanNoList": {
+		"message": "$hostname$ alan adı Whitelist/Greylist'te bulunamadığı için temizlendi",
+		"description": "Clean because sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonCleanStartupNoList": {
+		"message": "Temizlendi, çünkü 'Başlangıç Temizliği' yapıldı ve $matchedExpression$ alan adı Greylist içinde değildi.",
+		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonKeep": {
+		"message": "$matchedExpression$ alan adı $listType$ içinde bulunduğu için korundu",
+		"description": "Keep because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonKeepOpenTab": {
+		"message": "*.$mainDomain$ alan adı sekmede açık olduğu için korundu",
+		"description": "Keep because of open tabs of *.google.com",
+		"placeholders": {
+			"mainDomain": {
+				"content": "$1",
+				"example": "google.com"
+			}
+		}
+	},
+	"reasonTabsWereIgnored": {
+		"message": "ayrıca diğer açık sekmeler göz ardı edildi",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+	},
+	"reasonTabsWereNotIgnored": {
+		"message": "veya diğer açık sekmelerde değildi",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+	},
+	"regularExpressionEquivalentText": {
+		"message": "Düzenlenmiş kural görünümü",
+		"description": "Regular Expression Equivalent"
+	},
+	"releaseNotesText": {
+		"message": "Sürüm Hakkında",
+		"description": "Release Notes"
+	},
+	"removeAllExpressions": {
+		"message": "Tüm İfadeleri Kaldır",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "TÜM ($expressionCount$) kaydedilmiş ifadeyi ($listCount$) listesinden kaldırmak istediğinizden emin misiniz? \n\nBU GERİ ALINAMAZ! \n\n[$expressionCount$] yazın ve silmek için Tamam'ı tıklayın.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Kaldırılacak ifade yok!",
+		"description": "No expressions to remove!"
+	},
+	"removeExpressionText": {
+		"message": "Kuralı temizle",
+		"description": "Remove expression"
+	},
+	"reportIssuesText": {
+		"message": "Buradan sorunları bildirebilir veya sonraki sürümlerde görmek isteyeceğiniz önerilerde bulunabilirsiniz",
+		"description": "Report issues and suggest features"
+	},
+	"resetExtensionDataText": {
+		"message": "Eklenti Verisini Sıfırla",
+		"description": "Reset Extension Data"
+	},
+	"restoreText": {
+		"message": "Geri yükle",
+		"description": "Ex: Restore Cleanup"
+	},
+	"reviewLinkMessage": {
+		"message": "\"$cadTitle$\"yi denediğin için teşekkür ederiz. Beğendiysen yorum yazarak destek olabilirsin.",
+		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			}
+		}
+	},
+	"saveExpressionText": {
+		"message": "Kuralı kaydet",
+		"description": "Save expression"
+	},
+	"secondsText": {
+		"message": "Saniye",
+		"description": "second(s)"
+	},
+	"settingGroupAutoClean": {
+		"message": "Otomatik Temizlik Seçenekleri",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "İfade Seçenekleri",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Uzantı Seçenekleri",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Diğer Tarama Verilerini Temizleme Seçenekleri",
+		"description": "Other Browsing Data Cleanup Options"
+	},
+	"settingsText": {
+		"message": "$CAD$ Ayarlar",
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "Bu Etki Alanı için Çerez Sayısını Simge Üzerinde Göster",
+		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"stopEditingText": {
+		"message": "Düzenlemeyi durdur",
+		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Başarı!",
+		"description": "Success!"
+	},
+	"toGreyListText": {
+		"message": "Greylist'e ekle (Tarayıcı yeniden başlatıldığında çerezleri temizle)",
+		"description": "Add to Greylist (Clean on Browser Restart)"
+	},
+	"toWhiteListText": {
+		"message": "Whitelist'e ekle (Çerezleri asla temizleme)",
+		"description": "Add to Whitelist (Never Clean)"
+	},
+	"toggleNotificationText": {
+		"message": "Bildirimleri etkinleştirmek veya devre dışı bırakmak için değiştirin",
+		"description": "Toggle to enable or disable notifications"
+	},
+	"toggleToGreyListWordText": {
+		"message": "Greylist'e geçiş yap",
+		"description": "Toggle to greylist"
+	},
+	"toggleToWhiteListWordText": {
+		"message": "Whitelist'e geçiş yap",
+		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "$CAD$ sürüm",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
+	},
+	"versionText": {
+		"message": "$browser$ sürümü",
+		"description": "Firefox version",
+		"placeholders": {
+			"browser": {
+				"content": "$1",
+				"example": "Firefox"
+			}
+		}
+	},
+	"welcomeMessage": {
+		"message": "Hoşgeldiniz. \"$cadTitle$\" kullanım süresince $sessionDeleted$ çerezi ve toplamda $totalDeleted$ çerezi temizledi.",
+		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			},
+			"sessionDeleted": {
+				"content": "$2",
+				"example": "123"
+			},
+			"totalDeleted": {
+				"content": "$3",
+				"example": "456"
+			}
+		}
+	},
+	"welcomeText": {
+		"message": "Hoşgeldiniz",
+		"description": "Welcome"
+	},
+	"whiteCleanLocalstorage": {
+		"message": "Yeni Beyaz Liste Kurallarında \"Yerel Depolama bilgilerini koru\" işaretini kaldır",
+		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+	},
+	"whiteListText": {
+		"message": "Kural Listesi",
+		"description": "List of Expressions"
+	},
+	"whiteListWordText": {
+		"message": "Whitelist (Güvenilir-liste)",
+		"description": "Whitelist"
+	}
 }

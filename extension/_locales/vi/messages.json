@@ -1,424 +1,596 @@
 {
-  "extensionName": {
-    "message": "Tự động Xoá sạch Cookie",
-    "description": "Name of the extension."
-  },
-  "extensionDescription": {
-    "message": "Kiểm soát các cookies! Tự động Xoá sạch các cookies không dùng tới từ các trang đã đóng đồng thời giữ lại các cookies bạn cần.",
-    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-  },
-  "notificationTitle": {
-    "message": "Các Cookie đã bị xoá!",
-    "description": "Cookies were deleted!  Used in Notification Title."
-  },
-  "notificationContent": {
-    "message": "$Num$ Các Cookie bị xoá đến từ: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
-  "popupCookieCountText": {
-    "message": "Bánh",
-    "description": "Cookie(s)"
-  },
-  "filterText": {
-    "message": "Bộ lọc",
-    "description": "Filter"
-  },
-  "noneText": {
-    "message": "Trống",
-    "description": "None"
-  },
-  "cleanText": {
-    "message": "Xoá",
-    "description": "Clean"
-  },
-  "keepText": {
-    "message": "Giữ",
-    "description": "Keep"
-  },
-  "cookieCleanupText": {
-    "message": "Chạy dọn dẹp ngay",
-    "description": "Run cleanup now"
-  },
-  "cleanIgnoringOpenTabsText": {
-    "message": "Dọn dẹp, bao gồm các trang đang mở",
-    "description": "Clean, include open tabs"
-  },
-  "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Chạy dọn dẹp ngay, bao gồm các cookie từ các trang đang mở",
-    "description": "Run cleanup now, include cookies from open tabs"
-  },
-  "clearSiteDataText": {
-    "message": "Xoá $siteData$ của tên miền này",
-    "description": "Clear cookies for this domain",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "cookies"
-      }
-    }
-  },
-  "noRulesText": {
-    "message": "Không có quy tắc phù hợp với tên miền này",
-    "description": "No rules matched this domain"
-  },
-  "welcomeText": {
-    "message": "Chào mừng",
-    "description": "Welcome"
-  },
-  "preferencesText": {
-    "message": "Cài đặt",
-    "description": "Settings"
-  },
-  "optionsText": {
-    "message": "Tùy chọn",
-    "description": "Options"
-  },
-  "settingsText": {
-    "message": "Cài đặt các Cookie",
-    "description": "Cookie Settings"
-  },
-  "whiteListText": {
-    "message": "Danh sách các Biểu thức",
-    "description": "List of Expressions"
-  },
-  "cleanupLogText": {
-    "message": "Nhật ký dọn dẹp",
-    "description": "Cleanup Log"
-  },
-  "aboutText": {
-    "message": "Giới thiệu",
-    "description": "About"
-  },
-  "welcomeMessage": {
-    "message": "Chào bạn! Trong phiên này, $cadTitle$ đã xoá $sessionDeleted$ cookie và tổng cộng $totalDeleted$ cookie.",
-    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      },
-      "sessionDeleted": {
-        "content": "$2",
-        "example": "123"
-      },
-      "totalDeleted": {
-        "content": "$3",
-        "example": "456"
-      }
-    }
-  },
-  "reasonKeepOpenTab": {
-    "message": "Giữ lại bởi các trang đang mở của *.$mainDomain$",
-    "description": "Keep because of open tabs of *.google.com",
-    "placeholders": {
-      "mainDomain": {
-        "content": "$1",
-        "example": "google.com"
-      }
-    }
-  },
-  "reasonCleanStartupNoList": {
-    "message": "Dọn lúc khởi động dọn dẹp và $hostname$ không trong các danh sách Trắng/Xám",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonCleanGreyList": {
-    "message": "Dọn lúc khởi động dọn dẹp và $matchedExpression$ có trong danh sách Xám",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      }
-    }
-  },
-  "reasonCleanNoList": {
-    "message": "Dọn vì $hostname$ không nằm trong các danh sách Trắng/Xám",
-    "description": "Clean because sub.google.com is not in the White or Grey lists",
-    "placeholders": {
-      "hostname": {
-        "content": "$1",
-        "example": "sub.google.com"
-      }
-    }
-  },
-  "reasonKeep": {
-    "message": "Giữ lại vì trùng với $matchedExpression$ trong $listType$",
-    "description": "Keep because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonCleanCookieName": {
-    "message": "Dọn sạch một phần vì trùng với $matchedExpression$ trong $listType$",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
-    "placeholders": {
-      "matchedExpression": {
-        "content": "$1",
-        "example": "*.google.com"
-      },
-      "listType": {
-        "content": "$2",
-        "example": "Whitelist"
-      }
-    }
-  },
-  "reasonTabsWereNotIgnored": {
-    "message": "hoặc trong bất kỳ các trang đang mở",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-  },
-  "reasonTabsWereIgnored": {
-    "message": "và cả các trang bị bỏ qua",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-  },
-  "reviewLinkMessage": {
-    "message": "Cảm ơn đã thử dùng $cadTitle$. Nếu bạn cảm thấy thích, xin vui lòng cho nhận xét.",
-    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-    "placeholders": {
-      "cadTitle": {
-        "content": "$1",
-        "example": "Cookie AutoDelete"
-      }
-    }
-  },
-  "releaseNotesText": {
-    "message": "Ghi chú Phát hành",
-    "description": "Release Notes"
-  },
-  "activeModeText": {
-    "message": "Bật Tự động Dọn dẹp? Trì hoãn trước khi dọn dẹp:",
-    "description": "Enable Automatic Cleaning? Delay Before Cleaning:"
-  },
-  "minutesText": {
-    "message": "Phút(s)",
-    "description": "minute(s)"
-  },
-  "secondsText": {
-    "message": "Giây(s)",
-    "description": "second(s)"
-  },
-  "cleanupDomainChangeText": {
-    "message": "Bật dọn dẹp khi tên miền thay đổi",
-    "description": "Enable Cleanup on Domain Change"
-  },
-  "enableCleanupLogText": {
-    "message": "Bật dọn dẹp nhật ký và ngược lại",
-    "description": "Enable Cleanup Log and Counter"
-  },
-  "keepLocalstorageText": {
-    "message": "Lưu trữ cục bộ",
-    "description": "Keep LocalStorage"
-  },
-  "keepAllCookiesText": {
-    "message": "Lưu trữ tất cả các cookie",
-    "description": "Keep All Cookies"
-  },
-  "clearLogsText": {
-    "message": "Xoá các nhật ký",
-    "description": "Clear Logs"
-  },
-  "errorText": {
-    "message": "Lỗi!",
-    "description": "Error!"
-  },
-  "restoreText": {
-    "message": "Phục hồi",
-    "description": "Ex: Restore Cleanup"
-  },
-  "showNumberOfCookiesInIconText": {
-    "message": "Hiện số Cookie của tên miền",
-    "description": "Show Number of Cookies for that Domain"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Hiện thông báo sau khi dọn sạch Cookie",
-    "description": "Show Notification After Cookie Cleanup"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Dọn các Cookie từ các trang mở lúc khởi động",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
-  "enableGlobalSubdomainText": {
-    "message": "Bật kiểm tra các trang miền phụ",
-    "description": "Enable Check for Subdomains"
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Bật hỗ trợ cho ứng dụng \"Firefox's Container Tabs\"",
-    "description": "Enable Support for Firefox's Container Tabs"
-  },
-  "localstorageCleanupText": {
-    "message": "Dọn dẹp lưu trữ cục bộ",
-    "description": "LocalStorage Cleanup"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Bật cả Lưu trữ cục bộ và Trang tách biệt có thể dẫn đến nhiều điều ngoài ý muốn do Hạn chế API",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "defaultSettingsText": {
-    "message": "Hoàn lại cài đặt ban đầu",
-    "description": "Restore Default Settings"
-  },
-  "resetExtensionDataText": {
-    "message": "Thiết lập lại dữ liệu mở rộng",
-    "description": "Reset Extension Data"
-  },
-  "whiteListWordText": {
-    "message": "Danh sách trắng",
-    "description": "Whitelist"
-  },
-  "greyListWordText": {
-    "message": "Danh sách xám",
-    "description": "Greylist"
-  },
-  "toWhiteListText": {
-    "message": "Thêm vào danh sách trắng (Không bao giờ dọn)",
-    "description": "Add to Whitelist (Never Clean)"
-  },
-  "toGreyListText": {
-    "message": "Thêm vào danh sách xám (Dọn khi khởi động lại trình duyệt)",
-    "description": "Add to Greylist (Clean on Browser Restart)"
-  },
-  "clearURLText": {
-    "message": "Xoá tất cả",
-    "description": "Remove All"
-  },
-  "exportURLSText": {
-    "message": "Xuất biểu thức",
-    "description": "Export Expressions"
-  },
-  "exportURLSTitle": {
-    "message": "Một dấu thời gian sẽ được thêm vào tên tệp khi xuất ra.\nTải xuống có vấn đề? Nhấp chuột phải vào nút này và nhấp 'Save Link As...' để tải.",
-    "description": "A timestamp will be appended to the filename on export.\nHaving trouble downloading?  Right-Click this button and click 'Save Link As...' to download."
-  },
-  "questionExpression": {
-    "message": "Các biểu thức hoạt động như thế nào?",
-    "description": "How do Expressions work?"
-  },
-  "importURLSText": {
-    "message": "Nhập các biểu thức",
-    "description": "Import Expressions"
-  },
-  "reportIssuesText": {
-    "message": "Báo cáo các sự cố và đề xuất các tính năng",
-    "description": "Report issues and suggest features"
-  },
-  "documentationText": {
-    "message": "Tài Liệu",
-    "description": "Documentation"
-  },
-  "versionText": {
-    "message": "Phiên bản $browser$",
-    "description": "Firefox version",
-    "placeholders": {
-      "browser": {
-        "content": "$1",
-        "example": "Firefox"
-      }
-    }
-  },
-  "contributorsText": {
-    "message": "Những người tham gia đóng góp:",
-    "description": "Contributors"
-  },
-  "contributeText": {
-    "message": "Đóng góp",
-    "description": "Contribute"
-  },
-  "domainExpressionsText": {
-    "message": "Tên miền biểu thức",
-    "description": "Domain Expression"
-  },
-  "matchedDomainExpressionText": {
-    "message": "Trùng tên miền biểu thức",
-    "description": "Matched Domain Expression"
-  },
-  "regularExpressionEquivalentText": {
-    "message": "Biểu thức định kỳ tương đương",
-    "description": "Regular Expression Equivalent"
-  },
-  "listTypeText": {
-    "message": "Kiểu danh sách",
-    "description": "List Type"
-  },
-  "noExpressionsText": {
-    "message": "Không có biểu thức được xác định.",
-    "description": "No expressions defined."
-  },
-  "removeExpressionText": {
-    "message": "Loại bỏ biểu thức",
-    "description": "Remove expression"
-  },
-  "stopEditingText": {
-    "message": "Ngưng chỉnh sửa",
-    "description": "Stop editing"
-  },
-  "saveExpressionText": {
-    "message": "Lưu biểu thức",
-    "description": "Save expression"
-  },
-  "editExpressionText": {
-    "message": "Chỉnh sửa biểu thức",
-    "description": "Edit expression"
-  },
-  "toggleToGreyListWordText": {
-    "message": "Chuyển sang danh sách xám",
-    "description": "Toggle to greylist"
-  },
-  "toggleToWhiteListWordText": {
-    "message": "Chuyển sang danh sách trắng",
-    "description": "Toggle to whitelist"
-  },
-  "autoDeleteEnabledText": {
-    "message": "Bật tự động dọn dẹp",
-    "description": "Auto-clean enabled"
-  },
-  "autoDeleteDisabledText": {
-    "message": "Tắt tự động dọn dẹp",
-    "description": "Auto-clean disabled"
-  },
-  "disableAutoDeleteText": {
-    "message": "Chuyển sang tắt tự động dọn dẹp (Chế độ thủ công)",
-    "description": "Toggle to disable automatic cleanup (manual mode)"
-  },
-  "enableAutoDeleteText": {
-    "message": "Chuyển sang bật tự động dọn dẹp (Chế độ tự động)",
-    "description": "Toggle to enable automatic cleanup (automatic mode)"
-  },
-  "notificationEnabledText": {
-    "message": "Bật thông báo",
-    "description": "Notification enabled"
-  },
-  "notificationDisabledText": {
-    "message": "Tắt thông báo",
-    "description": "Notification disabled"
-  },
-  "toggleNotificationText": {
-    "message": "Chuyển đổi giữa bật hoặc tắt các thông báo",
-    "description": "Toggle to enable or disable notifications"
-  },
-  "noCleanupLogText": {
-    "message": "Không tìm thấy các nhật ký dọn dẹp",
-    "description": "No Cleanup Logs Found"
-  }
+	"aboutText": {
+		"message": "Giới thiệu",
+		"description": "About"
+	},
+	"activeModeDelayText": {
+		"message": "Trì hoãn trước khi làm sạch tự động",
+		"description": "Delay Before Automatic Cleaning"
+	},
+	"activeModeText": {
+		"message": "Cho phép tự động làm sạch",
+		"description": "Enable Automatic Cleaning"
+	},
+	"autoDeleteDisabledText": {
+		"message": "Tắt tự động dọn dẹp",
+		"description": "Auto-clean disabled"
+	},
+	"autoDeleteEnabledText": {
+		"message": "Bật tự động dọn dẹp",
+		"description": "Auto-clean enabled"
+	},
+	"chromeDebugMode": {
+		"message": "Đảm bảo 'Chế độ nhà phát triển' được bật, sau đó nhấp vào 'trang nền' bên dưới Chế độ xem kiểm tra",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanIgnoringOpenTabsText": {
+		"message": "Dọn dẹp, bao gồm các trang đang mở",
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+	},
+	"cleanText": {
+		"message": "Xoá",
+		"description": "Clean"
+	},
+	"cleanupDomainChangeText": {
+		"message": "Bật dọn dẹp khi tên miền thay đổi",
+		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Cảnh báo - Thao tác bên dưới bỏ qua cài đặt!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+	},
+	"cleanupLogText": {
+		"message": "Nhật ký dọn dẹp",
+		"description": "Cleanup Log"
+	},
+	"clearLogsText": {
+		"message": "Xoá các nhật ký",
+		"description": "Clear Logs"
+	},
+	"clearSiteDataForDomainText": {
+		"message": "Xóa tất cả $siteData$ cho $domain$",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"domain": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"clearSiteDataText": {
+		"message": "Xoá $siteData$ của tên miền này",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"clearURLText": {
+		"message": "Xoá tất cả",
+		"description": "Remove All"
+	},
+	"consoleDebugMode": {
+		"message": "Nhấp vào tab Bảng điều khiển",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
+	"contextualIdentitiesEnabledText": {
+		"message": "Bật hỗ trợ cho ứng dụng \"Firefox's Container Tabs\"",
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+	},
+	"contributeText": {
+		"message": "Đóng góp",
+		"description": "Contribute"
+	},
+	"contributorsText": {
+		"message": "Những người tham gia đóng góp",
+		"description": "Contributors"
+	},
+	"cookieCleanUpOnStartText": {
+		"message": "Dọn các Cookie từ các trang mở lúc khởi động",
+		"description": "Clean Cookies from Open Tabs on Startup"
+	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Chạy dọn dẹp ngay, bao gồm các cookie từ các trang đang mở",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Chạy dọn dẹp ngay",
+		"description": "Run cleanup now. This is shown on mouseover on the button."
+	},
+	"debugMode": {
+		"message": "Bật Chế độ gỡ lỗi (Đầu ra bảng điều khiển bổ sung)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
+	"defaultSettingsText": {
+		"message": "Hoàn lại cài đặt ban đầu",
+		"description": "Restore Default Settings"
+	},
+	"disableAutoDeleteText": {
+		"message": "Chuyển sang tắt tự động dọn dẹp (Chế độ thủ công)",
+		"description": "Toggle to disable automatic cleanup (manual mode)"
+	},
+	"documentationText": {
+		"message": "Tài Liệu",
+		"description": "Documentation"
+	},
+	"domainExpressionsText": {
+		"message": "Tên miền biểu thức",
+		"description": "Domain Expression"
+	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Chuyển đổi thả xuống bổ sung hành động làm sạch",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
+	"editExpressionText": {
+		"message": "Chỉnh sửa biểu thức",
+		"description": "Edit expression"
+	},
+	"enableAutoDeleteText": {
+		"message": "Chuyển sang bật tự động dọn dẹp (Chế độ tự động)",
+		"description": "Toggle to enable automatic cleanup (automatic mode)"
+	},
+	"enableCleanupLogText": {
+		"message": "Bật dọn dẹp nhật ký và ngược lại",
+		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableGlobalSubdomainText": {
+		"message": "Bật kiểm tra các trang miền phụ",
+		"description": "Enable Check for Subdomains"
+	},
+	"enableGreyListCleanup": {
+		"message": "Kích hoạt dọn dẹp Greylist khi khởi động lại trình duyệt",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
+	"enableNewVersionPopup": {
+		"message": "Kích hoạt Popup khi Phiên bản mới được phát hành",
+		"description": "Enable Popup when New Version is Released"
+	},
+	"errorText": {
+		"message": "Lỗi!",
+		"description": "Error!"
+	},
+	"exportSettingsText": {
+		"message": "Xuất cài đặt lõi",
+		"description": "Export Core Settings"
+	},
+	"exportURLSText": {
+		"message": "Xuất biểu thức",
+		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Dấu thời gian sẽ được thêm vào tên tệp khi xuất.",
+		"description": "A timestamp will be appended to the filename on export."
+	},
+	"extensionDescription": {
+		"message": "Kiểm soát các cookies! Tự động Xoá sạch các cookies không dùng tới từ các trang đã đóng đồng thời giữ lại các cookies bạn cần.",
+		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+	},
+	"extensionName": {
+		"message": "Tự động Xoá sạch Cookie",
+		"description": "Name of the extension."
+	},
+	"faqText": {
+		"message": "Câu hỏi thường gặp, vấn đề thường gặp và giải pháp",
+		"description": "Frequently Asked Questions, Common issues and solutions"
+	},
+	"filterDebugMode": {
+		"message": "Để chỉ xem các đầu ra gỡ lỗi của tiện ích mở rộng này, hãy lọc đầu ra theo dòng sau.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
+	"filterText": {
+		"message": "Bộ lọc",
+		"description": "Filter"
+	},
+	"greyCleanLocalstorage": {
+		"message": "Bỏ chọn 'Giữ LocalStorage' trên Biểu thức Greylist mới",
+		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+	},
+	"greyListWordText": {
+		"message": "Danh sách xám",
+		"description": "Greylist"
+	},
+	"importCoreSettingsFailed": {
+		"message": "Nhập cài đặt lõi không thành công - Không tìm thấy cài đặt",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Nhập cài đặt lõi",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Tệp đã cho không phải là loại chúng tôi xử lý",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Tệp được xác nhận không thành công",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Thiếu định danh",
+		"description": "Missing identifier"
+	},
+	"importURLSText": {
+		"message": "Nhập các biểu thức",
+		"description": "Import Expressions"
+	},
+	"keepAllCookiesText": {
+		"message": "Lưu trữ tất cả các cookie",
+		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Giữ biểu tượng mặc định trên tất cả các loại danh sách",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+	},
+	"keepLocalstorageText": {
+		"message": "Lưu trữ cục bộ",
+		"description": "Keep LocalStorage"
+	},
+	"keepText": {
+		"message": "Giữ",
+		"description": "Keep"
+	},
+	"listTypeText": {
+		"message": "Kiểu danh sách",
+		"description": "List Type"
+	},
+	"localstorageAndContextualIdentitiesWarning": {
+		"message": "CẢNH BÁO: Kích hoạt cả LocalStorage Cleanup và Container Tab có thể gây ra tác dụng phụ không mong muốn do Hạn chế API. LocalStorage sẽ bị xóa bởi tên máy chủ trên TẤT CẢ các container.",
+		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+	},
+	"localstorageCleanupText": {
+		"message": "Dọn dẹp lưu trữ cục bộ",
+		"description": "LocalStorage Cleanup"
+	},
+	"localstorageCleanupWarning": {
+		"message": "Cảnh báo: TẤT CẢ LocalStorage hiện tại sẽ bị xóa khi bật chức năng Dọn dẹp LocalStorage.",
+		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"matchedDomainExpressionText": {
+		"message": "Trùng tên miền biểu thức",
+		"description": "Matched Domain Expression"
+	},
+	"menuText": {
+		"message": "Menu",
+		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+	},
+	"minutesText": {
+		"message": "Phút(s)",
+		"description": "minute(s)"
+	},
+	"noCleanupLogText": {
+		"message": "Không tìm thấy các nhật ký dọn dẹp",
+		"description": "No Cleanup Logs Found"
+	},
+	"noExpressionsText": {
+		"message": "Không có biểu thức được xác định.",
+		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Nhật ký dọn dẹp sẽ không được tạo cho các tab trong Duyệt web riêng tư",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
+	"noRulesText": {
+		"message": "Không có quy tắc phù hợp với tên miền này",
+		"description": "No rules matched this domain"
+	},
+	"noneText": {
+		"message": "Trống",
+		"description": "None"
+	},
+	"notificationContent": {
+		"message": "$Num$ Các Cookie bị xoá đến từ: $Websites$",
+		"description": "123 Deleted Cookies from: google.com, facebook.com",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "123"
+			},
+			"websites": {
+				"content": "$2",
+				"example": "google.com, facebook.com"
+			}
+		}
+	},
+	"notificationDisabledText": {
+		"message": "Tắt thông báo",
+		"description": "Notification disabled"
+	},
+	"notificationEnabledText": {
+		"message": "Bật thông báo",
+		"description": "Notification enabled"
+	},
+	"notificationTitle": {
+		"message": "Các Cookie đã bị xoá!",
+		"description": "Cookies were deleted!  Used in Notification Title."
+	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Thời lượng thông báo",
+		"description": "Duration for Notifications"
+	},
+	"notifyCookieCleanUpText": {
+		"message": "Hiện thông báo sau khi dọn sạch Cookie",
+		"description": "Show Notification After Cookie Cleanup"
+	},
+	"oldReleasesText": {
+		"message": "Ghi chú phát hành cũ hơn có thể được xem trực tuyến tại",
+		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Để xem các đầu ra gỡ lỗi, hãy mở một tab mới và truy cập",
+		"description": "To view the debug outputs, open a new tab and visit"
+	},
+	"optionsText": {
+		"message": "Tùy chọn",
+		"description": "Options"
+	},
+	"popupCookieCountText": {
+		"message": "Bánh",
+		"description": "Cookie(s)"
+	},
+	"preferencesText": {
+		"message": "Cài đặt",
+		"description": "Settings"
+	},
+	"questionExpression": {
+		"message": "Các biểu thức hoạt động như thế nào?",
+		"description": "How do Expressions work?"
+	},
+	"reasonCleanCookieName": {
+		"message": "Dọn sạch một phần vì trùng với $matchedExpression$ trong $listType$",
+		"description": "Partial clean because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonCleanGreyList": {
+		"message": "Dọn lúc khởi động dọn dẹp và $matchedExpression$ có trong danh sách Xám",
+		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			}
+		}
+	},
+	"reasonCleanNoList": {
+		"message": "Làm sạch vì $hostname$ không có trong danh sách Trắng hoặc Xám",
+		"description": "Clean because sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonCleanStartupNoList": {
+		"message": "Dọn dẹp vì dọn dẹp khởi động và $hostname$ không có trong danh sách Trắng hoặc Xám",
+		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonKeep": {
+		"message": "Giữ lại vì trùng với $matchedExpression$ trong $listType$",
+		"description": "Keep because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonKeepOpenTab": {
+		"message": "Giữ lại bởi các trang đang mở của *.$mainDomain$",
+		"description": "Keep because of open tabs of *.google.com",
+		"placeholders": {
+			"mainDomain": {
+				"content": "$1",
+				"example": "google.com"
+			}
+		}
+	},
+	"reasonTabsWereIgnored": {
+		"message": "và cả các trang bị bỏ qua",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+	},
+	"reasonTabsWereNotIgnored": {
+		"message": "hoặc trong bất kỳ các trang đang mở",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+	},
+	"regularExpressionEquivalentText": {
+		"message": "Biểu thức định kỳ tương đương",
+		"description": "Regular Expression Equivalent"
+	},
+	"releaseNotesText": {
+		"message": "Ghi chú Phát hành",
+		"description": "Release Notes"
+	},
+	"removeAllExpressions": {
+		"message": "Xóa tất cả các biểu thức",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Bạn có chắc chắn muốn xóa TẤT CẢ ($expressionCount$) biểu thức đã lưu khỏi danh sách ($listCount$) không? \n\nĐIỀU NÀY KHÔNG THỂ ĐƯỢC HOÀN TÁC! \n\nNhập [$expressionCount$] và nhấp OK để xóa.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Không có biểu thức để loại bỏ!",
+		"description": "No expressions to remove!"
+	},
+	"removeExpressionText": {
+		"message": "Loại bỏ biểu thức",
+		"description": "Remove expression"
+	},
+	"reportIssuesText": {
+		"message": "Báo cáo các sự cố và đề xuất các tính năng",
+		"description": "Report issues and suggest features"
+	},
+	"resetExtensionDataText": {
+		"message": "Thiết lập lại dữ liệu mở rộng",
+		"description": "Reset Extension Data"
+	},
+	"restoreText": {
+		"message": "Phục hồi",
+		"description": "Ex: Restore Cleanup"
+	},
+	"reviewLinkMessage": {
+		"message": "Cảm ơn đã thử dùng $cadTitle$. Nếu bạn cảm thấy thích, xin vui lòng cho nhận xét.",
+		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			}
+		}
+	},
+	"saveExpressionText": {
+		"message": "Lưu biểu thức",
+		"description": "Save expression"
+	},
+	"secondsText": {
+		"message": "Giây(s)",
+		"description": "second(s)"
+	},
+	"settingGroupAutoClean": {
+		"message": "Tùy chọn làm sạch tự động",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Tùy chọn biểu thức",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Tùy chọn mở rộng",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Tùy chọn dọn dẹp dữ liệu duyệt web khác",
+		"description": "Other Browsing Data Cleanup Options"
+	},
+	"settingsText": {
+		"message": "Cài đặt các Cookie",
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "Hiển thị số lượng cookie cho tên miền đó qua biểu tượng",
+		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"stopEditingText": {
+		"message": "Ngưng chỉnh sửa",
+		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Thành công!",
+		"description": "Success!"
+	},
+	"toGreyListText": {
+		"message": "Thêm vào danh sách xám (Dọn khi khởi động lại trình duyệt)",
+		"description": "Add to Greylist (Clean on Browser Restart)"
+	},
+	"toWhiteListText": {
+		"message": "Thêm vào danh sách trắng (Không bao giờ dọn)",
+		"description": "Add to Whitelist (Never Clean)"
+	},
+	"toggleNotificationText": {
+		"message": "Chuyển đổi giữa bật hoặc tắt các thông báo",
+		"description": "Toggle to enable or disable notifications"
+	},
+	"toggleToGreyListWordText": {
+		"message": "Chuyển sang danh sách xám",
+		"description": "Toggle to greylist"
+	},
+	"toggleToWhiteListWordText": {
+		"message": "Chuyển sang danh sách trắng",
+		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "Phiên bản $CAD$",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
+	},
+	"versionText": {
+		"message": "Phiên bản $browser$",
+		"description": "Firefox version",
+		"placeholders": {
+			"browser": {
+				"content": "$1",
+				"example": "Firefox"
+			}
+		}
+	},
+	"welcomeMessage": {
+		"message": "Chào bạn! Trong phiên này, $cadTitle$ đã xoá $sessionDeleted$ cookie và tổng cộng $totalDeleted$ cookie.",
+		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			},
+			"sessionDeleted": {
+				"content": "$2",
+				"example": "123"
+			},
+			"totalDeleted": {
+				"content": "$3",
+				"example": "456"
+			}
+		}
+	},
+	"welcomeText": {
+		"message": "Chào mừng",
+		"description": "Welcome"
+	},
+	"whiteCleanLocalstorage": {
+		"message": "Bỏ chọn 'Giữ LocalStorage' trên Biểu thức danh sách trắng mới",
+		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+	},
+	"whiteListText": {
+		"message": "Danh sách các Biểu thức",
+		"description": "List of Expressions"
+	},
+	"whiteListWordText": {
+		"message": "Danh sách trắng",
+		"description": "Whitelist"
+	}
 }

@@ -1,52 +1,596 @@
 {
-  "extensionName": {
-    "message": "Cookie AutoDelete",
-    "description": "Name of the extension."
-  },
-  "extensionDescription": {
-    "message": "Έλεγξε τα cookie σου! Διέγραψε αυτόματα τα cookies που δεν χρησημοποιούνται απο τις καρτέλες που έκλεισαν, ενώ κρατάς αυτά που σου χρειάζονται.",
-    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-  },
-  "notificationTitle": {
-    "message": "Τα cookies διαγράφθηκαν!",
-    "description": "Cookies were deleted!  Used in Notification Title."
-  },
-  "notificationContent": {
-    "message": "$Num$ Διαγραφή cookies απο: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
-  "filterText": {
-    "message": "Φίλτρο",
-    "description": "Filter"
-  },
-  "noneText": {
-    "message": "Κανένα",
-    "description": "None"
-  },
-  "cleanText": {
-    "message": "Καθαρισμός",
-    "description": "Clean"
-  },
-  "keepText": {
-    "message": "Διατήρηση",
-    "description": "Keep"
-  },
-  "cookieCleanupText": {
-    "message": "Εκτέλεση καθαρισμού τώρα",
-    "description": "Run cleanup now"
-  },
-  "cleanIgnoringOpenTabsText": {
-    "message": "Καθαρισμός, μαζι και οι ανοιχτές καρτέλες",
-    "description": "Clean, include open tabs"
-  }
+	"aboutText": {
+		"message": "Σχετικά",
+		"description": "About"
+	},
+	"activeModeDelayText": {
+		"message": "Καθυστέρηση πριν από τον αυτόματο καθαρισμό",
+		"description": "Delay Before Automatic Cleaning"
+	},
+	"activeModeText": {
+		"message": "Ενεργοποίηση αυτόματου καθαρισμού",
+		"description": "Enable Automatic Cleaning"
+	},
+	"autoDeleteDisabledText": {
+		"message": "Η αυτόματη καθαριότητα απενεργοποιήθηκε",
+		"description": "Auto-clean disabled"
+	},
+	"autoDeleteEnabledText": {
+		"message": "Η αυτόματη καθαριότητα ενεργοποιήθηκε",
+		"description": "Auto-clean enabled"
+	},
+	"chromeDebugMode": {
+		"message": "Βεβαιωθείτε ότι η \"Λειτουργία προγραμματιστή\" είναι ενεργοποιημένη και, στη συνέχεια, κάντε κλικ στην \"σελίδα φόντου\" στην ενότητα Επιθεώρηση προβολής",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanIgnoringOpenTabsText": {
+		"message": "Καθαρίστε, συμπεριλάβετε ανοιχτές καρτέλες",
+		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+	},
+	"cleanText": {
+		"message": "Εκκαθάριση",
+		"description": "Clean"
+	},
+	"cleanupDomainChangeText": {
+		"message": "Ενεργοποίηση εκκαθάρισης στην αλλαγή τομέα",
+		"description": "Enable Cleanup on Domain Change"
+	},
+	"cleanupActionsBypass": {
+		"message": "Προειδοποίηση - Οι παρακάτω ενέργειες αγνοούν τις ρυθμίσεις!",
+		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+	},
+	"cleanupLogText": {
+		"message": "Μητρώο εκκαθάρισης",
+		"description": "Cleanup Log"
+	},
+	"clearLogsText": {
+		"message": "Εκκαθάριση αρχείου καταγραφής",
+		"description": "Clear Logs"
+	},
+	"clearSiteDataForDomainText": {
+		"message": "Εκκαθάριση όλων των $siteData$ για $domain$",
+		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"domain": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"clearSiteDataText": {
+		"message": "Εκκαθάριση $siteData$ για αυτόν τον τομέα",
+		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+		"placeholders": {
+			"siteData": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"clearURLText": {
+		"message": "Αφαίρεση Όλων",
+		"description": "Remove All"
+	},
+	"consoleDebugMode": {
+		"message": "Κάντε κλικ στην καρτέλα Console",
+		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
+	"contextualIdentitiesEnabledText": {
+		"message": "Ενεργοποίηση υποστήριξης για καρτέλες κοντέινερ του Firefox",
+		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+	},
+	"contributeText": {
+		"message": "Συνεισφορά",
+		"description": "Contribute"
+	},
+	"contributorsText": {
+		"message": "Συντελεστής",
+		"description": "Contributors"
+	},
+	"cookieCleanUpOnStartText": {
+		"message": "Καθαρίστε τα cookie από τις ανοιχτές καρτέλες κατά την εκκίνηση",
+		"description": "Clean Cookies from Open Tabs on Startup"
+	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Εκτελέστε εκκαθάριση τώρα, συμπεριλάβετε cookie από ανοιχτές καρτέλες",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Εκτελέστε εκκαθάριση τώρα",
+		"description": "Run cleanup now. This is shown on mouseover on the button."
+	},
+	"debugMode": {
+		"message": "Ενεργοποίηση λειτουργίας εντοπισμού σφαλμάτων (Πρόσθετες έξοδοι κονσόλας)",
+		"description": "Enable Debug Mode (Additional Console Outputs)"
+	},
+	"defaultSettingsText": {
+		"message": "Επαναφορά προεπιλεγμένων ρυθμίσεων",
+		"description": "Restore Default Settings"
+	},
+	"disableAutoDeleteText": {
+		"message": "Εναλλαγή για απενεργοποίηση του αυτόματου καθαρισμού (χειροκίνητη λειτουργία)",
+		"description": "Toggle to disable automatic cleanup (manual mode)"
+	},
+	"documentationText": {
+		"message": "Τεκμηρίωση",
+		"description": "Documentation"
+	},
+	"domainExpressionsText": {
+		"message": "Έκφραση τομέα",
+		"description": "Domain Expression"
+	},
+	"dropdownAdditionalCleaningOptions": {
+		"message": "Εναλλαγή του αναπτυσσόμενου μενού πρόσθετων ενεργειών καθαρισμού",
+		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+	},
+	"editExpressionText": {
+		"message": "Επεξεργασία έκφρασης",
+		"description": "Edit expression"
+	},
+	"enableAutoDeleteText": {
+		"message": "Εναλλαγή για ενεργοποίηση αυτόματου καθαρισμού (αυτόματη λειτουργία)",
+		"description": "Toggle to enable automatic cleanup (automatic mode)"
+	},
+	"enableCleanupLogText": {
+		"message": "Ενεργοποίηση καταγραφής και μετρητή καθαρισμού",
+		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableGlobalSubdomainText": {
+		"message": "Ενεργοποίηση ελέγχου για υποτομείς",
+		"description": "Enable Check for Subdomains"
+	},
+	"enableGreyListCleanup": {
+		"message": "Ενεργοποίηση Greylist Cleanup στην επανεκκίνηση του προγράμματος περιήγησης",
+		"description": "Enable Greylist Cleanup on Browser Restart"
+	},
+	"enableNewVersionPopup": {
+		"message": "Ενεργοποιήστε το αναδυόμενο παράθυρο όταν κυκλοφορήσει η νέα έκδοση",
+		"description": "Enable Popup when New Version is Released"
+	},
+	"errorText": {
+		"message": "Σφάλμα! ",
+		"description": "Error!"
+	},
+	"exportSettingsText": {
+		"message": "Εξαγωγή βασικών ρυθμίσεων",
+		"description": "Export Core Settings"
+	},
+	"exportURLSText": {
+		"message": "Εξαγωγή εκφράσεων",
+		"description": "Export Expressions"
+	},
+	"exportTitleTimestamp": {
+		"message": "Μια χρονική σήμανση θα προστεθεί στο όνομα αρχείου κατά την εξαγωγή.",
+		"description": "A timestamp will be appended to the filename on export."
+	},
+	"extensionDescription": {
+		"message": "Ελέγξτε τα cookie σας! Διαγράψτε αυτόματα τα ανεπιθύμητα cookie από τις κλειστές καρτέλες ενώ διατηρείτε αυτά που θέλετε.",
+		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+	},
+	"extensionName": {
+		"message": "Cookie AutoDelete",
+		"description": "Name of the extension."
+	},
+	"faqText": {
+		"message": "Συχνές ερωτήσεις, κοινά ζητήματα και λύσεις",
+		"description": "Frequently Asked Questions, Common issues and solutions"
+	},
+	"filterDebugMode": {
+		"message": "Για να δείτε μόνο έξοδο εντοπισμού σφαλμάτων από αυτήν την επέκταση, φιλτράρετε την έξοδο από την ακόλουθη γραμμή.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
+	"filterText": {
+		"message": "Φίλτρο",
+		"description": "Filter"
+	},
+	"greyCleanLocalstorage": {
+		"message": "Καταργήστε την επιλογή \"Keep LocalStorage\" στις Νέες εκφράσεις Greylist",
+		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+	},
+	"greyListWordText": {
+		"message": "Greylist",
+		"description": "Greylist"
+	},
+	"importCoreSettingsFailed": {
+		"message": "Αποτυχία εισαγωγής βασικών ρυθμίσεων - Βρέθηκε άγνωστη ρύθμιση",
+		"description": "Import Core Settings Failed - Found unknown setting"
+	},
+	"importCoreSettingsText": {
+		"message": "Εισαγωγή βασικών ρυθμίσεων",
+		"description": "Import Core Settings"
+	},
+	"importFileTypeInvalid": {
+		"message": "Το αρχείο που δίνεται δεν είναι τύπος που χειριζόμαστε",
+		"description": "File given is not a type we handle"
+	},
+	"importFileValidationFailed": {
+		"message": "Το αρχείο που δόθηκε απέτυχε επικύρωση",
+		"description": "File given failed validation"
+	},
+	"importMissingKey": {
+		"message": "Λείπει αναγνωριστικό",
+		"description": "Missing identifier"
+	},
+	"importURLSText": {
+		"message": "Εισαγωγή εκφράσεων",
+		"description": "Import Expressions"
+	},
+	"keepAllCookiesText": {
+		"message": "Διατηρήστε όλα τα cookie",
+		"description": "Keep All Cookies"
+	},
+	"keepDefaultIcon": {
+		"message": "Διατηρήστε τα προεπιλεγμένα εικονίδια σε όλους τους τύπους λιστών",
+		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+	},
+	"keepLocalstorageText": {
+		"message": "Διατηρήστε το LocalStorage",
+		"description": "Keep LocalStorage"
+	},
+	"keepText": {
+		"message": "Διατήρηση",
+		"description": "Keep"
+	},
+	"listTypeText": {
+		"message": "Είδος λίστας",
+		"description": "List Type"
+	},
+	"localstorageAndContextualIdentitiesWarning": {
+		"message": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η ενεργοποίηση τόσο του LocalStorage Cleanup όσο και του Container Tabs μπορεί να προκαλέσει ανεπιθύμητες παρενέργειες λόγω των περιορισμών API. Το LocalStorage θα διαγραφεί από το όνομα κεντρικού υπολογιστή σε ΟΛΑ τα κοντέινερ.",
+		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+	},
+	"localstorageCleanupText": {
+		"message": "Εκκαθάριση LocalStorage",
+		"description": "LocalStorage Cleanup"
+	},
+	"localstorageCleanupWarning": {
+		"message": "Προειδοποίηση: ΟΛΕΣ οι υπάρχουσες LocalStorage θα διαγραφούν μετά την ενεργοποίηση του LocalStorage Cleanup.",
+		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"matchedDomainExpressionText": {
+		"message": "Αντιστοιχισμένη έκφραση τομέα",
+		"description": "Matched Domain Expression"
+	},
+	"menuText": {
+		"message": "Μενού",
+		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+	},
+	"minutesText": {
+		"message": "λεπτά",
+		"description": "minute(s)"
+	},
+	"noCleanupLogText": {
+		"message": "Δεν βρέθηκαν αρχεία καταγραφής εκκαθάρισης",
+		"description": "No Cleanup Logs Found"
+	},
+	"noExpressionsText": {
+		"message": "Δεν ορίζονται εκφράσεις.",
+		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Τα αρχεία καταγραφής εκκαθάρισης δεν θα δημιουργηθούν για καρτέλες στην ιδιωτική περιήγηση",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+	},
+	"noRulesText": {
+		"message": "Δεν αντιστοιχούν κανόνες σε αυτόν τον τομέα",
+		"description": "No rules matched this domain"
+	},
+	"noneText": {
+		"message": "Κανένα",
+		"description": "None"
+	},
+	"notificationContent": {
+		"message": "$Num$ Διαγραφή cookies απο: $Websites$",
+		"description": "123 Deleted Cookies from: google.com, facebook.com",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "123"
+			},
+			"websites": {
+				"content": "$2",
+				"example": "google.com, facebook.com"
+			}
+		}
+	},
+	"notificationDisabledText": {
+		"message": "Η ειδοποίηση απενεργοποιήθηκε",
+		"description": "Notification disabled"
+	},
+	"notificationEnabledText": {
+		"message": "Η ειδοποίηση ενεργοποιήθηκε",
+		"description": "Notification enabled"
+	},
+	"notificationTitle": {
+		"message": "Τα cookies διαγράφθηκαν!",
+		"description": "Cookies were deleted!  Used in Notification Title."
+	},
+	"notifyCookieCleanupDelayText": {
+		"message": "Διάρκεια για ειδοποιήσεις",
+		"description": "Duration for Notifications"
+	},
+	"notifyCookieCleanUpText": {
+		"message": "Εμφάνιση ειδοποίησης μετά τον καθαρισμό των cookie",
+		"description": "Show Notification After Cookie Cleanup"
+	},
+	"oldReleasesText": {
+		"message": "Οι παλαιότερες σημειώσεις έκδοσης μπορούν να προβληθούν στο διαδίκτυο στη διεύθυνση",
+		"description": "Older release notes can be viewed online at"
+	},
+	"openDebugMode": {
+		"message": "Για να δείτε τις εξόδους εντοπισμού σφαλμάτων, ανοίξτε μια νέα καρτέλα και επισκεφθείτε",
+		"description": "To view the debug outputs, open a new tab and visit"
+	},
+	"optionsText": {
+		"message": "Επιλογές",
+		"description": "Options"
+	},
+	"popupCookieCountText": {
+		"message": "Cookies",
+		"description": "Cookie(s)"
+	},
+	"preferencesText": {
+		"message": "Ρυθμίσεις",
+		"description": "Settings"
+	},
+	"questionExpression": {
+		"message": "Πώς λειτουργούν οι εκφράσεις;",
+		"description": "How do Expressions work?"
+	},
+	"reasonCleanCookieName": {
+		"message": "Μερικό καθαρό λόγω αντιστοίχισης $matchedExpression$ στη λίστα $listType$",
+		"description": "Partial clean because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonCleanGreyList": {
+		"message": "Καθαρίστε λόγω της εκκαθάρισης εκκίνησης και το $matchedExpression$ βρίσκεται στο Greylist",
+		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			}
+		}
+	},
+	"reasonCleanNoList": {
+		"message": "Καθαρίστε γιατί το $hostname$ δεν περιλαμβάνεται στις λίστες Λευκό ή Γκρι",
+		"description": "Clean because sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonCleanStartupNoList": {
+		"message": "Καθαρίστε λόγω εκκαθάρισης εκκίνησης και το $hostname$ δεν περιλαμβάνεται στις λίστες Λευκό ή Γκρι",
+		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "sub.google.com"
+			}
+		}
+	},
+	"reasonKeep": {
+		"message": "Διατηρήστε λόγω της αντιστοίχισης $matchedExpression$ στη λίστα $listType$",
+		"description": "Keep because of matched *.google.com in the Whitelist",
+		"placeholders": {
+			"matchedExpression": {
+				"content": "$1",
+				"example": "*.google.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "Whitelist"
+			}
+		}
+	},
+	"reasonKeepOpenTab": {
+		"message": "Διατηρήστε λόγω ανοικτών καρτελών *.$mainDomain$",
+		"description": "Keep because of open tabs of *.google.com",
+		"placeholders": {
+			"mainDomain": {
+				"content": "$1",
+				"example": "google.com"
+			}
+		}
+	},
+	"reasonTabsWereIgnored": {
+		"message": "και επίσης οι ανοιχτές καρτέλες αγνοήθηκαν",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+	},
+	"reasonTabsWereNotIgnored": {
+		"message": "ή σε οποιεσδήποτε ανοιχτές καρτέλες",
+		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+	},
+	"regularExpressionEquivalentText": {
+		"message": "Ισοδύναμη κανονικής έκφρασης",
+		"description": "Regular Expression Equivalent"
+	},
+	"releaseNotesText": {
+		"message": "Σημειώσεις Κυκλοφορίας",
+		"description": "Release Notes"
+	},
+	"removeAllExpressions": {
+		"message": "Κατάργηση όλων των εκφράσεων",
+		"description": "Remove All Expressions"
+	},
+	"removeAllExpressionsConfirm": {
+		"message": "Είστε βέβαιοι ότι θέλετε να καταργήσετε ΟΛΕΣ τις ($expressionCount$) αποθηκευμένες εκφράσεις από τις λίστες ($listCount$); \n\nΑΥΤΟ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ! \n\nΠληκτρολογήστε [$expressionCount$] και κάντε κλικ στο OK για διαγραφή.",
+		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+		"placeholders": {
+			"expressionCount": {
+				"content": "$1",
+				"example": "75"
+			},
+			"listCount": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"removeAllExpressionsNoneFound": {
+		"message": "Δεν υπάρχουν εκφράσεις για κατάργηση!",
+		"description": "No expressions to remove!"
+	},
+	"removeExpressionText": {
+		"message": "Κατάργηση έκφρασης",
+		"description": "Remove expression"
+	},
+	"reportIssuesText": {
+		"message": "Αναφέρετε ζητήματα και προτείνετε λειτουργίες",
+		"description": "Report issues and suggest features"
+	},
+	"resetExtensionDataText": {
+		"message": "Επαναφορά δεδομένων επέκτασης",
+		"description": "Reset Extension Data"
+	},
+	"restoreText": {
+		"message": "Επαναφορά",
+		"description": "Ex: Restore Cleanup"
+	},
+	"reviewLinkMessage": {
+		"message": "Ευχαριστούμε που δοκιμάσατε το $cadTitle$. Εάν σας άρεσε, δώστε μια κριτική.",
+		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			}
+		}
+	},
+	"saveExpressionText": {
+		"message": "Αποθήκευση έκφρασης",
+		"description": "Save expression"
+	},
+	"secondsText": {
+		"message": "δευτερόλεπτα",
+		"description": "second(s)"
+	},
+	"settingGroupAutoClean": {
+		"message": "Επιλογές αυτόματου καθαρισμού",
+		"description": "Automatic Cleaning Options"
+	},
+	"settingGroupExpression": {
+		"message": "Επιλογές έκφρασης",
+		"description": "Expression Options"
+	},
+	"settingGroupExtension": {
+		"message": "Επιλογές επέκτασης",
+		"description": "Extension Options"
+	},
+	"settingGroupOtherBrowsing": {
+		"message": "Άλλες επιλογές καθαρισμού δεδομένων περιήγησης",
+		"description": "Other Browsing Data Cleanup Options"
+	},
+	"settingsText": {
+		"message": "$CAD$ Ρυθμίσεις",
+		"description": "$CAD$ Settings",
+		"placeholders": {
+			"CAD": {
+				"content": "CAD",
+				"example": "CAD - Short form of Cookie AutoDelete"
+			}
+		}
+	},
+	"showNumberOfCookiesInIconText": {
+		"message": "Ενεργοποίηση γνωστοποίησης καθαρισμού",
+		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"stopEditingText": {
+		"message": "Διακοπή επεξεργασίας",
+		"description": "Stop editing"
+	},
+	"successText": {
+		"message": "Επιτυχία!",
+		"description": "Success!"
+	},
+	"toGreyListText": {
+		"message": "Προσθήκη στο Greylist (Clean on Browser Restart)",
+		"description": "Add to Greylist (Clean on Browser Restart)"
+	},
+	"toWhiteListText": {
+		"message": "Προσθήκη στη λίστα επιτρεπόμενων (Ποτέ δεν καθαρίζεται)",
+		"description": "Add to Whitelist (Never Clean)"
+	},
+	"toggleNotificationText": {
+		"message": "Εναλλαγή για ενεργοποίηση ή απενεργοποίηση ειδοποιήσεων",
+		"description": "Toggle to enable or disable notifications"
+	},
+	"toggleToGreyListWordText": {
+		"message": "Εναλλαγή σε greylist",
+		"description": "Toggle to greylist"
+	},
+	"toggleToWhiteListWordText": {
+		"message": "Εναλλαγή στη λίστα επιτρεπόμενων",
+		"description": "Toggle to whitelist"
+	},
+	"versionNumberText": {
+		"message": "Έκδοση $CAD$",
+		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+		"placeholders": {
+			"CAD": {
+				"content": "$1",
+				"example": "CAD or Cookie AutoDelete"
+			}
+		}
+	},
+	"versionText": {
+		"message": "$browser$ Έκδοση",
+		"description": "Firefox version",
+		"placeholders": {
+			"browser": {
+				"content": "$1",
+				"example": "Firefox"
+			}
+		}
+	},
+	"welcomeMessage": {
+		"message": "Γεια σου! Κατά τη διάρκεια αυτής της περιόδου λειτουργίας, το $cadTitle$ διέγραψε τα cookie $sessionDeleted$ και συνολικά τα cookie $totalDeleted$.",
+		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+		"placeholders": {
+			"cadTitle": {
+				"content": "$1",
+				"example": "Cookie AutoDelete"
+			},
+			"sessionDeleted": {
+				"content": "$2",
+				"example": "123"
+			},
+			"totalDeleted": {
+				"content": "$3",
+				"example": "456"
+			}
+		}
+	},
+	"welcomeText": {
+		"message": "Καλώς ήρθατε",
+		"description": "Welcome"
+	},
+	"whiteCleanLocalstorage": {
+		"message": "Καταργήστε την επιλογή \"Διατήρηση τοπικής αποθήκευσης\" στις Νέες εκφράσεις της λίστας",
+		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+	},
+	"whiteListText": {
+		"message": "Λίστα εκφράσεων",
+		"description": "List of Expressions"
+	},
+	"whiteListWordText": {
+		"message": "Λίστα επιτρεπόμενων",
+		"description": "Whitelist"
+	}
 }
