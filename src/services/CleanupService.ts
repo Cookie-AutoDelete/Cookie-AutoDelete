@@ -324,7 +324,7 @@ export const returnSetOfOpenTabDomains = async (ignoreOpenTabs: boolean) => {
     windowType: 'normal',
   });
   const setOfTabURLS = new Set<string>();
-  tabs.forEach((currentValue, index, array) => {
+  tabs.forEach((currentValue) => {
     if (isAWebpage(currentValue.url)) {
       let hostURL = getHostname(currentValue.url);
       hostURL = extractMainDomain(hostURL);

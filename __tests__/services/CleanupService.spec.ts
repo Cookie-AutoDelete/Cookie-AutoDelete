@@ -710,7 +710,7 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.NoMatchedExpression,
       };
-      const result = filterLocalstorage(cleanReasonObj, true);
+      filterLocalstorage(cleanReasonObj, true);
       expect(mockedLib.cadLog).toHaveBeenCalledTimes(1);
     });
     it('should return false for a blank cookie hostname', () => {

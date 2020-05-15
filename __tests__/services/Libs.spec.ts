@@ -65,7 +65,7 @@ describe('Library Functions', () => {
       console.error = origError;
       console.info = origInfo;
       // tslint:disable-next-line:no-console
-      console.log = origInfo;
+      console.log = origLog;
       console.warn = origWarn;
     });
 

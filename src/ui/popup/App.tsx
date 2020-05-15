@@ -20,7 +20,6 @@ import {
   updateSetting,
 } from '../../redux/Actions';
 import {
-  cadLog,
   extractMainDomain,
   getHostname,
   getSetting,
