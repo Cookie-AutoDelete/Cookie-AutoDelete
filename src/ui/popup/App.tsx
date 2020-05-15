@@ -200,7 +200,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
       <div
         className="container-fluid"
         style={{
-          minWidth: `${cache.browserDetect === 'Chrome' ? '650px' : ''}`,
+          minWidth: `${cache.browserDetect === 'Chrome' ? '650px' : ''}`, overflow: 'auto'
         }}
       >
         <div
