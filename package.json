@@ -41,7 +41,7 @@
     "@types/shortid": "0.0.29",
     "ajv": "^6.12.2",
     "archiver": "^4.0.1",
-    "copy-webpack-plugin": "^5.1.1",
+    "copy-webpack-plugin": "^6.0.1",
     "jest": "^25.5.4",
     "jest-date-mock": "^1.0.8",
     "jest-when": "^2.7.1",
