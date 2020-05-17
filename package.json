@@ -42,11 +42,11 @@
     "ajv": "^6.12.2",
     "archiver": "^4.0.1",
     "copy-webpack-plugin": "^6.0.1",
-    "jest": "^25.5.4",
+    "jest": "^26.0.1",
     "jest-date-mock": "^1.0.8",
     "jest-when": "^2.7.1",
     "source-map-loader": "^0.2.4",
-    "ts-jest": "^25.5.1",
+    "ts-jest": "^26.0.0",
     "ts-loader": "^7.0.4",
     "tslint": "^6.1.2",
     "tslint-config-airbnb": "^5.11.2",
@@ -60,7 +60,7 @@
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js && node ./tools/buildFilesDev.js",
+    "build": "npm run compile && node ./tools/buildFilesDev.js",
     "compile": "webpack --config webpack.config.js",
     "dev": "webpack --config webpack.config.js --progress --colors --watch",
     "lint": "tslint --project tsconfig.json",
