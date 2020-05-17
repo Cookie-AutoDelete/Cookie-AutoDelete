@@ -179,6 +179,10 @@
 		"message": "Vanliga frågor, vanliga problem och lösningar",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "För att se endast debug utmatningar av detta tillägg, filtrera utdata av följande rad.",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filtrera",
 		"description": "Filter"
