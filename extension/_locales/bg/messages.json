@@ -422,7 +422,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Сигурни ли сте, че искате да премахнете ВСИЧКИ ($expressionCount$) запазени изрази(и) от списъка(ите) ($listCount$)? \n\nТОВА НЕ МОЖЕ ДА БЪДЕ ОТМЕНЕНО! \n\nВъведете [$expressionCount$] и щракнете върху OK, за да изтриете.",
+		"message": "Сигурни ли сте, че искате да премахнете ВСИЧКИ ($expressionCount$) запазени израза(и) от списъка(ците) ($listCount$)? \n\nТОВА ДЕЙСТВИЕ Е НЕОБРАТИМО! \n\nВъведете [$expressionCount$] и изберете „OK“, за да изтриете.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
