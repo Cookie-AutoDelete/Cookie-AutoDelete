@@ -95,14 +95,6 @@
 		"message": "تنظيف ملفات تعريف الارتباط من علامات التبويب المفتوحة عند بدء التشغيل",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "قم بتشغيل التنظيف الآن، قم بتضمين ملفات تعريف الارتباط من علامات التبويب المفتوحة",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "تشغيل المسح الآن",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
-	},
 	"debugMode": {
 		"message": "تمكين وضع التصحيح (خروج وحدة التحكم الإضافية)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
