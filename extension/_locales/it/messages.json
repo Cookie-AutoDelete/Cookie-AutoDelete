@@ -95,14 +95,6 @@
 		"message": "Pulisci i cookie delle schede aperte all'avvio",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Pulisci adesso, inclusi i cookie delle schede aperte",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "Pulisci adesso",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
-	},
 	"debugMode": {
 		"message": "Abilita Modalità Debug (uscita Console aggiuntiva)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
