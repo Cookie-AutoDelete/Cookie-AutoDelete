@@ -77,6 +77,8 @@ const onSettingsChange = () => {
     setGlobalIcon(currentSettings.activeMode.value as boolean);
   }
 
+  checkIfProtected(store.getState());
+  
   // Validate Settings again
   store.dispatch<any>(validateSettings());
 };
