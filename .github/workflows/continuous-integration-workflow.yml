@@ -49,6 +49,10 @@ jobs:
       with:
         name: coverage
         path: coverage
+    - name: Codecov.io Coverage upload
+      uses: codecov/codecov-action@V1
+      with:
+        fail_ci_if_error: true
     - name: Coveralls.io Coverage Upload
       uses: coverallsapp/github-action@v1.1.1
       with:
