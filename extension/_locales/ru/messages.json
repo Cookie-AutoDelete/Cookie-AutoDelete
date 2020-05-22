@@ -95,14 +95,6 @@
 		"message": "Очищать куки открытых вкладок при запуске",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Запустить очистку сейчас, включая куки из открытых вкладок",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "Запустить очистку сейчас",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
-	},
 	"debugMode": {
 		"message": "Включить режим отладки (дополнительные сообщения в консоли)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
