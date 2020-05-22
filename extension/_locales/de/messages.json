@@ -188,7 +188,7 @@
 		"description": "Greylist"
 	},
 	"importCoreSettingsFailed": {
-		"message": "Import Core-Einstellungen fehlgeschlagen - Unbekannte Einstellung gefunden",
+		"message": "Import der Core-Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
 		"description": "Import Core Settings Failed - Found unknown setting"
 	},
 	"importCoreSettingsText": {
