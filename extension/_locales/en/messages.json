@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Run cleanup now, include cookies from open tabs",
+		"message": "Run cleanup now, include domains from open tabs",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Run cleanup now",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Run cleanup now, exclude domains from open tabs",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Enable Debug Mode (Additional Console Outputs)",
