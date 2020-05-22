@@ -507,6 +507,14 @@
 		"message": "Pokaż liczbę ciasteczek dla tej domeny nad ikoną",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Rozmiar czcionki panelu (piksele)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Rozmiar czcionki w ustawieniach (piksele)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Zakończ edycję",
 		"description": "Stop editing"
