@@ -515,6 +515,14 @@
 		"message": "Show Number of Cookies for that Domain over the Icon",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Size of Popup (in px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Size of Setting Pages (in px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Stop editing",
 		"description": "Stop editing"

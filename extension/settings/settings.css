@@ -41,32 +41,9 @@ td {
   width: 40em;
 }
 
-.file-upload {
-  background-image: none;
-  border: 1px solid transparent;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-  border-radius: 4px;
-  border-right-color: transparent;
-  border-top-color: transparent;
-  color: #337ab7;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  margin-bottom: 0;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
+/* Bootstrap overrides */
+.form-group {
+  margin-bottom: 0.5rem;
 }
 
 .menu {
@@ -94,7 +71,6 @@ td {
 
 .pure-menu-item span {
   color: #c1c1b4;
-  font: message-box;
 }
 
 .pure-menu-selected {
@@ -104,10 +80,14 @@ td {
   border-style: none none none solid;
 }
 
+.selectOptions {
+  display: inline;
+  margin-right: 5px;
+}
+
 .tooltipCustom {
   color: #777;
   cursor: pointer;
-  font-size: 18px;
   font-weight: 700;
   margin-left: 5px;
   text-decoration: none;
