@@ -74,8 +74,8 @@ const setBadgeColor = (tab: browser.tabs.Tab, color: string = 'default') => {
 
 // Set Background icon color and badgeBackgroundColor accordingly.
 const setIconColor = (tab: browser.tabs.Tab, keepDefault: boolean = false, color: string = 'default') => {
-
   if (browser.browserAction.setIcon) {
+    console.info(`icons/icon_48${(keepDefault || color === 'default') ? '' : `_${color}`}.png`);
     browser.browserAction.setIcon({
       path: {
         48: `icons/icon_48${(keepDefault || color === 'default') ? '' : `_${color}`}.png`,
@@ -133,7 +133,6 @@ export const checkIfProtected = async (
       windowType: 'normal',
     });
   }
-  setGlobalIcon(active);
 
   activeTabs.forEach(aTab => {
     const matchedExpression = returnMatchedExpressionObject(
