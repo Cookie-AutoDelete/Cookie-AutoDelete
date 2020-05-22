@@ -1,7 +1,7 @@
 {
   "releases": [
     {
-      "version": "3.3.0-alpha",
+      "version": "3.3.0",
       "notes": [
         "Minor breaking change 1:  Exporting data to file is now done in a function so that it can be reused elsewhere (e.g. Settings Page). No more right-click to download.  This also hides the link that is shown at the bottom-left on mouseover.",
         "Minor breaking change 2:  Some translation strings were modified (mostly in settings) and will need translations again.",

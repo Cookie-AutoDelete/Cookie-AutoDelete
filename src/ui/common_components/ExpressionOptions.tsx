@@ -131,35 +131,23 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
           <span
             className={'addHover'}
             onClick={() => {
-              if (!checked) {
-                onUpdateExpression({
-                  ...expression,
-                  cookieNames: [...originalCookieNames, name],
-                });
-              } else {
-                onUpdateExpression({
-                  ...expression,
-                  cookieNames: originalCookieNames.filter(
-                    cookieName => cookieName !== name,
-                  ),
-                });
-              }
+              onUpdateExpression({
+                ...expression,
+                cookieNames: checked ? originalCookieNames.filter(
+                  cookieName => cookieName !== name,
+                ) : [...originalCookieNames, name],
+              });
             }}
           >
-            {checked ? (
-              <FontAwesomeIcon
-                style={styles.checkbox}
-                size={'lg'}
-                icon={['far', 'check-square']}
-              />
-            ) : (
-              <FontAwesomeIcon
-                style={styles.checkbox}
-                size={'lg'}
-                icon={['far', 'square']}
-              />
-            )}
-            <label>{name}</label>
+            <FontAwesomeIcon
+              id={key}
+              style={styles.checkbox}
+              size={'lg'}
+              icon={['far', checked ? 'check-square' : 'square']}
+              role="checkbox"
+              aria-checked={checked as boolean}
+            />
+            <label htmlFor={key} area-labelledby={key}>{name}</label>
           </span>
         </div>
       );
@@ -188,6 +176,8 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public render() {
     const { cookies } = this.state;
     const { expression, state } = this.props;
+    const keyLocalStorage = `${expression.id}-cleanLocalStorage`;
+    const keyCleanAllCookies = `${expression.id}-cleanAllCookies`;
 
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
@@ -203,20 +193,15 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                   this.toggleCleanLocalstorage(!expression.cleanLocalStorage)
                 }
               >
-                {!expression.cleanLocalStorage ? (
-                  <FontAwesomeIcon
-                    style={styles.checkbox}
-                    size={'lg'}
-                    icon={['far', 'check-square']}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    style={styles.checkbox}
-                    size={'lg'}
-                    icon={['far', 'square']}
-                  />
-                )}
-                <label>{browser.i18n.getMessage('keepLocalstorageText')}</label>
+                <FontAwesomeIcon
+                  id={keyLocalStorage}
+                  style={styles.checkbox}
+                  size={'lg'}
+                  icon={['far', expression.cleanLocalStorage ? 'square' : 'check-square']}
+                  role="checkbox"
+                  aria-checked={!expression.cleanLocalStorage as boolean}
+                />
+                <label htmlFor={keyLocalStorage} aria-labelledby={keyLocalStorage}>{browser.i18n.getMessage('keepLocalstorageText')}</label>
               </span>
             </div>
           )}
@@ -233,25 +218,19 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               )
             }
           >
-            {expression.cleanAllCookies === undefined ||
-            expression.cleanAllCookies ? (
-              <FontAwesomeIcon
-                style={styles.checkbox}
-                size={'lg'}
-                icon={['far', 'check-square']}
-              />
-            ) : (
-              <FontAwesomeIcon
-                style={styles.checkbox}
-                size={'lg'}
-                icon={['far', 'square']}
-              />
-            )}
-            <label>{browser.i18n.getMessage('keepAllCookiesText')}</label>
+            <FontAwesomeIcon
+              id={keyCleanAllCookies}
+              style={styles.checkbox}
+              size={'lg'}
+              icon={['far', expression.cleanAllCookies === undefined || expression.cleanAllCookies ? 'check-square' : 'square']}
+              role="checkbox"
+              aria-checked={(expression.cleanAllCookies === undefined || expression.cleanAllCookies) as boolean}
+            />
+            <label htmlFor={keyCleanAllCookies} aria-labelledby={keyCleanAllCookies}>{browser.i18n.getMessage('keepAllCookiesText')}</label>
           </span>
         </div>
         {dropList && (
-          <div style={{ height: '150px', overflow: 'auto' }}>
+          <div style={{ maxHeight: '150px', overflow: 'auto' }}>
             {this.createCookieList(cookies, expression)}
           </div>
         )}

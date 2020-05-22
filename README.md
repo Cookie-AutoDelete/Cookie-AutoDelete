@@ -1,8 +1,6 @@
-![Tagged Release Distribution](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Tagged%20Release%20Distribution/badge.svg)
-![Node.js CI Tests](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Node.js%20CI%20Tests/badge.svg?branch=3.X.X-Branch)
-[![dependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete)
-[![devDependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/dev-status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete?type=dev)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/cookie-autodelete/localized.svg)](https://crowdin.com/project/cookie-autodelete)
+| Latest Release Tests | Development Tests | Dependencies | Localization | Coverage |
+| --- | --- | --- | --- | --- |
+|![Tagged Release Distribution](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Tagged%20Release%20Distribution/badge.svg) | ![Node.js CI Tests](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Node.js%20CI%20Tests/badge.svg?branch=3.X.X-Branch) | [![dependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete)  [![devDependencies Status](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete/dev-status.svg)](https://david-dm.org/Cookie-AutoDelete/Cookie-AutoDelete?type=dev) | [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cookie-autodelete/localized.svg)](https://crowdin.com/project/cookie-autodelete) | [![Coverage Status](https://coveralls.io/repos/github/Cookie-AutoDelete/Cookie-AutoDelete/badge.svg?branch=3.X.X-Branch)](https://coveralls.io/github/Cookie-AutoDelete/Cookie-AutoDelete?branch=3.X.X-Branch) [![codecov](https://codecov.io/gh/Cookie-AutoDelete/Cookie-AutoDelete/branch/3.X.X-Branch/graph/badge.svg)](https://codecov.io/gh/Cookie-AutoDelete/Cookie-AutoDelete) |
 
 # Cookie AutoDelete
 Control your cookies! This extension is inspired by [Self-Destructing Cookies](https://addons.mozilla.org/en-US/firefox/addon/self-destructing-cookies/). When a tab closes, any cookies not being used are automatically deleted. Prevent tracking by other cookies and add only the ones you trust. Easily import and export your cookie whitelist.
@@ -18,7 +16,7 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 
 ### Usage
 1. Add the sites you want to keep cookies for to the whitelist (permanently) or greylist (until browser restart)
-2. Enable “Active Mode” in the popup or settings
+2. Enable "Automatic Cleaning" in settings or "Auto-Clean" in popup
 3. Watch those unused cookies disappear :)
 
 ## Installation

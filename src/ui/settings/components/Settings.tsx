@@ -19,6 +19,7 @@ import { cadLog } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import CheckboxSetting from '../../common_components/CheckboxSetting';
 import IconButton from '../../common_components/IconButton';
+import SelectInput from '../../common_components/SelectInput';
 import { downloadObjectAsJSON } from '../../UILibs';
 import SettingsTooltip from './SettingsTooltip';
 
@@ -31,9 +32,6 @@ const styles = {
   inlineNumberInput: {
     display: 'inline',
     margin: '0 5px',
-  },
-  rowOverrides: {
-    marginBottom: '10px',
   },
 };
 
@@ -250,12 +248,15 @@ class Settings extends React.Component<SettingProps> {
               type="number"
               className="form-control"
               style={styles.inlineNumberInput}
-              onChange={e =>
-                onUpdateSetting({
-                  name: settings.delayBeforeClean.name,
-                  value: e.target.value,
-                })
-              }
+              onChange={e => {
+                const eValue = Number.parseInt(e.target.value, 10);
+                if (!Number.isNaN(eValue) && eValue >= 1 && eValue <= 2147483) {
+                  onUpdateSetting({
+                    name: settings.delayBeforeClean.name,
+                    value: eValue,
+                  })
+                }
+              }}
               value={settings.delayBeforeClean.value as number}
               min="1"
               max="2147483"
@@ -429,22 +430,15 @@ class Settings extends React.Component<SettingProps> {
             />
           </div>
           <div className="form-group">
-            <input
-              id="notificationOnScreen"
-              type="number"
-              className="form-control"
-              style={styles.inlineNumberInput}
-              onChange={e =>
-                onUpdateSetting({
-                  name: settings.notificationOnScreen.name,
-                  value: e.target.value,
-                })
-              }
-              value={settings.notificationOnScreen.value as number}
-              min="1"
-              max="5"
+            <SelectInput
+              numSize={4}
+              numStart={1}
+              settingObject={settings.notificationOnScreen}
+              text={`${browser.i18n.getMessage('secondsText')} ${browser.i18n.getMessage('notifyCookieCleanupDelayText')}`}
+              updateSetting={payload => {
+                onUpdateSetting(payload);
+              }}
             />
-            <label htmlFor="notificationOnScreen">{browser.i18n.getMessage('secondsText')} {browser.i18n.getMessage('notifyCookieCleanupDelayText')}</label>
             <SettingsTooltip
               hrefURL={'#show-notification-after-cookie-cleanup'}
             />
@@ -458,6 +452,34 @@ class Settings extends React.Component<SettingProps> {
             />
             <SettingsTooltip
               hrefURL={'#enable-popup-when-new-version-is-released'}
+            />
+          </div>
+          <div className="form-group">
+            <SelectInput
+              numSize={14}
+              numStart={10}
+              settingObject={settings.sizePopup}
+              text={browser.i18n.getMessage('sizePopupText')}
+              updateSetting={payload => {
+                onUpdateSetting(payload);
+              }}
+            />
+            <SettingsTooltip
+              hrefURL={'#size-of-popup'}
+            />
+          </div>
+          <div className="form-group">
+            <SelectInput
+              numSize={14}
+              numStart={10}
+              settingObject={settings.sizeSetting}
+              text={browser.i18n.getMessage('sizeSettingText')}
+              updateSetting={payload => {
+                onUpdateSetting(payload);
+              }}
+            />
+            <SettingsTooltip
+              hrefURL={'#size-of-setting'}
             />
           </div>
           {((browserDetect === 'Firefox' && platformOs !== 'android') ||

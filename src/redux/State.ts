@@ -74,6 +74,14 @@ export const initialState: State = {
       name: 'showNumOfCookiesInIcon',
       value: true,
     },
+    sizePopup: {
+      name: 'sizePopup',
+      value: 16,
+    },
+    sizeSetting: {
+      name: 'sizeSetting',
+      value: 16,
+    },
     statLogging: {
       name: 'statLogging',
       value: true,

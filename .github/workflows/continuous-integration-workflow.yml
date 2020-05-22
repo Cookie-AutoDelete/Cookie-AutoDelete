@@ -40,16 +40,21 @@ jobs:
       env:
         CI: true
     - name: Archive Production Build Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: builds
         path: builds
     - name: Archive Code Coverage Results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: coverage
         path: coverage
+    - name: Codecov.io Coverage upload
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
     - name: Coveralls.io Coverage Upload
-      uses: coverallsapp/github-action@v1.0.1
+      uses: coverallsapp/github-action@v1.1.1
+      continue-on-error: true
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}

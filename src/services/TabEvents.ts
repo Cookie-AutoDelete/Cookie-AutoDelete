@@ -16,7 +16,6 @@ import AlarmEvents from './AlarmEvents';
 import {
   checkIfProtected,
   showNumberOfCookiesInIcon,
-  showNumberofCookiesinTitle,
 } from './BrowserActionService';
 import {
   cadLog,

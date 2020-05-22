@@ -111,11 +111,7 @@ class ExpressionTable extends React.Component<
           <tr>
             <th />
             <th>{expressionColumnTitle}</th>
-            <th>
-              {/* {browser.i18n.getMessage('regularExpressionEquivalentText')} */}
-              {'Options'}
-            </th>
-
+            <th>{browser.i18n.getMessage('optionsText')}</th>
             <th>{browser.i18n.getMessage('listTypeText')}</th>
           </tr>
         </thead>

@@ -11,6 +11,7 @@
  * SOFTWARE.
  */
 import * as React from 'react';
+import { connect } from 'react-redux';
 import ErrorBoundary from '../common_components/ErrorBoundary';
 import About from './components/About';
 import ActivityLog from './components/ActivityLog';
@@ -19,7 +20,11 @@ import Settings from './components/Settings';
 import SideBar from './components/SideBar';
 import Welcome from './components/Welcome';
 
-class App extends React.Component {
+interface OwnProps {
+  sizeSetting: number;
+}
+
+class App extends React.Component<OwnProps> {
   public state = {
     activeTab: 'tabWelcome',
     settingsURL: '',
@@ -28,6 +33,7 @@ class App extends React.Component {
 
   // Gets the url hash and switches to that sidebar tab
   public async componentDidMount() {
+    document.documentElement.style.fontSize = `${this.props.sizeSetting as number || 16}px`;
     const tab = await browser.tabs.getCurrent();
     const tabURL = new URL(tab.url || '');
     this.setState({
@@ -74,4 +80,11 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state: State) => {
+  const { settings } = state;
+  return {
+    sizeSetting: settings.sizeSetting.value as number || 16,
+  };
+}
+
+export default connect(mapStateToProps)(App);
