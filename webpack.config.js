@@ -52,34 +52,38 @@ module.exports = {
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static',
     // }),
-    new CopyPlugin([
+    new CopyPlugin({
+      patterns: [
         {
           flatten: true,
           force: true,
           from: 'bootstrap/dist/css/bootstrap.min.css*',
           to: '../../extension/global_files/',
+          context: `${__dirname}/node_modules`,
         },
         {
           flatten: true,
           force: true,
           from: 'bootstrap/dist/js/bootstrap.bundle.min.js*',
           to: '../../extension/global_files/',
+          context: `${__dirname}/node_modules`,
         },
         {
           flatten: true,
           force: true,
           from: 'jquery/dist/jquery.slim.min*',
           to: '../../extension/global_files/',
+          context: `${__dirname}/node_modules`,
         },
         {
           flatten: true,
           force: true,
           from: 'webextension-polyfill/dist/browser-polyfill.min.js*',
           to: '../../extension/global_files/',
+          context: `${__dirname}/node_modules`,
         },
-      ],{
-        context: `${__dirname}/node_modules`,
-      }),
+      ],
+    }),
   ],
   resolve: {
     extensions: ['.mjs', '.tsx', '.ts', '.js', '.json', '.png'],

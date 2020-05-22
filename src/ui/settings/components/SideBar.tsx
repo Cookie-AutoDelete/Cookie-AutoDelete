@@ -86,20 +86,17 @@ class SideBar extends React.Component<OwnProps> {
           id="menuLink"
           className="menu-link"
         >
-          <FontAwesomeIcon size={'3x'} style={styles.hamburger} icon="bars" /><br />
-          <div
-            style={{
-              color: 'white',
-              fontSize: '16px',
-            }}>
-              {browser.i18n.getMessage('menuText')}
+          <FontAwesomeIcon size={'lg'} style={styles.hamburger} icon="bars" /><br />
+          <div id="menuLinkText" className="menuLinkText">
+            {browser.i18n.getMessage('menuText')}
           </div>
         </div>
 
         <div id="menu" className="menu">
           <div className="pure-menu nav flex-column">
             <div className="sidebar-version">
-              <span>{browser.i18n.getMessage('versionNumberText', ['CAD'])} <b>{browser.runtime.getManifest().version}</b></span>
+              {browser.i18n.getMessage('versionNumberText', ['CAD'])}<br />
+              <b>{browser.runtime.getManifest().version}</b>
             </div>
             {sideBarTabs.map((element, index) => (
               <div

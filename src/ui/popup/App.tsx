@@ -20,7 +20,6 @@ import {
   updateSetting,
 } from '../../redux/Actions';
 import {
-  cadLog,
   extractMainDomain,
   getHostname,
   getSetting,
@@ -61,6 +60,11 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   private cleanButtonContainerRef: React.ReactInstance | null = null;
 
   public async componentDidMount() {
+    document.documentElement.style.fontSize = `${this.props.state.settings.sizePopup.value as number || 16}px`;
+    if (this.props.state.cache.browserDetect === 'Chrome') {
+      // Chrome requires min width otherwise the layout is messed up
+      document.documentElement.style.minWidth = `${430 + ((this.props.state.settings.sizePopup.value as number || 16)-10)*35}px`;
+    }
     const tabs = await browser.tabs.query({
       active: true,
       currentWindow: true,
@@ -199,9 +203,10 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
 
     return (
       <div
+        id="cadPopup"
         className="container-fluid"
         style={{
-          minWidth: `${cache.browserDetect === 'Chrome' ? '650px' : ''}`,
+          overflow: 'auto'
         }}
       >
         <div
@@ -401,7 +406,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           <div className="col">
             <span
               style={{
-                fontSize: '20px',
+                fontSize: '1.25em',
                 marginRight: '8px',
                 verticalAlign: 'middle',
               }}
@@ -419,7 +424,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           <div
             className="col-3"
             style={{
-              fontSize: '18px',
+              fontSize: '1.1em',
               textAlign: 'center',
             }}
             >

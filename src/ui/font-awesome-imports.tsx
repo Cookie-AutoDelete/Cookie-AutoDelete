@@ -2,6 +2,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 // Import fonts like this to avoid tree shaking
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons/faCheckSquare';
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons/faQuestionCircle';
 import { faSquare } from '@fortawesome/free-regular-svg-icons/faSquare';
 import { faBan } from '@fortawesome/free-solid-svg-icons/faBan';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
@@ -23,6 +24,7 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 export default () => {
   library.add(
     faCheckSquare,
+    faQuestionCircle,
     faSquare,
     faBan,
     faBars,

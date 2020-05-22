@@ -10,6 +10,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
 interface OwnProps {
@@ -20,7 +22,7 @@ const SettingsTooltip: React.FunctionComponent<OwnProps> = ({ hrefURL }) => {
   const link = (hrefURL.startsWith('http') ? hrefURL : `https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation${hrefURL}`);
   return (
     <a href={link} target={'_blank'} className="tooltipCustom">
-      ?
+      <FontAwesomeIcon size={'lg'} icon={['far', 'question-circle']} />
     </a>
   );
 };

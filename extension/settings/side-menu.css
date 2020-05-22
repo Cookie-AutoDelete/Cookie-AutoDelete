@@ -130,7 +130,7 @@ Change color of the anchor links on hover/focus.
 This styles the selected menu item `<li>`.
 */
 
-.menu .pure-menu-selected, .menu .pure-menu-heading {
+.menu .pure-menu-selected {
   background: #1f8dd6;
 }
 
@@ -140,16 +140,6 @@ This styles a link within a selected menu item `<li>`.
 
 .menu .pure-menu-selected a {
   color: #fff;
-}
-
-/*
-This styles the menu heading.
-*/
-
-.menu .pure-menu-heading {
-  color: #fff;
-  font-size: 110%;
-  margin: 0;
 }
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
@@ -168,7 +158,6 @@ small screens.
   background: #000;
   background: rgba(0, 0, 0, 0.7);
   display: block; /* Show this only on small screens */
-  font-size: 10px;  /* Change this value to increase/decrease button size */
   height: auto;
   left: 0; /* "#menu width" */
   padding: 0.5em 1em;
@@ -202,6 +191,10 @@ small screens.
 
 .menu-link span:after {
   margin-top: 0.6em;
+}
+
+.menuLinkText {
+  color: white;
 }
 
 /* -- Responsive Styles (Media Queries) ------------------------------------- */

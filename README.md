@@ -16,7 +16,7 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 
 ### Usage
 1. Add the sites you want to keep cookies for to the whitelist (permanently) or greylist (until browser restart)
-2. Enable “Active Mode” in the popup or settings
+2. Enable "Automatic Cleaning" in settings or "Auto-Clean" in popup
 3. Watch those unused cookies disappear :)
 
 ## Installation
