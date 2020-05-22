@@ -50,7 +50,7 @@ jobs:
         name: coverage
         path: coverage
     - name: Codecov.io Coverage upload
-      uses: codecov/codecov-action@V1
+      uses: codecov/codecov-action@v1
       with:
         fail_ci_if_error: true
     - name: Coveralls.io Coverage Upload
