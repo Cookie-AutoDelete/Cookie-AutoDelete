@@ -95,14 +95,6 @@
 		"message": "啟動時清除已開分頁的 Cookie",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "現在清除，包括已開分頁的 cookie",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "現在清除",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
-	},
 	"debugMode": {
 		"message": "啟用調試模式（其他控制台輸出）",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
