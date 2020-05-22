@@ -35,8 +35,13 @@ jobs:
       run: node ./tools/replaceVersionNumber.js
     - name: Run Build
       run: npm run build
+    - name: Codecov.io Coverage upload
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
     - name: Coveralls.io Coverage Upload
       uses: coverallsapp/github-action@v1.1.1
+      continue-on-error: true
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: GitHub Releases
