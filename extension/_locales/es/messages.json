@@ -95,14 +95,6 @@
 		"message": "Limpiar las cookies de pestañas abiertas desde el inicio",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Ejecutar limpieza ahora, incluye cookies de pestañas abiertas",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "Ejecutar limpieza ahora",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
-	},
 	"debugMode": {
 		"message": "Habilitar el modo de depuración (salidas de consola adicionales)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
