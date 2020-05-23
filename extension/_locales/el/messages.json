@@ -95,6 +95,14 @@
 		"message": "Καθαρίστε τα cookie από τις ανοιχτές καρτέλες κατά την εκκίνηση",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Εκτελέστε εκκαθάριση τώρα, συμπεριλάβετε τομείς από ανοιχτές καρτέλες",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Εκτελέστε εκκαθάριση τώρα, εξαιρέστε τομείς από ανοιχτές καρτέλες",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Ενεργοποίηση λειτουργίας εντοπισμού σφαλμάτων (Πρόσθετες έξοδοι κονσόλας)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
