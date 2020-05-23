@@ -511,6 +511,14 @@
 		"message": "Arată numărul de cookie-uri pentru acest domeniu prin pictogramă",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Dimensiune pop-up (în px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Dimensiunea paginilor de setare (în px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Întrerupe modificarea",
 		"description": "Stop editing"
