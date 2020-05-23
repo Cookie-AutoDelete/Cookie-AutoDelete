@@ -95,6 +95,14 @@
 		"message": "Puhdista evästeet käynnistyksen avoimista välilehdistä",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Suorita siivous nyt, sisällytä verkkotunnukset avoimista välilehdistä",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Suorita siivous nyt, sulje verkkotunnukset avoimista välilehdistä",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Ota virheenkorjaustila käyttöön (lisäkonsolilähdöt)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
