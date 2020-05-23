@@ -192,7 +192,7 @@
 		"description": "Import Core Settings Failed - Found unknown setting"
 	},
 	"importCoreSettingsText": {
-		"message": "Einstellungen Importieren",
+		"message": "Einstellungen importieren",
 		"description": "Import Core Settings"
 	},
 	"importFileTypeInvalid": {
@@ -502,6 +502,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Anzahl der Cookies für diese Domain über das Symbol anzeigen",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Größe des Pop-ups (in px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Größe der Einstellungsseiten (in px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Bearbeiten beenden",
