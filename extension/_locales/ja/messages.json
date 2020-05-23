@@ -95,6 +95,14 @@
 		"message": "起動時に開いているタブからクッキーを消去する",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "デバッグモードを有効にする（追加のコンソール出力）",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
