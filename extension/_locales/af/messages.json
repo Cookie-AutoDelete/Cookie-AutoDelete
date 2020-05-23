@@ -511,6 +511,14 @@
 		"message": "Toon aantal koekies vir daardie domein op die ikoon",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Grootte van die opspringer (in px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Grootte van instellingsbladsye (in px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Hou op wysig",
 		"description": "Stop editing"
