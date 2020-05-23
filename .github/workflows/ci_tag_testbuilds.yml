@@ -43,7 +43,6 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
     - name: Coveralls.io Coverage Upload
       uses: coverallsapp/github-action@v1.1.1
-      continue-on-error: true
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: GitHub Releases
