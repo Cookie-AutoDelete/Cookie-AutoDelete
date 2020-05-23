@@ -511,6 +511,14 @@
 		"message": "Mostra il numero di cookie per quel dominio sopra l'icona",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Dimensione del Popup (in px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Dimensione delle pagine di impostazione (in px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Interrompi modifica",
 		"description": "Stop editing"
