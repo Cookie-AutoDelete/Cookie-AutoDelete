@@ -511,6 +511,14 @@
 		"message": "إظهار عدد ملفات تعريف الارتباط لهذا المجال عبر الرمز",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "حجم النوافذ المنبثقة (بالبكسل)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "حجم إعدادات الصفحات (بالبكسل)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "إيقاف التعديل",
 		"description": "Stop editing"
