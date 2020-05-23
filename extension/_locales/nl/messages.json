@@ -95,6 +95,14 @@
 		"message": "Ruim cookies op van openstaande tabbladen bij het starten",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Ruim op, inclusief domeinen van open tabbladen",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Ruim op, sluit domeinen uit van open tabbladen",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Debug-modus inschakelen (extra console output)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
