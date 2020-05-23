@@ -511,6 +511,14 @@
 		"message": "Toon het aantal cookies voor dat domein over het pictogram",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Grootte van popup (in px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Grootte van instelingspagina's (in px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Stoppen met bewerken",
 		"description": "Stop editing"
