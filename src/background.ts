@@ -18,7 +18,7 @@ import {
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
-import { checkIfProtected } from './services/BrowserActionService';
+import { checkIfProtected, setGlobalIcon } from './services/BrowserActionService';
 import CookieEvents from './services/CookieEvents';
 import { cadLog, convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
@@ -72,8 +72,13 @@ const onSettingsChange = () => {
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
     browser.alarms.clear('activeModeAlarm');
   }
-  checkIfProtected(store.getState());
 
+  if (previousSettings.activeMode.value !== currentSettings.activeMode.value) {
+    setGlobalIcon(currentSettings.activeMode.value as boolean);
+  }
+
+  checkIfProtected(store.getState());
+  
   // Validate Settings again
   store.dispatch<any>(validateSettings());
 };
