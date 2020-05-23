@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Wyczyść teraz, włącznie z otwartymi kartami",
+		"message": "Uruchom czyszczenie teraz, dołącz domeny z otwartych kart",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Wyczyść teraz",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Uruchom czyszczenie teraz, wyklucz domeny z otwartych kart",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Włącz tryb debugowania (dodatkowe komunikaty w konsoli)",
@@ -514,6 +514,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Pokaż liczbę ciasteczek dla tej domeny nad ikoną",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Rozmiar czcionki panelu (piksele)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Rozmiar czcionki w ustawieniach (piksele)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Zakończ edycję",

@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Ruim nou op, sluit koekies van oop oortjies in",
+		"message": "Ruim nou op, sluit domeine van oop oortjies in",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Loop opruim",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Begin nou opruiming, sluit domeine uit van oop oortjies",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Aktiveer ontfoutmodus (bykomende konsole-uitsette)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Toon aantal koekies vir daardie domein op die ikoon",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Grootte van die opspringer (in px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Grootte van instellingsbladsye (in px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Hou op wysig",

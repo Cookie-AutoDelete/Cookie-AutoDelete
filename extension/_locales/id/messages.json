@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Hapus sekarang, termasuk kuki dari tab yang terbuka",
+		"message": "Jalankan cleanup sekarang, sertakan domain dari tab terbuka",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Hapus sekarang",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Jalankan pembersihan sekarang, kecualikan domain dari tab terbuka",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Aktifkan Mode Debug (Keluaran Console Tambahan)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Tampilkan Jumlah Cookie untuk Domain tersebut di atas Ikon",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Ukuran Popup (dalam px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Ukuran Halaman Pengaturan (dalam px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Setop menyunting",

@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Spustit čištění nyní, včetně cookies z otevřených panelů",
+		"message": "Spustit čištění, zahrnout domény z otevřených panelů",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Spustit vyčištění",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Spustit čištění nyní, vyloučit domény z otevřených panelů",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Povolit režim ladění (další výstupy konzoly)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Zobrazit počet souborů cookie pro danou doménu",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Velikost vyskakovacího okna (v px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Velikost stránky nastavení (v px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Zastavit úpravy",

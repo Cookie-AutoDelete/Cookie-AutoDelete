@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Pulisci adesso, inclusi i cookie delle schede aperte",
+		"message": "Esegui la pulizia ora, include i domini dalle schede aperte",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Pulisci adesso",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Esegui la pulizia ora, esclude i domini dalle schede aperte",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Abilita Modalità Debug (uscita Console aggiuntiva)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Mostra il numero di cookie per quel dominio sopra l'icona",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Dimensione del Popup (in px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Dimensione delle pagine di impostazione (in px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Interrompi modifica",

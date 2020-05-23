@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "開いているタブのクッキーも含め今すぐ消去する",
+		"message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "今すぐ消去する",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "デバッグモードを有効にする（追加のコンソール出力）",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "アイコンの上にあるドメインのクッキー数を表示する",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "ポップアップのサイズ (ピクセル単位で)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "設定ページのサイズ (ピクセル単位で)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "編集中止",

@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Запустить очистку сейчас, включая куки из открытых вкладок",
+		"message": "Выполнить очистку сейчас, включить домены из открытых вкладок",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Запустить очистку сейчас",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Запустить очистку сейчас, исключить домены из открытых вкладок",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Включить режим отладки (дополнительные сообщения в консоли)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Показывать количество Cookie для этого домена поверх значка",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Размер всплывающего окна (в пикселях)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Размер настроек страниц (в пикселях)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Отменить редактирование",

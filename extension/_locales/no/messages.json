@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Kjør opprydding nå, inkludere informasjonskapsler fra åpne faner",
+		"message": "Kjør opprydding nå, inkludert domener fra åpne faner",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Kjør opprydding nå",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Kjør opprydding nå, ekskluder domener fra åpne faner",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Aktiver feilsøkingsmodus (tilleggsutdata)",
@@ -121,10 +121,6 @@
 	},
 	"domainExpressionsText": {
 		"message": "Domeneuttrykk",
-		"description": "Domain Expression"
-	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *.example.com",
 		"description": "Domain Expression"
 	},
 	"dropdownAdditionalCleaningOptions": {
@@ -514,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Vis antall informasjonskapsler for det domenet over ikonet",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Størrelse på Popup (i px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Størrelse på innstillinger sider (i px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Stopp redigering",

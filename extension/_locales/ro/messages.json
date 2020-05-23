@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Rulează curățarea acum, inclusiv pentru cookie-urile din filele deschise",
+		"message": "Rulează curățarea acum, include domenii din filele deschise",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Rulează curățarea acum",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Rulează curățarea acum, excluzând domeniile din filele deschise",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Activează Modul Depanare (Ieșiri Console Suplimentare)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Arată numărul de cookie-uri pentru acest domeniu prin pictogramă",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Dimensiune pop-up (în px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Dimensiunea paginilor de setare (în px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Întrerupe modificarea",

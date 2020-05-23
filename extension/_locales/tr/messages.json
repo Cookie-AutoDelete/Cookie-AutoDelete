@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Temizlemeyi başlat, açık sekmelerdeki çerezleri de temizle",
+		"message": "Temizlemeyi şimdi çalıştırın, açık sekmelerden alan adları ekleyin",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Temizlemeyi başlat",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Temizlemeyi şimdi çalıştırın, alanları açık sekmelerden hariç tutun",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Hata Ayıklama Modunu Etkinleştir (Ek Konsol Çıkışları)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Bu Etki Alanı için Çerez Sayısını Simge Üzerinde Göster",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Popup Boyutu (px olarak)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Ayar Sayfalarının Boyutu (px olarak)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Düzenlemeyi durdur",

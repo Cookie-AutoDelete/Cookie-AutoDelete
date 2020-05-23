@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Изчиства всички бисквитки, включително и от отворените раздели",
+		"message": "Изчиства бисквитките, включително и от отворените раздели",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Изчистване",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Изчиства бисквитките с изключение на тези от отворените раздели",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Активиране на режима за отстраняване на грешки (допълнителни изходи на конзолата)",
@@ -430,7 +430,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Сигурни ли сте, че искате да премахнете ВСИЧКИ ($expressionCount$) запазени изрази(и) от списъка(ите) ($listCount$)? \n\nТОВА НЕ МОЖЕ ДА БЪДЕ ОТМЕНЕНО! \n\nВъведете [$expressionCount$] и щракнете върху OK, за да изтриете.",
+		"message": "Сигурни ли сте, че искате да премахнете ВСИЧКИ ($expressionCount$) запазени израза(и) от списъка(ците) ($listCount$)? \n\nТОВА ДЕЙСТВИЕ Е НЕОБРАТИМО! \n\nВъведете [$expressionCount$] и изберете „OK“, за да изтриете.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
@@ -511,6 +511,14 @@
 		"message": "Показване на Брой бисквитки за този домейн над иконата",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Размер на изскачащото меню (в пиксели)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Размер на страницата с настройки (в пиксели)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Отказ",
 		"description": "Stop editing"
@@ -560,7 +568,7 @@
 		}
 	},
 	"welcomeMessage": {
-		"message": "Здравейте! По време на тази сесия от добавката $cadTitle$ са изтрити $sessionDeleted$ бисквитки, а общо за всички сесии - $totalDeleted$.",
+		"message": "Здравейте! По време на тази сесия от добавката $cadTitle$ са изтрити $sessionDeleted$ бисквитки, а общо – $totalDeleted$.",
 		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
 		"placeholders": {
 			"cadTitle": {

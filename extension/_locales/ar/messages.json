@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "قم بتشغيل التنظيف الآن، قم بتضمين ملفات تعريف الارتباط من علامات التبويب المفتوحة",
+		"message": "تشغيل التنظيف الآن، يشمل نطاقات من علامات التبويب المفتوحة",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "تشغيل المسح الآن",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "تشغيل التنظيف الآن، استبعاد النطاقات من علامات التبويب المفتوحة",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "تمكين وضع التصحيح (خروج وحدة التحكم الإضافية)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "إظهار عدد ملفات تعريف الارتباط لهذا المجال عبر الرمز",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "حجم النوافذ المنبثقة (بالبكسل)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "حجم إعدادات الصفحات (بالبكسل)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "إيقاف التعديل",

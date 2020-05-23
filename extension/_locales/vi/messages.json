@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Chạy dọn dẹp ngay, bao gồm các cookie từ các trang đang mở",
+		"message": "Chạy dọn dẹp ngay bây giờ, bao gồm các tên miền từ các tab đang mở",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Chạy dọn dẹp ngay",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Chạy dọn dẹp ngay bây giờ, loại trừ các tên miền khỏi các tab đang mở",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Bật Chế độ gỡ lỗi (Đầu ra bảng điều khiển bổ sung)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Hiển thị số lượng cookie cho tên miền đó qua biểu tượng",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Kích thước của Popup (tính bằng px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Kích thước của trang cài đặt (tính bằng px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Ngưng chỉnh sửa",

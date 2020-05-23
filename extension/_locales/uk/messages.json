@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Запустити очищення зараз, включаючи куки відкритих вкладок",
+		"message": "Запустити очищення зараз, включаючи домени із відкритих вкладок",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Запустити очищення зараз",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Запустити очищення зараз, виключені домени з відкритих вкладок",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Увімкнути режим налагодження (Додаткові консольні виходи)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Показувати кількість кук для цього домену на іконку",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Розмір спливаючого вікна (у пікселях)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Розмір встановлених сторінок (у пікселях)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Скасувати редагування",

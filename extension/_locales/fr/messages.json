@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Nettoyer maintenant, y compris les cookies des onglets ouverts",
+		"message": "Effectuez le nettoyage maintenant, y compris les domaines des onglets ouverts",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Nettoyer maintenant",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Exécuter le nettoyage maintenant, exclure les domaines des onglets ouverts",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Activer le mode débogage (sorties dans la console supplémentaires)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Afficher le nombre de cookies pour ce domaine sur l'icône",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Taille de la popup (en px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Taille des pages de configuration (en px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Annuler la modification",

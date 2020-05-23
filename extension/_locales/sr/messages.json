@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Покрени чишћење сада, укључујући колачиће из отворених језичака",
+		"message": "Покрените чишћење сада, укључите домене са отворених картица",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Покрени чишћење сада",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Покрените чишћење сада, искључите домене из отворених картица",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Омогућите режим уклањања погрешака (додатни излази конзоле)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Покажите број колачића за тај домен преко иконе",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Величина скочног прозора (у пк)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Величина страница за подешавање (у пк)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Престани са уређивањем",

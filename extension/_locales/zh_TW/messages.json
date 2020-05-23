@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "現在清除，包括已開分頁的 cookie",
+		"message": "立即運行清理，從打開的選項卡中包含域",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "現在清除",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "立即運行清理，從打開的選項卡中排除域",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "啟用調試模式（其他控制台輸出）",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "在圖標上顯示該域的Cookie數",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "彈出窗口的大小（以像素為單位）",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "設置頁面大小（以像素為單位）",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "停止編輯",

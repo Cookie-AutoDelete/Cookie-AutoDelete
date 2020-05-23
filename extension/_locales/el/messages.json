@@ -96,12 +96,12 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Εκτελέστε εκκαθάριση τώρα, συμπεριλάβετε cookie από ανοιχτές καρτέλες",
+		"message": "Εκτελέστε εκκαθάριση τώρα, συμπεριλάβετε τομείς από ανοιχτές καρτέλες",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Εκτελέστε εκκαθάριση τώρα",
-		"description": "Run cleanup now. This is shown on mouseover on the button."
+		"message": "Εκτελέστε εκκαθάριση τώρα, εξαιρέστε τομείς από ανοιχτές καρτέλες",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
 		"message": "Ενεργοποίηση λειτουργίας εντοπισμού σφαλμάτων (Πρόσθετες έξοδοι κονσόλας)",
@@ -510,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Ενεργοποίηση γνωστοποίησης καθαρισμού",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Μέγεθος αναδυόμενου παραθύρου (σε px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Μέγεθος ρυθμίσεων σελίδων (σε px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Διακοπή επεξεργασίας",
