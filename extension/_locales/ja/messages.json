@@ -503,6 +503,14 @@
 		"message": "アイコンの上にあるドメインのクッキー数を表示する",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "ポップアップのサイズ (ピクセル単位で)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "設定ページのサイズ (ピクセル単位で)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "編集中止",
 		"description": "Stop editing"
