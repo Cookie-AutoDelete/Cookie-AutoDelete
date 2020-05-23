@@ -512,11 +512,11 @@
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"sizePopupText": {
-		"message": "Величина скочног прозора (у пк)",
+		"message": "Величина искачућег прозора (у пикселима)",
 		"description": "Size of Popup (in px).  This sets the font size in the Popup."
 	},
 	"sizeSettingText": {
-		"message": "Величина страница за подешавање (у пк)",
+		"message": "Величина странице за подешавања (у пикселима)",
 		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
