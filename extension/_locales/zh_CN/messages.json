@@ -95,6 +95,14 @@
 		"message": "启动时清理打开标签页的 Cookie",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "现在运行清理，包括打开标签页中的域",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "现在运行清理，在打开的标签中排除域",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "启用调试模式 (额外控制台输出)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
