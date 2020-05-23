@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "3.3.1",
+      "notes": [
+        "Fixed regression of icon colors from 3.3.0.  Closes #733",
+        "Added the ability to choose font size for popup and settings.  Closes #736, #598, #593, and possibly #358",
+        "Help icon for each setting is an actual icon now."
+      ]
+    },
+    {
       "version": "3.3.0",
       "notes": [
         "Minor breaking change 1:  Exporting data to file is now done in a function so that it can be reused elsewhere (e.g. Settings Page). No more right-click to download.  This also hides the link that is shown at the bottom-left on mouseover.",
