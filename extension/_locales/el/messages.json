@@ -511,6 +511,14 @@
 		"message": "Ενεργοποίηση γνωστοποίησης καθαρισμού",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Μέγεθος αναδυόμενου παραθύρου (σε px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Μέγεθος ρυθμίσεων σελίδων (σε px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Διακοπή επεξεργασίας",
 		"description": "Stop editing"
