@@ -95,6 +95,14 @@
 		"message": "Șterge cookie-urile din filele deschise la pornire",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Rulează curățarea acum, include domenii din filele deschise",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Rulează curățarea acum, excluzând domeniile din filele deschise",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Activează Modul Depanare (Ieșiri Console Suplimentare)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
