@@ -95,6 +95,14 @@
 		"message": "Nettoyer les cookies des onglets ouverts lors du démarrage",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Effectuez le nettoyage maintenant, y compris les domaines des onglets ouverts",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Exécuter le nettoyage maintenant, exclure les domaines des onglets ouverts",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Activer le mode débogage (sorties dans la console supplémentaires)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
