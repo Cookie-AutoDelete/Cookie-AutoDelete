@@ -95,6 +95,14 @@
 		"message": "Ta bort cookies från öppna flikar vid uppstart",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Kör rensning nu, inkludera domäner från öppna flikar",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Kör rensning nu, undanta domäner från öppna flikar",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Aktivera felsökningsläge (ytterligare konsolutdata)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
@@ -502,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Visa antal cookies för den domänen över ikonen",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Storlek på popup (i px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Storlek på inställningssidor (i px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Avsluta redigering",
