@@ -123,10 +123,6 @@
 		"message": "Domeneuttrykk",
 		"description": "Domain Expression"
 	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomain.example.com, *.example.com",
-		"description": "Domain Expression"
-	},
 	"dropdownAdditionalCleaningOptions": {
 		"message": "Veksle dråpe for ytterligere rengjøringshandlinger",
 		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
@@ -514,6 +510,14 @@
 	"showNumberOfCookiesInIconText": {
 		"message": "Vis antall informasjonskapsler for det domenet over ikonet",
 		"description": "Show Number of Cookies for that Domain over the Icon"
+	},
+	"sizePopupText": {
+		"message": "Størrelse på Popup (i px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Størrelse på innstillinger sider (i px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
 		"message": "Stopp redigering",
