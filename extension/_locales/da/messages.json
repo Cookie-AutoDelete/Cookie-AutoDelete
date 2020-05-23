@@ -95,6 +95,14 @@
 		"message": "Slet cookies fra åbne faner ved opstart",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Slet nu, inkluder domæner fra åbne faner",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Slet nu, ekskluder domæner fra åbne faner",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Aktiver aflusningstilstand (Yderligere konsoluddata)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
