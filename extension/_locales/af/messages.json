@@ -95,6 +95,14 @@
 		"message": "Maak koekies skoon van oop oortjies tydens opstart",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Ruim nou op, sluit domeine van oop oortjies in",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Begin nou opruiming, sluit domeine uit van oop oortjies",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Aktiveer ontfoutmodus (bykomende konsole-uitsette)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
