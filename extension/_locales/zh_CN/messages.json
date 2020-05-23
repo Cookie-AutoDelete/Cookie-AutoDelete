@@ -511,6 +511,14 @@
 		"message": "在图标上显示该域的 Cookie 数量",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "弹出窗口大小(以px为单位)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "设置页面大小(以px为单位)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "停止编辑",
 		"description": "Stop editing"
