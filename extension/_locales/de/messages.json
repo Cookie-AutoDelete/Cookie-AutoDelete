@@ -95,6 +95,14 @@
 		"message": "Cookies von offenen Tabs beim Start aufräumen",
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
+	"cookieCleanupIgnoreOpenTabsText": {
+		"message": "Jetzt bereinigen, Domains von offenen Tabs einschließen",
+		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+	},
+	"cookieCleanupText": {
+		"message": "Säuberung jetzt durchführen, Domains von offenen Tabs ausschließen",
+		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+	},
 	"debugMode": {
 		"message": "Debug-Modus aktivieren (zusätzliche Konsolen-Ausgabe)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
