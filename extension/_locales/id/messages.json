@@ -503,6 +503,14 @@
 		"message": "Tampilkan Jumlah Cookie untuk Domain tersebut di atas Ikon",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
+	"sizePopupText": {
+		"message": "Ukuran Popup (dalam px)",
+		"description": "Size of Popup (in px).  This sets the font size in the Popup."
+	},
+	"sizeSettingText": {
+		"message": "Ukuran Halaman Pengaturan (dalam px)",
+		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+	},
 	"stopEditingText": {
 		"message": "Setop menyunting",
 		"description": "Stop editing"
