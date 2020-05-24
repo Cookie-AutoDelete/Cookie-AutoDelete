@@ -98,7 +98,6 @@ export const setGlobalIcon = async (enabled: boolean) => {
     });
 
     const tabAwait = await browser.tabs.query({
-      active: true,
       windowType: 'normal',
     });
     tabAwait.forEach(tab => {

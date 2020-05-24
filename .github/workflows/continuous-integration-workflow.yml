@@ -1,6 +1,9 @@
 name: Node.js CI Tests
 
 on:
+  push:
+    branches-ignore:
+      - '_archived__**'
   pull_request:
     branches-ignore:
       - '_archived__**'
