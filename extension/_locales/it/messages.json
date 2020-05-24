@@ -8,15 +8,15 @@
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
-		"message": "Attivare la pulitura automatica",
+		"message": "Attiva la pulizia automatica",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
-		"message": "Pulitura automatica disattivata",
+		"message": "Pulizia automatica disattivata",
 		"description": "Auto-clean disabled"
 	},
 	"autoDeleteEnabledText": {
-		"message": "Pulitura automatica attivata",
+		"message": "Pulizia automatica attivata",
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
@@ -32,7 +32,7 @@
 		"description": "Clean"
 	},
 	"cleanupDomainChangeText": {
-		"message": "Attiva la pulitura al cambiamento di dominio",
+		"message": "Attiva la pulizia al cambiamento di dominio",
 		"description": "Enable Cleanup on Domain Change"
 	},
 	"cleanupActionsBypass": {
@@ -104,7 +104,7 @@
 		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
-		"message": "Abilita Modalità Debug (uscita Console aggiuntiva)",
+		"message": "Abilita modalità debug (output di console aggiuntivi)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
 	},
 	"defaultSettingsText": {
@@ -156,7 +156,7 @@
 		"description": "Error!"
 	},
 	"exportSettingsText": {
-		"message": "Impostazioni Export Core",
+		"message": "Esporta impostazioni principali",
 		"description": "Export Core Settings"
 	},
 	"exportURLSText": {
@@ -208,7 +208,7 @@
 		"description": "File given is not a type we handle"
 	},
 	"importFileValidationFailed": {
-		"message": "File di convalida fallita",
+		"message": "Il file fornito ha fallito la verifica",
 		"description": "File given failed validation"
 	},
 	"importMissingKey": {
@@ -272,7 +272,7 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Pulizia dei registri non verrà generata per le schede in Navigazione anonima",
+		"message": "I registri di pulizia non verranno generati per le schede in Navigazione anonima",
 		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
 	},
 	"noRulesText": {
@@ -430,7 +430,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Sei sicuro di voler rimuovere TUTTE ($expressionCount$) espressioni salvate da ($listCount$) elenco)?\n\nQUESTA NON PUO' ESSERE ANNULLATA!\n\nTipo [ $expressionCount$ ] e clicca OK per eliminare.",
+		"message": "Sei sicuro di voler rimuovere TUTTE le ($expressionCount$) espressioni salvate da ($listCount$) elenchi?\n\nL'AZIONE NON PUÒ ESSERE ANNULLATA!\n\nDigita [ $expressionCount$ ] e clicca OK per eliminare.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
