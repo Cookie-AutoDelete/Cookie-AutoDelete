@@ -157,6 +157,8 @@ const onStartUp = async () => {
 
   store.dispatch<any>(validateSettings());
 
+  setGlobalIcon(getSetting(store.getState(), 'activeMode') as boolean);
+
   checkIfProtected(store.getState());
 
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
