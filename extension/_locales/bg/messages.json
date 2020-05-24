@@ -410,11 +410,11 @@
 		}
 	},
 	"reasonTabsWereIgnored": {
-		"message": "и отворените подпрозорци са пренебрегнати",
+		"message": "и отворените раздели са пренебрегнати",
 		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
 	},
 	"reasonTabsWereNotIgnored": {
-		"message": "или в който и да е отворен подпрозорец",
+		"message": "или в който и да е отворен раздел",
 		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
 	},
 	"regularExpressionEquivalentText": {
@@ -478,27 +478,27 @@
 		"description": "Save expression"
 	},
 	"secondsText": {
-		"message": "секунди",
+		"message": "секунда(и)",
 		"description": "second(s)"
 	},
 	"settingGroupAutoClean": {
-		"message": "Опции за автоматично изчистване",
+		"message": "Настройки на автоматично изчистване",
 		"description": "Automatic Cleaning Options"
 	},
 	"settingGroupExpression": {
-		"message": "Опции на изрази",
+		"message": "Настройки на изрази",
 		"description": "Expression Options"
 	},
 	"settingGroupExtension": {
-		"message": "Опции на разширението",
+		"message": "Настройки на разширението",
 		"description": "Extension Options"
 	},
 	"settingGroupOtherBrowsing": {
-		"message": "Други опции за почистване на данните за сърфиране",
+		"message": "Други възможности за почистване на данни от разглеждане",
 		"description": "Other Browsing Data Cleanup Options"
 	},
 	"settingsText": {
-		"message": "$CAD$ Настройки",
+		"message": "Настройки на $CAD$",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -548,7 +548,7 @@
 		"description": "Toggle to whitelist"
 	},
 	"versionNumberText": {
-		"message": "$CAD$ версия",
+		"message": "Издание на $CAD$",
 		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
 		"placeholders": {
 			"CAD": {

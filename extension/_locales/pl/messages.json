@@ -123,10 +123,6 @@
 		"message": "Formuła domeny",
 		"description": "Domain Expression"
 	},
-	"domainPlaceholderText": {
-		"message": "example.com, subdomena.example.com, *.example.com",
-		"description": "Domain Expression"
-	},
 	"dropdownAdditionalCleaningOptions": {
 		"message": "Pokaż listę dodatkowych akcji czyszczenia",
 		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"

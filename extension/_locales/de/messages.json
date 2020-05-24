@@ -112,7 +112,7 @@
 		"description": "Restore Default Settings"
 	},
 	"disableAutoDeleteText": {
-		"message": "Umschalten um automatisches Aufräumen zu deaktivieren (manueller Modus)",
+		"message": "Umschalten, um automatisches Aufräumen zu deaktivieren (manueller Modus)",
 		"description": "Toggle to disable automatic cleanup (manual mode)"
 	},
 	"documentationText": {
@@ -132,7 +132,7 @@
 		"description": "Edit expression"
 	},
 	"enableAutoDeleteText": {
-		"message": "Umschalten um automatisches Aufräumen zu aktivieren (automatischer Modus)",
+		"message": "Umschalten, um automatisches Aufräumen zu aktivieren (automatischer Modus)",
 		"description": "Toggle to enable automatic cleanup (automatic mode)"
 	},
 	"enableCleanupLogText": {
@@ -536,7 +536,7 @@
 		"description": "Add to Whitelist (Never Clean)"
 	},
 	"toggleNotificationText": {
-		"message": "Umstellen um Benachrichtigungen zu aktivieren oder deaktivieren",
+		"message": "Umstellen, um Benachrichtigungen zu aktivieren oder deaktivieren",
 		"description": "Toggle to enable or disable notifications"
 	},
 	"toggleToGreyListWordText": {

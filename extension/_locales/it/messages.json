@@ -8,15 +8,15 @@
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
-		"message": "Attivare la pulitura automatica",
+		"message": "Attiva la pulizia automatica",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
-		"message": "Pulitura automatica disattivata",
+		"message": "Pulizia automatica disattivata",
 		"description": "Auto-clean disabled"
 	},
 	"autoDeleteEnabledText": {
-		"message": "Pulitura automatica attivata",
+		"message": "Pulizia automatica attivata",
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
@@ -32,11 +32,11 @@
 		"description": "Clean"
 	},
 	"cleanupDomainChangeText": {
-		"message": "Attiva la pulitura al cambiamento di dominio",
+		"message": "Attiva la pulizia al cambiamento di dominio",
 		"description": "Enable Cleanup on Domain Change"
 	},
 	"cleanupActionsBypass": {
-		"message": "Attenzione - Azioni qui sotto ignorano le impostazioni!",
+		"message": "Attenzione - le azioni qui sotto ignorano le impostazioni!",
 		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
@@ -62,7 +62,7 @@
 		}
 	},
 	"clearSiteDataText": {
-		"message": "Elimina $siteData$ di questo dominio",
+		"message": "Elimina i $siteData$ di questo dominio",
 		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
 		"placeholders": {
 			"siteData": {
@@ -104,7 +104,7 @@
 		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
-		"message": "Abilita Modalità Debug (uscita Console aggiuntiva)",
+		"message": "Abilita modalità debug (output di console aggiuntivi)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
 	},
 	"defaultSettingsText": {
@@ -112,7 +112,7 @@
 		"description": "Restore Default Settings"
 	},
 	"disableAutoDeleteText": {
-		"message": "Cambia per disattivare la pulitura automatica (modalità manuale)",
+		"message": "Cambia per disattivare la pulizia automatica (modalità manuale)",
 		"description": "Toggle to disable automatic cleanup (manual mode)"
 	},
 	"documentationText": {
@@ -124,7 +124,7 @@
 		"description": "Domain Expression"
 	},
 	"dropdownAdditionalCleaningOptions": {
-		"message": "Attiva/disattiva Azioni di pulizia aggiuntive a discesa",
+		"message": "Attiva/disattiva tendina di azioni di pulizia aggiuntive",
 		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
 	},
 	"editExpressionText": {
@@ -132,7 +132,7 @@
 		"description": "Edit expression"
 	},
 	"enableAutoDeleteText": {
-		"message": "Cambia per attivare la pulitura automatica (modalità automatica)",
+		"message": "Cambia per attivare la pulizia automatica (modalità automatica)",
 		"description": "Toggle to enable automatic cleanup (automatic mode)"
 	},
 	"enableCleanupLogText": {
@@ -156,7 +156,7 @@
 		"description": "Error!"
 	},
 	"exportSettingsText": {
-		"message": "Impostazioni Export Core",
+		"message": "Esporta impostazioni principali",
 		"description": "Export Core Settings"
 	},
 	"exportURLSText": {
@@ -196,11 +196,11 @@
 		"description": "Greylist"
 	},
 	"importCoreSettingsFailed": {
-		"message": "Importazione delle impostazioni del core fallita - Trovata impostazione sconosciuta",
+		"message": "Importazione delle impostazioni principali fallita - Trovata impostazione sconosciuta",
 		"description": "Import Core Settings Failed - Found unknown setting"
 	},
 	"importCoreSettingsText": {
-		"message": "Importa Impostazioni Core",
+		"message": "Importa impostazioni principali",
 		"description": "Import Core Settings"
 	},
 	"importFileTypeInvalid": {
@@ -208,7 +208,7 @@
 		"description": "File given is not a type we handle"
 	},
 	"importFileValidationFailed": {
-		"message": "File di convalida fallita",
+		"message": "Il file fornito ha fallito la verifica",
 		"description": "File given failed validation"
 	},
 	"importMissingKey": {
@@ -240,15 +240,15 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "ATTENZIONE: abilitare sia la pulizia del LocalStorage che le schede contenitore può causare effetti collaterali indesiderati a causa di limitazioni delle API. L'archivio locale verrà pulito dal nome host su TUTTI i contenitori.",
+		"message": "ATTENZIONE: abilitare sia la pulizia del LocalStorage che le schede contenitore può causare effetti collaterali indesiderati a causa di limitazioni delle API. Il LocalStorage verrà pulito dal nome host su TUTTI i contenitori.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
-		"message": "Pulitura del localstorage",
+		"message": "Pulizia del LocalStorage",
 		"description": "LocalStorage Cleanup"
 	},
 	"localstorageCleanupWarning": {
-		"message": "Attenzione: TUTTO il LocalStorage esistente verrà eliminato all'attivazione della Pulitura del localstorage.",
+		"message": "Attenzione: TUTTO il LocalStorage esistente verrà eliminato all'attivazione della Pulitura del LocalStorage.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
 	"matchedDomainExpressionText": {
@@ -260,7 +260,7 @@
 		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
 	},
 	"minutesText": {
-		"message": "Minuto(i)",
+		"message": "minuto(i)",
 		"description": "minute(s)"
 	},
 	"noCleanupLogText": {
@@ -272,7 +272,7 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Pulizia dei registri non verrà generata per le schede in Navigazione anonima",
+		"message": "I registri di pulizia non verranno generati per le schede in Navigazione anonima",
 		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
 	},
 	"noRulesText": {
@@ -314,7 +314,7 @@
 		"description": "Duration for Notifications"
 	},
 	"notifyCookieCleanUpText": {
-		"message": "Mostra una notifica dopo la pulitura dei cookie",
+		"message": "Mostra una notifica dopo la pulizia dei cookie",
 		"description": "Show Notification After Cookie Cleanup"
 	},
 	"oldReleasesText": {
@@ -342,7 +342,7 @@
 		"description": "How do Expressions work?"
 	},
 	"reasonCleanCookieName": {
-		"message": "Pulitura parziale a causa di $matchedExpression$ trovato in $listType$",
+		"message": "Pulizia parziale a causa di $matchedExpression$ trovato in $listType$",
 		"description": "Partial clean because of matched *.google.com in the Whitelist",
 		"placeholders": {
 			"matchedExpression": {
@@ -430,7 +430,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Sei sicuro di voler rimuovere TUTTE ($expressionCount$) espressioni salvate da ($listCount$) elenco)?\n\nQUESTA NON PUO' ESSERE ANNULLATA!\n\nTipo [ $expressionCount$ ] e clicca OK per eliminare.",
+		"message": "Sei sicuro di voler rimuovere TUTTE le ($expressionCount$) espressioni salvate da ($listCount$) elenchi?\n\nL'AZIONE NON PUÒ ESSERE ANNULLATA!\n\nDigita [ $expressionCount$ ] e clicca OK per eliminare.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
@@ -478,7 +478,7 @@
 		"description": "Save expression"
 	},
 	"secondsText": {
-		"message": "Secondo/i",
+		"message": "secondo/i",
 		"description": "second(s)"
 	},
 	"settingGroupAutoClean": {
@@ -486,11 +486,11 @@
 		"description": "Automatic Cleaning Options"
 	},
 	"settingGroupExpression": {
-		"message": "Opzioni di espressione",
+		"message": "Opzioni delle espressioni",
 		"description": "Expression Options"
 	},
 	"settingGroupExtension": {
-		"message": "Opzioni estensione",
+		"message": "Opzioni dell'estensione",
 		"description": "Extension Options"
 	},
 	"settingGroupOtherBrowsing": {
@@ -512,7 +512,7 @@
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"sizePopupText": {
-		"message": "Dimensione del Popup (in px)",
+		"message": "Dimensione del popup (in px)",
 		"description": "Size of Popup (in px).  This sets the font size in the Popup."
 	},
 	"sizeSettingText": {

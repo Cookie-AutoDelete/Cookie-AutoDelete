@@ -220,7 +220,7 @@
 		"description": "Import Expressions"
 	},
 	"keepAllCookiesText": {
-		"message": "Оставить все куки",
+		"message": "Сохранять все куки",
 		"description": "Keep All Cookies"
 	},
 	"keepDefaultIcon": {
@@ -228,7 +228,7 @@
 		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
-		"message": "Оставить содержимое локального хранилища",
+		"message": "Сохранять локальное хранилище",
 		"description": "Keep LocalStorage"
 	},
 	"keepText": {
