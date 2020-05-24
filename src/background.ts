@@ -157,9 +157,7 @@ const onStartUp = async () => {
 
   store.dispatch<any>(validateSettings());
 
-  if (!getSetting(store.getState(), 'activeMode')) {
-    setGlobalIcon(false);
-  }
+  setGlobalIcon(getSetting(store.getState(), 'activeMode') as boolean);
 
   checkIfProtected(store.getState());
 
