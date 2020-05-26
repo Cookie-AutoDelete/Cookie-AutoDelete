@@ -4,7 +4,7 @@
 		"description": "About"
 	},
 	"activeModeDelayText": {
-		"message": "Verzögerung vor automatischer Aufräumen",
+		"message": "Verzögerung vor automatischem Aufräumen",
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
@@ -144,7 +144,7 @@
 		"description": "Enable Check for Subdomains"
 	},
 	"enableGreyListCleanup": {
-		"message": "Greylist Aufräumen beim Browser-Neustart aktivieren",
+		"message": "Aufräumen der Greylist beim Browser-Neustart aktivieren",
 		"description": "Enable Greylist Cleanup on Browser Restart"
 	},
 	"enableNewVersionPopup": {
@@ -240,7 +240,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen. Lokalspeicherung wird mit dem Hostnamen auf ALLEN Containern gelöscht.",
+		"message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen. Local Storage wird nach Hostnamen auf ALLEN Containern gelöscht.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
