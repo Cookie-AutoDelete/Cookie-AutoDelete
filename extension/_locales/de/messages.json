@@ -239,10 +239,6 @@
 		"message": "Listentyp",
 		"description": "List Type"
 	},
-	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen. Local Storage wird nach Hostnamen auf ALLEN Containern gelöscht.",
-		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-	},
 	"localstorageCleanupText": {
 		"message": "Local Storage aufräumen",
 		"description": "LocalStorage Cleanup"
