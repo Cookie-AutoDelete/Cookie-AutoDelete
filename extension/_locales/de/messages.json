@@ -156,7 +156,7 @@
 		"description": "Error!"
 	},
 	"exportSettingsText": {
-		"message": "Export Core-Einstellungen",
+		"message": "Einstellungen exportieren",
 		"description": "Export Core Settings"
 	},
 	"exportURLSText": {
@@ -196,7 +196,7 @@
 		"description": "Greylist"
 	},
 	"importCoreSettingsFailed": {
-		"message": "Import der Core-Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
+		"message": "Import der Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
 		"description": "Import Core Settings Failed - Found unknown setting"
 	},
 	"importCoreSettingsText": {
@@ -272,7 +272,7 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Aufräum-Protokoll werden nicht für Tabs im privaten Browsing generiert",
+		"message": "Aufräum-Protokolle werden nicht für Tabs im Privaten Modus generiert",
 		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
 	},
 	"noRulesText": {
