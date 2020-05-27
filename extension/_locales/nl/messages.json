@@ -19,10 +19,6 @@
 		"message": "Automatisch opruimen ingeschakeld",
 		"description": "Auto-clean enabled"
 	},
-	"chromeDebugMode": {
-		"message": "Zorg ervoor dat 'Ontwikkelaarsmodus' is ingeschakeld, klik dan op 'achtergrond pagina' onder Inspect View",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Ruim op, inclusief open tabbladen",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -179,10 +175,6 @@
 		"message": "Veelgestelde vragen, gemeenschappelijke problemen en oplossingen",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
-	"filterDebugMode": {
-		"message": "Om alleen debug output van deze extensie te zien, filter de uitvoer met de volgende regel.",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
 	"filterText": {
 		"message": "Filter",
 		"description": "Filter"
@@ -270,14 +262,6 @@
 	"noExpressionsText": {
 		"message": "Geen expressies gedefinieerd.",
 		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "Opschonen logs worden niet gegenereerd voor tabbladen in privé modus",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
-	},
-	"noRulesText": {
-		"message": "Geen regels komen overeen met dit domein",
-		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "Geen",
