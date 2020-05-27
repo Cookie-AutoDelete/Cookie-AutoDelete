@@ -4,11 +4,11 @@
 		"description": "About"
 	},
 	"activeModeDelayText": {
-		"message": "Verzögerung vor automatischer Aufräumen",
+		"message": "Verzögerung vor automatischem Aufräumen",
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
-		"message": "Automatische Reinigung aktivieren",
+		"message": "Automatisches Aufräumen aktivieren",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' in der Inspect Ansicht",
+		"message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' unter Ansichten prüfen",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -36,7 +36,7 @@
 		"description": "Enable Cleanup on Domain Change"
 	},
 	"cleanupActionsBypass": {
-		"message": "Warnung - Aktionen unten ignorieren Einstellungen!",
+		"message": "Warnung - folgende Aktionen ignorieren Einstellungen!",
 		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
 	},
 	"cleanupLogText": {
@@ -96,11 +96,11 @@
 		"description": "Clean Cookies from Open Tabs on Startup"
 	},
 	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Jetzt bereinigen, Domains von offenen Tabs einschließen",
+		"message": "Jetzt aufräumen, Domains von offenen Tabs einschließen",
 		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
 	},
 	"cookieCleanupText": {
-		"message": "Säuberung jetzt durchführen, Domains von offenen Tabs ausschließen",
+		"message": "Jetzt aufräumen, Domains von offenen Tabs ausschließen",
 		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
@@ -112,7 +112,7 @@
 		"description": "Restore Default Settings"
 	},
 	"disableAutoDeleteText": {
-		"message": "Umschalten, um automatisches Aufräumen zu deaktivieren (manueller Modus)",
+		"message": "Umstellen, um automatisches Aufräumen zu deaktivieren (manueller Modus)",
 		"description": "Toggle to disable automatic cleanup (manual mode)"
 	},
 	"documentationText": {
@@ -132,7 +132,7 @@
 		"description": "Edit expression"
 	},
 	"enableAutoDeleteText": {
-		"message": "Umschalten, um automatisches Aufräumen zu aktivieren (automatischer Modus)",
+		"message": "Umstellen, um automatisches Aufräumen zu aktivieren (automatischer Modus)",
 		"description": "Toggle to enable automatic cleanup (automatic mode)"
 	},
 	"enableCleanupLogText": {
@@ -144,7 +144,7 @@
 		"description": "Enable Check for Subdomains"
 	},
 	"enableGreyListCleanup": {
-		"message": "Greylist Aufräumen beim Browser-Neustart aktivieren",
+		"message": "Aufräumen der Greylist beim Browser-Neustart aktivieren",
 		"description": "Enable Greylist Cleanup on Browser Restart"
 	},
 	"enableNewVersionPopup": {
@@ -156,7 +156,7 @@
 		"description": "Error!"
 	},
 	"exportSettingsText": {
-		"message": "Export Core-Einstellungen",
+		"message": "Einstellungen exportieren",
 		"description": "Export Core Settings"
 	},
 	"exportURLSText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "Um nur Debug-Ausgaben dieser Erweiterung zu sehen, filtern Sie die Ausgabe nach der folgenden Zeile.",
+		"message": "Um nur Debug-Ausgaben dieser Erweiterung zu sehen, filtern Sie die Ausgabe mit der folgenden Zeile:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -196,7 +196,7 @@
 		"description": "Greylist"
 	},
 	"importCoreSettingsFailed": {
-		"message": "Import der Core-Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
+		"message": "Import der Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
 		"description": "Import Core Settings Failed - Found unknown setting"
 	},
 	"importCoreSettingsText": {
@@ -240,7 +240,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen. Lokalspeicherung wird mit dem Hostnamen auf ALLEN Containern gelöscht.",
+		"message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen. Local Storage wird nach Hostnamen bei ALLEN Containern gelöscht.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -272,7 +272,7 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Aufräum-Protokoll werden nicht für Tabs im privaten Browsing generiert",
+		"message": "Aufräum-Protokolle werden nicht für Tabs im Privaten Modus generiert",
 		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
 	},
 	"noRulesText": {
@@ -430,7 +430,7 @@
 		"description": "Remove All Expressions"
 	},
 	"removeAllExpressionsConfirm": {
-		"message": "Sind Sie sicher, dass Sie ALLE ($expressionCount$) gespeicherten Ausdruck(en) von ($listCount$) Liste(n) entfernen möchten?\n\nDIESE NICHT UNTERNEHMEN WERDEN!\n\nTippe [ $expressionCount$ ] und klicke auf OK, um sie zu löschen.",
+		"message": "Sind Sie sicher, dass Sie ALLE ($expressionCount$) gespeicherten Ausdrücke aus ($listCount$) Liste(n) entfernen möchten?\n\nDIES KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN!\n\nGeben Sie [ $expressionCount$ ] ein und klicken Sie auf OK, um sie zu löschen.",
 		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
 		"placeholders": {
 			"expressionCount": {
@@ -482,7 +482,7 @@
 		"description": "second(s)"
 	},
 	"settingGroupAutoClean": {
-		"message": "Automatische Reinigungsoptionen",
+		"message": "Optionen zum automatischen Aufräumen",
 		"description": "Automatic Cleaning Options"
 	},
 	"settingGroupExpression": {
@@ -498,7 +498,7 @@
 		"description": "Other Browsing Data Cleanup Options"
 	},
 	"settingsText": {
-		"message": "$CAD$ Einstellungen",
+		"message": "$CAD$-Einstellungen",
 		"description": "$CAD$ Settings",
 		"placeholders": {
 			"CAD": {
@@ -508,7 +508,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Anzahl der Cookies für diese Domain über das Symbol anzeigen",
+		"message": "Anzahl der Cookies für diese Domain über dem Symbol anzeigen",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"sizePopupText": {
@@ -548,7 +548,7 @@
 		"description": "Toggle to whitelist"
 	},
 	"versionNumberText": {
-		"message": "$CAD$ Version",
+		"message": "$CAD$-Version",
 		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
 		"placeholders": {
 			"CAD": {
