@@ -392,7 +392,9 @@ export const cleanCookiesOperation = async (
   // Store cookieStoreIds from the cookies API
   const cookieStores = await browser.cookies.getAllCookieStores();
   for (const store of cookieStores) {
-    cookieStoreIds.add(store.id);
+    if (getSetting(state, 'contextualIdentities') || !store.id.startsWith('firefox-container')) {
+      cookieStoreIds.add(store.id);
+    }
   }
 
   // Clean for each cookieStore jar
