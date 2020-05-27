@@ -19,6 +19,10 @@
 		"message": "Automaattinen puhdistus käytössä",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Varmista, että 'Kehittäjätila' on käytössä, napsauta sitten Taustasivu kohdassa Tarkasta näkymä.",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Puhdista kaikki",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -175,6 +179,10 @@
 		"message": "Usein kysyttyjä kysymyksiä, yleisiä kysymyksiä ja ratkaisuja",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Jos haluat nähdä vain tämän laajennuksen virheenkorjausulostulot, suodata lähtö seuraavan rivin mukaan:",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filter",
 		"description": "Filter"
@@ -262,6 +270,14 @@
 	"noExpressionsText": {
 		"message": "Ei määritelmiä.",
 		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Siivouslokeja ei luoda välilehdille Yksityinen selaus / Incognito / InPrivate.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+	},
+	"noRulesText": {
+		"message": "Ei sääntöjä tällä domainilla.",
+		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "Ei mitään",
