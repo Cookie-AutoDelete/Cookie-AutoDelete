@@ -8,7 +8,7 @@
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
-		"message": "Automatische Reinigung aktivieren",
+		"message": "Automatisches Aufräumen aktivieren",
 		"description": "Enable Automatic Cleaning"
 	},
 	"autoDeleteDisabledText": {
