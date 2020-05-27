@@ -19,10 +19,6 @@
 		"message": "Авто-очищення ввімкнене",
 		"description": "Auto-clean enabled"
 	},
-	"chromeDebugMode": {
-		"message": "Впевніться, що режим розробника ввімкнений, а потім натисніть на 'фонову сторінку' в режимі перегляду Inspect",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Очистити, включаючи відкриті вкладки",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -179,10 +175,6 @@
 		"message": "Часті питання, загальні питання та рішення",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
-	"filterDebugMode": {
-		"message": "Щоб побачити тільки результат налагодження від цього розширення, відфільтруйте вихідний код за наступним рядком.",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
 	"filterText": {
 		"message": "Фільтр",
 		"description": "Filter"
@@ -270,14 +262,6 @@
 	"noExpressionsText": {
 		"message": "Правила не задані.",
 		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "Очищення журналу не буде створено для вкладок в особистому перегляді",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
-	},
-	"noRulesText": {
-		"message": "Немає правил для цього домену",
-		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "Без фільтра",
