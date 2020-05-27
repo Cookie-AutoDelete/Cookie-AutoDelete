@@ -19,10 +19,6 @@
 		"message": "Η αυτόματη καθαριότητα ενεργοποιήθηκε",
 		"description": "Auto-clean enabled"
 	},
-	"chromeDebugMode": {
-		"message": "Βεβαιωθείτε ότι η \"Λειτουργία προγραμματιστή\" είναι ενεργοποιημένη και, στη συνέχεια, κάντε κλικ στην \"σελίδα φόντου\" στην ενότητα Επιθεώρηση προβολής",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Καθαρίστε, συμπεριλάβετε ανοιχτές καρτέλες",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -179,10 +175,6 @@
 		"message": "Συχνές ερωτήσεις, κοινά ζητήματα και λύσεις",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
-	"filterDebugMode": {
-		"message": "Για να δείτε μόνο έξοδο εντοπισμού σφαλμάτων από αυτήν την επέκταση, φιλτράρετε την έξοδο από την ακόλουθη γραμμή.",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
 	"filterText": {
 		"message": "Φίλτρο",
 		"description": "Filter"
@@ -270,14 +262,6 @@
 	"noExpressionsText": {
 		"message": "Δεν ορίζονται εκφράσεις.",
 		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "Τα αρχεία καταγραφής εκκαθάρισης δεν θα δημιουργηθούν για καρτέλες στην ιδιωτική περιήγηση",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
-	},
-	"noRulesText": {
-		"message": "Δεν αντιστοιχούν κανόνες σε αυτόν τον τομέα",
-		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "Κανένα",
