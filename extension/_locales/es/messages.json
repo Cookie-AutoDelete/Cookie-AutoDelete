@@ -19,6 +19,10 @@
 		"message": "Limpieza automática habilitada",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Asegúrate de que el 'Modo de desarrollador' esté habilitado, y luego haz clic en 'página en segundo plano' en inspeccionar vistas.",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Limpiar, incluye pestañas abiertas",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -179,6 +183,10 @@
 		"message": "Preguntas frecuentes, problemas comunes y soluciones",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Para ver solo las salidas de depuración por esta extensión, filtra la salida por la siguiente línea:",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Filtro",
 		"description": "Filter"
@@ -266,6 +274,10 @@
 	"noExpressionsText": {
 		"message": "No hay expresiones definidas.",
 		"description": "No expressions defined."
+	},
+	"noRulesText": {
+		"message": "No hay reglas que coincidan con este dominio.",
+		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "Ninguno",
