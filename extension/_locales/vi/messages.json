@@ -19,6 +19,10 @@
 		"message": "Bật tự động dọn dẹp",
 		"description": "Auto-clean enabled"
 	},
+	"chromeDebugMode": {
+		"message": "Đảm bảo 'Chế độ nhà phát triển' được bật, sau đó nhấp vào 'trang nền' bên dưới Chế độ xem kiểm tra.",
+		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Dọn dẹp, bao gồm các trang đang mở",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -175,6 +179,10 @@
 		"message": "Câu hỏi thường gặp, vấn đề thường gặp và giải pháp",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
+	"filterDebugMode": {
+		"message": "Để chỉ xem các đầu ra gỡ lỗi của tiện ích mở rộng này, hãy lọc đầu ra theo dòng sau:",
+		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+	},
 	"filterText": {
 		"message": "Bộ lọc",
 		"description": "Filter"
@@ -262,6 +270,14 @@
 	"noExpressionsText": {
 		"message": "Không có biểu thức được xác định.",
 		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Nhật ký dọn dẹp sẽ không được tạo cho các tab trong Duyệt web riêng tư / Ẩn danh / InPrivate.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+	},
+	"noRulesText": {
+		"message": "Không có quy tắc phù hợp với tên miền này.",
+		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "Trống",
