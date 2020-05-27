@@ -275,6 +275,10 @@
 		"message": "Opruimingslogboeke sal nie gegenereer word vir oortjies in privaat blaai / incognito / InPrivate nie.",
 		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
+	"noRulesText": {
+		"message": "Geen reëls pas by hierdie domein.",
+		"description": "No rules matched this domain"
+	},
 	"noneText": {
 		"message": "Geen",
 		"description": "None"
