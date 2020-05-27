@@ -19,10 +19,6 @@
 		"message": "已啟用自動清除",
 		"description": "Auto-clean enabled"
 	},
-	"chromeDebugMode": {
-		"message": "確保啟用了“開發人員模式”，然後在檢查視圖下單擊“背景頁”",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "清除，包括已開分頁",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -179,10 +175,6 @@
 		"message": "常見問題，常見問題和解決方案",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
-	"filterDebugMode": {
-		"message": "要僅通過此擴展名查看調試輸出，請在下一行過濾輸出。",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
 	"filterText": {
 		"message": "過濾器",
 		"description": "Filter"
@@ -270,14 +262,6 @@
 	"noExpressionsText": {
 		"message": "沒有定義表達式。",
 		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "將不會為“私人瀏覽”中的選項卡生成清除日誌",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
-	},
-	"noRulesText": {
-		"message": "沒有符合此域名的規則",
-		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "無",
