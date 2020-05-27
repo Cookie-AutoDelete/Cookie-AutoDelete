@@ -275,6 +275,10 @@
 		"message": "No hay expresiones definidas.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Los registros de limpieza no se generarán para pestañas en navegación privada / incógnito / InPrivate.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+	},
 	"noRulesText": {
 		"message": "No hay reglas que coincidan con este dominio.",
 		"description": "No rules matched this domain"
