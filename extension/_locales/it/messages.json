@@ -19,10 +19,6 @@
 		"message": "Pulizia automatica attivata",
 		"description": "Auto-clean enabled"
 	},
-	"chromeDebugMode": {
-		"message": "Assicurati che 'Modalità sviluppatore' sia abilitata, quindi clicca su 'pagina di sfondo' sotto spect View",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Pulisci, incluse le schede aperte",
 		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -179,10 +175,6 @@
 		"message": "Domande frequenti, problemi comuni e soluzioni",
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
-	"filterDebugMode": {
-		"message": "Per vedere solo gli output di debug di questa estensione, filtra l'output della seguente riga.",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
 	"filterText": {
 		"message": "Filtro",
 		"description": "Filter"
@@ -270,14 +262,6 @@
 	"noExpressionsText": {
 		"message": "Nessuna espressione definita.",
 		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "I registri di pulizia non verranno generati per le schede in Navigazione anonima",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
-	},
-	"noRulesText": {
-		"message": "Nessuna regola corrispondente a questo dominio",
-		"description": "No rules matched this domain"
 	},
 	"noneText": {
 		"message": "Nessuno",
