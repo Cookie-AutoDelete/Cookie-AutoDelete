@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View",
+		"message": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -184,7 +184,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "To see only debug outputs by this extension, filter output by the following line.",
+		"message": "To see only debug outputs by this extension, filter output by the following line:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -276,11 +276,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Cleanup Logs will not be generated for tabs in Private Browsing",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "No rules matched this domain",
+		"message": "No rules matched this domain.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {
