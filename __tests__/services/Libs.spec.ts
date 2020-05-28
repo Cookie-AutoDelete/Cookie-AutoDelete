@@ -22,6 +22,7 @@ import {
   globExpressionToRegExp,
   isAnIP,
   isAWebpage,
+  isFirstPartyIsolate,
   localFileToRegex,
   prepareCleanupDomains,
   prepareCookieDomain,
@@ -591,6 +592,27 @@ describe('Library Functions', () => {
     });
   });
 
+  describe('isFirstPartyIsolate()', () => {
+    global.browser = {
+      ...global.browser,
+      cookies: {
+        getAll: jest.fn()
+          .mockResolvedValueOnce([])
+          .mockRejectedValueOnce(new Error('firstPartyDomain'))
+          .mockRejectedValueOnce(new Error('Error')),
+      },
+    };
+    it('should return false if no error was caught', () => {
+      return expect(isFirstPartyIsolate()).resolves.toEqual(false);
+    });
+    it('should return true if error was caught and message contained "firstPartyDomain"', () => {
+      return expect(isFirstPartyIsolate()).resolves.toEqual(true);
+    });
+    it('should return false if error was caught and message did not contain "firstPartyIsolate"', () => {
+      return expect(isFirstPartyIsolate()).resolves.toEqual(false);
+    })
+  });
+
   describe('localFileToRegex()', () => {
     it('should return itself if not a local file url (https://example.com)', () => {
       expect(localFileToRegex('https://example.com')).toEqual('https://example.com');
@@ -715,12 +737,11 @@ describe('Library Functions', () => {
   });
 
   describe('returnOptionalCookieAPIAttributes()', () => {
-    it('should return an object with an undefined firstPartyDomain', () => {
+    it('should return an object with an undefined firstPartyDomain when firstPartyIsolate is true and firstPartyDomain was not already defined.', () => {
       const state = {
         ...initialState,
         cache: {
           browserDetect: 'Firefox',
-          firstPartyIsolateSetting: true,
         },
       };
       const cookieAPIAttributes = {
@@ -730,6 +751,7 @@ describe('Library Functions', () => {
       const results = returnOptionalCookieAPIAttributes(
         state,
         cookieAPIAttributes,
+        true,
       );
       expect(results).toEqual(
         expect.objectContaining({
@@ -739,12 +761,11 @@ describe('Library Functions', () => {
       );
     });
 
-    it('should return an object the same object with a firstPartyDomain', () => {
+    it('should return an object the same object with a firstPartyDomain if firstPartyIsolate was true', () => {
       const state = {
         ...initialState,
         cache: {
           browserDetect: 'Firefox',
-          firstPartyIsolateSetting: true,
         },
       };
       const cookieAPIAttributes = {
@@ -755,6 +776,7 @@ describe('Library Functions', () => {
       const results = returnOptionalCookieAPIAttributes(
         state,
         cookieAPIAttributes,
+        true,
       );
       expect(results).toEqual(
         expect.objectContaining({
@@ -764,12 +786,11 @@ describe('Library Functions', () => {
       );
     });
 
-    it('should return an object with no firstPartyDomain (Setting false)', () => {
+    it('should return an object with no firstPartyDomain if firstPartyIsolate was false', () => {
       const state = {
         ...initialState,
         cache: {
           browserDetect: 'Firefox',
-          firstPartyIsolateSetting: false,
         },
       };
       const cookieAPIAttributes = {
@@ -779,6 +800,7 @@ describe('Library Functions', () => {
       const results = returnOptionalCookieAPIAttributes(
         state,
         cookieAPIAttributes,
+        false,
       );
       expect(results).toEqual(
         expect.not.objectContaining({
@@ -787,12 +809,11 @@ describe('Library Functions', () => {
       );
     });
 
-    it('should return an object with no firstPartyDomain (Browser other than FF)', () => {
+    it('should return an object with no firstPartyDomain (Browser other than FF) (firstPartyIsolate is false)', () => {
       const state = {
         ...initialState,
         cache: {
           browserDetect: 'Chrome',
-          firstPartyIsolateSetting: false,
         },
       };
       const cookieAPIAttributes = {
@@ -802,6 +823,7 @@ describe('Library Functions', () => {
       const results = returnOptionalCookieAPIAttributes(
         state,
         cookieAPIAttributes,
+        false,
       );
       expect(results).toEqual(
         expect.not.objectContaining({

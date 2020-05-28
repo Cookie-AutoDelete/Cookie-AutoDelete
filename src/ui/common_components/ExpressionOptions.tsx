@@ -15,7 +15,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { updateExpressionUI } from '../../redux/Actions';
-import { returnOptionalCookieAPIAttributes } from '../../services/Libs';
+import { isFirstPartyIsolate, returnOptionalCookieAPIAttributes } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 interface DispatchProps {
   onUpdateExpression: (payload: Expression) => void;
@@ -78,13 +78,14 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public async getAllCookies() {
     const { expression } = this.props;
     const exp = expression.expression;
+    const firstPartyIsolate = await isFirstPartyIsolate();
     let cookies: browser.cookies.CookieProperties[] = [];
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(this.props.state, {
           storeId: this.toPublicStoreId(expression.storeId),
-        }),
+        }, firstPartyIsolate),
       );
       if (exp.slice(1).startsWith('file:')) {
         // Regex with Local Directories
@@ -98,7 +99,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       const allCookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(this.props.state, {
           storeId: this.toPublicStoreId(expression.storeId),
-        }),
+        }, firstPartyIsolate),
       );
       const regExp = new RegExp(exp.slice(7)); // take out file://
       cookies = allCookies.filter(cookie => cookie.domain === '' && regExp.test(cookie.path));
@@ -107,7 +108,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
         returnOptionalCookieAPIAttributes(this.props.state, {
           domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
           storeId: this.toPublicStoreId(expression.storeId),
-        }),
+        }, firstPartyIsolate),
       );
     }
     this.setState({ cookies });

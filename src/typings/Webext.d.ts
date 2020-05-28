@@ -25,15 +25,5 @@ declare namespace browser.cookies {
   }
   type OptionalCookieProperties = Partial<CookieProperties>;
 }
-declare namespace browser.privacy.websites.firstPartyIsolate {
-  function get(emptyObject: {}): { value: boolean };
-}
-declare namespace browser.browserAction {
-  function setBadgeTextColor(details: {}): {
-    color: string;
-    tabId?: number;
-    windowId?: number;
-  };
-}
 
 declare module 'redux-webext';

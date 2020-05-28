@@ -17,6 +17,7 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
+  isFirstPartyIsolate,
   prepareCleanupDomains,
   prepareCookieDomain,
   returnMatchedExpressionObject,
@@ -194,12 +195,13 @@ export const cleanCookies = async (
 ) => {
   const debug = getSetting(state, 'debugMode');
   const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
+  const firstPartyIsolate = await isFirstPartyIsolate();
   markedForDeletion.forEach(obj => {
     const cookieProperties = obj.cookie;
     const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
       firstPartyDomain: cookieProperties.firstPartyDomain,
       storeId: cookieProperties.storeId,
-    });
+    }, firstPartyIsolate);
     const cookieRemove = {
       ...cookieAPIProperties,
       name: cookieProperties.name,
@@ -357,6 +359,7 @@ export const cleanCookiesOperation = async (
     ...cleanupProperties,
     openTabDomains,
   };
+  const firstPartyIsolate = await isFirstPartyIsolate();
 
   const cookieStoreIds = new Set<string>();
 
@@ -404,7 +407,7 @@ export const cleanCookiesOperation = async (
       cookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(state, {
           storeId: id,
-        }),
+        }, firstPartyIsolate),
       );
     } catch(e) {
       if (debug) {

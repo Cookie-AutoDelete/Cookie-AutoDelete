@@ -113,17 +113,6 @@ const onStartUp = async () => {
       },
       type: ReduxConstants.ADD_CACHE,
     });
-    // Store whether firstPartyIsolate is true or false
-    if (browserVersion >= '58') {
-      const setting = await browser.privacy.websites.firstPartyIsolate.get({});
-      store.dispatch({
-        payload: {
-          key: 'firstPartyIsolateSetting',
-          value: setting.value,
-        },
-        type: ReduxConstants.ADD_CACHE,
-      });
-    }
   }
   // Store which browser environment in cache
   store.dispatch({
