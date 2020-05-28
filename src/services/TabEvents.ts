@@ -23,6 +23,7 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
+  isFirstPartyIsolate,
   LSCLEANUPNAME,
   returnOptionalCookieAPIAttributes,
 } from './Libs';
@@ -176,6 +177,7 @@ export default class TabEvents extends StoreUser {
     const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
     const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
     const hostname = getHostname(tab.url);
+    const firstPartyIsolate = await isFirstPartyIsolate();
     if (hostname === '') {
       if (debug) {
         cadLog({
@@ -190,7 +192,7 @@ export default class TabEvents extends StoreUser {
       const allCookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
           storeId: tab.cookieStoreId,
-        }),
+        }, firstPartyIsolate),
       );
       const regExp = new RegExp(hostname.slice(7)); // take out file://
       if (debug) {
@@ -212,7 +214,7 @@ export default class TabEvents extends StoreUser {
           domain: hostname,
           firstPartyDomain: extractMainDomain(hostname),
           storeId: tab.cookieStoreId,
-        }),
+        }, firstPartyIsolate),
       );
     }
     if (debug) {
@@ -238,6 +240,7 @@ export default class TabEvents extends StoreUser {
           url: tab.url || '',
           value: 'cookieForLocalstorageCleanup',
         },
+        firstPartyIsolate
       );
       browser.cookies.set({ ...cookiesAttributes, url: tab.url || '' });
       if (debug) {

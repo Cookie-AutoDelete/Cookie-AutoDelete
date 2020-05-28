@@ -146,7 +146,7 @@ class ExpressionTable extends React.Component<
                         expressionInput: e.target.value,
                       })
                     }
-                    type="text"
+                    type="url"
                     autoFocus={true}
                     style={{
                       display: 'inline-block',

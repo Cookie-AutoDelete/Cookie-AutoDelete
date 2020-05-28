@@ -24,6 +24,7 @@ import {
   getHostname,
   getSetting,
   isAnIP,
+  isFirstPartyIsolate,
   localFileToRegex,
   LSCLEANUPNAME,
   prepareCookieDomain,
@@ -111,12 +112,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     const { state } = this.props;
     if (!this.state.tab) return false;
     const { cookieStoreId } = this.state.tab;
+    const firstPartyIsolate = await isFirstPartyIsolate();
     const cookies = (await browser.cookies.getAll(
       returnOptionalCookieAPIAttributes(state, {
         domain: hostname,
         firstPartyDomain: hostname,
         storeId: cookieStoreId,
-      }),
+      }, firstPartyIsolate),
     ));
 
     if (cookies.length > 0) {
@@ -126,7 +128,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           name: cookie.name,
           storeId: cookie.storeId,
           url: prepareCookieDomain(cookie),
-        }) as {
+        }, firstPartyIsolate) as {
           // Fix type error with undefineds with cookies.remove
           url: string;
           name: string;
@@ -150,13 +152,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     const { state } = this.props;
     if (!this.state.tab) return;
     const { cookieStoreId } = this.state.tab;
-
+    const firstPartyIsolate = await isFirstPartyIsolate();
     const cookies = (await browser.cookies.getAll(
       returnOptionalCookieAPIAttributes(state, {
         domain: hostname,
         firstPartyDomain: hostname,
         storeId: cookieStoreId,
-      }),
+      }, firstPartyIsolate),
     ));
     this.setState({
       cookieCount: cookies.length - cookies.filter(cookie => cookie.name === LSCLEANUPNAME).length,

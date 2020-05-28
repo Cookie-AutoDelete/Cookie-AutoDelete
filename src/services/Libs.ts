@@ -210,6 +210,22 @@ export const isAWebpage = (URL: string | undefined) => {
   return false;
 };
 
+/**
+ * Test for FirstPartyIsolation (Firefox).
+ * Workaround for not needing Firefox 'Privacy' permission.
+ */
+export const isFirstPartyIsolate = async () => {
+  return browser.cookies.getAll({
+    domain: '',
+  }).then(() => {
+    // No error = most likely not enabled.
+    return Promise.resolve(false);
+  }).catch((e) => {
+    // Error usually if firstPartyIsolate is enabled as it requires firstPartyDomain Property.
+    return Promise.resolve(e.message.indexOf('firstPartyDomain') !== -1);
+  });
+}
+
 /*
  * Checks if the hostname given is a local file
  */
@@ -289,11 +305,12 @@ export const returnOptionalCookieAPIAttributes = (
   cookieAPIAttributes: Partial<CookiePropertiesCleanup> & {
     [x: string]: any;
   },
+  firstPartyIsolate: boolean,
 ) => {
   // Add optional firstPartyDomain attribute
   if (
     state.cache.browserDetect === 'Firefox' &&
-    state.cache.firstPartyIsolateSetting &&
+    firstPartyIsolate &&
     !Object.prototype.hasOwnProperty.call(
       cookieAPIAttributes,
       'firstPartyDomain',
@@ -307,7 +324,7 @@ export const returnOptionalCookieAPIAttributes = (
   if (
     !(
       state.cache.browserDetect === 'Firefox' &&
-      state.cache.firstPartyIsolateSetting
+      firstPartyIsolate
     )
   ) {
     const { firstPartyDomain, ...rest } = cookieAPIAttributes;

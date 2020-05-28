@@ -144,7 +144,6 @@ function chromeBuild(cb) {
   }
   const mf = require(path.join(EXTDIR, MANIFEST));
   delMFPerm(mf, 'contextualIdentities');
-  delMFPerm(mf, 'privacy');
   console.log('> Removing [applications] section ... %s', delete mf.applications ? 'Done!' : 'Failed');
 
   console.log('Overwriting %s for Google Chrome ...', MANIFEST);

@@ -17,6 +17,7 @@ import { removeActivity } from '../../redux/Actions';
 import {
   cadLog,
   getSetting,
+  isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
   throwErrorNotification,
 } from '../../services/Libs';
@@ -122,6 +123,7 @@ const restoreCookies = async (
   const debug = getSetting(state, 'debugMode');
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
+  const firstPartyIsolate = await isFirstPartyIsolate();
   for (const cleanReasonObjs of cleanReasonObjsArrays) {
     for (const obj of cleanReasonObjs) {
       // Cannot set cookies from file:// protocols
@@ -158,7 +160,7 @@ const restoreCookies = async (
       const cookieProperties = {
         ...returnOptionalCookieAPIAttributes(state, {
           firstPartyDomain,
-        }),
+        }, firstPartyIsolate),
         expirationDate,
         httpOnly,
         name,
@@ -198,7 +200,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
-        <i>{browser.i18n.getMessage('noCleanupLogText')}.<br /> {browser.i18n.getMessage('noPrivateLogging')}.</i>
+        <i>{browser.i18n.getMessage('noCleanupLogText')}<br /> {browser.i18n.getMessage('noPrivateLogging')}</i>
       </div>
     );
   }
