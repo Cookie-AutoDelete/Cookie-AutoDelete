@@ -123,10 +123,6 @@
 		"message": "Domain-Ausdruck",
 		"description": "Domain Expression"
 	},
-	"dropdownAdditionalCleaningOptions": {
-		"message": "Dropdown für zusätzliche Reinigungsaktionen umschalten",
-		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
-	},
 	"editExpressionText": {
 		"message": "Ausdruck bearbeiten",
 		"description": "Edit expression"
