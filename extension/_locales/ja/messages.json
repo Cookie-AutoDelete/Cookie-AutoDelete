@@ -271,6 +271,10 @@
 		"message": "式が定義されていない",
 		"description": "No expressions defined."
 	},
+	"noRulesText": {
+		"message": "このドメインのルールはありません。",
+		"description": "No rules matched this domain"
+	},
 	"noneText": {
 		"message": "なし",
 		"description": "None"
