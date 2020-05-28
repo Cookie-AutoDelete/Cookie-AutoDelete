@@ -178,7 +178,7 @@ class Expressions extends React.Component<ExpressionProps> {
                 });
               }
             }}
-            type="text"
+            type="url"
             id="formText"
             className="form-control"
           />
