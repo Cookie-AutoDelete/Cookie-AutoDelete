@@ -504,7 +504,7 @@
 		}
 	},
 	"showNumberOfCookiesInIconText": {
-		"message": "Показывать количество Cookie для этого домена поверх значка",
+		"message": "Показывать количество куки для этого домена поверх значка",
 		"description": "Show Number of Cookies for that Domain over the Icon"
 	},
 	"sizePopupText": {
