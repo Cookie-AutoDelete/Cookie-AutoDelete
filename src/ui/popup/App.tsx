@@ -378,6 +378,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             className="btn-info"
             onClick={() => {
               browser.tabs.create({
+                index: tab.index + 1,
                 url: '/settings/settings.html#tabSettings',
               });
               window.close();
