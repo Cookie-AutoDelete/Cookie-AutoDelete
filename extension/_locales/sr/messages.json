@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Уверите се да је „Развојни начин за програмере“ омогућен, а затим кликните на „позадинску страницу“ у делу „Преглед прегледа“",
+		"message": "Уверите се да је „Развојни начин за програмере“ омогућен, а затим кликните на „позадинску страницу“ у делу „Преглед прегледа“.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "Да бисте видели само излаз за уклањање погрешака помоћу овог проширења, филтрирајте излаз сљедећим редом.",
+		"message": "Да бисте видели само излаз за уклањање погрешака помоћу овог проширења, филтрирајте излаз сљедећим редом:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Дневници чишћења неће се генерирати за картице у приватном прегледавању",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Дневници чишћења неће се генерирати за картице у приватном прегледавању / анонимно / инПривате.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "Нема нађених правила за овај домен",
+		"message": "Нема нађених правила за овај домен.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

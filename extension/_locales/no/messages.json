@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Forsikre deg om at 'Utvikler modus' er aktivert, og klikk deretter på 'bakgrunnssiden' under inspeksjon",
+		"message": "Sjekk at 'Utvikler modus' er aktivert, og klikk deretter på 'bakgrunnssiden' under Inspeksjon.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "For å bare se feilsøkingsdata fra dette utvidelsen, filtrer utdata med følgende linje.",
+		"message": "For å bare se feilsøkingsdata fra dette utvidelsen, filtrer utdata fra følgende linje:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Oppryddingslogger vil ikke bli generert for faner i privat surfing",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Cleanup-logger vil ikke bli generert for faner i privat Browsing / Ininkognito / InPrivat.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "Ingen regler matchet dette domenet",
+		"message": "Ingen regler matchet dette domene.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

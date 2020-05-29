@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Tillse att \"Utvecklarläge\" är aktiverat, klicka sedan på \"Bakgrundssida\" under Inspektionsvy",
+		"message": "Tillse att \"Utvecklarläge\" är aktiverat, klicka sedan på \"Bakgrundssida\" under Inspektionsvy.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "För att se endast debug utmatningar av detta tillägg, filtrera utdata av följande rad.",
+		"message": "För att se endast debug utmatningar av detta tillägg, filtrera utdata av följande rad:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -271,12 +271,8 @@
 		"message": "Inget uttryck definierat.",
 		"description": "No expressions defined."
 	},
-	"noPrivateLogging": {
-		"message": "Rensningsloggar kommer inte att genereras för flikar i privat surfning",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
-	},
 	"noRulesText": {
-		"message": "Inga regler matchade denna domän",
+		"message": "Inga regler matchade denna domän.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

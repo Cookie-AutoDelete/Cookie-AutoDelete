@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Maak seker dat 'ontwikkelaarmodus' geaktiveer is, en klik dan op 'agtergrondbladsy' onder Inspekteer",
+		"message": "Maak seker dat 'ontwikkelaarmodus' geaktiveer is, en klik dan op 'agtergrondbladsy' onder Inspekteer.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "Filter slegs uitsette deur hierdie uitbreiding, filter die uitset volgens die volgende reël.",
+		"message": "Filter slegs uitsette deur hierdie uitbreiding, filter die uitset volgens die volgende reël:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Opruimlogboeke sal nie gegenereer word vir oortjies in privaat blaai nie",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Opruimingslogboeke sal nie gegenereer word vir oortjies in privaat blaai / incognito / InPrivate nie.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "Geen reëls pas by hierdie domein",
+		"message": "Geen reëls pas by hierdie domein.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

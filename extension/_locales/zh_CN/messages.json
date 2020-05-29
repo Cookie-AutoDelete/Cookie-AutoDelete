@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "确保“开发模式”已启用，然后点击检查视图下的“背景页面”",
+		"message": "确保“开发模式”已启用，然后点击查看下的“背景页面”。",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "要查看此扩展的调试输出, 请按下面的行过滤输出。",
+		"message": "要只看到此扩展的调试输出, 按以下行过滤输出:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "私密浏览中不会为标签生成清理日志",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "私密浏览 / 隐身 / 非私密时不会生成清理日志。",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "没有匹配此域的规则",
+		"message": "没有匹配此域的规则。",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

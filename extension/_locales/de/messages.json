@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' unter Ansichten prüfen",
+		"message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' unter Ansichten prüfen.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -76,7 +76,7 @@
 		"description": "Remove All"
 	},
 	"consoleDebugMode": {
-		"message": "Klicken Sie auf den Konsolen-Tab",
+		"message": "Klicken Sie auf den Console-Tab",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
 	"contextualIdentitiesEnabledText": {
@@ -124,7 +124,7 @@
 		"description": "Domain Expression"
 	},
 	"dropdownAdditionalCleaningOptions": {
-		"message": "Dropdown für zusätzliche Reinigungsaktionen umschalten",
+		"message": "Dropdown-Menü für zusätzliche Aufräumaktionen anzeigen",
 		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
 	},
 	"editExpressionText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Aufräum-Protokolle werden nicht für Tabs im Privaten Modus generiert",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Aufräum-Protokolle werden nicht für Tabs in Privatem Modus / Inkognito / InPrivate generiert.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "Keine Regeln passen zu dieser Domain",
+		"message": "Keine Regeln passen zu dieser Domain.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

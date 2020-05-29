@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Đảm bảo 'Chế độ nhà phát triển' được bật, sau đó nhấp vào 'trang nền' bên dưới Chế độ xem kiểm tra",
+		"message": "Đảm bảo 'Chế độ nhà phát triển' được bật, sau đó nhấp vào 'trang nền' bên dưới Chế độ xem kiểm tra.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "Để chỉ xem các đầu ra gỡ lỗi của tiện ích mở rộng này, hãy lọc đầu ra theo dòng sau.",
+		"message": "Để chỉ xem các đầu ra gỡ lỗi của tiện ích mở rộng này, hãy lọc đầu ra theo dòng sau:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Nhật ký dọn dẹp sẽ không được tạo cho các tab trong Duyệt web riêng tư",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Nhật ký dọn dẹp sẽ không được tạo cho các tab trong Duyệt web riêng tư / Ẩn danh / InPrivate.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "Không có quy tắc phù hợp với tên miền này",
+		"message": "Không có quy tắc phù hợp với tên miền này.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

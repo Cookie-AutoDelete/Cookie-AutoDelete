@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Certifique-se de que o 'Modo de Desenvolvedor' está ativado, em seguida, clique em 'página em segundo plano' sob Inspeção de Visualização",
+		"message": "Certifique-se de que o 'Modo de Desenvolvedor' está ativado, em seguida, clique em 'página em segundo plano' sob Inspeção de Visualização.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "Para ver apenas as saídas de depuração por essa extensão, filtre a saída pela linha a seguir.",
+		"message": "Para ver apenas as saídas de depuração por essa extensão, filtre a saída pela linha a seguir:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Os Logs de Limpeza não serão gerados para abas em Navegação Privada",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Os Logs de Limpeza não serão gerados para abas em Navegação Privada / Incognito / InPrivada.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "Nenhuma regra afeta este domínio",
+		"message": "Nenhuma regra afeta este domínio.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {

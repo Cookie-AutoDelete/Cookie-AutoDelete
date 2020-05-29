@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "「開発者モード」が有効になっていることを確認し、検査ビューの「バックグラウンドページ」をクリックします",
+		"message": "「開発者モード」が有効になっていることを確認し、検査ビューの「バックグラウンドページ」をクリックします。",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "この拡張機能によるデバッグ出力のみを表示するには、以下の行で出力をフィルタリングします。",
+		"message": "この拡張機能によるデバッグ出力のみを表示するには、以下の行で出力をフィルタリングします:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -270,10 +270,6 @@
 	"noExpressionsText": {
 		"message": "式が定義されていない",
 		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "プライベートブラウジングでタブのクリーンアップログは生成されません",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
 	},
 	"noRulesText": {
 		"message": "このドメインのルールはありません。",

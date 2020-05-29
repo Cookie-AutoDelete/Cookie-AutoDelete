@@ -20,7 +20,7 @@
 		"description": "Auto-clean enabled"
 	},
 	"chromeDebugMode": {
-		"message": "Уверете се, че „Режимът за разработчици“ е активиран, след което щракнете върху „фонова страница“ в Разгледайте изгледа",
+		"message": "Уверете се, че „Режимът за разработчици“ е активиран, след което щракнете върху „фонова страница“ в Разгледайте изгледа.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
 	},
 	"cleanIgnoringOpenTabsText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "За да видите само изходни грешки от това разширение, филтрирайте изхода от следващия ред.",
+		"message": "За да видите само изходни грешки от това разширение, филтрирайте изхода от следващия ред:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -272,11 +272,11 @@
 		"description": "No expressions defined."
 	},
 	"noPrivateLogging": {
-		"message": "Полетата за почистване няма да се генерират за раздели в частно сърфиране",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing"
+		"message": "Полетата за почистване няма да се генерират за раздели в частно сърфиране / инкогнито / InPrivate.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
-		"message": "Няма изрази, съвпадащи с домейна",
+		"message": "Няма изрази, съвпадащи с домейна.",
 		"description": "No rules matched this domain"
 	},
 	"noneText": {
