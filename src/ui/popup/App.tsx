@@ -395,7 +395,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             margin: '8px 0',
           }}
         >
-          {tab.favIconUrl && (
+          {tab.favIconUrl && !tab.favIconUrl.startsWith('chrome:') && (
             <img
               src={tab.favIconUrl}
               style={{
