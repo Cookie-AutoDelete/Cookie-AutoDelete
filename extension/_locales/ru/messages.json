@@ -362,7 +362,7 @@
 		}
 	},
 	"reasonCleanNoList": {
-		"message": "Очистить, потому что $hostname$ не находится в белых или серых списках",
+		"message": "Очищено по причине отсутствия $hostname$ в белом/сером списках",
 		"description": "Clean because sub.google.com is not in the White or Grey lists",
 		"placeholders": {
 			"hostname": {
@@ -372,7 +372,7 @@
 		}
 	},
 	"reasonCleanStartupNoList": {
-		"message": "Очистите из-за стартапа очистки и $hostname$ не находится в белых или серых списках",
+		"message": "Очищено по причине очистки при запуске и отсутствия $hostname$ в белом/сером списках",
 		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
 		"placeholders": {
 			"hostname": {
