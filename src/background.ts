@@ -14,11 +14,13 @@ import { Store } from 'redux';
 import {
   cacheCookieStoreIdNames,
   cookieCleanup,
+  updateSetting,
   validateSettings,
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
 import { checkIfProtected, setGlobalIcon } from './services/BrowserActionService';
+import ContextMenuEvents from './services/ContextMenuEvents';
 import CookieEvents from './services/CookieEvents';
 import { cadLog, convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
 import StoreUser from './services/StoreUser';
@@ -75,10 +77,11 @@ const onSettingsChange = () => {
 
   if (previousSettings.activeMode.value !== currentSettings.activeMode.value) {
     setGlobalIcon(currentSettings.activeMode.value as boolean);
+    ContextMenuEvents.updateMenuItemCheckbox(ContextMenuEvents.MENUID.ACTIVE_MODE, currentSettings.activeMode.value as boolean);
   }
 
   checkIfProtected(store.getState());
-  
+
   // Validate Settings again
   store.dispatch<any>(validateSettings());
 };
@@ -157,7 +160,42 @@ const onStartUp = async () => {
 
   // This should update the cookie badge count when cookies are changed.
   browser.cookies.onChanged.addListener(CookieEvents.onCookieChanged);
+
+  if (browser.contextMenus) {
+    ContextMenuEvents.menuInit(store.getState());
+    if (!browser.contextMenus.onClicked.hasListener(onContextMenuClicked)) {
+      browser.contextMenus.onClicked.addListener(onContextMenuClicked);
+    }
+  }
+  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [READY] (0)` });
 };
+
+async function onContextMenuClicked(
+  info: browser.contextMenus.OnClickData,
+  tab: browser.tabs.Tab
+) {
+  // const debug = currentSettings.debugMode.value;
+  console.info('onContextMenuClicked', info, tab);
+  switch (info.menuItemId) {
+    case ContextMenuEvents.MENUID.ACTIVE_MODE:
+      if (info.hasOwnProperty('checked') && info.hasOwnProperty('wasChecked') && info.checked !== info.wasChecked) {
+        // Setting Updated.
+        store.dispatch<any>(updateSetting({
+          name: currentSettings.activeMode.name,
+          value: info.checked!,
+        }));
+      }
+      break;
+    case ContextMenuEvents.MENUID.SETTINGS:
+      browser.tabs.create({
+        index: tab.index + 1,
+        url: '/settings/settings.html#tabSettings',
+      });
+      break;
+    default:
+      break;
+  }
+}
 
 // Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
 const cookiePopupPorts: browser.runtime.Port[] = [];
