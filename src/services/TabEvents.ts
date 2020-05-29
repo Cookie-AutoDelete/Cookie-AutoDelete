@@ -32,13 +32,34 @@ import StoreUser from './StoreUser';
 export default class TabEvents extends StoreUser {
   public static onTabUpdate(
     tabId: number,
-    changeInfo: any,
+    changeInfo: {
+      attention?: boolean,
+      audible?: boolean,
+      cookieChanged?: {
+        removed: boolean,
+        cookie:  browser.cookies.Cookie,
+        cause: browser.cookies.OnChangedCause,
+      },
+      discarded?: boolean,
+      favIconUrl?: string,
+      hidden?: boolean,
+      isArticle?: boolean,
+      mutedInfo?: browser.tabs.MutedInfo,
+      pinned?: boolean,
+      status?: string,
+      title?: string,
+      url?: string,
+    },
     tab: browser.tabs.Tab,
   ) {
     if (tab.status === 'complete') {
       const debug = getSetting(StoreUser.store.getState(), 'debugMode');
       const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
       const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
+      // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
+      if (changeInfo.favIconUrl && debug) {
+        changeInfo.favIconUrl = '***';
+      }
       if (!TabEvents.onTabUpdateDelay) {
         TabEvents.onTabUpdateDelay = true;
         if (debug) {
@@ -75,7 +96,24 @@ export default class TabEvents extends StoreUser {
 
   public static onDomainChange(
     tabId: number,
-    changeInfo: any,
+    changeInfo: {
+      attention?: boolean,
+      audible?: boolean,
+      cookieChanged?: {
+        removed: boolean,
+        cookie:  browser.cookies.Cookie,
+        cause: browser.cookies.OnChangedCause,
+      },
+      discarded?: boolean,
+      favIconUrl?: string,
+      hidden?: boolean,
+      isArticle?: boolean,
+      mutedInfo?: browser.tabs.MutedInfo,
+      pinned?: boolean,
+      status?: string,
+      title?: string,
+      url?: string,
+    },
     tab: browser.tabs.Tab,
   ) {
     const debug = getSetting(StoreUser.store.getState(), 'debugMode');
@@ -83,6 +121,10 @@ export default class TabEvents extends StoreUser {
       const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
       const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
       const mainDomain = extractMainDomain(getHostname(tab.url));
+      // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
+      if (changeInfo.favIconUrl && debug) {
+        changeInfo.favIconUrl = '***';
+      }
       if (TabEvents.tabToDomain[tabId] === undefined && mainDomain !== '') {
         if (debug) {
           cadLog({
