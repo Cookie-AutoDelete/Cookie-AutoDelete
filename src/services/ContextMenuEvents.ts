@@ -11,6 +11,7 @@
  * SOFTWARE.
  */
 
+import { cadLog, getSetting } from './Libs';
 import StoreUser from './StoreUser';
 
 export default class ContextMenuEvents extends StoreUser {
@@ -48,27 +49,23 @@ export default class ContextMenuEvents extends StoreUser {
     });
     // Regular Clean (exclude open tabs)
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('cleanText'),
     });
     // Clean (include open tabs)
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_OPEN,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('cleanIgnoringOpenTabsText'),
     });
     // Separator
     browser.contextMenus.create({
-      contexts: defaultContexts,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       type: "separator",
     });
     // Cleanup Warning
     browser.contextMenus.create({
-      contexts: defaultContexts,
       enabled: false,
       id: 'cad-clean-warn',
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
@@ -76,14 +73,12 @@ export default class ContextMenuEvents extends StoreUser {
     });
     // Clean cookies for domain
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_COOKIES,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('clearSiteDataText', ['cookies']),
     });
     // Clean localstorage for domain
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_LOCALSTORAGE,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('clearSiteDataText', ['localstorage']),
@@ -93,84 +88,91 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: defaultContexts,
       type: "separator",
     });
-    // Add Expression Option Group
+    // Add Expression Option Group - page
     browser.contextMenus.create({
-      contexts: defaultContexts,
+      contexts: ['link', 'page', 'selection'],
       id: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       title: 'Expressions Menu',
     });
-    // Expression Status
-    browser.contextMenus.create({
-      contexts: defaultContexts,
-      enabled: false,
-      id: ContextMenuEvents.MENUID.EXPRESSION_STATUS,
-      parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Expression Status',
-    });
-    // Separator
-    browser.contextMenus.create({
-      contexts: defaultContexts,
-      parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      type: "separator",
-    });
     // Domain
     browser.contextMenus.create({
-      contexts: defaultContexts,
+      contexts: ['link'],
       enabled: false,
-      id: ContextMenuEvents.MENUID.EXPRESSION_DOMAIN,
+      id: `${ContextMenuEvents.MENUID.EXPRESSION_DOMAIN}-link`,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Domain',
+      title: 'For the selected link',
+    });
+    browser.contextMenus.create({
+      contexts: ['page'],
+      enabled: false,
+      id: `${ContextMenuEvents.MENUID.EXPRESSION_DOMAIN}-page`,
+      parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
+      title: 'For domain on active Tab/Page',
+    });
+    browser.contextMenus.create({
+      contexts: ['selection'],
+      enabled: false,
+      id: `${ContextMenuEvents.MENUID.EXPRESSION_DOMAIN}-selection`,
+      parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
+      title: 'For selected text: %s',
     });
     // Separator
     browser.contextMenus.create({
-      contexts: defaultContexts,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       type: "separator",
     });
     // Add to Greylist Domain
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.EXPRESSION_ADD_GREY_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       title: browser.i18n.getMessage('toGreyListText'),
     });
     // Add to Whitelist Domain
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.EXPRESSION_ADD_WHITE_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       title: browser.i18n.getMessage('toWhiteListText'),
     });
     // Separator
     browser.contextMenus.create({
-      contexts: defaultContexts,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       type: "separator",
     });
     // Subdomain
     browser.contextMenus.create({
-      contexts: defaultContexts,
+      contexts: ['link'],
       enabled: false,
-      id: ContextMenuEvents.MENUID.EXPRESSION_SUBS,
+      id: `${ContextMenuEvents.MENUID.EXPRESSION_SUBS}-link`,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Subdomains',
+      title: 'For all subdomains of the selected link',
+    });
+    browser.contextMenus.create({
+      contexts: ['page'],
+      enabled: false,
+      id: `${ContextMenuEvents.MENUID.EXPRESSION_SUBS}-page`,
+      parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
+      title: 'For all subdomains of the domain on active tab/page',
+    });
+    browser.contextMenus.create({
+      contexts: ['selection'],
+      enabled: false,
+      id: `${ContextMenuEvents.MENUID.EXPRESSION_SUBS}-selection`,
+      parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
+      title: 'For all subdomains of the selected text: %s',
     });
     // Separator
     browser.contextMenus.create({
-      contexts: defaultContexts,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       type: "separator",
     });
     // Add to Whitelist Subdomains
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.EXPRESSION_ADD_GREY_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       title: browser.i18n.getMessage('toGreyListText'),
     });
     // Add to Whitelist Subdomains
     browser.contextMenus.create({
-      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.EXPRESSION_ADD_WHITE_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
       title: browser.i18n.getMessage('toWhiteListText'),
@@ -200,13 +202,34 @@ export default class ContextMenuEvents extends StoreUser {
     id: string,
     checked: boolean,
   ) {
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
     browser.contextMenus.update(id, {
       checked,
-    }).catch(this.onUpdateError);
+    }).catch(this.onCreatedOrUpdated);
+    if (debug) {
+      cadLog({
+        msg: `ContextMenuEvents.updateMenuItemCheckbox: Updated Menu Item.`,
+        x: {id, checked},
+      });
+    }
   }
 
-  public static onUpdateError() {
-    console.error(`Error updating menu item:  ${browser.runtime.lastError}`);
+  public static onCreatedOrUpdated() {
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+    if (browser.runtime.lastError) {
+      if (debug) {
+        cadLog({
+          msg: `ContextMenuEvents.onCreatedOrUpdated received an error: ${browser.runtime.lastError}`,
+        });
+      } else {
+        console.error(`Error creating or updating menu item:  ${browser.runtime.lastError}`);
+      }
+    } else {
+      if (debug) {
+        cadLog({
+          msg: `ContextMenuEvents.onCreatedOrUpdated:  Create/Update ContextMenu was successful.`,
+        });
+      }
+    }
   }
-
 }
