@@ -1,6 +1,6 @@
 {
 	"aboutText": {
-		"message": "Информация",
+		"message": "О расширении",
 		"description": "About"
 	},
 	"activeModeDelayText": {
@@ -76,7 +76,7 @@
 		"description": "Remove All"
 	},
 	"consoleDebugMode": {
-		"message": "Нажмите на вкладку Console",
+		"message": "Нажмите на вкладку 'Консоль'",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
 	"contextualIdentitiesEnabledText": {
@@ -180,7 +180,7 @@
 		"description": "Frequently Asked Questions, Common issues and solutions"
 	},
 	"filterDebugMode": {
-		"message": "Чтобы увидеть только отладочные сообщения этого расширения, фильтровать вывод по:",
+		"message": "Чтобы увидеть только отладочные сообщения этого расширения, отфильтруйте вывод по этой строке:",
 		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
 	},
 	"filterText": {
@@ -240,7 +240,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "ВНИМАНИЕ: Включение и локальной очистки хранилища и вкладок контейнеров может привести к нежелательным побочным эффектам из-за ограничений API. Локальное хранилище будет очищено по имени хоста во всех контейнерах.",
+		"message": "ВНИМАНИЕ: Включение и очистки локального хранилища, и вкладок контейнеров может привести к нежелательным побочным эффектам из-за ограничений API. Локальное хранилище будет очищено по имени хоста во ВСЕХ контейнерах.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -270,6 +270,10 @@
 	"noExpressionsText": {
 		"message": "Правила не заданы.",
 		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Журнал очистки не будет вестись для вкладок в приватном / инкогнито / InPrivate режиме.",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
 		"message": "Нет правил для этого домена.",
@@ -318,7 +322,7 @@
 		"description": "Older release notes can be viewed online at"
 	},
 	"openDebugMode": {
-		"message": "Для просмотра отладочных сообщения откройте новую вкладку и посетите",
+		"message": "Для просмотра отладочных сообщений откройте новую вкладку и посетите",
 		"description": "To view the debug outputs, open a new tab and visit"
 	},
 	"optionsText": {
