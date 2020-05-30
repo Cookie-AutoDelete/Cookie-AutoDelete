@@ -20,9 +20,18 @@ import {
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
 import { checkIfProtected, setGlobalIcon } from './services/BrowserActionService';
+import { clearCookiesForThisDomain, clearLocalstorageForThisDomain } from './services/CleanupService';
 import ContextMenuEvents from './services/ContextMenuEvents';
 import CookieEvents from './services/CookieEvents';
-import { cadLog, convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
+import {
+  cadLog,
+  convertVersionToNumber,
+  extractMainDomain,
+  getHostname,
+  getSetting,
+  showNotification,
+  sleep
+} from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
@@ -174,11 +183,104 @@ async function onContextMenuClicked(
   info: browser.contextMenus.OnClickData,
   tab: browser.tabs.Tab
 ) {
-  // const debug = currentSettings.debugMode.value;
-  console.info('onContextMenuClicked', info, tab);
+  // const debug = getSetting(store.getState(), 'debugMode');
+  const debug = true;
+  if (!debug) {
+    cadLog({
+      msg: `background.onContextMenuClicked:  Data received`,
+      x: {info, tab},
+    });
+  }
   switch (info.menuItemId) {
+    case ContextMenuEvents.MENUID.CLEAN:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked triggered Normal Clean.`,
+        });
+      }
+      store.dispatch<any>(
+        cookieCleanup({
+          greyCleanup: false,
+          ignoreOpenTabs: false,
+        }),
+      );
+      break;
+    case ContextMenuEvents.MENUID.CLEAN_OPEN:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked triggered Clean, include open tabs.`,
+        });
+      }
+      store.dispatch<any>(
+        cookieCleanup({
+          greyCleanup: false,
+          ignoreOpenTabs: true,
+        }),
+      );
+      break;
+    case ContextMenuEvents.MENUID.CLEAN_COOKIES:
+      {
+        if (debug) {
+          cadLog({
+            msg: `background.onContextMenuClicked triggered Clean All Cookies For This Domain.`,
+          });
+        }
+        if (getHostname(tab.url)) {
+          clearCookiesForThisDomain(store.getState(), tab);
+        } else {
+          showNotification({
+            duration: getSetting(store.getState(), 'notificationOnScreen') as number,
+            msg: `${browser.i18n.getMessage('cookiesText')} cannot be cleaned for tab:\n
+            ${tab.title}\n\n
+            ${tab.url}
+            `,
+          });
+        }
+      }
+      break;
+    case ContextMenuEvents.MENUID.CLEAN_LOCALSTORAGE:
+      {
+        if (debug) {
+          cadLog({
+            msg: `background.onContextMenuClicked triggered Clean LocalStorage For This Domain.`,
+          });
+        }
+        if (getHostname(tab.url)) {
+          clearLocalstorageForThisDomain(store.getState(), tab);
+        } else {
+          showNotification({
+            duration: getSetting(store.getState(), 'notificationOnScreen') as number,
+            msg: `${browser.i18n.getMessage('localStorageText')} cannot be cleaned for tab:\n
+            ${tab.title}\n\n
+            ${tab.url}
+            `,
+          });
+        }
+      }
+      break;
+    case ContextMenuEvents.MENUID.LINK_ADD_GREY_DOMAIN:
+      // info.linkUrl
+      console.info(`Add Link to Greylist:  ${getHostname(info.linkUrl)}`);
+      break;
+    case ContextMenuEvents.MENUID.LINK_ADD_WHITE_DOMAIN:
+      // info.linkUrl
+      console.info(`Add Link to Whitelist:  ${getHostname(info.linkUrl)}`);
+      break;
+    case ContextMenuEvents.MENUID.LINK_ADD_GREY_SUBS:
+      // info.linkUrl
+      console.info(`Add Link w/ subdomains to Greylist:  *.${getHostname(info.linkUrl)}`);
+      break;
+    case ContextMenuEvents.MENUID.LINK_ADD_WHITE_SUBS:
+      // info.linkUrl
+      console.info(`Add Link w/ subdomains to Whitelist:  *.${getHostname(info.linkUrl)}`);
+      break;
     case ContextMenuEvents.MENUID.ACTIVE_MODE:
       if (info.hasOwnProperty('checked') && info.hasOwnProperty('wasChecked') && info.checked !== info.wasChecked) {
+        if (debug) {
+          cadLog({
+            msg: `background.onContextMenuClicked changed Automatic Cleaning value to:  ${info.checked}.`,
+          });
+        }
         // Setting Updated.
         store.dispatch<any>(updateSetting({
           name: currentSettings.activeMode.name,
@@ -187,12 +289,24 @@ async function onContextMenuClicked(
       }
       break;
     case ContextMenuEvents.MENUID.SETTINGS:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked triggered Open Settings.`,
+        });
+      }
       browser.tabs.create({
         index: tab.index + 1,
         url: '/settings/settings.html#tabSettings',
       });
       break;
     default:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked received unknown menu id: ${info.menuItemId}`,
+          type: 'warn',
+          x: {info, tab},
+        });
+      }
       break;
   }
 }

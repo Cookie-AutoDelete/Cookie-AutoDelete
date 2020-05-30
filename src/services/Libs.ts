@@ -19,6 +19,18 @@ export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
 
 /* --- FUNCTIONS --- */
 /**
+ * Async in ForEach
+ */
+export const asyncForEach = async (
+  array: any[],
+  callback: (item: any) => any,
+) => {
+  for(const i of array) {
+    await callback(i);
+  }
+};
+
+/**
  * Console Log Outputs - Mostly For Debugging
  */
 export const cadLog = (x: CADLogItem) => {
@@ -318,7 +330,7 @@ export const returnOptionalCookieAPIAttributes = (
   ) {
     return {
       ...cookieAPIAttributes,
-      firstPartyDomain: undefined,
+      firstPartyDomain: null,
     };
   }
   if (
@@ -331,6 +343,25 @@ export const returnOptionalCookieAPIAttributes = (
     return rest;
   }
   return cookieAPIAttributes;
+};
+
+/**
+ * Show a notification
+ */
+export const showNotification = (x: {
+  duration: number,
+  msg: string,
+  title?: string,
+}) => {
+  browser.notifications.create('manual-notification', {
+    iconUrl: browser.extension.getURL('icons/icon_48.png'),
+    message: x.msg,
+    title: `CAD ${browser.runtime.getManifest().version} - ${x.title ? x.title : 'Manual Action Notification'}`,
+    type: 'basic',
+  });
+  setTimeout(() => {
+    browser.notifications.clear('manual-notification');
+  }, x.duration * 1000);
 };
 
 /**

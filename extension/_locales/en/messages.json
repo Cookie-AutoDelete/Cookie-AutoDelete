@@ -91,6 +91,10 @@
 		"message": "Contributors",
 		"description": "Contributors"
 	},
+	"cookiesText": {
+		"message": "Cookies",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+	},
 	"cookieCleanUpOnStartText": {
 		"message": "Clean Cookies from Open Tabs on Startup",
 		"description": "Clean Cookies from Open Tabs on Startup"
@@ -254,6 +258,10 @@
 	"localstorageCleanupWarning": {
 		"message": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "LocalStorage",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"matchedDomainExpressionText": {
 		"message": "Matched Domain Expression",

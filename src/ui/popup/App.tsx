@@ -20,6 +20,10 @@ import {
   updateSetting,
 } from '../../redux/Actions';
 import {
+  clearCookiesForThisDomain,
+  clearLocalstorageForThisDomain
+} from '../../services/CleanupService';
+import {
   extractMainDomain,
   getHostname,
   getSetting,
@@ -27,7 +31,6 @@ import {
   isFirstPartyIsolate,
   localFileToRegex,
   LSCLEANUPNAME,
-  prepareCookieDomain,
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
@@ -108,46 +111,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     }
   }
 
-  public async clearCookiesForThisDomain(hostname: string) {
-    const { state } = this.props;
-    if (!this.state.tab) return false;
-    const { cookieStoreId } = this.state.tab;
-    const firstPartyIsolate = await isFirstPartyIsolate();
-    const cookies = (await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
-        domain: hostname,
-        firstPartyDomain: hostname,
-        storeId: cookieStoreId,
-      }, firstPartyIsolate),
-    ));
-
-    if (cookies.length > 0) {
-      cookies.forEach(cookie =>
-        browser.cookies.remove(returnOptionalCookieAPIAttributes(state, {
-          firstPartyDomain: cookie.firstPartyDomain,
-          name: cookie.name,
-          storeId: cookie.storeId,
-          url: prepareCookieDomain(cookie),
-        }, firstPartyIsolate) as {
-          // Fix type error with undefineds with cookies.remove
-          url: string;
-          name: string;
-        }),
-      );
-      return true;
-    }
-    return false;
-  }
-
-  public clearLocalstorageForThisDomain(hostname: string) {
-    // Using this method to ensure cross browser compatiblity
-    browser.tabs.executeScript(undefined, {
-      allFrames: true,
-      code: 'window.localStorage.clear();window.sessionStorage.clear();',
-    });
-    return true;
-  }
-
   public async setPopupCookieCount(hostname: string) {
     const { state } = this.props;
     if (!this.state.tab) return;
@@ -156,7 +119,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     const cookies = (await browser.cookies.getAll(
       returnOptionalCookieAPIAttributes(state, {
         domain: hostname,
-        firstPartyDomain: hostname,
+        firstPartyDomain: extractMainDomain(hostname),
         storeId: cookieStoreId,
       }, firstPartyIsolate),
     ));
@@ -338,36 +301,34 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 <button
                   className="dropdown-item"
                   onClick={async () => {
-                    const success = await this.clearCookiesForThisDomain(
-                      hostname,
-                    );
+                    const success = await clearCookiesForThisDomain(state, tab);
                     this.animateFlash(this.cleanButtonContainerRef, success);
                   }}
                   title={browser.i18n.getMessage('clearSiteDataForDomainText', [
-                    'cookies',
+                    browser.i18n.getMessage('cookiesText'),
                     hostname,
                   ])}
                   type="button"
                 >
-                  {browser.i18n.getMessage('clearSiteDataText', ['cookies'])}
+                  {browser.i18n.getMessage('clearSiteDataText', [browser.i18n.getMessage('cookiesText')])}
                 </button>
                 <div className="dropdown-header" />
                 <button
                   className="dropdown-item"
                   onClick={async () => {
-                    const success = await this.clearLocalstorageForThisDomain(
-                      hostname,
+                    const success = await clearLocalstorageForThisDomain(state,
+                      tab,
                     );
                     this.animateFlash(this.cleanButtonContainerRef, success);
                   }}
                   title={browser.i18n.getMessage('clearSiteDataForDomainText', [
-                    'localstorage',
+                    browser.i18n.getMessage('localStorageText'),
                     hostname,
                   ])}
                   type="button"
                 >
                   {browser.i18n.getMessage('clearSiteDataText', [
-                    'localstorage',
+                    browser.i18n.getMessage('localStorageText'),
                   ])}
                 </button>
               </div>

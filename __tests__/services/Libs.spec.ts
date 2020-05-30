@@ -756,7 +756,7 @@ describe('Library Functions', () => {
       expect(results).toEqual(
         expect.objectContaining({
           domain: 'example.com',
-          firstPartyDomain: undefined,
+          firstPartyDomain: null,
         }),
       );
     });

@@ -12,16 +12,19 @@
  */
 
 import {
+  asyncForEach,
   cadLog,
   extractMainDomain,
   getHostname,
   getSetting,
   isAWebpage,
   isFirstPartyIsolate,
+  LSCLEANUPNAME,
   prepareCleanupDomains,
   prepareCookieDomain,
   returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
+  showNotification,
   throwErrorNotification,
   undefinedIsTrue,
 } from './Libs';
@@ -220,6 +223,75 @@ export const cleanCookies = async (
   await Promise.all(promiseArr).catch(e => {
     throw e;
   });
+};
+
+// Cleanup of all cookies for domain.
+export const clearCookiesForThisDomain = async (
+  state: State,
+  tab: browser.tabs.Tab,
+) => {
+  const hostname = getHostname(tab.url);
+  const getCookies = (await browser.cookies.getAll(
+    returnOptionalCookieAPIAttributes(state, {
+      domain: hostname,
+      storeId: tab.cookieStoreId,
+    }, true),
+  ));
+  const cookies = getCookies.filter(c => c.name !== LSCLEANUPNAME);
+
+  if (cookies.length > 0) {
+    let cookieDeletedCount = 0;
+    await asyncForEach(cookies, async (cookie: browser.cookies.Cookie) => {
+      const r = await browser.cookies.remove(returnOptionalCookieAPIAttributes(state, {
+        firstPartyDomain: cookie.firstPartyDomain,
+        name: cookie.name,
+        storeId: cookie.storeId,
+        url: prepareCookieDomain(cookie),
+      }, true) as {
+        // Fix type error with undefineds with cookies.remove
+        url: string;
+        name: string;
+      });
+      if (r !== null) cookieDeletedCount += 1;
+    });
+    showNotification({
+      duration: getSetting(state, 'notificationOnScreen') as number,
+      msg: `Successfully cleaned ${cookieDeletedCount} of ${cookies.length} ${browser.i18n.getMessage('cookiesText')} on ${hostname}`,
+    });
+  } else {
+    showNotification({
+      duration: getSetting(state, 'notificationOnScreen') as number,
+      msg: `No ${browser.i18n.getMessage('cookiesText')} were found for cleaning on ${hostname}`,
+    });
+  }
+
+  return cookies.length > 0;
+};
+
+export const clearLocalstorageForThisDomain = async (
+  state: State,
+  tab: browser.tabs.Tab,
+) => {
+  let local = 0;
+  let session = 0;
+  // Using this method to ensure cross browser compatiblity
+  try {
+    const result = await browser.tabs.executeScript(undefined, {
+      code: `var cad_r = {local: window.localStorage.length, session: window.sessionStorage.length};window.localStorage.clear();window.sessionStorage.clear();cad_r;`,
+    });
+    result.forEach((frame: { [key: string]: any }) => {
+      local += frame.local;
+      session += frame.session;
+    })
+  } catch(e) {
+    console.error(e);
+  }
+
+  showNotification({
+    duration: getSetting(state, 'notificationOnScreen') as number,
+    msg: `Cleanup for ${browser.i18n.getMessage('localStorageText')} on ${getHostname(tab.url)} result:\nLocalStorage Keys: ${local}\nSessionStorage Keys: ${session}`,
+  });
+  return local > 0 || session > 0;
 };
 
 /** This will use the browsingData's hostname attribute to delete any extra browsing data */
