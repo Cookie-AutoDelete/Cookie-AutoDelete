@@ -272,10 +272,10 @@ export const clearLocalstorageForThisDomain = async (
   state: State,
   tab: browser.tabs.Tab,
 ) => {
-  let local = 0;
-  let session = 0;
   // Using this method to ensure cross browser compatiblity
   try {
+    let local = 0;
+    let session = 0;
     const result = await browser.tabs.executeScript(undefined, {
       code: `var cad_r = {local: window.localStorage.length, session: window.sessionStorage.length};window.localStorage.clear();window.sessionStorage.clear();cad_r;`,
     });
@@ -283,15 +283,15 @@ export const clearLocalstorageForThisDomain = async (
       local += frame.local;
       session += frame.session;
     })
+    showNotification({
+      duration: getSetting(state, 'notificationOnScreen') as number,
+      msg: `Cleanup for ${browser.i18n.getMessage('localStorageText')} on ${getHostname(tab.url)} result:\nLocalStorage Keys: ${local}\nSessionStorage Keys: ${session}`,
+    });
+    return local > 0 || session > 0;
   } catch(e) {
-    console.error(e);
+    throwErrorNotification(e);
+    return false;
   }
-
-  showNotification({
-    duration: getSetting(state, 'notificationOnScreen') as number,
-    msg: `Cleanup for ${browser.i18n.getMessage('localStorageText')} on ${getHostname(tab.url)} result:\nLocalStorage Keys: ${local}\nSessionStorage Keys: ${session}`,
-  });
-  return local > 0 || session > 0;
 };
 
 /** This will use the browsingData's hostname attribute to delete any extra browsing data */

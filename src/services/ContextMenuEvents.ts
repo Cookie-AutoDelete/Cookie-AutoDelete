@@ -60,35 +60,41 @@ export default class ContextMenuEvents extends StoreUser {
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Regular Clean (exclude open tabs)
     browser.contextMenus.create({
+      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('cleanText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Clean (include open tabs)
     browser.contextMenus.create({
+      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_OPEN,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('cleanIgnoringOpenTabsText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Separator
     browser.contextMenus.create({
+      contexts: defaultContexts,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       type: "separator",
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Cleanup Warning
     browser.contextMenus.create({
+      contexts: defaultContexts,
       enabled: false,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('cleanupActionsBypass'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Clean cookies for domain
     browser.contextMenus.create({
+      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_COOKIES,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('clearSiteDataText', ['cookies']),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Clean localstorage for domain
     browser.contextMenus.create({
+      contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_LOCALSTORAGE,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
       title: browser.i18n.getMessage('clearSiteDataText', ['localstorage']),
@@ -112,11 +118,13 @@ export default class ContextMenuEvents extends StoreUser {
       title: 'Domain only for the selected link',
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['link'],
       id: ContextMenuEvents.MENUID.LINK_ADD_GREY_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_LINK_DOMAIN,
       title: browser.i18n.getMessage('toGreyListText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['link'],
       id: ContextMenuEvents.MENUID.LINK_ADD_WHITE_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_LINK_DOMAIN,
       title: browser.i18n.getMessage('toWhiteListText'),
@@ -128,11 +136,13 @@ export default class ContextMenuEvents extends StoreUser {
       title: 'All subdomains with this domain for the selected link',
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['link'],
       id: ContextMenuEvents.MENUID.LINK_ADD_GREY_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_LINK_SUBS,
       title: browser.i18n.getMessage('toGreyListText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['link'],
       id: ContextMenuEvents.MENUID.LINK_ADD_WHITE_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_LINK_SUBS,
       title: browser.i18n.getMessage('toWhiteListText'),
@@ -146,11 +156,13 @@ export default class ContextMenuEvents extends StoreUser {
       title: 'Domain only for the selected page',
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['page'],
       id: ContextMenuEvents.MENUID.PAGE_ADD_GREY_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_PAGE_DOMAIN,
       title: browser.i18n.getMessage('toGreyListText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['page'],
       id: ContextMenuEvents.MENUID.PAGE_ADD_WHITE_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_PAGE_DOMAIN,
       title: browser.i18n.getMessage('toWhiteListText'),
@@ -162,11 +174,13 @@ export default class ContextMenuEvents extends StoreUser {
       title: 'All subdomains with this domain for the selected page',
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['page'],
       id: ContextMenuEvents.MENUID.PAGE_ADD_GREY_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_PAGE_SUBS,
       title: browser.i18n.getMessage('toGreyListText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['page'],
       id: ContextMenuEvents.MENUID.PAGE_ADD_WHITE_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_PAGE_SUBS,
       title: browser.i18n.getMessage('toWhiteListText'),
@@ -177,14 +191,16 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MENUID.PARENT_SELECT_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Domain only for selected text: %s',
+      title: 'Domain only for selected text "%s"',
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['selection'],
       id: ContextMenuEvents.MENUID.SELECT_ADD_GREY_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_SELECT_DOMAIN,
       title: browser.i18n.getMessage('toGreyListText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['selection'],
       id: ContextMenuEvents.MENUID.SELECT_ADD_WHITE_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_SELECT_DOMAIN,
       title: browser.i18n.getMessage('toWhiteListText'),
@@ -193,14 +209,16 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MENUID.PARENT_SELECT_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'For all subdomains of the selected text: %s',
+      title: 'For all subdomains of the selected text "%s"',
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['selection'],
       id: ContextMenuEvents.MENUID.SELECT_ADD_GREY_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_SELECT_SUBS,
       title: browser.i18n.getMessage('toGreyListText'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
+      contexts: ['selection'],
       id: ContextMenuEvents.MENUID.SELECT_ADD_WHITE_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_SELECT_SUBS,
       title: browser.i18n.getMessage('toWhiteListText'),
@@ -243,7 +261,7 @@ export default class ContextMenuEvents extends StoreUser {
     }
   }
 
-  public static onCreatedOrUpdated(id?: string) {
+  public static onCreatedOrUpdated() {
     const debug = getSetting(StoreUser.store.getState(), 'debugMode');
     if (browser.runtime.lastError) {
       if (debug) {
@@ -255,15 +273,9 @@ export default class ContextMenuEvents extends StoreUser {
       }
     } else {
       if (debug) {
-        if (id) {
-          cadLog({
-            msg: `ContextMenuEvents.onCreatedOrUpdated:  Create ContextMenuItem was successful for id: ${id}.`,
-          });
-        } else {
-          cadLog({
-            msg: `ContextMenuEvents.onCreatedOrUpdated:  Update ContextMenuItem was successful.`,
-          });
-        }
+        cadLog({
+          msg: `ContextMenuEvents.onCreatedOrUpdated:  Create/Update contextMenuItem was successful.`,
+        });
       }
     }
   }

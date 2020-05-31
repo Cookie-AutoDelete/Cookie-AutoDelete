@@ -31,6 +31,7 @@ import {
   isFirstPartyIsolate,
   localFileToRegex,
   LSCLEANUPNAME,
+  parseCookieStoreId,
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
@@ -75,11 +76,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     });
 
     this.setState({
-      storeId:
-        !this.props.contextualIdentities ||
-        (tabs[0].cookieStoreId && tabs[0].cookieStoreId === 'firefox-default')
-          ? 'default'
-          : tabs[0].cookieStoreId || 'default',
+      storeId: parseCookieStoreId(this.props.contextualIdentities, tabs[0].cookieStoreId),
       tab: tabs[0],
     });
   }

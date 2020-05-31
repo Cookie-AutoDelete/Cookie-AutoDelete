@@ -12,6 +12,7 @@
  */
 
 import ipRegex from 'ip-regex';
+import shortid from 'shortid';
 
 /* --- CONSTANTS --- */
 export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
@@ -251,6 +252,13 @@ export const localFileToRegex = (hostname: string) => {
 };
 
 /**
+ * Parse cookieStoreId for use in addExpressionUI...
+ */
+export const parseCookieStoreId = (contextualIdentities: boolean, cookieStoreId: string | undefined) => {
+  return (!contextualIdentities || (cookieStoreId && cookieStoreId === 'firefox-default')) ? 'default' : cookieStoreId || 'default';
+}
+
+/**
  * Prepare Domains for all cleanups.
  */
 export const prepareCleanupDomains = (domain: string) => {
@@ -353,14 +361,15 @@ export const showNotification = (x: {
   msg: string,
   title?: string,
 }) => {
-  browser.notifications.create('manual-notification', {
+  const sid = `manual-${shortid.generate()}`;
+  browser.notifications.create(sid, {
     iconUrl: browser.extension.getURL('icons/icon_48.png'),
     message: x.msg,
     title: `CAD ${browser.runtime.getManifest().version} - ${x.title ? x.title : 'Manual Action Notification'}`,
     type: 'basic',
   });
   setTimeout(() => {
-    browser.notifications.clear('manual-notification');
+    browser.notifications.clear(sid);
   }, x.duration * 1000);
 };
 

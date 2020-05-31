@@ -12,6 +12,7 @@
  */
 import { Store } from 'redux';
 import {
+  addExpressionUI,
   cacheCookieStoreIdNames,
   cookieCleanup,
   updateSetting,
@@ -29,6 +30,8 @@ import {
   extractMainDomain,
   getHostname,
   getSetting,
+  localFileToRegex,
+  parseCookieStoreId,
   showNotification,
   sleep
 } from './services/Libs';
@@ -177,20 +180,27 @@ const onStartUp = async () => {
     }
   }
   browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [READY] (0)` });
+  if (currentSettings.debugMode.value) {
+    cadLog({
+      msg: `background.onStartUp is complete.`,
+      type: "info"
+    });
+  }
 };
 
 async function onContextMenuClicked(
   info: browser.contextMenus.OnClickData,
   tab: browser.tabs.Tab
 ) {
-  // const debug = getSetting(store.getState(), 'debugMode');
-  const debug = true;
-  if (!debug) {
+  const debug = getSetting(store.getState(), 'debugMode') as boolean;
+  const contextualIdentities = getSetting(store.getState(), 'contextualIdentities') as boolean;
+  if (debug) {
     cadLog({
       msg: `background.onContextMenuClicked:  Data received`,
       x: {info, tab},
     });
   }
+  const cookieStoreId = (tab && tab.cookieStoreId) || '';
   switch (info.menuItemId) {
     case ContextMenuEvents.MENUID.CLEAN:
       if (debug) {
@@ -259,20 +269,156 @@ async function onContextMenuClicked(
       }
       break;
     case ContextMenuEvents.MENUID.LINK_ADD_GREY_DOMAIN:
-      // info.linkUrl
-      console.info(`Add Link to Greylist:  ${getHostname(info.linkUrl)}`);
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_GREY_DOMAIN.`,
+          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
+        });
+      }
+      addNewExpression(getHostname(info.linkUrl), ListType.GREY, cookieStoreId);
       break;
     case ContextMenuEvents.MENUID.LINK_ADD_WHITE_DOMAIN:
-      // info.linkUrl
-      console.info(`Add Link to Whitelist:  ${getHostname(info.linkUrl)}`);
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_WHITE_DOMAIN.`,
+          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
+        });
+      }
+      addNewExpression(getHostname(info.linkUrl), ListType.WHITE, cookieStoreId);
       break;
     case ContextMenuEvents.MENUID.LINK_ADD_GREY_SUBS:
-      // info.linkUrl
-      console.info(`Add Link w/ subdomains to Greylist:  *.${getHostname(info.linkUrl)}`);
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_GREY_SUBS.`,
+          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
+        });
+      }
+      addNewExpression(`*.${getHostname(info.linkUrl)}`, ListType.GREY, cookieStoreId);
       break;
     case ContextMenuEvents.MENUID.LINK_ADD_WHITE_SUBS:
-      // info.linkUrl
-      console.info(`Add Link w/ subdomains to Whitelist:  *.${getHostname(info.linkUrl)}`);
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_WHITE_SUBS.`,
+          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
+        });
+      }
+      addNewExpression(`*.${getHostname(info.linkUrl)}`, ListType.WHITE, cookieStoreId);
+      break;
+    case ContextMenuEvents.MENUID.PAGE_ADD_GREY_DOMAIN:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_GREY_DOMAIN.`,
+          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      addNewExpression(getHostname(info.pageUrl), ListType.GREY, cookieStoreId);
+      break;
+    case ContextMenuEvents.MENUID.PAGE_ADD_WHITE_DOMAIN:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_WHITE_DOMAIN.`,
+          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      addNewExpression(getHostname(info.pageUrl), ListType.WHITE, cookieStoreId);
+      break;
+    case ContextMenuEvents.MENUID.PAGE_ADD_GREY_SUBS:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_GREY_SUBS.`,
+          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      addNewExpression(`*.${getHostname(info.pageUrl)}`, ListType.GREY, cookieStoreId);
+      break;
+    case ContextMenuEvents.MENUID.PAGE_ADD_WHITE_SUBS:
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_WHITE_SUBS.`,
+          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      addNewExpression(`*.${getHostname(info.pageUrl)}`, ListType.WHITE, cookieStoreId);
+      break;
+    case ContextMenuEvents.MENUID.SELECT_ADD_GREY_DOMAIN:
+    {
+      const texts = (info.selectionText || '').trim().split(',');
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_GREY_DOMAIN.`,
+          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      texts.forEach((text) => {
+        if (debug) {
+          cadLog({
+            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
+            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
+          });
+        }
+        addNewExpression(encodeURI(text.trim()), ListType.GREY, cookieStoreId);
+      });
+    }
+      break;
+    case ContextMenuEvents.MENUID.SELECT_ADD_WHITE_DOMAIN:
+    {
+      const texts = (info.selectionText || '').trim().split(',');
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_WHITE_DOMAIN.`,
+          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      texts.forEach((text) => {
+        if (debug) {
+          cadLog({
+            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
+            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
+          });
+        }
+        addNewExpression(encodeURI(text.trim()), ListType.WHITE, cookieStoreId);
+      });
+    }
+      break;
+    case ContextMenuEvents.MENUID.SELECT_ADD_GREY_SUBS:
+    {
+      const texts = (info.selectionText || '').trim().split(',');
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_GREY_SUBS.`,
+          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      texts.forEach((text) => {
+        if (debug) {
+          cadLog({
+            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
+            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
+          });
+        }
+        addNewExpression(`*.${encodeURI(text.trim())}`, ListType.GREY, cookieStoreId);
+      });
+    }
+      break;
+    case ContextMenuEvents.MENUID.SELECT_ADD_WHITE_SUBS:
+    {
+      const texts = (info.selectionText || '').trim().split(',');
+      if (debug) {
+        cadLog({
+          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_WHITE_SUBS.`,
+          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
+        });
+      }
+      texts.forEach((text) => {
+        if (debug) {
+          cadLog({
+            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
+            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
+          });
+        }
+        addNewExpression(`*.${encodeURI(text.trim())}`, ListType.WHITE, cookieStoreId);
+      });
+    }
       break;
     case ContextMenuEvents.MENUID.ACTIVE_MODE:
       if (info.hasOwnProperty('checked') && info.hasOwnProperty('wasChecked') && info.checked !== info.wasChecked) {
@@ -309,6 +455,31 @@ async function onContextMenuClicked(
       }
       break;
   }
+}
+
+function addNewExpression(
+  input: string,
+  listType: ListType,
+  cookieStoreId: string | undefined,
+) {
+  if (!input && !listType) return;
+  const payload = {
+    expression: localFileToRegex(input.trim()),
+    listType,
+    storeId: parseCookieStoreId(currentSettings.contextualIdentities.value as boolean, cookieStoreId),
+  }
+  if (currentSettings.debugMode.value) {
+    cadLog({
+      msg: `background.addNewExpression - Parsed from Right-Click:`,
+      x: payload,
+    });
+  }
+  const cache = store.getState().cache;
+  showNotification({
+    duration: getSetting(store.getState(), 'notificationOnScreen') as number,
+    msg: `Adding ${payload.expression}\nto list type ${payload.listType}\nunder Cookie Store  ${payload.storeId}${(currentSettings.contextualIdentities.value as boolean) ? (cache[payload.storeId] !== undefined ? ` (${cache[payload.storeId]})` : '') : ''}.\nIf expression already exists, this will be ignored.`,
+  });
+  store.dispatch(addExpressionUI(payload));
 }
 
 // Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
@@ -419,6 +590,11 @@ const awaitStore = async () => {
 
 const greyCleanup = () => {
   if (getSetting(store.getState(), 'activeMode')) {
+    if (getSetting(store.getState(), 'debugMode')) {
+      cadLog({
+        msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
+      });
+    }
     store.dispatch<any>(
       cookieCleanup({
         greyCleanup: true,
