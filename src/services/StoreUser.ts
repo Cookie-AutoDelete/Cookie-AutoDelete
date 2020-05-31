@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+/* istanbul ignore file: Redux init.*/
 import { Store } from 'redux';
 import { ReduxAction } from '../typings/ReduxConstants';
 

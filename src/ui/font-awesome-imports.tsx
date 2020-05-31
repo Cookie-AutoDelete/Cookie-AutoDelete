@@ -1,3 +1,4 @@
+/* istanbul ignore file: FontAwesome Font Imports */
 // Font Awesome Import start
 import { library } from '@fortawesome/fontawesome-svg-core';
 // Import fonts like this to avoid tree shaking
