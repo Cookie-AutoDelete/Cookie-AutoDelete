@@ -290,6 +290,10 @@ export const clearLocalstorageForThisDomain = async (
     return true;
   } catch(e) {
     throwErrorNotification(e);
+    showNotification({
+      duration: getSetting(state, 'notificationOnScreen') as number,
+      msg: `${browser.i18n.getMessage('manualCleanNothing', [browser.i18n.getMessage('localStorageText'), hostname])}`,
+    });
     return false;
   }
 };
