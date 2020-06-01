@@ -13,6 +13,7 @@
 
 import { initialState } from '../../src/redux/State';
 import {
+  asyncForEach,
   cadLog,
   convertVersionToNumber,
   extractMainDomain,
@@ -24,10 +25,12 @@ import {
   isAWebpage,
   isFirstPartyIsolate,
   localFileToRegex,
+  parseCookieStoreId,
   prepareCleanupDomains,
   prepareCookieDomain,
   returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
+  showNotification,
   sleep,
   throwErrorNotification,
   trimDot,
@@ -48,6 +51,21 @@ const mockCookie: browser.cookies.Cookie = {
 };
 
 describe('Library Functions', () => {
+  describe('asyncForEach()', () => {
+    it('wrapping async on forEach', async () => {
+      expect.assertions(5);
+      let test = 0;
+      const result = asyncForEach([1,2,3], async(n:number) => {
+        const r = await Promise.resolve(n*2);
+        expect(r).toEqual(n*2);
+        test += r;
+      }).then(t => {
+        expect(t).toEqual(undefined);
+        expect(test).toEqual(12);
+      });
+      return result;
+    });
+  });
   describe('cadLog()', () => {
     global.browser = {
       runtime: {
@@ -625,7 +643,25 @@ describe('Library Functions', () => {
     it('should return empty string from empty hostname', () => {
       expect(localFileToRegex('')).toEqual('');
     });
-  })
+  });
+
+  describe('parseCookieStoreId()', () => {
+    it('should return default if contextualIdentities is false', () => {
+      expect(parseCookieStoreId(false, 'abcde')).toEqual('default');
+    });
+
+    it('should return default if contextualIdentities is true and cookieStoreId is "firefox-default"', () => {
+      expect(parseCookieStoreId(true, 'firefox-default')).toEqual('default');
+    });
+
+    it('should return specified cookieStoreId if contextualIdentities is true and cookieStoreId is not "firefox-default"', () => {
+      expect(parseCookieStoreId(true, 'test-container')).toEqual('test-container');
+    });
+
+    it('should return default if contextualIdentities is true but cookieStoreId was undefined', () => {
+      expect(parseCookieStoreId(true, undefined)).toEqual('default');
+    });
+  });
 
   describe('prepareCleanupDomains()', () => {
     it('should return empty array for empty domain', () => {
@@ -830,6 +866,55 @@ describe('Library Functions', () => {
           firstPartyDomain: '',
         }),
       );
+    });
+  });
+
+  describe('showNotification()', () => {
+    beforeAll(() => {
+      global.browser = {
+        extension: {
+          getURL: jest.fn(),
+        },
+        i18n: {
+          getMessage: jest.fn().mockReturnValue('manual'),
+        },
+        notifications: {
+          clear: jest.fn(),
+          create: jest.fn(),
+        },
+        runtime: {
+          getManifest: jest.fn().mockReturnValue({version: '3.99.99'}),
+        }
+      };
+    });
+    beforeEach(() => {
+      jest.spyOn(global, 'setTimeout');
+    });
+
+    it('should expect one call to browser.notifications.create with default title', async () => {
+      showNotification({duration:1,msg: 'Test Notification'});
+      expect(global.browser.notifications.create).toHaveBeenCalled();
+      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(expect.stringContaining('manual-'));
+      expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(expect.objectContaining({
+        "message": "Test Notification",
+        "title": "CAD 3.99.99 - manual",
+        "type": "basic",
+      }));
+      expect(setTimeout).toHaveBeenCalled();
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+    });
+
+    it('should expect one call to browser.notifications.create with custom title', async () => {
+      showNotification({duration:1,msg: 'Test Notification', title: 'custom'});
+      expect(global.browser.notifications.create).toHaveBeenCalled();
+      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(expect.stringContaining('manual-'));
+      expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(expect.objectContaining({
+        "message": "Test Notification",
+        "title": "CAD 3.99.99 - custom",
+        "type": "basic",
+      }));
+      expect(setTimeout).toHaveBeenCalled();
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
     });
   });
 
