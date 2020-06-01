@@ -238,9 +238,16 @@ async function onContextMenuClicked(
         if (getHostname(tab.url)) {
           clearCookiesForThisDomain(store.getState(), tab);
         } else {
+          if (debug) {
+            cadLog({
+              msg: `background.onContextMenuClicked cannot clean cookies from tab:`,
+              type: 'warn',
+              x: {tab},
+            });
+          }
           showNotification({
             duration: getSetting(store.getState(), 'notificationOnScreen') as number,
-            msg: `${browser.i18n.getMessage('cookiesText')} cannot be cleaned for tab:\n
+            msg: `${browser.i18n.getMessage('manualCleanError', [browser.i18n.getMessage('cookiesText')])}\n
             ${tab.title}\n\n
             ${tab.url}
             `,
@@ -260,7 +267,7 @@ async function onContextMenuClicked(
         } else {
           showNotification({
             duration: getSetting(store.getState(), 'notificationOnScreen') as number,
-            msg: `${browser.i18n.getMessage('localStorageText')} cannot be cleaned for tab:\n
+            msg: `${browser.i18n.getMessage('manualCleanError', [browser.i18n.getMessage('localStorageText')])}\n
             ${tab.title}\n\n
             ${tab.url}
             `,
@@ -477,7 +484,7 @@ function addNewExpression(
   const cache = store.getState().cache;
   showNotification({
     duration: getSetting(store.getState(), 'notificationOnScreen') as number,
-    msg: `Adding ${payload.expression}\nto list type ${payload.listType}\nunder Cookie Store  ${payload.storeId}${(currentSettings.contextualIdentities.value as boolean) ? (cache[payload.storeId] !== undefined ? ` (${cache[payload.storeId]})` : '') : ''}.\nIf expression already exists, this will be ignored.`,
+    msg: `${browser.i18n.getMessage('addNewExpressionNotification', [payload.expression, payload.listType, `${payload.storeId}${(currentSettings.contextualIdentities.value as boolean) ? (cache[payload.storeId] !== undefined ? ` (${cache[payload.storeId]})` : '') : ''}`])}\n${browser.i18n.getMessage('addNewExpressionNotificationIgnore')}`,
   });
   store.dispatch(addExpressionUI(payload));
 }

@@ -256,12 +256,12 @@ export const clearCookiesForThisDomain = async (
     });
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `Successfully cleaned ${cookieDeletedCount} of ${cookies.length} ${browser.i18n.getMessage('cookiesText')} on ${hostname}`,
+      msg: `${browser.i18n.getMessage('manualCleanSuccess', [browser.i18n.getMessage('cookiesText'), hostname])}\n${browser.i18n.getMessage('manualCleanRemoved', [cookieDeletedCount.toString(), cookies.length.toString()])}`,
     });
   } else {
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `No ${browser.i18n.getMessage('cookiesText')} were found for cleaning on ${hostname}`,
+      msg: `${browser.i18n.getMessage('manualCleanNothing', [browser.i18n.getMessage('cookiesText'), hostname])}`,
     });
   }
 
@@ -285,16 +285,16 @@ export const clearLocalstorageForThisDomain = async (
     })
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `Cleanup for ${browser.i18n.getMessage('localStorageText')} on ${getHostname(tab.url)} result:\nLocalStorage Keys: ${local}\nSessionStorage Keys: ${session}`,
+      msg: `${browser.i18n.getMessage('manualCleanSuccess', [browser.i18n.getMessage('localStorageText'), getHostname(tab.url)])}\nLocalStorage: ${local}\nSessionStorage: ${session}`,
     });
-    return local > 0 || session > 0;
+    return true;
   } catch(e) {
     throwErrorNotification(e);
     return false;
   }
 };
 
-/** This will use the browsingData's hostname attribute to delete any extra browsing data */
+/** This will use the browsingData's hostname/origin attribute to delete any extra browsing data */
 export const otherBrowsingDataCleanup = async (
   state: State,
   domains: string[],

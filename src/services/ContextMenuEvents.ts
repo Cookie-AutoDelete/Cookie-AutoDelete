@@ -56,7 +56,7 @@ export default class ContextMenuEvents extends StoreUser {
     browser.contextMenus.create({
       contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.PARENT_CLEAN,
-      title: 'Trigger Cleaning',
+      title: browser.i18n.getMessage('contextMenusParentClean'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Regular Clean (exclude open tabs)
     browser.contextMenus.create({
@@ -108,14 +108,14 @@ export default class ContextMenuEvents extends StoreUser {
     browser.contextMenus.create({
       contexts: ['link', 'page', 'selection'],
       id: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Expressions Menu',
+      title: browser.i18n.getMessage('contextMenusParentExpression'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Link Group
     browser.contextMenus.create({
       contexts: ['link'],
       id: ContextMenuEvents.MENUID.PARENT_LINK_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Domain only for the selected link',
+      title: browser.i18n.getMessage('contextMenusSelectedDomain', [browser.i18n.getMessage('linkText')]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['link'],
@@ -133,7 +133,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['link'],
       id: ContextMenuEvents.MENUID.PARENT_LINK_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'All subdomains with this domain for the selected link',
+      title: browser.i18n.getMessage('contextMenusSelectedSubdomain', [browser.i18n.getMessage('linkText')]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['link'],
@@ -153,7 +153,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['page'],
       id: ContextMenuEvents.MENUID.PARENT_PAGE_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Domain only for the selected page',
+      title: browser.i18n.getMessage('contextMenusSelectedDomain', [browser.i18n.getMessage('pageText')]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['page'],
@@ -171,7 +171,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['page'],
       id: ContextMenuEvents.MENUID.PARENT_PAGE_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'All subdomains with this domain for the selected page',
+      title: browser.i18n.getMessage('contextMenusSelectedSubdomain', [browser.i18n.getMessage('pageText')]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['page'],
@@ -191,7 +191,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MENUID.PARENT_SELECT_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'Domain only for selected text "%s"',
+      title: `${browser.i18n.getMessage('contextMenusSelectedDomain', [browser.i18n.getMessage('selectedText')])} "%s"`,
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['selection'],
@@ -209,7 +209,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MENUID.PARENT_SELECT_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: 'For all subdomains of the selected text "%s"',
+      title: `${browser.i18n.getMessage('contextMenusSelectedSubdomain', [browser.i18n.getMessage('selectedText')])} "%s"`,
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['selection'],

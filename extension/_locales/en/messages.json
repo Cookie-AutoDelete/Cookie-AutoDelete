@@ -11,6 +11,28 @@
 		"message": "Enable Automatic Cleaning",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.",
+		"description":  "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message":  "If expression already exists, this will be ignored.",
+		"description":  "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Auto-clean disabled",
 		"description": "Auto-clean disabled"
@@ -78,6 +100,34 @@
 	"consoleDebugMode": {
 		"message": "Click on the Console Tab",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
+	"contextMenusParentClean": {
+		"message": "Manual Cleaning Menu",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Add Domain/Expression Menu",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomain": {
+		"message": "For domain only of selected $type$",
+		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomain": {
+		"message": "For all subdomains with domain of selected $type$",
+		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
 	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Enable Support for Firefox's Container Tabs",
@@ -243,6 +293,10 @@
 		"message": "Keep",
 		"description": "Keep"
 	},
+	"linkText": {
+		"message": "link",
+		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
+	},
 	"listTypeText": {
 		"message": "List Type",
 		"description": "List Type"
@@ -262,6 +316,62 @@
 	"localStorageText": {
 		"message": "LocalStorage",
 		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Manual Action Notification",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "$data$ cannot be cleaned for tab:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "No $cleanType$ were found for cleaning on $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Removed $deleted$ of $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Cleanup for $cleanType$ on $url$ result:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Matched Domain Expression",
@@ -340,6 +450,10 @@
 	"optionsText": {
 		"message": "Options",
 		"description": "Options"
+	},
+	"pageText": {
+		"message": "page",
+		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
@@ -492,6 +606,10 @@
 	"secondsText": {
 		"message": "second(s)",
 		"description": "second(s)"
+	},
+	"selectedText": {
+		"message": "following text:",
+		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Automatic Cleaning Options",

@@ -365,7 +365,7 @@ export const showNotification = (x: {
   browser.notifications.create(sid, {
     iconUrl: browser.extension.getURL('icons/icon_48.png'),
     message: x.msg,
-    title: `CAD ${browser.runtime.getManifest().version} - ${x.title ? x.title : 'Manual Action Notification'}`,
+    title: `CAD ${browser.runtime.getManifest().version} - ${x.title ? x.title : browser.i18n.getMessage('manualActionNotification')}`,
     type: 'basic',
   });
   setTimeout(() => {
