@@ -292,7 +292,7 @@ export const clearLocalstorageForThisDomain = async (
     throwErrorNotification(e);
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `${browser.i18n.getMessage('manualCleanNothing', [browser.i18n.getMessage('localStorageText'), hostname])}`,
+      msg: `${browser.i18n.getMessage('manualCleanNothing', [browser.i18n.getMessage('localStorageText'), getHostname(tab.url)])}`,
     });
     return false;
   }
