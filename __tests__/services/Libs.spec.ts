@@ -11,9 +11,9 @@
  * SOFTWARE.
  */
 
+import { when } from 'jest-when';
 import { initialState } from '../../src/redux/State';
 import {
-  asyncForEach,
   cadLog,
   convertVersionToNumber,
   extractMainDomain,
@@ -51,27 +51,13 @@ const mockCookie: browser.cookies.Cookie = {
 };
 
 describe('Library Functions', () => {
-  describe('asyncForEach()', () => {
-    it('wrapping async on forEach', async () => {
-      expect.assertions(5);
-      let test = 0;
-      const result = asyncForEach([1,2,3], async(n:number) => {
-        const r = await Promise.resolve(n*2);
-        expect(r).toEqual(n*2);
-        test += r;
-      }).then(t => {
-        expect(t).toEqual(undefined);
-        expect(test).toEqual(12);
-      });
-      return result;
-    });
-  });
   describe('cadLog()', () => {
-    global.browser = {
-      runtime: {
-        getManifest: jest.fn().mockReturnValue({version: '0.12.34'}),
-      },
-    };
+    beforeAll(() => {
+      when(global.browser.runtime.getManifest)
+        .calledWith()
+        .mockReturnValue({version: '0.12.34'});
+    });
+
     const origDebug = console.debug;
     const origError = console.error;
     const origInfo = console.info;
@@ -611,15 +597,13 @@ describe('Library Functions', () => {
   });
 
   describe('isFirstPartyIsolate()', () => {
-    global.browser = {
-      ...global.browser,
-      cookies: {
-        getAll: jest.fn()
-          .mockResolvedValueOnce([])
-          .mockRejectedValueOnce(new Error('firstPartyDomain'))
-          .mockRejectedValueOnce(new Error('Error')),
-      },
-    };
+    beforeEach(() => {
+      when(global.browser.cookies.getAll)
+        .calledWith({domain: ''})
+        .mockResolvedValueOnce([] as never)
+        .mockRejectedValueOnce(new Error('firstPartyDomain') as never)
+        .mockRejectedValueOnce(new Error('Error') as never);
+    });
     it('should return false if no error was caught', () => {
       return expect(isFirstPartyIsolate()).resolves.toEqual(false);
     });
@@ -871,22 +855,21 @@ describe('Library Functions', () => {
 
   describe('showNotification()', () => {
     beforeAll(() => {
-      global.browser = {
-        extension: {
-          getURL: jest.fn(),
-        },
-        i18n: {
-          getMessage: jest.fn().mockReturnValue('manual'),
-        },
-        notifications: {
-          clear: jest.fn(),
-          create: jest.fn(),
-        },
-        runtime: {
-          getManifest: jest.fn().mockReturnValue({version: '3.99.99'}),
-        }
-      };
+      when(global.browser.i18n.getMessage)
+        .calledWith('manualActionNotification')
+        .mockReturnValue('manual');
+      when(global.browser.runtime.getManifest)
+        .calledWith()
+        .mockReturnValue({version: '3.99.99'});
+      when(global.browser.runtime.getURL)
+        .calledWith(expect.anything())
+        .mockReturnValue('');
     });
+    afterAll(() => {
+      global.browser.i18n.getMessage.clearMocks();
+      global.browser.runtime.getManifest.clearMocks();
+      global.browser.runtime.getURL.clearMocks();
+    })
     beforeEach(() => {
       jest.spyOn(global, 'setTimeout');
     });
@@ -920,10 +903,9 @@ describe('Library Functions', () => {
 
   describe('sleep()', () => {
     jest.useFakeTimers();
-    beforeEach(() => {
-      jest.spyOn(global, 'setTimeout');
-    });
+    const spySetTimeout = jest.spyOn(global, 'setTimeout');
     afterEach(() => {
+      spySetTimeout.mockClear();
       jest.clearAllTimers();
     });
 
@@ -938,8 +920,8 @@ describe('Library Functions', () => {
       expect.assertions(3);
       const result = sleep(100).then(r => {
         expect(r).toEqual(undefined);
-        expect(setTimeout).toBeCalledTimes(1);
-        expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 250);
+        expect(spySetTimeout).toBeCalledTimes(1);
+        expect(spySetTimeout).toHaveBeenCalledWith(expect.any(Function), 250);
       })
       jest.runAllTimers();
       return result;
@@ -949,8 +931,8 @@ describe('Library Functions', () => {
       expect.assertions(3);
       const result = sleep(1500).then(r => {
         expect(r).toEqual(undefined);
-        expect(setTimeout).toBeCalledTimes(1);
-        expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1500);
+        expect(spySetTimeout).toBeCalledTimes(1);
+        expect(spySetTimeout).toHaveBeenCalledWith(expect.any(Function), 1500);
       });
       jest.runAllTimers();
       return result;
@@ -960,8 +942,8 @@ describe('Library Functions', () => {
       expect.assertions(3);
       const result = sleep(2345678901).then(r => {
         expect(r).toEqual(undefined);
-        expect(setTimeout).toBeCalledTimes(1);
-        expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 2147483500);
+        expect(spySetTimeout).toBeCalledTimes(1);
+        expect(spySetTimeout).toHaveBeenCalledWith(expect.any(Function), 2147483500);
       });
       jest.runAllTimers();
       return result;
@@ -982,29 +964,31 @@ describe('Library Functions', () => {
 
   describe('throwErrorNotification()', () => {
     beforeAll(() => {
-      global.browser = {
-        extension: {
-          getURL: jest.fn(),
-        },
-        i18n: {
-          getMessage: jest.fn(),
-        },
-        notifications: {
-          create: jest.fn(),
-        },
-      };
+      when(global.browser.i18n.getMessage)
+        .calledWith('errorText')
+        .mockReturnValue('Error!');
+      when(global.browser.runtime.getManifest)
+        .calledWith()
+        .mockReturnValue({version: '3.99.99'});
+      when(global.browser.runtime.getURL)
+        .calledWith(expect.anything())
+        .mockReturnValue('');
     });
+    afterAll(() => {
+      global.browser.i18n.getMessage.clearMocks();
+      global.browser.runtime.getManifest.clearMocks();
+      global.browser.runtime.getURL.clearMocks();
+    })
 
     it('should expect one call to browser.notifications.create', () => {
       throwErrorNotification({ name: 'Test Error', message: 'An ERROR!' });
       expect(global.browser.notifications.create).toHaveBeenCalled();
-      expect(global.browser.notifications.create).toHaveBeenCalledWith(
-        'failed-notification',
-        {
-          message: 'An ERROR!',
-          type: 'basic',
-        },
-      );
+      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual('failed-notification');
+      expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(expect.objectContaining({
+        "message": "An ERROR!",
+        "title": "Error!",
+        "type": "basic",
+      }));
     });
   });
 

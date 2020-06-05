@@ -20,18 +20,6 @@ export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
 
 /* --- FUNCTIONS --- */
 /**
- * Async in ForEach
- */
-export const asyncForEach = async (
-  array: any[],
-  callback: (item: any) => any,
-) => {
-  for(const i of array) {
-    await callback(i);
-  }
-};
-
-/**
  * Console Log Outputs - Mostly For Debugging
  */
 export const cadLog = (x: CADLogItem) => {
@@ -230,7 +218,7 @@ export const isAWebpage = (URL: string | undefined) => {
 export const isFirstPartyIsolate = async () => {
   return browser.cookies.getAll({
     domain: '',
-  }).then(() => {
+  }).then((r) => {
     // No error = most likely not enabled.
     return Promise.resolve(false);
   }).catch((e) => {
@@ -363,7 +351,7 @@ export const showNotification = (x: {
 }) => {
   const sid = `manual-${shortid.generate()}`;
   browser.notifications.create(sid, {
-    iconUrl: browser.extension.getURL('icons/icon_48.png'),
+    iconUrl: browser.runtime.getURL('icons/icon_48.png'),
     message: x.msg,
     title: `CAD ${browser.runtime.getManifest().version} - ${x.title ? x.title : browser.i18n.getMessage('manualActionNotification')}`,
     type: 'basic',
@@ -387,7 +375,7 @@ export const sleep = (ms: number) => {
  */
 export const throwErrorNotification = (e: Error) => {
   browser.notifications.create('failed-notification', {
-    iconUrl: browser.extension.getURL('icons/icon_red_48.png'),
+    iconUrl: browser.runtime.getURL('icons/icon_red_48.png'),
     message: e.message,
     title: browser.i18n.getMessage('errorText'),
     type: 'basic',
@@ -404,8 +392,6 @@ export const trimDot = (str: string) => str.replace(/^[\.]+|[\.]+$/g, '');
  * Opposite of a falsey check for undefined
  */
 export const undefinedIsTrue = (bool: boolean | undefined) => {
-  if (bool === undefined) {
-    return true;
-  }
+  if (bool === undefined) return true;
   return bool;
 };

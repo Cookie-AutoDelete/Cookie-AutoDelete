@@ -12,7 +12,6 @@
  */
 
 import {
-  asyncForEach,
   cadLog,
   extractMainDomain,
   getHostname,
@@ -195,10 +194,10 @@ export const isSafeToClean = (
 export const cleanCookies = async (
   state: State,
   markedForDeletion: CleanReasonObject[],
+  firstPartyIsolate: boolean,
 ) => {
   const debug = getSetting(state, 'debugMode');
   const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
-  const firstPartyIsolate = await isFirstPartyIsolate();
   markedForDeletion.forEach(obj => {
     const cookieProperties = obj.cookie;
     const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
@@ -231,39 +230,41 @@ export const clearCookiesForThisDomain = async (
   tab: browser.tabs.Tab,
 ) => {
   const hostname = getHostname(tab.url);
+  const firstPartyIsolate = await isFirstPartyIsolate();
   const getCookies = (await browser.cookies.getAll(
     returnOptionalCookieAPIAttributes(state, {
       domain: hostname,
       storeId: tab.cookieStoreId,
-    }, true),
+    }, firstPartyIsolate),
   ));
   const cookies = getCookies.filter(c => c.name !== LSCLEANUPNAME);
 
   if (cookies.length > 0) {
     let cookieDeletedCount = 0;
-    await asyncForEach(cookies, async (cookie: browser.cookies.Cookie) => {
+    for (const cookie of cookies) {
       const r = await browser.cookies.remove(returnOptionalCookieAPIAttributes(state, {
         firstPartyDomain: cookie.firstPartyDomain,
         name: cookie.name,
         storeId: cookie.storeId,
         url: prepareCookieDomain(cookie),
-      }, true) as {
+      }, firstPartyIsolate) as {
         // Fix type error with undefineds with cookies.remove
         url: string;
         name: string;
       });
       if (r !== null) cookieDeletedCount += 1;
-    });
+    }
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
       msg: `${browser.i18n.getMessage('manualCleanSuccess', [browser.i18n.getMessage('cookiesText'), hostname])}\n${browser.i18n.getMessage('manualCleanRemoved', [cookieDeletedCount.toString(), cookies.length.toString()])}`,
     });
-  } else {
-    showNotification({
-      duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `${browser.i18n.getMessage('manualCleanNothing', [browser.i18n.getMessage('cookiesText'), hostname])}`,
-    });
+    return cookieDeletedCount > 0;
   }
+
+  showNotification({
+    duration: getSetting(state, 'notificationOnScreen') as number,
+    msg: `${browser.i18n.getMessage('manualCleanNothing', [browser.i18n.getMessage('cookiesText'), hostname])}`,
+  });
 
   return cookies.length > 0;
 };
@@ -311,9 +312,12 @@ export const otherBrowsingDataCleanup = async (
       state.cache.platformOs !== 'android'
     ) {
       const cleanList: string[] = [];
-      domains.forEach(domain => prepareCleanupDomains(domain).forEach(d => {
-        if (d !== '' && d.trim() !== '') cleanList.push(d);
-      }));
+      for (const domain of domains) {
+        for (const d of prepareCleanupDomains(domain)) {
+          if (d !== '' && d.trim() !== '') cleanList.push(d);
+        }
+      }
+      if (cleanList.length === 0) return false;
       const hostnames = [...new Set(cleanList)];
       if (debug) {
         cadLog({
@@ -321,29 +325,33 @@ export const otherBrowsingDataCleanup = async (
           x: hostnames
         });
       }
-      browser.browsingData.removeLocalStorage({
-          hostnames,
-        })
-        .catch(e => {
-          if (debug) {
-            cadLog({
-              msg: 'CleanupService.otherBrowsingDataCleanup: removeLocalStorage returned an error:',
-              type: 'error',
-              x: e
-            });
-          }
-          throw e;
-        });
-    } else if (
+      await browser.browsingData.removeLocalStorage({
+        hostnames,
+      }).catch(e => {
+        if (debug) {
+          cadLog({
+            msg: 'CleanupService.otherBrowsingDataCleanup: removeLocalStorage returned an error:',
+            type: 'error',
+            x: e
+          });
+        }
+        throw e;
+      });
+      return true;
+    }
+    if (
       state.cache.browserDetect === 'Chrome'
     ) {
       const cleanList: string[] = [];
-      domains.forEach(domain => prepareCleanupDomains(domain).forEach(d => {
-        if (d !== '' && d.trim() !== '') {
-          cleanList.push(`http://${d}`);
-          cleanList.push(`https://${d}`);
+      for (const domain of domains) {
+        for (const d of prepareCleanupDomains(domain)) {
+          if (d !== '' && d.trim() !== '') {
+            cleanList.push(`http://${d}`);
+            cleanList.push(`https://${d}`);
+          }
         }
-      }));
+      }
+      if (cleanList.length === 0) return false;
       const origins = [...new Set(cleanList)];
       if (debug) {
         cadLog({
@@ -351,20 +359,22 @@ export const otherBrowsingDataCleanup = async (
           x: origins
         });
       }
-      browser.browsingData.removeLocalStorage({
-          origins,
-        }).catch(e => {
-          if (debug) {
-            cadLog({
-              msg: 'CleanupService.otherBrowsingDataCleanup: removeLocalStorage returned an error:',
-              type: 'error',
-              x: e
-            });
-          }
-          throw e;
-        });
+      await browser.browsingData.removeLocalStorage({
+        origins,
+      }).catch(e => {
+        if (debug) {
+          cadLog({
+            msg: 'CleanupService.otherBrowsingDataCleanup: removeLocalStorage returned an error:',
+            type: 'error',
+            x: e
+          });
+        }
+        throw e;
+      });
+      return true;
     }
   }
+  return false;
 };
 
 /** Setup Localstorage cleaning */
@@ -469,7 +479,7 @@ export const cleanCookiesOperation = async (
   }
 
   // Store cookieStoreIds from the cookies API
-  const cookieStores = await browser.cookies.getAllCookieStores();
+  const cookieStores = await browser.cookies.getAllCookieStores() || [];
   for (const store of cookieStores) {
     if (getSetting(state, 'contextualIdentities') || !store.id.startsWith('firefox-container')) {
       cookieStoreIds.add(store.id);
@@ -478,7 +488,7 @@ export const cleanCookiesOperation = async (
 
   // Clean for each cookieStore jar
   for (const id of cookieStoreIds) {
-    let cookies;
+    let cookies: browser.cookies.Cookie[] = [];
     try {
       cookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(state, {
@@ -486,43 +496,59 @@ export const cleanCookiesOperation = async (
         }, firstPartyIsolate),
       );
     } catch(e) {
-      if (debug) {
-        cadLog({
-          msg: `CleanupService.cleanCookiesOperation:  browser.cookies.getAll for id: ${id} threw an error.`,
-          type: 'warn',
-          x: e,
-        })
-      }
-      // skip and move to next id
-      continue;
+      cadLog({
+        msg: `CleanupService.cleanCookiesOperation:  browser.cookies.getAll for id: ${id} threw an error.`,
+        type: 'warn',
+        x: e.message,
+      });
     }
+
+    // No cookies from specified container.  Skip rest of cleanup.
+    if (!cookies || cookies.length === 0) continue;
 
     const isSafeToCleanObjects = cookies.map(cookie => {
       return isSafeToClean(state, prepareCookie(cookie, debug), newCleanupProperties);
     });
-    const markedForDeletion = isSafeToCleanObjects.filter(
-      obj => obj.cleanCookie && obj.cookie.hostname.trim() !== '',
-    );
 
     if (debug) {
+      const sanitized = isSafeToCleanObjects.map(obj => {
+        obj.cookie.value = "***";
+        return obj;
+      });
       cadLog({
         msg: 'CleanupService.cleanCookiesOperation:  isSafeToCleanObjects Result',
-        x: isSafeToCleanObjects,
+        x: sanitized,
+      });
+    }
+
+    const markedForDeletion = isSafeToCleanObjects.filter(obj => {
+      const r = obj.cleanCookie && obj.cookie.hostname.trim() !== '';
+      if (debug) {
+        cadLog({
+          msg: `CleanupService.cleanCookiesOperation: Clean Cookies returned ${r} for ${obj.cookie.hostname}`
+        });
+      }
+      return r;
+    });
+
+    if (debug) {
+      const sanitized = markedForDeletion.map(obj => {
+        obj.cookie.value = "***";
+        return obj;
+      });
+      cadLog({
+        msg: 'CleanupService.cleanCookiesOperation:  Cookies markedForDeletion Result',
+        x: sanitized,
       });
     }
 
     try {
-      await cleanCookies(state, markedForDeletion);
+      await cleanCookies(state, markedForDeletion, firstPartyIsolate);
     } catch (e) {
       cadLog({
         type: 'error',
         x: e,
       });
-      cadLog({
-        type: 'error',
-        x: markedForDeletion
-      });
-      console.error(e, markedForDeletion);
       throwErrorNotification(e);
       return undefined;
     }
@@ -580,6 +606,6 @@ export const cleanCookiesOperation = async (
 
   return {
     cachedResults,
-    setOfDeletedDomainCookies,
+    setOfDeletedDomainCookies: Array.from(setOfDeletedDomainCookies),
   };
 };

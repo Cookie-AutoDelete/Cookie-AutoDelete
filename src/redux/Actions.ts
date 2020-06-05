@@ -271,12 +271,12 @@ export const cookieCleanup: ActionCreator<
 
   // Show notifications after cleanup
   if (
-    setOfDeletedDomainCookies.size > 0 &&
+    setOfDeletedDomainCookies.length > 0 &&
     getSetting(getState(), 'showNotificationAfterCleanup')
   ) {
     const notifyMessage = browser.i18n.getMessage('notificationContent', [
       recentlyCleaned.toString(),
-      Array.from(setOfDeletedDomainCookies).join(', '),
+      setOfDeletedDomainCookies.join(', '),
     ]);
     browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
       iconUrl: browser.extension.getURL('icons/icon_48.png'),

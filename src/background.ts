@@ -236,7 +236,7 @@ async function onContextMenuClicked(
           });
         }
         if (getHostname(tab.url)) {
-          clearCookiesForThisDomain(store.getState(), tab);
+          await clearCookiesForThisDomain(store.getState(), tab);
         } else {
           if (debug) {
             cadLog({
@@ -263,7 +263,7 @@ async function onContextMenuClicked(
           });
         }
         if (getHostname(tab.url)) {
-          clearLocalstorageForThisDomain(store.getState(), tab);
+          await clearLocalstorageForThisDomain(store.getState(), tab);
         } else {
           showNotification({
             duration: getSetting(store.getState(), 'notificationOnScreen') as number,
