@@ -271,15 +271,19 @@ describe('CleanupService', () => {
         .calledWith(expect.any(Object))
         .mockResolvedValue([
           {
+            cookieStoreId: 'firefox-default',
             url: 'https://google.com/search',
           },
           {
+            cookieStoreId: 'firefox-default',
             url: 'http://facebook.com/search',
           },
           {
+            cookieStoreId: 'firefox-default',
             url: 'http://sub.domain.com',
           },
           {
+            cookieStoreId: 'firefox-default',
             url: 'moz-extension://test/settings/settings.html',
           },
         ] as never);
@@ -797,7 +801,7 @@ describe('CleanupService', () => {
       greyCleanup: false,
       hostnamesDeleted: new Set(),
       ignoreOpenTabs: false,
-      openTabDomains: new Set(['example.com', 'mozilla.org']),
+      openTabDomains: {'firefox-default': ['example.com', 'mozilla.org']},
       setOfDeletedDomainCookies: new Set(),
     };
 
@@ -817,7 +821,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'yahoo.com',
         mainDomain: 'yahoo.com',
-        storeId: 'default',
       };
       const testState = {
         ...sampleState,
@@ -841,7 +844,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'yahoo.com',
         mainDomain: 'yahoo.com',
-        storeId: 'default',
       };
 
       expect(spyLib.cadLog).not.toHaveBeenCalled();
@@ -859,7 +861,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'youtube.com',
         mainDomain: 'youtube.com',
-        storeId: 'default',
       };
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
@@ -873,7 +874,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'youtube.com',
         mainDomain: 'youtube.com',
-        storeId: 'default',
       };
 
       expect(spyLib.cadLog).not.toHaveBeenCalled();
@@ -891,7 +891,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'sub.youtube.com',
         mainDomain: 'youtube.com',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -906,7 +905,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'google.com',
         mainDomain: 'google.com',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -921,7 +919,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'github.com',
         mainDomain: 'github.com',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -936,7 +933,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'twitter.com',
         mainDomain: 'twitter.com',
-        storeId: 'default',
       };
       const sampleRegExpState = {
         ...sampleState,
@@ -976,7 +972,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'sub.google.com',
         mainDomain: 'google.com',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -991,7 +986,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'example.com',
         mainDomain: 'example.com',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -1006,7 +1000,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'example.com',
         mainDomain: 'example.com',
-        storeId: 'default',
       };
 
       expect(spyLib.cadLog).not.toHaveBeenCalled();
@@ -1024,7 +1017,6 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'sub.example.com',
         mainDomain: 'example.com',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -1040,13 +1032,12 @@ describe('CleanupService', () => {
         ...mockCookie,
         hostname: 'sub.example.com',
         mainDomain: 'example.com',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
         ignoreOpenTabs: true,
-        openTabDomains: new Set<string>(),
+        openTabDomains: {},
       });
       expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
       expect(result.openTabStatus).toBe(OpenTabStatus.TabsWereIgnored);
@@ -1127,7 +1118,6 @@ describe('CleanupService', () => {
         hostname: 'examplewithcookiename.com',
         mainDomain: 'examplewithcookiename.com',
         name: 'in-cookie-names',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -1143,7 +1133,6 @@ describe('CleanupService', () => {
         hostname: 'examplewithcookiename.com',
         mainDomain: 'examplewithcookiename.com',
         name: 'not-in-cookie-names',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -1159,7 +1148,6 @@ describe('CleanupService', () => {
         hostname: 'examplewithcookiename.com',
         mainDomain: 'examplewithcookiename.com',
         name: 'not-in-cookie-names',
-        storeId: 'default',
       };
 
       expect(spyLib.cadLog).not.toHaveBeenCalled();
@@ -1178,7 +1166,6 @@ describe('CleanupService', () => {
         hostname: 'exampleWithCookieNameCleanAllCookiesTrue.com',
         mainDomain: 'exampleWithCookieNameCleanAllCookiesTrue.com',
         name: 'not-in-cookie-names',
-        storeId: 'default',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
@@ -1444,17 +1431,39 @@ describe('CleanupService', () => {
         .calledWith(expect.any(Object))
         .mockResolvedValue([
           {
+            cookieStoreId: 'firefox-default',
             url: 'https://google.com/search',
           },
           {
+            cookieStoreId: 'firefox-default',
             url: 'http://facebook.com/search',
           },
           {
+            cookieStoreId: 'firefox-default',
             url: 'http://sub.domain.com',
           },
           {
+            cookieStoreId: 'firefox-default',
             url: 'moz-extension://test/settings/settings.html',
           },
+          {
+            cookieStoreId: 'firefox-container-1',
+            url: 'https://sub.domain.com'
+          },
+          {
+            cookieStoreId: 'firefox-container-1',
+            discarded: true,
+            url: 'https://discarded.net',
+          },
+          {
+            // Chrome Query doesn't have cookieStoreId
+            url: 'https://chrome.link',
+          },
+          {
+            // Chrome Query doesn't have cookieStoreId
+            incognito: true,
+            url: 'https://incognitochrome.link',
+          }
         ] as never);
     });
     afterAll(() => {
@@ -1463,44 +1472,64 @@ describe('CleanupService', () => {
       spyLib.extractMainDomain.mockClear();
     });
 
-    it('should return empty set if ignoreOpenTabs is true', () => {
-      return returnSetOfOpenTabDomains(true).then(results => {
-        expect(Array.from(results).length).toEqual(0);
+    it('should return empty object if ignoreOpenTabs is true and cleanDiscardedTabs is false', () => {
+      return returnSetOfOpenTabDomains(true,false).then(results => {
+        expect(Object.keys(results).length).toEqual(0);
         return Promise.resolve();
       });
     });
 
-    it('should have google.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
-        expect(results.has('google.com')).toBe(true);
+    it('should return empty object if ignoreOpenTabs is true and cleanDiscardedTabs is true', () => {
+      return returnSetOfOpenTabDomains(true,true).then(results => {
+        expect(Object.keys(results).length).toEqual(0);
         return Promise.resolve();
       });
     });
 
-    it('should have facebook.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
-        expect(results.has('facebook.com')).toBe(true);
+    it('sort tab query result accordingly, cleanDiscardedTabs is false', () => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
+        expect(Object.keys(results).length).toBe(4);
+
+        expect(results['firefox-default']).toHaveLength(3);
+        expect(results['firefox-default']).toEqual([
+          'google.com',
+          'facebook.com',
+          'domain.com',
+        ]);
+        expect(results['firefox-container-1']).toHaveLength(2);
+        expect(results['firefox-container-1']).toEqual([
+          'domain.com',
+          'discarded.net',
+        ]);
+
+        // Chrome Regular cookieStore.
+        expect(results['0']).toHaveLength(1);
+        expect(results['0']).toEqual([
+          'chrome.link',
+        ]);
+
+        // Chrome Incognito cookieStore.
+        expect(results['1']).toHaveLength(1);
+        expect(results['1']).toEqual([
+          'incognitochrome.link',
+        ]);
         return Promise.resolve();
       });
     });
 
-    it('should have domain.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
-        expect(results.has('domain.com')).toBe(true);
+    it('should not have youtube.com in any containers, cleanDiscardedTabs is false', () => {
+      return returnSetOfOpenTabDomains(false, false).then(results => {
+        expect(results['firefox-default'] && results['firefox-default'].includes('youtube.com')).toBe(false);
+        expect(results['firefox-container-1'] && results['firefox-container-1'].includes('youtube.com')).toBe(false);
+        expect(results['0'] && results['0'].includes('youtube.com')).toBe(false);
+        expect(results['1'] && results['1'].includes('youtube.com')).toBe(false);
         return Promise.resolve();
       });
     });
 
-    it('should have length 3 in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
-        expect(results.size).toBe(3);
-        return Promise.resolve();
-      });
-    });
-
-    it('should not have youtube.com in set', () => {
-      return returnSetOfOpenTabDomains(false).then(results => {
-        expect(results.has('youtube.com')).toBe(false);
+    it('should not have discarded.net in firefox-container-1/Personal when cleanDiscardedTabs is true', () => {
+      return returnSetOfOpenTabDomains(false, true).then(results => {
+        expect(results['firefox-container-1'] && results['firefox-container-1'].includes('discarded.net')).toBe(false);
         return Promise.resolve();
       });
     });

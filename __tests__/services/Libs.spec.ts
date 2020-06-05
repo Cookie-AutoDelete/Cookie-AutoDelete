@@ -16,6 +16,7 @@ import { initialState } from '../../src/redux/State';
 import {
   cadLog,
   convertVersionToNumber,
+  createPartialTabInfo,
   extractMainDomain,
   getHostname,
   getSetting,
@@ -243,6 +244,48 @@ describe('Library Functions', () => {
       const results = convertVersionToNumber('3.0.0');
       expect(results).toEqual(300);
     });
+  });
+
+  describe('createPartialTabInfo()', () => {
+    const testTab: Partial<browser.tabs.Tab> = {
+      active: true,
+      cookieStoreId: 'firefox-default',
+      discarded: false,
+      height: 123,
+      hidden: false,
+      highlighted: false,
+      id: 1,
+      incognito: false,
+      index: 0,
+      pinned: false,
+      status: 'complete',
+      title: 'TabTitle',
+      url: 'https://test.cad',
+      width: 321,
+      windowId: 1
+    };
+    it('should extract information relevant to debug in Firefox', () => {
+      expect(createPartialTabInfo(testTab)).toMatchObject({
+        cookieStoreId: 'firefox-default',
+        discarded: false,
+        id: 1,
+        incognito: false,
+        status: 'complete',
+        url: 'https://test.cad',
+        windowId: 1
+      });
+    });
+    it('should extract information relevant to debug in Chrome', () => {
+      expect(createPartialTabInfo({...testTab, cookieStoreId: undefined})).toMatchObject({
+        discarded: false,
+        id: 1,
+        incognito: false,
+        status: 'complete',
+        url: 'https://test.cad',
+        windowId: 1
+      });
+    });
+
   });
 
   describe('extractMainDomain()', () => {

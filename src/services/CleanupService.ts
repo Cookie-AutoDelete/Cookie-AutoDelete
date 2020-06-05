@@ -68,15 +68,15 @@ export const isSafeToClean = (
   if (debug) {
     cadLog({
       msg: 'CleanupService.isSafeToClean:  Properties Debug',
-      x: {mainDomain, storeId, hostname, greyCleanup, openTabDomains: [...openTabDomains], ignoreOpenTabs, openTabStatus},
+      x: {partialCookieInfo, cleanupProperties, openTabStatus},
     });
   }
-  // Tests if the main domain is open
-  if (openTabDomains.has(mainDomain)) {
+  // Tests if the main domain is open on that specific storeId/container
+  if (openTabDomains[storeId] && openTabDomains[storeId].includes(mainDomain)) {
     if (debug) {
       cadLog({
-        msg: 'CleanupService.isSafeToClean:  mainDomain found in openTabsDomain - not cleaning.',
-        x: {partialCookieInfo},
+        msg: `CleanupService.isSafeToClean:  mainDomain found in openTabsDomain[${storeId}] - not cleaning.`,
+        x: {partialCookieInfo, openTabsInStoreId: openTabDomains[storeId]},
       });
     }
     return {
@@ -403,23 +403,37 @@ export const filterLocalstorage = (obj: CleanReasonObject, debug: boolean = fals
   );
 };
 
-/** Store all tabs' host domains to prevent cookie deletion from those domains */
-export const returnSetOfOpenTabDomains = async (ignoreOpenTabs: boolean) => {
+/**
+ * Store all tabs' host domains to prevent cookie deletion from those domains
+ * returns empty object if we ignore all open Tabs
+ * Tabs now grouped by container e.g. 'default', 'firefox-container-1', '0'
+ */
+export const returnSetOfOpenTabDomains = async (
+  ignoreOpenTabs: boolean,
+  cleanDiscardedTabs: boolean,
+) => {
   if (ignoreOpenTabs) {
-    return new Set<string>();
+    return {};
   }
   const tabs = await browser.tabs.query({
     windowType: 'normal',
   });
-  const setOfTabURLS = new Set<string>();
-  tabs.forEach((currentValue) => {
-    if (isAWebpage(currentValue.url)) {
-      let hostURL = getHostname(currentValue.url);
-      hostURL = extractMainDomain(hostURL);
-      setOfTabURLS.add(hostURL);
+  const openTabs: {[k: string]: Set<string>} = {};
+  for (const tab of tabs) {
+    if (isAWebpage(tab.url) && (!cleanDiscardedTabs || !tab.discarded)) {
+      // Chrome doesn't have tab.cookieStoreId, so rely on tab.incognito
+      const cookieStoreId = tab.cookieStoreId || (tab.incognito ? '1' : '0');
+      if (!openTabs[cookieStoreId]) {
+        openTabs[cookieStoreId] = new Set<string>();
+      }
+      openTabs[cookieStoreId].add(extractMainDomain(getHostname(tab.url)));
     }
-  });
-  return setOfTabURLS;
+  }
+  const openTabsArray: {[k: string]: string[]} = {};
+  for (const id of Object.keys(openTabs)) {
+    openTabsArray[id] = Array.from(openTabs[id]);
+  }
+  return openTabsArray;
 };
 
 /** Main function for cookie cleanup. Returns a list of domains that cookies were deleted from */
@@ -440,6 +454,7 @@ export const cleanCookiesOperation = async (
   };
   const openTabDomains = await returnSetOfOpenTabDomains(
     cleanupProperties.ignoreOpenTabs,
+    getSetting(state, 'discardedCleanup') as boolean,
   );
   const newCleanupProperties: CleanupPropertiesInternal = {
     ...cleanupProperties,

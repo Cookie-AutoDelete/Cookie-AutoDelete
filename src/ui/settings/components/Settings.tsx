@@ -268,6 +268,17 @@ class Settings extends React.Component<SettingProps> {
           </div>
           <div className="form-group">
             <CheckboxSetting
+              text={browser.i18n.getMessage('cleanDiscardedText')}
+              settingObject={settings.discardedCleanup}
+              inline={true}
+              updateSetting={payload => onUpdateSetting(payload)}
+            />
+            <SettingsTooltip
+              hrefURL={'#enable-cleanup-on-discarded-tabs'}
+            />
+          </div>
+          <div className="form-group">
+            <CheckboxSetting
               text={browser.i18n.getMessage('cleanupDomainChangeText')}
               settingObject={settings.domainChangeCleanup}
               inline={true}

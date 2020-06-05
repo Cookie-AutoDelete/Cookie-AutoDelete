@@ -19,6 +19,7 @@ import {
 } from './BrowserActionService';
 import {
   cadLog,
+  createPartialTabInfo,
   extractMainDomain,
   getHostname,
   getSetting,
@@ -30,32 +31,37 @@ import {
 import StoreUser from './StoreUser';
 
 export default class TabEvents extends StoreUser {
+  public static onTabDiscarded(
+    tabId: number,
+    changeInfo: browser.tabs.TabChangeInfo,
+    tab: browser.tabs.Tab,
+  ) {
+    if (getSetting(StoreUser.store.getState(), 'discardedCleanup')) {
+      const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+      const partialTabInfo = createPartialTabInfo(tab);
+      // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
+      if (changeInfo.favIconUrl && debug) {
+        changeInfo.favIconUrl = '***';
+      }
+      if (changeInfo.discarded || tab.discarded) {
+        if (debug) {
+          cadLog({
+            msg: 'TabEvents.onTabDiscarded: Tab was discarded.  Executing cleanFromTabEvents',
+            x: {tabId, changeInfo, partialTabInfo,},
+          });
+        }
+        TabEvents.cleanFromTabEvents();
+      }
+    }
+  }
   public static onTabUpdate(
     tabId: number,
-    changeInfo: {
-      attention?: boolean,
-      audible?: boolean,
-      cookieChanged?: {
-        removed: boolean,
-        cookie:  browser.cookies.Cookie,
-        cause: browser.cookies.OnChangedCause,
-      },
-      discarded?: boolean,
-      favIconUrl?: string,
-      hidden?: boolean,
-      isArticle?: boolean,
-      mutedInfo?: browser.tabs.MutedInfo,
-      pinned?: boolean,
-      status?: string,
-      title?: string,
-      url?: string,
-    },
+    changeInfo: browser.tabs.TabChangeInfo,
     tab: browser.tabs.Tab,
   ) {
     if (tab.status === 'complete') {
       const debug = getSetting(StoreUser.store.getState(), 'debugMode');
-      const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
-      const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
+      const partialTabInfo = createPartialTabInfo(tab);
       // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
       if (changeInfo.favIconUrl && debug) {
         changeInfo.favIconUrl = '***';
@@ -96,30 +102,12 @@ export default class TabEvents extends StoreUser {
 
   public static onDomainChange(
     tabId: number,
-    changeInfo: {
-      attention?: boolean,
-      audible?: boolean,
-      cookieChanged?: {
-        removed: boolean,
-        cookie:  browser.cookies.Cookie,
-        cause: browser.cookies.OnChangedCause,
-      },
-      discarded?: boolean,
-      favIconUrl?: string,
-      hidden?: boolean,
-      isArticle?: boolean,
-      mutedInfo?: browser.tabs.MutedInfo,
-      pinned?: boolean,
-      status?: string,
-      title?: string,
-      url?: string,
-    },
+    changeInfo: browser.tabs.TabChangeInfo,
     tab: browser.tabs.Tab,
   ) {
     const debug = getSetting(StoreUser.store.getState(), 'debugMode');
     if (tab.status === 'complete') {
-      const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
-      const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
+      const partialTabInfo = createPartialTabInfo(tab);
       const mainDomain = extractMainDomain(getHostname(tab.url));
       // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
       if (changeInfo.favIconUrl && debug) {
@@ -158,7 +146,7 @@ export default class TabEvents extends StoreUser {
               x: {tabId, changeInfo, oldMainDomain, mainDomain, partialTabInfo,},
             });
           }
-          TabEvents.cleanFromFromTabEvents();
+          TabEvents.cleanFromTabEvents();
         } else {
           if (debug) {
             cadLog({
@@ -178,7 +166,13 @@ export default class TabEvents extends StoreUser {
     }
   }
 
-  public static onDomainChangeRemove(tabId: number, removeInfo: {windowId: number, isWindowClosing: boolean}) {
+  public static onDomainChangeRemove(
+    tabId: number,
+    removeInfo: {
+      windowId: number,
+      isWindowClosing: boolean
+    }
+  ) {
     const debug = getSetting(StoreUser.store.getState(), 'debugMode');
     if (debug) {
       cadLog({
@@ -189,21 +183,21 @@ export default class TabEvents extends StoreUser {
     delete TabEvents.tabToDomain[tabId];
   }
 
-  public static cleanFromFromTabEvents = async () => {
+  public static cleanFromTabEvents = async () => {
     const debug = getSetting(StoreUser.store.getState(), 'debugMode');
     if (getSetting(StoreUser.store.getState(), 'activeMode')) {
       const alarm = await browser.alarms.get('activeModeAlarm');
       if (!alarm || (alarm.name && alarm.name !== 'activeModeAlarm')) {
         if (debug) {
           cadLog({
-            msg: 'TabEvents.cleanFromFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
+            msg: 'TabEvents.cleanFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
           });
         }
         AlarmEvents.createActiveModeAlarm();
       } else {
         if (debug) {
           cadLog({
-            msg: 'TabEvents.cleanFromFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
+            msg: 'TabEvents.cleanFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
             x: alarm,
           });
         }
@@ -216,8 +210,7 @@ export default class TabEvents extends StoreUser {
     if (tab.url === '') return;
     if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
     const debug = getSetting(StoreUser.store.getState(), 'debugMode');
-    const { id, windowId, status, incognito, cookieStoreId, url, title} = tab;
-    const partialTabInfo = { id, windowId, status, incognito, cookieStoreId, url, title};
+    const partialTabInfo = createPartialTabInfo(tab);
     const hostname = getHostname(tab.url);
     const firstPartyIsolate = await isFirstPartyIsolate();
     if (hostname === '') {

@@ -11,6 +11,8 @@
  * SOFTWARE.
  */
 
+/* tslint:disable:no-namespace */
+
 declare namespace browser.browsingData {
   function removeLocalStorage(removalOptions: {
     hostnames?: string[];
@@ -40,6 +42,27 @@ declare namespace browser.contextMenus {
   const onClicked: typeof browser.menus.onClicked;
   const onHidden: typeof browser.menus.onHidden;
   const onShown: typeof browser.menus.onShown;
+}
+
+declare namespace browser.tabs {
+  interface TabChangeInfo {
+    attention?: boolean,
+    audible?: boolean,
+    cookieChanged?: {
+      removed: boolean,
+      cookie:  browser.cookies.Cookie,
+      cause: browser.cookies.OnChangedCause,
+    },
+    discarded?: boolean,
+    favIconUrl?: string,
+    hidden?: boolean,
+    isArticle?: boolean,
+    mutedInfo?: browser.tabs.MutedInfo,
+    pinned?: boolean,
+    status?: string,
+    title?: string,
+    url?: string,
+  }
 }
 
 declare module 'redux-webext';

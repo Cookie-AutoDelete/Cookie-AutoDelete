@@ -166,9 +166,10 @@ const onStartUp = async () => {
   checkIfProtected(store.getState());
 
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
+  browser.tabs.onUpdated.addListener(TabEvents.onTabDiscarded);
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
-  browser.tabs.onRemoved.addListener(TabEvents.cleanFromFromTabEvents);
+  browser.tabs.onRemoved.addListener(TabEvents.cleanFromTabEvents);
 
   // This should update the cookie badge count when cookies are changed.
   browser.cookies.onChanged.addListener(CookieEvents.onCookieChanged);

@@ -63,6 +63,23 @@ export const cadLog = (x: CADLogItem) => {
 };
 
 /**
+ * Create Partial Cookie info for debug
+ */
+export const createPartialTabInfo = (
+  tab: Partial<browser.tabs.Tab>,
+) => {
+  return {
+    cookieStoreId: tab.cookieStoreId,
+    discarded: tab.discarded,
+    id: tab.id,
+    incognito: tab.incognito,
+    status: tab.status,
+    url: tab.url,
+    windowId: tab.windowId,
+  }
+}
+
+/**
  * Converts a version string to a number
  */
 export const convertVersionToNumber = (version?: string) => {
