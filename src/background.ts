@@ -12,27 +12,20 @@
  */
 import { Store } from 'redux';
 import {
-  addExpressionUI,
   cacheCookieStoreIdNames,
   cookieCleanup,
-  updateSetting,
   validateSettings,
 } from './redux/Actions';
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
 import { checkIfProtected, setGlobalIcon } from './services/BrowserActionService';
-import { clearCookiesForThisDomain, clearLocalstorageForThisDomain } from './services/CleanupService';
 import ContextMenuEvents from './services/ContextMenuEvents';
 import CookieEvents from './services/CookieEvents';
 import {
   cadLog,
   convertVersionToNumber,
   extractMainDomain,
-  getHostname,
   getSetting,
-  localFileToRegex,
-  parseCookieStoreId,
-  showNotification,
   sleep
 } from './services/Libs';
 import StoreUser from './services/StoreUser';
@@ -75,12 +68,10 @@ const onSettingsChange = () => {
     browser.browsingData.removeLocalStorage({
       since: 0,
     });
-    if (currentSettings.debugMode.value) {
-      cadLog({
-        msg: 'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
-        type: 'info',
-      });
-    }
+    cadLog({
+      msg: 'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
+      type: 'info',
+    }, currentSettings.debugMode.value as boolean);
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
@@ -176,319 +167,16 @@ const onStartUp = async () => {
 
   if (browser.contextMenus) {
     ContextMenuEvents.menuInit(store.getState());
-    if (!browser.contextMenus.onClicked.hasListener(onContextMenuClicked)) {
-      browser.contextMenus.onClicked.addListener(onContextMenuClicked);
+    if (!browser.contextMenus.onClicked.hasListener(ContextMenuEvents.onContextMenuClicked)) {
+      browser.contextMenus.onClicked.addListener(ContextMenuEvents.onContextMenuClicked);
     }
   }
   browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [READY] (0)` });
-  if (currentSettings.debugMode.value) {
-    cadLog({
-      msg: `background.onStartUp is complete.`,
-      type: "info"
-    });
-  }
+  cadLog({
+    msg: `background.onStartUp is complete.`,
+    type: "info"
+  }, currentSettings.debugMode.value as boolean);
 };
-
-async function onContextMenuClicked(
-  info: browser.contextMenus.OnClickData,
-  tab: browser.tabs.Tab
-) {
-  const debug = getSetting(store.getState(), 'debugMode') as boolean;
-  const contextualIdentities = getSetting(store.getState(), 'contextualIdentities') as boolean;
-  if (debug) {
-    cadLog({
-      msg: `background.onContextMenuClicked:  Data received`,
-      x: {info, tab},
-    });
-  }
-  const cookieStoreId = (tab && tab.cookieStoreId) || '';
-  switch (info.menuItemId) {
-    case ContextMenuEvents.MENUID.CLEAN:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked triggered Normal Clean.`,
-        });
-      }
-      store.dispatch<any>(
-        cookieCleanup({
-          greyCleanup: false,
-          ignoreOpenTabs: false,
-        }),
-      );
-      break;
-    case ContextMenuEvents.MENUID.CLEAN_OPEN:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked triggered Clean, include open tabs.`,
-        });
-      }
-      store.dispatch<any>(
-        cookieCleanup({
-          greyCleanup: false,
-          ignoreOpenTabs: true,
-        }),
-      );
-      break;
-    case ContextMenuEvents.MENUID.CLEAN_COOKIES:
-      {
-        if (debug) {
-          cadLog({
-            msg: `background.onContextMenuClicked triggered Clean All Cookies For This Domain.`,
-          });
-        }
-        if (getHostname(tab.url)) {
-          await clearCookiesForThisDomain(store.getState(), tab);
-        } else {
-          if (debug) {
-            cadLog({
-              msg: `background.onContextMenuClicked cannot clean cookies from tab:`,
-              type: 'warn',
-              x: {tab},
-            });
-          }
-          showNotification({
-            duration: getSetting(store.getState(), 'notificationOnScreen') as number,
-            msg: `${browser.i18n.getMessage('manualCleanError', [browser.i18n.getMessage('cookiesText')])}\n
-            ${tab.title}\n\n
-            ${tab.url}
-            `,
-          });
-        }
-      }
-      break;
-    case ContextMenuEvents.MENUID.CLEAN_LOCALSTORAGE:
-      {
-        if (debug) {
-          cadLog({
-            msg: `background.onContextMenuClicked triggered Clean LocalStorage For This Domain.`,
-          });
-        }
-        if (getHostname(tab.url)) {
-          await clearLocalstorageForThisDomain(store.getState(), tab);
-        } else {
-          showNotification({
-            duration: getSetting(store.getState(), 'notificationOnScreen') as number,
-            msg: `${browser.i18n.getMessage('manualCleanError', [browser.i18n.getMessage('localStorageText')])}\n
-            ${tab.title}\n\n
-            ${tab.url}
-            `,
-          });
-        }
-      }
-      break;
-    case ContextMenuEvents.MENUID.LINK_ADD_GREY_DOMAIN:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_GREY_DOMAIN.`,
-          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
-        });
-      }
-      addNewExpression(getHostname(info.linkUrl), ListType.GREY, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.LINK_ADD_WHITE_DOMAIN:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_WHITE_DOMAIN.`,
-          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
-        });
-      }
-      addNewExpression(getHostname(info.linkUrl), ListType.WHITE, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.LINK_ADD_GREY_SUBS:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_GREY_SUBS.`,
-          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
-        });
-      }
-      addNewExpression(`*.${getHostname(info.linkUrl)}`, ListType.GREY, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.LINK_ADD_WHITE_SUBS:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was LINK_ADD_WHITE_SUBS.`,
-          x: {linkUrl: info.linkUrl, hostname: getHostname(info.linkUrl), cookieStoreId,},
-        });
-      }
-      addNewExpression(`*.${getHostname(info.linkUrl)}`, ListType.WHITE, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.PAGE_ADD_GREY_DOMAIN:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_GREY_DOMAIN.`,
-          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      addNewExpression(getHostname(info.pageUrl), ListType.GREY, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.PAGE_ADD_WHITE_DOMAIN:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_WHITE_DOMAIN.`,
-          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      addNewExpression(getHostname(info.pageUrl), ListType.WHITE, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.PAGE_ADD_GREY_SUBS:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_GREY_SUBS.`,
-          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      addNewExpression(`*.${getHostname(info.pageUrl)}`, ListType.GREY, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.PAGE_ADD_WHITE_SUBS:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was PAGE_ADD_WHITE_SUBS.`,
-          x: {pageURL: info.pageUrl, hostname: getHostname(info.pageUrl), cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      addNewExpression(`*.${getHostname(info.pageUrl)}`, ListType.WHITE, cookieStoreId);
-      break;
-    case ContextMenuEvents.MENUID.SELECT_ADD_GREY_DOMAIN:
-    {
-      const texts = (info.selectionText || '').trim().split(',');
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_GREY_DOMAIN.`,
-          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      texts.forEach((text) => {
-        if (debug) {
-          cadLog({
-            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
-            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
-          });
-        }
-        addNewExpression(encodeURI(text.trim()), ListType.GREY, cookieStoreId);
-      });
-    }
-      break;
-    case ContextMenuEvents.MENUID.SELECT_ADD_WHITE_DOMAIN:
-    {
-      const texts = (info.selectionText || '').trim().split(',');
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_WHITE_DOMAIN.`,
-          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      texts.forEach((text) => {
-        if (debug) {
-          cadLog({
-            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
-            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
-          });
-        }
-        addNewExpression(encodeURI(text.trim()), ListType.WHITE, cookieStoreId);
-      });
-    }
-      break;
-    case ContextMenuEvents.MENUID.SELECT_ADD_GREY_SUBS:
-    {
-      const texts = (info.selectionText || '').trim().split(',');
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_GREY_SUBS.`,
-          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      texts.forEach((text) => {
-        if (debug) {
-          cadLog({
-            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
-            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
-          });
-        }
-        addNewExpression(`*.${encodeURI(text.trim())}`, ListType.GREY, cookieStoreId);
-      });
-    }
-      break;
-    case ContextMenuEvents.MENUID.SELECT_ADD_WHITE_SUBS:
-    {
-      const texts = (info.selectionText || '').trim().split(',');
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked:  menuItemId was SELECT_ADD_WHITE_SUBS.`,
-          x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
-        });
-      }
-      texts.forEach((text) => {
-        if (debug) {
-          cadLog({
-            msg: `background.onContextMenuClicked:  encodeURI on selected text`,
-            x: {rawInput: text.trim(), encodedInput: encodeURI(text.trim())}
-          });
-        }
-        addNewExpression(`*.${encodeURI(text.trim())}`, ListType.WHITE, cookieStoreId);
-      });
-    }
-      break;
-    case ContextMenuEvents.MENUID.ACTIVE_MODE:
-      if (info.hasOwnProperty('checked') && info.hasOwnProperty('wasChecked') && info.checked !== info.wasChecked) {
-        if (debug) {
-          cadLog({
-            msg: `background.onContextMenuClicked changed Automatic Cleaning value to:  ${info.checked}.`,
-          });
-        }
-        // Setting Updated.
-        store.dispatch<any>(updateSetting({
-          name: currentSettings.activeMode.name,
-          value: info.checked!,
-        }));
-      }
-      break;
-    case ContextMenuEvents.MENUID.SETTINGS:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked triggered Open Settings.`,
-        });
-      }
-      browser.tabs.create({
-        index: tab.index + 1,
-        url: '/settings/settings.html#tabSettings',
-      });
-      break;
-    default:
-      if (debug) {
-        cadLog({
-          msg: `background.onContextMenuClicked received unknown menu id: ${info.menuItemId}`,
-          type: 'warn',
-          x: {info, tab},
-        });
-      }
-      break;
-  }
-}
-
-function addNewExpression(
-  input: string,
-  listType: ListType,
-  cookieStoreId: string | undefined,
-) {
-  if (!input && !listType) return;
-  const payload = {
-    expression: localFileToRegex(input.trim()),
-    listType,
-    storeId: parseCookieStoreId(currentSettings.contextualIdentities.value as boolean, cookieStoreId),
-  }
-  if (currentSettings.debugMode.value) {
-    cadLog({
-      msg: `background.addNewExpression - Parsed from Right-Click:`,
-      x: payload,
-    });
-  }
-  const cache = store.getState().cache;
-  showNotification({
-    duration: getSetting(store.getState(), 'notificationOnScreen') as number,
-    msg: `${browser.i18n.getMessage('addNewExpressionNotification', [payload.expression, payload.listType, `${payload.storeId}${(currentSettings.contextualIdentities.value as boolean) ? (cache[payload.storeId] !== undefined ? ` (${cache[payload.storeId]})` : '') : ''}`])}\n${browser.i18n.getMessage('addNewExpressionNotificationIgnore')}`,
-  });
-  store.dispatch(addExpressionUI(payload));
-}
 
 // Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
 const cookiePopupPorts: browser.runtime.Port[] = [];
@@ -557,13 +245,13 @@ browser.runtime.onStartup.addListener(async () => {
         cadLog({
           msg: 'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
           type: 'info',
-        });
+        }, getSetting(store.getState(), 'debugMode') === true);
       }
     } else {
       cadLog({
         msg: 'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
         type: 'info',
-      });
+      }, getSetting(store.getState(), 'debugMode') === true);
     }
   }
   checkIfProtected(store.getState());
@@ -598,11 +286,9 @@ const awaitStore = async () => {
 
 const greyCleanup = () => {
   if (getSetting(store.getState(), 'activeMode')) {
-    if (getSetting(store.getState(), 'debugMode')) {
-      cadLog({
-        msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
-      });
-    }
+    cadLog({
+      msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
+    }, getSetting(store.getState(), 'debugMode') as boolean);
     store.dispatch<any>(
       cookieCleanup({
         greyCleanup: true,

@@ -37,19 +37,17 @@ export default class TabEvents extends StoreUser {
     tab: browser.tabs.Tab,
   ) {
     if (getSetting(StoreUser.store.getState(), 'discardedCleanup')) {
-      const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+      const debug = getSetting(StoreUser.store.getState(), 'debugMode') as boolean;
       const partialTabInfo = createPartialTabInfo(tab);
       // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
       if (changeInfo.favIconUrl && debug) {
         changeInfo.favIconUrl = '***';
       }
       if (changeInfo.discarded || tab.discarded) {
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.onTabDiscarded: Tab was discarded.  Executing cleanFromTabEvents',
-            x: {tabId, changeInfo, partialTabInfo,},
-          });
-        }
+        cadLog({
+          msg: 'TabEvents.onTabDiscarded: Tab was discarded.  Executing cleanFromTabEvents',
+          x: {tabId, changeInfo, partialTabInfo,},
+        }, debug);
         TabEvents.cleanFromTabEvents();
       }
     }
@@ -60,7 +58,7 @@ export default class TabEvents extends StoreUser {
     tab: browser.tabs.Tab,
   ) {
     if (tab.status === 'complete') {
-      const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+      const debug = getSetting(StoreUser.store.getState(), 'debugMode') as boolean;
       const partialTabInfo = createPartialTabInfo(tab);
       // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
       if (changeInfo.favIconUrl && debug) {
@@ -68,34 +66,26 @@ export default class TabEvents extends StoreUser {
       }
       if (!TabEvents.onTabUpdateDelay) {
         TabEvents.onTabUpdateDelay = true;
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.onTabUpdate: action delay has been set for ~750 ms.',
-            x: {tabId, changeInfo, partialTabInfo,},
-          });
-        }
+        cadLog({
+          msg: 'TabEvents.onTabUpdate: action delay has been set for ~750 ms.',
+          x: {tabId, changeInfo, partialTabInfo,},
+        }, debug);
         setTimeout(() => {
-          if (debug) {
-            cadLog({
-              msg: 'TabEvents.onTabUpdate: actions will now commence.',
-              x: {tabId, changeInfo, partialTabInfo,},
-            });
-          }
+          cadLog({
+            msg: 'TabEvents.onTabUpdate: actions will now commence.',
+            x: {tabId, changeInfo, partialTabInfo,},
+          }, debug);
           TabEvents.getAllCookieActions(tab);
           TabEvents.onTabUpdateDelay = false;
-          if (debug) {
-            cadLog({
-              msg: 'TabEvents.onTabUpdate: actions have been processed and flag cleared.',
-            });
-          }
+          cadLog({
+            msg: 'TabEvents.onTabUpdate: actions have been processed and flag cleared.',
+          }, debug);
         }, 750);
       } else {
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.onTabUpdate: actions delay is pending already.',
-            x: {tabId, changeInfo, partialTabInfo,},
-          });
-        }
+        cadLog({
+          msg: 'TabEvents.onTabUpdate: actions delay is pending already.',
+          x: {tabId, changeInfo, partialTabInfo,},
+        }, debug);
       }
     }
   }
@@ -105,7 +95,7 @@ export default class TabEvents extends StoreUser {
     changeInfo: browser.tabs.TabChangeInfo,
     tab: browser.tabs.Tab,
   ) {
-    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode') as boolean;
     if (tab.status === 'complete') {
       const partialTabInfo = createPartialTabInfo(tab);
       const mainDomain = extractMainDomain(getHostname(tab.url));
@@ -114,12 +104,10 @@ export default class TabEvents extends StoreUser {
         changeInfo.favIconUrl = '***';
       }
       if (TabEvents.tabToDomain[tabId] === undefined && mainDomain !== '') {
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.onDomainChange: First mainDomain set.',
-            x: {tabId, changeInfo, mainDomain, partialTabInfo,},
-          });
-        }
+        cadLog({
+          msg: 'TabEvents.onDomainChange: First mainDomain set.',
+          x: {tabId, changeInfo, mainDomain, partialTabInfo,},
+        }, debug);
         TabEvents.tabToDomain[tabId] = mainDomain;
       } else if (TabEvents.tabToDomain[tabId] !== mainDomain
         && (mainDomain !== '' ||
@@ -132,36 +120,28 @@ export default class TabEvents extends StoreUser {
         TabEvents.tabToDomain[tabId] = mainDomain;
         if (getSetting(StoreUser.store.getState(), 'domainChangeCleanup')) {
           if (oldMainDomain === '') {
-            if (debug) {
-              cadLog({
-                msg: 'TabEvents.onDomainChange: mainDomain has changed, but previous domain may have been a blank or new tab.  Not executing domainChangeCleanup',
-                x: {tabId, changeInfo, partialTabInfo,},
-              });
-            }
+            cadLog({
+              msg: 'TabEvents.onDomainChange: mainDomain has changed, but previous domain may have been a blank or new tab.  Not executing domainChangeCleanup',
+              x: {tabId, changeInfo, partialTabInfo,},
+            }, debug);
             return;
           }
-          if (debug) {
-            cadLog({
-              msg: 'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
-              x: {tabId, changeInfo, oldMainDomain, mainDomain, partialTabInfo,},
-            });
-          }
+          cadLog({
+            msg: 'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
+            x: {tabId, changeInfo, oldMainDomain, mainDomain, partialTabInfo,},
+          }, debug);
           TabEvents.cleanFromTabEvents();
         } else {
-          if (debug) {
-            cadLog({
-              msg: 'TabEvents.onDomainChange: mainDomain has changed, but cleanOnDomainChange is not enabled.  Not cleaning.',
-              x: {tabId, changeInfo, oldMainDomain, mainDomain, partialTabInfo,},
-            });
-          }
+          cadLog({
+            msg: 'TabEvents.onDomainChange: mainDomain has changed, but cleanOnDomainChange is not enabled.  Not cleaning.',
+            x: {tabId, changeInfo, oldMainDomain, mainDomain, partialTabInfo,},
+          }, debug);
         }
       } else {
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.onDomainChange: mainDomain has not changed yet.',
-            x: {tabId, changeInfo, mainDomain, partialTabInfo,},
-          });
-        }
+        cadLog({
+          msg: 'TabEvents.onDomainChange: mainDomain has not changed yet.',
+          x: {tabId, changeInfo, mainDomain, partialTabInfo,},
+        }, debug);
       }
     }
   }
@@ -173,34 +153,27 @@ export default class TabEvents extends StoreUser {
       isWindowClosing: boolean
     }
   ) {
-    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
-    if (debug) {
-      cadLog({
-        msg: 'TabEvents.onDomainChangeRemove: Tab was closed.  Removing old tabToDomain info.',
-        x: {tabId, mainDomain: TabEvents.tabToDomain[tabId] || '', removeInfo,},
-      });
-    }
+    cadLog({
+      msg: 'TabEvents.onDomainChangeRemove: Tab was closed.  Removing old tabToDomain info.',
+      x: {tabId, mainDomain: TabEvents.tabToDomain[tabId] || '', removeInfo,},
+    }, getSetting(StoreUser.store.getState(), 'debugMode') as boolean);
     delete TabEvents.tabToDomain[tabId];
   }
 
   public static cleanFromTabEvents = async () => {
-    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode') as boolean;
     if (getSetting(StoreUser.store.getState(), 'activeMode')) {
       const alarm = await browser.alarms.get('activeModeAlarm');
       if (!alarm || (alarm.name && alarm.name !== 'activeModeAlarm')) {
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.cleanFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
-          });
-        }
+        cadLog({
+          msg: 'TabEvents.cleanFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
+        }, debug);
         AlarmEvents.createActiveModeAlarm();
       } else {
-        if (debug) {
-          cadLog({
-            msg: 'TabEvents.cleanFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
-            x: alarm,
-          });
-        }
+        cadLog({
+          msg: 'TabEvents.cleanFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
+          x: alarm,
+        }, debug);
       }
     }
   };
@@ -209,17 +182,15 @@ export default class TabEvents extends StoreUser {
     if (!tab.url) return;
     if (tab.url === '') return;
     if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
-    const debug = getSetting(StoreUser.store.getState(), 'debugMode');
+    const debug = getSetting(StoreUser.store.getState(), 'debugMode') as boolean;
     const partialTabInfo = createPartialTabInfo(tab);
     const hostname = getHostname(tab.url);
     const firstPartyIsolate = await isFirstPartyIsolate();
     if (hostname === '') {
-      if (debug) {
-        cadLog({
-          msg: 'TabEvents.getAllCookieActions: hostname parsed empty for tab url.  Skipping Cookie Actions.',
-          x: {partialTabInfo, hostname,},
-        });
-      }
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions: hostname parsed empty for tab url.  Skipping Cookie Actions.',
+        x: {partialTabInfo, hostname,},
+      }, debug);
       return;
     }
     let cookies = [];
@@ -230,20 +201,16 @@ export default class TabEvents extends StoreUser {
         }, firstPartyIsolate),
       );
       const regExp = new RegExp(hostname.slice(7)); // take out file://
-      if (debug) {
-        cadLog({
-          msg: 'TabEvents.getAllCookieActions:  Local File Regex to test on cookie.path',
-          x: {partialTabInfo, hostname, regExp: regExp.toString(),},
-        });
-      }
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions:  Local File Regex to test on cookie.path',
+        x: {partialTabInfo, hostname, regExp: regExp.toString(),},
+      }, debug);
       cookies = allCookies.filter(cookie => cookie.domain === '' && regExp.test(cookie.path));
     } else {
-      if (debug) {
-        cadLog({
-          msg: 'TabEvents.getAllCookieActions:  browser.cookies.getAll for domain.',
-          x: {partialTabInfo, domain: hostname, firstPartyDomain: extractMainDomain(hostname),},
-        });
-      }
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions:  browser.cookies.getAll for domain.',
+        x: {partialTabInfo, domain: hostname, firstPartyDomain: extractMainDomain(hostname),},
+      }, debug);
       cookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
           domain: hostname,
@@ -252,12 +219,10 @@ export default class TabEvents extends StoreUser {
         }, firstPartyIsolate),
       );
     }
-    if (debug) {
-      cadLog({
-        msg: 'TabEvents.getAllCookieActions:  Filtered Cookie Count',
-        x: { partialTabInfo, tabURL: tab.url, hostname, cookieCount: cookies.length,},
-      });
-    }
+    cadLog({
+      msg: 'TabEvents.getAllCookieActions:  Filtered Cookie Count',
+      x: { partialTabInfo, tabURL: tab.url, hostname, cookieCount: cookies.length,},
+    }, debug);
 
     if (
       cookies.length === 0 &&
@@ -278,35 +243,29 @@ export default class TabEvents extends StoreUser {
         firstPartyIsolate
       );
       browser.cookies.set({ ...cookiesAttributes, url: tab.url || '' });
-      if (debug) {
-        cadLog({
-          msg: 'TabEvents.getAllCookieActions:  A temporary cookie has been set for future LocalStorage cleaning as the site did not set any cookies yet.',
-          x: {partialTabInfo, cadLSCookie: cookiesAttributes,},
-        });
-      }
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions:  A temporary cookie has been set for future LocalStorage cleaning as the site did not set any cookies yet.',
+        x: {partialTabInfo, cadLSCookie: cookiesAttributes,},
+      }, debug);
     }
     // Filter out cookie(s) that were set by this extension.
     const cookieLength = cookies.length - cookies.filter(cookie => cookie.name === LSCLEANUPNAME).length;
-    if (debug && cookies.length !== cookieLength) {
+    if (cookies.length !== cookieLength) {
       cadLog({
         msg: 'TabEvents.getAllCookieActions:  New Cookie Count after filtering out cookie set by extension',
         x: { preFilterCount: cookies.length, newCookieCount: cookieLength,},
-      });
+      }, debug);
     }
-    if (debug) {
-      cadLog({
-        msg: 'TabEvents.getAllCookieActions: executing checkIfProtected to update Icons and Title.',
-      });
-    }
+    cadLog({
+      msg: 'TabEvents.getAllCookieActions: executing checkIfProtected to update Icons and Title.',
+    }, debug);
     checkIfProtected(StoreUser.store.getState(), tab, cookieLength);
 
     // Exclude Firefox Android for browser icons and badge texts
     if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon') && (StoreUser.store.getState().cache.platformOs || '') !== 'android') {
-      if (debug) {
-        cadLog({
-          msg: 'TabEvents.getAllCookieActions: executing showNumberOfCookiesInIcon.',
-        });
-      }
+      cadLog({
+        msg: 'TabEvents.getAllCookieActions: executing showNumberOfCookiesInIcon.',
+      }, debug);
       showNumberOfCookiesInIcon(tab, cookieLength);
     } else {
       if (browser.browserAction.setBadgeText) {
@@ -314,11 +273,9 @@ export default class TabEvents extends StoreUser {
           tabId: tab.id,
           text: '',
         });
-        if (debug) {
-          cadLog({
-            msg: `TabEvents.getAllCookieActions:  BadgeText has been cleared for tab ${tab.id}.`,
-          });
-        }
+        cadLog({
+          msg: `TabEvents.getAllCookieActions:  BadgeText has been cleared for tab ${tab.id}.`,
+        }, debug);
       }
     }
   }

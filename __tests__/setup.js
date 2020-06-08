@@ -10,6 +10,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+/**
+ * This setup file for jest testing essentially mimics the
+ * Firefox WebExtension APIs with jest mock functions.
+ *
+ * Use global.browser for testing for calls to webextension API.
+ * If you are expecting values to be returned, use jest-when
+ *   e.g. when(global.browser.i18n.getMessage)
+ *          .calledWith(expect.any(String), expect.any(Array))
+ *          .mockReturnValue('translated');
+ * to have it return a value depending on the input received.
+ */
 'use strict';
 
 // event listeners

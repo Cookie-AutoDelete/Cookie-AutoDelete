@@ -92,67 +92,65 @@ describe('Library Functions', () => {
       consoleOutput.length = 0;
     });
 
+    it('should do nothing if output=false', () => {
+      expect.assertions(1);
+      cadLog({msg: 'nothing'}, false);
+      expect(consoleOutput.length).toBe(0);
+    });
+
     it('should format the Log Header with manifest version', () => {
-      expect.assertions(2);
-      cadLog({msg: 'headerTest'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'headerTest'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - headerTest\n'},
       ]);
     });
 
     it('should output to debug when no type is given', () => {
-      expect.assertions(2);
-      cadLog({msg: 'noType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'noType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - noType\n'},
       ]);
     });
     it('should output to debug when type is debug', () => {
-      expect.assertions(2);
-      cadLog({type: 'debug', msg: 'debugType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'debug', msg: 'debugType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - debugType\n'},
       ]);
     });
     it('should output to error when type is error', () => {
-      expect.assertions(2);
-      cadLog({type: 'error', msg: 'errorType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'error', msg: 'errorType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'error', msg: 'CAD_0.12.34 - error - errorType\n'},
       ]);
     });
     it('should output to info when type is info', () => {
-      expect.assertions(2);
-      cadLog({type: 'info', msg: 'infoType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'info', msg: 'infoType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'info', msg: 'CAD_0.12.34 - info - infoType\n'},
       ]);
     });
     it('should output to log when type is log', () => {
-      expect.assertions(2);
-      cadLog({type: 'log', msg: 'logType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'log', msg: 'logType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'log', msg: 'CAD_0.12.34 - log - logType\n'},
       ]);
     });
     it('should output to warn when type is warn', () => {
-      expect.assertions(2);
-      cadLog({type: 'warn', msg: 'warnType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'warn', msg: 'warnType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'warn', msg: 'CAD_0.12.34 - warn - warnType\n'},
       ]);
     });
     it('should default back to debug type when invalid type is given', () => {
-      expect.assertions(2);
-      cadLog({type: 'invalid', msg: 'invalidType'});
-      expect(consoleOutput.length).toEqual(2);
+      expect.assertions(1);
+      cadLog({type: 'invalid', msg: 'invalidType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'error', msg: 'CAD_0.12.34 - Invalid Console Output Type given [ invalid ].  Using [debug] instead.'},
         {type: 'debug', msg: 'CAD_0.12.34 - debug - invalidType\n'}
@@ -160,18 +158,16 @@ describe('Library Functions', () => {
     });
 
     it('should display supplied string accordingly', () => {
-      expect.assertions(2);
-      cadLog({msg: 'withObject', x: 'test.'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'withObject', x: 'test.'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - withObject\ntest.'},
       ]);
     });
 
     it('should attempt to parse function as string for display', () => {
-      expect.assertions(2);
-      cadLog({msg: 'objectFunction', x: RegExp.toString});
-      expect(consoleOutput.length).toEqual(2);
+      expect.assertions(1);
+      cadLog({msg: 'objectFunction', x: RegExp.toString}, true);
       expect(consoleOutput).toEqual([
         {type: 'warn', msg: 'CAD_0.12.34 - Received unexpected typeof [ function ].  Attempting to display it...'},
         {type: 'debug', msg: 'CAD_0.12.34 - debug - objectFunction\nfunction toString() { [native code] }'},
@@ -179,55 +175,49 @@ describe('Library Functions', () => {
     });
 
     it('should parse object for display', () => {
-      expect.assertions(2);
-      cadLog({msg: 'objectString', x: {a: 'abc'}});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'objectString', x: {a: 'abc'}}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - objectString\n{\n  "a": "abc"\n}'},
       ]);
     });
 
     it('should parse number as string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'numberString', x: 123});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'numberString', x: 123}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - numberString\n123'},
       ]);
     });
 
     it('should parse boolean as string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'booleanString', x: true});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'booleanString', x: true}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - booleanString\ntrue'},
       ]);
     });
 
     it('should parse string as string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'stringString', x: 'test'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'stringString', x: 'test'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - stringString\ntest'},
       ]);
     });
 
     it('should parse undefined as empty string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'undefinedString', x: undefined});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'undefinedString', x: undefined}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - undefinedString\n'},
       ]);
     });
 
-    it('should not output to console on empty input object (no message)', () => {
-      expect.assertions(2);
-      cadLog({});
+    it('should not output to console on empty input object (no message), even if output=true', () => {
+      expect.assertions(1);
+      cadLog({}, true);
       expect(consoleOutput.length).toEqual(0);
-      expect(consoleOutput).toEqual([]);
     });
   });
 

@@ -22,8 +22,9 @@ export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
 /**
  * Console Log Outputs - Mostly For Debugging
  */
-export const cadLog = (x: CADLogItem) => {
+export const cadLog = (x: CADLogItem, output: boolean) => {
   if (!x.msg || x.msg.trim() === '') return;
+  if (!output) return;
   const h = `CAD_${browser.runtime.getManifest().version}`;
   const cOut = [
     console.debug,

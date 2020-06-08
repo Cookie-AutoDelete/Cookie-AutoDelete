@@ -29,6 +29,10 @@
 			}
 		}
 	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Could not fetch domain to add from where right-click was issued.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
 	"addNewExpressionNotificationIgnore": {
 		"message":  "If expression already exists, this will be ignored.",
 		"description":  "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."

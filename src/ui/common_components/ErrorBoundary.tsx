@@ -52,10 +52,10 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
   public componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Shouldn't update state here but can be used to log errors somewhere else.
     cadLog({
-      msg: `An Error was caught:  ${error}`,
-      type: 'info',
+      msg: `React ErrorBoundary - An Error was caught:  ${error}`,
+      type: 'error',
       x: {message: error.message, stack: error.stack, errorInfo},
-    });
+    }, true);
   }
 
   public async resetExtensionData() {
