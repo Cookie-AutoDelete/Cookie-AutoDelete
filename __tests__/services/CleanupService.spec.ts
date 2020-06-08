@@ -10,7 +10,7 @@ import {
   isSafeToClean,
   otherBrowsingDataCleanup,
   prepareCookie,
-  returnSetOfOpenTabDomains,
+  returnContainersOfOpenTabDomains,
 } from '../../src/services/CleanupService';
 
 jest.requireActual('../../src/services/Libs');
@@ -1080,7 +1080,7 @@ describe('CleanupService', () => {
     });
   });
 
-  describe('returnSetOfOpenTabDomains()', () => {
+  describe('returnContainersOfOpenTabDomains()', () => {
     beforeEach(() => {
       when(global.browser.tabs.query)
         .calledWith(expect.any(Object))
@@ -1123,21 +1123,21 @@ describe('CleanupService', () => {
     });
 
     it('should return empty object if ignoreOpenTabs is true and cleanDiscardedTabs is false', () => {
-      return returnSetOfOpenTabDomains(true,false).then(results => {
+      return returnContainersOfOpenTabDomains(true,false).then(results => {
         expect(Object.keys(results).length).toEqual(0);
         return Promise.resolve();
       });
     });
 
     it('should return empty object if ignoreOpenTabs is true and cleanDiscardedTabs is true', () => {
-      return returnSetOfOpenTabDomains(true,true).then(results => {
+      return returnContainersOfOpenTabDomains(true,true).then(results => {
         expect(Object.keys(results).length).toEqual(0);
         return Promise.resolve();
       });
     });
 
     it('sort tab query result accordingly, cleanDiscardedTabs is false', () => {
-      return returnSetOfOpenTabDomains(false, false).then(results => {
+      return returnContainersOfOpenTabDomains(false, false).then(results => {
         expect(Object.keys(results).length).toBe(4);
 
         expect(results['firefox-default']).toHaveLength(3);
@@ -1168,7 +1168,7 @@ describe('CleanupService', () => {
     });
 
     it('should not have youtube.com in any containers, cleanDiscardedTabs is false', () => {
-      return returnSetOfOpenTabDomains(false, false).then(results => {
+      return returnContainersOfOpenTabDomains(false, false).then(results => {
         expect(results['firefox-default'] && results['firefox-default'].includes('youtube.com')).toBe(false);
         expect(results['firefox-container-1'] && results['firefox-container-1'].includes('youtube.com')).toBe(false);
         expect(results['0'] && results['0'].includes('youtube.com')).toBe(false);
@@ -1178,7 +1178,7 @@ describe('CleanupService', () => {
     });
 
     it('should not have discarded.net in firefox-container-1/Personal when cleanDiscardedTabs is true', () => {
-      return returnSetOfOpenTabDomains(false, true).then(results => {
+      return returnContainersOfOpenTabDomains(false, true).then(results => {
         expect(results['firefox-container-1'] && results['firefox-container-1'].includes('discarded.net')).toBe(false);
         return Promise.resolve();
       });

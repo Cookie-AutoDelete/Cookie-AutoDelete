@@ -378,7 +378,7 @@ export const filterLocalstorage = (obj: CleanReasonObject, debug: boolean = fals
  * returns empty object if we ignore all open Tabs
  * Tabs now grouped by container e.g. 'default', 'firefox-container-1', '0'
  */
-export const returnSetOfOpenTabDomains = async (
+export const returnContainersOfOpenTabDomains = async (
   ignoreOpenTabs: boolean,
   cleanDiscardedTabs: boolean,
 ) => {
@@ -422,7 +422,7 @@ export const cleanCookiesOperation = async (
     recentlyCleaned: 0,
     storeIds: {},
   };
-  const openTabDomains = await returnSetOfOpenTabDomains(
+  const openTabDomains = await returnContainersOfOpenTabDomains(
     cleanupProperties.ignoreOpenTabs,
     getSetting(state, 'discardedCleanup') as boolean,
   );
