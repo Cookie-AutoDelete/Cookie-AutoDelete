@@ -233,7 +233,7 @@ export const clearCookiesForThisDomain = async (
         url: string;
         name: string;
       });
-      if (r !== null) cookieDeletedCount += 1;
+      if (r) cookieDeletedCount += 1;
     }
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
