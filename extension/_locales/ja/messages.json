@@ -404,7 +404,7 @@
 		}
 	},
 	"reasonTabsWereIgnored": {
-		"message": "開いているタブは無視されました。",
+		"message": "そして、開いているタブも無視されました。",
 		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
 	},
 	"reasonTabsWereNotIgnored": {
@@ -436,10 +436,6 @@
 				"example": "5"
 			}
 		}
-	},
-	"removeAllExpressionsNoneFound": {
-		"message": "削除する表現はありません！",
-		"description": "No expressions to remove!"
 	},
 	"removeExpressionText": {
 		"message": "式を削除",
