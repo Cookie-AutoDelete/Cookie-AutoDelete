@@ -71,6 +71,10 @@
 		"message": "貢献した人",
 		"description": "Contributors"
 	},
+	"cookiesText": {
+		"message": "クッキー",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+	},
 	"cookieCleanUpOnStartText": {
 		"message": "起動時に開いているタブからクッキーを消去する",
 		"description": "Clean Cookies from Open Tabs on Startup"
