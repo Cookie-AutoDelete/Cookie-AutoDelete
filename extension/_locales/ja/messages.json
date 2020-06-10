@@ -11,6 +11,32 @@
 		"message": "自動クリーニングを有効にする",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "クッキーストア $cookieStore$ の下のリスト型 $listType$ に $expression$ を追加します。",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "右クリックで得られる場所からは、追加するドメインを取得できませんでした。",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "式がすでにある場合何も行いません。",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "自動削除無効",
 		"description": "Auto-clean disabled"
@@ -58,6 +84,34 @@
 	"consoleDebugMode": {
 		"message": "コンソールタブをクリックします",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
+	"contextMenusParentClean": {
+		"message": "手動でのクリーニングメニュー",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "ドメイン/式メニューを追加する",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomain": {
+		"message": "選択された $type$ のドメインのみ",
+		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomain": {
+		"message": "選択された $type$ のドメインを持つすべてのサブドメインについて",
+		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
 	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefoxのコンテナタブのサポートを有効にする",
