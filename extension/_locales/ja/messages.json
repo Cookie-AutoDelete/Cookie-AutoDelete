@@ -204,7 +204,7 @@
 		"description": "Keep All Cookies"
 	},
 	"keepDefaultIcon": {
-		"message": "すべてのリストタイプでデフォルトのアイコンを保持する",
+		"message": "すべてのリストタイプでデフォルトのアイコンを維持する",
 		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
