@@ -394,7 +394,7 @@
 		}
 	},
 	"reasonKeepOpenTab": {
-		"message": "*.$mainDomain$ の開いているタブを保持します",
+		"message": ".$mainDomain$ のタブが開いているので保持します",
 		"description": "Keep because of open tabs of *.google.com",
 		"placeholders": {
 			"mainDomain": {
