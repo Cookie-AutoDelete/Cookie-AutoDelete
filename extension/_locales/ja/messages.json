@@ -168,7 +168,7 @@
 		"description": "Filter"
 	},
 	"greyCleanLocalstorage": {
-		"message": "新しい Greylist 式の 'Keep LocalStorage' のチェックを外す",
+		"message": "新しいグレイリスト式の 'ローカルストレージを維持する' のチェックを外す",
 		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
 	},
 	"greyListWordText": {
