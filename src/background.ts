@@ -19,8 +19,15 @@ import {
 // tslint:disable-next-line: import-name
 import createStore from './redux/Store';
 import { checkIfProtected, setGlobalIcon } from './services/BrowserActionService';
+import ContextMenuEvents from './services/ContextMenuEvents';
 import CookieEvents from './services/CookieEvents';
-import { cadLog, convertVersionToNumber, extractMainDomain, getSetting, sleep } from './services/Libs';
+import {
+  cadLog,
+  convertVersionToNumber,
+  extractMainDomain,
+  getSetting,
+  sleep
+} from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
@@ -61,12 +68,10 @@ const onSettingsChange = () => {
     browser.browsingData.removeLocalStorage({
       since: 0,
     });
-    if (currentSettings.debugMode.value) {
-      cadLog({
-        msg: 'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
-        type: 'info',
-      });
-    }
+    cadLog({
+      msg: 'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
+      type: 'info',
+    }, currentSettings.debugMode.value as boolean);
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
@@ -75,10 +80,11 @@ const onSettingsChange = () => {
 
   if (previousSettings.activeMode.value !== currentSettings.activeMode.value) {
     setGlobalIcon(currentSettings.activeMode.value as boolean);
+    ContextMenuEvents.updateMenuItemCheckbox(ContextMenuEvents.MENUID.ACTIVE_MODE, currentSettings.activeMode.value as boolean);
   }
 
   checkIfProtected(store.getState());
-  
+
   // Validate Settings again
   store.dispatch<any>(validateSettings());
 };
@@ -151,12 +157,25 @@ const onStartUp = async () => {
   checkIfProtected(store.getState());
 
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
+  browser.tabs.onUpdated.addListener(TabEvents.onTabDiscarded);
   browser.tabs.onUpdated.addListener(TabEvents.onTabUpdate);
   browser.tabs.onRemoved.addListener(TabEvents.onDomainChangeRemove);
-  browser.tabs.onRemoved.addListener(TabEvents.cleanFromFromTabEvents);
+  browser.tabs.onRemoved.addListener(TabEvents.cleanFromTabEvents);
 
   // This should update the cookie badge count when cookies are changed.
   browser.cookies.onChanged.addListener(CookieEvents.onCookieChanged);
+
+  if (browser.contextMenus) {
+    ContextMenuEvents.menuInit(store.getState());
+    if (!browser.contextMenus.onClicked.hasListener(ContextMenuEvents.onContextMenuClicked)) {
+      browser.contextMenus.onClicked.addListener(ContextMenuEvents.onContextMenuClicked);
+    }
+  }
+  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [READY] (0)` });
+  cadLog({
+    msg: `background.onStartUp is complete.`,
+    type: "info"
+  }, currentSettings.debugMode.value as boolean);
 };
 
 // Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
@@ -226,13 +245,13 @@ browser.runtime.onStartup.addListener(async () => {
         cadLog({
           msg: 'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
           type: 'info',
-        });
+        }, getSetting(store.getState(), 'debugMode') === true);
       }
     } else {
       cadLog({
         msg: 'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
         type: 'info',
-      });
+      }, getSetting(store.getState(), 'debugMode') === true);
     }
   }
   checkIfProtected(store.getState());
@@ -267,6 +286,9 @@ const awaitStore = async () => {
 
 const greyCleanup = () => {
   if (getSetting(store.getState(), 'activeMode')) {
+    cadLog({
+      msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
+    }, getSetting(store.getState(), 'debugMode') as boolean);
     store.dispatch<any>(
       cookieCleanup({
         greyCleanup: true,

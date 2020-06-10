@@ -10,8 +10,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
-type CleanupProperties = {
+
+interface CleanupProperties {
   greyCleanup: boolean;
   ignoreOpenTabs: boolean;
 };
@@ -28,7 +28,7 @@ type ActivityLog = {
 };
 
 interface CleanupPropertiesInternal extends CleanupProperties {
-  openTabDomains: Set<String>;
+  openTabDomains: {[k: string]: string[]};
 }
 
 declare const enum ReasonKeep {

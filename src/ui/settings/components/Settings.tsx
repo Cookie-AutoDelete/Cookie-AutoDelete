@@ -64,13 +64,11 @@ class Settings extends React.Component<SettingProps> {
   // Import Settings
   public importCoreSettings(importFile: File) {
     const { settings } = this.props;
-    const debug = settings.debugMode.value;
-    if (debug) {
-      cadLog({
-        msg: 'Import Core Settings received file for parsing.',
-        x: {name: importFile.name, size: importFile.size, type: importFile.type},
-      });
-    }
+    const debug = settings.debugMode.value as boolean;
+    cadLog({
+      msg: 'Import Core Settings received file for parsing.',
+      x: {name: importFile.name, size: importFile.size, type: importFile.type},
+    }, debug);
     // Do check for import first!
     if (importFile.type !== 'application/json') {
       this.setState({
@@ -90,12 +88,10 @@ class Settings extends React.Component<SettingProps> {
         const result: string = target.result as string;
         const jsonImport: {[k: string]: object} = JSON.parse(result);
         if (!jsonImport.settings) {
-          if (debug) {
-            cadLog({
-              msg: 'importCoreSettings:  Imported JSON does not have "settings" array',
-              x: jsonImport,
-            });
-          }
+          cadLog({
+            msg: 'importCoreSettings:  Imported JSON does not have "settings" array',
+            x: jsonImport,
+          }, debug);
           throw new Error(`${browser.i18n.getMessage('importFileValidationFailed')}. ${browser.i18n.getMessage('importMissingKey')} 'settings': ${importFile.name}`);
         }
         // from { name, value } to name:{ name, value }
@@ -110,18 +106,14 @@ class Settings extends React.Component<SettingProps> {
         }
         settingKeys.forEach(setting => {
           if (settings[setting].value !== newSettings[setting].value) {
-            if (debug) {
-              cadLog({
-                msg: `Setting updated:  ${setting} (${settings[setting].value} => ${newSettings[setting].value})`
-              });
-            }
+            cadLog({
+              msg: `Setting updated:  ${setting} (${settings[setting].value} => ${newSettings[setting].value})`
+            }, debug);
             onUpdateSetting(newSettings[setting]);
           } else {
-            if (debug) {
-              cadLog({
-                msg: `Setting remains unchanged:  ${setting} (${settings[setting].value})`
-              });
-            }
+            cadLog({
+              msg: `Setting remains unchanged:  ${setting} (${settings[setting].value})`
+            }, debug);
           }
         });
         this.setState({
@@ -144,13 +136,11 @@ class Settings extends React.Component<SettingProps> {
     // Convert from name:{name, value} to {name, value}
     const exportSettings: Setting[] = Object.values(settings);
     const r = downloadObjectAsJSON({settings: exportSettings}, 'CoreSettings');
-    if (settings.debugMode.value) {
-      cadLog({
-        msg: 'exportCoreSettings: Core Settings Exported.',
-        type: 'info',
-        x: r,
-      });
-    }
+    cadLog({
+      msg: 'exportCoreSettings: Core Settings Exported.',
+      type: 'info',
+      x: r,
+    }, settings.debugMode.value as boolean);
     this.setState({
       error: '',
       success: `${browser.i18n.getMessage('exportSettingsText')}: ${r.downloadName}`,
@@ -264,6 +254,17 @@ class Settings extends React.Component<SettingProps> {
             <label htmlFor="delayBeforeClean">{browser.i18n.getMessage('secondsText')} {browser.i18n.getMessage('activeModeDelayText')}</label>
             <SettingsTooltip
               hrefURL={'#delay-before-automatic-cleaning'}
+            />
+          </div>
+          <div className="form-group">
+            <CheckboxSetting
+              text={browser.i18n.getMessage('cleanDiscardedText')}
+              settingObject={settings.discardedCleanup}
+              inline={true}
+              updateSetting={payload => onUpdateSetting(payload)}
+            />
+            <SettingsTooltip
+              hrefURL={'#enable-cleanup-on-discarded-tabs'}
             />
           </div>
           <div className="form-group">

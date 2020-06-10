@@ -38,6 +38,10 @@ export const initialState: State = {
       name: 'delayBeforeClean',
       value: 15,
     },
+    discardedCleanup: {
+      name: 'discardedCleanup',
+      value: false,
+    },
     domainChangeCleanup: {
       name: 'domainChangeCleanup',
       value: false,
