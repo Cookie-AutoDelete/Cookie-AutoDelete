@@ -91,6 +91,10 @@
 		"message": "Kontributor",
 		"description": "Contributors"
 	},
+	"cookiesText": {
+		"message": "Kuki",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+	},
 	"cookieCleanUpOnStartText": {
 		"message": "Hapus Kuki dari Tab yang Terbuka saat Memulai",
 		"description": "Clean Cookies from Open Tabs on Startup"
@@ -235,6 +239,10 @@
 		"message": "Simpan",
 		"description": "Keep"
 	},
+	"linkText": {
+		"message": "tautan",
+		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
+	},
 	"listTypeText": {
 		"message": "Tipe Daftar",
 		"description": "List Type"
@@ -250,6 +258,34 @@
 	"localstorageCleanupWarning": {
 		"message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"manualActionNotification": {
+		"message": "Notifikasi Tindakan Manual",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "$data$ tidak bisa dihapus untuk tab:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Menghapus $deleted$ dari $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Ekspresi Domain yang Cocok",
@@ -324,6 +360,10 @@
 	"optionsText": {
 		"message": "Opsi",
 		"description": "Options"
+	},
+	"pageText": {
+		"message": "halaman",
+		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "Kuki",
@@ -476,6 +516,10 @@
 	"secondsText": {
 		"message": "Detik",
 		"description": "second(s)"
+	},
+	"selectedText": {
+		"message": "teks berikut:",
+		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Opsi Hapus Otomatis",
