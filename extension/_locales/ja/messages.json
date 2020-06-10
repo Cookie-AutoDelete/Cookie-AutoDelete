@@ -228,7 +228,7 @@
 		"description": "LocalStorage Cleanup"
 	},
 	"localstorageCleanupWarning": {
-		"message": "警告: LocalStorage Cleanup を有効にすると、すべての既存のLocalStorage がクリアされます。",
+		"message": "警告: ローカルストレージのクリーンアップを有効にすると、すべての既存のローカルストレージがクリアされます。",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
 	"localStorageText": {
