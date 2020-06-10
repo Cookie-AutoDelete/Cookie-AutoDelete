@@ -423,6 +423,10 @@
 			}
 		}
 	},
+	"notificationDisabledText": {
+		"message": "通知無効",
+		"description": "Notification disabled"
+	},
 	"notificationEnabledText": {
 		"message": "通知有効",
 		"description": "Notification enabled"
