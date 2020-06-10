@@ -246,7 +246,7 @@
 		"description": "Filter"
 	},
 	"greyCleanLocalstorage": {
-		"message": "Desmarcar 'Manter localstorage' em novas expressões da lista cinza",
+		"message": "Desmarcar 'Manter LocalStorage' em novas expressões da lista cinza",
 		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
 	},
 	"greyListWordText": {
@@ -302,7 +302,7 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "AVISO: Habilitando a Limpeza de Local Storage e Abas Contêiner pode causar efeitos indesejados devido a Limitação de API. LocalStorage será limpo pelo nome de host em TODOS os contêineres.",
+		"message": "AVISO: Ativar a limpeza de LocalStorage e separadores contentores pode causar alguns efeitos secundários indesejados devido a limitações de API. LocalStorage irá ser limpa por servidor em TODOS os contentores.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
@@ -310,7 +310,7 @@
 		"description": "LocalStorage Cleanup"
 	},
 	"localstorageCleanupWarning": {
-		"message": "Atenção: TODA a LocalStorage existente será removida após a ativação da Limpeza de LocalStorage.",
+		"message": "Aviso: TODA a LocalStorage existente irá ser removida após a ativação da Limpeza de LocalStorage.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
 	"localStorageText": {
