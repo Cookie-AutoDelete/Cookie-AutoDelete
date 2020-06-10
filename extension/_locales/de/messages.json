@@ -11,6 +11,32 @@
 		"message": "Automatisches Aufräumen aktivieren",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "Füge $expression$ zum Listentyp $listType$ unter dem Cookiespeicher $cookieStore$ hinzu.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Hinzuzufügende Domain konnte nicht vom Ort des Rechtsklicks abgerufen werden.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Falls der Ausdruck bereits existiert, wird dieser ignoriert.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Automatisches Aufräumen deaktiviert",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' unter Ansichten prüfen.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Aufräumen für eingefrorene/ungeladene Tabs aktivieren",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Aufräumen, inklusive offener Tabs",
@@ -79,6 +109,34 @@
 		"message": "Klicken Sie auf den Console-Tab",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Manuelles Aufräumen-Menü",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Domain/Ausdruck hinzufügen-Menü",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomain": {
+		"message": "Nur für Domain der/des ausgewählten $type$",
+		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomain": {
+		"message": "Für alle Subdomains mit der Domain der/des ausgewählten $type$",
+		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Unterstützung für Firefox' Container-Tabs",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +148,10 @@
 	"contributorsText": {
 		"message": "Mitwirkende",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Cookies",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Cookies von offenen Tabs beim Start aufräumen",
@@ -235,6 +297,10 @@
 		"message": "Behalten",
 		"description": "Keep"
 	},
+	"linkText": {
+		"message": "Link",
+		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
+	},
 	"listTypeText": {
 		"message": "Listentyp",
 		"description": "List Type"
@@ -250,6 +316,66 @@
 	"localstorageCleanupWarning": {
 		"message": "Warnung: Bei aktiviertem Aufräumen des Local Storage wird der GESAMTE vorhandene Local Storage gelöscht.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "Local Storage",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Manuelle Aktions-Benachrichtigung",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "$data$ kann/können nicht aufgeräumt werden bei Tab:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "Kein(e) $cleanType$ zum Aufräumen für $url$ gefunden.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "$deleted$ von ingesamt $total$ entfernt.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Aufräumen von $cleanType$ von $url$ resultiert:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Passender Domain-Ausdruck",
@@ -328,6 +454,10 @@
 	"optionsText": {
 		"message": "Optionen",
 		"description": "Options"
+	},
+	"pageText": {
+		"message": "Seite",
+		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
@@ -480,6 +610,10 @@
 	"secondsText": {
 		"message": "Sekunde(n)",
 		"description": "second(s)"
+	},
+	"selectedText": {
+		"message": "folgenden Textes:",
+		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Optionen zum automatischen Aufräumen",
