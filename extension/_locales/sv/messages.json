@@ -397,6 +397,10 @@
 		"message": "Inget uttryck definierat.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Rensningsloggar kommer inte att genereras för flikar i privat surfning",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+	},
 	"noRulesText": {
 		"message": "Inga regler matchade denna domän.",
 		"description": "No rules matched this domain"
