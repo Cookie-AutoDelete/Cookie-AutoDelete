@@ -106,14 +106,14 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_COOKIES,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
-      title: browser.i18n.getMessage('clearSiteDataText', ['cookies']),
+      title: browser.i18n.getMessage('clearSiteDataText', [browser.i18n.getMessage('cookiesText')]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Clean localstorage for domain
     browser.contextMenus.create({
       contexts: defaultContexts,
       id: ContextMenuEvents.MENUID.CLEAN_LOCALSTORAGE,
       parentId: ContextMenuEvents.MENUID.PARENT_CLEAN,
-      title: browser.i18n.getMessage('clearSiteDataText', ['localstorage']),
+      title: browser.i18n.getMessage('clearSiteDataText', [browser.i18n.getMessage('localStorageText')]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     // Separator
     browser.contextMenus.create({
