@@ -273,6 +273,10 @@
 		"message": "保持する",
 		"description": "Keep"
 	},
+	"linkText": {
+		"message": "リンク",
+		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
+	},
 	"listTypeText": {
 		"message": "種類のリスト",
 		"description": "List Type"
@@ -293,6 +297,34 @@
 		"message": "ローカルストレージ",
 		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
 	},
+	"manualActionNotification": {
+		"message": "手動での動作を通知する",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "タブの場合は $data$ をクリーンアップできません：",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "$url$ のクリーニング用の $cleanType$ は見つかりませんでした。",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
 	"manualCleanRemoved": {
 		"message": "$total$ 件中 $deleted$ 件を削除しました。",
 		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
@@ -304,6 +336,20 @@
 			"total": {
 				"content": "$2",
 				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "$url$ の $cleanType$ のクリーンアップした結果です：",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
 			}
 		}
 	},
@@ -528,6 +574,10 @@
 	"secondsText": {
 		"message": "秒",
 		"description": "second(s)"
+	},
+	"selectedText": {
+		"message": "次のテキスト：",
+		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "自動クリーニングのオプション",
