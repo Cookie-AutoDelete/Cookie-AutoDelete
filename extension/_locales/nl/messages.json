@@ -235,6 +235,10 @@
 		"message": "Behouden",
 		"description": "Keep"
 	},
+	"linkText": {
+		"message": "koppeling",
+		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
+	},
 	"listTypeText": {
 		"message": "Lijst Type",
 		"description": "List Type"
@@ -250,6 +254,24 @@
 	"localstorageCleanupWarning": {
 		"message": "Waarschuwing: ALLE bestaande lokale opslag zal worden gewist bij inschakelen van lokale opslag opruimen.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "Lokale opslag",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Handmatige actie notificatie",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "$data$ kan niet worden opgeruimd voor tabblad:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Overeenkomende domein expressie",
