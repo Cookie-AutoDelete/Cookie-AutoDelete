@@ -304,7 +304,7 @@
 		"description": "Duration for Notifications"
 	},
 	"notifyCookieCleanUpText": {
-		"message": "消去後の通知を表示する",
+		"message": "クッキーのクリーンアップ後に通知を表示する",
 		"description": "Show Notification After Cookie Cleanup"
 	},
 	"oldReleasesText": {
