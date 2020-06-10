@@ -291,10 +291,6 @@
 			}
 		}
 	},
-	"notificationDisabledText": {
-		"message": "通知無効",
-		"description": "Notification disabled"
-	},
 	"notificationEnabledText": {
 		"message": "通知有効",
 		"description": "Notification enabled"
@@ -304,7 +300,7 @@
 		"description": "Cookies were deleted!  Used in Notification Title."
 	},
 	"notifyCookieCleanupDelayText": {
-		"message": "通知の持続時間",
+		"message": "通知の表示時間",
 		"description": "Duration for Notifications"
 	},
 	"notifyCookieCleanUpText": {
@@ -312,7 +308,7 @@
 		"description": "Show Notification After Cookie Cleanup"
 	},
 	"oldReleasesText": {
-		"message": "古いリリースノートは、オンラインで表示できます。",
+		"message": "過去のリリースノートは、オンラインで表示できます：",
 		"description": "Older release notes can be viewed online at"
 	},
 	"openDebugMode": {
