@@ -580,7 +580,7 @@
 		"description": "Welcome"
 	},
 	"whiteCleanLocalstorage": {
-		"message": "新しいホワイトリスト式の 'LocalStorageを保持する' のチェックを外す",
+		"message": "新しいホワイトリスト式の 'ローカルストレージを保持する' のチェックを外す",
 		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
 	},
 	"whiteListText": {
