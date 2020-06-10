@@ -255,6 +255,10 @@
 		"message": "警告: LocalStorage Cleanup を有効にすると、すべての既存のLocalStorage がクリアされます。",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
+	"localStorageText": {
+		"message": "ローカルストレージ",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
 	"matchedDomainExpressionText": {
 		"message": "一致するドメイン式",
 		"description": "Matched Domain Expression"
