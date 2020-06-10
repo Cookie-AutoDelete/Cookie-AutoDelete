@@ -11,10 +11,12 @@
  * SOFTWARE.
  */
 
+import { when } from 'jest-when';
 import { initialState } from '../../src/redux/State';
 import {
   cadLog,
   convertVersionToNumber,
+  createPartialTabInfo,
   extractMainDomain,
   getHostname,
   getSetting,
@@ -24,10 +26,12 @@ import {
   isAWebpage,
   isFirstPartyIsolate,
   localFileToRegex,
+  parseCookieStoreId,
   prepareCleanupDomains,
   prepareCookieDomain,
   returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
+  showNotification,
   sleep,
   throwErrorNotification,
   trimDot,
@@ -49,11 +53,12 @@ const mockCookie: browser.cookies.Cookie = {
 
 describe('Library Functions', () => {
   describe('cadLog()', () => {
-    global.browser = {
-      runtime: {
-        getManifest: jest.fn().mockReturnValue({version: '0.12.34'}),
-      },
-    };
+    beforeAll(() => {
+      when(global.browser.runtime.getManifest)
+        .calledWith()
+        .mockReturnValue({version: '0.12.34'});
+    });
+
     const origDebug = console.debug;
     const origError = console.error;
     const origInfo = console.info;
@@ -87,67 +92,65 @@ describe('Library Functions', () => {
       consoleOutput.length = 0;
     });
 
+    it('should do nothing if output=false', () => {
+      expect.assertions(1);
+      cadLog({msg: 'nothing'}, false);
+      expect(consoleOutput.length).toBe(0);
+    });
+
     it('should format the Log Header with manifest version', () => {
-      expect.assertions(2);
-      cadLog({msg: 'headerTest'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'headerTest'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - headerTest\n'},
       ]);
     });
 
     it('should output to debug when no type is given', () => {
-      expect.assertions(2);
-      cadLog({msg: 'noType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'noType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - noType\n'},
       ]);
     });
     it('should output to debug when type is debug', () => {
-      expect.assertions(2);
-      cadLog({type: 'debug', msg: 'debugType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'debug', msg: 'debugType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - debugType\n'},
       ]);
     });
     it('should output to error when type is error', () => {
-      expect.assertions(2);
-      cadLog({type: 'error', msg: 'errorType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'error', msg: 'errorType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'error', msg: 'CAD_0.12.34 - error - errorType\n'},
       ]);
     });
     it('should output to info when type is info', () => {
-      expect.assertions(2);
-      cadLog({type: 'info', msg: 'infoType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'info', msg: 'infoType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'info', msg: 'CAD_0.12.34 - info - infoType\n'},
       ]);
     });
     it('should output to log when type is log', () => {
-      expect.assertions(2);
-      cadLog({type: 'log', msg: 'logType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'log', msg: 'logType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'log', msg: 'CAD_0.12.34 - log - logType\n'},
       ]);
     });
     it('should output to warn when type is warn', () => {
-      expect.assertions(2);
-      cadLog({type: 'warn', msg: 'warnType'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({type: 'warn', msg: 'warnType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'warn', msg: 'CAD_0.12.34 - warn - warnType\n'},
       ]);
     });
     it('should default back to debug type when invalid type is given', () => {
-      expect.assertions(2);
-      cadLog({type: 'invalid', msg: 'invalidType'});
-      expect(consoleOutput.length).toEqual(2);
+      expect.assertions(1);
+      cadLog({type: 'invalid', msg: 'invalidType'}, true);
       expect(consoleOutput).toEqual([
         {type: 'error', msg: 'CAD_0.12.34 - Invalid Console Output Type given [ invalid ].  Using [debug] instead.'},
         {type: 'debug', msg: 'CAD_0.12.34 - debug - invalidType\n'}
@@ -155,18 +158,16 @@ describe('Library Functions', () => {
     });
 
     it('should display supplied string accordingly', () => {
-      expect.assertions(2);
-      cadLog({msg: 'withObject', x: 'test.'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'withObject', x: 'test.'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - withObject\ntest.'},
       ]);
     });
 
     it('should attempt to parse function as string for display', () => {
-      expect.assertions(2);
-      cadLog({msg: 'objectFunction', x: RegExp.toString});
-      expect(consoleOutput.length).toEqual(2);
+      expect.assertions(1);
+      cadLog({msg: 'objectFunction', x: RegExp.toString}, true);
       expect(consoleOutput).toEqual([
         {type: 'warn', msg: 'CAD_0.12.34 - Received unexpected typeof [ function ].  Attempting to display it...'},
         {type: 'debug', msg: 'CAD_0.12.34 - debug - objectFunction\nfunction toString() { [native code] }'},
@@ -174,55 +175,49 @@ describe('Library Functions', () => {
     });
 
     it('should parse object for display', () => {
-      expect.assertions(2);
-      cadLog({msg: 'objectString', x: {a: 'abc'}});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'objectString', x: {a: 'abc'}}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - objectString\n{\n  "a": "abc"\n}'},
       ]);
     });
 
     it('should parse number as string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'numberString', x: 123});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'numberString', x: 123}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - numberString\n123'},
       ]);
     });
 
     it('should parse boolean as string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'booleanString', x: true});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'booleanString', x: true}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - booleanString\ntrue'},
       ]);
     });
 
     it('should parse string as string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'stringString', x: 'test'});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'stringString', x: 'test'}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - stringString\ntest'},
       ]);
     });
 
     it('should parse undefined as empty string.', () =>{
-      expect.assertions(2);
-      cadLog({msg: 'undefinedString', x: undefined});
-      expect(consoleOutput.length).toEqual(1);
+      expect.assertions(1);
+      cadLog({msg: 'undefinedString', x: undefined}, true);
       expect(consoleOutput).toEqual([
         {type: 'debug', msg: 'CAD_0.12.34 - debug - undefinedString\n'},
       ]);
     });
 
-    it('should not output to console on empty input object (no message)', () => {
-      expect.assertions(2);
-      cadLog({});
+    it('should not output to console on empty input object (no message), even if output=true', () => {
+      expect.assertions(1);
+      cadLog({}, true);
       expect(consoleOutput.length).toEqual(0);
-      expect(consoleOutput).toEqual([]);
     });
   });
 
@@ -239,6 +234,48 @@ describe('Library Functions', () => {
       const results = convertVersionToNumber('3.0.0');
       expect(results).toEqual(300);
     });
+  });
+
+  describe('createPartialTabInfo()', () => {
+    const testTab: Partial<browser.tabs.Tab> = {
+      active: true,
+      cookieStoreId: 'firefox-default',
+      discarded: false,
+      height: 123,
+      hidden: false,
+      highlighted: false,
+      id: 1,
+      incognito: false,
+      index: 0,
+      pinned: false,
+      status: 'complete',
+      title: 'TabTitle',
+      url: 'https://test.cad',
+      width: 321,
+      windowId: 1
+    };
+    it('should extract information relevant to debug in Firefox', () => {
+      expect(createPartialTabInfo(testTab)).toMatchObject({
+        cookieStoreId: 'firefox-default',
+        discarded: false,
+        id: 1,
+        incognito: false,
+        status: 'complete',
+        url: 'https://test.cad',
+        windowId: 1
+      });
+    });
+    it('should extract information relevant to debug in Chrome', () => {
+      expect(createPartialTabInfo({...testTab, cookieStoreId: undefined})).toMatchObject({
+        discarded: false,
+        id: 1,
+        incognito: false,
+        status: 'complete',
+        url: 'https://test.cad',
+        windowId: 1
+      });
+    });
+
   });
 
   describe('extractMainDomain()', () => {
@@ -593,15 +630,13 @@ describe('Library Functions', () => {
   });
 
   describe('isFirstPartyIsolate()', () => {
-    global.browser = {
-      ...global.browser,
-      cookies: {
-        getAll: jest.fn()
-          .mockResolvedValueOnce([])
-          .mockRejectedValueOnce(new Error('firstPartyDomain'))
-          .mockRejectedValueOnce(new Error('Error')),
-      },
-    };
+    beforeEach(() => {
+      when(global.browser.cookies.getAll)
+        .calledWith({domain: ''})
+        .mockResolvedValueOnce([] as never)
+        .mockRejectedValueOnce(new Error('firstPartyDomain') as never)
+        .mockRejectedValueOnce(new Error('Error') as never);
+    });
     it('should return false if no error was caught', () => {
       return expect(isFirstPartyIsolate()).resolves.toEqual(false);
     });
@@ -625,7 +660,25 @@ describe('Library Functions', () => {
     it('should return empty string from empty hostname', () => {
       expect(localFileToRegex('')).toEqual('');
     });
-  })
+  });
+
+  describe('parseCookieStoreId()', () => {
+    it('should return default if contextualIdentities is false', () => {
+      expect(parseCookieStoreId(false, 'abcde')).toEqual('default');
+    });
+
+    it('should return default if contextualIdentities is true and cookieStoreId is "firefox-default"', () => {
+      expect(parseCookieStoreId(true, 'firefox-default')).toEqual('default');
+    });
+
+    it('should return specified cookieStoreId if contextualIdentities is true and cookieStoreId is not "firefox-default"', () => {
+      expect(parseCookieStoreId(true, 'test-container')).toEqual('test-container');
+    });
+
+    it('should return default if contextualIdentities is true but cookieStoreId was undefined', () => {
+      expect(parseCookieStoreId(true, undefined)).toEqual('default');
+    });
+  });
 
   describe('prepareCleanupDomains()', () => {
     it('should return empty array for empty domain', () => {
@@ -756,7 +809,7 @@ describe('Library Functions', () => {
       expect(results).toEqual(
         expect.objectContaining({
           domain: 'example.com',
-          firstPartyDomain: undefined,
+          firstPartyDomain: null,
         }),
       );
     });
@@ -833,12 +886,59 @@ describe('Library Functions', () => {
     });
   });
 
-  describe('sleep()', () => {
-    jest.useFakeTimers();
+  describe('showNotification()', () => {
+    beforeAll(() => {
+      when(global.browser.i18n.getMessage)
+        .calledWith('manualActionNotification')
+        .mockReturnValue('manual');
+      when(global.browser.runtime.getManifest)
+        .calledWith()
+        .mockReturnValue({version: '3.99.99'});
+      when(global.browser.runtime.getURL)
+        .calledWith(expect.anything())
+        .mockReturnValue('');
+    });
+    afterAll(() => {
+      global.browser.i18n.getMessage.clearMocks();
+      global.browser.runtime.getManifest.clearMocks();
+      global.browser.runtime.getURL.clearMocks();
+    })
     beforeEach(() => {
       jest.spyOn(global, 'setTimeout');
     });
+
+    it('should expect one call to browser.notifications.create with default title', async () => {
+      showNotification({duration:1,msg: 'Test Notification'});
+      expect(global.browser.notifications.create).toHaveBeenCalled();
+      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(expect.stringContaining('manual-'));
+      expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(expect.objectContaining({
+        "message": "Test Notification",
+        "title": "CAD 3.99.99 - manual",
+        "type": "basic",
+      }));
+      expect(setTimeout).toHaveBeenCalled();
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+    });
+
+    it('should expect one call to browser.notifications.create with custom title', async () => {
+      showNotification({duration:1,msg: 'Test Notification', title: 'custom'});
+      expect(global.browser.notifications.create).toHaveBeenCalled();
+      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(expect.stringContaining('manual-'));
+      expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(expect.objectContaining({
+        "message": "Test Notification",
+        "title": "CAD 3.99.99 - custom",
+        "type": "basic",
+      }));
+      expect(setTimeout).toHaveBeenCalled();
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+    });
+  });
+
+  describe('sleep()', () => {
+    jest.useFakeTimers();
+    const spySetTimeout = jest.spyOn(global, 'setTimeout');
     afterEach(() => {
+      spySetTimeout.mockClear();
       jest.clearAllTimers();
     });
 
@@ -853,8 +953,8 @@ describe('Library Functions', () => {
       expect.assertions(3);
       const result = sleep(100).then(r => {
         expect(r).toEqual(undefined);
-        expect(setTimeout).toBeCalledTimes(1);
-        expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 250);
+        expect(spySetTimeout).toBeCalledTimes(1);
+        expect(spySetTimeout).toHaveBeenCalledWith(expect.any(Function), 250);
       })
       jest.runAllTimers();
       return result;
@@ -864,8 +964,8 @@ describe('Library Functions', () => {
       expect.assertions(3);
       const result = sleep(1500).then(r => {
         expect(r).toEqual(undefined);
-        expect(setTimeout).toBeCalledTimes(1);
-        expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1500);
+        expect(spySetTimeout).toBeCalledTimes(1);
+        expect(spySetTimeout).toHaveBeenCalledWith(expect.any(Function), 1500);
       });
       jest.runAllTimers();
       return result;
@@ -875,8 +975,8 @@ describe('Library Functions', () => {
       expect.assertions(3);
       const result = sleep(2345678901).then(r => {
         expect(r).toEqual(undefined);
-        expect(setTimeout).toBeCalledTimes(1);
-        expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 2147483500);
+        expect(spySetTimeout).toBeCalledTimes(1);
+        expect(spySetTimeout).toHaveBeenCalledWith(expect.any(Function), 2147483500);
       });
       jest.runAllTimers();
       return result;
@@ -897,29 +997,31 @@ describe('Library Functions', () => {
 
   describe('throwErrorNotification()', () => {
     beforeAll(() => {
-      global.browser = {
-        extension: {
-          getURL: jest.fn(),
-        },
-        i18n: {
-          getMessage: jest.fn(),
-        },
-        notifications: {
-          create: jest.fn(),
-        },
-      };
+      when(global.browser.i18n.getMessage)
+        .calledWith('errorText')
+        .mockReturnValue('Error!');
+      when(global.browser.runtime.getManifest)
+        .calledWith()
+        .mockReturnValue({version: '3.99.99'});
+      when(global.browser.runtime.getURL)
+        .calledWith(expect.anything())
+        .mockReturnValue('');
     });
+    afterAll(() => {
+      global.browser.i18n.getMessage.clearMocks();
+      global.browser.runtime.getManifest.clearMocks();
+      global.browser.runtime.getURL.clearMocks();
+    })
 
     it('should expect one call to browser.notifications.create', () => {
       throwErrorNotification({ name: 'Test Error', message: 'An ERROR!' });
       expect(global.browser.notifications.create).toHaveBeenCalled();
-      expect(global.browser.notifications.create).toHaveBeenCalledWith(
-        'failed-notification',
-        {
-          message: 'An ERROR!',
-          type: 'basic',
-        },
-      );
+      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual('failed-notification');
+      expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(expect.objectContaining({
+        "message": "An ERROR!",
+        "title": "Error!",
+        "type": "basic",
+      }));
     });
   });
 

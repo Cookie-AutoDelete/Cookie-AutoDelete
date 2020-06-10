@@ -10,6 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/* istanbul ignore file: Redux stuff.*/
 
 import { applyMiddleware, createStore } from 'redux';
 // tslint:disable-next-line:import-name

@@ -12,6 +12,7 @@
  */
 
 import ipRegex from 'ip-regex';
+import shortid from 'shortid';
 
 /* --- CONSTANTS --- */
 export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
@@ -21,8 +22,9 @@ export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
 /**
  * Console Log Outputs - Mostly For Debugging
  */
-export const cadLog = (x: CADLogItem) => {
+export const cadLog = (x: CADLogItem, output: boolean) => {
   if (!x.msg || x.msg.trim() === '') return;
+  if (!output) return;
   const h = `CAD_${browser.runtime.getManifest().version}`;
   const cOut = [
     console.debug,
@@ -60,6 +62,23 @@ export const cadLog = (x: CADLogItem) => {
   // Output to console.
   cOut[cTypes.indexOf(type)](`${h} - ${type} - ${x.msg}\n${data}`);
 };
+
+/**
+ * Create Partial Cookie info for debug
+ */
+export const createPartialTabInfo = (
+  tab: Partial<browser.tabs.Tab>,
+) => {
+  return {
+    cookieStoreId: tab.cookieStoreId,
+    discarded: tab.discarded,
+    id: tab.id,
+    incognito: tab.incognito,
+    status: tab.status,
+    url: tab.url,
+    windowId: tab.windowId,
+  }
+}
 
 /**
  * Converts a version string to a number
@@ -217,7 +236,7 @@ export const isAWebpage = (URL: string | undefined) => {
 export const isFirstPartyIsolate = async () => {
   return browser.cookies.getAll({
     domain: '',
-  }).then(() => {
+  }).then((r) => {
     // No error = most likely not enabled.
     return Promise.resolve(false);
   }).catch((e) => {
@@ -237,6 +256,13 @@ export const localFileToRegex = (hostname: string) => {
   }
   return hostname; // Doesn't have a file path...return as is.
 };
+
+/**
+ * Parse cookieStoreId for use in addExpressionUI...
+ */
+export const parseCookieStoreId = (contextualIdentities: boolean, cookieStoreId: string | undefined) => {
+  return (!contextualIdentities || (cookieStoreId && cookieStoreId === 'firefox-default')) ? 'default' : cookieStoreId || 'default';
+}
 
 /**
  * Prepare Domains for all cleanups.
@@ -318,7 +344,7 @@ export const returnOptionalCookieAPIAttributes = (
   ) {
     return {
       ...cookieAPIAttributes,
-      firstPartyDomain: undefined,
+      firstPartyDomain: null,
     };
   }
   if (
@@ -331,6 +357,26 @@ export const returnOptionalCookieAPIAttributes = (
     return rest;
   }
   return cookieAPIAttributes;
+};
+
+/**
+ * Show a notification
+ */
+export const showNotification = (x: {
+  duration: number,
+  msg: string,
+  title?: string,
+}) => {
+  const sid = `manual-${shortid.generate()}`;
+  browser.notifications.create(sid, {
+    iconUrl: browser.runtime.getURL('icons/icon_48.png'),
+    message: x.msg,
+    title: `CAD ${browser.runtime.getManifest().version} - ${x.title ? x.title : browser.i18n.getMessage('manualActionNotification')}`,
+    type: 'basic',
+  });
+  setTimeout(() => {
+    browser.notifications.clear(sid);
+  }, x.duration * 1000);
 };
 
 /**
@@ -347,7 +393,7 @@ export const sleep = (ms: number) => {
  */
 export const throwErrorNotification = (e: Error) => {
   browser.notifications.create('failed-notification', {
-    iconUrl: browser.extension.getURL('icons/icon_red_48.png'),
+    iconUrl: browser.runtime.getURL('icons/icon_red_48.png'),
     message: e.message,
     title: browser.i18n.getMessage('errorText'),
     type: 'basic',
@@ -364,8 +410,6 @@ export const trimDot = (str: string) => str.replace(/^[\.]+|[\.]+$/g, '');
  * Opposite of a falsey check for undefined
  */
 export const undefinedIsTrue = (bool: boolean | undefined) => {
-  if (bool === undefined) {
-    return true;
-  }
+  if (bool === undefined) return true;
   return bool;
 };

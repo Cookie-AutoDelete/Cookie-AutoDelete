@@ -24,6 +24,8 @@ export default class CookieEvents extends StoreUser {
       cause: browser.cookies.OnChangedCause,
     }
   ) {
+    // Truncate cookie value (purely for debug)
+    changeInfo.cookie.value = '***';
     // Get the current active tab(s)
     const tabQuery = await browser.tabs.query({
       active: true,

@@ -120,7 +120,7 @@ const restoreCookies = async (
   log: ActivityLog,
   onRemoveActvity: ActivityAction,
 ) => {
-  const debug = getSetting(state, 'debugMode');
+  const debug = getSetting(state, 'debugMode') as boolean;
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
   const firstPartyIsolate = await isFirstPartyIsolate();
@@ -128,24 +128,20 @@ const restoreCookies = async (
     for (const obj of cleanReasonObjs) {
       // Cannot set cookies from file:// protocols
       if (obj.cookie.preparedCookieDomain.startsWith('file:')) {
-        if (debug) {
-          cadLog({
-            msg: 'Cookie appears to come from a local file.  Cannot be restored normally.',
-            type: 'warn',
-            x: obj.cookie,
-          });
-        }
+        cadLog({
+          msg: 'Cookie appears to come from a local file.  Cannot be restored normally.',
+          type: 'warn',
+          x: obj.cookie,
+        }, debug);
         continue;
       }
       // Silently ignore cookies with no domain
       if (obj.cookie.preparedCookieDomain.trim() === '') {
-        if (debug) {
-          cadLog({
-            msg: 'Cookie appears to have no domain.  Cannot restore.',
-            type: 'warn',
-            x: obj.cookie,
-          });
-        }
+        cadLog({
+          msg: 'Cookie appears to have no domain.  Cannot restore.',
+          type: 'warn',
+          x: obj.cookie,
+        }, debug);
         continue;
       }
       const {
@@ -178,13 +174,11 @@ const restoreCookies = async (
     // FUTURE:  Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled to process all regardless of rejection. ** Perhaps too early to implement at this time 2020-May-03 **
     await Promise.all(promiseArr).catch(e => {
       throwErrorNotification(e);
-      if (debug) {
-        cadLog({
-          msg: 'An Error occurred while trying to restore cookie(s).  The rest of the cookies to restore are not processed.',
-          type: 'error',
-          x: e,
-        });
-      }
+      cadLog({
+        msg: 'An Error occurred while trying to restore cookie(s).  The rest of the cookies to restore are not processed.',
+        type: 'error',
+        x: e,
+      }, debug);
       throw e;
     });
   } catch (e) {

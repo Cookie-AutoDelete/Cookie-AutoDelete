@@ -266,7 +266,7 @@ function subscribe(listener) {
 
 function dispatch(action) {
     // perform an action to change state of "background" store
-    console.log(action);
+    // console.log(action);
     chrome.runtime.sendMessage({
         type: _constants.DISPATCH,
         action: action
