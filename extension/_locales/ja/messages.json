@@ -64,7 +64,7 @@
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
 	},
 	"contributeText": {
-		"message": "貢献",
+		"message": "開発・サポートへの支援金",
 		"description": "Contribute"
 	},
 	"contributorsText": {
