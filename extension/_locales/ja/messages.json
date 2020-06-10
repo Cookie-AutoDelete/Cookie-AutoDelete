@@ -259,6 +259,20 @@
 		"message": "ローカルストレージ",
 		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
 	},
+	"manualCleanRemoved": {
+		"message": "$total$ 件中 $deleted$ 件を削除しました。",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
 	"matchedDomainExpressionText": {
 		"message": "一致するドメイン式",
 		"description": "Matched Domain Expression"
@@ -332,6 +346,10 @@
 	"optionsText": {
 		"message": "オプション",
 		"description": "Options"
+	},
+	"pageText": {
+		"message": "ページ",
+		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "クッキー",
