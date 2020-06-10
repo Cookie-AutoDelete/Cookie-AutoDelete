@@ -336,7 +336,7 @@
 		"description": "How do Expressions work?"
 	},
 	"reasonCleanCookieName": {
-		"message": "$listType$ に $matchedExpression$ が一致しているため部分的に削除します。",
+		"message": "$listType$ で $matchedExpression$ が合致したので、部分的にクリーンアップします",
 		"description": "Partial clean because of matched *.google.com in the Whitelist",
 		"placeholders": {
 			"matchedExpression": {
