@@ -251,6 +251,58 @@
 		"message": "Varning! ALL befintlig lokal lagring kommer att rensas när du aktiverar rensning av lokal lagring.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
+	"manualCleanError": {
+		"message": "$data$ kan inte rensas för flik:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "Ingen $cleanType$ hittades för rensning på $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Tog bort $deleted$ av $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Resultat av rensning för $cleanType$ på $url$:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
 	"matchedDomainExpressionText": {
 		"message": "Matchade domänuttryck",
 		"description": "Matched Domain Expression"
@@ -324,6 +376,10 @@
 	"optionsText": {
 		"message": "Alternativ",
 		"description": "Options"
+	},
+	"pageText": {
+		"message": "sida",
+		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
@@ -476,6 +532,10 @@
 	"secondsText": {
 		"message": "Sekund(er)",
 		"description": "second(s)"
+	},
+	"selectedText": {
+		"message": "följande text:",
+		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Alternativ för automatisk rensning",
