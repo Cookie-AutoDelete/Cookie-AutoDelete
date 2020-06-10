@@ -229,9 +229,14 @@ export const clearCookiesForThisDomain = async (
         storeId: cookie.storeId,
         url: prepareCookieDomain(cookie),
       }, firstPartyIsolate) as {
-        // Fix type error with undefineds with cookies.remove
-        url: string;
+        // This explicit type is required as cookies.remove requires these two
+        // parameters, but url is not defined in cookies.Cookie as it is made
+        // up of cookie.domain + cookie.path, and neither required parameters
+        // can take 'undefined'.  returnOptionalCookieAPIAttributes has the 
+        // parameters set to Partial<CookiePropertiesCleanup>, which appends
+        // '| undefined' to all parameters.
         name: string;
+        url: string;
       });
       if (r) cookieDeletedCount += 1;
     }
