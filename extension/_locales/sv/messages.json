@@ -79,6 +79,26 @@
 		"message": "Klicka på fliken Konsol",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusSelectedDomain": {
+		"message": "Endast för domän av markerad $type$",
+		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomain": {
+		"message": "För alla underdomäner med domän av markerad $type$",
+		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+		"placeholders": {
+			"type": {
+				"content": "$1",
+				"example": "Link -or- Page -or- Selected Text"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktivera stöd för Firefox container-flikar",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +110,10 @@
 	"contributorsText": {
 		"message": "Medhjälpare",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Cookies",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Ta bort cookies från öppna flikar vid uppstart",
@@ -235,6 +259,10 @@
 		"message": "Behåll",
 		"description": "Keep"
 	},
+	"linkText": {
+		"message": "länk",
+		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
+	},
 	"listTypeText": {
 		"message": "Listtyp",
 		"description": "List Type"
@@ -250,6 +278,10 @@
 	"localstorageCleanupWarning": {
 		"message": "Varning! ALL befintlig lokal lagring kommer att rensas när du aktiverar rensning av lokal lagring.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "Lokal lagring",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"manualActionNotification": {
 		"message": "Manuell åtgärdsavisering",
