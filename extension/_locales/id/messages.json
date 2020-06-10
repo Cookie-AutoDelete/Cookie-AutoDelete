@@ -307,6 +307,10 @@
 		"message": "Belum ada ekspresi.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Catatan Penghapusan tidak akan dibuat untuk tab dalam Mode Jendela Pribadi",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+	},
 	"noRulesText": {
 		"message": "Tidak ada aturan yang cocok dengan domain ini.",
 		"description": "No rules matched this domain"
