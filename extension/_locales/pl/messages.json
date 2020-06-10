@@ -271,6 +271,10 @@
 		"message": "Brak zdefiniowanych formuł.",
 		"description": "No expressions defined."
 	},
+	"noPrivateLogging": {
+		"message": "Logi czyszczenia nie będą generowane dla kart w trybie prywatnym",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+	},
 	"noRulesText": {
 		"message": "Brak reguł pasujących do tej domeny.",
 		"description": "No rules matched this domain"
