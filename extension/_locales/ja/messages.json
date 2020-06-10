@@ -96,7 +96,7 @@
 		"description": "Toggle to disable automatic cleanup (manual mode)"
 	},
 	"documentationText": {
-		"message": "ドキュメンテーション",
+		"message": "解説（公式文書：Documentation）",
 		"description": "Documentation"
 	},
 	"domainExpressionsText": {
