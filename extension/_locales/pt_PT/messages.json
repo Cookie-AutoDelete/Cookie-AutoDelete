@@ -329,6 +329,10 @@
 		"message": "Opções",
 		"description": "Options"
 	},
+	"pageText": {
+		"message": "página",
+		"description": "page.  The website page itself.  Found in right-click"
+	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
 		"description": "Cookie(s)"
