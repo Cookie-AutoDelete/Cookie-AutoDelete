@@ -464,7 +464,7 @@
 		}
 	},
 	"saveExpressionText": {
-		"message": "保存",
+		"message": "保存する",
 		"description": "Save expression"
 	},
 	"secondsText": {
@@ -476,7 +476,7 @@
 		"description": "Automatic Cleaning Options"
 	},
 	"settingGroupExpression": {
-		"message": "表現のオプション",
+		"message": "式のオプション",
 		"description": "Expression Options"
 	},
 	"settingGroupExtension": {
@@ -510,7 +510,7 @@
 		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
 	},
 	"stopEditingText": {
-		"message": "編集中止",
+		"message": "編集を中止する",
 		"description": "Stop editing"
 	},
 	"successText": {
