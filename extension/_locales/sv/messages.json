@@ -251,6 +251,10 @@
 		"message": "Varning! ALL befintlig lokal lagring kommer att rensas när du aktiverar rensning av lokal lagring.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
+	"manualActionNotification": {
+		"message": "Manuell åtgärdsavisering",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
 	"manualCleanError": {
 		"message": "$data$ kan inte rensas för flik:",
 		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
