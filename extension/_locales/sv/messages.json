@@ -11,6 +11,32 @@
 		"message": "Aktivera automatisk rensning",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "Lägger till $expression$ för att lista typ $listType$ under cookielagring $cookieStore$.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Kunde inte hämta domänen att lägga till från där högerklick utfördes.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Om uttrycket redan finn, kommer detta att ignoreras.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Automatisk borttagning inaktiverad",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "Tillse att \"Utvecklarläge\" är aktiverat, klicka sedan på \"Bakgrundssida\" under Inspektionsvy.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Aktivera rensning för borttagna/oinlästa flikar",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Rensa, inklusive öppna flikar",
@@ -78,6 +108,14 @@
 	"consoleDebugMode": {
 		"message": "Klicka på fliken Konsol",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
+	"contextMenusParentClean": {
+		"message": "Manuell rensningsmeny",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Lägg till domän-/uttrycksmeny",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
 	"contextMenusSelectedDomain": {
 		"message": "Endast för domän av markerad $type$",
