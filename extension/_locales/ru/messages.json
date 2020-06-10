@@ -11,6 +11,14 @@
 		"message": "Включить автоматическую очистку",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Не удалось получить домен из места вызова контекстного меню.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Если выражение уже существует, это будет игнорироваться.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Автоочистка выключена",
 		"description": "Auto-clean disabled"
@@ -22,6 +30,10 @@
 	"chromeDebugMode": {
 		"message": "Убедитесь, что 'Режим разработчика' включен, а затем нажмите на 'фоновая страница' напротив 'Отладка страниц'.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Включить очистку для выгруженных/незагруженных вкладок",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Очистить, включая открытые вкладки",
@@ -79,6 +91,10 @@
 		"message": "Нажмите на вкладку 'Консоль'",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Меню ручной очистки",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Включить поддержку Container Tabs в Firefox",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +106,10 @@
 	"contributorsText": {
 		"message": "Участники проекта",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Куки",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Очищать куки открытых вкладок при запуске",
@@ -250,6 +270,48 @@
 	"localstorageCleanupWarning": {
 		"message": "Предупреждение: ВСЁ существующее локальное хранилище будет очищаться после включения очистки локального хранилища.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "Локальное хранилище",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualCleanError": {
+		"message": "$data$ не может быть очищено для вкладки:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Удалено $deleted$ из $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Результат очистки $cleanType$ для $url$:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Правило соответствующее домену",
