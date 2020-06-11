@@ -279,6 +279,16 @@
 		"message": "Известие при действие от потребителя",
 		"description": "Manual Action Notification - used as Notification Title."
 	},
+	"manualCleanError": {
+		"message": "Информацията в $data$ не може да бъде изчистена за раздел:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
 	"manualCleanNothing": {
 		"message": "При почистване на $url$ съдържание в $cleanType$ не е намерено.",
 		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
