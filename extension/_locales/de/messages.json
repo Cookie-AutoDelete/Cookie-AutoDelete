@@ -364,7 +364,7 @@
 		}
 	},
 	"manualCleanSuccess": {
-		"message": "Aufräumen von $cleanType$ von $url$ resultiert:",
+		"message": "Resultat des Aufräumens von $cleanType$ von $url$:",
 		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
 		"placeholders": {
 			"cleanType": {
