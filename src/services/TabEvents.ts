@@ -189,7 +189,6 @@ export default class TabEvents extends StoreUser {
     const debug = getSetting(StoreUser.store.getState(), 'debugMode') as boolean;
     const partialTabInfo = createPartialTabInfo(tab);
     const hostname = getHostname(tab.url);
-    const firstPartyIsolate = await isFirstPartyIsolate();
     if (hostname === '') {
       cadLog({
         msg: 'TabEvents.getAllCookieActions: hostname parsed empty for tab url.  Skipping Cookie Actions.',
@@ -197,6 +196,7 @@ export default class TabEvents extends StoreUser {
       }, debug);
       return;
     }
+    const firstPartyIsolate = await isFirstPartyIsolate();
     let cookies: browser.cookies.Cookie[];
     if (hostname.startsWith('file:')){
       const allCookies = await browser.cookies.getAll(
@@ -274,7 +274,7 @@ export default class TabEvents extends StoreUser {
     }
   }
   // Add a delay to prevent multiple spawns of the localstorage cookie
-  private static onTabUpdateDelay = false;
+  protected static onTabUpdateDelay = false;
 
-  private static tabToDomain: { [key: number]: string } = {};
+  protected static tabToDomain: { [key: number]: string } = {};
 }
