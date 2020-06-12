@@ -272,7 +272,7 @@ export const clearLocalstorageForThisDomain = async (
     })
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `${browser.i18n.getMessage('manualCleanSuccess', [browser.i18n.getMessage('localStorageText'), getHostname(tab.url)])}\nLocalStorage: ${local}\nSessionStorage: ${session}`,
+      msg: `${browser.i18n.getMessage('manualCleanSuccess', [browser.i18n.getMessage('localStorageText'), getHostname(tab.url)])}\n${browser.i18n.getMessage('removeStorageCount', [local.toString(), browser.i18n.getMessage('localStorageText')])}\n${browser.i18n.getMessage('removeStorageCount', [session.toString(), browser.i18n.getMessage('sessionStorageText')])}`,
     });
     return true;
   } catch(e) {
