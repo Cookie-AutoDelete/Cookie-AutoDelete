@@ -573,6 +573,10 @@
 			}
 		}
 	},
+	"removeAllExpressionsNoneFound": {
+		"message": "削除する式はありません！",
+		"description": "No expressions to remove!"
+	},
 	"removeExpressionText": {
 		"message": "式を削除",
 		"description": "Remove expression"
