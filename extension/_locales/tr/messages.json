@@ -117,26 +117,6 @@
 		"message": "Alan Adı/İfade Ekleme Menüsü",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
-	"contextMenusSelectedDomain": {
-		"message": "Sadece seçilmiş $type$ alan adı için",
-		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomain": {
-		"message": "Seçilen $type$ olan alan adlarını içeren tüm alt alan adları için",
-		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -297,10 +277,6 @@
 		"message": "Koru",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "link",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "Liste türü",
 		"description": "List Type"
@@ -455,10 +431,6 @@
 		"message": "Ayarlar",
 		"description": "Options"
 	},
-	"pageText": {
-		"message": "sayfa",
-		"description": "page.  The website page itself.  Found in right-click"
-	},
 	"popupCookieCountText": {
 		"message": "Çerezler",
 		"description": "Cookie(s)"
@@ -610,10 +582,6 @@
 	"secondsText": {
 		"message": "Saniye",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "şu yazan:",
-		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Otomatik Temizlik Seçenekleri",
