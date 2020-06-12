@@ -630,8 +630,8 @@
 		"description": "second(s)"
 	},
 	"selectedText": {
-		"message": "following text:",
-		"description": "following text:.  Used in right-click menu."
+		"message": "text:",
+		"description": "text:.  Used in right-click menu."
 	},
 	"sessionStorageText": {
 		"message": "SessionStorage",
