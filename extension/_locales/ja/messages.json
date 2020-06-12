@@ -117,26 +117,6 @@
 		"message": "ドメイン/式メニューを追加する",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
-	"contextMenusSelectedDomain": {
-		"message": "選択された $type$ のドメインのみ",
-		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomain": {
-		"message": "選択された $type$ のドメインを持つすべてのサブドメインについて",
-		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefoxのコンテナタブのサポートを有効にする",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -297,10 +277,6 @@
 		"message": "保持する",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "リンク",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "種類のリスト",
 		"description": "List Type"
@@ -455,10 +431,6 @@
 		"message": "オプション",
 		"description": "Options"
 	},
-	"pageText": {
-		"message": "ページ",
-		"description": "page.  The website page itself.  Found in right-click"
-	},
 	"popupCookieCountText": {
 		"message": "クッキー",
 		"description": "Cookie(s)"
@@ -610,10 +582,6 @@
 	"secondsText": {
 		"message": "秒",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "次のテキスト：",
-		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "自動クリーニングのオプション",
