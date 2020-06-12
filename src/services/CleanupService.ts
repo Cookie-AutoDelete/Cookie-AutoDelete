@@ -229,9 +229,14 @@ export const clearCookiesForThisDomain = async (
         storeId: cookie.storeId,
         url: prepareCookieDomain(cookie),
       }, firstPartyIsolate) as {
-        // Fix type error with undefineds with cookies.remove
-        url: string;
+        // This explicit type is required as cookies.remove requires these two
+        // parameters, but url is not defined in cookies.Cookie as it is made
+        // up of cookie.domain + cookie.path, and neither required parameters
+        // can take 'undefined'.  returnOptionalCookieAPIAttributes has the 
+        // parameters set to Partial<CookiePropertiesCleanup>, which appends
+        // '| undefined' to all parameters.
         name: string;
+        url: string;
       });
       if (r) cookieDeletedCount += 1;
     }
@@ -267,7 +272,7 @@ export const clearLocalstorageForThisDomain = async (
     })
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `${browser.i18n.getMessage('manualCleanSuccess', [browser.i18n.getMessage('localStorageText'), getHostname(tab.url)])}\nLocalStorage: ${local}\nSessionStorage: ${session}`,
+      msg: `${browser.i18n.getMessage('manualCleanSuccess', [browser.i18n.getMessage('localStorageText'), getHostname(tab.url)])}\n${browser.i18n.getMessage('removeStorageCount', [local.toString(), browser.i18n.getMessage('localStorageText')])}\n${browser.i18n.getMessage('removeStorageCount', [session.toString(), browser.i18n.getMessage('sessionStorageText')])}`,
     });
     return true;
   } catch(e) {
