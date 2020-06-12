@@ -11,6 +11,32 @@
 		"message": "Aktifkan Hapus Otomatis",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "Menambahkan $expression$ ke daftar $listType$ di penyimpanan kuki $cookieStore$.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Tidak bisa mengambil domain yang ditambahkan dari saat klik kanan dijalankan.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Jika ekspresi sudah ada, ini akan diabaikan.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Hapus otomatis nonaktif",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "Pastikan 'Mode Pengembang' diaktifkan, lalu klik pada 'halaman latar belakang'.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Aktifkan Hapus untuk Tab yang ditutup / belum dimuat",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Hapus, termasuk tab yang terbuka",
@@ -78,6 +108,14 @@
 	"consoleDebugMode": {
 		"message": "Klik pada Tab Console",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
+	},
+	"contextMenusParentClean": {
+		"message": "Menu Hapus Manual",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Menu Tambah Domain/Ekspresi",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktifkan Dukungan untuk Tab Container Firefox",
@@ -258,6 +296,10 @@
 	"localstorageCleanupWarning": {
 		"message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "Penyimpanan Lokal",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"manualActionNotification": {
 		"message": "Notifikasi Tindakan Manual",
