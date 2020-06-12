@@ -113,26 +113,6 @@
 		"message": "Adicionar menu de domínio/expressão",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
-	"contextMenusSelectedDomain": {
-		"message": "Para domínio somente de $type$ selecionado",
-		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomain": {
-		"message": "Para todos os subdomínios com domínio de $type$ selecionado",
-		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Ativar suporte para os separadores contentores do Firefox",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -293,10 +273,6 @@
 		"message": "Manter",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "ligação",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "Tipo de lista",
 		"description": "List Type"
@@ -436,10 +412,6 @@
 	"optionsText": {
 		"message": "Opções",
 		"description": "Options"
-	},
-	"pageText": {
-		"message": "página",
-		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
@@ -592,10 +564,6 @@
 	"secondsText": {
 		"message": "Segundo(s)",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "seguinte texto:",
-		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Opções de limpeza automática",
