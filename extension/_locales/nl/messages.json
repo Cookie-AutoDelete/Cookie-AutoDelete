@@ -117,26 +117,6 @@
 		"message": "Voeg Domein/Expressie toe menu",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
-	"contextMenusSelectedDomain": {
-		"message": "Voor het domein alleen van geselecteerde $type$",
-		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomain": {
-		"message": "Voor alle subdomeinen met het domein van de geselecteerde $type$",
-		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Ondersteuning voor Firefox Container tabbladen inschakelen",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -297,10 +277,6 @@
 		"message": "Behouden",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "koppeling",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "Lijst Type",
 		"description": "List Type"
@@ -455,10 +431,6 @@
 		"message": "Opties",
 		"description": "Options"
 	},
-	"pageText": {
-		"message": "pagina",
-		"description": "page.  The website page itself.  Found in right-click"
-	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
 		"description": "Cookie(s)"
@@ -610,10 +582,6 @@
 	"secondsText": {
 		"message": "Seconde(n)",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "volgende tekst:",
-		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Automatisch opruimen opties",
