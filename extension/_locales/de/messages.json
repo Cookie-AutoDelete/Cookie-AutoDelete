@@ -117,6 +117,42 @@
 		"message": "Domain/Ausdruck hinzufügen-Menü",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Nur für Domain des ausgewählten Links",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Nur für Domain der ausgewählten Seite",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Nur für Domain des ausgewählten Textes: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Für alle Subdomains mit der Domain des ausgewählten Links",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Für alle Subdomains mit der Domain der ausgewählten Seite",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Für alle Subdomains mit der Domain des ausgewählten Textes: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Unterstützung für Firefox' Container-Tabs",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -553,6 +589,20 @@
 		"message": "Ausdruck entfernen",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "$count$ Eintrag(ungen) aus $storageType$ gelöscht.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Melde Fehler und schlage neue Funktionen vor",
 		"description": "Report issues and suggest features"
@@ -582,6 +632,10 @@
 	"secondsText": {
 		"message": "Sekunde(n)",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "Session Storage",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Optionen zum automatischen Aufräumen",
