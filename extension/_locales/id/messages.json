@@ -277,10 +277,6 @@
 		"message": "Simpan",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "tautan",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "Tipe Daftar",
 		"description": "List Type"
@@ -406,10 +402,6 @@
 	"optionsText": {
 		"message": "Opsi",
 		"description": "Options"
-	},
-	"pageText": {
-		"message": "halaman",
-		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "Kuki",
@@ -562,10 +554,6 @@
 	"secondsText": {
 		"message": "Detik",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "teks berikut:",
-		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Opsi Hapus Otomatis",
