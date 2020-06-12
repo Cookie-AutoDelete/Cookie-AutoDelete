@@ -26,29 +26,15 @@
 
 // event listeners
 const eventListeners = {
-  listeners: [],
-  addListener: jest.fn(function() {
-    if (arguments.length === 1 && !listeners.includes(argument[0])) {
-      listeners.push(arguments[0]);
-    }
-  }),
-  clearListeners: jest.fn(function() {
-    if (arguments.length === 0) {
-      listeners = [];
-    }
-  }),
-  hasListener: jest.fn(function() {
-    return arguments.length === 1 && listeners.includes(arguments[0]);
-  }),
-  removeListener: jest.fn(function() {
-    if (arguments.length === 1) {
-      listeners = listeners.filter(l => l !== arguments[0]);
-    }
-  }),
+  addListener: jest.fn(),
+  clearListeners: jest.fn(),
+  hasListener: jest.fn(),
+  removeListener: jest.fn(),
 };
 
 // storage functions
 const storageArea = {
+  storage: {},
   get: jest.fn(),
   set: jest.fn(),
   remove: jest.fn(),
@@ -56,7 +42,7 @@ const storageArea = {
 };
 
 const apis = {
-  alarm: {
+  alarms: {
     fn: ['clear', 'clearAll', 'create', 'get', 'getAll'],
   },
   browserAction: {
@@ -146,6 +132,7 @@ Object.keys(apis).forEach(api => {
 });
 
 global.browser = browser;
+global.chrome = browser;
 // Hide test console debug logs from jest results.
 
 global.console = {

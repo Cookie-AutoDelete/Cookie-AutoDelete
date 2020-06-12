@@ -14,7 +14,7 @@
 interface CleanupProperties {
   greyCleanup: boolean;
   ignoreOpenTabs: boolean;
-};
+}
 
 type ActivityLog = {
   dateTime: string;

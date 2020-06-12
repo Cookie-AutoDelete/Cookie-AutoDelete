@@ -49,6 +49,11 @@ export default class TabEvents extends StoreUser {
           x: {tabId, changeInfo, partialTabInfo,},
         }, debug);
         TabEvents.cleanFromTabEvents();
+      } else {
+        cadLog({
+          msg: 'TabEvents.onTabDiscarded:  Tab was not discarded.',
+          x: {tabId, changeInfo, partialTabInfo,},
+        }, debug);
       }
     }
   }
@@ -155,7 +160,7 @@ export default class TabEvents extends StoreUser {
   ) {
     cadLog({
       msg: 'TabEvents.onDomainChangeRemove: Tab was closed.  Removing old tabToDomain info.',
-      x: {tabId, mainDomain: TabEvents.tabToDomain[tabId] || '', removeInfo,},
+      x: {tabId, mainDomain: TabEvents.tabToDomain[tabId], removeInfo,},
     }, getSetting(StoreUser.store.getState(), 'debugMode') as boolean);
     delete TabEvents.tabToDomain[tabId];
   }
@@ -168,7 +173,7 @@ export default class TabEvents extends StoreUser {
         cadLog({
           msg: 'TabEvents.cleanFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
         }, debug);
-        AlarmEvents.createActiveModeAlarm();
+        await AlarmEvents.createActiveModeAlarm();
       } else {
         cadLog({
           msg: 'TabEvents.cleanFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
@@ -178,9 +183,8 @@ export default class TabEvents extends StoreUser {
     }
   };
 
-  public static async getAllCookieActions(tab: browser.tabs.Tab) {
-    if (!tab.url) return;
-    if (tab.url === '') return;
+  public static getAllCookieActions = async (tab: browser.tabs.Tab) => {
+    if (!tab.url || tab.url === '') return;
     if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
     const debug = getSetting(StoreUser.store.getState(), 'debugMode') as boolean;
     const partialTabInfo = createPartialTabInfo(tab);
@@ -193,7 +197,7 @@ export default class TabEvents extends StoreUser {
       }, debug);
       return;
     }
-    let cookies = [];
+    let cookies: browser.cookies.Cookie[];
     if (hostname.startsWith('file:')){
       const allCookies = await browser.cookies.getAll(
         returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
@@ -226,7 +230,7 @@ export default class TabEvents extends StoreUser {
 
     if (
       cookies.length === 0 &&
-      getSetting(AlarmEvents.store.getState(), 'localstorageCleanup') &&
+      getSetting(StoreUser.store.getState(), 'localstorageCleanup') &&
       isAWebpage(tab.url) && ! tab.url.startsWith('file:')
     ) {
       const cookiesAttributes = returnOptionalCookieAPIAttributes(
@@ -237,12 +241,12 @@ export default class TabEvents extends StoreUser {
           name: LSCLEANUPNAME,
           path: `/${shortid.generate()}`,
           storeId: tab.cookieStoreId,
-          url: tab.url || '',
+          url: tab.url,
           value: 'cookieForLocalstorageCleanup',
         },
         firstPartyIsolate
       );
-      browser.cookies.set({ ...cookiesAttributes, url: tab.url || '' });
+      await browser.cookies.set({ ...cookiesAttributes, url: tab.url });
       cadLog({
         msg: 'TabEvents.getAllCookieActions:  A temporary cookie has been set for future LocalStorage cleaning as the site did not set any cookies yet.',
         x: {partialTabInfo, cadLSCookie: cookiesAttributes,},
@@ -259,7 +263,7 @@ export default class TabEvents extends StoreUser {
     cadLog({
       msg: 'TabEvents.getAllCookieActions: executing checkIfProtected to update Icons and Title.',
     }, debug);
-    checkIfProtected(StoreUser.store.getState(), tab, cookieLength);
+    await checkIfProtected(StoreUser.store.getState(), tab, cookieLength);
 
     // Exclude Firefox Android for browser icons and badge texts
     if (getSetting(StoreUser.store.getState(), 'showNumOfCookiesInIcon') && (StoreUser.store.getState().cache.platformOs || '') !== 'android') {
@@ -267,16 +271,6 @@ export default class TabEvents extends StoreUser {
         msg: 'TabEvents.getAllCookieActions: executing showNumberOfCookiesInIcon.',
       }, debug);
       showNumberOfCookiesInIcon(tab, cookieLength);
-    } else {
-      if (browser.browserAction.setBadgeText) {
-        browser.browserAction.setBadgeText({
-          tabId: tab.id,
-          text: '',
-        });
-        cadLog({
-          msg: `TabEvents.getAllCookieActions:  BadgeText has been cleared for tab ${tab.id}.`,
-        }, debug);
-      }
     }
   }
   // Add a delay to prevent multiple spawns of the localstorage cookie
