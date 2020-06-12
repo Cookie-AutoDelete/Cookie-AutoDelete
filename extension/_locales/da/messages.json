@@ -117,26 +117,6 @@
 		"message": "Tilføj domæne/udtryks-menu",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
-	"contextMenusSelectedDomain": {
-		"message": "Kun for domæne af valgt $type$",
-		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomain": {
-		"message": "For alle underdomæner med domæne af valgt $type$",
-		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
-		"placeholders": {
-			"type": {
-				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
-			}
-		}
-	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktiver understøttelse for Firefox' Kontekst-faneblade",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -297,10 +277,6 @@
 		"message": "Behold",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "link",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "Listetype",
 		"description": "List Type"
@@ -455,10 +431,6 @@
 		"message": "Indstillinger",
 		"description": "Options"
 	},
-	"pageText": {
-		"message": "side",
-		"description": "page.  The website page itself.  Found in right-click"
-	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
 		"description": "Cookie(s)"
@@ -610,10 +582,6 @@
 	"secondsText": {
 		"message": "Sekund(er)",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "følgende tekst:",
-		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Automatiske sletningstilvalg",
