@@ -113,6 +113,24 @@
 		"message": "Adicionar menu de domínio/expressão",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Para todos os subdomínios com domínio de ligação selecionado",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Para todos os subdomínios com domínio de página selecionado",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Para todos os subdomínios com domínio de texto selecionado: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Ativar suporte para os separadores contentores do Firefox",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -564,6 +582,10 @@
 	"secondsText": {
 		"message": "Segundo(s)",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "SessionStorage",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Opções de limpeza automática",
