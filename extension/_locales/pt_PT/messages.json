@@ -29,6 +29,10 @@
 			}
 		}
 	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Não foi possível obter o domínio para adicionar a partir de onde foi emitido o botão direito.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
 	"addNewExpressionNotificationIgnore": {
 		"message": "Se a expressão já existe, esta irá ser ignorada.",
 		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
@@ -113,12 +117,30 @@
 		"message": "Adicionar menu de domínio/expressão",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Para domínio somente de texto selecionado",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Para domínio somente de página selecionada",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Para domínio somente de texto selecionado: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextMenusSelectedSubdomainLink": {
 		"message": "Para todos os subdomínios com domínio de ligação selecionado",
 		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
 	},
 	"contextMenusSelectedSubdomainPage": {
-		"message": "Para todos os subdomínios com domínio de página selecionado",
+		"message": "Para todos os subdomínios com domínio de página selecionada",
 		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
 	},
 	"contextMenusSelectedSubdomainText": {
@@ -177,6 +199,10 @@
 	},
 	"domainExpressionsText": {
 		"message": "Expressão do domínio",
+		"description": "Domain Expression"
+	},
+	"domainPlaceholderText": {
+		"message": "exemplo.com, subdomínio.exemplo.com, *.exemplo.com, /(^|.)exemplo\\.com/",
 		"description": "Domain Expression"
 	},
 	"dropdownAdditionalCleaningOptions": {
@@ -322,6 +348,20 @@
 			"data": {
 				"content": "$1",
 				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "Nenhum $cleanType$ encontrado para limpeza em $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
 			}
 		}
 	},
@@ -552,6 +592,20 @@
 	"removeExpressionText": {
 		"message": "Remover expressão",
 		"description": "Remove expression"
+	},
+	"removeStorageCount": {
+		"message": "$count$ item(s) removido(s) de $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
 	},
 	"reportIssuesText": {
 		"message": "Reportar problemas e sugerir funcionalidades",
