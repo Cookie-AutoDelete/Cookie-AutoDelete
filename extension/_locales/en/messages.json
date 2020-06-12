@@ -117,23 +117,39 @@
 		"message": "Add Domain/Expression Menu",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
-	"contextMenusSelectedDomain": {
-		"message": "For domain only of selected $type$",
-		"description": "For domain only of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+	"contextMenusSelectedDomainLink": {
+		"message": "For domain only of selected link",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "For domain only of selected page",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "For domain only of selected text: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
 		"placeholders": {
-			"type": {
+			"selected": {
 				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
+				"example": "github.com"
 			}
 		}
 	},
-	"contextMenusSelectedSubdomain": {
-		"message": "For all subdomains with domain of selected $type$",
-		"description": "For all subdomains with domain of selected $type$.  Shown in right-click menu of Page/Link/Selected Text.",
+	"contextMenusSelectedSubdomainLink": {
+		"message": "For all subdomains with domain of selected link",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "For all subdomains with domain of selected page",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "For all subdomains with domain of selected text: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
 		"placeholders": {
-			"type": {
+			"selected": {
 				"content": "$1",
-				"example": "Link -or- Page -or- Selected Text"
+				"example": "github.com"
 			}
 		}
 	},
@@ -301,10 +317,6 @@
 		"message": "Keep",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "link",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "List Type",
 		"description": "List Type"
@@ -458,10 +470,6 @@
 	"optionsText": {
 		"message": "Options",
 		"description": "Options"
-	},
-	"pageText": {
-		"message": "page",
-		"description": "page.  The website page itself.  Found in right-click"
 	},
 	"popupCookieCountText": {
 		"message": "Cookie(s)",
@@ -628,10 +636,6 @@
 	"secondsText": {
 		"message": "second(s)",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "text:",
-		"description": "text:.  Used in right-click menu."
 	},
 	"sessionStorageText": {
 		"message": "SessionStorage",

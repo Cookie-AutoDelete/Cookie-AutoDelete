@@ -131,7 +131,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['link'],
       id: ContextMenuEvents.MENUID.PARENT_LINK_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: browser.i18n.getMessage('contextMenusSelectedDomain', [browser.i18n.getMessage('linkText')]),
+      title: browser.i18n.getMessage('contextMenusSelectedDomainLink'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['link'],
@@ -149,7 +149,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['link'],
       id: ContextMenuEvents.MENUID.PARENT_LINK_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: browser.i18n.getMessage('contextMenusSelectedSubdomain', [browser.i18n.getMessage('linkText')]),
+      title: browser.i18n.getMessage('contextMenusSelectedSubdomainLink'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['link'],
@@ -169,7 +169,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['page'],
       id: ContextMenuEvents.MENUID.PARENT_PAGE_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: browser.i18n.getMessage('contextMenusSelectedDomain', [browser.i18n.getMessage('pageText')]),
+      title: browser.i18n.getMessage('contextMenusSelectedDomainPage'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['page'],
@@ -187,7 +187,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['page'],
       id: ContextMenuEvents.MENUID.PARENT_PAGE_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: browser.i18n.getMessage('contextMenusSelectedSubdomain', [browser.i18n.getMessage('pageText')]),
+      title: browser.i18n.getMessage('contextMenusSelectedSubdomainPage'),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['page'],
@@ -207,7 +207,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MENUID.PARENT_SELECT_DOMAIN,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: `${browser.i18n.getMessage('contextMenusSelectedDomain', [browser.i18n.getMessage('selectedText')])} "%s"`,
+      title: browser.i18n.getMessage('contextMenusSelectedDomainText', ["%s"]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['selection'],
@@ -225,7 +225,7 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MENUID.PARENT_SELECT_SUBS,
       parentId: ContextMenuEvents.MENUID.PARENT_EXPRESSION,
-      title: `${browser.i18n.getMessage('contextMenusSelectedSubdomain', [browser.i18n.getMessage('selectedText')])} "%s"`,
+      title: browser.i18n.getMessage('contextMenusSelectedSubdomainText', ["%s"]),
     }, ContextMenuEvents.onCreatedOrUpdated);
     browser.contextMenus.create({
       contexts: ['selection'],
@@ -526,7 +526,7 @@ export default class ContextMenuEvents extends StoreUser {
         msg: `${browser.i18n.getMessage('addNewExpressionNotificationFailed')}`,
       });
       return;
-    };
+    }
     const payload = {
       expression: localFileToRegex(input.trim()),
       listType,
