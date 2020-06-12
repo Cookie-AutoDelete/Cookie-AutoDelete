@@ -251,10 +251,6 @@
 		"message": "Запазване",
 		"description": "Keep"
 	},
-	"linkText": {
-		"message": "препратка",
-		"description": "link.  A link embedded on a webpage.  Found in right-click menu."
-	},
 	"listTypeText": {
 		"message": "Тип списък",
 		"description": "List Type"
@@ -409,10 +405,6 @@
 		"message": "Опции",
 		"description": "Options"
 	},
-	"pageText": {
-		"message": "страница",
-		"description": "page.  The website page itself.  Found in right-click"
-	},
 	"popupCookieCountText": {
 		"message": "Бисквитки",
 		"description": "Cookie(s)"
@@ -564,10 +556,6 @@
 	"secondsText": {
 		"message": "секунда(и)",
 		"description": "second(s)"
-	},
-	"selectedText": {
-		"message": "следния текст:",
-		"description": "following text:.  Used in right-click menu."
 	},
 	"settingGroupAutoClean": {
 		"message": "Настройки на автоматично изчистване",
