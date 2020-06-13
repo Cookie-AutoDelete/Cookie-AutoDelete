@@ -746,7 +746,7 @@
 		}
 	},
 	"welcomeText": {
-		"message": "Bienvenido",
+		"message": "Bienvenido/a",
 		"description": "Welcome"
 	},
 	"whiteCleanLocalstorage": {
