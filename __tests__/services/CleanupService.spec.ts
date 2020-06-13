@@ -23,7 +23,6 @@ for (const k of Object.keys(Lib)) {
     if (!spyLib[k]) spyLib[k] = jest.spyOn(Lib, k as never);
   } catch {
     // Most likely not a function
-    continue;
   }
 }
 

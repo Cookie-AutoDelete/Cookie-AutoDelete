@@ -18,10 +18,12 @@ export const showNumberOfCookiesInIcon = (
   tab: browser.tabs.Tab,
   cookieLength: number,
 ) => {
-  browser.browserAction.setBadgeText({
-    tabId: tab.id,
-    text: `${cookieLength === 0 ? '' : cookieLength.toString()}`,
-  });
+  if (browser.browserAction.setBadgeText) {
+    browser.browserAction.setBadgeText({
+      tabId: tab.id,
+      text: `${cookieLength === 0 ? '' : cookieLength.toString()}`,
+    });
+  }
   if (browser.browserAction.setBadgeTextColor) {
     browser.browserAction.setBadgeTextColor({
       color: 'white',
@@ -31,7 +33,7 @@ export const showNumberOfCookiesInIcon = (
 };
 
 // Set BrowserAction Title with number of cookies in square brackets.
-export const showNumberofCookiesinTitle = async (
+export const showNumberOfCookiesInTitle = async (
   tab: browser.tabs.Tab,
   otherInfo: {
     cookieLength?: number,
@@ -43,7 +45,7 @@ export const showNumberofCookiesinTitle = async (
   // Use Shortened Extension name for mobile.
   const tabTitle = `${((otherInfo.platformOS === 'android') ? 'CAD' : mf.name)} ${mf.version}`;
 
-  const curData = /\[(.*)\] \((\d*)\)/.exec(await browser.browserAction.getTitle({
+  const curData = /\[(.*)] \((\d*)\)/.exec(await browser.browserAction.getTitle({
     tabId: tab.id,
   }));
   const newData = {
@@ -68,7 +70,7 @@ const setBadgeColor = (tab: browser.tabs.Tab, color: string = 'default') => {
     browser.browserAction.setBadgeBackgroundColor({
       color: badgeBackgroundColor[color],
       tabId: tab.id,
-    })
+    });
   }
 }
 
@@ -140,9 +142,9 @@ export const checkIfProtected = async (
     );
 
     if (matchedExpression) {
-      showNumberofCookiesinTitle(aTab, {platformOS: state.cache.platformOs, listType: matchedExpression.listType, cookieLength,});
+      showNumberOfCookiesInTitle(aTab, {platformOS: state.cache.platformOs, listType: matchedExpression.listType, cookieLength,});
     } else {
-      showNumberofCookiesinTitle(aTab, {platformOS: state.cache.platformOs, listType: 'NO LIST', cookieLength,});
+      showNumberOfCookiesInTitle(aTab, {platformOS: state.cache.platformOs, listType: 'NO LIST', cookieLength,});
     }
 
     // Can't set icons on Android.

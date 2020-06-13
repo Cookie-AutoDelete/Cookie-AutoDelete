@@ -1,3 +1,5 @@
+/* istanbul ignore file: Redux init. */
+
 /**
  * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
@@ -10,7 +12,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/* istanbul ignore file: Redux init.*/
 import { Store } from 'redux';
 import { ReduxAction } from '../typings/ReduxConstants';
 
