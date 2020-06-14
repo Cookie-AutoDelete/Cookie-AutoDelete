@@ -117,6 +117,42 @@
 		"message": "Alan Adı/İfade Ekleme Menüsü",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Sadece seçilmiş linkteki alan adları için",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Sadece seçilmiş sayfadaki alan adları için",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Sadece seçilmiş yazıdaki alan adları için: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Sadece seçilmiş linkteki alt alan adları için",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Sadece seçilmiş sayfadaki alt alan adları için",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Sadece seçilmiş yazıdaki alt alan adları için: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -553,6 +589,20 @@
 		"message": "Kuralı temizle",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "$count$ içerik $storageType$ kısmından silindi.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Buradan sorunları bildirebilir veya sonraki sürümlerde görmek isteyeceğiniz önerilerde bulunabilirsiniz",
 		"description": "Report issues and suggest features"
@@ -582,6 +632,10 @@
 	"secondsText": {
 		"message": "Saniye",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "OturumDepolama",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Otomatik Temizlik Seçenekleri",
