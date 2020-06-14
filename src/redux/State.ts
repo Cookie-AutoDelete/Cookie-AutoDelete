@@ -26,6 +26,10 @@ export const initialState: State = {
       name: 'cleanCookiesFromOpenTabsOnStartup',
       value: false,
     },
+    contextMenus: {
+      name: 'contextMenus',
+      value: false,
+    },
     contextualIdentities: {
       name: 'contextualIdentities',
       value: false,

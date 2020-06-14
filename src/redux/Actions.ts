@@ -211,6 +211,7 @@ export const validateSettings: ActionCreator<
     disableSettingIfTrue(settings.showNumOfCookiesInIcon);
     disableSettingIfTrue(settings.localstorageCleanup);
     disableSettingIfTrue(settings.contextualIdentities);
+    disableSettingIfTrue(settings.contextMenus);
   }
 
   // Minimum 1 second autoclean delay.
@@ -235,7 +236,7 @@ export const validateSettings: ActionCreator<
   }
 
   // If show cookie count in badge is disabled, force change icon color instead
-  if (settings.showNumOfCookiesInIcon.value === false && settings.keepDefaultIcon.value === true) {
+  if (!settings.showNumOfCookiesInIcon.value && settings.keepDefaultIcon.value) {
     disableSettingIfTrue(settings.keepDefaultIcon);
   }
 };
@@ -278,7 +279,7 @@ export const cookieCleanup: ActionCreator<
       recentlyCleaned.toString(),
       setOfDeletedDomainCookies.join(', '),
     ]);
-    browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
+    await browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
       iconUrl: browser.extension.getURL('icons/icon_48.png'),
       message: notifyMessage,
       title: `${browser.i18n.getMessage('extensionName')} ${browser.runtime.getManifest().version}:  ${browser.i18n.getMessage('notificationTitle')}`,

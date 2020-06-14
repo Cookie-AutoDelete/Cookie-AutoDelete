@@ -206,11 +206,7 @@ class Settings extends React.Component<SettingProps> {
         )}
         {success !== '' ? (
           <div
-            onClick={() =>
-              this.setState({
-                success: '',
-              })
-            }
+            onClick={() => this.setState({success: '',})}
             className="row alert alert-success"
           >
             {browser.i18n.getMessage('successText')} {success}
@@ -483,6 +479,20 @@ class Settings extends React.Component<SettingProps> {
               hrefURL={'#size-of-setting'}
             />
           </div>
+          {((browserDetect === 'Firefox' && platformOs !== 'android') ||
+            browserDetect === 'Chrome') && (
+            <div className="form-group">
+              <CheckboxSetting
+                text={browser.i18n.getMessage('enableContextMenus')}
+                settingObject={settings.contextMenus}
+                inline={true}
+                updateSetting={payload => onUpdateSetting(payload)}
+              />
+              <SettingsTooltip
+                hrefURL={'#enable-context-menus'}
+              />
+            </div>
+          )}
           {((browserDetect === 'Firefox' && platformOs !== 'android') ||
             browserDetect === 'Chrome') && (
             <div className="form-group">
