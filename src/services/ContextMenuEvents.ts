@@ -281,7 +281,7 @@ export default class ContextMenuEvents extends StoreUser {
   ) {
     browser.contextMenus.update(id, {
       checked,
-    }).catch(this.onCreatedOrUpdated);
+    }).finally(this.onCreatedOrUpdated);
     cadLog({
       msg: `ContextMenuEvents.updateMenuItemCheckbox: Updated Menu Item.`,
       x: {id, checked},
@@ -294,7 +294,7 @@ export default class ContextMenuEvents extends StoreUser {
       cadLog({
         msg: `ContextMenuEvents.onCreatedOrUpdated received an error: ${browser.runtime.lastError}`,
         type: 'error',
-      }, debug);
+      }, true);
     } else {
       cadLog({
         msg: `ContextMenuEvents.onCreatedOrUpdated:  Create/Update contextMenuItem was successful.`,
@@ -313,6 +313,7 @@ export default class ContextMenuEvents extends StoreUser {
       x: {info, tab},
     }, debug);
     const cookieStoreId = (tab && tab.cookieStoreId) || '';
+    const selectionText = (info && info.selectionText) || '';
     switch (info.menuItemId) {
       case ContextMenuEvents.MenuID.CLEAN:
         cadLog({
@@ -435,7 +436,7 @@ export default class ContextMenuEvents extends StoreUser {
         break;
       case ContextMenuEvents.MenuID.SELECT_ADD_GREY_DOMAIN:
       {
-        const texts = (info.selectionText || '').trim().split(',');
+        const texts = selectionText.trim().split(',');
         cadLog({
           msg: `ContextMenuEvents.onContextMenuClicked:  menuItemId was SELECT_ADD_GREY_DOMAIN.`,
           x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
@@ -451,7 +452,7 @@ export default class ContextMenuEvents extends StoreUser {
         break;
       case ContextMenuEvents.MenuID.SELECT_ADD_WHITE_DOMAIN:
       {
-        const texts = (info.selectionText || '').trim().split(',');
+        const texts = selectionText.trim().split(',');
         cadLog({
           msg: `ContextMenuEvents.onContextMenuClicked:  menuItemId was SELECT_ADD_WHITE_DOMAIN.`,
           x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
@@ -467,7 +468,7 @@ export default class ContextMenuEvents extends StoreUser {
         break;
       case ContextMenuEvents.MenuID.SELECT_ADD_GREY_SUBS:
       {
-        const texts = (info.selectionText || '').trim().split(',');
+        const texts = selectionText.trim().split(',');
         cadLog({
           msg: `ContextMenuEvents.onContextMenuClicked:  menuItemId was SELECT_ADD_GREY_SUBS.`,
           x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
@@ -483,7 +484,7 @@ export default class ContextMenuEvents extends StoreUser {
         break;
       case ContextMenuEvents.MenuID.SELECT_ADD_WHITE_SUBS:
       {
-        const texts = (info.selectionText || '').trim().split(',');
+        const texts = selectionText.trim().split(',');
         cadLog({
           msg: `ContextMenuEvents.onContextMenuClicked:  menuItemId was SELECT_ADD_WHITE_SUBS.`,
           x: {selectionText: info.selectionText, texts, cookieStoreId, parsedCookieStoreId: parseCookieStoreId(contextualIdentities, cookieStoreId)},
@@ -533,7 +534,6 @@ export default class ContextMenuEvents extends StoreUser {
     listType: ListType,
     cookieStoreId: string | undefined,
   ) {
-    if (!input && !listType) return;
     if (input.trim() === '' || input === '*.') {
       showNotification({
         duration: getSetting(StoreUser.store.getState(), 'notificationOnScreen') as number,
