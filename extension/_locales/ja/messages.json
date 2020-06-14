@@ -117,6 +117,10 @@
 		"message": "ドメイン/式メニューを追加する",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedDomainLink": {
+		"message": "選択したリンクのドメインの場合のみ",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefoxのコンテナタブのサポートを有効にする",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
