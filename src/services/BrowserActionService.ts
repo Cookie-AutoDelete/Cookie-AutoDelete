@@ -60,7 +60,7 @@ export const showNumberOfCookiesInTitle = async (
 }
 
 // Set Badge Color accordingly (to matching list)
-const setBadgeColor = (tab: browser.tabs.Tab, color: string = 'default') => {
+const setBadgeColor = (tab: browser.tabs.Tab, color = 'default') => {
   const badgeBackgroundColor: {[key:string]: string} = {
     default: 'blue',
     red: 'red',
@@ -75,7 +75,7 @@ const setBadgeColor = (tab: browser.tabs.Tab, color: string = 'default') => {
 }
 
 // Set Background icon color and badgeBackgroundColor accordingly.
-const setIconColor = (tab: browser.tabs.Tab, keepDefault: boolean = false, color: string = 'default') => {
+const setIconColor = (tab: browser.tabs.Tab, keepDefault = false, color = 'default') => {
   if (browser.browserAction.setIcon) {
     browser.browserAction.setIcon({
       path: {

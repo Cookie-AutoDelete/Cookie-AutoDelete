@@ -10,73 +10,73 @@ jobs:
     name: Tests, Builds, Coverage, Release Uploads
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Commit
-      uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: Cache Node.js
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-          ${{ runner.OS }}
-    - name: Install Dependencies (npm ci)
-      run: npm ci
-    - name: Run Tests
-      run: npm run test -- --verbose
-    - name: Run TSLint
-      run: npm run lint
-    - name: Ensure Version is Updated
-      run: node ./tools/replaceVersionNumber.js
-    - name: Run Build
-      id: runbuild
-      run: |
-        npm run build
-        echo "::set-output name=ffxpi::$(ls builds/*Firefox.xpi)"
-    - name: Archive Production Build Artifacts
-      if: success()
-      uses: actions/upload-artifact@v2
-      with:
-        name: builds
-        path: builds
-    - name: Archive Code Coverage Results
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: coverage
-    - name: GitHub Releases
-      id: github_releases
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        files: |
-          builds/Cookie-AutoDelete_*_Chrome.zip
-          builds/Cookie-AutoDelete_*_Firefox.xpi
-        body: This is an auto-generated tagged release - Change log will be manually inserted soon!  Latest versions have been submitted to the relevant browser extension store for review.
-        prerelease: ${{ endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta') }}
-    - name: Google Chrome WebStore Upload
-      uses: Passiverecords/chrome-extension-upload-action@1.4.1
-      if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
+      - name: Checkout Commit
+        uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Cache Node.js
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}
+      - name: Install Dependencies (npm ci)
+        run: npm ci
+      - name: Run Tests
+        run: npm run test -- --verbose
+      - name: Run Lint
+        run: npm run lint
+      - name: Ensure Version is Updated
+        run: node ./tools/replaceVersionNumber.js
+      - name: Run Build
+        id: runbuild
+        run: |
+          npm run build
+          echo "::set-output name=ffxpi::$(ls builds/*Firefox.xpi)"
+      - name: Archive Production Build Artifacts
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: builds
+          path: builds
+      - name: Archive Code Coverage Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage
+      - name: GitHub Releases
+        id: github_releases
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            builds/Cookie-AutoDelete_*_Chrome.zip
+            builds/Cookie-AutoDelete_*_Firefox.xpi
+          body: This is an auto-generated tagged release - Change log will be manually inserted soon!  Latest versions have been submitted to the relevant browser extension store for review.
+          prerelease: ${{ endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta') }}
+      - name: Google Chrome WebStore Upload
+        uses: Passiverecords/chrome-extension-upload-action@1.4.1
+        if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
 
-      with:
-        app-id: 'fhcgjolkccmbidfldomjliifgaodjagh'
-        file-name: 'builds/Cookie-AutoDelete_*_Chrome.zip'
-        client-id: ${{ secrets.CHROME_CLIENT_ID }}
-        client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
-        refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
-        publish: false
-    - name: Mozilla Firefox AMO Upload
-      uses: trmcnvn/firefox-addon@v1
-      if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
-      with:
-        api-key: ${{ secrets.FIREFOX_API_KEY }}
-        api-secret: ${{ secrets.FIREFOX_API_SECRET }}
-        uuid: 'CookieAutoDelete@kennydo.com'
-        xpi: ${{ steps.runbuild.outputs.ffxpi }}
-        manifest: extension/manifest.json
+        with:
+          app-id: 'fhcgjolkccmbidfldomjliifgaodjagh'
+          file-name: 'builds/Cookie-AutoDelete_*_Chrome.zip'
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          publish: false
+      - name: Mozilla Firefox AMO Upload
+        uses: trmcnvn/firefox-addon@v1
+        if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
+        with:
+          api-key: ${{ secrets.FIREFOX_API_KEY }}
+          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
+          uuid: 'CookieAutoDelete@kennydo.com'
+          xpi: ${{ steps.runbuild.outputs.ffxpi }}
+          manifest: extension/manifest.json

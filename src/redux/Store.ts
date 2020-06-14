@@ -29,19 +29,14 @@ import {
   updateExpression,
   updateSetting,
 } from './Actions';
-// tslint:disable-next-line:import-name
 import reducer from './Reducers';
 const consoleMessages = (store: any) => (next: any) => (action: any) => {
-  let result;
-
   // console.log(
   //   `dispatching action => ${action.type}
   // payload => ${JSON.stringify(action.payload)}`,
   // );
 
-  result = next(action);
-
-  return result;
+  return next(action);
 };
 
 const actions: { [key in ReduxConstants]?: any } = {

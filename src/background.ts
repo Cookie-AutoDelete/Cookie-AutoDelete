@@ -16,9 +16,11 @@ import {
   cookieCleanup,
   validateSettings,
 } from './redux/Actions';
-// tslint:disable-next-line: import-name
 import createStore from './redux/Store';
-import { checkIfProtected, setGlobalIcon } from './services/BrowserActionService';
+import {
+  checkIfProtected,
+  setGlobalIcon,
+} from './services/BrowserActionService';
 import ContextMenuEvents from './services/ContextMenuEvents';
 import CookieEvents from './services/CookieEvents';
 import {
@@ -26,7 +28,7 @@ import {
   convertVersionToNumber,
   extractMainDomain,
   getSetting,
-  sleep
+  sleep,
 } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
@@ -68,10 +70,14 @@ const onSettingsChange = () => {
     browser.browsingData.removeLocalStorage({
       since: 0,
     });
-    cadLog({
-      msg: 'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
-      type: 'info',
-    }, currentSettings.debugMode.value as boolean);
+    cadLog(
+      {
+        msg:
+          'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
+        type: 'info',
+      },
+      currentSettings.debugMode.value as boolean,
+    );
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
@@ -80,7 +86,10 @@ const onSettingsChange = () => {
 
   if (previousSettings.activeMode.value !== currentSettings.activeMode.value) {
     setGlobalIcon(currentSettings.activeMode.value as boolean);
-    ContextMenuEvents.updateMenuItemCheckbox(ContextMenuEvents.MENUID.ACTIVE_MODE, currentSettings.activeMode.value as boolean);
+    ContextMenuEvents.updateMenuItemCheckbox(
+      ContextMenuEvents.MENUID.ACTIVE_MODE,
+      currentSettings.activeMode.value as boolean,
+    );
   }
 
   checkIfProtected(store.getState());
@@ -91,7 +100,9 @@ const onSettingsChange = () => {
 
 const onStartUp = async () => {
   const mf = browser.runtime.getManifest();
-  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [STARTING UP...] (0)` });
+  browser.browserAction.setTitle({
+    title: `${mf.name} ${mf.version} [STARTING UP...] (0)`,
+  });
   const storage = await browser.storage.local.get();
   let stateFromStorage;
   try {
@@ -167,34 +178,43 @@ const onStartUp = async () => {
 
   if (browser.contextMenus) {
     ContextMenuEvents.menuInit(store.getState());
-    if (!browser.contextMenus.onClicked.hasListener(ContextMenuEvents.onContextMenuClicked)) {
-      browser.contextMenus.onClicked.addListener(ContextMenuEvents.onContextMenuClicked);
+    if (
+      !browser.contextMenus.onClicked.hasListener(
+        ContextMenuEvents.onContextMenuClicked,
+      )
+    ) {
+      browser.contextMenus.onClicked.addListener(
+        ContextMenuEvents.onContextMenuClicked,
+      );
     }
   }
-  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [READY] (0)` });
-  cadLog({
-    msg: `background.onStartUp is complete.`,
-    type: "info"
-  }, currentSettings.debugMode.value as boolean);
+  browser.browserAction.setTitle({
+    title: `${mf.name} ${mf.version} [READY] (0)`,
+  });
+  cadLog(
+    {
+      msg: `background.onStartUp is complete.`,
+      type: 'info',
+    },
+    currentSettings.debugMode.value as boolean,
+  );
 };
 
 // Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
 const cookiePopupPorts: browser.runtime.Port[] = [];
 
-async function onCookiePopupUpdates(
-  changeInfo: {
-    removed: boolean,
-    cookie:  browser.cookies.Cookie,
-    cause: browser.cookies.OnChangedCause,
-  }
-) {
+async function onCookiePopupUpdates(changeInfo: {
+  removed: boolean;
+  cookie: browser.cookies.Cookie;
+  cause: browser.cookies.OnChangedCause;
+}) {
   const cDomain = extractMainDomain(changeInfo.cookie.domain);
   cookiePopupPorts.forEach((p) => {
     if (!p.name) return;
     if (!p.name.startsWith('popupCAD_')) return;
     const pn = p.name.slice(9).split(',');
     if (pn[0].endsWith(changeInfo.cookie.domain) || pn[0].endsWith(cDomain)) {
-      p.postMessage({cookieUpdated: true});
+      p.postMessage({ cookieUpdated: true });
     }
   });
 }
@@ -205,12 +225,13 @@ function handleConnect(p: browser.runtime.Port) {
     browser.cookies.onChanged.addListener(onCookiePopupUpdates);
   }
   p.onMessage.addListener((m) => {
-    console.warn('Received Unexpected message from CAD Popup')
+    console.warn('Received Unexpected message from CAD Popup');
     console.warn(JSON.stringify(m));
   });
   p.onDisconnect.addListener((dp: browser.runtime.Port) => {
     if (
-      (cookiePopupPorts.length - 1) === 0 && browser.cookies.onChanged.hasListener(onCookiePopupUpdates)
+      cookiePopupPorts.length - 1 === 0 &&
+      browser.cookies.onChanged.hasListener(onCookiePopupUpdates)
     ) {
       browser.cookies.onChanged.removeListener(onCookiePopupUpdates);
     }
@@ -223,7 +244,7 @@ function handleConnect(p: browser.runtime.Port) {
       cookiePopupPorts.splice(i, 1);
     }
   });
-  p.postMessage({cookieUpdated: true});
+  p.postMessage({ cookieUpdated: true });
   cookiePopupPorts.push(p);
 }
 
@@ -235,28 +256,36 @@ browser.runtime.onStartup.addListener(async () => {
   if (getSetting(store.getState(), 'activeMode') === true) {
     if (getSetting(store.getState(), 'enableGreyListCleanup') === true) {
       let isFFSessionRestore = false;
-      const startupTabs = await browser.tabs.query({windowType: 'normal'});
-      startupTabs.forEach(tab => {
+      const startupTabs = await browser.tabs.query({ windowType: 'normal' });
+      startupTabs.forEach((tab) => {
         if (tab.url === 'about:sessionrestore') isFFSessionRestore = true;
       });
       if (!isFFSessionRestore) {
         greyCleanup();
       } else {
-        cadLog({
-          msg: 'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
-          type: 'info',
-        }, getSetting(store.getState(), 'debugMode') === true);
+        cadLog(
+          {
+            msg:
+              'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
+            type: 'info',
+          },
+          getSetting(store.getState(), 'debugMode') === true,
+        );
       }
     } else {
-      cadLog({
-        msg: 'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
-        type: 'info',
-      }, getSetting(store.getState(), 'debugMode') === true);
+      cadLog(
+        {
+          msg:
+            'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
+          type: 'info',
+        },
+        getSetting(store.getState(), 'debugMode') === true,
+      );
     }
   }
   checkIfProtected(store.getState());
 });
-browser.runtime.onInstalled.addListener(async details => {
+browser.runtime.onInstalled.addListener(async (details) => {
   await awaitStore();
   checkIfProtected(store.getState());
   switch (details.reason) {
@@ -269,7 +298,7 @@ browser.runtime.onInstalled.addListener(async details => {
           type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
         });
       }
-      if (getSetting(store.getState(),'enableNewVersionPopup')) {
+      if (getSetting(store.getState(), 'enableNewVersionPopup')) {
         browser.runtime.openOptionsPage();
       }
       break;
@@ -286,9 +315,12 @@ const awaitStore = async () => {
 
 const greyCleanup = () => {
   if (getSetting(store.getState(), 'activeMode')) {
-    cadLog({
-      msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
-    }, getSetting(store.getState(), 'debugMode') as boolean);
+    cadLog(
+      {
+        msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
+      },
+      getSetting(store.getState(), 'debugMode') as boolean,
+    );
     store.dispatch<any>(
       cookieCleanup({
         greyCleanup: true,
