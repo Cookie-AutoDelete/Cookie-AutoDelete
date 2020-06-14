@@ -117,6 +117,42 @@
 		"message": "Tilføj domæne/udtryks-menu",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Kun for domæne af valgte link",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Kun for domæne af valgte side",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Kun for domæne af valgte tekst: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "For alle underdomæner med domæne af valgte link",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "For alle underdomæner med domæne af valgte side",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "For alle underdomæner med domæne af valgte tekst: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktiver understøttelse for Firefox' Kontekst-faneblade",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -230,7 +266,7 @@
 		"description": "Filter"
 	},
 	"greyCleanLocalstorage": {
-		"message": "Fjern markeringen af 'Keep LocalStorage' på nye grålisteudtryk",
+		"message": "Fjern markeringen af 'Behold lokallager' på nye grålisteudtryk",
 		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
 	},
 	"greyListWordText": {
@@ -270,7 +306,7 @@
 		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
-		"message": "Behold Localstorage",
+		"message": "Behold lokallager",
 		"description": "Keep LocalStorage"
 	},
 	"keepText": {
@@ -282,19 +318,19 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "ADVARSEL: Aktivering af både LocalStorage Cleanup og Container faner kan forårsage uønskede bivirkninger på grund af API-begrænsninger. LocalStorage ryddes af værtsnavnet på ALLE containere.",
+		"message": "ADVARSEL: Aktivering af både Lokallagersletning og Container-faner kan forårsage uønskede bivirkninger på grund af API-begrænsninger. Lokallager ryddes af værtsnavnet på ALLE containere.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
-		"message": "Ryd op i offline-indhold",
+		"message": "Ryd op i lokallager",
 		"description": "LocalStorage Cleanup"
 	},
 	"localstorageCleanupWarning": {
-		"message": "Advarsel: ALLE eksisterende LocalStorage ryddes ved aktivering af LocalStorage Cleanup.",
+		"message": "Advarsel: ALLE eksisterende lokallagre ryddes ved aktivering af Lokallagersletning.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
 	"localStorageText": {
-		"message": "LocalStorage",
+		"message": "Lokallager",
 		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"manualActionNotification": {
@@ -553,6 +589,20 @@
 		"message": "Fjern udtryk",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "Slettede $count$ element(er) fra $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Rapporter fejl og mangler, og foreslå funktionalitet",
 		"description": "Report issues and suggest features"
@@ -582,6 +632,10 @@
 	"secondsText": {
 		"message": "Sekund(er)",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "Sessionslager",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Automatiske sletningstilvalg",
@@ -692,7 +746,7 @@
 		"description": "Welcome"
 	},
 	"whiteCleanLocalstorage": {
-		"message": "Fjern markeringen i 'Hold LocalStorage' på nye hvidlisteudtryk",
+		"message": "Fjern markeringen i 'Behold lokallager' på nye hvidlisteudtryk",
 		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
 	},
 	"whiteListText": {
