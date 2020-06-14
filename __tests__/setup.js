@@ -147,3 +147,16 @@ global.console = {
   log: jest.fn(),
   warn: jest.fn(),
 };
+
+function generateSpies(parent) {
+  const spyParent = {};
+  for (const k of Object.keys(parent)) {
+    try {
+      if (!spyParent[k]) spyParent[k] = jest.spyOn(parent, k);
+    } catch {
+      // Most likely not a function
+    }
+  }
+  return spyParent;
+}
+global.generateSpies = generateSpies;

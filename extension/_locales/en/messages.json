@@ -221,6 +221,10 @@
 		"message": "Enable Cleanup Log and Counter",
 		"description": "Enable Cleanup Log and Counter"
 	},
+	"enableContextMenus": {
+		"message": "Enable Context Menus (Right-Click Menu)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+	},
 	"enableGlobalSubdomainText": {
 		"message": "Enable Check for Subdomains",
 		"description": "Enable Check for Subdomains"
