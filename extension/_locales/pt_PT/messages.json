@@ -221,6 +221,10 @@
 		"message": "Ativar registo de limpeza e contador",
 		"description": "Enable Cleanup Log and Counter"
 	},
+	"enableContextMenus": {
+		"message": "Ativar menus de contexto (menu de botão direito do rato)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+	},
 	"enableGlobalSubdomainText": {
 		"message": "Ativar verificação por subdomínios",
 		"description": "Enable Check for Subdomains"
