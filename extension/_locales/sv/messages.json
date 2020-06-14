@@ -117,6 +117,42 @@
 		"message": "Lägg till domän-/uttrycksmeny",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedDomainLink": {
+		"message": "För domän endast på vald länk",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "För domän endast på vald sida",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "För domän endast för vald text: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "För alla underdomäner med domän för vald länk",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "För alla underdomäner med domän för vald sida",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "För alla underdomäner med domän av vald text: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktivera stöd för Firefox container-flikar",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -553,6 +589,20 @@
 		"message": "Ta bort uttrycket",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "Tog bort $count$ objekt från $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Rapportera problem och föreslå programfunktioner",
 		"description": "Report issues and suggest features"
@@ -582,6 +632,10 @@
 	"secondsText": {
 		"message": "Sekund(er)",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "Sessionslagring",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Alternativ för automatisk rensning",
