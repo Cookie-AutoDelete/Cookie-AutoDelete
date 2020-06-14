@@ -143,6 +143,16 @@
 		"message": "Voor alle subdomeinen met het domein van de geselecteerde pagina",
 		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
 	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Voor alle subdomeinen met het domein van de geselecteerde tekst: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Ondersteuning voor Firefox Container tabbladen inschakelen",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -579,6 +589,20 @@
 		"message": "Verwijder expressie",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "$count$ item(s) verwijderd uit $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Problemen rapporteren en voorstellen van functies",
 		"description": "Report issues and suggest features"
@@ -608,6 +632,10 @@
 	"secondsText": {
 		"message": "Seconde(n)",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "Sessie opslag",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Automatisch opruimen opties",
