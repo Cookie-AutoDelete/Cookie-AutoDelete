@@ -121,6 +121,38 @@
 		"message": "選択したリンクのドメインの場合のみ",
 		"description": "For domain only of selected link.  Shown in right-click menu."
 	},
+	"contextMenusSelectedDomainPage": {
+		"message": "選択したページのドメインの場合のみ",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "選択したテキストのドメインの場合のみ： $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "選択したリンクのドメインを持つすべてのサブドメインの場合",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "選択したページのドメインを持つすべてのサブドメインの場合",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "選択したテキストのドメインを持つすべてのサブドメインの場合： $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefoxのコンテナタブのサポートを有効にする",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -557,6 +589,20 @@
 		"message": "式を削除",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "$storageType$ から $count$ アイテムを 削除しました。",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "問題を報告、機能の提案",
 		"description": "Report issues and suggest features"
@@ -586,6 +632,10 @@
 	"secondsText": {
 		"message": "秒",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "セッションストレージ",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "自動クリーニングのオプション",
