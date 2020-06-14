@@ -127,6 +127,7 @@ describe('ContextMenuEvents', () => {
       global.browser.contextMenus = jestContextMenus;
     });
     it('should do nothing if contextMenus setting is disabled', () => {
+      TestStore.changeSetting('contextMenus', false);
       ContextMenuEvents.menuInit();
       expect(global.browser.contextMenus.create).not.toHaveBeenCalled();
     });
