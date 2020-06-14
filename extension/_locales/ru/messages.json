@@ -199,6 +199,10 @@
 		"message": "Включить журнал очистки и счётчик",
 		"description": "Enable Cleanup Log and Counter"
 	},
+	"enableContextMenus": {
+		"message": "Включить контекстное меню (меню по правому клику)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+	},
 	"enableGlobalSubdomainText": {
 		"message": "Включить проверку для поддоменов",
 		"description": "Enable Check for Subdomains"
