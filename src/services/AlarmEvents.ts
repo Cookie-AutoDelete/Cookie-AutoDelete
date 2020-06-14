@@ -16,26 +16,26 @@ import { getSetting, sleep } from './Libs';
 import StoreUser from './StoreUser';
 
 export default class AlarmEvents extends StoreUser {
-  public static async createActiveModeAlarm() {
+  public static createActiveModeAlarm = async () => {
     const seconds = parseInt(
-      getSetting(this.store.getState(), 'delayBeforeClean') as string,
+      getSetting(StoreUser.store.getState(), 'delayBeforeClean') as string,
       10,
     );
     const milliseconds = (seconds > 0 ? seconds : 0.5) * 1000;
-    if (this.alarmFlag) {
+    if (AlarmEvents.alarmFlag) {
       return;
     }
-    this.alarmFlag = true;
+    AlarmEvents.alarmFlag = true;
     await sleep(milliseconds);
-    if (getSetting(this.store.getState(), 'activeMode')) {
-      this.store.dispatch<any>(
+    if (getSetting(StoreUser.store.getState(), 'activeMode')) {
+      StoreUser.store.dispatch<any>(
         cookieCleanup({
           greyCleanup: false,
           ignoreOpenTabs: false,
         }),
       );
     }
-    this.alarmFlag = false;
+    AlarmEvents.alarmFlag = false;
   }
   // Create an alarm delay or use setTimeout before cookie cleanup
   private static alarmFlag = false;
