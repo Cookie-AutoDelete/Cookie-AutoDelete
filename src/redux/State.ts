@@ -28,7 +28,7 @@ export const initialState: State = {
     },
     contextMenus: {
       name: 'contextMenus',
-      value: false,
+      value: true,
     },
     contextualIdentities: {
       name: 'contextualIdentities',
