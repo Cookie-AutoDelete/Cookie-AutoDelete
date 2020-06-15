@@ -98,6 +98,7 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
 };
 
 type ActivityAction = (log: ActivityLog) => void;
+
 interface StateProps {
   activityLog: ReadonlyArray<ActivityLog>;
   cache: CacheMap;
