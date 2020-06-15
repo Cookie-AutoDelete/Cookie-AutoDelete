@@ -217,6 +217,10 @@
 		"message": "Aufräum-Protokoll und Aufräum-Zähler aktivieren",
 		"description": "Enable Cleanup Log and Counter"
 	},
+	"enableContextMenus": {
+		"message": "Kontextmenüs aktivieren (Rechtsklick-Menü)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+	},
 	"enableGlobalSubdomainText": {
 		"message": "Subdomain-Prüfung aktivieren",
 		"description": "Enable Check for Subdomains"
