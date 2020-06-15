@@ -217,6 +217,10 @@
 		"message": "Opschonen logboek en teller inschakelen",
 		"description": "Enable Cleanup Log and Counter"
 	},
+	"enableContextMenus": {
+		"message": "Context Menus inschakelen (Rechter muis klik menu)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+	},
 	"enableGlobalSubdomainText": {
 		"message": "Activeer check op subdomein",
 		"description": "Enable Check for Subdomains"
