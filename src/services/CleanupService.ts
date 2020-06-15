@@ -585,7 +585,7 @@ export const cleanCookiesOperation = async (
   }
 
   // Scrub private cookieStores
-  const storesIdsToScrub = ['firefox-private', 'private'];
+  const storesIdsToScrub = ['firefox-private', 'private', '1'];
   for (const id of storesIdsToScrub) {
     delete cachedResults.storeIds[id];
   }
