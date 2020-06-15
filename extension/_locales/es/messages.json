@@ -8,7 +8,7 @@
 		"description": "Delay Before Automatic Cleaning"
 	},
 	"activeModeText": {
-		"message": "Habilitar la limpieza automática",
+		"message": "Habilitar limpieza automática",
 		"description": "Enable Automatic Cleaning"
 	},
 	"addNewExpressionNotification": {
@@ -62,7 +62,7 @@
 		"description": "Clean"
 	},
 	"cleanupDomainChangeText": {
-		"message": "Habilitar la limpieza en el cambio de dominio",
+		"message": "Habilitar limpieza en el cambio de dominio",
 		"description": "Enable Cleanup on Domain Change"
 	},
 	"cleanupActionsBypass": {
@@ -182,7 +182,7 @@
 		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
 	},
 	"debugMode": {
-		"message": "Habilitar el modo de depuración (salidas de consola adicionales)",
+		"message": "Habilitar modo de depuración (salidas de consola adicionales)",
 		"description": "Enable Debug Mode (Additional Console Outputs)"
 	},
 	"defaultSettingsText": {
@@ -218,15 +218,19 @@
 		"description": "Toggle to enable automatic cleanup (automatic mode)"
 	},
 	"enableCleanupLogText": {
-		"message": "Habilitar el registro de limpieza y el contador",
+		"message": "Habilitar registro de limpieza y el contador",
 		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableContextMenus": {
+		"message": "Habilitar menús contextuales (menú con clic derecho)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
 	},
 	"enableGlobalSubdomainText": {
 		"message": "Habilitar verificación de subdominios",
 		"description": "Enable Check for Subdomains"
 	},
 	"enableGreyListCleanup": {
-		"message": "Habilitar la limpieza de la lista gris al reinicio del navegador",
+		"message": "Habilitar limpieza de la lista gris al reinicio del navegador",
 		"description": "Enable Greylist Cleanup on Browser Restart"
 	},
 	"enableNewVersionPopup": {
