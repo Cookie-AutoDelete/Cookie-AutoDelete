@@ -105,7 +105,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  onRemoveActvity: ActivityAction;
+  onRemoveActivity: ActivityAction;
 }
 
 interface OwnProps {
@@ -118,7 +118,7 @@ type ActivityTableProps = OwnProps & StateProps & DispatchProps;
 const restoreCookies = async (
   state: State,
   log: ActivityLog,
-  onRemoveActvity: ActivityAction,
+  onRemoveActivity: ActivityAction,
 ) => {
   const debug = getSetting(state, 'debugMode') as boolean;
   const cleanReasonObjsArrays = Object.values(log.storeIds);
@@ -152,14 +152,22 @@ const restoreCookies = async (
         continue;
       }
       const {
+        domain,
         expirationDate,
         firstPartyDomain,
         httpOnly,
         name,
         sameSite,
+        secure,
         storeId,
         value,
       } = obj.cookie;
+      // Prefix fun: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Cookie_prefixes
+      // Since the cookies returned through web-extension API should already be validated,
+      // we are not doing any validations for __Secure- cookies.
+      // For cookies starting with __Secure-, secure attribute should already be true,
+      // and url should already start with https://
+      // Only modify cookie names starting with __Host- as it shouldn't have domain.
       const cookieProperties = {
         ...returnOptionalCookieAPIAttributes(
           state,
@@ -168,10 +176,12 @@ const restoreCookies = async (
           },
           firstPartyIsolate,
         ),
+        domain: name.startsWith('__Host-') ? undefined : domain,
         expirationDate,
         httpOnly,
         name,
         sameSite,
+        secure,
         storeId,
         url: obj.cookie.preparedCookieDomain,
         value,
@@ -201,11 +211,11 @@ const restoreCookies = async (
     return;
   }
   // Restore didn't fail
-  onRemoveActvity(log);
+  onRemoveActivity(log);
 };
 
 const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
-  const { activityLog, numberToShow, state, onRemoveActvity } = props;
+  const { activityLog, numberToShow, state, onRemoveActivity } = props;
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
@@ -243,7 +253,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                 iconName={'undo'}
                 className={'btn-primary'}
                 title={browser.i18n.getMessage('restoreText')}
-                onClick={() => restoreCookies(state, log, onRemoveActvity)}
+                onClick={() => restoreCookies(state, log, onRemoveActivity)}
               />
               <h5
                 className="mb-0"
@@ -302,7 +312,7 @@ const mapStateToProps = (state: State) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
-  onRemoveActvity(activity: ActivityLog) {
+  onRemoveActivity(activity: ActivityLog) {
     dispatch(removeActivity(activity));
   },
 });
