@@ -175,7 +175,7 @@ export const checkIfProtected = async (
           break;
       }
     } else {
-      if (cookieLength && cookieLength === 0) {
+      if (cookieLength !== undefined && cookieLength === 0) {
         if (active) {
           setIconColor(aTab);
         } else {
