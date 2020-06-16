@@ -34,26 +34,43 @@ jobs:
       - name: Run Tests
         run: npm run test -- --verbose
       - name: Run Lint
-      run: npm run lint
-    - name: Run Build
-      run: npm run build
-    - name: Archive All unsigned Build Artifacts
+        run: npm run lint
+      - name: Run Build
+        run: npm run build
+      - name: Archive All unsigned Build Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: builds
           path: builds
-      - name: Archive Code Coverage Results
+      - name: Extract zip builds for individual artifact upload and usage.
+        id: extbuilds
+        run: |
+          for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
+          echo "::set-output name=ffdir::$(ls -d *Firefox)"
+          echo "::set-output name=crdir::$(ls -d *Chrome)"
+        working-directory: ./builds
+      - name: Artifact for Mozilla Firefox build
         uses: actions/upload-artifact@v2
         with:
-          name: coverage
-          path: coverage
-      - name: Codecov.io Coverage upload
-        uses: codecov/codecov-action@v1
+          name: ${{ steps.extbuilds.outputs.ffdir }}
+          path: builds/${{ steps.extbuilds.outputs.ffdir }}
+      - name: Artifact for Google Chrome build
+        uses: actions/upload-artifact@v2
         with:
-          fail_ci_if_error: true
-          file: ./coverage/*
-          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
-      - name: Coveralls.io Coverage Upload
-        uses: coverallsapp/github-action@v1.1.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: ${{ steps.extbuilds.outputs.crdir }}
+          path: builds/${{ steps.extbuilds.outputs.crdir }}
+      - name: Archive Code Coverage Results
+          uses: actions/upload-artifact@v2
+          with:
+            name: coverage
+            path: coverage
+        - name: Codecov.io Coverage upload
+          uses: codecov/codecov-action@v1
+          with:
+            fail_ci_if_error: true
+            file: ./coverage/*
+            token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
+        - name: Coveralls.io Coverage Upload
+          uses: coverallsapp/github-action@v1.1.1
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
