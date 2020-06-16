@@ -71,7 +71,7 @@ const wildCardGreyGit: Expression = {
 };
 
 const whiteListAllExceptTwitter: Expression = {
-  expression: '/^((?!twitter.com).)+$/',
+  expression: '/^((?!twitter[.]com).)+$/',
   id: '5',
   listType: ListType.WHITE,
   storeId: 'default',
