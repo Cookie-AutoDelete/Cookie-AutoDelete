@@ -34,12 +34,10 @@ jobs:
       - name: Run Tests
         run: npm run test -- --verbose
       - name: Run Lint
-        run: npm run lint
-      - name: Run Build
-        run: npm run build
-        env:
-          PR: ${{ github.event_name }}
-      - name: Archive Production Build Artifacts
+      run: npm run lint
+    - name: Run Build
+      run: npm run build
+    - name: Archive All unsigned Build Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: builds
