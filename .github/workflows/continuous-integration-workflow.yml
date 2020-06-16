@@ -63,7 +63,7 @@ jobs:
         if: github.event.pull_request.head.repo.full_name == github.repository
         uses: thollander/actions-comment-pull-request@master
         with:
-          body: test
+          message: test
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
         with:
