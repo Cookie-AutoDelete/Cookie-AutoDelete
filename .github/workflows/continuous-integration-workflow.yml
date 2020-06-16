@@ -60,17 +60,17 @@ jobs:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: Archive Code Coverage Results
-          uses: actions/upload-artifact@v2
-          with:
-            name: coverage
-            path: coverage
-        - name: Codecov.io Coverage upload
-          uses: codecov/codecov-action@v1
-          with:
-            fail_ci_if_error: true
-            file: ./coverage/*
-            token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
-        - name: Coveralls.io Coverage Upload
-          uses: coverallsapp/github-action@v1.1.1
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage
+      - name: Codecov.io Coverage upload
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          file: ./coverage/*
+          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
+      - name: Coveralls.io Coverage Upload
+        uses: coverallsapp/github-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
