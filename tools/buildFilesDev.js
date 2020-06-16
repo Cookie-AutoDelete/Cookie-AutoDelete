@@ -26,8 +26,12 @@ const EXTDIR = path.join(ROOTDIR, EXT);
 console.log("\n\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
 console.log("Current Root Directory is:  %s", ROOTDIR);
 
-console.log("GITHUB_REF:  %s", process.env.GITHUB_REF);
-console.log("TRAVIS_TAG:  %s", process.env.TRAVIS_TAG);
+console.log("GITHUB_REF:         %s", process.env.GITHUB_REF);
+console.log("TRAVIS_TAG:         %s", process.env.TRAVIS_TAG);
+console.log("GITHUB_ACTIONS:     %s", process.env.GITHUB_ACTIONS);
+console.log("CI:                 %s", process.env.CI);
+console.log("GITHUB_EVENT_NAME:  %s", process.env.GITHUB_EVENT_NAME);
+console.log("pr:                 %s", process.env.PR);
 
 let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG || '';
 
