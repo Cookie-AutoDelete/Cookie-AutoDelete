@@ -61,7 +61,7 @@ jobs:
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: Create PR Comment
         if: github.event == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        uses: peter-evans/create-or-update-comment@latest
+        uses: thollander/actions-comment-pull-request@master
         with:
           body: test
       - name: Archive Code Coverage Results

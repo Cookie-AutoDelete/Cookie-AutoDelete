@@ -12,3 +12,9 @@ jobs:
     steps:
       - name: Environments
         run: printenv
+      - name: More Tets
+        env:
+          TEST: github
+        run: |
+          echo $env.TEST
+          echo $TEST
