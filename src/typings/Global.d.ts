@@ -12,8 +12,10 @@
  */
 
 declare module '*.json';
-declare var global: any;
-declare var browserDetect: () => string;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+declare const global: any;
+declare const browserDetect: () => string;
 
 type StoreIdToExpressionList = Readonly<{
   [storeId: string]: ReadonlyArray<Expression>;
@@ -60,7 +62,7 @@ declare const enum ListType {
 interface ReleaseNote {
   readonly version: string;
   readonly notes: string[];
-};
+}
 
 type CookieCountMsg = Readonly<{
   popupHostname?: string;
@@ -68,8 +70,8 @@ type CookieCountMsg = Readonly<{
 }>;
 
 type CADLogItem = Readonly<{
-  type?: string = 'debug';
-  level?: number = 0;
+  type?: string;
+  level?: number;
   msg?: string;
   x?: any;
 }>;

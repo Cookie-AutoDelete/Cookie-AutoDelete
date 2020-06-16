@@ -11,49 +11,49 @@ jobs:
     name: Tests, Builds, Coverage, Release Uploads
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Commit
-      uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: Cache Node.js
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-          ${{ runner.OS }}
-    - name: Install Dependencies (npm ci)
-      run: npm ci
-    - name: Run Tests
-      run: npm run test -- --verbose
-    - name: Run TSLint
-      run: npm run lint
-    - name: Ensure Version is Updated
-      run: node ./tools/replaceVersionNumber.js
-    - name: Run Build
-      run: npm run build
-    - name: Codecov.io Coverage upload
-      uses: codecov/codecov-action@v1
-      with:
-        fail_ci_if_error: true
-        file: ./coverage/*
-        token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
-    - name: Coveralls.io Coverage Upload
-      uses: coverallsapp/github-action@v1.1.1
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: GitHub Releases
-      id: github_releases
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        files: |
-          builds/Cookie-AutoDelete_*_Chrome.zip
-          builds/Cookie-AutoDelete_*_Firefox.xpi
-        body: This is an automatically generated test build.  See commits for changes.
-        prerelease: true
+      - name: Checkout Commit
+        uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Cache Node.js
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}
+      - name: Install Dependencies (npm ci)
+        run: npm ci
+      - name: Run Tests
+        run: npm run test -- --verbose
+      - name: Run Lint
+        run: npm run lint
+      - name: Ensure Version is Updated
+        run: node ./tools/replaceVersionNumber.js
+      - name: Run Build
+        run: npm run build
+      - name: Codecov.io Coverage upload
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          file: ./coverage/*
+          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
+      - name: Coveralls.io Coverage Upload
+        uses: coverallsapp/github-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: GitHub Releases
+        id: github_releases
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            builds/Cookie-AutoDelete_*_Chrome.zip
+            builds/Cookie-AutoDelete_*_Firefox.xpi
+          body: This is an automatically generated test build.  See commits for changes.
+          prerelease: true

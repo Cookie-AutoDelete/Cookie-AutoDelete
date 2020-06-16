@@ -19,8 +19,8 @@ import ExpressionOptions from './ExpressionOptions';
 import IconButton from './IconButton';
 
 class EmptyState {
-  public expressionInput: string = '';
-  public editMode: boolean = false;
+  public expressionInput = '';
+  public editMode = false;
   public id: string | undefined = '';
 }
 

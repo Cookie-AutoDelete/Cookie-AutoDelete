@@ -29,7 +29,7 @@ import {
 } from './Libs';
 
 /** Prepare a cookie for deletion */
-export const prepareCookie = (cookie: browser.cookies.Cookie, debug: boolean = false) => {
+export const prepareCookie = (cookie: browser.cookies.Cookie, debug = false) => {
   const cookieProperties = {
     ...cookie,
     hostname: '',
@@ -361,7 +361,7 @@ export const cleanLocalstorage = (bool?: boolean) => {
 };
 
 /** Filter the deleted cookies */
-export const filterLocalstorage = (obj: CleanReasonObject, debug: boolean = false) => {
+export const filterLocalstorage = (obj: CleanReasonObject, debug = false) => {
   const notProtectedByOpenTab = obj.reason !== ReasonKeep.OpenTabs;
   const notInAnyLists = (obj.reason === ReasonClean.NoMatchedExpression || obj.reason === ReasonClean.StartupNoMatchedExpression);
   const listCleanLocalstorage = cleanLocalstorage(
@@ -585,7 +585,7 @@ export const cleanCookiesOperation = async (
   }
 
   // Scrub private cookieStores
-  const storesIdsToScrub = ['firefox-private', 'private'];
+  const storesIdsToScrub = ['firefox-private', 'private', '1'];
   for (const id of storesIdsToScrub) {
     delete cachedResults.storeIds[id];
   }

@@ -14,7 +14,7 @@ import * as React from 'react';
 interface OwnProps {
   style?: React.CSSProperties;
 }
-const About: React.FunctionComponent<OwnProps> = props => {
+const About: React.FunctionComponent<OwnProps> = (props) => {
   const { style } = props;
   return (
     <div style={style}>
@@ -38,17 +38,34 @@ const About: React.FunctionComponent<OwnProps> = props => {
       </a>
       <br />
       <br />{' '}
-      <a href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh" target="_blank">
-        <span>{`${browser.i18n.getMessage('versionText', ['Google Chrome'])}`}</span>{' '}
+      <a
+        href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span>{`${browser.i18n.getMessage('versionText', [
+          'Google Chrome',
+        ])}`}</span>{' '}
       </a>
       <br />
-      <a href="https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo" target="_blank">
-        <span>{`${browser.i18n.getMessage('versionText', ['Microsoft Edge Chromium'])}`}</span>{' '}
+      <a
+        href="https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span>{`${browser.i18n.getMessage('versionText', [
+          'Microsoft Edge Chromium',
+        ])}`}</span>{' '}
       </a>{' '}
-
       <br />
-      <a href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/" target="_blank">
-        <span>{`${browser.i18n.getMessage('versionText', ['Mozilla Firefox'])}`}</span>{' '}
+      <a
+        href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span>{`${browser.i18n.getMessage('versionText', [
+          'Mozilla Firefox',
+        ])}`}</span>{' '}
       </a>{' '}
       <br />
       <br />

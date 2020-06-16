@@ -26,12 +26,18 @@ import TabEvents from '../../src/services/TabEvents';
 import StoreUser from '../../src/services/StoreUser';
 
 jest.requireActual('../../src/services/AlarmEvents');
-const spyAlarmEvents: {[s: string]: jest.SpyInstance} = global.generateSpies(AlarmEvents);
-const spyBrowserActions: {[s: string]: jest.SpyInstance} = global.generateSpies(BrowserActionService);
+const spyAlarmEvents: { [s: string]: jest.SpyInstance } = global.generateSpies(
+  AlarmEvents,
+);
+const spyBrowserActions: {
+  [s: string]: jest.SpyInstance;
+} = global.generateSpies(BrowserActionService);
 jest.requireActual('../../src/services/Libs');
-const spyLib: {[s: string]: jest.SpyInstance} = global.generateSpies(Lib);
+const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
 jest.requireActual('../../src/services/TabEvents');
-const spyTabEvents: {[s: string]: jest.SpyInstance} = global.generateSpies(TabEvents);
+const spyTabEvents: { [s: string]: jest.SpyInstance } = global.generateSpies(
+  TabEvents,
+);
 
 jest.requireActual('../../src/services/StoreUser');
 
@@ -41,13 +47,12 @@ const store: Store<State, ReduxAction> = createStore(initialState);
 StoreUser.init(store);
 
 class TestStore extends StoreUser {
-
   public static addCache(payload: any) {
     StoreUser.store.dispatch({
       payload,
-      type: ReduxConstants.ADD_CACHE
+      type: ReduxConstants.ADD_CACHE,
     });
-  };
+  }
 
   public static changeSetting(name: string, value: string | boolean | number) {
     StoreUser.store.dispatch(updateSetting({ name, value }));
@@ -73,7 +78,7 @@ const sampleChangeInfo: browser.tabs.TabChangeInfo = {
   status: 'loading|complete',
   title: 'newTitle',
   url: 'sampleURL',
-}
+};
 
 const sampleTab: browser.tabs.Tab = {
   active: true,
@@ -90,13 +95,13 @@ const sampleTab: browser.tabs.Tab = {
   selected: true,
   url: 'https://www.example.com',
   windowId: 1,
-}
+};
 
 describe('TabEvents', () => {
   beforeAll(() => {
     when(global.browser.runtime.getManifest)
       .calledWith()
-      .mockReturnValue({version: '0.12.34' } as never);
+      .mockReturnValue({ version: '0.12.34' } as never);
     when(global.browser.cookies.getAll)
       .calledWith(expect.any(Object))
       .mockResolvedValue([] as never);
@@ -115,13 +120,16 @@ describe('TabEvents', () => {
   describe('getAllCookieActions', () => {
     beforeAll(() => {
       when(global.browser.cookies.getAll)
-        .calledWith({storeId: 'firefox-default'})
-        .mockResolvedValue([testCookie, {...testCookie, domain: '', path: '/test/'}] as never);
+        .calledWith({ storeId: 'firefox-default' })
+        .mockResolvedValue([
+          testCookie,
+          { ...testCookie, domain: '', path: '/test/' },
+        ] as never);
       when(global.browser.cookies.getAll)
-        .calledWith({domain: ''})
+        .calledWith({ domain: '' })
         .mockResolvedValue([] as never);
       when(global.browser.cookies.getAll)
-        .calledWith({domain: 'domain.com', storeId: 'firefox-default'})
+        .calledWith({ domain: 'domain.com', storeId: 'firefox-default' })
         .mockResolvedValue([testCookie] as never);
     });
 
@@ -139,57 +147,79 @@ describe('TabEvents', () => {
     };
 
     it('should do nothing if url is undefined', async () => {
-      await TabEvents.getAllCookieActions({...sampleTab, url: undefined});
+      await TabEvents.getAllCookieActions({ ...sampleTab, url: undefined });
       expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
     });
 
     it('should do nothing if url is empty string', async () => {
-      await TabEvents.getAllCookieActions({...sampleTab, url: ''});
+      await TabEvents.getAllCookieActions({ ...sampleTab, url: '' });
       expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
     });
 
     it('should do nothing if url is an internal page', async () => {
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'about:home'});
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'chrome:newtab'});
+      await TabEvents.getAllCookieActions({ ...sampleTab, url: 'about:home' });
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'chrome:newtab',
+      });
       expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
     });
 
     it('should do nothing if url is not valid', async () => {
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'bad'});
+      await TabEvents.getAllCookieActions({ ...sampleTab, url: 'bad' });
       expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
     });
 
     it('should work on local files', async () => {
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'file:///test/file.html'});
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'file:///test/file.html',
+      });
       expect(spyBrowserActions.checkIfProtected.mock.calls[0][2]).toBe(1);
     });
 
     it('should work on regular domains', async () => {
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'http://domain.com'});
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://domain.com',
+      });
       expect(spyBrowserActions.checkIfProtected.mock.calls[0][2]).toBe(1);
     });
 
     it('should create a cookie if clean localstorage was enabled and no cookie was found', async () => {
       when(global.browser.cookies.getAll)
-        .calledWith({domain: 'cookie.net', storeId: 'firefox-default'})
+        .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
       TestStore.changeSetting('localstorageCleanup', true);
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'http://cookie.net'});
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://cookie.net',
+      });
       expect(global.browser.cookies.set).toHaveBeenCalledTimes(1);
     });
 
     it('should filter out CAD LocalStorage cookie from total cookie count', async () => {
       when(global.browser.cookies.getAll)
-        .calledWith({domain: 'cookie.net', storeId: 'firefox-default'})
-        .mockResolvedValue([{...testCookie, name: Lib.LSCLEANUPNAME}] as never);
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'http://cookie.net'});
+        .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
+        .mockResolvedValue([
+          { ...testCookie, name: Lib.LSCLEANUPNAME },
+        ] as never);
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://cookie.net',
+      });
       expect(spyBrowserActions.checkIfProtected.mock.calls[0][2]).toBe(0);
     });
 
     it('should not show cookie count in non-existent icon in Firefox Android', async () => {
-      TestStore.addCache({key: 'platformOs', value: 'android'});
-      await TabEvents.getAllCookieActions({...sampleTab, url: 'http://domain.com'});
-      expect(spyBrowserActions.showNumberOfCookiesInIcon).not.toHaveBeenCalled();
+      TestStore.addCache({ key: 'platformOs', value: 'android' });
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://domain.com',
+      });
+      expect(
+        spyBrowserActions.showNumberOfCookiesInIcon,
+      ).not.toHaveBeenCalled();
     });
   });
 
@@ -209,15 +239,21 @@ describe('TabEvents', () => {
 
     it('should trigger cleaning if clean discarded tabs is enabled and changeInfo was discarded', () => {
       TestStore.changeSetting('discardedCleanup', true);
-      TabEvents.onTabDiscarded(0, {...sampleChangeInfo, discarded: true}, sampleTab);
+      TabEvents.onTabDiscarded(
+        0,
+        { ...sampleChangeInfo, discarded: true },
+        sampleTab,
+      );
       expect(spyTabEvents.cleanFromTabEvents).toHaveBeenCalledTimes(1);
     });
 
     it('should sanitize favIconUrl if debug was enabled', () => {
       TestStore.changeSetting('discardedCleanup', true);
       TestStore.changeSetting('debugMode', true);
-      TabEvents.onTabDiscarded(0, {...sampleChangeInfo}, sampleTab);
-      expect(spyLib.cadLog.mock.calls[0][0].x.changeInfo.favIconUrl).toBe('***');
+      TabEvents.onTabDiscarded(0, { ...sampleChangeInfo }, sampleTab);
+      expect(spyLib.cadLog.mock.calls[0][0].x.changeInfo.favIconUrl).toBe(
+        '***',
+      );
     });
   });
 
@@ -232,28 +268,45 @@ describe('TabEvents', () => {
     });
 
     it('should do nothing if tab status is not "complete"', () => {
-      TabEvents.onTabUpdate(0, sampleChangeInfo, {...sampleTab, status: 'loading'});
+      TabEvents.onTabUpdate(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'loading',
+      });
       expect(spyTabEvents.getAllCookieActions).not.toHaveBeenCalled();
     });
 
     it('should trigger getAllCookieActions', () => {
-      TabEvents.onTabUpdate(0, sampleChangeInfo, { ...sampleTab, status: 'complete' });
+      TabEvents.onTabUpdate(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
       jest.runAllTimers();
       expect(spyTabEvents.getAllCookieActions).toHaveBeenCalledTimes(1);
     });
 
     it('should sanitize favIconUrl if status=complete and debug is true', () => {
       TestStore.changeSetting('debugMode', true);
-      TabEvents.onTabUpdate(0, sampleChangeInfo, { ...sampleTab, status: 'complete' });
-      expect(spyLib.cadLog.mock.calls[0][0].x.changeInfo.favIconUrl).toBe('***');
+      TabEvents.onTabUpdate(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
+      expect(spyLib.cadLog.mock.calls[0][0].x.changeInfo.favIconUrl).toBe(
+        '***',
+      );
     });
 
     it('should not queue getAllCookieActions if one is pending already', () => {
       TestStore.changeSetting('debugMode', true);
       expect(TestTabEvents.getOnTabUpdateDelay()).toBe(false);
-      TabEvents.onTabUpdate(0, sampleChangeInfo, { ...sampleTab, status: 'complete' });
+      TabEvents.onTabUpdate(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
       expect(TestTabEvents.getOnTabUpdateDelay()).toBe(true);
-      TabEvents.onTabUpdate(0, sampleChangeInfo, { ...sampleTab, status: 'complete' });
+      TabEvents.onTabUpdate(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
       jest.runAllTimers();
       expect(spyTabEvents.getAllCookieActions).toHaveBeenCalledTimes(1);
     });
@@ -263,13 +316,19 @@ describe('TabEvents', () => {
     // Do not change any of the test order as each test relies on the previous actions.
 
     it('should do nothing if tab.status is not complete', () => {
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'loading'});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'loading',
+      });
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
     });
 
     it('should set mainDomain on first encounter', () => {
       expect(Object.keys(TestTabEvents.getTabToDomain()).length).toBe(0);
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete'});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
     });
@@ -277,19 +336,31 @@ describe('TabEvents', () => {
     it('should truncate favIconUrl if debug=true', () => {
       TestStore.changeSetting('debugMode', true);
       expect(Object.keys(TestTabEvents.getTabToDomain()).length).toBe(1);
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete'});
-      expect(spyLib.cadLog.mock.calls[0][0].x.changeInfo.favIconUrl).toBe('***');
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
+      expect(spyLib.cadLog.mock.calls[0][0].x.changeInfo.favIconUrl).toBe(
+        '***',
+      );
     });
 
     it('should not do anything if mainDomain has not changed yet', () => {
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete'});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
     });
 
     it('should not trigger clean if cleanOnDomainChange was not enabled', () => {
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete', url: 'http://domain.cad'});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+        url: 'http://domain.cad',
+      });
       expect(TestTabEvents.getTabToDomain()[0]).toBe('domain.cad');
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
     });
@@ -298,7 +369,10 @@ describe('TabEvents', () => {
       TestStore.changeSetting('domainChangeCleanup', true);
       // reuse previous tabId to change domain
       expect(TestTabEvents.getTabToDomain()[0]).toBe('domain.cad');
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete'});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
       expect(spyTabEvents.cleanFromTabEvents).toHaveBeenCalledTimes(1);
     });
@@ -307,7 +381,11 @@ describe('TabEvents', () => {
       TestStore.changeSetting('domainChangeCleanup', true);
       // reuse previous tabId to change domain to blank
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete', url: 'about:blank'});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+        url: 'about:blank',
+      });
       expect(TestTabEvents.getTabToDomain()[0]).toBe('');
       expect(spyTabEvents.cleanFromTabEvents).toHaveBeenCalledTimes(1);
     });
@@ -316,7 +394,10 @@ describe('TabEvents', () => {
       TestStore.changeSetting('domainChangeCleanup', true);
       // reuse previous tabId of blank tab to new domain.
       expect(TestTabEvents.getTabToDomain()[0]).toBe('');
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete'});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
     });
@@ -325,7 +406,11 @@ describe('TabEvents', () => {
       TestStore.changeSetting('domainChangeCleanup', true);
       // reuse previous tabId to go from domain to empty string...which usually doesn't happen
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
-      TabEvents.onDomainChange(0, sampleChangeInfo, {...sampleTab, status: 'complete', url: ''});
+      TabEvents.onDomainChange(0, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+        url: '',
+      });
       // Treat as mainDomain unchanged per current logic.
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
@@ -336,7 +421,10 @@ describe('TabEvents', () => {
     // This function doesn't throw any errors when tabId does not exist, so one test covers all.
     it('should remove old mainDomain from closed tabId', () => {
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
-      TabEvents.onDomainChangeRemove(0, {windowId: 1, isWindowClosing: false,});
+      TabEvents.onDomainChangeRemove(0, {
+        windowId: 1,
+        isWindowClosing: false,
+      });
       expect(TestTabEvents.getTabToDomain()[0]).toBe(undefined);
     });
   });
@@ -364,7 +452,7 @@ describe('TabEvents', () => {
     it('should not create an alarm if one exists already when activeMode is enabled', async () => {
       when(global.browser.alarms.get)
         .calledWith('activeModeAlarm')
-        .mockResolvedValue({name: 'activeModeAlarm'} as never);
+        .mockResolvedValue({ name: 'activeModeAlarm' } as never);
       TestStore.changeSetting('activeMode', true);
       await TabEvents.cleanFromTabEvents();
       expect(spyAlarmEvents.createActiveModeAlarm).not.toHaveBeenCalled();

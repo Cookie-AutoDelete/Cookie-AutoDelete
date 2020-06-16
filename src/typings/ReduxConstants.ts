@@ -50,7 +50,7 @@ export type ADD_EXPRESSION = Readonly<{
 }>;
 export type CLEAR_EXPRESSIONS = Readonly<{
   type: ReduxConstants.CLEAR_EXPRESSIONS;
-  payload: {};
+  payload: Record<string, unknown>;
 }>;
 export type REMOVE_EXPRESSION = Readonly<{
   type: ReduxConstants.REMOVE_EXPRESSION;
