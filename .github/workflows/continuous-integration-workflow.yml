@@ -64,7 +64,8 @@ jobs:
         uses: thollander/actions-comment-pull-request@master
         with:
           message: 'Test from: ${{ github.head_ref }} to: ${{ github.base_ref }}.
-            with SHA: ${{ github.sha }}.'
+            \n\n
+            Last commit:  ${{ github.event.after }} temp merge with base with SHA: ${{ github.sha }}.'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
