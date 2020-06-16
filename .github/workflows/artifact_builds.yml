@@ -1,0 +1,14 @@
+name: Unsigned Test Build Artifact Links
+
+on:
+  pull_request:
+    branches-ignore:
+      - '_archived__**'
+
+jobs:
+  all_jobs:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Environments
+        run: printenv
