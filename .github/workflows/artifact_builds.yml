@@ -14,10 +14,17 @@ jobs:
         run: printenv
       - name: GitHub Environments
         run: printenv | grep "GITHUB_"
-      - name: More Tets
-        env:
-          TEST: github
+      - name: More Tests
         run: |
-          echo $github
-          echo $TEST
-          echo ${{ github }}
+          echo ${{ toJSON(github.event) }}
+          echo ${{ github.workflow }}
+          echo ${{ github.job }}
+          echo ${{ github.run_id }}
+          echo ${{ github.run_number }}
+          echo ${{ github.event_name }}
+          echo ${{ github.sha }}
+          echo ${{ github.ref }}
+          echo ${{ github.head_ref }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.action }}
+          echo ${{ toJSON(job) }}
