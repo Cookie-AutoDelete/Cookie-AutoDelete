@@ -61,7 +61,8 @@ jobs:
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: test
         run: |
-          echo $env
+          echo env
+          printenv
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
         with:
