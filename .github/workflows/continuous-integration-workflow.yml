@@ -64,6 +64,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@master
         with:
           message: test
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
         with:
