@@ -51,7 +51,7 @@ const saveToStorage = () => {
   }
 };
 
-const onSettingsChange = () => {
+const onSettingsChange = async () => {
   const previousSettings = currentSettings;
   currentSettings = store.getState().settings;
   // Container Mode enabled
@@ -67,7 +67,7 @@ const onSettingsChange = () => {
     !previousSettings.localstorageCleanup.value &&
     currentSettings.localstorageCleanup.value
   ) {
-    browser.browsingData.removeLocalStorage({
+    await browser.browsingData.removeLocalStorage({
       since: 0,
     });
     cadLog(
@@ -81,18 +81,32 @@ const onSettingsChange = () => {
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
-    browser.alarms.clear('activeModeAlarm');
+    await browser.alarms.clear('activeModeAlarm');
   }
 
   if (previousSettings.activeMode.value !== currentSettings.activeMode.value) {
+<<<<<<< HEAD
     setGlobalIcon(currentSettings.activeMode.value as boolean);
     ContextMenuEvents.updateMenuItemCheckbox(
       ContextMenuEvents.MENUID.ACTIVE_MODE,
       currentSettings.activeMode.value as boolean,
     );
+=======
+    await setGlobalIcon(currentSettings.activeMode.value as boolean);
+    ContextMenuEvents.updateMenuItemCheckbox(ContextMenuEvents.MenuID.ACTIVE_MODE, currentSettings.activeMode.value as boolean);
+>>>>>>> 1bd9ad38e75ce741dad11f2705cd1f5caad82bfa
   }
 
-  checkIfProtected(store.getState());
+  // Context Menu Changes
+  if (previousSettings.contextMenus.value !== currentSettings.contextMenus.value) {
+    if (currentSettings.contextMenus.value) {
+      ContextMenuEvents.menuInit();
+    } else {
+      await ContextMenuEvents.menuClear();
+    }
+  }
+
+  await checkIfProtected(store.getState());
 
   // Validate Settings again
   store.dispatch<any>(validateSettings());
@@ -163,9 +177,9 @@ const onStartUp = async () => {
 
   store.dispatch<any>(validateSettings());
 
-  setGlobalIcon(getSetting(store.getState(), 'activeMode') as boolean);
+  await setGlobalIcon(getSetting(store.getState(), 'activeMode') as boolean);
 
-  checkIfProtected(store.getState());
+  await checkIfProtected(store.getState());
 
   browser.tabs.onUpdated.addListener(TabEvents.onDomainChange);
   browser.tabs.onUpdated.addListener(TabEvents.onTabDiscarded);
@@ -177,6 +191,7 @@ const onStartUp = async () => {
   browser.cookies.onChanged.addListener(CookieEvents.onCookieChanged);
 
   if (browser.contextMenus) {
+<<<<<<< HEAD
     ContextMenuEvents.menuInit(store.getState());
     if (
       !browser.contextMenus.onClicked.hasListener(
@@ -198,6 +213,11 @@ const onStartUp = async () => {
     },
     currentSettings.debugMode.value as boolean,
   );
+=======
+    ContextMenuEvents.menuInit();
+  }
+  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [READY] (0)` });
+>>>>>>> 1bd9ad38e75ce741dad11f2705cd1f5caad82bfa
 };
 
 // Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
@@ -250,7 +270,12 @@ function handleConnect(p: browser.runtime.Port) {
 
 browser.runtime.onConnect.addListener(handleConnect);
 
-onStartUp();
+onStartUp().then(() => {
+  cadLog({
+    msg: `background.onStartUp has been executed`,
+    type: 'info',
+  }, getSetting(store.getState(), 'debugMode') as boolean);
+});
 browser.runtime.onStartup.addListener(async () => {
   await awaitStore();
   if (getSetting(store.getState(), 'activeMode') === true) {
@@ -283,14 +308,14 @@ browser.runtime.onStartup.addListener(async () => {
       );
     }
   }
-  checkIfProtected(store.getState());
+  await checkIfProtected(store.getState());
 });
 browser.runtime.onInstalled.addListener(async (details) => {
   await awaitStore();
-  checkIfProtected(store.getState());
+  await checkIfProtected(store.getState());
   switch (details.reason) {
     case 'install':
-      browser.runtime.openOptionsPage();
+      await browser.runtime.openOptionsPage();
       break;
     case 'update':
       if (convertVersionToNumber(details.previousVersion) < 300) {
@@ -298,8 +323,13 @@ browser.runtime.onInstalled.addListener(async (details) => {
           type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
         });
       }
+<<<<<<< HEAD
       if (getSetting(store.getState(), 'enableNewVersionPopup')) {
         browser.runtime.openOptionsPage();
+=======
+      if (getSetting(store.getState(),'enableNewVersionPopup')) {
+        await browser.runtime.openOptionsPage();
+>>>>>>> 1bd9ad38e75ce741dad11f2705cd1f5caad82bfa
       }
       break;
     default:

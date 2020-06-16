@@ -26,50 +26,18 @@ import TabEvents from '../../src/services/TabEvents';
 import StoreUser from '../../src/services/StoreUser';
 
 jest.requireActual('../../src/services/AlarmEvents');
-
-// This dynamically generates the spies for all functions in AlarmEvents
-const spyAlarmEvents: { [s: string]: jest.SpyInstance } = {};
-for (const k of Object.keys(AlarmEvents)) {
-  try {
-    if (!spyAlarmEvents[k])
-      spyAlarmEvents[k] = jest.spyOn(AlarmEvents, k as never);
-  } catch {
-    // Most likely not a function
-  }
-}
-
-const spyBrowserActions: { [s: string]: jest.SpyInstance } = {};
-for (const k of Object.keys(BrowserActionService)) {
-  try {
-    if (!spyBrowserActions[k])
-      spyBrowserActions[k] = jest.spyOn(BrowserActionService, k as never);
-  } catch {
-    // Most likely not a function
-  }
-}
-
+const spyAlarmEvents: { [s: string]: jest.SpyInstance } = global.generateSpies(
+  AlarmEvents,
+);
+const spyBrowserActions: {
+  [s: string]: jest.SpyInstance;
+} = global.generateSpies(BrowserActionService);
 jest.requireActual('../../src/services/Libs');
-
-// This dynamically generates the spies for all functions in Libs
-const spyLib: { [s: string]: jest.SpyInstance } = {};
-for (const k of Object.keys(Lib)) {
-  try {
-    if (!spyLib[k]) spyLib[k] = jest.spyOn(Lib, k as never);
-  } catch {
-    // Most likely not a function
-  }
-}
+const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
 jest.requireActual('../../src/services/TabEvents');
-
-// This dynamically generates the spies for all functions in TabEvents
-const spyTabEvents: { [s: string]: jest.SpyInstance } = {};
-for (const k of Object.keys(TabEvents)) {
-  try {
-    if (!spyTabEvents[k]) spyTabEvents[k] = jest.spyOn(TabEvents, k as never);
-  } catch {
-    // Most likely not a function
-  }
-}
+const spyTabEvents: { [s: string]: jest.SpyInstance } = global.generateSpies(
+  TabEvents,
+);
 
 jest.requireActual('../../src/services/StoreUser');
 
