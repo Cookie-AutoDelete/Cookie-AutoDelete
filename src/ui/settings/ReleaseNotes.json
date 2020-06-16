@@ -15,6 +15,7 @@
         "Fixed:  Internal Icons are now hidden as they cannot be shown (favIconUrl starting with 'chrome:'). This hides the error shown in console.",
         "Fixed:  Greyscale Icon now shows up at browser startup.",
         "Fixed:  CAD no longer removes items from containers if container cleaning is not enabled.  Closes #746.",
+        "Fixed:  Cookie names starting with __Host- or __Secure- may not have been restored correctly.  Closes #772.",
         "Updated:  Translations from Crowdin."
       ]
     },
