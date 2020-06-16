@@ -60,8 +60,6 @@ jobs:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: test
-        env:
-          TEST: ${{ github }}
         run: |
           echo $env
       - name: Archive Code Coverage Results
