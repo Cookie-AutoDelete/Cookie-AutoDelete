@@ -85,20 +85,17 @@ const onSettingsChange = async () => {
   }
 
   if (previousSettings.activeMode.value !== currentSettings.activeMode.value) {
-<<<<<<< HEAD
-    setGlobalIcon(currentSettings.activeMode.value as boolean);
+    await setGlobalIcon(currentSettings.activeMode.value as boolean);
     ContextMenuEvents.updateMenuItemCheckbox(
-      ContextMenuEvents.MENUID.ACTIVE_MODE,
+      ContextMenuEvents.MenuID.ACTIVE_MODE,
       currentSettings.activeMode.value as boolean,
     );
-=======
-    await setGlobalIcon(currentSettings.activeMode.value as boolean);
-    ContextMenuEvents.updateMenuItemCheckbox(ContextMenuEvents.MenuID.ACTIVE_MODE, currentSettings.activeMode.value as boolean);
->>>>>>> 1bd9ad38e75ce741dad11f2705cd1f5caad82bfa
   }
 
   // Context Menu Changes
-  if (previousSettings.contextMenus.value !== currentSettings.contextMenus.value) {
+  if (
+    previousSettings.contextMenus.value !== currentSettings.contextMenus.value
+  ) {
     if (currentSettings.contextMenus.value) {
       ContextMenuEvents.menuInit();
     } else {
@@ -191,33 +188,11 @@ const onStartUp = async () => {
   browser.cookies.onChanged.addListener(CookieEvents.onCookieChanged);
 
   if (browser.contextMenus) {
-<<<<<<< HEAD
-    ContextMenuEvents.menuInit(store.getState());
-    if (
-      !browser.contextMenus.onClicked.hasListener(
-        ContextMenuEvents.onContextMenuClicked,
-      )
-    ) {
-      browser.contextMenus.onClicked.addListener(
-        ContextMenuEvents.onContextMenuClicked,
-      );
-    }
+    ContextMenuEvents.menuInit();
   }
   browser.browserAction.setTitle({
     title: `${mf.name} ${mf.version} [READY] (0)`,
   });
-  cadLog(
-    {
-      msg: `background.onStartUp is complete.`,
-      type: 'info',
-    },
-    currentSettings.debugMode.value as boolean,
-  );
-=======
-    ContextMenuEvents.menuInit();
-  }
-  browser.browserAction.setTitle({ title: `${mf.name} ${mf.version} [READY] (0)` });
->>>>>>> 1bd9ad38e75ce741dad11f2705cd1f5caad82bfa
 };
 
 // Keeps a memory of all runtime ports for popups.  Should only be one but just in case.
@@ -271,10 +246,13 @@ function handleConnect(p: browser.runtime.Port) {
 browser.runtime.onConnect.addListener(handleConnect);
 
 onStartUp().then(() => {
-  cadLog({
-    msg: `background.onStartUp has been executed`,
-    type: 'info',
-  }, getSetting(store.getState(), 'debugMode') as boolean);
+  cadLog(
+    {
+      msg: `background.onStartUp has been executed`,
+      type: 'info',
+    },
+    getSetting(store.getState(), 'debugMode') as boolean,
+  );
 });
 browser.runtime.onStartup.addListener(async () => {
   await awaitStore();
@@ -323,13 +301,8 @@ browser.runtime.onInstalled.addListener(async (details) => {
           type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
         });
       }
-<<<<<<< HEAD
       if (getSetting(store.getState(), 'enableNewVersionPopup')) {
-        browser.runtime.openOptionsPage();
-=======
-      if (getSetting(store.getState(),'enableNewVersionPopup')) {
         await browser.runtime.openOptionsPage();
->>>>>>> 1bd9ad38e75ce741dad11f2705cd1f5caad82bfa
       }
       break;
     default:
