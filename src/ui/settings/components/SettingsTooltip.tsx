@@ -23,7 +23,7 @@ const SettingsTooltip: React.FunctionComponent<OwnProps> = ({ hrefURL }) => {
     ? hrefURL
     : `https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation${hrefURL}`;
   return (
-    <a href={link} target="_blank'" rel="noreferrer" className="tooltipCustom">
+    <a href={link} target="_blank" rel="noreferrer" className="tooltipCustom">
       <FontAwesomeIcon size={'lg'} icon={['far', 'question-circle']} />
     </a>
   );
