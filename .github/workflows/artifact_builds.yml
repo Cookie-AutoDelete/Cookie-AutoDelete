@@ -4,6 +4,8 @@ on:
   pull_request:
     branches-ignore:
       - '_archived__**'
+  check_suite:
+    types: ['completed']
 
 jobs:
   all_jobs:
@@ -16,7 +18,7 @@ jobs:
         run: printenv | grep "GITHUB_"
       - name: More Tests
         run: |
-          echo ${{ toJSON(github.event) }}
+          printf ${{ toJSON(github.event) }}
           echo ${{ github.workflow }}
           echo ${{ github.job }}
           echo ${{ github.run_id }}
