@@ -13,7 +13,7 @@ jobs:
       - name: Environments
         run: printenv
       - name: GitHub Environments
-        run: printenv "GITHUB_"
+        run: printenv | grep "GITHUB_"
       - name: More Tets
         env:
           TEST: github
