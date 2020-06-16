@@ -21,7 +21,7 @@ import {
 } from '../../redux/Actions';
 import {
   clearCookiesForThisDomain,
-  clearLocalstorageForThisDomain
+  clearLocalstorageForThisDomain,
 } from '../../services/CleanupService';
 import {
   extractMainDomain,
@@ -52,9 +52,9 @@ interface StateProps {
 }
 
 class InitialState {
-  public cookieCount: number = 0;
+  public cookieCount = 0;
   public tab: browser.tabs.Tab | undefined = undefined;
-  public storeId: string = 'default';
+  public storeId = 'default';
 }
 
 type PopupAppComponentProps = DispatchProps & StateProps;
@@ -65,10 +65,16 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   private cleanButtonContainerRef: React.ReactInstance | null = null;
 
   public async componentDidMount() {
-    document.documentElement.style.fontSize = `${this.props.state.settings.sizePopup.value as number || 16}px`;
+    document.documentElement.style.fontSize = `${
+      (this.props.state.settings.sizePopup.value as number) || 16
+    }px`;
     if (this.props.state.cache.browserDetect === 'Chrome') {
       // Chrome requires min width otherwise the layout is messed up
-      document.documentElement.style.minWidth = `${430 + ((this.props.state.settings.sizePopup.value as number || 16)-10)*35}px`;
+      document.documentElement.style.minWidth = `${
+        430 +
+        (((this.props.state.settings.sizePopup.value as number) || 16) - 10) *
+          35
+      }px`;
     }
     const tabs = await browser.tabs.query({
       active: true,
@@ -76,7 +82,10 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     });
 
     this.setState({
-      storeId: parseCookieStoreId(this.props.contextualIdentities, tabs[0].cookieStoreId),
+      storeId: parseCookieStoreId(
+        this.props.contextualIdentities,
+        tabs[0].cookieStoreId,
+      ),
       tab: tabs[0],
     });
   }
@@ -91,6 +100,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   public animateFlash(ref: React.ReactInstance | null, success: boolean) {
     if (ref) {
       try {
+        // eslint-disable-next-line react/no-find-dom-node
         const domNode = findDOMNode(ref) as Element;
         if (domNode) {
           domNode.classList.add(
@@ -113,15 +123,21 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     if (!this.state.tab) return;
     const { cookieStoreId } = this.state.tab;
     const firstPartyIsolate = await isFirstPartyIsolate();
-    const cookies = (await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
-        domain: hostname,
-        firstPartyDomain: extractMainDomain(hostname),
-        storeId: cookieStoreId,
-      }, firstPartyIsolate),
-    ));
+    const cookies = await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(
+        state,
+        {
+          domain: hostname,
+          firstPartyDomain: extractMainDomain(hostname),
+          storeId: cookieStoreId,
+        },
+        firstPartyIsolate,
+      ),
+    );
     this.setState({
-      cookieCount: cookies.length - cookies.filter(cookie => cookie.name === LSCLEANUPNAME).length,
+      cookieCount:
+        cookies.length -
+        cookies.filter((cookie) => cookie.name === LSCLEANUPNAME).length,
     });
   }
 
@@ -150,7 +166,9 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
 
     if (!this.port) {
       if (hostname) {
-        this.port = browser.runtime.connect({name: `popupCAD_${hostname},${storeId.replace(',','-')}`});
+        this.port = browser.runtime.connect({
+          name: `popupCAD_${hostname},${storeId.replace(',', '-')}`,
+        });
         this.port.onMessage.addListener((m) => {
           const msg = m as CookieCountMsg;
           if (msg.cookieUpdated !== undefined && msg.cookieUpdated) {
@@ -168,7 +186,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
         id="cadPopup"
         className="container-fluid"
         style={{
-          overflow: 'auto'
+          overflow: 'auto',
         }}
       >
         <div
@@ -180,9 +198,11 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             paddingTop: '8px',
           }}
         >
-          <span id='CADTitle'>{browser.i18n.getMessage('extensionName')}</span>
+          <span id="CADTitle">{browser.i18n.getMessage('extensionName')}</span>
           &nbsp;
-          <span id='CADVersion' style={{fontWeight: 'bold',}}>{browser.runtime.getManifest().version}</span>
+          <span id="CADVersion" style={{ fontWeight: 'bold' }}>
+            {browser.runtime.getManifest().version}
+          </span>
         </div>
         <div
           className="row"
@@ -191,7 +211,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
             justifyContent: 'center',
-            padding: '4px 4px 8px 4px'
+            padding: '4px 4px 8px 4px',
           }}
         >
           <IconButton
@@ -242,7 +262,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
 
           <div
             className="btn-group"
-            ref={e => {
+            ref={(e) => {
               this.cleanButtonContainerRef = e;
             }}
             style={{
@@ -275,7 +295,9 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                   transform: 'translate3d(-3px, 0px, 0px)',
                 }}
               >
-                <span className="sr-only">{browser.i18n.getMessage('dropdownAdditionalCleaningOptions')}</span>
+                <span className="sr-only">
+                  {browser.i18n.getMessage('dropdownAdditionalCleaningOptions')}
+                </span>
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 <button
@@ -294,7 +316,9 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 >
                   {browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
                 </button>
-                <h6 className="dropdown-header">{browser.i18n.getMessage('cleanupActionsBypass')}</h6>
+                <h6 className="dropdown-header">
+                  {browser.i18n.getMessage('cleanupActionsBypass')}
+                </h6>
                 <button
                   className="dropdown-item"
                   onClick={async () => {
@@ -307,13 +331,16 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                   ])}
                   type="button"
                 >
-                  {browser.i18n.getMessage('clearSiteDataText', [browser.i18n.getMessage('cookiesText')])}
+                  {browser.i18n.getMessage('clearSiteDataText', [
+                    browser.i18n.getMessage('cookiesText'),
+                  ])}
                 </button>
                 <div className="dropdown-header" />
                 <button
                   className="dropdown-item"
                   onClick={async () => {
-                    const success = await clearLocalstorageForThisDomain(state,
+                    const success = await clearLocalstorageForThisDomain(
+                      state,
                       tab,
                     );
                     this.animateFlash(this.cleanButtonContainerRef, success);
@@ -371,7 +398,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 marginRight: '8px',
                 verticalAlign: 'middle',
               }}
-              >
+            >
               {
                 // Temporary fix until contextualIdentities events land
               }
@@ -388,20 +415,23 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
               fontSize: '1.1em',
               textAlign: 'center',
             }}
-            >
-            <span id='CADCookieText'>{browser.i18n.getMessage('popupCookieCountText')}</span>
+          >
+            <span id="CADCookieText">
+              {browser.i18n.getMessage('popupCookieCountText')}
+            </span>
             :&nbsp;
             <span
-              id='CADCookieCount'
+              id="CADCookieCount"
               style={{
                 fontWeight: 'bold',
-              }}>
+              }}
+            >
               {this.state.cookieCount}
             </span>
           </div>
         </div>
 
-        {addableHostnames.map(addableHostname => (
+        {addableHostnames.map((addableHostname) => (
           <div
             key={addableHostname}
             style={{
@@ -488,7 +518,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

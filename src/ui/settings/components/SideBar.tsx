@@ -86,7 +86,8 @@ class SideBar extends React.Component<OwnProps> {
           id="menuLink"
           className="menu-link"
         >
-          <FontAwesomeIcon size={'lg'} style={styles.hamburger} icon="bars" /><br />
+          <FontAwesomeIcon size={'lg'} style={styles.hamburger} icon="bars" />
+          <br />
           <div id="menuLinkText" className="menuLinkText">
             {browser.i18n.getMessage('menuText')}
           </div>
@@ -95,7 +96,8 @@ class SideBar extends React.Component<OwnProps> {
         <div id="menu" className="menu">
           <div className="pure-menu nav flex-column">
             <div className="sidebar-version">
-              {browser.i18n.getMessage('versionNumberText', ['CAD'])}<br />
+              {browser.i18n.getMessage('versionNumberText', ['CAD'])}
+              <br />
               <b>{browser.runtime.getManifest().version}</b>
             </div>
             {sideBarTabs.map((element, index) => (
@@ -111,7 +113,12 @@ class SideBar extends React.Component<OwnProps> {
               </div>
             ))}
             <br />
-            <a className={`pure-menu-item`} href="https://www.paypal.me/mrkennyd/5" target="_blank">
+            <a
+              className={`pure-menu-item`}
+              href="https://www.paypal.me/mrkennyd/5"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span>{browser.i18n.getMessage('contributeText')}</span>
             </a>
           </div>

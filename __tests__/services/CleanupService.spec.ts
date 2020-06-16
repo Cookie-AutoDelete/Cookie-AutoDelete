@@ -17,7 +17,7 @@ jest.requireActual('../../src/services/Libs');
 import * as Lib from '../../src/services/Libs';
 
 // This dynamically generates the spies for all functions in Libs
-const spyLib: {[s: string]: jest.SpyInstance} = {};
+const spyLib: { [s: string]: jest.SpyInstance } = {};
 for (const k of Object.keys(Lib)) {
   try {
     if (!spyLib[k]) spyLib[k] = jest.spyOn(Lib, k as never);
@@ -39,7 +39,7 @@ const sampleTab: browser.tabs.Tab = {
   pinned: false,
   selected: true,
   url: 'https://example.com',
-  windowId: 1
+  windowId: 1,
 };
 
 const wildCardWhiteListGoogle: Expression = {
@@ -68,10 +68,10 @@ const wildCardGreyGit: Expression = {
   id: '4',
   listType: ListType.GREY,
   storeId: 'default',
-}
+};
 
 const whiteListAllExceptTwitter: Expression = {
-  expression: '/^((?!twitter\.com).)+$/',
+  expression: '/^((?!twitter[.]com).)+$/',
   id: '5',
   listType: ListType.WHITE,
   storeId: 'default',
@@ -189,15 +189,15 @@ describe('CleanupService', () => {
   beforeEach(() => {
     // For First Party Isolations not enabled
     when(global.browser.cookies.getAll)
-      .calledWith({domain: ''})
+      .calledWith({ domain: '' })
       .mockResolvedValue([] as never);
     when(global.browser.runtime.getManifest)
       .calledWith()
-      .mockReturnValue({version: '0.12.34'})
+      .mockReturnValue({ version: '0.12.34' });
   });
   afterEach(() => {
     clear();
-  })
+  });
   describe('cleanCookies()', () => {
     const cookies = [
       googleCookie,
@@ -207,7 +207,7 @@ describe('CleanupService', () => {
       youtubeCookie,
     ];
 
-    const removeCookies: CleanReasonObject[] = cookies.map(cookie => {
+    const removeCookies: CleanReasonObject[] = cookies.map((cookie) => {
       return {
         cached: false,
         cleanCookie: true,
@@ -235,13 +235,19 @@ describe('CleanupService', () => {
         .calledWith(expect.any(Object))
         .mockResolvedValueOnce(true as never)
         .mockRejectedValueOnce(new Error('test') as never);
-      await expect(cleanCookies(initialState, removeCookies, false)).rejects.toThrow();
-      expect(global.browser.cookies.remove.mock.results[2].value).toEqual(undefined);
-      expect(global.browser.cookies.remove.mock.results[3].value).toEqual(undefined);
+      await expect(
+        cleanCookies(initialState, removeCookies, false),
+      ).rejects.toThrow();
+      expect(global.browser.cookies.remove.mock.results[2].value).toEqual(
+        undefined,
+      );
+      expect(global.browser.cookies.remove.mock.results[3].value).toEqual(
+        undefined,
+      );
     });
   });
 
-  describe("cleanCookiesOperation()", () => {
+  describe('cleanCookiesOperation()', () => {
     const cleanupProperties: CleanupProperties = {
       greyCleanup: false,
       ignoreOpenTabs: false,
@@ -267,7 +273,7 @@ describe('CleanupService', () => {
             url: 'moz-extension://test/settings/settings.html',
           },
         ] as never);
-      advanceTo(new Date("2020-06-01 12:34:56"));
+      advanceTo(new Date('2020-06-01 12:34:56'));
     });
     afterEach(() => {
       when(global.browser.extension.isAllowedIncognitoAccess)
@@ -286,7 +292,7 @@ describe('CleanupService', () => {
       expect(global.browser.cookies.remove).not.toHaveBeenCalled();
     });
 
-    describe("via Firefox Browser / Common Functions", () => {
+    describe('via Firefox Browser / Common Functions', () => {
       const firefoxState = {
         ...sampleState,
         cache: {
@@ -304,39 +310,61 @@ describe('CleanupService', () => {
             value: true,
           },
         },
-      }
+      };
       beforeEach(() => {
         when(global.browser.contextualIdentities.query)
           .calledWith({})
-          .mockResolvedValue([{cookieStoreId: 'firefox-container-1'}] as never);
+          .mockResolvedValue([
+            { cookieStoreId: 'firefox-container-1' },
+          ] as never);
         when(global.browser.cookies.getAllCookieStores)
           .calledWith()
-          .mockResolvedValue([{id: 'firefox-default'}] as never);
+          .mockResolvedValue([{ id: 'firefox-default' }] as never);
         when(global.browser.cookies.getAll)
-          .calledWith({storeId: 'firefox-default'})
+          .calledWith({ storeId: 'firefox-default' })
           .mockResolvedValue([
             mockCookie, // no list
             googleCookie, // greylist, opentab
             youtubeCookie, // whitelist
-            yahooCookie,  // no list
+            yahooCookie, // no list
             openTabCookie, // opentab
-            githubCookie,  // greylist
+            githubCookie, // greylist
           ] as never);
       });
 
       it('Regular clean, exclude open tabs.', async () => {
-        const ffResult = await cleanCookiesOperation(firefoxState, cleanupProperties);
-        expect(global.browser.contextualIdentities.query).not.toHaveBeenCalled();
-        expect(global.browser.extension.isAllowedIncognitoAccess).toHaveBeenCalledTimes(1);
-        expect(global.browser.cookies.getAllCookieStores).toHaveBeenCalledTimes(1);
-        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({storeId: 'firefox-default'});
-        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({storeId: 'default'});
+        const ffResult = await cleanCookiesOperation(
+          firefoxState,
+          cleanupProperties,
+        );
+        expect(
+          global.browser.contextualIdentities.query,
+        ).not.toHaveBeenCalled();
+        expect(
+          global.browser.extension.isAllowedIncognitoAccess,
+        ).toHaveBeenCalledTimes(1);
+        expect(global.browser.cookies.getAllCookieStores).toHaveBeenCalledTimes(
+          1,
+        );
+        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
+          storeId: 'firefox-default',
+        });
+        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
+          storeId: 'default',
+        });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(2);
-        expect(global.browser.browsingData.removeLocalStorage).not.toHaveBeenCalled();
+        expect(
+          global.browser.browsingData.removeLocalStorage,
+        ).not.toHaveBeenCalled();
         expect(ffResult).not.toBe(undefined);
-        expect(ffResult!.cachedResults.dateTime.indexOf('12:34:56')).not.toBe(-1);
+        expect(ffResult!.cachedResults.dateTime.indexOf('12:34:56')).not.toBe(
+          -1,
+        );
         expect(ffResult!.cachedResults.recentlyCleaned).toBe(2);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual(['test.com','yahoo.com']);
+        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+          'test.com',
+          'yahoo.com',
+        ]);
       });
 
       it('If cleanupProperties is missing, presume Regular clean, exclude open tabs.', async () => {
@@ -345,31 +373,57 @@ describe('CleanupService', () => {
       });
 
       it('Browser Restart clean, exclude open tabs.', async () => {
-        const ffResult = await cleanCookiesOperation(firefoxState, {...cleanupProperties, greyCleanup: true});
+        const ffResult = await cleanCookiesOperation(firefoxState, {
+          ...cleanupProperties,
+          greyCleanup: true,
+        });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(3);
         expect(ffResult!.cachedResults.recentlyCleaned).toBe(3);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual(['test.com','yahoo.com', 'github.com']);
+        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+          'test.com',
+          'yahoo.com',
+          'github.com',
+        ]);
       });
 
       it('Browser Restart clean, include open tabs.', async () => {
-        const ffResult = await cleanCookiesOperation(firefoxState, {greyCleanup: true, ignoreOpenTabs: true});
+        const ffResult = await cleanCookiesOperation(firefoxState, {
+          greyCleanup: true,
+          ignoreOpenTabs: true,
+        });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(5);
         expect(ffResult!.cachedResults.recentlyCleaned).toBe(5);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual(['test.com','google.com', 'yahoo.com', 'sub.domain.com', 'github.com']);
+        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+          'test.com',
+          'google.com',
+          'yahoo.com',
+          'sub.domain.com',
+          'github.com',
+        ]);
       });
 
       it('Regular clean, include open tabs.', async () => {
-        const ffResult = await cleanCookiesOperation(firefoxState, {...cleanupProperties, ignoreOpenTabs: true});
+        const ffResult = await cleanCookiesOperation(firefoxState, {
+          ...cleanupProperties,
+          ignoreOpenTabs: true,
+        });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(3);
         expect(ffResult!.cachedResults.recentlyCleaned).toBe(3);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual(['test.com','yahoo.com', 'sub.domain.com']);
+        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+          'test.com',
+          'yahoo.com',
+          'sub.domain.com',
+        ]);
       });
 
       it('Regular clean, exclude open tabs, with only cookies in open tabs/whitelist.', async () => {
         when(global.browser.cookies.getAll)
-          .calledWith({storeId: 'firefox-default'})
+          .calledWith({ storeId: 'firefox-default' })
           .mockResolvedValue([googleCookie, youtubeCookie] as never);
-        const ffResult = await cleanCookiesOperation(firefoxState, cleanupProperties);
+        const ffResult = await cleanCookiesOperation(
+          firefoxState,
+          cleanupProperties,
+        );
         expect(global.browser.cookies.remove).not.toHaveBeenCalled();
         expect(ffResult!.cachedResults.recentlyCleaned).toBe(0);
         expect(ffResult!.setOfDeletedDomainCookies).toEqual([]);
@@ -404,19 +458,25 @@ describe('CleanupService', () => {
           .calledWith()
           .mockResolvedValue(true as never);
         await cleanCookiesOperation(firefoxState, cleanupProperties);
-        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({storeId: 'firefox-private'});
-        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({storeId: 'private'});
+        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
+          storeId: 'firefox-private',
+        });
+        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
+          storeId: 'private',
+        });
       });
 
       it('should not clean containers if contextualIdentities is disabled', async () => {
         when(global.browser.cookies.getAllCookieStores)
           .calledWith()
           .mockResolvedValue([
-            {id: 'firefox-default'},
-            {id: 'firefox-container-1'},
+            { id: 'firefox-default' },
+            { id: 'firefox-container-1' },
           ] as never);
         await cleanCookiesOperation(firefoxState, cleanupProperties);
-        expect(global.browser.cookies.getAll).not.toHaveBeenCalledWith({storeId: 'firefox-container-1'});
+        expect(global.browser.cookies.getAll).not.toHaveBeenCalledWith({
+          storeId: 'firefox-container-1',
+        });
       });
 
       it('Regular clean, exclude open tabs with contextualIdentities enabled', async () => {
@@ -431,7 +491,9 @@ describe('CleanupService', () => {
           },
         };
         await cleanCookiesOperation(contextState, cleanupProperties);
-        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({storeId: 'firefox-container-1'});
+        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
+          storeId: 'firefox-container-1',
+        });
       });
 
       it('Regular clean, exclude open tabs with localstorageCleanup enabled', async () => {
@@ -446,11 +508,13 @@ describe('CleanupService', () => {
           },
         };
         await cleanCookiesOperation(localStorageState, cleanupProperties);
-        expect(global.browser.browsingData.removeLocalStorage).toHaveBeenCalledTimes(1);
+        expect(
+          global.browser.browsingData.removeLocalStorage,
+        ).toHaveBeenCalledTimes(1);
       });
     });
 
-    describe("via Chrome Browser (Only specifics)", () => {
+    describe('via Chrome Browser (Only specifics)', () => {
       const chromeState = {
         ...sampleState,
         cache: {
@@ -458,25 +522,29 @@ describe('CleanupService', () => {
         },
       };
       const chromeCookies = [
-        {...mockCookie, storeId: "0"},
-        {...googleCookie, storeId: "0"},
-        {...youtubeCookie, storeId: "0"},
-        {...yahooCookie, storeId: "0"},
+        { ...mockCookie, storeId: '0' },
+        { ...googleCookie, storeId: '0' },
+        { ...youtubeCookie, storeId: '0' },
+        { ...yahooCookie, storeId: '0' },
       ];
 
       beforeEach(() => {
         when(global.browser.cookies.getAllCookieStores)
           .calledWith()
-          .mockResolvedValue([{id: '0'}] as never);
+          .mockResolvedValue([{ id: '0' }] as never);
         when(global.browser.cookies.getAll)
-          .calledWith({storeId: '0'})
+          .calledWith({ storeId: '0' })
           .mockResolvedValue(chromeCookies as never);
       });
 
       it('Regular clean, exclude open tabs (Chrome).', async () => {
         await cleanCookiesOperation(chromeState, cleanupProperties);
-        expect(global.browser.extension.isAllowedIncognitoAccess).toHaveBeenCalledTimes(1);
-        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({storeId: '0'});
+        expect(
+          global.browser.extension.isAllowedIncognitoAccess,
+        ).toHaveBeenCalledTimes(1);
+        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
+          storeId: '0',
+        });
       });
 
       it('should include private cookieStores if extension allowed in incognito mode', async () => {
@@ -484,12 +552,14 @@ describe('CleanupService', () => {
           .calledWith()
           .mockResolvedValue(true as never);
         await cleanCookiesOperation(chromeState, cleanupProperties);
-        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({storeId: '1'});
+        expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
+          storeId: '1',
+        });
       });
     });
   });
 
-  describe("clearCookiesForThisDomain()", () => {
+  describe('clearCookiesForThisDomain()', () => {
     afterEach(() => {
       global.browser.cookies.getAll.mockReset();
       global.browser.cookies.remove.mockReset();
@@ -507,26 +577,36 @@ describe('CleanupService', () => {
 
     beforeEach(() => {
       when(global.browser.cookies.getAll)
-        .calledWith({domain: ''})
+        .calledWith({ domain: '' })
         .mockResolvedValue([] as never);
       when(global.browser.i18n.getMessage)
-        .calledWith(expect.any(String), [expect.any(Number), expect.any(Number)])
+        .calledWith(expect.any(String), [
+          expect.any(Number),
+          expect.any(Number),
+        ])
         .mockReturnValue('0');
     });
 
     it('should clean all cookies for active tab domain and show notification.', async () => {
       when(global.browser.cookies.getAll)
-        .calledWith({domain: 'google.com', storeId: 'firefox-default'})
-        .mockResolvedValue([googleCookie,googleCookie2] as never);
+        .calledWith({ domain: 'google.com', storeId: 'firefox-default' })
+        .mockResolvedValue([googleCookie, googleCookie2] as never);
       when(global.browser.cookies.remove)
         .calledWith(expect.anything())
         .mockResolvedValue({} as never);
 
-      expect(await clearCookiesForThisDomain(initialState, googleTab)).toBe(true);
+      expect(await clearCookiesForThisDomain(initialState, googleTab)).toBe(
+        true,
+      );
       expect(global.browser.cookies.remove).toBeCalledTimes(2);
       expect(global.browser.notifications.create).toBeCalledTimes(1);
-      expect(global.browser.i18n.getMessage.mock.calls[1][0]).toBe('manualCleanSuccess');
-      expect(global.browser.i18n.getMessage.mock.calls[2][1]).toEqual(['2', '2']);
+      expect(global.browser.i18n.getMessage.mock.calls[1][0]).toBe(
+        'manualCleanSuccess',
+      );
+      expect(global.browser.i18n.getMessage.mock.calls[2][1]).toEqual([
+        '2',
+        '2',
+      ]);
     });
 
     it('should just show notification if active tab domain has no cookies', async () => {
@@ -537,26 +617,37 @@ describe('CleanupService', () => {
         .calledWith(expect.any(Object))
         .mockResolvedValue([] as never);
 
-      expect(await clearCookiesForThisDomain(initialState, googleTab)).toBe(false);
+      expect(await clearCookiesForThisDomain(initialState, googleTab)).toBe(
+        false,
+      );
       expect(global.browser.cookies.remove).toBeCalledTimes(0);
       expect(global.browser.notifications.create).toBeCalledTimes(1);
-      expect(global.browser.i18n.getMessage.mock.calls[1][0]).toBe('manualCleanNothing');
+      expect(global.browser.i18n.getMessage.mock.calls[1][0]).toBe(
+        'manualCleanNothing',
+      );
     });
 
     it('should just show notification if active tab domain has only one cookie that for some reason cannot be cleared.', async () => {
       when(global.browser.cookies.getAll)
-        .calledWith({domain: 'google.com', storeId: 'firefox-default'})
+        .calledWith({ domain: 'google.com', storeId: 'firefox-default' })
         .mockResolvedValue([googleCookie] as never);
       when(global.browser.cookies.remove)
         .calledWith(expect.any(Object))
         .mockResolvedValue(null as never);
 
-      expect(await clearCookiesForThisDomain(initialState, googleTab)).toBe(false);
+      expect(await clearCookiesForThisDomain(initialState, googleTab)).toBe(
+        false,
+      );
       expect(global.browser.cookies.remove).toBeCalledTimes(1);
       expect(global.browser.notifications.create).toBeCalledTimes(1);
-      expect(global.browser.i18n.getMessage.mock.calls[1][0]).toBe('manualCleanSuccess');
+      expect(global.browser.i18n.getMessage.mock.calls[1][0]).toBe(
+        'manualCleanSuccess',
+      );
       // browser.i18n.getMessage for number of cookies cleaned.
-      expect(global.browser.i18n.getMessage.mock.calls[2][1]).toEqual(['0', '1']);
+      expect(global.browser.i18n.getMessage.mock.calls[2][1]).toEqual([
+        '0',
+        '1',
+      ]);
     });
   });
 
@@ -564,8 +655,10 @@ describe('CleanupService', () => {
     it('should clear localstorage from active tab (via tabs.executeScript)', async () => {
       when(global.browser.tabs.executeScript)
         .calledWith(undefined, expect.any(Object))
-        .mockResolvedValue([{local: 2, session: 0}] as never);
-      expect(await clearLocalstorageForThisDomain(initialState, sampleTab)).toBe(true);
+        .mockResolvedValue([{ local: 2, session: 0 }] as never);
+      expect(
+        await clearLocalstorageForThisDomain(initialState, sampleTab),
+      ).toBe(true);
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(global.browser.notifications.create).toBeCalledTimes(1);
     });
@@ -573,7 +666,9 @@ describe('CleanupService', () => {
       when(global.browser.tabs.executeScript)
         .calledWith(undefined, expect.any(Object))
         .mockRejectedValue(new Error('test') as never);
-      expect(await clearLocalstorageForThisDomain(initialState, sampleTab)).toBe(false);
+      expect(
+        await clearLocalstorageForThisDomain(initialState, sampleTab),
+      ).toBe(false);
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(spyLib.throwErrorNotification).toBeCalledTimes(1);
       expect(spyLib.showNotification).toBeCalledTimes(1);
@@ -671,8 +766,7 @@ describe('CleanupService', () => {
   });
 
   describe('isSafeToClean()', () => {
-    const cleanupProperties: CleanupPropertiesInternal = {
-      // @ts-ignore
+    const cleanupProperties = {
       cachedResults: {
         dateTime: '',
         recentlyCleaned: 0,
@@ -680,7 +774,7 @@ describe('CleanupService', () => {
       greyCleanup: false,
       hostnamesDeleted: new Set(),
       ignoreOpenTabs: false,
-      openTabDomains: {'firefox-default': ['example.com', 'mozilla.org']},
+      openTabDomains: { 'firefox-default': ['example.com', 'mozilla.org'] },
       setOfDeletedDomainCookies: new Set(),
     };
 
@@ -763,10 +857,7 @@ describe('CleanupService', () => {
         ...sampleState,
         lists: {
           ...sampleState.lists,
-          default: [
-            ...sampleState.lists.default,
-            whiteListAllExceptTwitter,
-          ],
+          default: [...sampleState.lists.default, whiteListAllExceptTwitter],
         },
       };
 
@@ -972,8 +1063,8 @@ describe('CleanupService', () => {
         localstorageCleanup: {
           name: 'localstorageCleanup',
           value: true,
-        }
-      }
+        },
+      },
     };
     const chromeState = {
       ...localStorageState,
@@ -993,7 +1084,7 @@ describe('CleanupService', () => {
       when(global.browser.browsingData.removeLocalStorage)
         .calledWith(expect.any(Object))
         .mockResolvedValue(undefined as never);
-    })
+    });
 
     it('should remove localStorage given domains in Firefox', async () => {
       expect(await otherBrowsingDataCleanup(firefoxState, domains)).toBe(true);
@@ -1001,14 +1092,19 @@ describe('CleanupService', () => {
     });
 
     it('should not call browser.browsingData.removeLocalStorage if only domain(s) containing spaces/empty string are there (Firefox)', async () => {
-      expect(await otherBrowsingDataCleanup(firefoxState, [' ', ''])).toBe(false);
+      expect(await otherBrowsingDataCleanup(firefoxState, [' ', ''])).toBe(
+        false,
+      );
       expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(0);
     });
 
     it('rather extreme case:  a domain that consists of only a dot (.)', async () => {
       expect(await otherBrowsingDataCleanup(firefoxState, ['.'])).toBe(true);
       expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(1);
-      expect(global.browser.browsingData.removeLocalStorage.mock.calls[0][0].hostnames).toEqual(['.', 'www.', '.www.']);
+      expect(
+        global.browser.browsingData.removeLocalStorage.mock.calls[0][0]
+          .hostnames,
+      ).toEqual(['.', 'www.', '.www.']);
     });
 
     it('should remove localStorage given domains in Chrome', async () => {
@@ -1017,14 +1113,25 @@ describe('CleanupService', () => {
     });
 
     it('should not call browser.browsingData.removeLocalStorage if only domain(s) containing spaces/empty string are there (Chrome).', async () => {
-      expect(await otherBrowsingDataCleanup(chromeState, [' ', ''])).toBe(false);
+      expect(await otherBrowsingDataCleanup(chromeState, [' ', ''])).toBe(
+        false,
+      );
       expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(0);
     });
 
     it('rather extreme case:  a domain that consists of only a dot (.) (Chrome).', async () => {
       expect(await otherBrowsingDataCleanup(chromeState, ['.'])).toBe(true);
       expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(1);
-      expect(global.browser.browsingData.removeLocalStorage.mock.calls[0][0].origins).toEqual(['http://.', 'https://.', 'http://www.', 'https://www.', 'http://.www.', 'https://.www.']);
+      expect(
+        global.browser.browsingData.removeLocalStorage.mock.calls[0][0].origins,
+      ).toEqual([
+        'http://.',
+        'https://.',
+        'http://www.',
+        'https://www.',
+        'http://.www.',
+        'https://.www.',
+      ]);
     });
 
     it('should catch and throw an error thrown from removeLocalStorage in Firefox.', async () => {
@@ -1032,7 +1139,9 @@ describe('CleanupService', () => {
         .calledWith(expect.any(Object))
         .mockRejectedValue(new Error('error') as never);
 
-      await expect(otherBrowsingDataCleanup(firefoxState, domains)).rejects.toThrow();
+      await expect(
+        otherBrowsingDataCleanup(firefoxState, domains),
+      ).rejects.toThrow();
     });
 
     it('should catch and throw an error thrown from removeLocalStorage in Chrome.', async () => {
@@ -1040,7 +1149,9 @@ describe('CleanupService', () => {
         .calledWith(expect.any(Object))
         .mockRejectedValue(new Error('error') as never);
 
-      await expect(otherBrowsingDataCleanup(chromeState, domains)).rejects.toThrow();
+      await expect(
+        otherBrowsingDataCleanup(chromeState, domains),
+      ).rejects.toThrow();
     });
 
     it('should return false if localStorage cleaning is disabled', async () => {
@@ -1048,7 +1159,12 @@ describe('CleanupService', () => {
     });
 
     it('should return false if browserDetect is not Firefox or Chrome', async () => {
-      expect(await otherBrowsingDataCleanup({...chromeState, cache: {browserDetect: 'Unknown'}}, domains)).toBe(false);
+      expect(
+        await otherBrowsingDataCleanup(
+          { ...chromeState, cache: { browserDetect: 'Unknown' } },
+          domains,
+        ),
+      ).toBe(false);
     });
   });
 
@@ -1064,8 +1180,8 @@ describe('CleanupService', () => {
       const mockFileCookie = {
         ...mockCookie,
         domain: '',
-        path: '/folder/file.html'
-      }
+        path: '/folder/file.html',
+      };
 
       const result = prepareCookie(mockFileCookie);
       expect(spyLib.prepareCookieDomain).toHaveBeenCalledTimes(1);
@@ -1075,7 +1191,6 @@ describe('CleanupService', () => {
       expect(result.preparedCookieDomain).toBe('file:///folder/file.html');
       expect(result.hostname).toBe('file:///folder/file.html');
       expect(result.mainDomain).toBe('file:///folder/file.html');
-
     });
   });
 
@@ -1102,7 +1217,7 @@ describe('CleanupService', () => {
           },
           {
             cookieStoreId: 'firefox-container-1',
-            url: 'https://sub.domain.com'
+            url: 'https://sub.domain.com',
           },
           {
             cookieStoreId: 'firefox-container-1',
@@ -1117,26 +1232,26 @@ describe('CleanupService', () => {
             // Chrome Query doesn't have cookieStoreId
             incognito: true,
             url: 'https://incognitochrome.link',
-          }
+          },
         ] as never);
     });
 
     it('should return empty object if ignoreOpenTabs is true and cleanDiscardedTabs is false', () => {
-      return returnContainersOfOpenTabDomains(true,false).then(results => {
+      return returnContainersOfOpenTabDomains(true, false).then((results) => {
         expect(Object.keys(results).length).toEqual(0);
         return Promise.resolve();
       });
     });
 
     it('should return empty object if ignoreOpenTabs is true and cleanDiscardedTabs is true', () => {
-      return returnContainersOfOpenTabDomains(true,true).then(results => {
+      return returnContainersOfOpenTabDomains(true, true).then((results) => {
         expect(Object.keys(results).length).toEqual(0);
         return Promise.resolve();
       });
     });
 
     it('sort tab query result accordingly, cleanDiscardedTabs is false', () => {
-      return returnContainersOfOpenTabDomains(false, false).then(results => {
+      return returnContainersOfOpenTabDomains(false, false).then((results) => {
         expect(Object.keys(results).length).toBe(4);
 
         expect(results['firefox-default']).toHaveLength(3);
@@ -1153,32 +1268,41 @@ describe('CleanupService', () => {
 
         // Chrome Regular cookieStore.
         expect(results['0']).toHaveLength(1);
-        expect(results['0']).toEqual([
-          'chrome.link',
-        ]);
+        expect(results['0']).toEqual(['chrome.link']);
 
         // Chrome Incognito cookieStore.
         expect(results['1']).toHaveLength(1);
-        expect(results['1']).toEqual([
-          'incognitochrome.link',
-        ]);
+        expect(results['1']).toEqual(['incognitochrome.link']);
         return Promise.resolve();
       });
     });
 
     it('should not have youtube.com in any containers, cleanDiscardedTabs is false', () => {
-      return returnContainersOfOpenTabDomains(false, false).then(results => {
-        expect(results['firefox-default'] && results['firefox-default'].includes('youtube.com')).toBe(false);
-        expect(results['firefox-container-1'] && results['firefox-container-1'].includes('youtube.com')).toBe(false);
-        expect(results['0'] && results['0'].includes('youtube.com')).toBe(false);
-        expect(results['1'] && results['1'].includes('youtube.com')).toBe(false);
+      return returnContainersOfOpenTabDomains(false, false).then((results) => {
+        expect(
+          results['firefox-default'] &&
+            results['firefox-default'].includes('youtube.com'),
+        ).toBe(false);
+        expect(
+          results['firefox-container-1'] &&
+            results['firefox-container-1'].includes('youtube.com'),
+        ).toBe(false);
+        expect(results['0'] && results['0'].includes('youtube.com')).toBe(
+          false,
+        );
+        expect(results['1'] && results['1'].includes('youtube.com')).toBe(
+          false,
+        );
         return Promise.resolve();
       });
     });
 
     it('should not have discarded.net in firefox-container-1/Personal when cleanDiscardedTabs is true', () => {
-      return returnContainersOfOpenTabDomains(false, true).then(results => {
-        expect(results['firefox-container-1'] && results['firefox-container-1'].includes('discarded.net')).toBe(false);
+      return returnContainersOfOpenTabDomains(false, true).then((results) => {
+        expect(
+          results['firefox-container-1'] &&
+            results['firefox-container-1'].includes('discarded.net'),
+        ).toBe(false);
         return Promise.resolve();
       });
     });

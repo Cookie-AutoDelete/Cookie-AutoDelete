@@ -17,7 +17,6 @@ import shortid from 'shortid';
 /* --- CONSTANTS --- */
 export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
 
-
 /* --- FUNCTIONS --- */
 /**
  * Console Log Outputs - Mostly For Debugging
@@ -32,17 +31,19 @@ export const cadLog = (x: CADLogItem, output: boolean) => {
     console.info,
     // tslint:disable-next-line:no-console
     console.log,
-    console.warn
+    console.warn,
   ];
   const cTypes = ['debug', 'error', 'info', 'log', 'warn'];
   let type = (x.type || 'debug').toLowerCase();
   if (!cTypes.includes(type)) {
-    console.error(`${h} - Invalid Console Output Type given [ ${type} ].  Using [debug] instead.`);
+    console.error(
+      `${h} - Invalid Console Output Type given [ ${type} ].  Using [debug] instead.`,
+    );
     type = 'debug';
   }
   // Try to determine what type of object it is.
   const tx = typeof x.x;
-  let data: string = '';
+  let data = '';
   switch (tx) {
     case 'boolean':
     case 'number':
@@ -55,7 +56,9 @@ export const cadLog = (x: CADLogItem, output: boolean) => {
       data = JSON.stringify(x.x, null, 2);
       break;
     default:
-      console.warn(`${h} - Received unexpected typeof [ ${tx} ].  Attempting to display it...`);
+      console.warn(
+        `${h} - Received unexpected typeof [ ${tx} ].  Attempting to display it...`,
+      );
       data = x.x.toString();
       break;
   }
@@ -66,9 +69,7 @@ export const cadLog = (x: CADLogItem, output: boolean) => {
 /**
  * Create Partial Cookie info for debug
  */
-export const createPartialTabInfo = (
-  tab: Partial<browser.tabs.Tab>,
-) => {
+export const createPartialTabInfo = (tab: Partial<browser.tabs.Tab>) => {
   return {
     cookieStoreId: tab.cookieStoreId,
     discarded: tab.discarded,
@@ -77,15 +78,15 @@ export const createPartialTabInfo = (
     status: tab.status,
     url: tab.url,
     windowId: tab.windowId,
-  }
-}
+  };
+};
 
 /**
  * Converts a version string to a number
  */
 export const convertVersionToNumber = (version?: string) => {
   if (!version) return -1;
-  return parseInt(version.replace(/[\.]/g, ''), 10);
+  return parseInt(version.replace(/[.]/g, ''), 10);
 };
 
 /**
@@ -96,11 +97,25 @@ export const convertVersionToNumber = (version?: string) => {
 export const extractMainDomain = (domain: string) => {
   if (domain === '') return '';
   // return itself if it is a local html file or IP Address.
-  if (domain.startsWith('file://') || ipRegex({exact: true, includeBoundaries: true}).test(domain)) return domain;
+  if (
+    domain.startsWith('file://') ||
+    ipRegex({ exact: true, includeBoundaries: true }).test(domain)
+  )
+    return domain;
 
   // https://en.wikipedia.org/wiki/Second-level_domain
   const secondLvlDomains = [
-    'biz', 'com', 'edu', 'gov', 'ltd', 'mod', 'net', 'org', 'police', 'school'];
+    'biz',
+    'com',
+    'edu',
+    'gov',
+    'ltd',
+    'mod',
+    'net',
+    'org',
+    'police',
+    'school',
+  ];
 
   // Delete a '.' if domain contains it at the end
   const eDot = domain.endsWith('.');
@@ -112,9 +127,9 @@ export const extractMainDomain = (domain: string) => {
   // Check for country top level domain
   if (
     length > 2 &&
-    ( secondLevel.length === 2 ||
-      secondLvlDomains.includes(secondLevel) &&
-    partsOfDomain[length - 1].length === 2)
+    (secondLevel.length === 2 ||
+      (secondLvlDomains.includes(secondLevel) &&
+        partsOfDomain[length - 1].length === 2))
   ) {
     return `${partsOfDomain.slice(length - 3).join('.')}${eDot ? '.' : ''}`;
   }
@@ -213,7 +228,7 @@ export const isAnIP = (url: string | undefined) => {
     return false;
   }
   const hostname = getHostname(url);
-  return ipRegex({exact: true, includeBoundaries: true}).test(hostname);
+  return ipRegex({ exact: true, includeBoundaries: true }).test(hostname);
 };
 
 /**
@@ -234,16 +249,19 @@ export const isAWebpage = (URL: string | undefined) => {
  * Workaround for not needing Firefox 'Privacy' permission.
  */
 export const isFirstPartyIsolate = async () => {
-  return browser.cookies.getAll({
-    domain: '',
-  }).then((r) => {
-    // No error = most likely not enabled.
-    return Promise.resolve(false);
-  }).catch((e) => {
-    // Error usually if firstPartyIsolate is enabled as it requires firstPartyDomain Property.
-    return Promise.resolve(e.message.indexOf('firstPartyDomain') !== -1);
-  });
-}
+  return browser.cookies
+    .getAll({
+      domain: '',
+    })
+    .then((r) => {
+      // No error = most likely not enabled.
+      return Promise.resolve(false);
+    })
+    .catch((e) => {
+      // Error usually if firstPartyIsolate is enabled as it requires firstPartyDomain Property.
+      return Promise.resolve(e.message.indexOf('firstPartyDomain') !== -1);
+    });
+};
 
 /*
  * Checks if the hostname given is a local file
@@ -260,9 +278,15 @@ export const localFileToRegex = (hostname: string) => {
 /**
  * Parse cookieStoreId for use in addExpressionUI...
  */
-export const parseCookieStoreId = (contextualIdentities: boolean, cookieStoreId: string | undefined) => {
-  return (!contextualIdentities || (cookieStoreId && cookieStoreId === 'firefox-default')) ? 'default' : cookieStoreId || 'default';
-}
+export const parseCookieStoreId = (
+  contextualIdentities: boolean,
+  cookieStoreId: string | undefined,
+) => {
+  return !contextualIdentities ||
+    (cookieStoreId && cookieStoreId === 'firefox-default')
+    ? 'default'
+    : cookieStoreId || 'default';
+};
 
 /**
  * Prepare Domains for all cleanups.
@@ -278,12 +302,12 @@ export const prepareCleanupDomains = (domain: string) => {
     d = d.slice(1);
   }
   // at this point it should be all unison - sub.doma.in(.)
-  domains.add(d);        // sub.doma.in
-  domains.add(`.${d}`);  // .sub.doma.in
+  domains.add(d); // sub.doma.in
+  domains.add(`.${d}`); // .sub.doma.in
 
-  if (! www.test(d)) {
-    domains.add(`www.${d}`);   // www.sub.doma.in
-    domains.add(`.www.${d}`);  // .www.sub.doma.in
+  if (!www.test(d)) {
+    domains.add(`www.${d}`); // www.sub.doma.in
+    domains.add(`.www.${d}`); // .www.sub.doma.in
   }
 
   return Array.from(domains) as string[];
@@ -305,7 +329,9 @@ export const prepareCookieDomain = (cookie: browser.cookies.Cookie) => {
 
   const sDot = cookieDomain.startsWith('.') ? 1 : 0;
 
-  return `http${cookie.secure ? 's' : ''}://${cookieDomain.slice(sDot)}${cookie.path}`;
+  return `http${cookie.secure ? 's' : ''}://${cookieDomain.slice(sDot)}${
+    cookie.path
+  }`;
 };
 
 /**
@@ -318,7 +344,7 @@ export const returnMatchedExpressionObject = (
 ) => {
   const storeId = getStoreId(state, cookieStoreId);
   const expressionList = state.lists[storeId] || [];
-  return expressionList.find(expression =>
+  return expressionList.find((expression) =>
     new RegExp(globExpressionToRegExp(expression.expression)).test(hostname),
   );
 };
@@ -347,12 +373,7 @@ export const returnOptionalCookieAPIAttributes = (
       firstPartyDomain: null,
     };
   }
-  if (
-    !(
-      state.cache.browserDetect === 'Firefox' &&
-      firstPartyIsolate
-    )
-  ) {
+  if (!(state.cache.browserDetect === 'Firefox' && firstPartyIsolate)) {
     const { firstPartyDomain, ...rest } = cookieAPIAttributes;
     return rest;
   }
@@ -363,15 +384,17 @@ export const returnOptionalCookieAPIAttributes = (
  * Show a notification
  */
 export const showNotification = (x: {
-  duration: number,
-  msg: string,
-  title?: string,
+  duration: number;
+  msg: string;
+  title?: string;
 }) => {
   const sid = `manual-${shortid.generate()}`;
   browser.notifications.create(sid, {
     iconUrl: browser.runtime.getURL('icons/icon_48.png'),
     message: x.msg,
-    title: `CAD ${browser.runtime.getManifest().version} - ${x.title ? x.title : browser.i18n.getMessage('manualActionNotification')}`,
+    title: `CAD ${browser.runtime.getManifest().version} - ${
+      x.title ? x.title : browser.i18n.getMessage('manualActionNotification')
+    }`,
     type: 'basic',
   });
   setTimeout(() => {
@@ -385,7 +408,9 @@ export const showNotification = (x: {
  * Ensures we don't go over max signed 32-bit Int of 2,147,483,647
  */
 export const sleep = (ms: number) => {
-  return new Promise(r => setTimeout(r, (ms < 250 ? 250 : (ms > 2147483500 ? 2147483500 : ms))));
+  return new Promise((r) =>
+    setTimeout(r, ms < 250 ? 250 : ms > 2147483500 ? 2147483500 : ms),
+  );
 };
 
 /**
@@ -403,8 +428,7 @@ export const throwErrorNotification = (e: Error) => {
 /**
  * Trim leading and ending dot of a string
  */
-export const trimDot = (str: string) => str.replace(/^[\.]+|[\.]+$/g, '');
-
+export const trimDot = (str: string) => str.replace(/^[.]+|[.]+$/g, '');
 
 /**
  * Opposite of a falsey check for undefined
