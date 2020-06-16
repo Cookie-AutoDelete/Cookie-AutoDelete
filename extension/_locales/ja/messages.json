@@ -217,6 +217,10 @@
 		"message": "クリーンアップのログとカウンターを有効にします。",
 		"description": "Enable Cleanup Log and Counter"
 	},
+	"enableContextMenus": {
+		"message": "コンテキストメニュー（右クリックメニュー）を有効にする",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+	},
 	"enableGlobalSubdomainText": {
 		"message": "サブドメインのチェックを有効にする",
 		"description": "Enable Check for Subdomains"
