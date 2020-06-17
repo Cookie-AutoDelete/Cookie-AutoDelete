@@ -28,8 +28,6 @@ console.log("Current Root Directory is:  %s", ROOTDIR);
 
 console.log("GITHUB_REF:         %s", process.env.GITHUB_REF);
 console.log("TRAVIS_TAG:         %s", process.env.TRAVIS_TAG);
-console.log("GITHUB_ACTIONS:     %s", process.env.GITHUB_ACTIONS);
-console.log("GITHUB_EVENT_NAME:  %s", process.env.GITHUB_EVENT_NAME);
 
 let versionTag = process.env.GITHUB_REF || process.env.TRAVIS_TAG || '';
 
