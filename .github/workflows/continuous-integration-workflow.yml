@@ -25,8 +25,8 @@ jobs:
           RES=$([[ "$GITHUB_EVENT_NAME" == "pull_request" ]] && echo true || echo false)
           echo "Is PR     :  $RES"
           echo "::set-output name=result::$RES"
-          echo "${{ toJson(runner) }}"
-          printenv
+          echo "${{ toJson(github) }}"
+          env
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
