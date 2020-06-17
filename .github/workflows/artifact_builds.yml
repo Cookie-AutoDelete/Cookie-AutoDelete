@@ -13,8 +13,9 @@ jobs:
       - name: isLocal
         id: isLocal
         run: |
-          echo "${{ toJSON(github.event.pull_request.head.repo) }}"
-          echo "${{ toJSON(github.repository) }}"
+          echo "${{ github.event.pull_request.head.repo.full_name }}"
+          echo "${{ github.repository }}"
+          exit ${{ github.event.pull_request.head.repo.full_name }} == ${{ github.repository }}
   all_jobs:
     name: Tests
     runs-on: ubuntu-latest
