@@ -12,7 +12,7 @@ jobs:
       - name: Check if valid PR
         env:
           GH_GH: ${{ toJson(github) }}
-          GH_TYPE: ${{ toJson(github.event.issue.pull_request) }}
+          GH_TYPE: ${{ github.event.issue.pull_request != null }}
         run: |
           echo "Event Name  :  $GITHUB_EVENT_NAME"
           echo "Issue / PR #:  ${{ github.event.issue.number }}"
