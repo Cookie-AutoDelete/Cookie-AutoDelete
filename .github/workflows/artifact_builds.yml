@@ -6,41 +6,21 @@ on:
       - '_archived__**'
 
 jobs:
-  local_test:
-    name: Local Repo Check
-    runs-on: ubuntu-latest
-    outputs:
-      result: ${{ steps.isLocal.outputs.result }}
-    steps:
-      - name: isLocal
-        id: isLocal
-        run: |
-          if [[ "${{ github.event.pull_request.head.repo.full_name }}" == "${{ github.repository }}" ]]; then
-            echo "::set-output name=result::0"
-          else
-            echo "::set-output name=result::1"
-          fi
   all_jobs:
-    name: Tests
+    name: Tests and Builds
     runs-on: ubuntu-latest
     needs: local_test
-    if: needs.local_test_outputs.result == 0
+    if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
-      - name: Environments
-        run: printenv
       - name: GitHub Environments
         run: printenv | grep "GITHUB_"
       - name: More Tests
+        env:
+          GH_JOBS: ${{ toJson(job) }}
         run: |
-          echo " ${{ toJSON(github.event) }}"
-          echo ${{ github.workflow }}
-          echo ${{ github.job }}
-          echo ${{ github.run_id }}
-          echo ${{ github.run_number }}
-          echo ${{ github.event_name }}
-          echo ${{ github.sha }}
-          echo ${{ github.ref }}
-          echo ${{ github.head_ref }}
-          echo ${{ github.base_ref }}
-          echo ${{ github.action }}
-          echo "${{ toJSON(job) }}"
+          echo "${{ toJSON(github.event) }}"
+          echo "github.job: ${{ github.job }}"
+          echo "github.run_id${{ github.run_id }}"
+          echo "This is Pull Request Number: ${{ github.event.number }}"
+          echo "$GH_JOBS"
+
