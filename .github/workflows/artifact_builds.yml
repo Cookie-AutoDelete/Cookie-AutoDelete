@@ -26,9 +26,10 @@ jobs:
         run: printenv | grep "GITHUB_"
       - name: More Tests
         env:
+          GH_GH: ${{ toJson(github) }}
           GH_JOBS: ${{ toJson(job) }}
         run: |
-          echo "${{ toJSON(github.event) }}"
+          echo "$GH_GH"
           echo "github.job: ${{ github.job }}"
           echo "github.run_id${{ github.run_id }}"
           echo "This is Pull Request Number: ${{ github.event.number }}"
