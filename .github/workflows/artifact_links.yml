@@ -9,12 +9,12 @@ jobs:
     name: Pre-Check
     runs-on: ubuntu-latest
     steps:
-      name: Check if valid PR
-      env:
-        GH_GH: ${{ toJson(github) }}
-      run: |
-        echo "Event Name:  $GITHUB_EVENT_NAME"
-        echo "Pull Request #:  ${{ github.event.number }}"
-        echo "Repository:  ${{ github.repository }}"
-        echo "Full Object:"
-        echo "$GH_GH"
+      - name: Check if valid PR
+        env:
+          GH_GH: ${{ toJson(github) }}
+        run: |
+          echo "Event Name:  $GITHUB_EVENT_NAME"
+          echo "Pull Request #:  ${{ github.event.number }}"
+          echo "Repository:  ${{ github.repository }}"
+          echo "Full Object:"
+          echo "$GH_GH"
