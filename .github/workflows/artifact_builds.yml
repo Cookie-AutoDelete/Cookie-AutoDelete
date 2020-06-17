@@ -27,6 +27,8 @@ jobs:
       - name: More Tests
         env:
           GH_GH: ${{ toJson(github) }}
+          GH_API: ${{ github.event.pull_request.base.repo.url }}
         run: |
           echo "$GH_GH"
+          echo "$GH_API"
 
