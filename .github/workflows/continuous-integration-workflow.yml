@@ -11,14 +11,17 @@ on:
       - '**/README.md'
 
 jobs:
-  testtest:
+  info:
     name: Info
     runs-on: ubuntu-latest
     steps:
       - name: Info
         env:
-          GH_GH: ${{ toJson(github) }}
-        run: echo "$GH_GH"
+          GH_API: ${{ github.event.pull_request.base.repo.url }}
+        run: |
+          echo "$GITHUB_RUN_ID"
+          echo "$GH_API"
+          echo "$GH_API/actions/runs/$GITHUB_RUN_ID/artifacts"
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
@@ -76,9 +79,9 @@ jobs:
         if: ("${{github.event_name}}" == "pull_request" )
         uses: thollander/actions-comment-pull-request@master
         with:
-          message: 'Test from: ${{ github.head_ref }} to: ${{ github.base_ref }}.
-            \n\n
-            Last commit:  ${{ github.event.after }} temp merge with base with SHA: ${{ github.sha }}.'
+          message: 'Automated Dev Build with commit: ${{ github.event.after }} merged base with SHA: ${{ github.sha }}
+          will be made available soon.  Comment with `!cad-dev-download` to generate download links.
+          These links will expire within a minute of generation.'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
