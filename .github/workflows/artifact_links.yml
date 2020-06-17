@@ -12,10 +12,13 @@ jobs:
       - name: Check if valid PR
         env:
           GH_GH: ${{ toJson(github) }}
+          GH_TYPE: ${{ toJson(github.event.issue.pull_request) }}
         run: |
-          echo "Event Name:  $GITHUB_EVENT_NAME"
-          echo "Pull Request #:  ${{ github.event.number }}"
-          echo "Repository:  ${{ github.repository }}"
+          echo "Event Name  :  $GITHUB_EVENT_NAME"
+          echo "Issue / PR #:  ${{ github.event.issue.number }}"
+          echo "Type        :  $GH_TYPE"
+          echo "Repository  :  ${{ github.repository }}"
+          echo "API URL     :  ${{ github.event.repository.url }}"
           echo "Full Object:"
           echo "$GH_GH"
           echo "https://api.github.com/.../artifacts"
