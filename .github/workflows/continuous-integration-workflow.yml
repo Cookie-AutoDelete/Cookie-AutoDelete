@@ -11,10 +11,27 @@ on:
       - '**/README.md'
 
 jobs:
+  pre_info:
+    name: Pre-Check
+    runs-on: ubuntu-latest
+    outputs:
+      isPR: ${{ steps.isPR.outputs.result }}
+    steps:
+      - name: GitHub Info
+        id: isPR
+        run: |
+          echo "Run ID    : $GITHUB_RUN_ID"
+          echo "Event Name: $GITHUB_EVENT_NAME"
+          echo "isPR1:  ${{ github.event_name == "pull_request" }}
+          echo "isPR2:  $([[ "$GITHUB_EVENT_NAME" == "pull_request" ]] && echo true || echo false)"
+          echo "::set-output name=result::foo"
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
+    needs: pre_info
     steps:
+      - name: Results from Pre-Check
+        run: echo ${{ needs.pre_info.outputs.isPr }}
       - name: Checkout Commit
         uses: actions/checkout@v2
       - name: Use Node.js 14.x
@@ -37,13 +54,28 @@ jobs:
         run: npm run lint
       - name: Run Build
         run: npm run build
-        env:
-          CI: true
-      - name: Archive Production Build Artifacts
+      - name: Archive unsigned Build Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: builds
           path: builds
+      - name: Extract zip builds for individual artifact upload
+        id: extbuilds
+        run: |
+          for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
+          echo "::set-output name=ffdir::$(ls -d *Firefox)"
+          echo "::set-output name=crdir::$(ls -d *Chrome)"
+        working-directory: ./builds
+      - name: Upload Artifact for Mozilla Firefox Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.extbuilds.outputs.ffdir }}
+          path: builds/${{ steps.extbuilds.outputs.ffdir }}
+      - name: Upload Artifact for Google Chrome Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.extbuilds.outputs.crdir }}
+          path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
         with:
