@@ -27,9 +27,6 @@ jobs:
       - name: More Tests
         env:
           GH_GH: ${{ toJson(github) }}
-          GH_JOBS: ${{ toJson(job) }}
         run: |
           echo "$GH_GH"
-          echo "github.job: ${{ github.job }}"
-          echo "$GH_JOBS"
 

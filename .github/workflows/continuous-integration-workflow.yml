@@ -36,7 +36,7 @@ jobs:
       - name: Run Lint
         run: npm run lint
       - name: Run Build
-        if: ${{ success() && github.event_name == "pull_request" }}
+        if: success() && ( github.event_name == "pull_request" )
         run: npm run build
       - name: Archive All unsigned Build Artifacts
         if: ${{ success() && github.event_name == "pull_request" }}
