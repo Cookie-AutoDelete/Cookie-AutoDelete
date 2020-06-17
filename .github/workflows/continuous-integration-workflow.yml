@@ -25,6 +25,7 @@ jobs:
           RES=$([[ "$GITHUB_EVENT_NAME" == "pull_request" ]] && echo true || echo false)
           echo "Is PR     :  $RES"
           echo "::set-output name=result::$RES"
+          echo "${{ toJson(runner) }}"
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
@@ -68,13 +69,13 @@ jobs:
           echo "::set-output name=crdir::$(ls -d *Chrome)"
         working-directory: ./builds
       - name: Upload Artifact for Mozilla Firefox Build
-        if: needs.pre_info.outputs.isPr == true
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.ffdir }}
           path: builds/${{ steps.extbuilds.outputs.ffdir }}
       - name: Upload Artifact for Google Chrome Build
-        if: needs.pre_info.outputs.isPr == true
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
