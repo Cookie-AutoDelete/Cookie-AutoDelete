@@ -94,7 +94,7 @@ jobs:
         if: ("${{github.event_name}}" == "pull_request" )
         uses: thollander/actions-comment-pull-request@master
         with:
-          message: 'Automated Dev Build with commit: ${{ github.event.after }} merged base with SHA: ${{ github.sha }}
-        will be made available soon.  Comment with `!cad-dev-download` to generate download links.
+          message: 'Automated Dev Build with commit: ${{ github.event.after }} after merging base with SHA: ${{ github.sha }}
+        will be made available soon.<br />Comment with `!cad-dev-download` to generate download links.
         These links will expire within a minute of generation.'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
