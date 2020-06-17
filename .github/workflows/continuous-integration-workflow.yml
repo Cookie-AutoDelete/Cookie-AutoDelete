@@ -22,9 +22,10 @@ jobs:
         run: |
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
-          echo "isPR1:  ${{ github.event_name }} == 'pull_request'
+          echo "isPR1:  ${{ github.event_name }} == 'pull_request'"
+          RES=$([[ "$GITHUB_EVENT_NAME" == "pull_request" ]] && echo true || echo false)
           echo "isPR2:  $([[ "$GITHUB_EVENT_NAME" == "pull_request" ]] && echo true || echo false)"
-          echo "::set-output name=result::foo"
+          echo "::set-output name=result::$RES"
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
