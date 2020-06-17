@@ -31,4 +31,5 @@ jobs:
         run: |
           echo "$GH_GH"
           echo "$GH_API"
+          echo "$GH_API" + "/actions/runs/" + "$GITHUB_RUN_ID"
 
