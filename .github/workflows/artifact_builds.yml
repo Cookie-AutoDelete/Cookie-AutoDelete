@@ -1,9 +1,8 @@
 name: Unsigned Test Build Artifact Links
 
 on:
-  pull_request:
-    branches-ignore:
-      - '_archived__**'
+  issue_comment:
+    types: [created, edited]
 
 jobs:
   local_test:
@@ -16,11 +15,11 @@ jobs:
           echo "Last Commit:    ${{github.event.after}}"
           echo "Head Repo Name: ${{github.event.pull_request.head.repo.full_name}}"
           echo "Repository:     ${{github.repository}}"
+          echo "${{ github.event.pull_request.head.repo.full_name }} == ${{ github.repository }}"
   all_jobs:
     name: Tests and Builds
     runs-on: ubuntu-latest
     needs: local_test
-    if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: GitHub Environments
         run: printenv | grep "GITHUB_"

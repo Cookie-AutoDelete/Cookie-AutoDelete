@@ -75,14 +75,6 @@ jobs:
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
-      - name: Create PR Comment
-        if: ("${{github.event_name}}" == "pull_request" )
-        uses: thollander/actions-comment-pull-request@master
-        with:
-          message: 'Automated Dev Build with commit: ${{ github.event.after }} merged base with SHA: ${{ github.sha }}
-          will be made available soon.  Comment with `!cad-dev-download` to generate download links.
-          These links will expire within a minute of generation.'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
         with:
@@ -98,3 +90,11 @@ jobs:
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create PR Comment
+        if: ("${{github.event_name}}" == "pull_request" )
+        uses: thollander/actions-comment-pull-request@master
+        with:
+          message: 'Automated Dev Build with commit: ${{ github.event.after }} merged base with SHA: ${{ github.sha }}
+        will be made available soon.  Comment with `!cad-dev-download` to generate download links.
+        These links will expire within a minute of generation.'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
