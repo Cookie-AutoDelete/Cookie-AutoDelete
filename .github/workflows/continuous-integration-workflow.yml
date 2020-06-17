@@ -44,16 +44,16 @@ jobs:
       - name: Run Lint
         run: npm run lint
       - name: Run Build
-        if: success() && ("${{github.event_name}}" == "pull_request" )
+        if: (success() && ("${{github.event_name}}" == "pull_request" ))
         run: npm run build
       - name: Archive All unsigned Build Artifacts
-        if: success() && ("${{github.event_name}}" == "pull_request" )
+        if: (success() && ("${{github.event_name}}" == "pull_request" ))
         uses: actions/upload-artifact@v2
         with:
           name: builds
           path: builds
       - name: Extract zip builds for individual artifact upload and usage.
-        if: success() && ("${{github.event_name}}" == "pull_request" )
+        if: (success() && ("${{github.event_name}}" == "pull_request" ))
         id: extbuilds
         run: |
           for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
@@ -61,19 +61,19 @@ jobs:
           echo "::set-output name=crdir::$(ls -d *Chrome)"
         working-directory: ./builds
       - name: Artifact for Mozilla Firefox build
-        if: success() && ("${{github.event_name}}" == "pull_request" )
+        if: (success() && ("${{github.event_name}}" == "pull_request" ))
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.ffdir }}
           path: builds/${{ steps.extbuilds.outputs.ffdir }}
       - name: Artifact for Google Chrome build
-        if: success() && ("${{github.event_name}}" == "pull_request" )
+        if: (success() && ("${{github.event_name}}" == "pull_request" ))
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: Create PR Comment
-        if: success() && ("${{github.event_name}}" == "pull_request" )
+        if: (success() && ("${{github.event_name}}" == "pull_request" ))
         uses: thollander/actions-comment-pull-request@master
         with:
           message: 'Test from: ${{ github.head_ref }} to: ${{ github.base_ref }}.
