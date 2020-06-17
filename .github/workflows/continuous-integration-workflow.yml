@@ -60,7 +60,7 @@ jobs:
           name: builds
           path: builds
       - name: Extract zip builds for individual artifact upload
-        if: needs.pre_info.outputs.isPr == true
+        if: github.event_name == 'pull_request'
         id: extbuilds
         run: |
           for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
