@@ -14,18 +14,27 @@ jobs:
   info:
     name: Info
     runs-on: ubuntu-latest
+    outputs:
+      isPR: ${{ steps.isPR.outputs.result }}
     steps:
       - name: Info
+        id: isPR
         env:
           GH_API: ${{ github.event.pull_request.base.repo.url }}
         run: |
           echo "$GITHUB_RUN_ID"
           echo "$GH_API"
           echo "$GH_API/actions/runs/$GITHUB_RUN_ID/artifacts"
+          echo "$GITHUB_EVENT_NAME"
+          echo [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]
+          echo "::set-output result::[[ "$GITHUB_EVENT_NAME" == "pull_request" ]]"
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
+    needs: info
     steps:
+      - name: Result from info
+        run: echo ${{needs.info.outputs.isPR}}
       - name: Checkout Commit
         uses: actions/checkout@v2
       - name: Use Node.js 14.x
