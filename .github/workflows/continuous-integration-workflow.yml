@@ -14,9 +14,11 @@ jobs:
   testtest:
     name: Info
     runs-on: ubuntu-latest
-    env:
-      GH_GH: ${{ toJson(github) }}
-    run: echo "$GH_GH"
+    steps:
+      - name: Info
+        env:
+          GH_GH: ${{ toJson(github) }}
+        run: echo "$GH_GH"
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
