@@ -4,13 +4,21 @@ on:
   pull_request:
     branches-ignore:
       - '_archived__**'
-  check_suite:
-    types: ['completed']
 
 jobs:
+  local_test:
+    name: Execute if non-fork repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: isLocal
+        id: isLocal
+        run: |
+          echo "${{ toJSON(github.event.pull_request.head.repo) }}"
+          echo "${{ toJSON(github.repository) }}"
   all_jobs:
     name: Tests
     runs-on: ubuntu-latest
+    needs: local_test
     steps:
       - name: Environments
         run: printenv
@@ -18,7 +26,7 @@ jobs:
         run: printenv | grep "GITHUB_"
       - name: More Tests
         run: |
-          echo -e ${{ toJSON(github.event) }}
+          echo " ${{ toJSON(github.event) }}"
           echo ${{ github.workflow }}
           echo ${{ github.job }}
           echo ${{ github.run_id }}
