@@ -18,3 +18,4 @@ jobs:
           echo "Repository:  ${{ github.repository }}"
           echo "Full Object:"
           echo "$GH_GH"
+          echo "https://api.github.com/.../artifacts"
