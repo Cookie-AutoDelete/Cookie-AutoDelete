@@ -23,7 +23,7 @@ jobs:
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
           RES=$([[ "$GITHUB_EVENT_NAME" == "pull_request" ]] && echo true || echo false)
-          echo "Is PR:  $RES"
+          echo "Is PR     :  $RES"
           echo "::set-output name=result::$RES"
   all_jobs:
     name: Tests, Builds, Coverage
@@ -60,7 +60,7 @@ jobs:
           name: builds
           path: builds
       - name: Extract zip builds for individual artifact upload
-        if: needs.pre_info.outputs.isPr
+        if: needs.pre_info.outputs.isPr == true
         id: extbuilds
         run: |
           for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
@@ -68,13 +68,13 @@ jobs:
           echo "::set-output name=crdir::$(ls -d *Chrome)"
         working-directory: ./builds
       - name: Upload Artifact for Mozilla Firefox Build
-        if: needs.pre_info.outputs.isPr
+        if: needs.pre_info.outputs.isPr == true
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.ffdir }}
           path: builds/${{ steps.extbuilds.outputs.ffdir }}
       - name: Upload Artifact for Google Chrome Build
-        if: needs.pre_info.outputs.isPr
+        if: needs.pre_info.outputs.isPr == true
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
