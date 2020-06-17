@@ -15,7 +15,7 @@ jobs:
           echo "Pull Request #: ${{ github.event.number }}"
           echo "Last Commit:    ${{github.event.after}}"
           echo "Head Repo Name: ${{github.event.pull_request.head.repo.full_name}}"
-          echo "Repository:     ${{github.repository}}
+          echo "Repository:     ${{github.repository}}"
   all_jobs:
     name: Tests and Builds
     runs-on: ubuntu-latest
