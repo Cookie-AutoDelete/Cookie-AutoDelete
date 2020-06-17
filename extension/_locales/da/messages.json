@@ -217,6 +217,10 @@
 		"message": "Aktiver sletningslog og tæller",
 		"description": "Enable Cleanup Log and Counter"
 	},
+	"enableContextMenus": {
+		"message": "Aktiver kontekstmenuer (højrekliksmenu)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+	},
 	"enableGlobalSubdomainText": {
 		"message": "Aktiver tjek for underdomæner",
 		"description": "Enable Check for Subdomains"
