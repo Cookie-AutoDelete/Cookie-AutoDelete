@@ -31,7 +31,5 @@ jobs:
         run: |
           echo "$GH_GH"
           echo "github.job: ${{ github.job }}"
-          echo "github.run_id${{ github.run_id }}"
-          echo "This is Pull Request Number: ${{ github.event.number }}"
           echo "$GH_JOBS"
 
