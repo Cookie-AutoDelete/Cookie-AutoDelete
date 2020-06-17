@@ -26,6 +26,7 @@ jobs:
           echo "Is PR     :  $RES"
           echo "::set-output name=result::$RES"
           echo "${{ toJson(runner) }}"
+          printenv
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
