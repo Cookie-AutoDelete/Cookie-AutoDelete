@@ -117,6 +117,42 @@
 		"message": "Menu Tambah Domain/Ekspresi",
 		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
 	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Hanya untuk domain dari tautan yang dipilih",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Hanya untuk domain dari halaman yang dipilih",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Hanya untuk domain dari teks yang dipilih: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Untuk subdomain dengan domain dari tautan yang dipilih",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Untuk subdomain dengan domain dari halaman yang dipilih",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Untuk subdomain dengan domain dari teks yang dipilih: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktifkan Dukungan untuk Tab Container Firefox",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -180,6 +216,10 @@
 	"enableCleanupLogText": {
 		"message": "Aktifkan Penghitung dan Catatan Penghapusan",
 		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableContextMenus": {
+		"message": "Aktifkan Menu Konteks (Menu Klik-Kanan)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
 	},
 	"enableGlobalSubdomainText": {
 		"message": "Aktifkan Pengecekan Subdomain",
@@ -311,6 +351,20 @@
 			}
 		}
 	},
+	"manualCleanNothing": {
+		"message": "Tidak ada $cleanType$ yang ditemukan untuk dihapus pada $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
 	"manualCleanRemoved": {
 		"message": "Menghapus $deleted$ dari $total$.",
 		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
@@ -322,6 +376,20 @@
 			"total": {
 				"content": "$2",
 				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Menghapus $cleanType$ pada $url$ hasilnya:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
 			}
 		}
 	},
@@ -525,6 +593,20 @@
 		"message": "Buang ekspresi",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "Menghapus $count$ item dari $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Laporkan masalah dan sarankan fitur",
 		"description": "Report issues and suggest features"
@@ -554,6 +636,10 @@
 	"secondsText": {
 		"message": "Detik",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "Penyimpanan Sesi",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Opsi Hapus Otomatis",
