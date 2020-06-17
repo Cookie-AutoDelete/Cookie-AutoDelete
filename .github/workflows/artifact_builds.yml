@@ -15,7 +15,7 @@ jobs:
       - name: isLocal
         id: isLocal
         run: |
-          if [[ "${{ github.event.pull_request.head.repo.full_name }}" === "${{ github.repository }}" ]]; then
+          if [[ "${{ github.event.pull_request.head.repo.full_name }}" == "${{ github.repository }}" ]]; then
             echo "::set-output name=result::0"
           else
             echo "::set-output name=result::1"
