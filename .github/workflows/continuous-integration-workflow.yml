@@ -15,10 +15,10 @@ jobs:
     name: Pre-Check
     runs-on: ubuntu-latest
     outputs:
-      isPR: ${{ steps.isPR.outputs.result }}
+      isPR: ${{ steps.ginfo.outputs.result }}
     steps:
       - name: GitHub Info
-        id: isPR
+        id: ginfo
         run: |
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
