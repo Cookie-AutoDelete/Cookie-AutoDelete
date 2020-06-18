@@ -29,15 +29,13 @@ jobs:
             EC=$?
             if [[ $EC != 0 ]]; then
               echo "Curl was not successful - returned $EC"
-              echo ::set-output name=result::"FAILED"
-              echo ::set-output name=message::"Internal Error / Could not fetch info from GitHub API at this time."
-              exit $EC
+              echo "::set-output name=result::FAILED"
+              echo "::set-output name=message::Internal Error / Could not fetch info from GitHub API at this time.  Curl returned error $EC."
             fi
             if [[ $(cat curl_latest.json | jq --raw-output '.total_count') -eq 0 ]]; then
               echo "No successful PR runs were made from branch $GH_BRANCH yet."
-              echo ::set-output name=result::"FAILED"
-              echo ::set-output name=message::"No Successful PR Runs were made from branch $GH_BRANCH yet."
-              exit 1
+              echo "::set-output name=result::FAILED"
+              echo "::set-output name=message::No Successful PR Runs were made from branch $GH_BRANCH yet."
             fi
             GH_RUNID=$(cat curl_latest.json | jq --raw-output '.workflow_runs[0].id')
             echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
