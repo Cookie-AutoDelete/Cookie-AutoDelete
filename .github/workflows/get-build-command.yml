@@ -16,8 +16,10 @@ jobs:
       - name: Generate Artifact URL
         env:
           GH_API: ${{ github.event.client_payload.github.payload.repository.url }}
+          GH_RUNID: ${{ github.event.client_payload.slash_command.arg1 }}
         run: |
-          echo "Artifact URL:  $GH_API"
+          echo "Run ID from Arg1:  $GH_RUNID"
+          echo "Artifact URL:  $GH_API/actions/runs/$GH_RUNID/artifacts"
       - name: Create comment in PR
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
