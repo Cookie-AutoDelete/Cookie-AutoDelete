@@ -14,3 +14,12 @@ jobs:
         run: |
           printenv
           echo "$GH_GH"
+      - name: Create comment in PR
+        uses: peter-evans/create-or-update-comment@v1.4.2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            Get-build command was executed.  See Action Workflow logs for output.
+          reactions: hooray
