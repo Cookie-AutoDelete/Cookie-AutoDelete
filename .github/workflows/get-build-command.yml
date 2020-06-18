@@ -22,34 +22,47 @@ jobs:
         run: |
           API_RUNS="$GH_API/actions/runs"
           echo "Run ID from Arg1:  $GH_RUNID"
+          echo "curl -s $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH"
+          curl -s $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH > curl_latest.json
+          RUNS=$(cat curl_latest.json | jq --raw-output '[.workflow_runs[].id]')
+          if [[ -n $GH_RUNID ]]; then
+            if [[ ! " ${RUNS[@]} " =~ " ${GH_RUNID} " ]]; then
+              echo "Run ID $GH_RUNID not in list of successful runs for that branch"
+              echo $RUNS
+              echo "::set-output name=result::FAILED"
+              echo "::set-output name=message::Run ID $GH_RUNID was not found in the list of successful runs of branch $GH_BRANCH."
+              exit 0
+            fi
+          fi
           if [[ -z $GH_RUNID ]]; then
             echo "No Run ID Given.  Attempting to grab latest run from this PR Branch $GH_BRANCH"
             // https://api.github.com/repos/:owner/:repo/actions/runs?event=pull_request&status=success&branch=:branch
-            echo "curl -sf $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH"
-            curl -sf $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH > curl_latest.json
-            EC=$?
-            if [[ $EC != 0 ]]; then
-              echo "Curl was not successful - returned $EC"
+            MSG=$(cat curl_latest.json | jq --raw-output '.message');
+            if [[ -n "$MSG" ]]; then
+              echo "Github returned Error from above query:  $MSG"
               cat curl_latest.json
               echo "::set-output name=result::FAILED"
-              echo "::set-output name=message::Internal Error / Could not fetch info from GitHub API at this time.  Curl returned error $EC."
+              echo "::set-output name=message::Error when trying to fetch latest successful runs from branch $GH_BRANCH:  $MSG"
+              exit 0
             fi
             if [[ $(cat curl_latest.json | jq --raw-output '.total_count') -eq 0 ]]; then
               echo "No successful PR runs were made from branch $GH_BRANCH yet."
               echo "::set-output name=result::FAILED"
               echo "::set-output name=message::No Successful PR Runs were made from branch $GH_BRANCH yet."
+              exit 0
             fi
             GH_RUNID=$(cat curl_latest.json | jq --raw-output '.workflow_runs[0].id')
             echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
           fi
-          echo "curl -sf  $API_RUNS/$GH_RUNID/artifacts"
-          $(curl -sf $API_RUNS/$GH_RUNID/artifacts) > curl_artifacts.json
-          EC=$?
-          if [[ $EC != 0 ]]; then
-            echo "Run ID $GH_RUNID was not found in this repository"
+          echo "curl -s  $API_RUNS/$GH_RUNID/artifacts"
+          $(curl -s $API_RUNS/$GH_RUNID/artifacts) > curl_artifacts.json
+          MSG=$(cat curl_artifacts.json | jq --raw-output '.message');
+          if [[ -n "$MSG" ]]; then
+            echo "Github returned Error from above query:  $MSG"
             cat curl_artifacts.json
             echo "::set-output name=result::FAILED"
-            echo "::set-output name=message::Run ID specified was not found in this repository."
+            echo "::set-output name=message::Error when trying to fetch artifacts from $GH_RUNID:  $MSG"
+            exit 0
           fi
           echo "$ARTS"
           echo "::set-output name=result::SUCCESS"
