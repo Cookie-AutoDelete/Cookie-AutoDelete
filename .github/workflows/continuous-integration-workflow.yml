@@ -83,8 +83,9 @@ jobs:
             - based on latest commit: ${{ github.event.after }}
 
             Unsigned webextension for testing is ready for download!
+            These test builds are only kept for up to 90 days from the date of this post.
 
             **Comment with `/get-build runid=${{ github.run_id }}` to generate download links.**
 
-            *Due to API limitations, generated link will only be valid for one minute!*
+            *Due to API limitations, generated links will only be valid for one minute!*
           reactions: eyes, rocket
