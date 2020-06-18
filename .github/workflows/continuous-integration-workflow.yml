@@ -1,4 +1,4 @@
-name: Node.js CI Tests
+name: CI Workflow
 
 on:
   push:
@@ -42,6 +42,47 @@ jobs:
         with:
           name: builds
           path: builds
+      - name: Archive Code Coverage Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage
+      - name: Codecov.io Coverage upload
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          file: ./coverage/*
+          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
+      - name: Coveralls.io Coverage Upload
+        uses: coverallsapp/github-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+  pr_comment:
+    name: PR Jobs
+    needs: all_jobs
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create PR Build Comment
+        id: prc
+        uses: peter-evans/create-or-update-comment@v1.4.2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## Pull Request Build: ${{ github.run_id }}
+
+            - based on latest commit: ${{ github.event.after }}
+
+            Building unsigned webextension for download...
+          reactions: eyes
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: builds
+      - name: List Directory
+        run: |
+          pwd
+          ls -lR
       - name: Extract zip builds for individual artifact upload
         if: github.event_name == 'pull_request'
         id: extbuilds
@@ -62,18 +103,21 @@ jobs:
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
-      - name: Archive Code Coverage Results
-        uses: actions/upload-artifact@v2
+      - name: Append PR Comment
+        uses: peter-evans/create-or-update-comment@v1.4.2
         with:
-          name: coverage
-          path: coverage
-      - name: Codecov.io Coverage upload
-        uses: codecov/codecov-action@v1
-        with:
-          fail_ci_if_error: true
-          file: ./coverage/*
-          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
-      - name: Coveralls.io Coverage Upload
-        uses: coverallsapp/github-action@v1.1.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ steps.prc.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## Pull Request Build: ${{ github.run_id }}
+
+            - based on latest commit: ${{ github.event.after }}
+
+            Unsigned webextension for testing is ready for download!
+
+            **Comment with `/get-build` to generate a download link.**
+            *Due to API limitations, generated link will only be valid for one minute!*
+          reaction: eyes, rocket
+
+
+
