@@ -25,6 +25,7 @@ jobs:
           if [[ -z $GH_RUNID ]]; then
             echo "No Run ID Given.  Attempting to grab latest run from this PR Branch $GH_BRANCH"
             // https://api.github.com/repos/:owner/:repo/actions/runs?event=pull_request&status=success&branch=:branch
+            echo "curl -sf $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH"
             curl -sf $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH > curl_latest.json
             EC=$?
             if [[ $EC != 0 ]]; then
@@ -41,8 +42,8 @@ jobs:
             GH_RUNID=$(cat curl_latest.json | jq --raw-output '.workflow_runs[0].id')
             echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
           fi
-          echo "Artifact URL:  $GH_API/actions/runs/$GH_RUNID/artifacts"
-          $(curl -sf $GH_API/actions/runs/$GH_RUNID/artifacts) > curl_artifacts.json
+          echo "curl -sf  $API_RUNS/$GH_RUNID/artifacts"
+          $(curl -sf $API_RUNS/$GH_RUNID/artifacts) > curl_artifacts.json
           EC=$?
           if [[ $EC != 0 ]]; then
             echo "Run ID $GH_RUNID was not found in this repository"
