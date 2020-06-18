@@ -52,7 +52,7 @@ jobs:
           fi
           echo "$ARTS"
       - name: Reply Error in PR
-        if: failure() && steps.arts.outputs.result == 'FAILURE'
+        if: failure() && steps.arts.outputs.result == 'FAILED'
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
