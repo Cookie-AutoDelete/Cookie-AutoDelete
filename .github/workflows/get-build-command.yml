@@ -29,6 +29,7 @@ jobs:
             EC=$?
             if [[ $EC != 0 ]]; then
               echo "Curl was not successful - returned $EC"
+              cat curl_latest.json
               echo "::set-output name=result::FAILED"
               echo "::set-output name=message::Internal Error / Could not fetch info from GitHub API at this time.  Curl returned error $EC."
             fi
@@ -44,10 +45,13 @@ jobs:
           curl -sf $GH_API/actions/runs/$GH_RUNID/artifacts > curl_artifacts.json
           EC=$?
           if [[ $EC != 0 ]]; then
+            echo "Run ID $GH_RUNID was not found in this repository"
+            cat curl_artifacts.json
             echo ::set-output name=result::"FAILED"
             echo ::set-output name=message::"Run ID specified was not found in this repository."
           fi
           echo "$ARTS"
+          echo ::set-output name=result::"SUCCESS"
           exit $EC
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
@@ -62,6 +66,7 @@ jobs:
             ${{ steps.arts.outputs.message }}
           reactions: eyes,confused
       - name: Create comment in PR
+        if: steps.arts.outputs.result == 'SUCCESS'
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
