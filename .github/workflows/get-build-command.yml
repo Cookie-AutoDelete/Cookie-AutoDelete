@@ -61,6 +61,7 @@ jobs:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
+            @${{ github.event.client_payload.github.actor }}
             The `get-build` command did not execute successfully.  Additional information, if any, will be noted below.
 
             ${{ steps.arts.outputs.message }}
@@ -73,6 +74,8 @@ jobs:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
+            @${{ github.event.client_payload.github.actor }}
+
             ### Get-build command was executed.
 
             This is a work in progress.
