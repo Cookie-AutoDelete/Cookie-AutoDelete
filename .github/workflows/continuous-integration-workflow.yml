@@ -11,33 +11,10 @@ on:
       - '**/README.md'
 
 jobs:
-  pre_info:
-    name: Pre-Check
-    runs-on: ubuntu-latest
-    outputs:
-      isPR: ${{ steps.ginfo.outputs.result }}
-    steps:
-      - name: GitHub Info
-        id: ginfo
-        env:
-          GH_GH: ${{ toJson(github) }}
-          PR_N: ${{ github.event.pull_request.number }}
-        run: |
-          echo "Run ID    : $GITHUB_RUN_ID"
-          echo "Event Name: $GITHUB_EVENT_NAME"
-          RES=$([[ "$GITHUB_EVENT_NAME" == "pull_request" ]] && echo true || echo false)
-          echo "Is PR     : $RES"
-          echo "PR Number : $PR_N"
-          echo "::set-output name=result::$RES"
-          echo "$GH_GH"
-          printenv
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
-    needs: pre_info
     steps:
-      - name: Results from Pre-Check
-        run: echo ${{ needs.pre_info.outputs.isPr }}
       - name: Checkout Commit
         uses: actions/checkout@v2
       - name: Use Node.js 14.x
