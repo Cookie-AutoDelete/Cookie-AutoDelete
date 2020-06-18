@@ -34,7 +34,7 @@ jobs:
           echo "$ARTS"
       - name: Reply No Arg Error in PR
         if: failure() && steps.arts.outputs.result == 'NO_RUNID'
-        uses: peter-evans/create-or-update-comment@1.4.2
+        uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
@@ -44,7 +44,7 @@ jobs:
           reactions: eyes,confused
       - name: Reply Invalid Run ID in PR
         if: failure() && steps.arts.outputs.result == 'ARTS_FAILED'
-        uses: peter-evans/create-or-update-comment@1.4.2
+        uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
