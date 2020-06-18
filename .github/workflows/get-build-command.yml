@@ -42,7 +42,7 @@ jobs:
             echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
           fi
           echo "Artifact URL:  $GH_API/actions/runs/$GH_RUNID/artifacts"
-          curl -sf $GH_API/actions/runs/$GH_RUNID/artifacts > curl_artifacts.json
+          $(curl -sf $GH_API/actions/runs/$GH_RUNID/artifacts) > curl_artifacts.json
           EC=$?
           if [[ $EC != 0 ]]; then
             echo "Run ID $GH_RUNID was not found in this repository"
