@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "Event Name  :  $GITHUB_EVENT_NAME"
           echo "Issue / PR #:  ${{ github.event.issue.number }}"
-          echo "Type        :  $($IS_PR && echo 'Pull Request' || echo 'Issue'"
+          echo "Type        :  $($IS_PR && echo 'Pull Request' || echo 'Issue')"
           echo "Repository  :  ${{ github.repository }}"
           echo "API URL     :  ${{ github.event.repository.url }}"
           echo "Full Object:"
