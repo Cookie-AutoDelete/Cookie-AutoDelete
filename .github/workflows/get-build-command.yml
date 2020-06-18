@@ -53,7 +53,7 @@ jobs:
           fi
           echo "curl -s $API_RUNS/$GH_RUNID/artifacts"
           curl -s "$API_RUNS/$GH_RUNID/artifacts" > curl_artifacts.json
-          MSG=$(cat curl_artifacts.json | jq --raw-output '.message');
+          MSG=$(cat curl_artifacts.json | jq --raw-output '.message // empty');
           if [[ -n "$MSG" ]]; then
             echo "Github returned Error from above query:  $MSG"
             cat curl_artifacts.json
