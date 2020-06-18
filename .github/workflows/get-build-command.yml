@@ -1,0 +1,16 @@
+name: get-build-command
+on:
+  repository_dispatch:
+    types: [get-build-command]
+
+jobs:
+  getBuild:
+    name: Get Build for PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: List Data
+        env:
+          GH_GH: ${{ toJson(github) }}
+        run: |
+          printenv
+          echo "$GH_GH"
