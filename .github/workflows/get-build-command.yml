@@ -13,13 +13,25 @@ jobs:
           GH_GH: ${{ toJson(github) }}
         run: |
           printenv
-      - name: Generate Artifact URL
+      - name: Artifact URL Info
+        id: arts
         env:
           GH_API: ${{ github.event.client_payload.github.payload.repository.url }}
           GH_RUNID: ${{ github.event.client_payload.slash_command.arg1 }}
         run: |
           echo "Run ID from Arg1:  $GH_RUNID"
+          if [[ -z $GH_RUNID ]]; then
+            echo "::set-output name=result::NO_RUNID"
+            exit 1
+          fi
           echo "Artifact URL:  $GH_API/actions/runs/$GH_RUNID/artifacts"
+          ARTS=$(curl -sf $GH_API/actions/runs/$GH_RUNID/artifacts)
+          if [[ $? != 0 ]]; then
+            echo "::set-output name=result::ARTS_FAILED"
+            exit 2
+          fi
+          jq
+          echo "$ARTS"
       - name: Create comment in PR
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
