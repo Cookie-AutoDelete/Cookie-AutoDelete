@@ -32,6 +32,26 @@ jobs:
           fi
           jq
           echo "$ARTS"
+      - name: Reply No Arg Error in PR
+        if: failed() && steps.arts.outputs.result == 'NO_RUNID'
+        uses: peter-evans/create-or-update-comment@1.4.2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            The get-build command was executed with no arguments.  A run id is required at this time.
+          reactions: eyes,confused
+      - name: Reply Invalid Run ID in PR
+        if: failed() && steps.arts.outputs.result == 'ARTS_FAILED'
+        uses: peter-evans/create-or-update-comment@1.4.2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            The get-build command did not get expected response.  Please check the run ID entered.
+          reactions: eyes,confused
       - name: Create comment in PR
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
