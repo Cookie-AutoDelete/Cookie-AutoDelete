@@ -17,7 +17,7 @@ jobs:
               {
                 "command": "get-build",
                 "permission": "read",
-                "issue_type": "pull-request",
+                "issue_type": "pull-request"
               }
             ]
   info:
