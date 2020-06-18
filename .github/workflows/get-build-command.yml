@@ -13,7 +13,6 @@ jobs:
           GH_GH: ${{ toJson(github) }}
         run: |
           printenv
-          echo "$GH_GH"
       - name: Create comment in PR
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
