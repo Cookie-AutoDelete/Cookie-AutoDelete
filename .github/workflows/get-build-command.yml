@@ -28,6 +28,7 @@ jobs:
           if [[ -n $GH_RUNID ]]; then
             if [[ ! " ${RUNS[@]} " =~ " ${GH_RUNID} " ]]; then
               echo "Run ID $GH_RUNID not in list of successful runs for that branch"
+              echo $(cat curl_latest.json | jq --raw-output '[.workflow_runs[].id]')
               echo $RUNS
               echo "::set-output name=result::FAILED"
               echo "::set-output name=message::Run ID $GH_RUNID was not found in the list of successful runs of branch $GH_BRANCH."
