@@ -87,5 +87,5 @@ jobs:
 
             **Comment with `/get-build runid=${{ github.run_id }}` to generate download links.**
 
-            *Due to API limitations, generated links will only be valid for one minute!*
+            *Due to API limitations, and for security, generated links will only be valid for one minute!*
           reactions: eyes, rocket
