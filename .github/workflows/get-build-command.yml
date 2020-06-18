@@ -13,6 +13,11 @@ jobs:
           GH_GH: ${{ toJson(github) }}
         run: |
           printenv
+      - name: Generate Artifact URL
+        env:
+          GH_API: ${{ github.event.client_payload.github.payload.repository.url }}
+        run: |
+          echo "Artifact URL:  $GH_API"
       - name: Create comment in PR
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
@@ -20,5 +25,8 @@ jobs:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
-            Get-build command was executed.  See Action Workflow logs for output.
+            ### Get-build command was executed.
+
+            This is a work in progress.
+            See Action Workflow logs for output.
           reactions: hooray
