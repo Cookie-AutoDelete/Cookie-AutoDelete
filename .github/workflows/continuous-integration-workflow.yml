@@ -57,32 +57,6 @@ jobs:
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-  pr_comment:
-    name: PR Jobs
-    needs: all_jobs
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create PR Build Comment
-        id: prc
-        uses: peter-evans/create-or-update-comment@v1.4.2
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## Pull Request Build: ${{ github.run_id }}
-
-            - based on latest commit: ${{ github.event.after }}
-
-            Building unsigned webextension for download...
-          reactions: eyes
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: builds
-      - name: List Directory
-        run: |
-          pwd
-          ls -lR
       - name: Extract zip builds for individual artifact upload
         if: github.event_name == 'pull_request'
         id: extbuilds
@@ -103,11 +77,11 @@ jobs:
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
-      - name: Append PR Comment
+      - name: Create PR Build Comment
+        if: github.event_name == 'pull_request'
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
-          comment-id: ${{ steps.prc.outputs.comment-id }}
-          edit-mode: replace
+          issue-number: ${{ github.event.pull_request.number }}
           body: |
             ## Pull Request Build: ${{ github.run_id }}
 
@@ -115,9 +89,6 @@ jobs:
 
             Unsigned webextension for testing is ready for download!
 
-            **Comment with `/get-build` to generate a download link.**
+            **Comment with `/get-build runid=${{ github.run_id }}` to generate a download link.**
             *Due to API limitations, generated link will only be valid for one minute!*
           reaction: eyes, rocket
-
-
-
