@@ -100,3 +100,12 @@ jobs:
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create PR Build Comment
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v1.4.2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            <!-- GRID: ${{ github.run_id }} -->
+            Generating unsigned test builds for download...
+            - based on latest commit: ${{ github.event.after }}
