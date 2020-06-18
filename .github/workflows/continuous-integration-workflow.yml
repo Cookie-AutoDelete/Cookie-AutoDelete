@@ -37,11 +37,6 @@ jobs:
         run: npm run lint
       - name: Run Build
         run: npm run build
-      - name: Archive unsigned Build Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: builds
-          path: builds
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
         with:
@@ -89,6 +84,7 @@ jobs:
 
             Unsigned webextension for testing is ready for download!
 
-            **Comment with `/get-build runid=${{ github.run_id }}` to generate a download link.**
+            **Comment with `/get-build runid=${{ github.run_id }}` to generate download links.**
+
             *Due to API limitations, generated link will only be valid for one minute!*
-          reaction: eyes, rocket
+          reactions: eyes, rocket
