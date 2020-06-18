@@ -45,12 +45,12 @@ jobs:
           EC=$?
           if [[ $EC != 0 ]]; then
             echo ::set-output name=result::"FAILED"
-            echo ::set-output name=message::"Received Error Message: $(cat curl_artifacts.json | jq --raw-output '.message')"
-            exit $EC
+            echo ::set-output name=message::"Run ID specified was not found in this repository."
           fi
           echo "$ARTS"
+          exit $EC
       - name: Reply Error in PR
-        if: failure() && steps.arts.outputs.result == 'FAILED'
+        if: steps.arts.outputs.result == 'FAILED'
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
