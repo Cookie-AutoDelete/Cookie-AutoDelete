@@ -13,7 +13,6 @@ jobs:
           GH_GH: ${{ toJson(github) }}
         run: |
           printenv
-          jq
       - name: Artifact URL Info
         id: arts
         env:
@@ -26,7 +25,7 @@ jobs:
           if [[ -z $GH_RUNID ]]; then
             echo "No Run ID Given.  Using latest run from this PR Branch
             // https://api.github.com/repos/:owner/:repo/actions/runs?event=pull_request&status=success&branch=:branch
-            RUNS=$(curl -sf $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH)
+            curl -sf $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH > curl_latest.json
             EC=$?
             if [[ $EC != 0 ]]; then
               echo "Curl was not successful - returned $EC"
@@ -34,13 +33,13 @@ jobs:
               echo "::set-output name=message::Internal Error / Could not fetch info from GitHub API at this time."
               exit $EC
             fi
-            if [[ $(jq --raw-output $RUNS '.total_count') -eq 0 ]]; then
+            if [[ $(cat curl_latest.json | jq --raw-output '.total_count') -eq 0 ]]; then
               echo "No successful PR runs were made from branch $GH_BRANCH yet."
               echo "::set-output name=result::FAILED"
               echo "::set-output name=message::No Successful PR Runs were made from this branch ($GH_BRANCH) yet."
               exit 1
             fi
-            GH_RUNID=$(jq --raw-output $RUNS '.workflow_runs[0].id')
+            GH_RUNID=$(cat curl_latest.json | jq --raw-output '.workflow_runs[0].id')
             echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
           fi
           echo "Artifact URL:  $GH_API/actions/runs/$GH_RUNID/artifacts"
