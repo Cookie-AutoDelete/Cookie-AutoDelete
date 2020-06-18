@@ -28,6 +28,7 @@ jobs:
           ARTS=$(curl -sf $GH_API/actions/runs/$GH_RUNID/artifacts)
           if [[ $? != 0 ]]; then
             echo "::set-output name=result::ARTS_FAILED"
+            echo "::set-output name=message::jq --raw-output $ARTS .message
             exit 2
           fi
           jq
@@ -40,7 +41,7 @@ jobs:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
-            The get-build command was executed with no arguments.  A run id is required at this time.
+            The `get-build` command was executed with no arguments.  A run id is required at this time.
           reactions: eyes,confused
       - name: Reply Invalid Run ID in PR
         if: failure() && steps.arts.outputs.result == 'ARTS_FAILED'
@@ -50,7 +51,7 @@ jobs:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
-            The get-build command did not get expected response.  Please check the run ID entered.
+            The `get-build` command did not get expected response.  Please check the run ID entered.
           reactions: eyes,confused
       - name: Create comment in PR
         uses: peter-evans/create-or-update-comment@v1.4.2
