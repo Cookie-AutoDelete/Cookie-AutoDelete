@@ -47,12 +47,11 @@ jobs:
           if [[ $EC != 0 ]]; then
             echo "Run ID $GH_RUNID was not found in this repository"
             cat curl_artifacts.json
-            echo ::set-output name=result::"FAILED"
-            echo ::set-output name=message::"Run ID specified was not found in this repository."
+            echo "::set-output name=result::FAILED"
+            echo "::set-output name=message::Run ID specified was not found in this repository."
           fi
           echo "$ARTS"
-          echo ::set-output name=result::"SUCCESS"
-          exit $EC
+          echo "::set-output name=result::SUCCESS"
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
         uses: peter-evans/create-or-update-comment@v1.4.2
