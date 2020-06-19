@@ -1,0 +1,40 @@
+name: Slash Command Dispatch
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  slashCommandDispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slash Command Dispatch
+        uses: peter-evans/slash-command-dispatch@v1.2.0
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
+          config: >
+            [
+              {
+                "command": "get-build",
+                "permission": "read",
+                "issue_type": "pull-request"
+              }
+            ]
+  info:
+    name: Info
+    runs-on: ubuntu-latest
+    steps:
+      - name: Issue Info
+        env:
+          GH_GH: ${{ toJson(github) }}
+          GH_API: ${{ github.event.repository.url }}
+          IS_PR: ${{ github.event.issue.pull_request != null }}
+        run: |
+          echo "Event Name  :  $GITHUB_EVENT_NAME"
+          echo "Issue / PR #:  ${{ github.event.issue.number }}"
+          echo "Type        :  $($IS_PR && echo 'Pull Request' || echo 'Issue')"
+          echo "Repository  :  ${{ github.repository }}"
+          echo "API URL     :  ${{ github.event.repository.url }}"
+          echo "Full Object:"
+          echo "$GH_GH"
+          echo "$GH_API/.../artifacts"
