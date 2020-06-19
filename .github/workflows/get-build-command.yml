@@ -29,7 +29,7 @@ jobs:
             echo "Run ID $GH_RUNID not in list of successful runs for that branch"
             echo ${RUNS[@]}
             echo "::set-output name=result::FAILED"
-            echo "::set-output name=message::Run ID $GH_RUNID was not found in the list of successful runs of branch $GH_BRANCH."
+            echo "::set-output name=message::Run ID **$GH_RUNID** was not found in the list of successful runs of branch **$GH_BRANCH**."
             exit 0
           fi
           if [[ -z $GH_RUNID ]]; then
@@ -61,6 +61,7 @@ jobs:
             echo "::set-output name=message::Error when trying to fetch artifacts from $GH_RUNID:  $MSG"
             exit 0
           fi
+          cat curl_artifacts.json
           echo "$ARTS"
           echo "::set-output name=result::SUCCESS"
       - name: Reply Error in PR
