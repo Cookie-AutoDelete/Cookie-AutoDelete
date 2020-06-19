@@ -102,6 +102,8 @@ jobs:
             - `/get-build` for the latest commit build.
             - `/get-build ${{ github.run_id }}` for this specific commit ${{ github.event.after }} build.
 
+            ---
+
             *When new command comment is posted, please allow a few seconds for the command to be received and processed.*
             - :eyes: indicates that command has been received.
             - :rocket: indicates that command has been sent for further processing.
