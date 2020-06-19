@@ -593,6 +593,20 @@
 		"message": "Rimuovi l'espressione",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "Rimosso/i $count$ elemento/i da $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Segnala problemi e suggerisci funzionalità",
 		"description": "Report issues and suggest features"
@@ -622,6 +636,10 @@
 	"secondsText": {
 		"message": "secondo/i",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "SessionStorage",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Opzioni di pulizia automatica",
