@@ -67,11 +67,16 @@ jobs:
             exit 0
           fi
           # Parse artifacts
-          arrayAsString=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item|@sh) + " ")'))
-          echo "$arrayAsString"
-          echo "${arrayAsString[@]}"
-          echo "${arrayAsString[0]}"
-          echo "${arrayAsString[1]}"
+          ARTS=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item|@sh) + " ")'))
+          # Chrome:  echo "${ARTS[0]}"
+          # Firefox: echo "${ARTS[1]}"
+          MDR=""
+          for i in "${ARTS[@]}"; do
+            ADL=$(jq -r '.archive_download_url' <<< $i)
+            echo "ADL: $ADL"
+            DL=$(curl -LIv -u octocat:$GH_TOKEN $ADL)
+            echo "DL: $DL"
+          done
           echo "::set-output name=result::SUCCESS"
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
