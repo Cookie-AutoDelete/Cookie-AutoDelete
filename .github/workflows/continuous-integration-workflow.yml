@@ -97,8 +97,14 @@ jobs:
             These test builds are only kept for up to 90 days from the date of this post.
             It is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.
 
-            **Comment with `/get-build ${{ github.run_id }}` to generate download links.**
-            *When new comment is posted, please allow a few seconds for the command to be received and processed.*
+            ### Generating Download Links
+
+            **`/get-build` for the latest commit build.**
+            **`/get-build ${{ github.run_id }} for this specific commit build.**
+
+            *When new command comment is posted, please allow a few seconds for the command to be received and processed.*
+            - :eyes: indicates that command has been received.
+            - :rocket: indicates that command has been sent for further processing.
 
             *Due to API limitations, generated links will only be valid for one minute!*
-          reactions: eyes, rocket
+          reactions: hooray
