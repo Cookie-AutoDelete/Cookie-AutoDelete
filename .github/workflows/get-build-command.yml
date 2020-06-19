@@ -25,7 +25,7 @@ jobs:
           # Fetch All successful Pull Request workflow runs from branch.
           echo "curl -s $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH"
           curl -s "$API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH" > curl_latest.json
-          RUNS=($(cat curl_latest.json | jq --raw-output '.workflow_runs[].id'))
+          RUNS=($(cat curl_latest.json | jq -r '.workflow_runs[].id'))
           # Check if RunID, if given, is in the list above.
           echo "Run ID from Arg1:  $GH_RUNID"
           if [[ -n $GH_RUNID && (! " ${RUNS[@]} " =~ " ${GH_RUNID} ") ]]; then
@@ -38,7 +38,7 @@ jobs:
           # Use latest RunID from list above if none was given.
           if [[ -z $GH_RUNID ]]; then
             echo "No Run ID Given.  Attempting to grab latest run from this PR Branch $GH_BRANCH"
-            MSG=$(cat curl_latest.json | jq --raw-output '.message // empty');
+            MSG=$(cat curl_latest.json | jq -r '.message // empty');
             if [[ -n "$MSG" ]]; then
               echo "Github returned Error from above query:  $MSG"
               cat curl_latest.json
@@ -46,19 +46,19 @@ jobs:
               echo "::set-output name=message::Error when trying to fetch latest successful runs from branch $GH_BRANCH:  $MSG"
               exit 0
             fi
-            if [[ $(cat curl_latest.json | jq --raw-output '.total_count') -eq 0 ]]; then
+            if [[ $(cat curl_latest.json | jq -r '.total_count') -eq 0 ]]; then
               echo "No successful PR runs were made from branch $GH_BRANCH yet."
               echo "::set-output name=result::FAILED"
               echo "::set-output name=message::No Successful PR Runs were made from branch $GH_BRANCH yet."
               exit 0
             fi
-            GH_RUNID=$(cat curl_latest.json | jq --raw-output '.workflow_runs[0].id')
+            GH_RUNID=$(cat curl_latest.json | jq -r '.workflow_runs[0].id')
             echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
           fi
           # Fetch artifacts for workflow RunID given.
           echo "curl -s $API_RUNS/$GH_RUNID/artifacts"
           curl -s "$API_RUNS/$GH_RUNID/artifacts" > curl_artifacts.json
-          MSG=$(cat curl_artifacts.json | jq --raw-output '.message // empty');
+          MSG=$(cat curl_artifacts.json | jq -r '.message // empty');
           if [[ -n "$MSG" ]]; then
             echo "Github returned Error from above query:  $MSG"
             cat curl_artifacts.json
@@ -67,11 +67,11 @@ jobs:
             exit 0
           fi
           # Parse artifacts
-          arrayAsString=($(cat curl_artifacts.json | jq --raw-output '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("[\(.key)]=\(.value)") | reduce .[] as $item("associativeArray=("; . + ($item | @sh) + " ") + ")"'))
-          declare -A "$arrayAsString"
+          arrayAsString=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item|@sh) + " ")'))
           echo "$arrayAsString"
           echo "${arrayAsString[@]}"
           echo "${arrayAsString[0]}"
+          echo "${arrayAsString[1]}"
           echo "::set-output name=result::SUCCESS"
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
