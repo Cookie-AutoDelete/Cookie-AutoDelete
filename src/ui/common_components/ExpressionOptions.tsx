@@ -15,7 +15,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { updateExpressionUI } from '../../redux/Actions';
-import { isFirstPartyIsolate, returnOptionalCookieAPIAttributes } from '../../services/Libs';
+import {
+  isFirstPartyIsolate,
+  returnOptionalCookieAPIAttributes,
+} from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 interface DispatchProps {
   onUpdateExpression: (payload: Expression) => void;
@@ -40,7 +43,7 @@ const styles = {
 };
 
 const trimDotAndStar = (str: string) => {
-  const trimmed = str.replace(/^[\.\*]+|[\.\*]+$/g, '');
+  const trimmed = str.replace(/^[.*]+|[.*]+$/g, '');
   if (trimmed === '') return undefined;
   return trimmed;
 };
@@ -83,32 +86,48 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(this.props.state, {
-          storeId: this.toPublicStoreId(expression.storeId),
-        }, firstPartyIsolate),
+        returnOptionalCookieAPIAttributes(
+          this.props.state,
+          {
+            storeId: this.toPublicStoreId(expression.storeId),
+          },
+          firstPartyIsolate,
+        ),
       );
       if (exp.slice(1).startsWith('file:')) {
         // Regex with Local Directories
         const regExp = new RegExp(exp.slice(8, -1)); // take out file://
-        cookies = allCookies.filter(cookie => cookie.domain === '' && regExp.test(cookie.path));
+        cookies = allCookies.filter(
+          (cookie) => cookie.domain === '' && regExp.test(cookie.path),
+        );
       } else {
         const regExp = new RegExp(exp.slice(1, -1));
-        cookies = allCookies.filter(cookie => regExp.test(cookie.domain));
+        cookies = allCookies.filter((cookie) => regExp.test(cookie.domain));
       }
     } else if (exp.startsWith('file:')) {
       const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(this.props.state, {
-          storeId: this.toPublicStoreId(expression.storeId),
-        }, firstPartyIsolate),
+        returnOptionalCookieAPIAttributes(
+          this.props.state,
+          {
+            storeId: this.toPublicStoreId(expression.storeId),
+          },
+          firstPartyIsolate,
+        ),
       );
       const regExp = new RegExp(exp.slice(7)); // take out file://
-      cookies = allCookies.filter(cookie => cookie.domain === '' && regExp.test(cookie.path));
+      cookies = allCookies.filter(
+        (cookie) => cookie.domain === '' && regExp.test(cookie.path),
+      );
     } else {
       cookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(this.props.state, {
-          domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
-          storeId: this.toPublicStoreId(expression.storeId),
-        }, firstPartyIsolate),
+        returnOptionalCookieAPIAttributes(
+          this.props.state,
+          {
+            domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
+            storeId: this.toPublicStoreId(expression.storeId),
+          },
+          firstPartyIsolate,
+        ),
       );
     }
     this.setState({ cookies });
@@ -122,9 +141,12 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const originalCookieNames = expression.cookieNames || [];
     const cookieNamesSet = new Set(originalCookieNames);
     const cookieNames = Array.from(
-      new Set([...(expression.cookieNames || []), ...cookies.map(a => a.name)]),
+      new Set([
+        ...(expression.cookieNames || []),
+        ...cookies.map((a) => a.name),
+      ]),
     ).sort((a, b) => a.localeCompare(b));
-    return cookieNames.map(name => {
+    return cookieNames.map((name) => {
       const checked = cookieNamesSet.has(name);
       const key = `${checked}-${expression.id}-${name}`;
       return (
@@ -134,9 +156,11 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
             onClick={() => {
               onUpdateExpression({
                 ...expression,
-                cookieNames: checked ? originalCookieNames.filter(
-                  cookieName => cookieName !== name,
-                ) : [...originalCookieNames, name],
+                cookieNames: checked
+                  ? originalCookieNames.filter(
+                      (cookieName) => cookieName !== name,
+                    )
+                  : [...originalCookieNames, name],
               });
             }}
           >
@@ -148,7 +172,9 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               role="checkbox"
               aria-checked={checked as boolean}
             />
-            <label htmlFor={key} area-labelledby={key}>{name}</label>
+            <label htmlFor={key} area-labelledby={key}>
+              {name}
+            </label>
           </span>
         </div>
       );
@@ -183,10 +209,11 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
       <div>
-        {(! expression.expression.startsWith('file:') && ((state.cache.browserDetect === 'Firefox' &&
-          state.cache.browserVersion >= '57' &&
-          state.cache.platformOs !== 'android') ||
-          state.cache.browserDetect === 'Chrome')) && (
+        {!expression.expression.startsWith('file:') &&
+          ((state.cache.browserDetect === 'Firefox' &&
+            state.cache.browserVersion >= '57' &&
+            state.cache.platformOs !== 'android') ||
+            state.cache.browserDetect === 'Chrome') && (
             <div className={'checkbox'}>
               <span
                 className={'addHover'}
@@ -198,11 +225,19 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                   id={keyLocalStorage}
                   style={styles.checkbox}
                   size={'lg'}
-                  icon={['far', expression.cleanLocalStorage ? 'square' : 'check-square']}
+                  icon={[
+                    'far',
+                    expression.cleanLocalStorage ? 'square' : 'check-square',
+                  ]}
                   role="checkbox"
                   aria-checked={!expression.cleanLocalStorage as boolean}
                 />
-                <label htmlFor={keyLocalStorage} aria-labelledby={keyLocalStorage}>{browser.i18n.getMessage('keepLocalstorageText')}</label>
+                <label
+                  htmlFor={keyLocalStorage}
+                  aria-labelledby={keyLocalStorage}
+                >
+                  {browser.i18n.getMessage('keepLocalstorageText')}
+                </label>
               </span>
             </div>
           )}
@@ -223,11 +258,25 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               id={keyCleanAllCookies}
               style={styles.checkbox}
               size={'lg'}
-              icon={['far', expression.cleanAllCookies === undefined || expression.cleanAllCookies ? 'check-square' : 'square']}
+              icon={[
+                'far',
+                expression.cleanAllCookies === undefined ||
+                expression.cleanAllCookies
+                  ? 'check-square'
+                  : 'square',
+              ]}
               role="checkbox"
-              aria-checked={(expression.cleanAllCookies === undefined || expression.cleanAllCookies) as boolean}
+              aria-checked={
+                (expression.cleanAllCookies === undefined ||
+                  expression.cleanAllCookies) as boolean
+              }
             />
-            <label htmlFor={keyCleanAllCookies} aria-labelledby={keyCleanAllCookies}>{browser.i18n.getMessage('keepAllCookiesText')}</label>
+            <label
+              htmlFor={keyCleanAllCookies}
+              aria-labelledby={keyCleanAllCookies}
+            >
+              {browser.i18n.getMessage('keepAllCookiesText')}
+            </label>
           </span>
         </div>
         {dropList && (
@@ -252,7 +301,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ExpressionOptions);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpressionOptions);

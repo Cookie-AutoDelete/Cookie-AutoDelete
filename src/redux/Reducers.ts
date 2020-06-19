@@ -16,16 +16,15 @@ import shortid from 'shortid';
 import { ReduxAction, ReduxConstants } from '../typings/ReduxConstants';
 import { initialState } from './State';
 
-
 // Tests if the expression already exists in the list
 const hasExpression = (
   list: ReadonlyArray<Expression>,
   action: { payload: Expression },
-) => list.some(expObj => expObj.expression === action.payload.expression);
+) => list.some((expObj) => expObj.expression === action.payload.expression);
 
 // Creates a new Expression object to be stored in the list
 const newExpressionObject = (
-  state: Expression | {},
+  state: Expression | Record<string, unknown>,
   action: { payload: Expression },
 ) => ({
   ...action.payload,
@@ -84,11 +83,11 @@ export const expressions = (
 
     case ReduxConstants.UPDATE_EXPRESSION:
       return state
-        .map(e => expression(e, action))
+        .map((e) => expression(e, action))
         .sort(sortExpressionAlgorithm);
 
     case ReduxConstants.REMOVE_EXPRESSION:
-      return state.filter(expObj => expObj.id !== action.payload.id);
+      return state.filter((expObj) => expObj.id !== action.payload.id);
 
     case ReduxConstants.RESET_ALL:
       return [];
@@ -105,7 +104,7 @@ export const lists = (
   switch (action.type) {
     case ReduxConstants.ADD_EXPRESSION:
     case ReduxConstants.REMOVE_EXPRESSION:
-    case ReduxConstants.UPDATE_EXPRESSION:
+    case ReduxConstants.UPDATE_EXPRESSION: {
       const newListObject = {
         ...state,
       };
@@ -114,7 +113,7 @@ export const lists = (
         action,
       );
       return newListObject;
-
+    }
     case ReduxConstants.CLEAR_EXPRESSIONS:
     case ReduxConstants.RESET_ALL:
       return {};
@@ -198,7 +197,7 @@ export const activityLog = (
       return state;
     }
     case ReduxConstants.REMOVE_ACTIVITY_LOG: {
-      return state.filter(log => log.dateTime !== action.payload.dateTime);
+      return state.filter((log) => log.dateTime !== action.payload.dateTime);
     }
 
     case ReduxConstants.RESET_ALL:

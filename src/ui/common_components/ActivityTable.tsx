@@ -28,14 +28,14 @@ import IconButton from './IconButton';
 const createSummary = (cleanupObj: ActivityLog) => {
   const domainSet = new Set<string>();
   Object.entries(cleanupObj.storeIds).forEach(([key, value]) => {
-    value.forEach(deletedLog => domainSet.add(deletedLog.cookie.hostname));
+    value.forEach((deletedLog) => domainSet.add(deletedLog.cookie.hostname));
   });
   return Array.from(domainSet).join(', ');
 };
 
 const createDetailedSummary = (cleanReasonObjects: CleanReasonObject[]) => {
   const mapDomainToCookieNames: { [domain: string]: CleanReasonObject[] } = {};
-  cleanReasonObjects.forEach(obj => {
+  cleanReasonObjects.forEach((obj) => {
     if (mapDomainToCookieNames[obj.cookie.hostname]) {
       mapDomainToCookieNames[obj.cookie.hostname].push(obj);
     } else {
@@ -54,7 +54,7 @@ const createDetailedSummary = (cleanReasonObjects: CleanReasonObject[]) => {
           role="alert"
         >
           {`${domain} (${cleanReasonObj
-            .map(obj => obj.cookie.name)
+            .map((obj) => obj.cookie.name)
             .join(', ')}): ${returnReasonMessages(cleanReasonObj[0])}`}
         </div>
       );
@@ -98,6 +98,7 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
 };
 
 type ActivityAction = (log: ActivityLog) => void;
+
 interface StateProps {
   activityLog: ReadonlyArray<ActivityLog>;
   cache: CacheMap;
@@ -105,7 +106,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  onRemoveActvity: ActivityAction;
+  onRemoveActivity: ActivityAction;
 }
 
 interface OwnProps {
@@ -118,7 +119,7 @@ type ActivityTableProps = OwnProps & StateProps & DispatchProps;
 const restoreCookies = async (
   state: State,
   log: ActivityLog,
-  onRemoveActvity: ActivityAction,
+  onRemoveActivity: ActivityAction,
 ) => {
   const debug = getSetting(state, 'debugMode') as boolean;
   const cleanReasonObjsArrays = Object.values(log.storeIds);
@@ -128,39 +129,60 @@ const restoreCookies = async (
     for (const obj of cleanReasonObjs) {
       // Cannot set cookies from file:// protocols
       if (obj.cookie.preparedCookieDomain.startsWith('file:')) {
-        cadLog({
-          msg: 'Cookie appears to come from a local file.  Cannot be restored normally.',
-          type: 'warn',
-          x: obj.cookie,
-        }, debug);
+        cadLog(
+          {
+            msg:
+              'Cookie appears to come from a local file.  Cannot be restored normally.',
+            type: 'warn',
+            x: obj.cookie,
+          },
+          debug,
+        );
         continue;
       }
       // Silently ignore cookies with no domain
       if (obj.cookie.preparedCookieDomain.trim() === '') {
-        cadLog({
-          msg: 'Cookie appears to have no domain.  Cannot restore.',
-          type: 'warn',
-          x: obj.cookie,
-        }, debug);
+        cadLog(
+          {
+            msg: 'Cookie appears to have no domain.  Cannot restore.',
+            type: 'warn',
+            x: obj.cookie,
+          },
+          debug,
+        );
         continue;
       }
       const {
+        domain,
         expirationDate,
         firstPartyDomain,
         httpOnly,
         name,
         sameSite,
+        secure,
         storeId,
         value,
       } = obj.cookie;
+      // Prefix fun: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Cookie_prefixes
+      // Since the cookies returned through web-extension API should already be validated,
+      // we are not doing any validations for __Secure- cookies.
+      // For cookies starting with __Secure-, secure attribute should already be true,
+      // and url should already start with https://
+      // Only modify cookie names starting with __Host- as it shouldn't have domain.
       const cookieProperties = {
-        ...returnOptionalCookieAPIAttributes(state, {
-          firstPartyDomain,
-        }, firstPartyIsolate),
+        ...returnOptionalCookieAPIAttributes(
+          state,
+          {
+            firstPartyDomain,
+          },
+          firstPartyIsolate,
+        ),
+        domain: name.startsWith('__Host-') ? undefined : domain,
         expirationDate,
         httpOnly,
         name,
         sameSite,
+        secure,
         storeId,
         url: obj.cookie.preparedCookieDomain,
         value,
@@ -172,13 +194,17 @@ const restoreCookies = async (
   try {
     // If any error/rejection was thrown, the rest of the promises are not processed.
     // FUTURE:  Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled to process all regardless of rejection. ** Perhaps too early to implement at this time 2020-May-03 **
-    await Promise.all(promiseArr).catch(e => {
+    await Promise.all(promiseArr).catch((e) => {
       throwErrorNotification(e);
-      cadLog({
-        msg: 'An Error occurred while trying to restore cookie(s).  The rest of the cookies to restore are not processed.',
-        type: 'error',
-        x: e,
-      }, debug);
+      cadLog(
+        {
+          msg:
+            'An Error occurred while trying to restore cookie(s).  The rest of the cookies to restore are not processed.',
+          type: 'error',
+          x: e,
+        },
+        debug,
+      );
       throw e;
     });
   } catch (e) {
@@ -186,15 +212,18 @@ const restoreCookies = async (
     return;
   }
   // Restore didn't fail
-  onRemoveActvity(log);
+  onRemoveActivity(log);
 };
 
-const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
-  const { activityLog, numberToShow, state, onRemoveActvity } = props;
+const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
+  const { activityLog, numberToShow, state, onRemoveActivity } = props;
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
-        <i>{browser.i18n.getMessage('noCleanupLogText')}<br /> {browser.i18n.getMessage('noPrivateLogging')}</i>
+        <i>
+          {browser.i18n.getMessage('noCleanupLogText')}
+          <br /> {browser.i18n.getMessage('noPrivateLogging')}
+        </i>
       </div>
     );
   }
@@ -225,7 +254,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
                 iconName={'undo'}
                 className={'btn-primary'}
                 title={browser.i18n.getMessage('restoreText')}
-                onClick={() => restoreCookies(state, log, onRemoveActvity)}
+                onClick={() => restoreCookies(state, log, onRemoveActivity)}
               />
               <h5
                 className="mb-0"
@@ -241,7 +270,9 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = props => {
                   aria-expanded="false"
                   aria-controls={`collapse${index}`}
                 >
-                  {`${new Date(log.dateTime).toLocaleString([], { timeZoneName: 'short' })} - ${message}`}
+                  {`${new Date(log.dateTime).toLocaleString([], {
+                    timeZoneName: 'short',
+                  })} - ${message}`}
                 </button>
               </h5>
             </div>
@@ -282,12 +313,9 @@ const mapStateToProps = (state: State) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
-  onRemoveActvity(activity: ActivityLog) {
+  onRemoveActivity(activity: ActivityLog) {
     dispatch(removeActivity(activity));
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ActivityTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityTable);

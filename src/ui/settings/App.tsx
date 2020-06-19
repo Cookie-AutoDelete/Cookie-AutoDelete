@@ -33,7 +33,9 @@ class App extends React.Component<OwnProps> {
 
   // Gets the url hash and switches to that sidebar tab
   public async componentDidMount() {
-    document.documentElement.style.fontSize = `${this.props.sizeSetting as number || 16}px`;
+    document.documentElement.style.fontSize = `${
+      (this.props.sizeSetting as number) || 16
+    }px`;
     const tab = await browser.tabs.getCurrent();
     const tabURL = new URL(tab.url || '');
     this.setState({
@@ -63,7 +65,7 @@ class App extends React.Component<OwnProps> {
     return (
       <div id="layout" className="layout">
         <SideBar
-          switchTabs={tab => this.switchTabs(tab)}
+          switchTabs={(tab) => this.switchTabs(tab)}
           activeTab={activeTab}
         />
         <ErrorBoundary>
@@ -83,8 +85,8 @@ class App extends React.Component<OwnProps> {
 const mapStateToProps = (state: State) => {
   const { settings } = state;
   return {
-    sizeSetting: settings.sizeSetting.value as number || 16,
+    sizeSetting: (settings.sizeSetting.value as number) || 16,
   };
-}
+};
 
 export default connect(mapStateToProps)(App);

@@ -40,7 +40,7 @@ const displayReleaseNotes = (releases: ReleaseNote[]) => {
 
 // Get the review link for different browsers
 const getReviewLink = (browserDetect: string) => {
-  switch(browserDetect) {
+  switch (browserDetect) {
     case 'Chrome':
       return 'https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews';
     case 'EdgeChromium':
@@ -77,15 +77,25 @@ const Welcome: React.FunctionComponent<OwnProps> = ({
         ])}
       </p>
       <a href={getReviewLink(browserDetect)}>
-        {browser.i18n.getMessage('reviewLinkMessage', browser.i18n.getMessage('extensionName'))}
+        {browser.i18n.getMessage(
+          'reviewLinkMessage',
+          browser.i18n.getMessage('extensionName'),
+        )}
       </a>
 
       <h2>{browser.i18n.getMessage('releaseNotesText')}</h2>
 
-      <div className="row">
-        {displayReleaseNotes(releases.slice(0, 5))}
-      </div>
-      <p>{browser.i18n.getMessage('oldReleasesText')} <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/releases" target="_blank">GitHub</a></p>
+      <div className="row">{displayReleaseNotes(releases.slice(0, 5))}</div>
+      <p>
+        {browser.i18n.getMessage('oldReleasesText')}{' '}
+        <a
+          href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/releases"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+      </p>
     </div>
   );
 };
