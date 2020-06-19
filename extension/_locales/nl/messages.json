@@ -11,6 +11,32 @@
 		"message": "Automatisch opruimen inschakelen",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "Voeg $expression$ toe aan lijst type $listType$ in de cookie opslag $cookieStore$.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Het domein waarop de rechter muis klik is uitgevoerd kon niet worden opgehaald.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Als de expressie al bestaat, zal deze genegeerd worden.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Automatisch opruimen uitgeschakeld",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "Zorg ervoor dat 'Ontwikkelaarsmodus' is ingeschakeld en klik vervolgens op 'achtergrond pagina' onder Inspect View.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Opschonen inschakelen voor verwijderde/niet-geladen tabbladen",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Ruim op, inclusief open tabbladen",
@@ -79,6 +109,50 @@
 		"message": "Klik op het tabblad Console",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Handmatig schoonmaakmenu",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Voeg Domein/Expressie toe menu",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Alleen voor domein van geselecteerde link",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Voor domein alleen van geselecteerde pagina",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Voor domein alleen van geselecteerde tekst: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Voor alle subdomeinen met het domein van de geselecteerde link",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Voor alle subdomeinen met het domein van de geselecteerde pagina",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Voor alle subdomeinen met het domein van de geselecteerde tekst: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Ondersteuning voor Firefox Container tabbladen inschakelen",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +164,10 @@
 	"contributorsText": {
 		"message": "Bijdragers",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Cookies",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Ruim cookies op van openstaande tabbladen bij het starten",
@@ -138,6 +216,10 @@
 	"enableCleanupLogText": {
 		"message": "Opschonen logboek en teller inschakelen",
 		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableContextMenus": {
+		"message": "Context Menus inschakelen (Rechter muis klik menu)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
 	},
 	"enableGlobalSubdomainText": {
 		"message": "Activeer check op subdomein",
@@ -250,6 +332,66 @@
 	"localstorageCleanupWarning": {
 		"message": "Waarschuwing: ALLE bestaande lokale opslag zal worden gewist bij inschakelen van lokale opslag opruimen.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "Lokale opslag",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Handmatige actie notificatie",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "$data$ kan niet worden opgeruimd voor tabblad:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "Er werden geen $cleanType$ gevonden om op te ruimen op $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "$deleted$ van $total$ verwijderd.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Opschonen van $cleanType$ op $url$ resultaat:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Overeenkomende domein expressie",
@@ -451,6 +593,20 @@
 		"message": "Verwijder expressie",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "$count$ item(s) verwijderd uit $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Problemen rapporteren en voorstellen van functies",
 		"description": "Report issues and suggest features"
@@ -480,6 +636,10 @@
 	"secondsText": {
 		"message": "Seconde(n)",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "Sessie opslag",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Automatisch opruimen opties",

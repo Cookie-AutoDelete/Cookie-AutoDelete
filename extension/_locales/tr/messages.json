@@ -11,6 +11,32 @@
 		"message": "Otomatik Temizlemeyi Etkinleştir",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "$cookieStore$ çerez deposundaki $listType$ liste türü için $expression$ ekleniyor.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Sağ-tıklanan yerden ekleme için alan adı alınamadı.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Eğer ifade zaten varsa, bu dışlanacaktır.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Otomatik Temizleme Kapalı",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "'Geliştirici Modu'nun etkinleştirildiğinden emin olun, ardından Görünümü Denetle altında' arka plan sayfasını 'tıklayın.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Ayrılmış/Boş Sekmeler için Temizliği Etkinleştir",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Temizle, açık sekmeleri de temizle",
@@ -79,6 +109,50 @@
 		"message": "Konsol Sekmesine tıklayın",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Manuel Temizleme Menüsü",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Alan Adı/İfade Ekleme Menüsü",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Sadece seçilmiş linkteki alan adları için",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Sadece seçilmiş sayfadaki alan adları için",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Sadece seçilmiş yazıdaki alan adları için: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Sadece seçilmiş linkteki alt alan adları için",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Sadece seçilmiş sayfadaki alt alan adları için",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Sadece seçilmiş yazıdaki alt alan adları için: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +164,10 @@
 	"contributorsText": {
 		"message": "Katkıda Bulunanlar",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Çerezler",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Tarayıcı başlatıldığında açık sekmelerdeki çerezleri temizle",
@@ -250,6 +328,66 @@
 	"localstorageCleanupWarning": {
 		"message": "Dikkat: Yerel Depolama Bilgileri Temizliği aktifleştirildiğinde, tüm mevcut Yerel Depolama Bilgileri silinecektir.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "YerelDepolama",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Manuel Eylem Bildirimi",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "Sekme için $data$ temizlenemedi:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "$url$ içeriğinde hiç $cleanType$ bulunamadı.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "$total$ içinden $deleted$ silindi.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "$url$ içeriğindeki $cleanType$ için temizlik sonucu:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Eşleşen site kuralı",
@@ -451,6 +589,20 @@
 		"message": "Kuralı temizle",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "$count$ içerik $storageType$ kısmından silindi.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Buradan sorunları bildirebilir veya sonraki sürümlerde görmek isteyeceğiniz önerilerde bulunabilirsiniz",
 		"description": "Report issues and suggest features"
@@ -480,6 +632,10 @@
 	"secondsText": {
 		"message": "Saniye",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "OturumDepolama",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Otomatik Temizlik Seçenekleri",

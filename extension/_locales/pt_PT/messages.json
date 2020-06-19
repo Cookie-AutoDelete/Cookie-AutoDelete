@@ -11,6 +11,32 @@
 		"message": "Ativar limpeza automática",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "A adicionar $expression$ para a lista tipo $listType$ sob o armazenamento de cookies $cookieStore$.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Não foi possível obter o domínio para adicionar a partir de onde foi emitido o botão direito.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Se a expressão já existe, esta irá ser ignorada.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Limpeza automática desativada",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "Certifique-se de que o 'Modo de programador' está ativado, depois clique em 'página em segundo plano' debaixo de Inspeção de Visualização.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Ativar limpeza para separadores descartados/descarregados",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Limpar, incluir separadores abertos",
@@ -79,6 +109,50 @@
 		"message": "Clique no separador da consola",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Menu de limpeza manual",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Adicionar menu de domínio/expressão",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Para domínio somente de texto selecionado",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Para domínio somente de página selecionada",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Para domínio somente de texto selecionado: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Para todos os subdomínios com domínio de ligação selecionado",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Para todos os subdomínios com domínio de página selecionada",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Para todos os subdomínios com domínio de texto selecionado: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Ativar suporte para os separadores contentores do Firefox",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +164,10 @@
 	"contributorsText": {
 		"message": "Colaboradores",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Cookies",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Limpar cookies de separadores abertos no arranque",
@@ -123,6 +201,10 @@
 		"message": "Expressão do domínio",
 		"description": "Domain Expression"
 	},
+	"domainPlaceholderText": {
+		"message": "exemplo.com, subdomínio.exemplo.com, *.exemplo.com, /(^|.)exemplo\\.com/",
+		"description": "Domain Expression"
+	},
 	"dropdownAdditionalCleaningOptions": {
 		"message": "Alternar menu de ações de limpeza adicionais",
 		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
@@ -138,6 +220,10 @@
 	"enableCleanupLogText": {
 		"message": "Ativar registo de limpeza e contador",
 		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableContextMenus": {
+		"message": "Ativar menus de contexto (menu de botão direito do rato)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
 	},
 	"enableGlobalSubdomainText": {
 		"message": "Ativar verificação por subdomínios",
@@ -188,7 +274,7 @@
 		"description": "Filter"
 	},
 	"greyCleanLocalstorage": {
-		"message": "Desmarcar 'Manter localstorage' em novas expressões da lista cinza",
+		"message": "Desmarcar 'Manter LocalStorage' em novas expressões da lista cinza",
 		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
 	},
 	"greyListWordText": {
@@ -228,7 +314,7 @@
 		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
 	},
 	"keepLocalstorageText": {
-		"message": "Manter localstorage",
+		"message": "Manter LocalStorage",
 		"description": "Keep LocalStorage"
 	},
 	"keepText": {
@@ -240,16 +326,76 @@
 		"description": "List Type"
 	},
 	"localstorageAndContextualIdentitiesWarning": {
-		"message": "AVISO: Habilitando a Limpeza de Local Storage e Abas Contêiner pode causar efeitos indesejados devido a Limitação de API. LocalStorage será limpo pelo nome de host em TODOS os contêineres.",
+		"message": "AVISO: Ativar a limpeza de LocalStorage e separadores contentores pode causar alguns efeitos secundários indesejados devido a limitações de API. LocalStorage irá ser limpa por servidor em TODOS os contentores.",
 		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
 	},
 	"localstorageCleanupText": {
-		"message": "Limpeza da localstorage",
+		"message": "Limpeza de LocalStorage",
 		"description": "LocalStorage Cleanup"
 	},
 	"localstorageCleanupWarning": {
-		"message": "Atenção: TODA a LocalStorage existente será removida após a ativação da Limpeza de LocalStorage.",
+		"message": "Aviso: TODA a LocalStorage existente irá ser removida após a ativação da Limpeza de LocalStorage.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "LocalStorage",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Notificação de ação manual",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "$data$ não pode(m) ser limpo(s) para o separador:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "Nenhum $cleanType$ encontrado para limpeza em $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Removido(s) $deleted$ de $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Limpeza para $cleanType$ em $url$ resultado:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Expressão de domínio correspondente",
@@ -451,6 +597,20 @@
 		"message": "Remover expressão",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "$count$ item(s) removido(s) de $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Reportar problemas e sugerir funcionalidades",
 		"description": "Report issues and suggest features"
@@ -480,6 +640,10 @@
 	"secondsText": {
 		"message": "Segundo(s)",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "SessionStorage",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Opções de limpeza automática",
@@ -590,7 +754,7 @@
 		"description": "Welcome"
 	},
 	"whiteCleanLocalstorage": {
-		"message": "Desmarcar 'Manter localstorage' em novas expressões da lista branca",
+		"message": "Desmarcar 'Manter LocalStorage' em novas expressões da lista branca",
 		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
 	},
 	"whiteListText": {

@@ -11,6 +11,32 @@
 		"message": "Włącz automatyczne czyszczenie",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "Dodano $expression$ do listy $listType$ w kontenerze $cookieStore$.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Nie znaleziono domeny do dodania z miejsca w którym użyto menu kontekstowe.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Jeżeli formuła już istnieje, akcja zostanie zignorowana.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Auto-czyszczenie wyłączone",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "Upewnij się, że 'Tryb programisty' jest włączony, następnie kliknij na 'strona w tle' pod 'Zobacz widoki'.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Włącz czyszczenie dla uśpionych kart",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Wyczyść, włącznie z otwartymi kartami",
@@ -79,6 +109,50 @@
 		"message": "Kliknij na kartę \"Konsola\"",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Wyczyść ręcznie",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Dodaj domenę/formułę",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Tylko dla domeny klikniętego linku",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Tylko dla domeny klikniętej strony",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Tylko dla domeny z zaznaczonego tekstu: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Dla wszystkich subdomen klikniętego linku",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Dla wszystkich subdomen klikniętej strony",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Dla wszystkich subdomen z zaznaczonego tekstu: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Włącz obsługę kontenerów kart Firefoksa",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +164,10 @@
 	"contributorsText": {
 		"message": "Współtwórcy",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "ciasteczka",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Wyczyść ciasteczka z otwartych kart przy starcie",
@@ -138,6 +216,10 @@
 	"enableCleanupLogText": {
 		"message": "Włącz log czyszczenia i licznik",
 		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableContextMenus": {
+		"message": "Włącz menu kontekstowe",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
 	},
 	"enableGlobalSubdomainText": {
 		"message": "Włącz sprawdzanie subdomen",
@@ -251,6 +333,66 @@
 		"message": "Uwaga:  wszystkie istniejące dane w localStorage zostaną usunięte przy włączeniu opcji \"Wyczyść localStorage\".",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
+	"localStorageText": {
+		"message": "localStorage",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Powiadomienie czyszczenia ręcznego",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "Nie można usunąć $data$ w kartach:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "Nie znaleziono $cleanType$ do wyczyszczenia na $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Usunięto $deleted$ z $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Wyniki czyszczenia $cleanType$ na $url$:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
 	"matchedDomainExpressionText": {
 		"message": "Pasująca formuła domeny",
 		"description": "Matched Domain Expression"
@@ -270,6 +412,10 @@
 	"noExpressionsText": {
 		"message": "Brak zdefiniowanych formuł.",
 		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Logi czyszczenia nie będą generowane dla kart w trybie prywatnym",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
 		"message": "Brak reguł pasujących do tej domeny.",
@@ -476,6 +622,10 @@
 	"secondsText": {
 		"message": "sekund",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "sessionStorage",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Opcje automatycznego czyszczenia",

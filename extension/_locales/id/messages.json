@@ -11,6 +11,32 @@
 		"message": "Aktifkan Hapus Otomatis",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotification": {
+		"message": "Menambahkan $expression$ ke daftar $listType$ di penyimpanan kuki $cookieStore$.",
+		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+		"placeholders": {
+			"expression": {
+				"content": "$1",
+				"example": "example.com"
+			},
+			"listType": {
+				"content": "$2",
+				"example": "WHITE"
+			},
+			"cookieStore": {
+				"content": "$3",
+				"example": "default -or- firefox-container-1 (Personal)"
+			}
+		}
+	},
+	"addNewExpressionNotificationFailed": {
+		"message": "Tidak bisa mengambil domain yang ditambahkan dari saat klik kanan dijalankan.",
+		"description": "Could not fetch domain to add from where right-click was issued."
+	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Jika ekspresi sudah ada, ini akan diabaikan.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Hapus otomatis nonaktif",
 		"description": "Auto-clean disabled"
@@ -22,6 +48,10 @@
 	"chromeDebugMode": {
 		"message": "Pastikan 'Mode Pengembang' diaktifkan, lalu klik pada 'halaman latar belakang'.",
 		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+	},
+	"cleanDiscardedText": {
+		"message": "Aktifkan Hapus untuk Tab yang ditutup / belum dimuat",
+		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
 	},
 	"cleanIgnoringOpenTabsText": {
 		"message": "Hapus, termasuk tab yang terbuka",
@@ -79,6 +109,50 @@
 		"message": "Klik pada Tab Console",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Menu Hapus Manual",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Menu Tambah Domain/Ekspresi",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
+	"contextMenusSelectedDomainLink": {
+		"message": "Hanya untuk domain dari tautan yang dipilih",
+		"description": "For domain only of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainPage": {
+		"message": "Hanya untuk domain dari halaman yang dipilih",
+		"description": "For domain only of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedDomainText": {
+		"message": "Hanya untuk domain dari teks yang dipilih: $selected$",
+		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
+	"contextMenusSelectedSubdomainLink": {
+		"message": "Untuk subdomain dengan domain dari tautan yang dipilih",
+		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainPage": {
+		"message": "Untuk subdomain dengan domain dari halaman yang dipilih",
+		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+	},
+	"contextMenusSelectedSubdomainText": {
+		"message": "Untuk subdomain dengan domain dari teks yang dipilih: $selected$",
+		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+		"placeholders": {
+			"selected": {
+				"content": "$1",
+				"example": "github.com"
+			}
+		}
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Aktifkan Dukungan untuk Tab Container Firefox",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +164,10 @@
 	"contributorsText": {
 		"message": "Kontributor",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Kuki",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Hapus Kuki dari Tab yang Terbuka saat Memulai",
@@ -138,6 +216,10 @@
 	"enableCleanupLogText": {
 		"message": "Aktifkan Penghitung dan Catatan Penghapusan",
 		"description": "Enable Cleanup Log and Counter"
+	},
+	"enableContextMenus": {
+		"message": "Aktifkan Menu Konteks (Menu Klik-Kanan)",
+		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
 	},
 	"enableGlobalSubdomainText": {
 		"message": "Aktifkan Pengecekan Subdomain",
@@ -251,6 +333,66 @@
 		"message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
 	},
+	"localStorageText": {
+		"message": "Penyimpanan Lokal",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Notifikasi Tindakan Manual",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "$data$ tidak bisa dihapus untuk tab:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "Tidak ada $cleanType$ yang ditemukan untuk dihapus pada $url$.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Menghapus $deleted$ dari $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Menghapus $cleanType$ pada $url$ hasilnya:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
 	"matchedDomainExpressionText": {
 		"message": "Ekspresi Domain yang Cocok",
 		"description": "Matched Domain Expression"
@@ -270,6 +412,10 @@
 	"noExpressionsText": {
 		"message": "Belum ada ekspresi.",
 		"description": "No expressions defined."
+	},
+	"noPrivateLogging": {
+		"message": "Catatan Penghapusan tidak akan dibuat untuk tab dalam Mode Jendela Pribadi",
+		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
 	},
 	"noRulesText": {
 		"message": "Tidak ada aturan yang cocok dengan domain ini.",
@@ -447,6 +593,20 @@
 		"message": "Buang ekspresi",
 		"description": "Remove expression"
 	},
+	"removeStorageCount": {
+		"message": "Menghapus $count$ item dari $storageType$.",
+		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+		"placeholders": {
+			"count": {
+				"content": "$1",
+				"example": "1"
+			},
+			"storageType": {
+				"content": "$2",
+				"example": "LocalStorage"
+			}
+		}
+	},
 	"reportIssuesText": {
 		"message": "Laporkan masalah dan sarankan fitur",
 		"description": "Report issues and suggest features"
@@ -476,6 +636,10 @@
 	"secondsText": {
 		"message": "Detik",
 		"description": "second(s)"
+	},
+	"sessionStorageText": {
+		"message": "Penyimpanan Sesi",
+		"description": "SessionStorage.  Used in manual localstorage clean notification"
 	},
 	"settingGroupAutoClean": {
 		"message": "Opsi Hapus Otomatis",

@@ -11,6 +11,10 @@
 		"message": "Активиране на автоматичното почистване",
 		"description": "Enable Automatic Cleaning"
 	},
+	"addNewExpressionNotificationIgnore": {
+		"message": "Ако изразът вече съществува няма да бъде предприето действие.",
+		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+	},
 	"autoDeleteDisabledText": {
 		"message": "Автоматичното изчистване е изключено",
 		"description": "Auto-clean disabled"
@@ -79,6 +83,14 @@
 		"message": "Кликнете върху раздела Конзола",
 		"description": "Click on the Console Tab.  Found after enabling debug mode."
 	},
+	"contextMenusParentClean": {
+		"message": "Меню ръчно почистване",
+		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+	},
+	"contextMenusParentExpression": {
+		"message": "Меню добавяне на домейн/израз",
+		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+	},
 	"contextualIdentitiesEnabledText": {
 		"message": "Поддръжка за изолирани раздели във Файърфокс",
 		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +102,10 @@
 	"contributorsText": {
 		"message": "Допринесли",
 		"description": "Contributors"
+	},
+	"cookiesText": {
+		"message": "Бисквитки",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
 	},
 	"cookieCleanUpOnStartText": {
 		"message": "Изчистване на бисквитките от отворените подпрозорци при пускане",
@@ -250,6 +266,66 @@
 	"localstorageCleanupWarning": {
 		"message": "Внимание: ЦЯЛОТО съдържание в местното хранилище ще бъде премахнато при избиране на отметката „Изчистване на местното хранилище“.",
 		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+	},
+	"localStorageText": {
+		"message": "LocalStorage",
+		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+	},
+	"manualActionNotification": {
+		"message": "Известие при действие от потребителя",
+		"description": "Manual Action Notification - used as Notification Title."
+	},
+	"manualCleanError": {
+		"message": "Информацията в $data$ не може да бъде изчистена за раздел:",
+		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "cookies"
+			}
+		}
+	},
+	"manualCleanNothing": {
+		"message": "При почистване на $url$ съдържание в $cleanType$ не е намерено.",
+		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
+	},
+	"manualCleanRemoved": {
+		"message": "Премахнати $deleted$ от $total$.",
+		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+		"placeholders": {
+			"deleted": {
+				"content": "$1",
+				"example": "5"
+			},
+			"total": {
+				"content": "$2",
+				"example": "5"
+			}
+		}
+	},
+	"manualCleanSuccess": {
+		"message": "Резултат от почистване на $cleanType$ от $url$:",
+		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+		"placeholders": {
+			"cleanType": {
+				"content": "$1",
+				"example": "cookies"
+			},
+			"url": {
+				"content": "$2",
+				"example": "example.com"
+			}
+		}
 	},
 	"matchedDomainExpressionText": {
 		"message": "Изрази, съвпадащи с домейна",

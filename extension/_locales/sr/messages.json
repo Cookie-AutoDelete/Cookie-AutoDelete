@@ -91,6 +91,10 @@
 		"message": "Доприносиоци",
 		"description": "Contributors"
 	},
+	"cookiesText": {
+		"message": "колачиће",
+		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+	},
 	"cookieCleanUpOnStartText": {
 		"message": "Очисти колачиће из отворених језичака при покретању",
 		"description": "Clean Cookies from Open Tabs on Startup"
