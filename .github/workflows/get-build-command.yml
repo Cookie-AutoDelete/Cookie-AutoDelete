@@ -67,10 +67,10 @@ jobs:
             exit 0
           fi
           # Parse artifacts
-          arrayAsString=($(cat curl_artifacts.json | jq --raw-output '.artifacts | to_entries | map("[\(.key)]=\(.value)") | reduce .[] as $item("associativeArray=("; . + ($item | @sh) + " ") + ")"'))
+          arrayAsString=($(cat curl_artifacts.json | jq --raw-output '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("[\(.key)]=\(.value)") | reduce .[] as $item("associativeArray=("; . + ($item | @sh) + " ") + ")"'))
           declare -A "$arrayAsString"
           echo "${arrayAsString[@]}"
-          echo "$ARTS"
+          echo "${arrayAsString[0]}"
           echo "::set-output name=result::SUCCESS"
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
