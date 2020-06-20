@@ -121,7 +121,6 @@ jobs:
         if: steps.arts.outputs.result == 'SUCCESS'
         env:
           SLASHID: ${{ github.event.client_payload.github.payload.comment.id }}
-          LINKID: ${{ steps.successPR.outputs.comment-id }}
         run: |
           echo "After a minute, will delete Slash Comment ID: $SLASHID"
           sleep 30
@@ -133,6 +132,7 @@ jobs:
           echo "Slash Comment should have been deleted now."
       - name: Replace Success PR Comment
         if: steps.arts.outputs.result == 'SUCCESS'
+        uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           comment-id: ${{ steps.successPR.outputs.comment-id }}
           edit-mode: replace
