@@ -74,7 +74,7 @@ jobs:
           MDR=""
           for i in "${ARTS[@]}"; do
           echo "$i"
-            ADL=$(jq -r '.archive_download_url' <<< "$i")
+            ADL=$(jq -r '.archive_download_url' <<< $i)
             echo "ADL: $ADL"
             DL=$(curl -LIv -u octocat:$GH_TOKEN $ADL)
             echo "DL: $DL"
