@@ -67,7 +67,7 @@ jobs:
             exit 0
           fi
           # Parse artifacts
-          ARTS=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item|@sh) + " ")'))
+          ARTS=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item) + " ")'))
           echo ${ARTS[1]}
           # Chrome:  echo "${ARTS[0]}"
           # Firefox: echo "${ARTS[1]}"
