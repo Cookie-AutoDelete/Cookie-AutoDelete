@@ -82,7 +82,6 @@ jobs:
             EXP=$(urldecode ${BASH_REMATCH[1]})
             MDR+="- [$ADN]($DL) *Expires on or after ${EXP/T/' @ '} UTC* <br/>"
           done
-          echo $MDR
           echo "::set-output name=result::SUCCESS"
           echo "::set-output name=runid::$GH_RUNID"
           echo "::set-output name=links::$MDR"
