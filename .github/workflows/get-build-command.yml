@@ -120,6 +120,7 @@ jobs:
       - name: Wait and Remove Comments
         if: steps.arts.outputs.result == 'SUCCESS'
         env:
+          GH_TOKEN: ${{ github.token }}
           SLASHID: ${{ github.event.client_payload.github.payload.comment.id }}
         run: |
           echo "After a minute, will delete Slash Comment ID: $SLASHID"
@@ -128,7 +129,7 @@ jobs:
           sleep 30
           CDEL="$GH_API/issues/comments/$SLASHID"
           echo "Executing curl -X "DELETE" $CDEL"
-          curl -X "DELETE" $CDEL
+          curl -s -u octocat:$GH_TOKEN -X "DELETE" $CDEL
           echo "Slash Comment should have been deleted now."
       - name: Replace Success PR Comment
         if: steps.arts.outputs.result == 'SUCCESS'
