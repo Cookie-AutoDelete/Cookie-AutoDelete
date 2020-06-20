@@ -73,15 +73,14 @@ jobs:
           # Firefox: echo "${ARTS[1]}"
           MDR=""
           for i in "${ARTS[@]}"; do
-            echo $i
             ADL=$(echo $i | jq -r '.archive_download_url')
-            echo "ADL: $ADL"
             ADN=$(jq -r '.name' <<< $i)
-            echo "ADN: $ADN"
             DL=$(curl -LIs -o /dev/null -w %{url_effective} -u octocat:$GH_TOKEN $ADL)
-            echo "DL: $DL"
+            MDR+="- [$ADN]($DL)\s\s"
           done
+          echo $MDR
           echo "::set-output name=result::SUCCESS"
+          ecch "::set-output name=links::$MDR"
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
         uses: peter-evans/create-or-update-comment@v1.4.2
