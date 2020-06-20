@@ -72,7 +72,7 @@ jobs:
           # Chrome:  echo "${ARTS[0]}"
           # Firefox: echo "${ARTS[1]}"
           MDR=""
-          REGEX_EXP=/Expires=([^&]*)/
+          REGEX_EXP="Expires=([^&]*)"
           function urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
           for i in "${ARTS[@]}"; do
             ADL=$(echo $i | jq -r '.archive_download_url')
