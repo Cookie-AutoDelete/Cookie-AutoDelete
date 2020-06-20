@@ -71,7 +71,7 @@ jobs:
           echo ${ARTS[1]}
           # Chrome:  echo "${ARTS[0]}"
           # Firefox: echo "${ARTS[1]}"
-          MDR=""
+          MDR="> "
           REGEX_EXP="Expires=([^.]*)"
           function urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
           for i in "${ARTS[@]}"; do
@@ -80,7 +80,7 @@ jobs:
             DL=$(curl -LIs -o /dev/null -w %{url_effective} -u octocat:$GH_TOKEN $ADL)
             [[ $DL =~ $REGEX_EXP ]]
             EXP=$(urldecode ${BASH_REMATCH[1]})
-            MDR+="- [$ADN]($DL) *Expires on or after ${EXP/T/' @ '} UTC* <br/>"
+            MDR+="[$ADN]($DL)  *Expires on or after ${EXP/T/' @ '} UTC* <br/>"
           done
           echo "::set-output name=result::SUCCESS"
           echo "::set-output name=runid::$GH_RUNID"
@@ -99,10 +99,10 @@ jobs:
             ${{ steps.arts.outputs.message }}
           reactions: confused
       - name: Create comment in PR
+        id: successPR
         if: steps.arts.outputs.result == 'SUCCESS'
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
@@ -111,6 +111,5 @@ jobs:
             ## Temporarily Generated Download links for Build ${{ steps.arts.outputs.runid }}
             ${{ steps.arts.outputs.links }}
 
-            This is a work in progress.
-            See Action Workflow logs for output.
+            This comment will be
           reactions: hooray
