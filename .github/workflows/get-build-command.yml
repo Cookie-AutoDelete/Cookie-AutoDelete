@@ -80,7 +80,7 @@ jobs:
           done
           echo $MDR
           echo "::set-output name=result::SUCCESS"
-          ecch "::set-output name=links::$MDR"
+          echo "::set-output name=links::$MDR"
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
         uses: peter-evans/create-or-update-comment@v1.4.2
