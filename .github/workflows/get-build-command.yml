@@ -10,12 +10,12 @@ jobs:
     env:
       GH_API: ${{ github.event.client_payload.github.payload.repository.url }}
     steps:
-      - name: List Data
-        env:
-          GH_GH: ${{ toJson(github) }}
-        run: |
-          printenv
-      - name: Artifact URL Info
+      - name: React to Slash Command Comment
+        uses: peter-evans/create-or-update-comment@v1.4.2
+        with:
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reactions: hooray
+      - name: Prep and get Artifact Links
         id: arts
         env:
           GH_RUNID: ${{ github.event.client_payload.slash_command.arg1 }}
@@ -124,9 +124,7 @@ jobs:
           SLASHID: ${{ github.event.client_payload.github.payload.comment.id }}
         run: |
           echo "After a minute, will delete Slash Comment ID: $SLASHID"
-          sleep 30
-          echo "zzz..."
-          sleep 30
+          sleep 1m
           CDEL="$GH_API/issues/comments/$SLASHID"
           echo "Executing curl -X "DELETE" $CDEL"
           curl -s -u octocat:$GH_TOKEN -X "DELETE" $CDEL
@@ -139,5 +137,4 @@ jobs:
           edit-mode: replace
           body: |
             *@${{ github.event.client_payload.github.actor }} had previously requested download links for Build ${{ steps.arts.outputs.runid }} that have since expired.*
-          reactions: hooray
 
