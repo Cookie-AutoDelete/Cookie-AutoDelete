@@ -78,7 +78,7 @@ jobs:
             echo "ADL: $ADL"
             ADN=$(jq -r '.name' <<< $i)
             echo "ADN: $ADN"
-            DL=$(curl -LIv -u octocat:$GH_TOKEN $ADL)
+            DL=$(curl -LIs -o /dev/null -w %{url_effective} -u octocat:$GH_TOKEN $ADL)
             echo "DL: $DL"
           done
           echo "::set-output name=result::SUCCESS"
