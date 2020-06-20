@@ -81,7 +81,7 @@ jobs:
             DL=$(curl -LIs -o /dev/null -w %{url_effective} -u octocat:$GH_TOKEN $ADL)
             [[ $DL =~ $REGEX_EXP ]]
             EXP=$(urldecode ${BASH_REMATCH[1]})
-            MDR+="[$ADN]($DL)  *Expires on or after ${EXP/T/' @ '} UTC* <br/>"
+            MDR+="[$ADN]($DL)  *<- will expire on or after ${EXP/T/' @ '} UTC* <br/>"
           done
           echo "::set-output name=result::SUCCESS"
           echo "::set-output name=runid::$GH_RUNID"
