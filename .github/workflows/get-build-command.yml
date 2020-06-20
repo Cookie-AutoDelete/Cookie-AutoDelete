@@ -106,6 +106,9 @@ jobs:
 
             ### Get-build command was executed.
 
+            ## Temporarily Generated Links
+            ${{ steps.arts.outputs.links }}
+
             This is a work in progress.
             See Action Workflow logs for output.
           reactions: hooray
