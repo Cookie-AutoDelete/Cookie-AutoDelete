@@ -76,10 +76,11 @@ jobs:
             ADL=$(echo $i | jq -r '.archive_download_url')
             ADN=$(jq -r '.name' <<< $i)
             DL=$(curl -LIs -o /dev/null -w %{url_effective} -u octocat:$GH_TOKEN $ADL)
-            MDR+="- [$ADN]($DL)\s\s"
+            MDR+=" - [$ADN]($DL)\s\s  "
           done
           echo $MDR
           echo "::set-output name=result::SUCCESS"
+          echo "::set-output name=runid::$GH_RUNID"
           echo "::set-output name=links::$MDR"
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
@@ -104,9 +105,7 @@ jobs:
           body: |
             @${{ github.event.client_payload.github.actor }}
 
-            ### Get-build command was executed.
-
-            ## Temporarily Generated Links
+            ## Temporarily Generated Download links for Build ${{ steps.arts.outputs.runid }}
             ${{ steps.arts.outputs.links }}
 
             This is a work in progress.
