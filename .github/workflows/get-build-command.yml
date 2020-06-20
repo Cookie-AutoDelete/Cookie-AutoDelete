@@ -68,11 +68,13 @@ jobs:
           fi
           # Parse artifacts
           ARTS=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item|@sh) + " ")'))
+          echo "${ARTS[1]}"
           # Chrome:  echo "${ARTS[0]}"
           # Firefox: echo "${ARTS[1]}"
           MDR=""
           for i in "${ARTS[@]}"; do
-            ADL=$(jq -r '.archive_download_url' <<< $i)
+          echo "$i"
+            ADL=$(jq -r '.archive_download_url' <<< <("$i"))
             echo "ADL: $ADL"
             DL=$(curl -LIv -u octocat:$GH_TOKEN $ADL)
             echo "DL: $DL"
