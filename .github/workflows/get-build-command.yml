@@ -104,7 +104,7 @@ jobs:
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
             @${{ github.event.client_payload.github.actor }}
-            I could not fetch any builds from your command.  Additional information, if any, will be noted below.
+            I could not fetch any builds from your command `/${{ github.event.client_payload.slash_command.command }} ${{ github.event.client_payload.slash_command.arg1 }}`.  Additional information, if any, will be noted below.
 
             ${{ steps.arts.outputs.message }}
 
