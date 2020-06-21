@@ -26,11 +26,15 @@ jobs:
         run: |
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
+          EXP_REF=".*\/(.*)$"
+          [[
           echo "Branch    : $GITHUB_HEAD_REF"
+          echo "HEAD_REF  : $GITHUB_HEAD_REF"
+          echo "
           echo "Commit SHA: $GH_SHA"
           RES=$([[ "$GITHUB_EVENT_NAME" == "l10n_*" ]] && echo true || echo false)
           echo "Starts With l10n_ :  $RES"
-          SKIP=$(curl -s $GH_API/commits/$GH_SHA | jq -r '.commit.message')
+          SKIP=$(curl -s $GH_API/commits/$GH_SHA)
           echo "Commit Message: $SKIP"
           echo "::set-output name=result::$RES"
           echo "$GH_GH"
