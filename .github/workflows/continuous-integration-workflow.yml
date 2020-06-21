@@ -107,7 +107,7 @@ jobs:
             *When new command comment is posted, please allow a few seconds for the command to be received and processed.*
             - :eyes: indicates that command has been received.
             - :rocket: indicates that command has been sent for further processing.
-            - :hooray: indicates that command has been executed.  Expect a new comment with the result shortly.
+            - :tada: indicates that command has been executed.  Expect a new comment with the result shortly.
 
             *Due to API limitations, generated links will only be valid for one minute!*
-          reactions: hooray
+          reactions: heart
