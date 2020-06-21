@@ -20,7 +20,7 @@ jobs:
       - name: GitHub Info
         id: ginfo
         env:
-          GH_API: ${{ github.event.repository.url }}
+          GH_API: ${{ github.event.repository.commits_url }}
           GH_GH: ${{ toJson(github) }}
           GH_SHA: ${{ github.event.after }}
         run: |
@@ -31,14 +31,15 @@ jobs:
             GH_REF=${BASH_REMATCH[1]}
           fi
           REF=$([[ $GITHUB_HEAD_REF ]] && echo $GITHUB_HEAD_REF || echo $GH_REF)
-          echo "Branch    : $GITHUB_HEAD_REF"
           echo "HEAD_REF  : $GITHUB_HEAD_REF"
           echo "GITHUB_REF: $GITHUB_REF"
           echo "GH_REF    : $GH_REF"
-          echo "REF       : $REF"
+          echo "Branch    : $REF"
           echo "Commit SHA: $GH_SHA"
-          RES=$([[ "$GITHUB_EVENT_NAME" == "l10n_*" ]] && echo true || echo false)
+          RES=$([[ "$REF" == l10n_* ]] && echo true || echo false)
           echo "Starts With l10n_ :  $RES"
+          GH_API=${GH_API/'{/sha}'/$GH_SHA}
+          echo "API: $GH_API"
           SKIP=$(curl -s $GH_API/commits/$GH_SHA)
           echo "Commit Message: $SKIP"
           echo "::set-output name=result::$RES"
