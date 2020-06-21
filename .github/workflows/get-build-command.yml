@@ -8,11 +8,6 @@ jobs:
     name: Get Build for PR
     runs-on: ubuntu-latest
     steps:
-      - name: React to Slash Command Comment
-        uses: peter-evans/create-or-update-comment@v1.4.2
-        with:
-          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
-          reactions: hooray
       - name: Prep and get Artifact Links
         id: arts
         env:
@@ -91,6 +86,11 @@ jobs:
           echo "::set-output name=result::SUCCESS"
           echo "::set-output name=runid::$GH_RUNID"
           echo "::set-output name=links::$MDR"
+      - name: React to Slash Command Comment
+        uses: peter-evans/create-or-update-comment@v1.4.2
+        with:
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reactions: hooray
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
         uses: peter-evans/create-or-update-comment@v1.4.2
