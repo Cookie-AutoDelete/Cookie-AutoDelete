@@ -15,10 +15,10 @@ jobs:
     name: Pre-Check
     runs-on: ubuntu-latest
     outputs:
-      doCI: ${{ steps.ginfo.outputs.result }}
+      doCI: ${{ steps.doci.outputs.result }}
     steps:
-      - name: GitHub Info
-        id: ginfo
+      - name: Run CI Check
+        id: doci
         env:
           GH_API: ${{ github.event.repository.commits_url }}
           GH_GH: ${{ toJson(github) }}
