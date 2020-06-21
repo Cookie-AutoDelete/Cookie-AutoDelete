@@ -44,7 +44,7 @@ jobs:
               echo "Github returned Error from above query:  $MSG"
               cat curl_latest.json
               echo "::set-output name=result::FAILED"
-              echo "::set-output name=message::Error when trying to fetch latest successful runs from branch $GH_BRANCH:  $MSG"
+              echo "::set-output name=message::Error when trying to fetch latest successful runs from branch $GH_BRANCH:  `$MSG`"
               exit 0
             fi
             if [[ $(cat curl_latest.json | jq -r '.total_count') -eq 0 ]]; then
@@ -64,7 +64,7 @@ jobs:
             echo "Github returned Error from above query:  $MSG"
             cat curl_artifacts.json
             echo "::set-output name=result::FAILED"
-            echo "::set-output name=message::Error when trying to fetch artifacts from $GH_RUNID:  $MSG"
+            echo "::set-output name=message::Error when trying to fetch artifacts from build $GH_RUNID:  `$MSG`"
             exit 0
           fi
           # Parse artifacts
@@ -72,7 +72,7 @@ jobs:
           if [[ ${#ARTS[@]} -eq 0 ]]; then
             echo "No artifacts returned - presume no un-expired artifacts"
             echo "::set-output name=result::FAILED"
-            echo "::set-output name=message::Could not find any builds for this run / builds have already expired."
+            echo "::set-output name=message::Could not find any builds for this run -or- downloadable builds have already expired."
             exit 0
           fi
           echo ${ARTS[1]}
@@ -100,7 +100,7 @@ jobs:
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
           body: |
             @${{ github.event.client_payload.github.actor }}
-            The `get-build` command did not execute successfully.  Additional information, if any, will be noted below.
+            I could not fetch any builds from your command.  Additional information, if any, will be noted below.
 
             ${{ steps.arts.outputs.message }}
           reactions: confused
