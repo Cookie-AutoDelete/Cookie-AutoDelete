@@ -40,7 +40,7 @@ jobs:
           echo "Starts With l10n_ :  $RES"
           GH_API=${GH_API/'{/sha}'/}
           echo "API: $GH_API"
-          SKIP=$(curl -s $GH_API/$GH_SHA | jq -r '.')
+          SKIP=$(curl -s $GH_API/$GH_SHA | jq -r '.commit')
           echo "Commit Message: $SKIP"
           echo "::set-output name=result::$RES"
           echo "$GH_GH"
