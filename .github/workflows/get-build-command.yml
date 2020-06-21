@@ -8,11 +8,6 @@ jobs:
     name: Get Build for PR
     runs-on: ubuntu-latest
     steps:
-      - name: Debug
-        env:
-          GH_SLASH: ${{ toJson(github.event.client_payload.slash_command) }}
-        run: |
-          echo "$GH_SLASH"
       - name: React to Slash Command Comment
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
@@ -35,10 +30,10 @@ jobs:
           echo "Run ID from Arg1:  $GH_RUNID"
           if [[ -n $GH_RUNID && (! " ${RUNS[@]} " =~ " ${GH_RUNID} ") ]]; then
             echo "Run ID $GH_RUNID not in list of successful runs for that branch"
-            # echo ${RUNS[@]}
-            # echo "::set-output name=result::FAILED"
-            # echo "::set-output name=message::Run ID **$GH_RUNID** was not found in the list of successful runs of branch **$GH_BRANCH**."
-            # exit 0
+            echo "Available RunID for this branch:  ${RUNS[@]}"
+            echo "::set-output name=result::FAILED"
+            echo "::set-output name=message::Run ID **$GH_RUNID** was not found in the list of successful runs of branch **$GH_BRANCH**."
+            exit 0
           fi
           # Use latest RunID from list above if none was given.
           if [[ -z $GH_RUNID ]]; then
@@ -110,7 +105,7 @@ jobs:
 
             ---
 
-            *The slash command comment will be removed within a minute.*
+            *The slash command comment that triggered this will be removed within a minute.*
           reactions: confused
       - name: Create comment in PR
         id: successPR
@@ -129,7 +124,7 @@ jobs:
 
             ---
 
-            *The links, along with the slash command comment will be removed within a minute.*
+            *The links, along with the slash command comment that triggered this will be removed within a minute.*
           reactions: hooray
       - name: Wait and Remove Comments
         env:
