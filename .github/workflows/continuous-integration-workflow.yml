@@ -34,7 +34,7 @@ jobs:
     needs: pre_info
     steps:
       - name: Results from Pre-Check
-        run: echo ${{ needs.pre_info.outputs.isPr }}
+        run: echo ${{ needs.pre_info.outputs.doCI }}
       - name: Checkout Commit
         uses: actions/checkout@v2
       - name: Use Node.js 14.x
