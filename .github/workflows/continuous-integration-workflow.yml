@@ -15,10 +15,10 @@ jobs:
     name: Pre-Check
     runs-on: ubuntu-latest
     outputs:
-      doCI: ${{ steps.doci.outputs.result }}
+      skipCI: ${{ steps.checkci.outputs.result }}
     steps:
       - name: Run CI Check
-        id: doci
+        id: checkci
         env:
           GH_API: ${{ github.event.repository.commits_url }}
           GH_GH: ${{ toJson(github) }}
@@ -48,24 +48,11 @@ jobs:
           RES=$([[ $SKIP_A == true || $SKIP_B == true ]] && echo true || echo false)
           echo "Skip CI:  $RES"
           echo "::set-output name=result::$RES"
-  ci_test:
-    name: DoCI
-    runs-on: ubuntu-latest
-    needs: pre_info
-    steps:
-      - name: Print doci
-        env:
-          DOCI: ${{ needs.pre_info.outputs.doCI }}
-        run: |
-          echo ${{ needs.pre_info.outputs.doCI }}
-          echo $DOCI
-          [[ $DOCI == true ]] && echo true || echo false
-
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
     needs: pre_info
-    if: needs.pre_info.outputs.doCI == true
+    if: needs.pre_info.outputs.skipCI == false
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v2
