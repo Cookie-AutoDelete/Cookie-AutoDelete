@@ -69,6 +69,12 @@ jobs:
           fi
           # Parse artifacts
           ARTS=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item) + " ")'))
+          if [[ ${#ARTS[@]} -eq 0 ]]; then
+            echo "No artifacts returned - presume no un-expired artifacts"
+            echo "::set-output name=result::FAILED"
+            echo "::set-output name=message::Could not find any builds for this run / builds have already expired."
+            exit 0
+          fi
           echo ${ARTS[1]}
           # Chrome:  echo "${ARTS[0]}"
           # Firefox: echo "${ARTS[1]}"
@@ -137,4 +143,4 @@ jobs:
           edit-mode: replace
           body: |
             *@${{ github.event.client_payload.github.actor }} had previously requested download links for Build ${{ steps.arts.outputs.runid }} that have since expired.*
-
+          reactions: ''
