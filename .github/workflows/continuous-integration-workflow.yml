@@ -38,9 +38,9 @@ jobs:
           echo "Commit SHA: $GH_SHA"
           RES=$([[ "$REF" == l10n_* ]] && echo true || echo false)
           echo "Starts With l10n_ :  $RES"
-          GH_API=${GH_API/'{/sha}'/$GH_SHA}
+          GH_API=${GH_API/'{/sha}'/}
           echo "API: $GH_API"
-          SKIP=$(curl -s $GH_API/commits/$GH_SHA)
+          SKIP=$(curl -s $GH_API/$GH_SHA)
           echo "Commit Message: $SKIP"
           echo "::set-output name=result::$RES"
           echo "$GH_GH"
