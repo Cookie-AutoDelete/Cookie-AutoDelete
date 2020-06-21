@@ -25,7 +25,6 @@ jobs:
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
           echo "Branch    : $GITHUB_HEAD_REF"
-
           RES=$([[ "$GITHUB_EVENT_NAME" == "l10n_*" ]] && echo true || echo false)
           echo "Starts With l10n_ :  $RES"
           echo "::set-output name=result::$RES"
