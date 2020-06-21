@@ -46,8 +46,8 @@ jobs:
           SKIP_B=$([[ "$CM" =~ $EXP_SKIP ]] && echo true || echo false)
           echo "Skip via Commit: $SKIP_B"
           RES=$([[ $SKIP_A || $SKIP_B ]] && echo true || echo false)
+          echo "Skip CI:  $RES"
           echo "::set-output name=result::$RES"
-          echo "$GH_GH"
           printenv
   all_jobs:
     name: Tests, Builds, Coverage
