@@ -54,8 +54,6 @@ jobs:
     needs: pre_info
     if: needs.pre_info.outputs.doCI == true
     steps:
-      - name: Results from Pre-Check
-        run: echo ${{ needs.pre_info.outputs.doCI }}
       - name: Checkout Commit
         uses: actions/checkout@v2
       - name: Use Node.js 14.x
