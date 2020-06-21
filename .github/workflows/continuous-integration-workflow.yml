@@ -27,9 +27,12 @@ jobs:
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
           EXP_REF=".*\/(.*)$"
+          [[ $GITHUB_REF =~ EXP_REF ]]
+          GH_REF= $GITHUB_HEAD_REF || ${BASH_REMATCH[1]}
           echo "Branch    : $GITHUB_HEAD_REF"
           echo "HEAD_REF  : $GITHUB_HEAD_REF"
           echo "REF       : $GITHUB_REF"
+          echo "GH_REF    : $GH_REF"
           echo "Commit SHA: $GH_SHA"
           RES=$([[ "$GITHUB_EVENT_NAME" == "l10n_*" ]] && echo true || echo false)
           echo "Starts With l10n_ :  $RES"
