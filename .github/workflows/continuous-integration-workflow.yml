@@ -12,7 +12,7 @@ on:
 
 jobs:
   pre_info:
-    name: Pre-Check
+    name: Initial Checks
     runs-on: ubuntu-latest
     outputs:
       skipCI: ${{ steps.checkci.outputs.result }}
