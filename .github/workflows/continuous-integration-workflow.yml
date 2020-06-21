@@ -27,8 +27,8 @@ jobs:
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
           EXP_REF="ds\/(.*)$"
-          if [[ "$GITHUB_REF" =~ "$EXP_REF" ]]; then
-            GH_REF= ${BASH_REMATCH[1]}
+          if [[ $GITHUB_REF =~ $EXP_REF ]]; then
+            GH_REF=${BASH_REMATCH[1]}
           fi
           REF=$GITHUB_HEAD_REF || $GH_REF
           echo "Branch    : $GITHUB_HEAD_REF"
