@@ -53,6 +53,7 @@ jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
     needs: pre_info
+    if: needs.pre_info.outputs.doCI == true
     steps:
       - name: Results from Pre-Check
         run: echo ${{ needs.pre_info.outputs.doCI }}
