@@ -30,7 +30,7 @@ jobs:
           if [[ $GITHUB_REF =~ $EXP_REF ]]; then
             GH_REF=${BASH_REMATCH[1]}
           fi
-          REF=$GITHUB_HEAD_REF || $GH_REF
+          REF=$([[ $GITHUB_HEAD_REF ]] && echo $GITHUB_HEAD_REF || echo $GH_REF)
           echo "Branch    : $GITHUB_HEAD_REF"
           echo "HEAD_REF  : $GITHUB_HEAD_REF"
           echo "GITHUB_REF: $GITHUB_REF"
