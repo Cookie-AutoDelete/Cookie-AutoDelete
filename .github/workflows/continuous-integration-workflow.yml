@@ -36,12 +36,15 @@ jobs:
           echo "GH_REF    : $GH_REF"
           echo "Branch    : $REF"
           echo "Commit SHA: $GH_SHA"
-          RES=$([[ "$REF" == l10n_* ]] && echo true || echo false)
-          echo "Starts With l10n_ :  $RES"
+          SKIP_A=$([[ "$REF" == l10n_* ]] && echo true || echo false)
+          echo "Starts With l10n_ :  $SKIP_A"
           GH_API=${GH_API/'{/sha}'/}
           echo "API: $GH_API"
-          SKIP=$(curl -s $GH_API/$GH_SHA | jq -r '.commit.message')
-          echo "Commit Message: $SKIP"
+          CM=$(curl -s $GH_API/$GH_SHA | jq -r '.commit.message')
+          echo "Commit Message: $CM"
+          EXP_SKIP="\[ci skip]"
+          SKIP_B=[[ "$CM" =~ $EXP_SKIP ]]
+          echo "Skip via Commit: $SKIP_B"
           echo "::set-output name=result::$RES"
           echo "$GH_GH"
           printenv
