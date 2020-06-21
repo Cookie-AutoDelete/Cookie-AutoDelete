@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Debug
         env:
-          GH_SLASH: ${{ toJson(github.event.client_payload.slash_command }}
+          GH_SLASH: ${{ toJson(github.event.client_payload.slash_command) }}
         run: |
           echo "$GH_SLASH"
       - name: React to Slash Command Comment
