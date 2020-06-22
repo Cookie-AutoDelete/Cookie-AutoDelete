@@ -87,6 +87,9 @@ jobs:
             echo "::set-output name=message::Could not find any builds for this run -or- downloadable builds have already expired."
             exit 0
           fi
+          curl -s "$API_RUNS/$GH_RUNID" > curl_run.json
+          HEADSHA=$(cat curl_run.json | jq -r '.head_sha')
+          echo "::set-output name=runsha::$HEADSHA"
           echo ${ARTS[1]}
           # Chrome:  echo "${ARTS[0]}"
           # Firefox: echo "${ARTS[1]}"
@@ -135,7 +138,7 @@ jobs:
           body: |
             @${{ github.event.client_payload.github.actor }}
 
-            ## Temporarily Generated Download links for Build ${{ steps.arts.outputs.runid }}
+            ## Temporarily Generated Download links for Build ${{ steps.arts.outputs.runid }} (Commit ${{ steps.arts.outputs.headsha }})
             ${{ steps.arts.outputs.links }}
 
             If the links do not work, execute the command again to generate fresh download links.
