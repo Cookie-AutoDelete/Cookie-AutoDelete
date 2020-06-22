@@ -138,7 +138,7 @@ jobs:
           body: |
             @${{ github.event.client_payload.github.actor }}
 
-            ## Temporarily Generated Download links for Build ${{ steps.arts.outputs.runid }} (Commit ${{ steps.arts.outputs.headsha }})
+            ## Temporarily Generated Download links for Build ${{ steps.arts.outputs.runid }} (Commit ${{ steps.arts.outputs.runsha }})
             ${{ steps.arts.outputs.links }}
 
             If the links do not work, execute the command again to generate fresh download links.
