@@ -11,11 +11,6 @@ jobs:
     name: Tests, Builds, Coverage, Release Uploads
     runs-on: ubuntu-latest
     steps:
-      - name: Info
-        env:
-          GH_GH: ${{ toJson(github) }}
-        run: |
-          echo "$GH_GH"
       - name: Checkout Commit
         uses: actions/checkout@v2
       - name: Use Node.js 14.x
@@ -32,6 +27,8 @@ jobs:
         run: node ./tools/replaceVersionNumber.js
       - name: Run Build
         run: npm run build
+        env:
+          GITSHA: ${{ github.event.after }}
       - name: Codecov.io Coverage upload
         uses: codecov/codecov-action@v1
         with:
