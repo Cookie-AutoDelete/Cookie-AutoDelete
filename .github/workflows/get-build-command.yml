@@ -47,7 +47,25 @@ jobs:
               echo "::set-output name=message::No Successful PR Runs were made from branch $GH_BRANCH yet."
               exit 0
             fi
-            GH_RUNID=$(cat curl_latest.json | jq -r '.workflow_runs[0].id')
+            # Filter out no artifacts from successful runs (ci-skip'd branches and commits).
+            for i in "${RUNS[@]}"; do
+              echo "Checking if $i has any artifacts..."
+              echo "curl -s $API_RUNS/$i/artifacts"
+              curl -s "$API_RUNS/$i/artifacts" > curl_arts.json
+              ARTS_COUNT=$(cat curl_arts.json | jq -r '.total_count')
+              echo "Run ID [$i] has $ARTS_COUNT artifacts."
+              if [[ $ARTS_COUNT -gt 2 ]]; then
+                echo "Using it as latest."
+                GH_RUNID=$i
+                break
+              fi
+            done
+            if [[ -z $GH_RUNID ]]; then
+              echo "No Successful PR runs that have enough artifacts from branch $GH_BRANCH"
+              echo "::set-output name=result::FAILED"
+              echo "::set-output name=message::Could not find any runs that have build artifacts for download."
+              exit 0
+            fi
             echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
           fi
           # Fetch artifacts for workflow RunID given.
