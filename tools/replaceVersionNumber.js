@@ -4,7 +4,7 @@ const REGVER = RegExp(/^\d+\.\d+\.\d+$/);
 
 function changeVersion(fp, version) {
   const fs = require('fs');
-  var jsonData = require(fp);
+  let jsonData = require(fp);
   if (jsonData.version === undefined) {
     console.error('ERROR:  No version key found');
     return -1;
@@ -18,8 +18,9 @@ function changeVersion(fp, version) {
     console.log('Finished updating version number to %s on:  %s', jsonData.version, fp);
   }
 }
-console.log("\nUsing NodeJS Version %s on %s %s", process.version, process.platform, process.arch);
-console.log("Current Process Directory:  %s", ROOTDIR);
+
+console.log('\nUsing NodeJS Version %s on %s %s', process.version, process.platform, process.arch);
+console.log('Current Process Directory:  %s', ROOTDIR);
 
 console.log('\nGITHUB_REF:  %s', process.env.GITHUB_REF);
 console.log('TRAVIS_TAG:  %s', process.env.TRAVIS_TAG);
@@ -63,5 +64,5 @@ if (versionTag) {
     process.exitCode = 1;
   }
 } else {
-  console.log("\nGITHUB_REF or TRAVIS_TAG version tag does not exist or is not valid.  Presuming non-publishing version.  No Replacements done.");
+  console.log('\nGITHUB_REF or TRAVIS_TAG version tag does not exist or is not valid.  Presuming non-publishing version.  No Replacements done.');
 }
