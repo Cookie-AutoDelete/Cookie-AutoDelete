@@ -17,14 +17,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - name: Cache Node.js
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}
       - name: Install Dependencies (npm ci)
         run: npm ci
       - name: Run Tests
@@ -35,6 +27,8 @@ jobs:
         run: node ./tools/replaceVersionNumber.js
       - name: Run Build
         run: npm run build
+        env:
+          GITSHA: ${{ github.event.after }}
       - name: Codecov.io Coverage upload
         uses: codecov/codecov-action@v1
         with:
