@@ -37,7 +37,7 @@ jobs:
           echo "GITHUB_REF: $GITHUB_REF"
           echo "GH_REF    : $GH_REF"
           echo "Branch    : $REF"
-          if [[ -z "$GH_SHA" ]]; then
+          if [[ -z $GH_SHA ]]; then
             GH_SHA=$PR_FIRSTSHA
           fi
           echo "::set-output name=gitSHA::$GH_SHA"
