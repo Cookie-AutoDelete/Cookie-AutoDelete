@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       skipCI: ${{ steps.checkci.outputs.result }}
+      gitSHA: ${{ steps.checkci.outputs.gitSHA }}
     steps:
       - name: Run CI Check
         id: checkci
@@ -23,6 +24,7 @@ jobs:
           GH_API: ${{ github.event.repository.commits_url }}
           GH_GH: ${{ toJson(github) }}
           GH_SHA: ${{ github.event.after }}
+          PR_FIRSTSHA: ${{ github.event.pull_request.head.sha }}
         run: |
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
@@ -35,7 +37,10 @@ jobs:
           echo "GITHUB_REF: $GITHUB_REF"
           echo "GH_REF    : $GH_REF"
           echo "Branch    : $REF"
+          GH_SHA=$([[ $GH_SHA ]] && echo $GH_SHA || echo $PR_FIRSTSHA)
+          echo "::set-output name=gitSHA::$GH_SHA"
           echo "Commit SHA: $GH_SHA"
+          echo "PR Head SHA: $PR_FIRSTSHA"
           SKIP_A=$([[ "$REF" == l10n_* ]] && echo true || echo false)
           echo "Starts With l10n_ :  $SKIP_A"
           GH_API=${GH_API/'{/sha}'/}
@@ -113,7 +118,7 @@ jobs:
           body: |
             ## Pull Request Build: ${{ github.run_id }}
 
-            - based on latest commit: ${{ github.event.after }}
+            - based on latest commit: ${{ needs.pre_info.outputs.gitSHA }}
 
             Unsigned webextension builds for testing is ready for download!
             These test builds are only kept for *up to 90 days* from the date of this post.
