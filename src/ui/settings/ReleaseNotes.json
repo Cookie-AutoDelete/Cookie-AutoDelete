@@ -1,6 +1,12 @@
 {
   "releases": [
     {
+      "version": "unreleased",
+      "notes": [
+        "Added:  Cleanup of Expired Cookies regardless of lists.  Closes #344."
+      ]
+    },
+    {
       "version": "3.4.0",
       "notes": [
         "Added:  Workaround for Firefox's First Party Isolation Check without using the 'privacy' permission in Firefox.  This removes the 'privacy' permission, thus one less permission to deal with.  This also allows the cleanup actions to query for FirstPartyIsolate rather than only at browser startup.",
