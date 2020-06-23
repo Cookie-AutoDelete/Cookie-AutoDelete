@@ -13,7 +13,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { resetCookieDeletedCounter } from '../../../redux/Actions';
+import { clearActivities } from '../../../redux/Actions';
 import { FilterOptions } from '../../../typings/Enums';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ActivityTable from '../../common_components/ActivityTable';
@@ -22,8 +22,9 @@ import IconButton from '../../common_components/IconButton';
 interface OwnProps {
   style?: React.CSSProperties;
 }
+
 interface DispatchProps {
-  onResetCounterButtonClick: () => void;
+  onClearActivityLogClick: () => void;
 }
 
 type ActivityLogProps = OwnProps & DispatchProps;
@@ -32,13 +33,15 @@ class ActivityLog extends React.Component<ActivityLogProps> {
   public state = {
     decisionFilter: FilterOptions.NONE,
   };
+
   public setNewFilter(filter: FilterOptions) {
     this.setState({
       decisionFilter: filter,
     });
   }
+
   public render() {
-    const { style, onResetCounterButtonClick } = this.props;
+    const { style, onClearActivityLogClick } = this.props;
     // const { decisionFilter } = this.state;
     return (
       <div style={style}>
@@ -102,7 +105,7 @@ class ActivityLog extends React.Component<ActivityLogProps> {
           <IconButton
             iconName="trash"
             text={browser.i18n.getMessage('clearLogsText')}
-            onClick={() => onResetCounterButtonClick()}
+            onClick={() => onClearActivityLogClick()}
             className="btn-warning"
           />
         </div>
@@ -113,8 +116,8 @@ class ActivityLog extends React.Component<ActivityLogProps> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
-  onResetCounterButtonClick() {
-    dispatch(resetCookieDeletedCounter());
+  onClearActivityLogClick() {
+    dispatch(clearActivities());
   },
 });
 
