@@ -362,7 +362,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             iconName="cog"
             className="btn-info"
             onClick={() => {
+              const isFFDesktop =
+                cache.browserDetect &&
+                cache.browserDetect === 'Firefox' &&
+                cache.platformOs &&
+                cache.platformOs !== 'android';
               browser.tabs.create({
+                cookieStoreId: isFFDesktop ? tab.cookieStoreId : undefined,
                 index: tab.index + 1,
                 url: '/settings/settings.html#tabSettings',
               });
