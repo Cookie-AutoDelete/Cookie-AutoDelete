@@ -128,10 +128,13 @@ const restoreCookies = async (
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
   const firstPartyIsolate = await isFirstPartyIsolate();
-  cadLog({
-    msg: `ActivityTable.restoreCookies:  Restoring Cookies for triggered ActivityLog entry`,
-    x: log,
-  }, debug);
+  cadLog(
+    {
+      msg: `ActivityTable.restoreCookies:  Restoring Cookies for triggered ActivityLog entry`,
+      x: log,
+    },
+    debug,
+  );
   for (const cleanReasonObjs of cleanReasonObjsArrays) {
     for (const obj of cleanReasonObjs) {
       // Cannot set cookies from file:// protocols

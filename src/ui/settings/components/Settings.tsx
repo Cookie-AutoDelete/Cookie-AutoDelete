@@ -91,7 +91,7 @@ class Settings extends React.Component<SettingProps> {
     const { onUpdateSetting } = this.props;
     const initialSettingKeys = Object.keys(initialState.settings);
     const reader = new FileReader();
-    reader.onload = file => {
+    reader.onload = (file) => {
       try {
         if (!file.target) throw Error('File Not Found!');
         // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
@@ -127,7 +127,7 @@ class Settings extends React.Component<SettingProps> {
         );
         const settingKeys = Object.keys(newSettings);
         const unknownKeys = settingKeys.filter(
-          key => !initialSettingKeys.includes(key),
+          (key) => !initialSettingKeys.includes(key),
         );
         if (unknownKeys.length > 0) {
           throw new Error(
@@ -136,7 +136,7 @@ class Settings extends React.Component<SettingProps> {
             )}:  ${unknownKeys.join(', ')}`,
           );
         }
-        settingKeys.forEach(setting => {
+        settingKeys.forEach((setting) => {
           if (settings[setting].value !== newSettings[setting].value) {
             cadLog(
               {
@@ -225,7 +225,7 @@ class Settings extends React.Component<SettingProps> {
               iconName="upload"
               type="file"
               accept="application/json, .json"
-              onChange={e => this.importCoreSettings(e.target.files[0])}
+              onChange={(e) => this.importCoreSettings(e.target.files[0])}
               title={browser.i18n.getMessage('importCoreSettingsText')}
               text={browser.i18n.getMessage('importCoreSettingsText')}
               styleReact={styles.buttonStyle}
@@ -276,7 +276,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('activeModeText')}
               inline={true}
               settingObject={settings.activeMode}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#enable-automatic-cleaning'} />
           </div>
@@ -286,7 +286,7 @@ class Settings extends React.Component<SettingProps> {
               type="number"
               className="form-control"
               style={styles.inlineNumberInput}
-              onChange={e => {
+              onChange={(e) => {
                 const eValue = Number.parseInt(e.target.value, 10);
                 if (!Number.isNaN(eValue) && eValue >= 1 && eValue <= 2147483) {
                   onUpdateSetting({
@@ -310,7 +310,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('cleanDiscardedText')}
               settingObject={settings.discardedCleanup}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#enable-cleanup-on-discarded-tabs'} />
           </div>
@@ -319,7 +319,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('cleanupDomainChangeText')}
               settingObject={settings.domainChangeCleanup}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#enable-cleanup-on-domain-change'} />
           </div>
@@ -328,7 +328,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('enableGreyListCleanup')}
               settingObject={settings.enableGreyListCleanup}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
               hrefURL={'#enable-greylist-cleanup-on-browser-restart'}
@@ -339,7 +339,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('cookieCleanUpOnStartText')}
               settingObject={settings.cleanCookiesFromOpenTabsOnStartup}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
               hrefURL={'#clean-cookies-from-open-tabs-on-startup'}
@@ -350,7 +350,7 @@ class Settings extends React.Component<SettingProps> {
               settingObject={settings.cleanExpiredCookies}
               inline={true}
               text={browser.i18n.getMessage('cleanExpiredCookiesText')}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#clean-expired-cookies'} />
           </div>
@@ -363,7 +363,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('greyCleanLocalstorage')}
               settingObject={settings.greyCleanLocalstorage}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
               hrefURL={'#uncheck-keep-localstorage-on-new-greylist-expressions'}
@@ -374,7 +374,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('whiteCleanLocalstorage')}
               settingObject={settings.whiteCleanLocalstorage}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
               hrefURL={
@@ -396,7 +396,7 @@ class Settings extends React.Component<SettingProps> {
                 )}
                 settingObject={settings.contextualIdentities}
                 inline={true}
-                updateSetting={payload => onUpdateSetting(payload)}
+                updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip
                 hrefURL={
@@ -416,7 +416,7 @@ class Settings extends React.Component<SettingProps> {
                 )} (Firefox 58+, Chrome 74+)`}
                 settingObject={settings.localstorageCleanup}
                 inline={true}
-                updateSetting={payload => onUpdateSetting(payload)}
+                updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip hrefURL={'#enable-localstorage-support'} />
               {!settings.localstorageCleanup.value && (
@@ -425,13 +425,13 @@ class Settings extends React.Component<SettingProps> {
                 </div>
               )}
               {settings.contextualIdentities.value &&
-              settings.localstorageCleanup.value && (
-                <div className="alert alert-warning">
-                  {browser.i18n.getMessage(
-                    'localstorageAndContextualIdentitiesWarning',
-                  )}
-                </div>
-              )}
+                settings.localstorageCleanup.value && (
+                  <div className="alert alert-warning">
+                    {browser.i18n.getMessage(
+                      'localstorageAndContextualIdentitiesWarning',
+                    )}
+                  </div>
+                )}
             </div>
           )}
         </fieldset>
@@ -443,7 +443,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('enableCleanupLogText')}
               settingObject={settings.statLogging}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#enable-cleanup-log-and-counter'} />
             {settings.statLogging.value && (
@@ -458,7 +458,7 @@ class Settings extends React.Component<SettingProps> {
                 text={browser.i18n.getMessage('showNumberOfCookiesInIconText')}
                 settingObject={settings.showNumOfCookiesInIcon}
                 inline={true}
-                updateSetting={payload => onUpdateSetting(payload)}
+                updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip
                 hrefURL={'#show-number-of-cookies-for-that-domain'}
@@ -466,23 +466,23 @@ class Settings extends React.Component<SettingProps> {
             </div>
           )}
           {(browserDetect !== 'Firefox' || platformOs !== 'android') &&
-          settings.showNumOfCookiesInIcon.value === true && (
-            <div className="form-group">
-              <CheckboxSetting
-                text={browser.i18n.getMessage('keepDefaultIcon')}
-                settingObject={settings.keepDefaultIcon}
-                inline={true}
-                updateSetting={payload => onUpdateSetting(payload)}
-              />
-              <SettingsTooltip hrefURL={'#keep-default-icon'} />
-            </div>
-          )}
+            settings.showNumOfCookiesInIcon.value === true && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage('keepDefaultIcon')}
+                  settingObject={settings.keepDefaultIcon}
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip hrefURL={'#keep-default-icon'} />
+              </div>
+            )}
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('notifyCookieCleanUpText')}
               settingObject={settings.showNotificationAfterCleanup}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
               hrefURL={'#show-notification-after-cookie-cleanup'}
@@ -496,7 +496,7 @@ class Settings extends React.Component<SettingProps> {
               text={`${browser.i18n.getMessage(
                 'secondsText',
               )} ${browser.i18n.getMessage('notifyCookieCleanupDelayText')}`}
-              updateSetting={payload => {
+              updateSetting={(payload) => {
                 onUpdateSetting(payload);
               }}
             />
@@ -509,7 +509,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('enableNewVersionPopup')}
               settingObject={settings.enableNewVersionPopup}
               inline={true}
-              updateSetting={payload => onUpdateSetting(payload)}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
               hrefURL={'#enable-popup-when-new-version-is-released'}
@@ -521,7 +521,7 @@ class Settings extends React.Component<SettingProps> {
               numStart={10}
               settingObject={settings.sizePopup}
               text={browser.i18n.getMessage('sizePopupText')}
-              updateSetting={payload => {
+              updateSetting={(payload) => {
                 onUpdateSetting(payload);
               }}
             />
@@ -533,7 +533,7 @@ class Settings extends React.Component<SettingProps> {
               numStart={10}
               settingObject={settings.sizeSetting}
               text={browser.i18n.getMessage('sizeSettingText')}
-              updateSetting={payload => {
+              updateSetting={(payload) => {
                 onUpdateSetting(payload);
               }}
             />
@@ -546,7 +546,7 @@ class Settings extends React.Component<SettingProps> {
                 text={browser.i18n.getMessage('enableContextMenus')}
                 settingObject={settings.contextMenus}
                 inline={true}
-                updateSetting={payload => onUpdateSetting(payload)}
+                updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip hrefURL={'#enable-context-menus'} />
             </div>
@@ -558,7 +558,7 @@ class Settings extends React.Component<SettingProps> {
                 text={browser.i18n.getMessage('debugMode')}
                 settingObject={settings.debugMode}
                 inline={true}
-                updateSetting={payload => onUpdateSetting(payload)}
+                updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip hrefURL={'#debug-mode'} />
               {settings.debugMode.value && (
@@ -568,8 +568,8 @@ class Settings extends React.Component<SettingProps> {
                     <b>
                       {(browserDetect === 'Firefox' &&
                         'about:devtools-toolbox?type=extension&id=') ||
-                      (browserDetect === 'Chrome' &&
-                        `chrome://extensions/?id=`)}
+                        (browserDetect === 'Chrome' &&
+                          `chrome://extensions/?id=`)}
                       {encodeURIComponent(browser.runtime.id)}
                     </b>
                   </pre>

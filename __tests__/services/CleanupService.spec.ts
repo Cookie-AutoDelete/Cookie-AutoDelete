@@ -1063,7 +1063,11 @@ describe('CleanupService', () => {
         session: false,
       };
 
-      const result = isSafeToClean(expiredState, cookieProperty, cleanupProperties);
+      const result = isSafeToClean(
+        expiredState,
+        cookieProperty,
+        cleanupProperties,
+      );
       expect(result.reason).toBe(ReasonClean.ExpiredCookie);
       expect(result.cleanCookie).toBe(true);
     });
@@ -1310,11 +1314,11 @@ describe('CleanupService', () => {
       return returnContainersOfOpenTabDomains(false, false).then((results) => {
         expect(
           results['firefox-default'] &&
-          results['firefox-default'].includes('youtube.com'),
+            results['firefox-default'].includes('youtube.com'),
         ).toBe(false);
         expect(
           results['firefox-container-1'] &&
-          results['firefox-container-1'].includes('youtube.com'),
+            results['firefox-container-1'].includes('youtube.com'),
         ).toBe(false);
         expect(results['0'] && results['0'].includes('youtube.com')).toBe(
           false,
@@ -1330,7 +1334,7 @@ describe('CleanupService', () => {
       return returnContainersOfOpenTabDomains(false, true).then((results) => {
         expect(
           results['firefox-container-1'] &&
-          results['firefox-container-1'].includes('discarded.net'),
+            results['firefox-container-1'].includes('discarded.net'),
         ).toBe(false);
         return Promise.resolve();
       });
