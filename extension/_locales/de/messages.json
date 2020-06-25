@@ -611,6 +611,10 @@
     "message": "Melde Fehler und schlage neue Funktionen vor",
     "description": "Report issues and suggest features"
   },
+  "resetCookieCounterText": {
+    "message": "Cookie-Zähler zurücksetzen",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
   "resetExtensionDataText": {
     "message": "Erweiterungsdaten zurücksetzen",
     "description": "Reset Extension Data"
