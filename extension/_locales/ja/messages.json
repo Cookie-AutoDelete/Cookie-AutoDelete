@@ -1,764 +1,764 @@
 {
-	"aboutText": {
-		"message": "このプログラムについて",
-		"description": "About"
-	},
-	"activeModeDelayText": {
-		"message": "自動クリーニングの前の遅延",
-		"description": "Delay Before Automatic Cleaning"
-	},
-	"activeModeText": {
-		"message": "自動クリーニングを有効にする",
-		"description": "Enable Automatic Cleaning"
-	},
-	"addNewExpressionNotification": {
-		"message": "クッキーストア $cookieStore$ の下のリスト型 $listType$ に $expression$ を追加します。",
-		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
-		"placeholders": {
-			"expression": {
-				"content": "$1",
-				"example": "example.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "WHITE"
-			},
-			"cookieStore": {
-				"content": "$3",
-				"example": "default -or- firefox-container-1 (Personal)"
-			}
-		}
-	},
-	"addNewExpressionNotificationFailed": {
-		"message": "右クリックで得られる場所からは、追加するドメインを取得できませんでした。",
-		"description": "Could not fetch domain to add from where right-click was issued."
-	},
-	"addNewExpressionNotificationIgnore": {
-		"message": "式がすでにある場合何も行いません。",
-		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
-	},
-	"autoDeleteDisabledText": {
-		"message": "自動削除無効",
-		"description": "Auto-clean disabled"
-	},
-	"autoDeleteEnabledText": {
-		"message": "自動削除有効",
-		"description": "Auto-clean enabled"
-	},
-	"chromeDebugMode": {
-		"message": "「開発者モード」が有効になっていることを確認し、検査ビューの「バックグラウンドページ」をクリックします。",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
-	"cleanDiscardedText": {
-		"message": "閉じたタブ/未読込のタブのクリーンアップを有効にする",
-		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
-	},
-	"cleanIgnoringOpenTabsText": {
-		"message": "開いてるタブを含め消去する",
-		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
-	},
-	"cleanText": {
-		"message": "消去する",
-		"description": "Clean"
-	},
-	"cleanupDomainChangeText": {
-		"message": "ドメイン変更のクリーンアップを有効にします。",
-		"description": "Enable Cleanup on Domain Change"
-	},
-	"cleanupActionsBypass": {
-		"message": "警告 - 以下のアクションは設定を無視します！",
-		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
-	},
-	"cleanupLogText": {
-		"message": "クリーンアップのログ",
-		"description": "Cleanup Log"
-	},
-	"clearLogsText": {
-		"message": "ログを削除",
-		"description": "Clear Logs"
-	},
-	"clearSiteDataForDomainText": {
-		"message": "$domain$ から $siteData$ をすべて消去する",
-		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"domain": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"clearSiteDataText": {
-		"message": "ドメインから $siteData$ を消去する",
-		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			}
-		}
-	},
-	"clearURLText": {
-		"message": "すべて削除",
-		"description": "Remove All"
-	},
-	"consoleDebugMode": {
-		"message": "コンソールタブをクリックします",
-		"description": "Click on the Console Tab.  Found after enabling debug mode."
-	},
-	"contextMenusParentClean": {
-		"message": "手動でのクリーニングメニュー",
-		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
-	},
-	"contextMenusParentExpression": {
-		"message": "ドメイン/式メニューを追加する",
-		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
-	},
-	"contextMenusSelectedDomainLink": {
-		"message": "選択したリンクのドメインの場合のみ",
-		"description": "For domain only of selected link.  Shown in right-click menu."
-	},
-	"contextMenusSelectedDomainPage": {
-		"message": "選択したページのドメインの場合のみ",
-		"description": "For domain only of selected page.  Shown in right-click menu."
-	},
-	"contextMenusSelectedDomainText": {
-		"message": "選択したテキストのドメインの場合のみ： $selected$",
-		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
-		"placeholders": {
-			"selected": {
-				"content": "$1",
-				"example": "github.com"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomainLink": {
-		"message": "選択したリンクのドメインを持つすべてのサブドメインの場合",
-		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
-	},
-	"contextMenusSelectedSubdomainPage": {
-		"message": "選択したページのドメインを持つすべてのサブドメインの場合",
-		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
-	},
-	"contextMenusSelectedSubdomainText": {
-		"message": "選択したテキストのドメインを持つすべてのサブドメインの場合： $selected$",
-		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
-		"placeholders": {
-			"selected": {
-				"content": "$1",
-				"example": "github.com"
-			}
-		}
-	},
-	"contextualIdentitiesEnabledText": {
-		"message": "Firefoxのコンテナタブのサポートを有効にする",
-		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
-	},
-	"contributeText": {
-		"message": "開発・サポートへの支援金",
-		"description": "Contribute"
-	},
-	"contributorsText": {
-		"message": "貢献した人",
-		"description": "Contributors"
-	},
-	"cookiesText": {
-		"message": "クッキー",
-		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
-	},
-	"cookieCleanUpOnStartText": {
-		"message": "起動時に開いているタブからクッキーを消去する",
-		"description": "Clean Cookies from Open Tabs on Startup"
-	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
-		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
-	},
-	"debugMode": {
-		"message": "デバッグモードを有効にする（追加のコンソール出力）",
-		"description": "Enable Debug Mode (Additional Console Outputs)"
-	},
-	"defaultSettingsText": {
-		"message": "初期設定に戻す",
-		"description": "Restore Default Settings"
-	},
-	"disableAutoDeleteText": {
-		"message": "自動削除無効に切り替え(手動モード)",
-		"description": "Toggle to disable automatic cleanup (manual mode)"
-	},
-	"documentationText": {
-		"message": "解説（公式文書：Documentation）",
-		"description": "Documentation"
-	},
-	"domainExpressionsText": {
-		"message": "ドメイン式",
-		"description": "Domain Expression"
-	},
-	"dropdownAdditionalCleaningOptions": {
-		"message": "追加のクリーニングアクションのドロップダウンを切り替える",
-		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
-	},
-	"editExpressionText": {
-		"message": "編集",
-		"description": "Edit expression"
-	},
-	"enableAutoDeleteText": {
-		"message": "自動削除有効に切り替え(自動モード)",
-		"description": "Toggle to enable automatic cleanup (automatic mode)"
-	},
-	"enableCleanupLogText": {
-		"message": "クリーンアップのログとカウンターを有効にします。",
-		"description": "Enable Cleanup Log and Counter"
-	},
-	"enableContextMenus": {
-		"message": "コンテキストメニュー（右クリックメニュー）を有効にする",
-		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
-	},
-	"enableGlobalSubdomainText": {
-		"message": "サブドメインのチェックを有効にする",
-		"description": "Enable Check for Subdomains"
-	},
-	"enableGreyListCleanup": {
-		"message": "ブラウザの再起動時にグレイリストのクリーンアップを有効にする",
-		"description": "Enable Greylist Cleanup on Browser Restart"
-	},
-	"enableNewVersionPopup": {
-		"message": "新しいバージョンのリリース時にポップアップを有効にする",
-		"description": "Enable Popup when New Version is Released"
-	},
-	"errorText": {
-		"message": "エラー",
-		"description": "Error!"
-	},
-	"exportSettingsText": {
-		"message": "コア設定のエクスポート",
-		"description": "Export Core Settings"
-	},
-	"exportURLSText": {
-		"message": "式のエクスポート",
-		"description": "Export Expressions"
-	},
-	"exportTitleTimestamp": {
-		"message": "エクスポート時にファイル名にタイムスタンプが付加されます。",
-		"description": "A timestamp will be appended to the filename on export."
-	},
-	"extensionDescription": {
-		"message": "cookieをコントロールしよう！タブを閉じたら、使用していないcookieを自動で削除。任意で残すこともできます。",
-		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-	},
-	"extensionName": {
-		"message": "Cookie AutoDelete",
-		"description": "Name of the extension."
-	},
-	"faqText": {
-		"message": "よくある質問（問答集）、一般的な問題と解決策",
-		"description": "Frequently Asked Questions, Common issues and solutions"
-	},
-	"filterDebugMode": {
-		"message": "この拡張機能によるデバッグ出力のみを表示するには、以下の行で出力をフィルタリングします:",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
-	"filterText": {
-		"message": "フィルタ",
-		"description": "Filter"
-	},
-	"greyCleanLocalstorage": {
-		"message": "新しいグレイリスト式の 'ローカルストレージを維持する' のチェックを外す",
-		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-	},
-	"greyListWordText": {
-		"message": "グレイリスト",
-		"description": "Greylist"
-	},
-	"importCoreSettingsFailed": {
-		"message": "コア設定のインポートに失敗しました - 不明な設定が見つかりました",
-		"description": "Import Core Settings Failed - Found unknown setting"
-	},
-	"importCoreSettingsText": {
-		"message": "コア設定のインポート",
-		"description": "Import Core Settings"
-	},
-	"importFileTypeInvalid": {
-		"message": "与えられたファイルは、我々が扱うタイプではありません。",
-		"description": "File given is not a type we handle"
-	},
-	"importFileValidationFailed": {
-		"message": "指定されたファイルは検証に失敗しました。",
-		"description": "File given failed validation"
-	},
-	"importMissingKey": {
-		"message": "識別子が欠落しています",
-		"description": "Missing identifier"
-	},
-	"importURLSText": {
-		"message": "式のインポート",
-		"description": "Import Expressions"
-	},
-	"keepAllCookiesText": {
-		"message": "すべてのクッキーを維持する",
-		"description": "Keep All Cookies"
-	},
-	"keepDefaultIcon": {
-		"message": "すべてのリストタイプでデフォルトのアイコンを維持する",
-		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
-	},
-	"keepLocalstorageText": {
-		"message": "ローカルストレージを維持する",
-		"description": "Keep LocalStorage"
-	},
-	"keepText": {
-		"message": "保持する",
-		"description": "Keep"
-	},
-	"listTypeText": {
-		"message": "種類のリスト",
-		"description": "List Type"
-	},
-	"localstorageAndContextualIdentitiesWarning": {
-		"message": "警告: ローカルストレージのクリーンアップとコンテナタブの両方を有効にすると、API の制限により不要な副作用が発生する可能性があります。 ローカルストレージは、すべてのコンテナのホスト名でクリアされます。",
-		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-	},
-	"localstorageCleanupText": {
-		"message": "ローカルストレージのクリーンアップ",
-		"description": "LocalStorage Cleanup"
-	},
-	"localstorageCleanupWarning": {
-		"message": "警告: ローカルストレージのクリーンアップを有効にすると、すべての既存のローカルストレージがクリアされます。",
-		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-	},
-	"localStorageText": {
-		"message": "ローカルストレージ",
-		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
-	},
-	"manualActionNotification": {
-		"message": "手動での動作を通知する",
-		"description": "Manual Action Notification - used as Notification Title."
-	},
-	"manualCleanError": {
-		"message": "タブの場合は $data$ をクリーンアップできません：",
-		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
-		"placeholders": {
-			"data": {
-				"content": "$1",
-				"example": "cookies"
-			}
-		}
-	},
-	"manualCleanNothing": {
-		"message": "$url$ のクリーニング用の $cleanType$ は見つかりませんでした。",
-		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
-		"placeholders": {
-			"cleanType": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"url": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"manualCleanRemoved": {
-		"message": "$total$ 件中 $deleted$ 件を削除しました。",
-		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
-		"placeholders": {
-			"deleted": {
-				"content": "$1",
-				"example": "5"
-			},
-			"total": {
-				"content": "$2",
-				"example": "5"
-			}
-		}
-	},
-	"manualCleanSuccess": {
-		"message": "$url$ の $cleanType$ のクリーンアップした結果です：",
-		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
-		"placeholders": {
-			"cleanType": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"url": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"matchedDomainExpressionText": {
-		"message": "一致するドメイン式",
-		"description": "Matched Domain Expression"
-	},
-	"menuText": {
-		"message": "メニュー",
-		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
-	},
-	"minutesText": {
-		"message": "分",
-		"description": "minute(s)"
-	},
-	"noCleanupLogText": {
-		"message": "クリーンアップのログが見つかりません",
-		"description": "No Cleanup Logs Found"
-	},
-	"noExpressionsText": {
-		"message": "式が定義されていない",
-		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "プライベートブラウジングでタブのクリーンアップログは生成されません",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
-	},
-	"noRulesText": {
-		"message": "このドメインのルールはありません。",
-		"description": "No rules matched this domain"
-	},
-	"noneText": {
-		"message": "なし",
-		"description": "None"
-	},
-	"notificationContent": {
-		"message": "$Num$ 個のクッキーを $Websites$ から削除",
-		"description": "123 Deleted Cookies from: google.com, facebook.com",
-		"placeholders": {
-			"num": {
-				"content": "$1",
-				"example": "123"
-			},
-			"websites": {
-				"content": "$2",
-				"example": "google.com, facebook.com"
-			}
-		}
-	},
-	"notificationDisabledText": {
-		"message": "通知無効",
-		"description": "Notification disabled"
-	},
-	"notificationEnabledText": {
-		"message": "通知有効",
-		"description": "Notification enabled"
-	},
-	"notificationTitle": {
-		"message": "クッキーが削除された!",
-		"description": "Cookies were deleted!  Used in Notification Title."
-	},
-	"notifyCookieCleanupDelayText": {
-		"message": "通知の表示時間",
-		"description": "Duration for Notifications"
-	},
-	"notifyCookieCleanUpText": {
-		"message": "クッキーのクリーンアップ後に通知を表示する",
-		"description": "Show Notification After Cookie Cleanup"
-	},
-	"oldReleasesText": {
-		"message": "過去のリリースノートは、オンラインで表示できます：",
-		"description": "Older release notes can be viewed online at"
-	},
-	"openDebugMode": {
-		"message": "デバッグ出力を表示するには、新しいタブを開いてください",
-		"description": "To view the debug outputs, open a new tab and visit"
-	},
-	"optionsText": {
-		"message": "オプション",
-		"description": "Options"
-	},
-	"popupCookieCountText": {
-		"message": "クッキー",
-		"description": "Cookie(s)"
-	},
-	"preferencesText": {
-		"message": "設定",
-		"description": "Settings"
-	},
-	"questionExpression": {
-		"message": "式の仕組みは?",
-		"description": "How do Expressions work?"
-	},
-	"reasonCleanCookieName": {
-		"message": "$listType$ で $matchedExpression$ が合致したので、部分的にクリーンアップします",
-		"description": "Partial clean because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonCleanGreyList": {
-		"message": "$matchedExpression$ はグレイリストに含まれるため再起動時に消去されます",
-		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			}
-		}
-	},
-	"reasonCleanNoList": {
-		"message": "$hostname$ はホワイト/グレイリストに含まれないので消去します",
-		"description": "Clean because sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonCleanStartupNoList": {
-		"message": "$hostname$ はホワイト/グレイリストに含まれないので再起動時に消去します",
-		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonKeep": {
-		"message": "$listType$ で一致する $matchedExpression$ のため保持します。",
-		"description": "Keep because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonKeepOpenTab": {
-		"message": ".$mainDomain$ のタブが開いているので保持します",
-		"description": "Keep because of open tabs of *.google.com",
-		"placeholders": {
-			"mainDomain": {
-				"content": "$1",
-				"example": "google.com"
-			}
-		}
-	},
-	"reasonTabsWereIgnored": {
-		"message": "そして、開いているタブも無視されました。",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-	},
-	"reasonTabsWereNotIgnored": {
-		"message": "もしくは開いているタブで",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-	},
-	"regularExpressionEquivalentText": {
-		"message": "正規表現に相当",
-		"description": "Regular Expression Equivalent"
-	},
-	"releaseNotesText": {
-		"message": "更新履歴",
-		"description": "Release Notes"
-	},
-	"removeAllExpressions": {
-		"message": "すべての式を削除する",
-		"description": "Remove All Expressions"
-	},
-	"removeAllExpressionsConfirm": {
-		"message": " ($listCount$) リストから保存された式をすべて ($expressionCount$) 削除しますか？\n\nこれは元に戻せません！\n\n削除するには、[ $expressionCount$ ] と入力し、[ OK ] をクリックします。",
-		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
-		"placeholders": {
-			"expressionCount": {
-				"content": "$1",
-				"example": "75"
-			},
-			"listCount": {
-				"content": "$2",
-				"example": "5"
-			}
-		}
-	},
-	"removeAllExpressionsNoneFound": {
-		"message": "削除する式はありません！",
-		"description": "No expressions to remove!"
-	},
-	"removeExpressionText": {
-		"message": "式を削除",
-		"description": "Remove expression"
-	},
-	"removeStorageCount": {
-		"message": "$storageType$ から $count$ アイテムを 削除しました。",
-		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
-		"placeholders": {
-			"count": {
-				"content": "$1",
-				"example": "1"
-			},
-			"storageType": {
-				"content": "$2",
-				"example": "LocalStorage"
-			}
-		}
-	},
-	"reportIssuesText": {
-		"message": "問題を報告、機能の提案",
-		"description": "Report issues and suggest features"
-	},
-	"resetExtensionDataText": {
-		"message": "拡張機能のデータをリセット",
-		"description": "Reset Extension Data"
-	},
-	"restoreText": {
-		"message": "復元",
-		"description": "Ex: Restore Cleanup"
-	},
-	"reviewLinkMessage": {
-		"message": "$cadTitle$ を使用いただきありがとうございます。 お気に召しましたらレビューをお書きください。",
-		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			}
-		}
-	},
-	"saveExpressionText": {
-		"message": "保存する",
-		"description": "Save expression"
-	},
-	"secondsText": {
-		"message": "秒",
-		"description": "second(s)"
-	},
-	"sessionStorageText": {
-		"message": "セッションストレージ",
-		"description": "SessionStorage.  Used in manual localstorage clean notification"
-	},
-	"settingGroupAutoClean": {
-		"message": "自動クリーニングのオプション",
-		"description": "Automatic Cleaning Options"
-	},
-	"settingGroupExpression": {
-		"message": "式のオプション",
-		"description": "Expression Options"
-	},
-	"settingGroupExtension": {
-		"message": "拡張機能のオプション",
-		"description": "Extension Options"
-	},
-	"settingGroupOtherBrowsing": {
-		"message": "他のブラウジングデータのクリーンアップオプション",
-		"description": "Other Browsing Data Cleanup Options"
-	},
-	"settingsText": {
-		"message": "$CAD$ 設定",
-		"description": "$CAD$ Settings",
-		"placeholders": {
-			"CAD": {
-				"content": "CAD",
-				"example": "CAD - Short form of Cookie AutoDelete"
-			}
-		}
-	},
-	"showNumberOfCookiesInIconText": {
-		"message": "アイコンの上にあるドメインのクッキー数を表示する",
-		"description": "Show Number of Cookies for that Domain over the Icon"
-	},
-	"sizePopupText": {
-		"message": "ポップアップのサイズ (ピクセル単位で)",
-		"description": "Size of Popup (in px).  This sets the font size in the Popup."
-	},
-	"sizeSettingText": {
-		"message": "設定ページのサイズ (ピクセル単位で)",
-		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
-	},
-	"stopEditingText": {
-		"message": "編集を中止する",
-		"description": "Stop editing"
-	},
-	"successText": {
-		"message": "成功しました！",
-		"description": "Success!"
-	},
-	"toGreyListText": {
-		"message": "グレイリストに追加(ブラウザを閉じたときに消去)",
-		"description": "Add to Greylist (Clean on Browser Restart)"
-	},
-	"toWhiteListText": {
-		"message": "ホワイトリストに追加(消去しない)",
-		"description": "Add to Whitelist (Never Clean)"
-	},
-	"toggleNotificationText": {
-		"message": "通知状態の切り替え",
-		"description": "Toggle to enable or disable notifications"
-	},
-	"toggleToGreyListWordText": {
-		"message": "グレイリストに切り替え",
-		"description": "Toggle to greylist"
-	},
-	"toggleToWhiteListWordText": {
-		"message": "ホワイトリストに切り替え",
-		"description": "Toggle to whitelist"
-	},
-	"versionNumberText": {
-		"message": "$CAD$ バージョン",
-		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
-		"placeholders": {
-			"CAD": {
-				"content": "$1",
-				"example": "CAD or Cookie AutoDelete"
-			}
-		}
-	},
-	"versionText": {
-		"message": "$browser$ バージョン",
-		"description": "Firefox version",
-		"placeholders": {
-			"browser": {
-				"content": "$1",
-				"example": "Firefox"
-			}
-		}
-	},
-	"welcomeMessage": {
-		"message": "こんにちは！ このセッション中、$cadTitle$ は $sessionDeleted$ のクッキーを削除し、合計で $totalDeleted$ のクッキーを削除しました。",
-		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			},
-			"sessionDeleted": {
-				"content": "$2",
-				"example": "123"
-			},
-			"totalDeleted": {
-				"content": "$3",
-				"example": "456"
-			}
-		}
-	},
-	"welcomeText": {
-		"message": "ようこそ",
-		"description": "Welcome"
-	},
-	"whiteCleanLocalstorage": {
-		"message": "新しいホワイトリスト式の 'ローカルストレージを保持する' のチェックを外す",
-		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-	},
-	"whiteListText": {
-		"message": "式のリスト",
-		"description": "List of Expressions"
-	},
-	"whiteListWordText": {
-		"message": "ホワイトリスト",
-		"description": "Whitelist"
-	}
+  "aboutText": {
+    "message": "このプログラムについて",
+    "description": "About"
+  },
+  "activeModeDelayText": {
+    "message": "自動クリーニングの前の遅延",
+    "description": "Delay Before Automatic Cleaning"
+  },
+  "activeModeText": {
+    "message": "自動クリーニングを有効にする",
+    "description": "Enable Automatic Cleaning"
+  },
+  "addNewExpressionNotification": {
+    "message": "クッキーストア $cookieStore$ の下のリスト型 $listType$ に $expression$ を追加します。",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+    "placeholders": {
+      "expression": {
+        "content": "$1",
+        "example": "example.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "WHITE"
+      },
+      "cookieStore": {
+        "content": "$3",
+        "example": "default -or- firefox-container-1 (Personal)"
+      }
+    }
+  },
+  "addNewExpressionNotificationFailed": {
+    "message": "右クリックで得られる場所からは、追加するドメインを取得できませんでした。",
+    "description": "Could not fetch domain to add from where right-click was issued."
+  },
+  "addNewExpressionNotificationIgnore": {
+    "message": "式がすでにある場合何も行いません。",
+    "description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+  },
+  "autoDeleteDisabledText": {
+    "message": "自動削除無効",
+    "description": "Auto-clean disabled"
+  },
+  "autoDeleteEnabledText": {
+    "message": "自動削除有効",
+    "description": "Auto-clean enabled"
+  },
+  "chromeDebugMode": {
+    "message": "「開発者モード」が有効になっていることを確認し、検査ビューの「バックグラウンドページ」をクリックします。",
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+  },
+  "cleanDiscardedText": {
+    "message": "閉じたタブ/未読込のタブのクリーンアップを有効にする",
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
+  },
+  "cleanIgnoringOpenTabsText": {
+    "message": "開いてるタブを含め消去する",
+    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+  },
+  "cleanText": {
+    "message": "消去する",
+    "description": "Clean"
+  },
+  "cleanupDomainChangeText": {
+    "message": "ドメイン変更のクリーンアップを有効にします。",
+    "description": "Enable Cleanup on Domain Change"
+  },
+  "cleanupActionsBypass": {
+    "message": "警告 - 以下のアクションは設定を無視します！",
+    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+  },
+  "cleanupLogText": {
+    "message": "クリーンアップのログ",
+    "description": "Cleanup Log"
+  },
+  "clearLogsText": {
+    "message": "ログを削除",
+    "description": "Clear Logs"
+  },
+  "clearSiteDataForDomainText": {
+    "message": "$domain$ から $siteData$ をすべて消去する",
+    "description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
+      },
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "clearSiteDataText": {
+    "message": "ドメインから $siteData$ を消去する",
+    "description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "cookies"
+      }
+    }
+  },
+  "clearURLText": {
+    "message": "すべて削除",
+    "description": "Remove All"
+  },
+  "consoleDebugMode": {
+    "message": "コンソールタブをクリックします",
+    "description": "Click on the Console Tab.  Found after enabling debug mode."
+  },
+  "contextMenusParentClean": {
+    "message": "手動でのクリーニングメニュー",
+    "description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+  },
+  "contextMenusParentExpression": {
+    "message": "ドメイン/式メニューを追加する",
+    "description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+  },
+  "contextMenusSelectedDomainLink": {
+    "message": "選択したリンクのドメインの場合のみ",
+    "description": "For domain only of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainPage": {
+    "message": "選択したページのドメインの場合のみ",
+    "description": "For domain only of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainText": {
+    "message": "選択したテキストのドメインの場合のみ： $selected$",
+    "description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextMenusSelectedSubdomainLink": {
+    "message": "選択したリンクのドメインを持つすべてのサブドメインの場合",
+    "description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainPage": {
+    "message": "選択したページのドメインを持つすべてのサブドメインの場合",
+    "description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainText": {
+    "message": "選択したテキストのドメインを持つすべてのサブドメインの場合： $selected$",
+    "description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "Firefoxのコンテナタブのサポートを有効にする",
+    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+  },
+  "contributeText": {
+    "message": "開発・サポートへの支援金",
+    "description": "Contribute"
+  },
+  "contributorsText": {
+    "message": "貢献した人",
+    "description": "Contributors"
+  },
+  "cookiesText": {
+    "message": "クッキー",
+    "description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "起動時に開いているタブからクッキーを消去する",
+    "description": "Clean Cookies from Open Tabs on Startup"
+  },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
+    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+  },
+  "cookieCleanupText": {
+    "message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
+    "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "debugMode": {
+    "message": "デバッグモードを有効にする（追加のコンソール出力）",
+    "description": "Enable Debug Mode (Additional Console Outputs)"
+  },
+  "defaultSettingsText": {
+    "message": "初期設定に戻す",
+    "description": "Restore Default Settings"
+  },
+  "disableAutoDeleteText": {
+    "message": "自動削除無効に切り替え(手動モード)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "documentationText": {
+    "message": "解説（公式文書：Documentation）",
+    "description": "Documentation"
+  },
+  "domainExpressionsText": {
+    "message": "ドメイン式",
+    "description": "Domain Expression"
+  },
+  "dropdownAdditionalCleaningOptions": {
+    "message": "追加のクリーニングアクションのドロップダウンを切り替える",
+    "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+  },
+  "editExpressionText": {
+    "message": "編集",
+    "description": "Edit expression"
+  },
+  "enableAutoDeleteText": {
+    "message": "自動削除有効に切り替え(自動モード)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "enableCleanupLogText": {
+    "message": "クリーンアップのログとカウンターを有効にします。",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "enableContextMenus": {
+    "message": "コンテキストメニュー（右クリックメニュー）を有効にする",
+    "description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+  },
+  "enableGlobalSubdomainText": {
+    "message": "サブドメインのチェックを有効にする",
+    "description": "Enable Check for Subdomains"
+  },
+  "enableGreyListCleanup": {
+    "message": "ブラウザの再起動時にグレイリストのクリーンアップを有効にする",
+    "description": "Enable Greylist Cleanup on Browser Restart"
+  },
+  "enableNewVersionPopup": {
+    "message": "新しいバージョンのリリース時にポップアップを有効にする",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "errorText": {
+    "message": "エラー",
+    "description": "Error!"
+  },
+  "exportSettingsText": {
+    "message": "コア設定のエクスポート",
+    "description": "Export Core Settings"
+  },
+  "exportURLSText": {
+    "message": "式のエクスポート",
+    "description": "Export Expressions"
+  },
+  "exportTitleTimestamp": {
+    "message": "エクスポート時にファイル名にタイムスタンプが付加されます。",
+    "description": "A timestamp will be appended to the filename on export."
+  },
+  "extensionDescription": {
+    "message": "cookieをコントロールしよう！タブを閉じたら、使用していないcookieを自動で削除。任意で残すこともできます。",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+  "faqText": {
+    "message": "よくある質問（問答集）、一般的な問題と解決策",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "filterDebugMode": {
+    "message": "この拡張機能によるデバッグ出力のみを表示するには、以下の行で出力をフィルタリングします:",
+    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+  },
+  "filterText": {
+    "message": "フィルタ",
+    "description": "Filter"
+  },
+  "greyCleanLocalstorage": {
+    "message": "新しいグレイリスト式の 'ローカルストレージを維持する' のチェックを外す",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "greyListWordText": {
+    "message": "グレイリスト",
+    "description": "Greylist"
+  },
+  "importCoreSettingsFailed": {
+    "message": "コア設定のインポートに失敗しました - 不明な設定が見つかりました",
+    "description": "Import Core Settings Failed - Found unknown setting"
+  },
+  "importCoreSettingsText": {
+    "message": "コア設定のインポート",
+    "description": "Import Core Settings"
+  },
+  "importFileTypeInvalid": {
+    "message": "与えられたファイルは、我々が扱うタイプではありません。",
+    "description": "File given is not a type we handle"
+  },
+  "importFileValidationFailed": {
+    "message": "指定されたファイルは検証に失敗しました。",
+    "description": "File given failed validation"
+  },
+  "importMissingKey": {
+    "message": "識別子が欠落しています",
+    "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "式のインポート",
+    "description": "Import Expressions"
+  },
+  "keepAllCookiesText": {
+    "message": "すべてのクッキーを維持する",
+    "description": "Keep All Cookies"
+  },
+  "keepDefaultIcon": {
+    "message": "すべてのリストタイプでデフォルトのアイコンを維持する",
+    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+  },
+  "keepLocalstorageText": {
+    "message": "ローカルストレージを維持する",
+    "description": "Keep LocalStorage"
+  },
+  "keepText": {
+    "message": "保持する",
+    "description": "Keep"
+  },
+  "listTypeText": {
+    "message": "種類のリスト",
+    "description": "List Type"
+  },
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "警告: ローカルストレージのクリーンアップとコンテナタブの両方を有効にすると、API の制限により不要な副作用が発生する可能性があります。 ローカルストレージは、すべてのコンテナのホスト名でクリアされます。",
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+  },
+  "localstorageCleanupText": {
+    "message": "ローカルストレージのクリーンアップ",
+    "description": "LocalStorage Cleanup"
+  },
+  "localstorageCleanupWarning": {
+    "message": "警告: ローカルストレージのクリーンアップを有効にすると、すべての既存のローカルストレージがクリアされます。",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+  },
+  "localStorageText": {
+    "message": "ローカルストレージ",
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+  },
+  "manualActionNotification": {
+    "message": "手動での動作を通知する",
+    "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanError": {
+    "message": "タブの場合は $data$ をクリーンアップできません：",
+    "description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "data": {
+        "content": "$1",
+        "example": "cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "$url$ のクリーニング用の $cleanType$ は見つかりませんでした。",
+    "description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "cleanType": {
+        "content": "$1",
+        "example": "cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanRemoved": {
+    "message": "$total$ 件中 $deleted$ 件を削除しました。",
+    "description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+    "placeholders": {
+      "deleted": {
+        "content": "$1",
+        "example": "5"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "$url$ の $cleanType$ のクリーンアップした結果です：",
+    "description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "cleanType": {
+        "content": "$1",
+        "example": "cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "matchedDomainExpressionText": {
+    "message": "一致するドメイン式",
+    "description": "Matched Domain Expression"
+  },
+  "menuText": {
+    "message": "メニュー",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "minutesText": {
+    "message": "分",
+    "description": "minute(s)"
+  },
+  "noCleanupLogText": {
+    "message": "クリーンアップのログが見つかりません",
+    "description": "No Cleanup Logs Found"
+  },
+  "noExpressionsText": {
+    "message": "式が定義されていない",
+    "description": "No expressions defined."
+  },
+  "noPrivateLogging": {
+    "message": "プライベートブラウジングでタブのクリーンアップログは生成されません",
+    "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noRulesText": {
+    "message": "このドメインのルールはありません。",
+    "description": "No rules matched this domain"
+  },
+  "noneText": {
+    "message": "なし",
+    "description": "None"
+  },
+  "notificationContent": {
+    "message": "$Num$ 個のクッキーを $Websites$ から削除",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "notificationDisabledText": {
+    "message": "通知無効",
+    "description": "Notification disabled"
+  },
+  "notificationEnabledText": {
+    "message": "通知有効",
+    "description": "Notification enabled"
+  },
+  "notificationTitle": {
+    "message": "クッキーが削除された!",
+    "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "notifyCookieCleanupDelayText": {
+    "message": "通知の表示時間",
+    "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "クッキーのクリーンアップ後に通知を表示する",
+    "description": "Show Notification After Cookie Cleanup"
+  },
+  "oldReleasesText": {
+    "message": "過去のリリースノートは、オンラインで表示できます：",
+    "description": "Older release notes can be viewed online at"
+  },
+  "openDebugMode": {
+    "message": "デバッグ出力を表示するには、新しいタブを開いてください",
+    "description": "To view the debug outputs, open a new tab and visit"
+  },
+  "optionsText": {
+    "message": "オプション",
+    "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "クッキー",
+    "description": "Cookie(s)"
+  },
+  "preferencesText": {
+    "message": "設定",
+    "description": "Settings"
+  },
+  "questionExpression": {
+    "message": "式の仕組みは?",
+    "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieName": {
+    "message": "$listType$ で $matchedExpression$ が合致したので、部分的にクリーンアップします",
+    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "$matchedExpression$ はグレイリストに含まれるため再起動時に消去されます",
+    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "$hostname$ はホワイト/グレイリストに含まれないので消去します",
+    "description": "Clean because sub.google.com is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "$hostname$ はホワイト/グレイリストに含まれないので再起動時に消去します",
+    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "$listType$ で一致する $matchedExpression$ のため保持します。",
+    "description": "Keep because of matched *.google.com in the Whitelist",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonKeepOpenTab": {
+    "message": ".$mainDomain$ のタブが開いているので保持します",
+    "description": "Keep because of open tabs of *.google.com",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonTabsWereIgnored": {
+    "message": "そして、開いているタブも無視されました。",
+    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "もしくは開いているタブで",
+    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "正規表現に相当",
+    "description": "Regular Expression Equivalent"
+  },
+  "releaseNotesText": {
+    "message": "更新履歴",
+    "description": "Release Notes"
+  },
+  "removeAllExpressions": {
+    "message": "すべての式を削除する",
+    "description": "Remove All Expressions"
+  },
+  "removeAllExpressionsConfirm": {
+    "message": " ($listCount$) リストから保存された式をすべて ($expressionCount$) 削除しますか？\n\nこれは元に戻せません！\n\n削除するには、[ $expressionCount$ ] と入力し、[ OK ] をクリックします。",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "placeholders": {
+      "expressionCount": {
+        "content": "$1",
+        "example": "75"
+      },
+      "listCount": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "removeAllExpressionsNoneFound": {
+    "message": "削除する式はありません！",
+    "description": "No expressions to remove!"
+  },
+  "removeExpressionText": {
+    "message": "式を削除",
+    "description": "Remove expression"
+  },
+  "removeStorageCount": {
+    "message": "$storageType$ から $count$ アイテムを 削除しました。",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
+  "reportIssuesText": {
+    "message": "問題を報告、機能の提案",
+    "description": "Report issues and suggest features"
+  },
+  "resetExtensionDataText": {
+    "message": "拡張機能のデータをリセット",
+    "description": "Reset Extension Data"
+  },
+  "restoreText": {
+    "message": "復元",
+    "description": "Ex: Restore Cleanup"
+  },
+  "reviewLinkMessage": {
+    "message": "$cadTitle$ を使用いただきありがとうございます。 お気に召しましたらレビューをお書きください。",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
+  },
+  "saveExpressionText": {
+    "message": "保存する",
+    "description": "Save expression"
+  },
+  "secondsText": {
+    "message": "秒",
+    "description": "second(s)"
+  },
+  "sessionStorageText": {
+    "message": "セッションストレージ",
+    "description": "SessionStorage.  Used in manual localstorage clean notification"
+  },
+  "settingGroupAutoClean": {
+    "message": "自動クリーニングのオプション",
+    "description": "Automatic Cleaning Options"
+  },
+  "settingGroupExpression": {
+    "message": "式のオプション",
+    "description": "Expression Options"
+  },
+  "settingGroupExtension": {
+    "message": "拡張機能のオプション",
+    "description": "Extension Options"
+  },
+  "settingGroupOtherBrowsing": {
+    "message": "他のブラウジングデータのクリーンアップオプション",
+    "description": "Other Browsing Data Cleanup Options"
+  },
+  "settingsText": {
+    "message": "$CAD$ 設定",
+    "description": "$CAD$ Settings",
+    "placeholders": {
+      "CAD": {
+        "content": "CAD",
+        "example": "CAD - Short form of Cookie AutoDelete"
+      }
+    }
+  },
+  "showNumberOfCookiesInIconText": {
+    "message": "アイコンの上にあるドメインのクッキー数を表示する",
+    "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "sizePopupText": {
+    "message": "ポップアップのサイズ (ピクセル単位で)",
+    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+  },
+  "sizeSettingText": {
+    "message": "設定ページのサイズ (ピクセル単位で)",
+    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+  },
+  "stopEditingText": {
+    "message": "編集を中止する",
+    "description": "Stop editing"
+  },
+  "successText": {
+    "message": "成功しました！",
+    "description": "Success!"
+  },
+  "toGreyListText": {
+    "message": "グレイリストに追加(ブラウザを閉じたときに消去)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "toWhiteListText": {
+    "message": "ホワイトリストに追加(消去しない)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toggleNotificationText": {
+    "message": "通知状態の切り替え",
+    "description": "Toggle to enable or disable notifications"
+  },
+  "toggleToGreyListWordText": {
+    "message": "グレイリストに切り替え",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "ホワイトリストに切り替え",
+    "description": "Toggle to whitelist"
+  },
+  "versionNumberText": {
+    "message": "$CAD$ バージョン",
+    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "placeholders": {
+      "CAD": {
+        "content": "$1",
+        "example": "CAD or Cookie AutoDelete"
+      }
+    }
+  },
+  "versionText": {
+    "message": "$browser$ バージョン",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "welcomeMessage": {
+    "message": "こんにちは！ このセッション中、$cadTitle$ は $sessionDeleted$ のクッキーを削除し、合計で $totalDeleted$ のクッキーを削除しました。",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
+  "welcomeText": {
+    "message": "ようこそ",
+    "description": "Welcome"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "新しいホワイトリスト式の 'ローカルストレージを保持する' のチェックを外す",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "whiteListText": {
+    "message": "式のリスト",
+    "description": "List of Expressions"
+  },
+  "whiteListWordText": {
+    "message": "ホワイトリスト",
+    "description": "Whitelist"
+  }
 }
