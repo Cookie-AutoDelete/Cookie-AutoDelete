@@ -597,8 +597,12 @@
     "message": "Zgłoś problemy i sugestie",
     "description": "Report issues and suggest features"
   },
+  "resetCookieCounterText": {
+    "message": "Zresetuj licznik ciasteczek",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
   "resetExtensionDataText": {
-    "message": "Resetuj dane rozszerzenia",
+    "message": "Zresetuj dane rozszerzenia",
     "description": "Reset Extension Data"
   },
   "restoreText": {
