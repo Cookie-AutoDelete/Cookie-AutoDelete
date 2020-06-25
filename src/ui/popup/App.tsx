@@ -28,6 +28,8 @@ import {
   getHostname,
   getSetting,
   isAnIP,
+  isChrome,
+  isFirefoxNotAndroid,
   isFirstPartyIsolate,
   localFileToRegex,
   LSCLEANUPNAME,
@@ -68,7 +70,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     document.documentElement.style.fontSize = `${
       (this.props.state.settings.sizePopup.value as number) || 16
     }px`;
-    if (this.props.state.cache.browserDetect === 'Chrome') {
+    if (isChrome(this.props.state.cache)) {
       // Chrome requires min width otherwise the layout is messed up
       document.documentElement.style.minWidth = `${
         430 +
@@ -176,6 +178,12 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           }
         });
         this.port.onDisconnect.addListener((p) => {
+          if (p.error) {
+            // eslint-disable-next-line no-console
+            console.error(
+              `Disconnected due to an error: ${browser.runtime.lastError}`,
+            );
+          }
           this.port = null;
         });
       }
@@ -362,12 +370,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             iconName="cog"
             className="btn-info"
             onClick={() => {
-              if (
-                cache.browserDetect &&
-                cache.browserDetect === 'Firefox' &&
-                cache.platformOs &&
-                cache.platformOs !== 'android'
-              ) {
+              if (isFirefoxNotAndroid(cache)) {
                 browser.tabs.create({
                   cookieStoreId: tab.cookieStoreId,
                   index: tab.index + 1,
@@ -395,6 +398,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
         >
           {tab.favIconUrl && !tab.favIconUrl.startsWith('chrome:') && (
             <img
+              alt={'favIcon'}
               src={tab.favIconUrl}
               style={{
                 height: '20px',

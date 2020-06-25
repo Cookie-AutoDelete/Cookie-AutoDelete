@@ -15,7 +15,12 @@ import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { checkIfProtected } from '../services/BrowserActionService';
 import { cleanCookiesOperation } from '../services/CleanupService';
-import { getSetting, getStoreId } from '../services/Libs';
+import {
+  getSetting,
+  getStoreId,
+  isChrome,
+  isFirefoxAndroid,
+} from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
   ADD_EXPRESSION,
@@ -42,7 +47,9 @@ export const addExpressionUI = (payload: Expression): ADD_EXPRESSION => ({
   type: ReduxConstants.ADD_EXPRESSION,
 });
 
-export const clearExpressionsUI = (payload: StoreIdToExpressionList): CLEAR_EXPRESSIONS => ({
+export const clearExpressionsUI = (
+  payload: StoreIdToExpressionList,
+): CLEAR_EXPRESSIONS => ({
   payload,
   type: ReduxConstants.CLEAR_EXPRESSIONS,
 });
@@ -60,7 +67,7 @@ export const addExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ): void => {
-  const localStorageDefault = (listType: string) => {
+  const localStorageDefault = (listType: string): boolean => {
     switch (listType) {
       case 'GREY':
         return getSetting(getState(), 'greyCleanLocalstorage') === true;
@@ -162,15 +169,23 @@ export const resetAll = (): RESET_ALL => ({
 });
 
 // Validates the setting object and adds missing settings if it doesn't already exist in the initialState
-export const validateSettings: ActionCreator<ThunkAction<void, State, null, ReduxAction>> = () => (dispatch, getState) => {
+export const validateSettings: ActionCreator<ThunkAction<
+  void,
+  State,
+  null,
+  ReduxAction
+>> = () => (dispatch, getState) => {
   const { cache, settings } = getState();
   const initialSettings = initialState.settings;
   const settingKeys = Object.keys(settings);
   const initialSettingKeys = Object.keys(initialSettings);
 
-  settingKeys.forEach(k => {
+  settingKeys.forEach((k) => {
     // Properties in a individual setting do not match up.  Repopulate from the default one and reuse existing value
-    if (Object.keys(settings[k]).length !== Object.keys(initialSettings[k]).length) {
+    if (
+      initialSettings[k] !== undefined &&
+      Object.keys(settings[k]).length !== Object.keys(initialSettings[k]).length
+    ) {
       dispatch({
         payload: {
           ...initialSettings[k],
@@ -183,7 +198,7 @@ export const validateSettings: ActionCreator<ThunkAction<void, State, null, Redu
 
   // Missing a setting
   if (settingKeys.length !== initialSettingKeys.length) {
-    initialSettingKeys.forEach(k => {
+    initialSettingKeys.forEach((k) => {
       if (settings[k] === undefined) {
         dispatch({
           payload: initialSettings[k],
@@ -206,11 +221,11 @@ export const validateSettings: ActionCreator<ThunkAction<void, State, null, Redu
   }
 
   // Disable unusable setting in Chrome
-  if (cache.browserDetect === 'Chrome') {
+  if (isChrome(cache)) {
     disableSettingIfTrue(settings.contextualIdentities);
   }
   // Disable unusable setting in Firefox Android
-  if (cache.browserDetect === 'Firefox' && cache.platformOs === 'android') {
+  if (isFirefoxAndroid(cache)) {
     disableSettingIfTrue(settings.showNumOfCookiesInIcon);
     disableSettingIfTrue(settings.localstorageCleanup);
     disableSettingIfTrue(settings.contextualIdentities);
@@ -239,7 +254,10 @@ export const validateSettings: ActionCreator<ThunkAction<void, State, null, Redu
   }
 
   // If show cookie count in badge is disabled, force change icon color instead
-  if (!settings.showNumOfCookiesInIcon.value && settings.keepDefaultIcon.value) {
+  if (
+    !settings.showNumOfCookiesInIcon.value &&
+    settings.keepDefaultIcon.value
+  ) {
     disableSettingIfTrue(settings.keepDefaultIcon);
   }
 };
@@ -252,7 +270,12 @@ export const cookieCleanupUI = (
 });
 
 // Cookie Cleanup operation that is to be called from the React UI
-export const cookieCleanup: ActionCreator<ThunkAction<void, State, null, ReduxAction>> = (
+export const cookieCleanup: ActionCreator<ThunkAction<
+  void,
+  State,
+  null,
+  ReduxAction
+>> = (
   options: CleanupProperties = { greyCleanup: false, ignoreOpenTabs: false },
 ) => async (dispatch, getState) => {
   const cleanupDoneObject = await cleanCookiesOperation(getState(), options);
@@ -281,7 +304,9 @@ export const cookieCleanup: ActionCreator<ThunkAction<void, State, null, ReduxAc
     await browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
       iconUrl: browser.extension.getURL('icons/icon_48.png'),
       message: notifyMessage,
-      title: `${browser.i18n.getMessage('extensionName')} ${browser.runtime.getManifest().version}:  ${browser.i18n.getMessage('notificationTitle')}`,
+      title: `${browser.i18n.getMessage('extensionName')} ${
+        browser.runtime.getManifest().version
+      }:  ${browser.i18n.getMessage('notificationTitle')}`,
       type: 'basic',
     });
     const seconds = parseInt(
@@ -322,7 +347,7 @@ export const cacheCookieStoreIdNames = () => async (
     },
     type: ReduxConstants.ADD_CACHE,
   });
-  contextualIdentitiesObjects.forEach(object =>
+  contextualIdentitiesObjects.forEach((object) =>
     dispatch({
       payload: {
         key: object.cookieStoreId,

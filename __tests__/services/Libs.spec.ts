@@ -24,6 +24,10 @@ import {
   globExpressionToRegExp,
   isAnIP,
   isAWebpage,
+  isChrome,
+  isFirefox,
+  isFirefoxAndroid,
+  isFirefoxNotAndroid,
   isFirstPartyIsolate,
   localFileToRegex,
   parseCookieStoreId,
@@ -59,20 +63,18 @@ describe('Library Functions', () => {
         .mockReturnValue({ version: '0.12.34' });
     });
 
-    const origDebug = console.debug;
-    const origError = console.error;
-    const origInfo = console.info;
-    // tslint:disable-next-line:no-console
-    const origLog = console.log;
-    const origWarn = console.warn;
+    const origDebug = console.debug; // eslint-disable-line no-console
+    const origError = console.error; // eslint-disable-line no-console
+    const origInfo = console.info; // eslint-disable-line no-console
+    const origLog = console.log; // eslint-disable-line no-console
+    const origWarn = console.warn; // eslint-disable-line no-console
 
     afterEach(() => {
-      console.debug = origDebug;
-      console.error = origError;
-      console.info = origInfo;
-      // tslint:disable-next-line:no-console
-      console.log = origLog;
-      console.warn = origWarn;
+      console.debug = origDebug; // eslint-disable-line no-console
+      console.error = origError; // eslint-disable-line no-console
+      console.info = origInfo; // eslint-disable-line no-console
+      console.log = origLog; // eslint-disable-line no-console
+      console.warn = origWarn; // eslint-disable-line no-console
     });
 
     const consoleOutput = [] as { type: string; msg: string }[];
@@ -87,12 +89,11 @@ describe('Library Functions', () => {
       consoleOutput.push({ type: 'warn', msg });
 
     beforeEach(() => {
-      console.debug = mockedDebug;
-      console.error = mockedError;
-      console.info = mockedInfo;
-      // tslint:disable-next-line:no-console
-      console.log = mockedLog;
-      console.warn = mockedWarn;
+      console.debug = mockedDebug; // eslint-disable-line no-console
+      console.error = mockedError; // eslint-disable-line no-console
+      console.info = mockedInfo; // eslint-disable-line no-console
+      console.log = mockedLog; // eslint-disable-line no-console
+      console.warn = mockedWarn; // eslint-disable-line no-console
       consoleOutput.length = 0;
     });
 
@@ -664,6 +665,65 @@ describe('Library Functions', () => {
     });
   });
 
+  describe('isChrome()', () => {
+    it('should return false if browserDetect is undefined', () => {
+      expect(isChrome({})).toBe(false);
+    });
+    it('should return false if browserDetect is not Chrome', () => {
+      expect(isChrome({ browserDetect: 'test' })).toBe(false);
+    });
+    it('should return true if browserDetect is Chrome', () => {
+      expect(isChrome({ browserDetect: 'Chrome' })).toBe(true);
+    });
+  });
+
+  describe('isFirefox()', () => {
+    it('should return false if browserDetect is undefined', () => {
+      expect(isFirefox({})).toBe(false);
+    });
+    it('should return false if browserDetect is not Firefox', () => {
+      expect(isFirefox({ browserDetect: 'test' })).toBe(false);
+    });
+    it('should return true if browserDetect is Firefox', () => {
+      expect(isFirefox({ browserDetect: 'Firefox' })).toBe(true);
+    });
+  });
+
+  describe('isFirefoxAndroid()', () => {
+    it('should return false if platformOs is undefined', () => {
+      expect(isFirefoxAndroid({})).toBe(false);
+    });
+    it('should return false if platformOs is not android', () => {
+      expect(
+        isFirefoxAndroid({ browserDetect: 'test', platformOs: 'linux' }),
+      ).toBe(false);
+    });
+    it('should return true if platformOs is android', () => {
+      expect(
+        isFirefoxAndroid({ browserDetect: 'Firefox', platformOs: 'android' }),
+      ).toBe(true);
+    });
+  });
+
+  describe('isFirefoxNotAndroid()', () => {
+    it('should return false if platformOs is undefined', () => {
+      expect(isFirefoxNotAndroid({})).toBe(false);
+    });
+    it('should return true if platformOs is not android', () => {
+      expect(
+        isFirefoxNotAndroid({ browserDetect: 'Firefox', platformOs: 'linux' }),
+      ).toBe(true);
+    });
+    it('should return false if platformOs is android', () => {
+      expect(
+        isFirefoxNotAndroid({
+          browserDetect: 'Firefox',
+          platformOs: 'android',
+        }),
+      ).toBe(false);
+    });
+  });
+
   describe('isFirstPartyIsolate()', () => {
     beforeEach(() => {
       when(global.browser.cookies.getAll)
@@ -826,7 +886,9 @@ describe('Library Functions', () => {
         'default',
         'expression.com',
       );
-      expect(results!.expression).toEqual('*.expression.com');
+      expect(results).toEqual(
+        expect.objectContaining({ expression: '*.expression.com' }),
+      );
     });
     it('should return undefined', () => {
       const results = returnMatchedExpressionObject(
@@ -858,7 +920,7 @@ describe('Library Functions', () => {
       expect(results).toEqual(
         expect.objectContaining({
           domain: 'example.com',
-          firstPartyDomain: null,
+          firstPartyDomain: undefined,
         }),
       );
     });

@@ -17,6 +17,8 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
+  isChrome,
+  isFirefoxNotAndroid,
   isFirstPartyIsolate,
   LSCLEANUPNAME,
   prepareCleanupDomains,
@@ -410,9 +412,8 @@ export const otherBrowsingDataCleanup = async (
   const debug = getSetting(state, 'debugMode') as boolean;
   if (getSetting(state, 'localstorageCleanup')) {
     if (
-      state.cache.browserDetect === 'Firefox' &&
-      state.cache.browserVersion >= '58' &&
-      state.cache.platformOs !== 'android'
+      isFirefoxNotAndroid(state.cache) &&
+      state.cache.browserVersion >= '58'
     ) {
       const cleanList: string[] = [];
       for (const domain of domains) {
@@ -448,7 +449,7 @@ export const otherBrowsingDataCleanup = async (
         });
       return true;
     }
-    if (state.cache.browserDetect === 'Chrome') {
+    if (isChrome(state.cache)) {
       const cleanList: string[] = [];
       for (const domain of domains) {
         for (const d of prepareCleanupDomains(domain)) {
@@ -607,6 +608,7 @@ export const cleanCookiesOperation = async (
       }
       break;
     case 'Chrome':
+    case 'Opera':
       cookieStoreIds.add('0');
       if (await browser.extension.isAllowedIncognitoAccess()) {
         cookieStoreIds.add('1');
