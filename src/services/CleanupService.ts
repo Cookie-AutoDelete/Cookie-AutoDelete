@@ -32,7 +32,7 @@ import {
 export const prepareCookie = (
   cookie: browser.cookies.Cookie,
   debug = false,
-) => {
+): CookiePropertiesCleanup => {
   const cookieProperties = {
     ...cookie,
     hostname: '',
@@ -257,7 +257,7 @@ export const cleanCookies = async (
   state: State,
   markedForDeletion: CleanReasonObject[],
   firstPartyIsolate: boolean,
-) => {
+): Promise<void> => {
   const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
   markedForDeletion.forEach((obj) => {
     const cookieProperties = obj.cookie;
@@ -295,7 +295,7 @@ export const cleanCookies = async (
 export const clearCookiesForThisDomain = async (
   state: State,
   tab: browser.tabs.Tab,
-) => {
+): Promise<boolean> => {
   const hostname = getHostname(tab.url);
   const firstPartyIsolate = await isFirstPartyIsolate();
   const getCookies = await browser.cookies.getAll(
@@ -363,7 +363,7 @@ export const clearCookiesForThisDomain = async (
 export const clearLocalstorageForThisDomain = async (
   state: State,
   tab: browser.tabs.Tab,
-) => {
+): Promise<boolean> => {
   // Using this method to ensure cross browser compatiblity
   try {
     let local = 0;
@@ -406,7 +406,7 @@ export const clearLocalstorageForThisDomain = async (
 export const otherBrowsingDataCleanup = async (
   state: State,
   domains: string[],
-) => {
+): Promise<boolean> => {
   const debug = getSetting(state, 'debugMode') as boolean;
   if (getSetting(state, 'localstorageCleanup')) {
     if (
@@ -490,12 +490,15 @@ export const otherBrowsingDataCleanup = async (
 };
 
 /** Setup Localstorage cleaning */
-export const cleanLocalstorage = (bool?: boolean) => {
+export const cleanLocalstorage = (bool?: boolean): boolean => {
   return bool === undefined ? false : bool;
 };
 
 /** Filter the deleted cookies */
-export const filterLocalstorage = (obj: CleanReasonObject, debug = false) => {
+export const filterLocalstorage = (
+  obj: CleanReasonObject,
+  debug = false,
+): boolean => {
   const notProtectedByOpenTab = obj.reason !== ReasonKeep.OpenTabs;
   const notInAnyLists =
     obj.reason === ReasonClean.NoMatchedExpression ||
@@ -504,13 +507,13 @@ export const filterLocalstorage = (obj: CleanReasonObject, debug = false) => {
     obj.expression ? obj.expression.cleanLocalStorage : undefined,
   );
   const nonBlankCookieHostName = obj.cookie.hostname.trim() !== '';
-  let cro: CleanReasonObject = obj;
-  if (debug) {
-    // We need deep copying object to as to not change actual cookies
-    const sanitized: CleanReasonObject = JSON.parse(JSON.stringify(obj));
-    sanitized.cookie.value = '***';
-    cro = sanitized;
-  }
+  const cro: CleanReasonObject = {
+    ...obj,
+    cookie: {
+      ...obj.cookie,
+      value: debug ? '***' : obj.cookie.value,
+    },
+  };
   cadLog(
     {
       msg: 'CleanupService.filterLocalstorage: debug data.',
@@ -540,7 +543,7 @@ export const filterLocalstorage = (obj: CleanReasonObject, debug = false) => {
 export const returnContainersOfOpenTabDomains = async (
   ignoreOpenTabs: boolean,
   cleanDiscardedTabs: boolean,
-) => {
+): Promise<Record<string, string[]>> => {
   if (ignoreOpenTabs) {
     return {};
   }
@@ -572,10 +575,10 @@ export const cleanCookiesOperation = async (
     greyCleanup: false,
     ignoreOpenTabs: false,
   },
-) => {
+): Promise<Record<string, any> | undefined> => {
   const debug = getSetting(state, 'debugMode') as boolean;
   let allLocalstorageToClean: CleanReasonObject[] = [];
-  const setOfDeletedDomainCookies = new Set();
+  const setOfDeletedDomainCookies = new Set<string>();
   const cachedResults: ActivityLog = {
     dateTime: new Date().toString(),
     recentlyCleaned: 0,
@@ -672,12 +675,14 @@ export const cleanCookiesOperation = async (
 
     if (debug) {
       // We need deep copying object to as to not change actual cookies
-      const debugObj: CleanReasonObject[] = JSON.parse(
-        JSON.stringify(isSafeToCleanObjects),
-      );
-      const sanitized = debugObj.map((obj) => {
-        obj.cookie.value = '***';
-        return obj;
+      const sanitized: CleanReasonObject[] = isSafeToCleanObjects.map((obj) => {
+        return {
+          ...obj,
+          cookie: {
+            ...obj.cookie,
+            value: '***',
+          },
+        };
       });
       cadLog(
         {
@@ -702,12 +707,14 @@ export const cleanCookiesOperation = async (
 
     if (debug) {
       // We need deep copying object to as to not change actual cookies
-      const debugObj: CleanReasonObject[] = JSON.parse(
-        JSON.stringify(markedForDeletion),
-      );
-      const sanitized = debugObj.map((obj) => {
-        obj.cookie.value = '***';
-        return obj;
+      const sanitized: CleanReasonObject[] = markedForDeletion.map((obj) => {
+        return {
+          ...obj,
+          cookie: {
+            ...obj.cookie,
+            value: '***',
+          },
+        };
       });
       cadLog(
         {

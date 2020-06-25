@@ -27,7 +27,7 @@ import IconButton from './IconButton';
 
 const createSummary = (cleanupObj: ActivityLog) => {
   const domainSet = new Set<string>();
-  Object.entries(cleanupObj.storeIds).forEach(([key, value]) => {
+  Object.values(cleanupObj.storeIds).forEach((value) => {
     value.forEach((deletedLog) => domainSet.add(deletedLog.cookie.hostname));
   });
   return Array.from(domainSet).join(', ');
@@ -197,7 +197,6 @@ const restoreCookies = async (
         url: obj.cookie.preparedCookieDomain,
         value,
       };
-
       promiseArr.push(browser.cookies.set(cookieProperties));
     }
   }
@@ -218,6 +217,7 @@ const restoreCookies = async (
       throw e;
     });
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
     return;
   }
