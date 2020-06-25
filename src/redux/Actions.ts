@@ -19,6 +19,7 @@ import { getSetting, getStoreId } from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
   ADD_EXPRESSION,
+  CLEAR_ACTIVITY_LOG,
   CLEAR_EXPRESSIONS,
   COOKIE_CLEANUP,
   INCREMENT_COOKIE_DELETED_COUNTER,
@@ -58,9 +59,9 @@ export const updateExpressionUI = (payload: Expression): UPDATE_EXPRESSION => ({
 export const addExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
+): void => {
   const localStorageDefault = (listType: string) => {
-    switch(listType) {
+    switch (listType) {
       case 'GREY':
         return getSetting(getState(), 'greyCleanLocalstorage') === true;
       case 'WHITE':
@@ -84,7 +85,7 @@ export const addExpression = (payload: Expression) => (
 export const clearExpressions = (payload: StoreIdToExpressionList) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
+): void => {
   dispatch({
     payload,
     type: ReduxConstants.CLEAR_EXPRESSIONS,
@@ -95,7 +96,7 @@ export const clearExpressions = (payload: StoreIdToExpressionList) => (
 export const removeExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
+): void => {
   dispatch({
     payload: {
       ...payload,
@@ -110,7 +111,7 @@ export const removeExpression = (payload: Expression) => (
 export const updateExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
+): void => {
   dispatch({
     payload: {
       ...payload,
@@ -125,6 +126,10 @@ export const updateExpression = (payload: Expression) => (
 export const addActivity = (payload: ActivityLog): ADD_ACTIVITY_LOG => ({
   payload,
   type: ReduxConstants.ADD_ACTIVITY_LOG,
+});
+
+export const clearActivities = (): CLEAR_ACTIVITY_LOG => ({
+  type: ReduxConstants.CLEAR_ACTIVITY_LOG,
 });
 
 export const removeActivity = (payload: ActivityLog): REMOVE_ACTIVITY_LOG => ({
@@ -157,9 +162,7 @@ export const resetAll = (): RESET_ALL => ({
 });
 
 // Validates the setting object and adds missing settings if it doesn't already exist in the initialState
-export const validateSettings: ActionCreator<
-  ThunkAction<void, State, null, ReduxAction>
-> = () => (dispatch, getState) => {
+export const validateSettings: ActionCreator<ThunkAction<void, State, null, ReduxAction>> = () => (dispatch, getState) => {
   const { cache, settings } = getState();
   const initialSettings = initialState.settings;
   const settingKeys = Object.keys(settings);
@@ -191,7 +194,7 @@ export const validateSettings: ActionCreator<
   }
 
   function disableSettingIfTrue(s: Setting) {
-    if (s && s.value){
+    if (s && s.value) {
       dispatch({
         payload: {
           ...s,
@@ -249,14 +252,10 @@ export const cookieCleanupUI = (
 });
 
 // Cookie Cleanup operation that is to be called from the React UI
-export const cookieCleanup: ActionCreator<
-  ThunkAction<void, State, null, ReduxAction>
-> = (
+export const cookieCleanup: ActionCreator<ThunkAction<void, State, null, ReduxAction>> = (
   options: CleanupProperties = { greyCleanup: false, ignoreOpenTabs: false },
 ) => async (dispatch, getState) => {
-  const newOptions = options;
-
-  const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
+  const cleanupDoneObject = await cleanCookiesOperation(getState(), options);
   if (!cleanupDoneObject) return;
   const { setOfDeletedDomainCookies, cachedResults } = cleanupDoneObject;
   const { recentlyCleaned } = cachedResults;
@@ -298,7 +297,7 @@ export const cookieCleanup: ActionCreator<
 // Map the cookieStoreId to their actual names and store in cache
 export const cacheCookieStoreIdNames = () => async (
   dispatch: Dispatch<ReduxAction>,
-) => {
+): Promise<void> => {
   const contextualIdentitiesObjects = await browser.contextualIdentities.query(
     {},
   );

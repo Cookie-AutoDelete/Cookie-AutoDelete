@@ -19,6 +19,7 @@ import { createBackgroundStore } from 'redux-webext';
 import { ReduxConstants } from '../typings/ReduxConstants';
 import {
   addExpression,
+  clearActivities,
   clearExpressions,
   cookieCleanup,
   removeActivity,
@@ -30,6 +31,7 @@ import {
   updateSetting,
 } from './Actions';
 import reducer from './Reducers';
+
 const consoleMessages = (store: any) => (next: any) => (action: any) => {
   // console.log(
   //   `dispatching action => ${action.type}
@@ -41,6 +43,7 @@ const consoleMessages = (store: any) => (next: any) => (action: any) => {
 
 const actions: { [key in ReduxConstants]?: any } = {
   ADD_EXPRESSION: addExpression,
+  CLEAR_ACTIVITY_LOG: clearActivities,
   CLEAR_EXPRESSIONS: clearExpressions,
   COOKIE_CLEANUP: cookieCleanup,
   REMOVE_ACTIVITY_LOG: removeActivity,

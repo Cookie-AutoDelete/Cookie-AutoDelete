@@ -1,7 +1,10 @@
 import {
   activityLog,
+  cache,
   cookieDeletedCounterSession,
   cookieDeletedCounterTotal,
+  expression,
+  expressions,
   lists,
 } from '../../src/redux/Reducers';
 import { ReduxConstants } from '../../src/typings/ReduxConstants';
@@ -38,9 +41,9 @@ describe('Reducer', () => {
       expect(result.length).toBe(0);
     });
 
-    it('should be removed when reseting counter', () => {
+    it('should be removed when clearing logs', () => {
       const result = activityLog(state, {
-        type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+        type: ReduxConstants.CLEAR_ACTIVITY_LOG,
       });
       expect(result.length).toBe(0);
     });
@@ -50,9 +53,7 @@ describe('Reducer', () => {
         payload: log2,
         type: ReduxConstants.ADD_ACTIVITY_LOG,
       });
-      expect(result.length).toBe(2);
-      expect(result[0].dateTime).toBe(log2.dateTime);
-      expect(result[1].dateTime).toBe(log1.dateTime);
+      expect(result).toEqual([log2, log1]);
     });
 
     it('should not be added because no storeIds', () => {
@@ -63,7 +64,7 @@ describe('Reducer', () => {
         },
         type: ReduxConstants.ADD_ACTIVITY_LOG,
       });
-      expect(result.length).toBe(1);
+      expect(result).toEqual([log1]);
     });
   });
   describe('cookieDeletedCounterTotal', () => {
@@ -289,6 +290,56 @@ describe('Reducer', () => {
       expect(newExpression).toHaveProperty('expression', 'google.com');
       expect(newExpression).toHaveProperty('listType', ListType.WHITE);
       expect(newExpression).toHaveProperty('id');
+    });
+
+    it('should return an empty object if CLEAR_EXPRESSIONS was called.', () => {
+      const newState = lists(state, {
+        payload: {},
+        type: ReduxConstants.CLEAR_EXPRESSIONS,
+      });
+      expect(newState).toEqual({});
+    });
+  });
+
+  describe('expression', () => {
+    it('should return unchanged expression if expression is not being updated.', () => {
+      const newState = expression({ ...mockExpression },
+        {
+          payload: {
+            ...mockExpression,
+            expression: 'unchanged',
+          },
+          type: ReduxConstants.ADD_EXPRESSION,
+        });
+      expect(newState).toEqual(mockExpression);
+    });
+  });
+
+  describe('expressions', () => {
+    const state = [mockExpression];
+    it('should return empty if Reset All was triggered.', () => {
+      const newState = expressions(state, {
+        type: ReduxConstants.RESET_ALL,
+      });
+      expect(newState.length).toBe(0);
+    });
+    it('should return unchanged if action type is not matched', () => {
+      const newState = expressions(state, {
+        type: ReduxConstants.ON_STARTUP,
+      });
+      expect(newState).toEqual(state);
+    });
+  });
+
+  describe('cache', () => {
+    const state = {
+      browserDetect: 'Firefox',
+    };
+    it('should return empty object if RESET_ALL was triggered', () => {
+      const newState = cache(state, {
+        type: ReduxConstants.RESET_ALL,
+      });
+      expect(newState).toEqual({});
     });
   });
 });

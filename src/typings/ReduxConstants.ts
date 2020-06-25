@@ -24,6 +24,7 @@ export const enum ReduxConstants {
   UPDATE_SETTING = 'UPDATE_SETTING',
   RESET_SETTINGS = 'RESET_SETTINGS',
   ADD_ACTIVITY_LOG = 'ADD_ACTIVITY_LOG',
+  CLEAR_ACTIVITY_LOG = 'CLEAR_ACTIVITY_LOG',
   REMOVE_ACTIVITY_LOG = 'REMOVE_ACTIVITY_LOG',
   RESET_ALL = 'RESET_ALL',
 }
@@ -41,6 +42,7 @@ export type ReduxAction =
   | UPDATE_SETTING
   | RESET_SETTINGS
   | ADD_ACTIVITY_LOG
+  | CLEAR_ACTIVITY_LOG
   | REMOVE_ACTIVITY_LOG
   | RESET_ALL;
 
@@ -95,4 +97,7 @@ export type ADD_ACTIVITY_LOG = Readonly<{
 export type REMOVE_ACTIVITY_LOG = Readonly<{
   type: ReduxConstants.REMOVE_ACTIVITY_LOG;
   payload: ActivityLog;
+}>;
+export type CLEAR_ACTIVITY_LOG = Readonly<{
+  type: ReduxConstants.CLEAR_ACTIVITY_LOG;
 }>;
