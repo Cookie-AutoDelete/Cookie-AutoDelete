@@ -3,7 +3,9 @@
     {
       "version": "unreleased",
       "notes": [
-        "Added:  Cleanup of Expired Cookies regardless of lists.  Closes #344."
+        "Added:  Cleanup of Expired Cookies regardless of lists.  Closes #344.",
+        "Added:  Clear Cookie Counter function.  Will only clear counters and not activity log.  Added as enhancement from #777",
+        "Fixed:  Clearing Logs will not affect cookie counters anymore.  Closes #777."
       ]
     },
     {

@@ -188,7 +188,7 @@ export const cookieDeletedCounterSession = (
 export const activityLog = (
   state: ReadonlyArray<ActivityLog> = [],
   action: ReduxAction,
-) => {
+): ReadonlyArray<ActivityLog> => {
   switch (action.type) {
     case ReduxConstants.ADD_ACTIVITY_LOG: {
       if (Object.keys(action.payload.storeIds).length > 0) {
@@ -201,14 +201,14 @@ export const activityLog = (
     }
 
     case ReduxConstants.RESET_ALL:
-    case ReduxConstants.RESET_COOKIE_DELETED_COUNTER:
+    case ReduxConstants.CLEAR_ACTIVITY_LOG:
       return [];
     default:
       return state;
   }
 };
 
-export const cache = (state: CacheMap = {}, action: ReduxAction) => {
+export const cache = (state: CacheMap = {}, action: ReduxAction): Record<string, unknown> => {
   switch (action.type) {
     case ReduxConstants.ADD_CACHE: {
       const newCacheObject = {
