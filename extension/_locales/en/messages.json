@@ -53,6 +53,10 @@
     "message": "Enable Cleanup for Discarded/Unloaded Tabs",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
+  "cleanExpiredCookiesText": {
+    "message": "Clean All Expired Cookies",
+    "description": "Clean All Expired Cookies.  Found in Settings."
+  },
   "cleanIgnoringOpenTabsText": {
     "message": "Clean, include open tabs",
     "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -486,6 +490,16 @@
   "questionExpression": {
     "message": "How do Expressions work?",
     "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
   },
   "reasonCleanCookieName": {
     "message": "Partial clean because of matched $matchedExpression$ in the $listType$",

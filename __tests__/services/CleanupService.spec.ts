@@ -17,14 +17,7 @@ jest.requireActual('../../src/services/Libs');
 import * as Lib from '../../src/services/Libs';
 
 // This dynamically generates the spies for all functions in Libs
-const spyLib: { [s: string]: jest.SpyInstance } = {};
-for (const k of Object.keys(Lib)) {
-  try {
-    if (!spyLib[k]) spyLib[k] = jest.spyOn(Lib, k as never);
-  } catch {
-    // Most likely not a function
-  }
-}
+const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
 
 const sampleTab: browser.tabs.Tab = {
   active: true,
@@ -777,6 +770,16 @@ describe('CleanupService', () => {
       openTabDomains: { 'firefox-default': ['example.com', 'mozilla.org'] },
       setOfDeletedDomainCookies: new Set(),
     };
+    const expiredState = {
+      ...sampleState,
+      settings: {
+        ...sampleState.settings,
+        cleanExpiredCookies: {
+          name: 'cleanExpiredCookies',
+          value: true,
+        },
+      },
+    };
 
     it('should return true for yahoo.com', () => {
       const cookieProperty: CookiePropertiesCleanup = {
@@ -1051,6 +1054,36 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonClean.StartupCleanupAndGreyList);
       expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return true for expired cookie if cleanExpiredCookies is enabled', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        expirationDate: 12345,
+        session: false,
+      };
+
+      const result = isSafeToClean(
+        expiredState,
+        cookieProperty,
+        cleanupProperties,
+      );
+      expect(result.reason).toBe(ReasonClean.ExpiredCookie);
+      expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return false for session cookie if cleanExpiredCookies is enabled', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'sub.google.com',
+        mainDomain: 'google.com',
+      };
+
+      const result = isSafeToClean(expiredState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
     });
   });
 

@@ -260,7 +260,7 @@ class Settings extends React.Component<SettingProps> {
         )}
         {success !== '' ? (
           <div
-            onClick={() => this.setState({success: '',})}
+            onClick={() => this.setState({ success: '' })}
             className="row alert alert-success"
           >
             {browser.i18n.getMessage('successText')} {success}
@@ -344,6 +344,15 @@ class Settings extends React.Component<SettingProps> {
             <SettingsTooltip
               hrefURL={'#clean-cookies-from-open-tabs-on-startup'}
             />
+          </div>
+          <div className="form-group">
+            <CheckboxSetting
+              settingObject={settings.cleanExpiredCookies}
+              inline={true}
+              text={browser.i18n.getMessage('cleanExpiredCookiesText')}
+              updateSetting={(payload) => onUpdateSetting(payload)}
+            />
+            <SettingsTooltip hrefURL={'#clean-expired-cookies'} />
           </div>
         </fieldset>
         <hr />
@@ -537,11 +546,9 @@ class Settings extends React.Component<SettingProps> {
                 text={browser.i18n.getMessage('enableContextMenus')}
                 settingObject={settings.contextMenus}
                 inline={true}
-                updateSetting={payload => onUpdateSetting(payload)}
+                updateSetting={(payload) => onUpdateSetting(payload)}
               />
-              <SettingsTooltip
-                hrefURL={'#enable-context-menus'}
-              />
+              <SettingsTooltip hrefURL={'#enable-context-menus'} />
             </div>
           )}
           {((browserDetect === 'Firefox' && platformOs !== 'android') ||

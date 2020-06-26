@@ -28,7 +28,7 @@ type ActivityLog = {
 };
 
 interface CleanupPropertiesInternal extends CleanupProperties {
-  openTabDomains: {[k: string]: string[]};
+  openTabDomains: { [k: string]: string[] };
 }
 
 declare const enum ReasonKeep {
@@ -41,6 +41,7 @@ declare const enum ReasonClean {
   StartupCleanupAndGreyList = 'reasonCleanGreyList',
   NoMatchedExpression = 'reasonCleanNoList',
   MatchedExpressionButNoCookieName = 'reasonCleanCookieName',
+  ExpiredCookie = 'reasonCleanCookieExpired',
 }
 
 declare const enum OpenTabStatus {
