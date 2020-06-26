@@ -370,7 +370,7 @@
     }
   },
   "manualCleanRemoved": {
-    "message": "$deleted$ von ingesamt $total$ entfernt.",
+    "message": "$deleted$ von insgesamt $total$ entfernt.",
     "description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
     "placeholders": {
       "deleted": {
