@@ -611,6 +611,10 @@
     "message": "Laporkan masalah dan sarankan fitur",
     "description": "Report issues and suggest features"
   },
+  "resetCookieCounterText": {
+    "message": "Setel Ulang Penghitung Kuki",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
   "resetExtensionDataText": {
     "message": "Setel Ulang Data Ekstensi",
     "description": "Reset Extension Data"
