@@ -16,6 +16,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { updateExpressionUI } from '../../redux/Actions';
 import {
+  isChrome,
+  isFirefox,
+  isFirefoxNotAndroid,
   isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
@@ -68,11 +71,10 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   }
   /** Converts an expression default storeId to the defaults of the browser */
   public toPublicStoreId(storeId: string) {
-    const browser: string = this.props.state.cache.browserDetect;
-    if (storeId === 'default' && browser === 'Chrome') {
+    if (storeId === 'default' && isChrome(this.props.state.cache)) {
       return '0';
     }
-    if (storeId === 'default' && browser === 'Firefox') {
+    if (storeId === 'default' && isFirefox(this.props.state.cache)) {
       return 'firefox-default';
     }
     return storeId;
@@ -82,7 +84,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const { expression } = this.props;
     const exp = expression.expression;
     const firstPartyIsolate = await isFirstPartyIsolate();
-    let cookies: browser.cookies.CookieProperties[] = [];
+    let cookies: browser.cookies.CookieProperties[];
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
@@ -172,7 +174,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               role="checkbox"
               aria-checked={checked as boolean}
             />
-            <label htmlFor={key} area-labelledby={key}>
+            <label htmlFor={key} aria-labelledby={key}>
               {name}
             </label>
           </span>
@@ -210,10 +212,9 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     return (
       <div>
         {!expression.expression.startsWith('file:') &&
-          ((state.cache.browserDetect === 'Firefox' &&
-            state.cache.browserVersion >= '57' &&
-            state.cache.platformOs !== 'android') ||
-            state.cache.browserDetect === 'Chrome') && (
+          ((isFirefoxNotAndroid(state.cache) &&
+            state.cache.browserVersion >= '57') ||
+            isChrome(state.cache)) && (
             <div className={'checkbox'}>
               <span
                 className={'addHover'}

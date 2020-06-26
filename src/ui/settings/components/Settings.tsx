@@ -15,7 +15,12 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { resetSettings, updateSetting } from '../../../redux/Actions';
 import { initialState } from '../../../redux/State';
-import { cadLog } from '../../../services/Libs';
+import {
+  cadLog,
+  isChrome,
+  isFirefox,
+  isFirefoxNotAndroid,
+} from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import CheckboxSetting from '../../common_components/CheckboxSetting';
 import IconButton from '../../common_components/IconButton';
@@ -40,10 +45,8 @@ interface OwnProps {
 }
 
 interface StateProps {
+  cache: CacheMap;
   settings: MapToSettingObject;
-  browserDetect: string;
-  browserVersion: string;
-  platformOs: string;
 }
 
 interface DispatchProps {
@@ -195,11 +198,9 @@ class Settings extends React.Component<SettingProps> {
 
   public render() {
     const {
-      browserDetect,
-      browserVersion,
+      cache,
       onResetButtonClick,
       onUpdateSetting,
-      platformOs,
       settings,
       style,
     } = this.props;
@@ -388,7 +389,7 @@ class Settings extends React.Component<SettingProps> {
           <legend>
             {browser.i18n.getMessage('settingGroupOtherBrowsing')}
           </legend>
-          {browserDetect === 'Firefox' && platformOs !== 'android' && (
+          {isFirefoxNotAndroid(cache) && (
             <div className="form-group">
               <CheckboxSetting
                 text={browser.i18n.getMessage(
@@ -405,10 +406,8 @@ class Settings extends React.Component<SettingProps> {
               />
             </div>
           )}
-          {((browserDetect === 'Firefox' &&
-            browserVersion >= '58' &&
-            platformOs !== 'android') ||
-            browserDetect === 'Chrome') && (
+          {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '58') ||
+            isChrome(cache)) && (
             <div className="form-group">
               <CheckboxSetting
                 text={`${browser.i18n.getMessage(
@@ -452,7 +451,7 @@ class Settings extends React.Component<SettingProps> {
               </div>
             )}
           </div>
-          {(browserDetect !== 'Firefox' || platformOs !== 'android') && (
+          {(!isFirefox(cache) || isFirefoxNotAndroid(cache)) && (
             <div className="form-group">
               <CheckboxSetting
                 text={browser.i18n.getMessage('showNumberOfCookiesInIconText')}
@@ -465,7 +464,7 @@ class Settings extends React.Component<SettingProps> {
               />
             </div>
           )}
-          {(browserDetect !== 'Firefox' || platformOs !== 'android') &&
+          {(!isFirefox(cache) || isFirefoxNotAndroid(cache)) &&
             settings.showNumOfCookiesInIcon.value === true && (
               <div className="form-group">
                 <CheckboxSetting
@@ -539,8 +538,7 @@ class Settings extends React.Component<SettingProps> {
             />
             <SettingsTooltip hrefURL={'#size-of-setting'} />
           </div>
-          {((browserDetect === 'Firefox' && platformOs !== 'android') ||
-            browserDetect === 'Chrome') && (
+          {(isFirefoxNotAndroid(cache) || isChrome(cache)) && (
             <div className="form-group">
               <CheckboxSetting
                 text={browser.i18n.getMessage('enableContextMenus')}
@@ -551,8 +549,7 @@ class Settings extends React.Component<SettingProps> {
               <SettingsTooltip hrefURL={'#enable-context-menus'} />
             </div>
           )}
-          {((browserDetect === 'Firefox' && platformOs !== 'android') ||
-            browserDetect === 'Chrome') && (
+          {(isFirefoxNotAndroid(cache) || isChrome(cache)) && (
             <div className="form-group">
               <CheckboxSetting
                 text={browser.i18n.getMessage('debugMode')}
@@ -566,14 +563,13 @@ class Settings extends React.Component<SettingProps> {
                   <p>{browser.i18n.getMessage('openDebugMode')}</p>
                   <pre>
                     <b>
-                      {(browserDetect === 'Firefox' &&
+                      {(isFirefox(cache) &&
                         'about:devtools-toolbox?type=extension&id=') ||
-                        (browserDetect === 'Chrome' &&
-                          `chrome://extensions/?id=`)}
+                        (isChrome(cache) && `chrome://extensions/?id=`)}
                       {encodeURIComponent(browser.runtime.id)}
                     </b>
                   </pre>
-                  {browserDetect === 'Chrome' && (
+                  {isChrome(cache) && (
                     <p>{browser.i18n.getMessage('chromeDebugMode')}</p>
                   )}
                   <p>
@@ -598,9 +594,7 @@ class Settings extends React.Component<SettingProps> {
 const mapStateToProps = (state: State) => {
   const { settings, cache } = state;
   return {
-    browserDetect: cache.browserDetect,
-    browserVersion: cache.browserVersion,
-    platformOs: cache.platformOs,
+    cache,
     settings,
   };
 };

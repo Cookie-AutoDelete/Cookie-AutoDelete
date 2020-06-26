@@ -21,21 +21,26 @@ export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
 /**
  * Console Log Outputs - Mostly For Debugging
  */
-export const cadLog = (x: CADLogItem, output: boolean) => {
+export const cadLog = (x: CADLogItem, output: boolean): void => {
   if (!x.msg || x.msg.trim() === '') return;
   if (!output) return;
   const h = `CAD_${browser.runtime.getManifest().version}`;
   const cOut = [
+    // eslint-disable-next-line no-console
     console.debug,
+    // eslint-disable-next-line no-console
     console.error,
+    // eslint-disable-next-line no-console
     console.info,
-    // tslint:disable-next-line:no-console
+    // eslint-disable-next-line no-console
     console.log,
+    // eslint-disable-next-line no-console
     console.warn,
   ];
   const cTypes = ['debug', 'error', 'info', 'log', 'warn'];
   let type = (x.type || 'debug').toLowerCase();
   if (!cTypes.includes(type)) {
+    // eslint-disable-next-line no-console
     console.error(
       `${h} - Invalid Console Output Type given [ ${type} ].  Using [debug] instead.`,
     );
@@ -56,6 +61,7 @@ export const cadLog = (x: CADLogItem, output: boolean) => {
       data = JSON.stringify(x.x, null, 2);
       break;
     default:
+      // eslint-disable-next-line no-console
       console.warn(
         `${h} - Received unexpected typeof [ ${tx} ].  Attempting to display it...`,
       );
@@ -69,7 +75,9 @@ export const cadLog = (x: CADLogItem, output: boolean) => {
 /**
  * Create Partial Cookie info for debug
  */
-export const createPartialTabInfo = (tab: Partial<browser.tabs.Tab>) => {
+export const createPartialTabInfo = (
+  tab: Partial<browser.tabs.Tab>,
+): Partial<browser.tabs.Tab> => {
   return {
     cookieStoreId: tab.cookieStoreId,
     discarded: tab.discarded,
@@ -84,7 +92,7 @@ export const createPartialTabInfo = (tab: Partial<browser.tabs.Tab>) => {
 /**
  * Converts a version string to a number
  */
-export const convertVersionToNumber = (version?: string) => {
+export const convertVersionToNumber = (version?: string): number => {
   if (!version) return -1;
   return parseInt(version.replace(/[.]/g, ''), 10);
 };
@@ -94,7 +102,7 @@ export const convertVersionToNumber = (version?: string) => {
  *   - sub.sub.domain.com ==> domain.com
  * Local html directory/files will return itself
  */
-export const extractMainDomain = (domain: string) => {
+export const extractMainDomain = (domain: string): string => {
   if (domain === '') return '';
   // return itself if it is a local html file or IP Address.
   if (
@@ -143,7 +151,7 @@ export const extractMainDomain = (domain: string) => {
  *   - file:///home/user/documents/file.html ==> file:///home/user/documents
  *   - file:///D:/user/documents/file.html ==> file:///D:/user/documents
  */
-export const getHostname = (urlToGetHostName: string | undefined) => {
+export const getHostname = (urlToGetHostName: string | undefined): string => {
   if (!urlToGetHostName) {
     return '';
   }
@@ -171,24 +179,26 @@ export const getHostname = (urlToGetHostName: string | undefined) => {
 /**
  * Gets the value of the setting
  */
-export const getSetting = (state: State, settingName: string) =>
-  state.settings[settingName].value;
+export const getSetting = (
+  state: State,
+  settingName: string,
+): string | number | boolean => state.settings[settingName].value;
 
 /**
  * Gets a sanitized cookieStoreId
  */
-export const getStoreId = (state: State, storeId: string) => {
+export const getStoreId = (state: State, storeId: string): string => {
   if (
     storeId === 'firefox-default' ||
     (!getSetting(state, 'contextualIdentities') &&
       storeId !== 'firefox-private' &&
-      state.cache.browserDetect === 'Firefox') ||
-    (state.cache.browserDetect === 'Chrome' && storeId === '0') ||
+      isFirefox(state.cache)) ||
+    (isChrome(state.cache) && storeId === '0') ||
     (state.cache.browserDetect === 'Opera' && storeId === '0')
   ) {
     return 'default';
   }
-  if (state.cache.browserDetect === 'Chrome' && storeId === '1') {
+  if (isChrome(state.cache) && storeId === '1') {
     return 'private';
   }
 
@@ -198,7 +208,7 @@ export const getStoreId = (state: State, storeId: string) => {
 /**
  * Converts a expression to its regular expression equivalent
  */
-export const globExpressionToRegExp = (glob: string) => {
+export const globExpressionToRegExp = (glob: string): string => {
   const normalizedGlob = glob.trim();
   if (normalizedGlob.slice(0, 1) === '/' && normalizedGlob.slice(-1) === '/') {
     // Treat /str/ as regular exprssion str
@@ -216,14 +226,14 @@ export const globExpressionToRegExp = (glob: string) => {
     .replace(/\./g, '\\.')
     .replace(/\*/g, '.*')
     .replace(/\[/g, '\\[')
-    .replace(/\]/g, '\\]')
+    .replace(/]/g, '\\]')
     .replace(/\\/g, '\\')}$`;
 };
 
 /**
  * Returns true if it is an IP (v4 or v6)
  */
-export const isAnIP = (url: string | undefined) => {
+export const isAnIP = (url: string | undefined): boolean => {
   if (!url) {
     return false;
   }
@@ -234,26 +244,69 @@ export const isAnIP = (url: string | undefined) => {
 /**
  * Returns true if it is a webpage or a local file
  */
-export const isAWebpage = (URL: string | undefined) => {
+export const isAWebpage = (URL: string | undefined): boolean => {
   if (!URL) {
     return false;
   }
-  if (URL.match(/^http:/) || URL.match(/^https:/) || URL.match(/^file:/)) {
-    return true;
-  }
-  return false;
+  return !!(URL.match(/^http:/) || URL.match(/^https:/) || URL.match(/^file:/));
+};
+
+/**
+ * Test if browser is Chrome
+ * @param cache Cache containing browserDetect
+ */
+export const isChrome = (cache: CacheMap): boolean => {
+  return (
+    Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
+    cache.browserDetect === 'Chrome'
+  );
+};
+
+/**
+ * Test if browser is Firefox (Desktop or Mobile/Android)
+ * @param cache Cache containing browserDetect
+ */
+export const isFirefox = (cache: CacheMap): boolean => {
+  return (
+    Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
+    cache.browserDetect === 'Firefox'
+  );
+};
+
+/**
+ * Test if browser is Firefox Mobile/Android
+ * @param cache Cache containing browserDetect and platformOs
+ */
+export const isFirefoxAndroid = (cache: CacheMap): boolean => {
+  return (
+    isFirefox(cache) &&
+    Object.prototype.hasOwnProperty.call(cache, 'platformOs') &&
+    cache.platformOs === 'android'
+  );
+};
+
+/**
+ * Test if browser is Firefox but not Android/mobile version
+ * @param cache Cache containing browserDetect and platformOs
+ */
+export const isFirefoxNotAndroid = (cache: CacheMap): boolean => {
+  return (
+    isFirefox(cache) &&
+    Object.prototype.hasOwnProperty.call(cache, 'platformOs') &&
+    cache.platformOs !== 'android'
+  );
 };
 
 /**
  * Test for FirstPartyIsolation (Firefox).
  * Workaround for not needing Firefox 'Privacy' permission.
  */
-export const isFirstPartyIsolate = async () => {
+export const isFirstPartyIsolate = async (): Promise<boolean> => {
   return browser.cookies
     .getAll({
       domain: '',
     })
-    .then((r) => {
+    .then(() => {
       // No error = most likely not enabled.
       return Promise.resolve(false);
     })
@@ -266,7 +319,7 @@ export const isFirstPartyIsolate = async () => {
 /*
  * Checks if the hostname given is a local file
  */
-export const localFileToRegex = (hostname: string) => {
+export const localFileToRegex = (hostname: string): string => {
   if (hostname === '') return '';
   if (hostname.startsWith('file:') || hostname.indexOf('/') === 0) {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
@@ -281,7 +334,7 @@ export const localFileToRegex = (hostname: string) => {
 export const parseCookieStoreId = (
   contextualIdentities: boolean,
   cookieStoreId: string | undefined,
-) => {
+): string => {
   return !contextualIdentities ||
     (cookieStoreId && cookieStoreId === 'firefox-default')
     ? 'default'
@@ -291,7 +344,7 @@ export const parseCookieStoreId = (
 /**
  * Prepare Domains for all cleanups.
  */
-export const prepareCleanupDomains = (domain: string) => {
+export const prepareCleanupDomains = (domain: string): string[] => {
   if (domain.trim() === '') return [];
   const www = new RegExp(/^www[0-9a-z]?\./i);
   const sDot = new RegExp(/^\./);
@@ -316,7 +369,7 @@ export const prepareCleanupDomains = (domain: string) => {
 /**
  * Puts the domain in the right format for browser.cookies.remove()
  */
-export const prepareCookieDomain = (cookie: browser.cookies.Cookie) => {
+export const prepareCookieDomain = (cookie: browser.cookies.Cookie): string => {
   let cookieDomain = cookie.domain.trim();
   if (cookieDomain.length === 0 && cookie.path.trim().length !== 0) {
     // No Domain - presuming local file (file:// protocol)
@@ -341,7 +394,7 @@ export const returnMatchedExpressionObject = (
   state: State,
   cookieStoreId: string,
   hostname: string,
-) => {
+): Expression | undefined => {
   const storeId = getStoreId(state, cookieStoreId);
   const expressionList = state.lists[storeId] || [];
   return expressionList.find((expression) =>
@@ -358,10 +411,10 @@ export const returnOptionalCookieAPIAttributes = (
     [x: string]: any;
   },
   firstPartyIsolate: boolean,
-) => {
+): Partial<CookiePropertiesCleanup> => {
   // Add optional firstPartyDomain attribute
   if (
-    state.cache.browserDetect === 'Firefox' &&
+    isFirefox(state.cache) &&
     firstPartyIsolate &&
     !Object.prototype.hasOwnProperty.call(
       cookieAPIAttributes,
@@ -370,10 +423,11 @@ export const returnOptionalCookieAPIAttributes = (
   ) {
     return {
       ...cookieAPIAttributes,
-      firstPartyDomain: null,
+      firstPartyDomain: undefined,
     };
   }
-  if (!(state.cache.browserDetect === 'Firefox' && firstPartyIsolate)) {
+  if (!(isFirefox(state.cache) && firstPartyIsolate)) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { firstPartyDomain, ...rest } = cookieAPIAttributes;
     return rest;
   }
@@ -387,7 +441,7 @@ export const showNotification = (x: {
   duration: number;
   msg: string;
   title?: string;
-}) => {
+}): void => {
   const sid = `manual-${shortid.generate()}`;
   browser.notifications.create(sid, {
     iconUrl: browser.runtime.getURL('icons/icon_48.png'),
@@ -407,7 +461,7 @@ export const showNotification = (x: {
  * Ensures no 0 second setTimeout otherwise side effects.
  * Ensures we don't go over max signed 32-bit Int of 2,147,483,647
  */
-export const sleep = (ms: number) => {
+export const sleep = (ms: number): Promise<any> => {
   return new Promise((r) =>
     setTimeout(r, ms < 250 ? 250 : ms > 2147483500 ? 2147483500 : ms),
   );
@@ -416,7 +470,7 @@ export const sleep = (ms: number) => {
 /**
  * Show an Error notification
  */
-export const throwErrorNotification = (e: Error) => {
+export const throwErrorNotification = (e: Error): void => {
   browser.notifications.create('failed-notification', {
     iconUrl: browser.runtime.getURL('icons/icon_red_48.png'),
     message: e.message,
@@ -428,12 +482,12 @@ export const throwErrorNotification = (e: Error) => {
 /**
  * Trim leading and ending dot of a string
  */
-export const trimDot = (str: string) => str.replace(/^[.]+|[.]+$/g, '');
+export const trimDot = (str: string): string => str.replace(/^[.]+|[.]+$/g, '');
 
 /**
  * Opposite of a falsey check for undefined
  */
-export const undefinedIsTrue = (bool: boolean | undefined) => {
+export const undefinedIsTrue = (bool: boolean | undefined): boolean => {
   if (bool === undefined) return true;
   return bool;
 };
