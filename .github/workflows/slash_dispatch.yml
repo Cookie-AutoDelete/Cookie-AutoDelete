@@ -1,0 +1,22 @@
+name: Slash Command Dispatch
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  slashCommandDispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slash Command Dispatch
+        uses: peter-evans/slash-command-dispatch@v1.2.0
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
+          config: >
+            [
+              {
+                "command": "get-build",
+                "permission": "read",
+                "issue_type": "pull-request"
+              }
+            ]

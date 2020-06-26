@@ -12,8 +12,12 @@
  */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 // tslint:disable-next-line: import-name
 import ReleaseNotes from '../ReleaseNotes.json';
+import IconButton from '../../common_components/IconButton';
+import { ReduxAction } from '../../../typings/ReduxConstants';
+import { resetCookieDeletedCounter } from '../../../redux/Actions';
 
 const displayReleaseNotes = (releases: ReleaseNote[]) => {
   return (
@@ -58,12 +62,20 @@ interface OwnProps {
   cookieDeletedCounterTotal: number;
   browserDetect: string;
 }
-const Welcome: React.FunctionComponent<OwnProps> = ({
-  style,
-  cookieDeletedCounterTotal,
-  cookieDeletedCounterSession,
-  browserDetect,
-}) => {
+
+interface DispatchProps {
+  onResetCounterButtonClick: () => void;
+}
+
+type WelcomeProps = OwnProps & DispatchProps;
+
+const Welcome: React.FunctionComponent<WelcomeProps> = ({
+                                                          style,
+                                                          cookieDeletedCounterTotal,
+                                                          cookieDeletedCounterSession,
+                                                          browserDetect,
+                                                          onResetCounterButtonClick,
+                                                        }) => {
   const { releases } = ReleaseNotes as { releases: ReleaseNote[] };
   return (
     <div style={style}>
@@ -75,6 +87,13 @@ const Welcome: React.FunctionComponent<OwnProps> = ({
           cookieDeletedCounterSession.toString(),
           cookieDeletedCounterTotal.toString(),
         ])}
+        <IconButton
+          iconName="trash"
+          text={browser.i18n.getMessage('resetCookieCounterText')}
+          title={browser.i18n.getMessage('resetCookieCounterText')}
+          onClick={() => onResetCounterButtonClick()}
+          className="btn-warning"
+        />
       </p>
       <a href={getReviewLink(browserDetect)}>
         {browser.i18n.getMessage(
@@ -100,6 +119,12 @@ const Welcome: React.FunctionComponent<OwnProps> = ({
   );
 };
 
+const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+  onResetCounterButtonClick() {
+    dispatch(resetCookieDeletedCounter());
+  },
+});
+
 const mapStateToProps = (state: State) => {
   const {
     cookieDeletedCounterTotal,
@@ -113,4 +138,7 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-export default connect(mapStateToProps)(Welcome);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Welcome);

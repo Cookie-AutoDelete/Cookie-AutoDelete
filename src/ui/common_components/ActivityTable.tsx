@@ -27,7 +27,7 @@ import IconButton from './IconButton';
 
 const createSummary = (cleanupObj: ActivityLog) => {
   const domainSet = new Set<string>();
-  Object.entries(cleanupObj.storeIds).forEach(([key, value]) => {
+  Object.values(cleanupObj.storeIds).forEach((value) => {
     value.forEach((deletedLog) => domainSet.add(deletedLog.cookie.hostname));
   });
   return Array.from(domainSet).join(', ');
@@ -67,6 +67,9 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
   const { hostname, mainDomain } = cleanReasonObject.cookie;
   const matchedExpression = cleanReasonObject.expression;
   switch (reason) {
+    case ReasonClean.ExpiredCookie: {
+      return browser.i18n.getMessage(reason, [hostname]);
+    }
     case ReasonKeep.OpenTabs: {
       return browser.i18n.getMessage(reason, [mainDomain]);
     }
@@ -125,6 +128,13 @@ const restoreCookies = async (
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
   const firstPartyIsolate = await isFirstPartyIsolate();
+  cadLog(
+    {
+      msg: `ActivityTable.restoreCookies:  Restoring Cookies for triggered ActivityLog entry`,
+      x: log,
+    },
+    debug,
+  );
   for (const cleanReasonObjs of cleanReasonObjsArrays) {
     for (const obj of cleanReasonObjs) {
       // Cannot set cookies from file:// protocols
@@ -187,7 +197,6 @@ const restoreCookies = async (
         url: obj.cookie.preparedCookieDomain,
         value,
       };
-
       promiseArr.push(browser.cookies.set(cookieProperties));
     }
   }
@@ -208,6 +217,7 @@ const restoreCookies = async (
       throw e;
     });
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
     return;
   }

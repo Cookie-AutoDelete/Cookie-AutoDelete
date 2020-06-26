@@ -16,7 +16,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createUIStore } from 'redux-webext';
-import { sleep } from '../../services/Libs';
+import { isChrome, sleep } from '../../services/Libs';
 import ErrorBoundary from '../common_components/ErrorBoundary';
 import fontAwesomeImports from '../font-awesome-imports';
 import App from './App';
@@ -32,8 +32,8 @@ async function initApp() {
   const mountNode = document.createElement('div');
   document.body.appendChild(mountNode);
 
-  if (browserDetect() === 'Chrome') {
-    await new Promise(resolve => setTimeout(resolve, 100));
+  if (isChrome(store.getState().cache)) {
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
   ReactDOM.render(

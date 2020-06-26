@@ -15,10 +15,16 @@ import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { checkIfProtected } from '../services/BrowserActionService';
 import { cleanCookiesOperation } from '../services/CleanupService';
-import { getSetting, getStoreId } from '../services/Libs';
+import {
+  getSetting,
+  getStoreId,
+  isChrome,
+  isFirefoxAndroid,
+} from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
   ADD_EXPRESSION,
+  CLEAR_ACTIVITY_LOG,
   CLEAR_EXPRESSIONS,
   COOKIE_CLEANUP,
   INCREMENT_COOKIE_DELETED_COUNTER,
@@ -41,7 +47,9 @@ export const addExpressionUI = (payload: Expression): ADD_EXPRESSION => ({
   type: ReduxConstants.ADD_EXPRESSION,
 });
 
-export const clearExpressionsUI = (payload: StoreIdToExpressionList): CLEAR_EXPRESSIONS => ({
+export const clearExpressionsUI = (
+  payload: StoreIdToExpressionList,
+): CLEAR_EXPRESSIONS => ({
   payload,
   type: ReduxConstants.CLEAR_EXPRESSIONS,
 });
@@ -58,9 +66,9 @@ export const updateExpressionUI = (payload: Expression): UPDATE_EXPRESSION => ({
 export const addExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
-  const localStorageDefault = (listType: string) => {
-    switch(listType) {
+): void => {
+  const localStorageDefault = (listType: string): boolean => {
+    switch (listType) {
       case 'GREY':
         return getSetting(getState(), 'greyCleanLocalstorage') === true;
       case 'WHITE':
@@ -84,7 +92,7 @@ export const addExpression = (payload: Expression) => (
 export const clearExpressions = (payload: StoreIdToExpressionList) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
+): void => {
   dispatch({
     payload,
     type: ReduxConstants.CLEAR_EXPRESSIONS,
@@ -95,7 +103,7 @@ export const clearExpressions = (payload: StoreIdToExpressionList) => (
 export const removeExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
+): void => {
   dispatch({
     payload: {
       ...payload,
@@ -110,7 +118,7 @@ export const removeExpression = (payload: Expression) => (
 export const updateExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
-) => {
+): void => {
   dispatch({
     payload: {
       ...payload,
@@ -125,6 +133,10 @@ export const updateExpression = (payload: Expression) => (
 export const addActivity = (payload: ActivityLog): ADD_ACTIVITY_LOG => ({
   payload,
   type: ReduxConstants.ADD_ACTIVITY_LOG,
+});
+
+export const clearActivities = (): CLEAR_ACTIVITY_LOG => ({
+  type: ReduxConstants.CLEAR_ACTIVITY_LOG,
 });
 
 export const removeActivity = (payload: ActivityLog): REMOVE_ACTIVITY_LOG => ({
@@ -157,17 +169,23 @@ export const resetAll = (): RESET_ALL => ({
 });
 
 // Validates the setting object and adds missing settings if it doesn't already exist in the initialState
-export const validateSettings: ActionCreator<
-  ThunkAction<void, State, null, ReduxAction>
-> = () => (dispatch, getState) => {
+export const validateSettings: ActionCreator<ThunkAction<
+  void,
+  State,
+  null,
+  ReduxAction
+>> = () => (dispatch, getState) => {
   const { cache, settings } = getState();
   const initialSettings = initialState.settings;
   const settingKeys = Object.keys(settings);
   const initialSettingKeys = Object.keys(initialSettings);
 
-  settingKeys.forEach(k => {
+  settingKeys.forEach((k) => {
     // Properties in a individual setting do not match up.  Repopulate from the default one and reuse existing value
-    if (Object.keys(settings[k]).length !== Object.keys(initialSettings[k]).length) {
+    if (
+      initialSettings[k] !== undefined &&
+      Object.keys(settings[k]).length !== Object.keys(initialSettings[k]).length
+    ) {
       dispatch({
         payload: {
           ...initialSettings[k],
@@ -180,7 +198,7 @@ export const validateSettings: ActionCreator<
 
   // Missing a setting
   if (settingKeys.length !== initialSettingKeys.length) {
-    initialSettingKeys.forEach(k => {
+    initialSettingKeys.forEach((k) => {
       if (settings[k] === undefined) {
         dispatch({
           payload: initialSettings[k],
@@ -191,7 +209,7 @@ export const validateSettings: ActionCreator<
   }
 
   function disableSettingIfTrue(s: Setting) {
-    if (s && s.value){
+    if (s && s.value) {
       dispatch({
         payload: {
           ...s,
@@ -203,11 +221,11 @@ export const validateSettings: ActionCreator<
   }
 
   // Disable unusable setting in Chrome
-  if (cache.browserDetect === 'Chrome') {
+  if (isChrome(cache)) {
     disableSettingIfTrue(settings.contextualIdentities);
   }
   // Disable unusable setting in Firefox Android
-  if (cache.browserDetect === 'Firefox' && cache.platformOs === 'android') {
+  if (isFirefoxAndroid(cache)) {
     disableSettingIfTrue(settings.showNumOfCookiesInIcon);
     disableSettingIfTrue(settings.localstorageCleanup);
     disableSettingIfTrue(settings.contextualIdentities);
@@ -236,7 +254,10 @@ export const validateSettings: ActionCreator<
   }
 
   // If show cookie count in badge is disabled, force change icon color instead
-  if (!settings.showNumOfCookiesInIcon.value && settings.keepDefaultIcon.value) {
+  if (
+    !settings.showNumOfCookiesInIcon.value &&
+    settings.keepDefaultIcon.value
+  ) {
     disableSettingIfTrue(settings.keepDefaultIcon);
   }
 };
@@ -249,14 +270,15 @@ export const cookieCleanupUI = (
 });
 
 // Cookie Cleanup operation that is to be called from the React UI
-export const cookieCleanup: ActionCreator<
-  ThunkAction<void, State, null, ReduxAction>
-> = (
+export const cookieCleanup: ActionCreator<ThunkAction<
+  void,
+  State,
+  null,
+  ReduxAction
+>> = (
   options: CleanupProperties = { greyCleanup: false, ignoreOpenTabs: false },
 ) => async (dispatch, getState) => {
-  const newOptions = options;
-
-  const cleanupDoneObject = await cleanCookiesOperation(getState(), newOptions);
+  const cleanupDoneObject = await cleanCookiesOperation(getState(), options);
   if (!cleanupDoneObject) return;
   const { setOfDeletedDomainCookies, cachedResults } = cleanupDoneObject;
   const { recentlyCleaned } = cachedResults;
@@ -282,7 +304,9 @@ export const cookieCleanup: ActionCreator<
     await browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
       iconUrl: browser.extension.getURL('icons/icon_48.png'),
       message: notifyMessage,
-      title: `${browser.i18n.getMessage('extensionName')} ${browser.runtime.getManifest().version}:  ${browser.i18n.getMessage('notificationTitle')}`,
+      title: `${browser.i18n.getMessage('extensionName')} ${
+        browser.runtime.getManifest().version
+      }:  ${browser.i18n.getMessage('notificationTitle')}`,
       type: 'basic',
     });
     const seconds = parseInt(
@@ -298,7 +322,7 @@ export const cookieCleanup: ActionCreator<
 // Map the cookieStoreId to their actual names and store in cache
 export const cacheCookieStoreIdNames = () => async (
   dispatch: Dispatch<ReduxAction>,
-) => {
+): Promise<void> => {
   const contextualIdentitiesObjects = await browser.contextualIdentities.query(
     {},
   );
@@ -323,7 +347,7 @@ export const cacheCookieStoreIdNames = () => async (
     },
     type: ReduxConstants.ADD_CACHE,
   });
-  contextualIdentitiesObjects.forEach(object =>
+  contextualIdentitiesObjects.forEach((object) =>
     dispatch({
       payload: {
         key: object.cookieStoreId,

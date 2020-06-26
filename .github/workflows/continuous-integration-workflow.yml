@@ -1,4 +1,4 @@
-name: Node.js CI Tests
+name: CI
 
 on:
   push:
@@ -11,9 +11,53 @@ on:
       - '**/README.md'
 
 jobs:
+  pre_info:
+    name: Initial Checks
+    runs-on: ubuntu-latest
+    outputs:
+      skipCI: ${{ steps.checkci.outputs.result }}
+      gitSHA: ${{ steps.checkci.outputs.gitSHA }}
+    steps:
+      - name: Run CI Check
+        id: checkci
+        env:
+          GH_API: ${{ github.event.repository.commits_url }}
+          GH_GH: ${{ toJson(github) }}
+          GH_SHA: ${{ github.event.after }}
+          PR_FIRSTSHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          echo "Run ID    : $GITHUB_RUN_ID"
+          echo "Event Name: $GITHUB_EVENT_NAME"
+          EXP_REF="ds\/(.*)$"
+          if [[ $GITHUB_REF =~ $EXP_REF ]]; then
+            GH_REF=${BASH_REMATCH[1]}
+          fi
+          REF=$([[ $GITHUB_HEAD_REF ]] && echo $GITHUB_HEAD_REF || echo $GH_REF)
+          echo "HEAD_REF  : $GITHUB_HEAD_REF"
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "GH_REF    : $GH_REF"
+          echo "Branch    : $REF"
+          GH_SHA=$([[ $GH_SHA ]] && echo $GH_SHA || echo $PR_FIRSTSHA)
+          echo "::set-output name=gitSHA::$GH_SHA"
+          echo "Commit SHA: $GH_SHA"
+          echo "PR Head SHA: $PR_FIRSTSHA"
+          SKIP_A=$([[ "$REF" == l10n_* ]] && echo true || echo false)
+          echo "Starts With l10n_ :  $SKIP_A"
+          GH_API=${GH_API/'{/sha}'/}
+          echo "API: $GH_API"
+          CM=$(curl -s $GH_API/$GH_SHA | jq -r '.commit.message')
+          echo "Commit Message: $CM"
+          EXP_SKIP="\[ci skip]"
+          SKIP_B=$([[ "$CM" =~ $EXP_SKIP ]] && echo true || echo false)
+          echo "Skip via Commit: $SKIP_B"
+          RES=$([[ $SKIP_A == true || $SKIP_B == true ]] && echo true || echo false)
+          echo "Skip CI:  $RES"
+          echo "::set-output name=result::$RES"
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
+    needs: pre_info
+    if: needs.pre_info.outputs.skipCI == 'false'
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v2
@@ -21,14 +65,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - name: Cache Node.js
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}
       - name: Install dependencies (npm ci)
         run: npm ci
       - name: Run Tests
@@ -38,12 +74,7 @@ jobs:
       - name: Run Build
         run: npm run build
         env:
-          CI: true
-      - name: Archive Production Build Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: builds
-          path: builds
+          GITSHA: ${{ github.event.after }}
       - name: Archive Code Coverage Results
         uses: actions/upload-artifact@v2
         with:
@@ -59,3 +90,51 @@ jobs:
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract zip builds for individual artifact upload
+        if: github.event_name == 'pull_request'
+        id: extbuilds
+        run: |
+          for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
+          echo "::set-output name=ffdir::$(ls -d *Firefox)"
+          echo "::set-output name=crdir::$(ls -d *Chrome)"
+        working-directory: ./builds
+      - name: Upload Artifact for Mozilla Firefox Build
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.extbuilds.outputs.ffdir }}
+          path: builds/${{ steps.extbuilds.outputs.ffdir }}
+      - name: Upload Artifact for Google Chrome Build
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.extbuilds.outputs.crdir }}
+          path: builds/${{ steps.extbuilds.outputs.crdir }}
+      - name: Create PR Build Comment
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v1.4.2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## Pull Request Build: ${{ github.run_id }}
+
+            - based on latest commit: ${{ needs.pre_info.outputs.gitSHA }}
+
+            Unsigned webextension builds for testing is ready for download!
+            These test builds are only kept for *up to 90 days* from the date of this post.
+            It is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.
+
+            ### Generating Download Links
+
+            - `/get-build` for the latest commit build.
+            - `/get-build ${{ github.run_id }}` for this specific commit ${{ github.event.after }} build.
+
+            ---
+
+            *When new command comment is posted, please allow a few seconds for the command to be received and processed.*
+            - :eyes: indicates that command has been received.
+            - :rocket: indicates that command has been sent for further processing.
+            - :tada: indicates that command has been executed.  Expect a new comment with the result shortly.
+
+            *Due to API limitations, generated links will only be valid for one minute!*
+          reactions: heart
