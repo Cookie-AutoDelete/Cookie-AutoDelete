@@ -459,6 +459,10 @@
     "message": "Пријавите проблеме и предложите могућности",
     "description": "Report issues and suggest features"
   },
+  "resetCookieCounterText": {
+    "message": "Поново постави бројаче колачића",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
   "resetExtensionDataText": {
     "message": "Поново постави податке о проширењу",
     "description": "Reset Extension Data"
