@@ -491,6 +491,16 @@
     "message": "Como é que as expressões funcionam?",
     "description": "How do Expressions work?"
   },
+  "reasonCleanCookieExpired": {
+    "message": "Limpeza parcial devido a cookies expirados de $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
   "reasonCleanCookieName": {
     "message": "Limpeza parcial devido a $matchedExpression$ correspondente na $listType$",
     "description": "Partial clean because of matched *.google.com in the Whitelist",
