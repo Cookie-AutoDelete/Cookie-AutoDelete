@@ -593,6 +593,10 @@
     "message": "Сообщить об ошибке или предложить идею",
     "description": "Report issues and suggest features"
   },
+  "resetCookieCounterText": {
+    "message": "Сбросить счетчики куки",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
   "resetExtensionDataText": {
     "message": "Сбросить данные расширения",
     "description": "Reset Extension Data"
