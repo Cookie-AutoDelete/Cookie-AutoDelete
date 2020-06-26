@@ -611,6 +611,10 @@
     "message": "Rapporter fejl og mangler, og foreslå funktionalitet",
     "description": "Report issues and suggest features"
   },
+  "resetCookieCounterText": {
+    "message": "Nulstil cookie-tællere",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
   "resetExtensionDataText": {
     "message": "Nulstil udvidelsesdata",
     "description": "Reset Extension Data"
