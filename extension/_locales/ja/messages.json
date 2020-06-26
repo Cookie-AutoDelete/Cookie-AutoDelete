@@ -611,6 +611,10 @@
     "message": "問題を報告、機能の提案",
     "description": "Report issues and suggest features"
   },
+  "resetCookieCounterText": {
+    "message": "クッキーの計数をリセットする",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
   "resetExtensionDataText": {
     "message": "拡張機能のデータをリセット",
     "description": "Reset Extension Data"
