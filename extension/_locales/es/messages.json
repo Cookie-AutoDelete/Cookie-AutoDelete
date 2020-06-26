@@ -53,6 +53,10 @@
     "message": "Habilitar limpieza para pestañas descartadas",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
+  "cleanExpiredCookiesText": {
+    "message": "Limpiar todas las cookies expiradas",
+    "description": "Clean All Expired Cookies.  Found in Settings."
+  },
   "cleanIgnoringOpenTabsText": {
     "message": "Limpiar, incluye pestañas abiertas",
     "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -486,6 +490,16 @@
   "questionExpression": {
     "message": "¿Cómo funcionan las expresiones?",
     "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Limpieza parcial de $hostname$ debido a las cookies expiradas.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
   },
   "reasonCleanCookieName": {
     "message": "Limpieza parcial de $matchedExpression$ debido a la coincidencia en la $listType$",
