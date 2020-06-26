@@ -593,6 +593,20 @@
     "message": "Usuń formułę",
     "description": "Remove expression"
   },
+  "removeStorageCount": {
+    "message": "Usunięto $count$ element(ów) z $storageType$.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
   "reportIssuesText": {
     "message": "Zgłoś problemy i sugestie",
     "description": "Report issues and suggest features"
