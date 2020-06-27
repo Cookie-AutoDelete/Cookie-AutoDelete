@@ -25,7 +25,7 @@
       },
       "cookieStore": {
         "content": "$3",
-        "example": "default -or- firefox-container-1 (Personal)"
+        "example": "'default' -or- 'firefox-container-1 (Personal)'"
       }
     }
   },
@@ -83,11 +83,11 @@
   },
   "clearSiteDataForDomainText": {
     "message": "Alle $siteData$ von $domain$ aufräumen",
-    "description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
     "placeholders": {
       "siteData": {
         "content": "$1",
-        "example": "cookies"
+        "example": "Cookies"
       },
       "domain": {
         "content": "$2",
@@ -97,11 +97,11 @@
   },
   "clearSiteDataText": {
     "message": "$siteData$ dieser Domain aufräumen",
-    "description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
     "placeholders": {
       "siteData": {
         "content": "$1",
-        "example": "cookies"
+        "example": "Cookies"
       }
     }
   },
@@ -339,39 +339,15 @@
   },
   "localStorageText": {
     "message": "Local Storage",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
   },
   "manualActionNotification": {
     "message": "Manuelle Aktions-Benachrichtigung",
     "description": "Manual Action Notification - used as Notification Title."
   },
-  "manualCleanError": {
-    "message": "$data$ kann/können nicht aufgeräumt werden bei Tab:",
-    "description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
-    "placeholders": {
-      "data": {
-        "content": "$1",
-        "example": "cookies"
-      }
-    }
-  },
-  "manualCleanNothing": {
-    "message": "Kein(e) $cleanType$ zum Aufräumen für $url$ gefunden.",
-    "description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
-    "placeholders": {
-      "cleanType": {
-        "content": "$1",
-        "example": "cookies"
-      },
-      "url": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
   "manualCleanRemoved": {
     "message": "$deleted$ von insgesamt $total$ entfernt.",
-    "description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
+    "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
     "placeholders": {
       "deleted": {
         "content": "$1",
@@ -380,20 +356,6 @@
       "total": {
         "content": "$2",
         "example": "5"
-      }
-    }
-  },
-  "manualCleanSuccess": {
-    "message": "Resultat des Aufräumens von $cleanType$ von $url$:",
-    "description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
-    "placeholders": {
-      "cleanType": {
-        "content": "$1",
-        "example": "cookies"
-      },
-      "url": {
-        "content": "$2",
-        "example": "example.com"
       }
     }
   },
@@ -499,7 +461,7 @@
   },
   "reasonCleanCookieName": {
     "message": "Teilweise aufräumen, da $matchedExpression$ mit der $listType$ übereinstimmt",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -513,7 +475,7 @@
   },
   "reasonCleanGreyList": {
     "message": "Aufräumen, da Aufräumen beim Start aktiv und $matchedExpression$ in der Greylist ist",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -523,7 +485,7 @@
   },
   "reasonCleanNoList": {
     "message": "Aufräumen, da $hostname$ sich nicht in einer Whitelist/Greylist befindet",
-    "description": "Clean because sub.google.com is not in the White or Grey lists",
+    "description": "Clean because $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -533,7 +495,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Aufräumen, da Aufräumen beim Start aktiv und $hostname$ nicht in einer Whitelist/Greylist ist",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -543,7 +505,7 @@
   },
   "reasonKeep": {
     "message": "Behalten, da $matchedExpression$ mit der $listType$ übereinstimmt",
-    "description": "Keep because of matched *.google.com in the Whitelist",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -557,7 +519,7 @@
   },
   "reasonKeepOpenTab": {
     "message": "Aufgrund von offenen Tabs auf *.$mainDomain$ behalten",
-    "description": "Keep because of open tabs of *.google.com",
+    "description": "Keep because of open tabs of *.$mainDomain$",
     "placeholders": {
       "mainDomain": {
         "content": "$1",
@@ -567,11 +529,11 @@
   },
   "reasonTabsWereIgnored": {
     "message": "und zudem wurden geöffnete Tabs ignoriert",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
   },
   "reasonTabsWereNotIgnored": {
     "message": "oder in geöffneten Tabs",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
   "regularExpressionEquivalentText": {
     "message": "Entsprechender regulärer Ausdruck",
