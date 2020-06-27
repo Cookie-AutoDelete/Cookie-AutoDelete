@@ -49,11 +49,11 @@
   },
   "clearSiteDataForDomainText": {
     "message": "Vee alle $siteData$ vir $domain$ uit",
-    "description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
     "placeholders": {
       "siteData": {
         "content": "$1",
-        "example": "cookies"
+        "example": "Cookies"
       },
       "domain": {
         "content": "$2",
@@ -63,11 +63,11 @@
   },
   "clearSiteDataText": {
     "message": "Maak $siteData$ vir hierdie domein skoon",
-    "description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
     "placeholders": {
       "siteData": {
         "content": "$1",
-        "example": "cookies"
+        "example": "Cookies"
       }
     }
   },
@@ -343,7 +343,7 @@
   },
   "reasonCleanCookieName": {
     "message": "Gedeeltelik skoon as gevolg van die gepaste $matchedExpression$ in die $listType$",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -357,7 +357,7 @@
   },
   "reasonCleanGreyList": {
     "message": "Maak skoon as gevolg van opstartopruiming en $matchedExpression$ is in die Greylist",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -367,7 +367,7 @@
   },
   "reasonCleanNoList": {
     "message": "Maak skoon omdat $hostname$ nie in die wit- of gryslyste is nie",
-    "description": "Clean because sub.google.com is not in the White or Grey lists",
+    "description": "Clean because $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -377,7 +377,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "Maak skoon as gevolg van opstartopruiming en $hostname$ is nie in die wit- of gryslyste nie",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -387,7 +387,7 @@
   },
   "reasonKeep": {
     "message": "Hou as gevolg van die gepaste $matchedExpression$ in die $listType$",
-    "description": "Keep because of matched *.google.com in the Whitelist",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -401,7 +401,7 @@
   },
   "reasonKeepOpenTab": {
     "message": "Hou as gevolg van oop oortjies van *.$mainDomain$",
-    "description": "Keep because of open tabs of *.google.com",
+    "description": "Keep because of open tabs of *.$mainDomain$",
     "placeholders": {
       "mainDomain": {
         "content": "$1",
@@ -411,11 +411,11 @@
   },
   "reasonTabsWereIgnored": {
     "message": "en oop oortjies is ook geïgnoreer",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
   },
   "reasonTabsWereNotIgnored": {
     "message": "of in enige oop oortjies",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
   "regularExpressionEquivalentText": {
     "message": "Gereeldeuitdrukking Ekwivalent",
