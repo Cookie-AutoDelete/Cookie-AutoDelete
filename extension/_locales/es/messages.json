@@ -349,6 +349,30 @@
     "message": "Notificación de acción manual",
     "description": "Manual Action Notification - used as Notification Title."
   },
+  "manualCleanError": {
+    "message": "No se puede limpiar $siteData$ para la pestaña:",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "No se encontraron $siteData$ para limpiar en $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
   "manualCleanRemoved": {
     "message": "Borrado $deleted$ de $total$.",
     "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
@@ -360,6 +384,20 @@
       "total": {
         "content": "$2",
         "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Resultado de limpieza de $siteData$ en $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
