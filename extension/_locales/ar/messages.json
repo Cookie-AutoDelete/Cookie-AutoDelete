@@ -49,11 +49,11 @@
   },
   "clearSiteDataForDomainText": {
     "message": "مسح الكل $siteData$ لـ $domain$",
-    "description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
+    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
     "placeholders": {
       "siteData": {
         "content": "$1",
-        "example": "cookies"
+        "example": "Cookies"
       },
       "domain": {
         "content": "$2",
@@ -63,11 +63,11 @@
   },
   "clearSiteDataText": {
     "message": "مسح $siteData$ لهذا النطاق",
-    "description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
+    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
     "placeholders": {
       "siteData": {
         "content": "$1",
-        "example": "cookies"
+        "example": "Cookies"
       }
     }
   },
@@ -343,7 +343,7 @@
   },
   "reasonCleanCookieName": {
     "message": "تنظيف جزئي بسبب مطابقة $matchedExpression$ في $listType$",
-    "description": "Partial clean because of matched *.google.com in the Whitelist",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -357,7 +357,7 @@
   },
   "reasonCleanGreyList": {
     "message": "تنظيف بسبب تنظيف بدء التشغيل و $matchedExpression$ في القائمة الرمادية",
-    "description": "Clean because of startup cleanup and *.google.com is in the Greylist",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -367,7 +367,7 @@
   },
   "reasonCleanNoList": {
     "message": "تنظيف لأن $hostname$ ليس في القائمة البيضاء أو الرمادية",
-    "description": "Clean because sub.google.com is not in the White or Grey lists",
+    "description": "Clean because $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -377,7 +377,7 @@
   },
   "reasonCleanStartupNoList": {
     "message": "تنظيف بسبب تنظيف بدء التشغيل و $hostname$ ليس في القوائم البيضاء أو الرمادية",
-    "description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -387,7 +387,7 @@
   },
   "reasonKeep": {
     "message": "استمر بسبب مطابقة $matchedExpression$ في $listType$",
-    "description": "Keep because of matched *.google.com in the Whitelist",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -401,7 +401,7 @@
   },
   "reasonKeepOpenTab": {
     "message": "استمر بسبب علامات التبويب المفتوحة لـ *.$mainDomain$",
-    "description": "Keep because of open tabs of *.google.com",
+    "description": "Keep because of open tabs of *.$mainDomain$",
     "placeholders": {
       "mainDomain": {
         "content": "$1",
@@ -411,11 +411,11 @@
   },
   "reasonTabsWereIgnored": {
     "message": "و كذلك تم تجاهل علامات التبويب المفتوحة",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
   },
   "reasonTabsWereNotIgnored": {
     "message": "أو في أي علامات تبويب مفتوحة",
-    "description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
   "regularExpressionEquivalentText": {
     "message": "معادل التعبير العادي",
