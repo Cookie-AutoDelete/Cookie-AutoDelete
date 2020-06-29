@@ -337,6 +337,30 @@
     "message": "Manuel Eylem Bildirimi",
     "description": "Manual Action Notification - used as Notification Title."
   },
+  "manualCleanError": {
+    "message": "Sekme için $siteData$ temizlenemedi:",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "$url$ içeriğinde hiç $siteData$ bulunamadı.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
   "manualCleanRemoved": {
     "message": "$total$ içinden $deleted$ silindi.",
     "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
@@ -348,6 +372,20 @@
       "total": {
         "content": "$2",
         "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "$url$ içeriğindeki $siteData$ için temizlik sonucu:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
