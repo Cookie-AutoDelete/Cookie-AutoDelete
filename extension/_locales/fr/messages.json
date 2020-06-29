@@ -346,7 +346,7 @@
     "description": "Manual Action Notification - used as Notification Title."
   },
   "manualCleanError": {
-    "message": "$data$ ne peut pas être nettoyé pour l'onglet :",
+    "message": "$siteData$ ne peut pas être nettoyé pour l'onglet :",
     "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
     "placeholders": {
       "siteData": {
@@ -356,7 +356,7 @@
     }
   },
   "manualCleanNothing": {
-    "message": "Aucun $cleanType$ n'a été trouvé pour le nettoyage de $url$.",
+    "message": "Aucun $siteData$ n'a été trouvé pour le nettoyage de $url$.",
     "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
     "placeholders": {
       "siteData": {
@@ -384,7 +384,7 @@
     }
   },
   "manualCleanSuccess": {
-    "message": "Nettoyage de $cleanType$ pour $url$:",
+    "message": "Nettoyage de $siteData$ pour $url$:",
     "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
     "placeholders": {
       "siteData": {
