@@ -337,6 +337,30 @@
     "message": "Manuell åtgärdsavisering",
     "description": "Manual Action Notification - used as Notification Title."
   },
+  "manualCleanError": {
+    "message": "$siteData$ kan inte rensas för flik:",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "Ingen $siteData$ hittades för rensning på $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
   "manualCleanRemoved": {
     "message": "Tog bort $deleted$ av $total$.",
     "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
@@ -348,6 +372,20 @@
       "total": {
         "content": "$2",
         "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Resultat av rensning för $siteData$ på $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
