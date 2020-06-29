@@ -251,6 +251,20 @@
     "message": "Попередження: ВСІ наявне локальне сховище буде очищено після увімкнення локального сховища.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
+  "manualCleanSuccess": {
+    "message": "Очищення для $siteData$ на $url$ результаті:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
   "matchedDomainExpressionText": {
     "message": "Правило відповідне домену",
     "description": "Matched Domain Expression"
