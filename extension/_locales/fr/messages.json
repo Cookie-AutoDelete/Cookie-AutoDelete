@@ -11,6 +11,32 @@
     "message": "Activer le nettoyage automatique",
     "description": "Enable Automatic Cleaning"
   },
+  "addNewExpressionNotification": {
+    "message": "Ajout de $expression$ à la liste de type $listType$ dans la stockage de cookies $cookieStore$.",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+    "placeholders": {
+      "expression": {
+        "content": "$1",
+        "example": "example.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "WHITE"
+      },
+      "cookieStore": {
+        "content": "$3",
+        "example": "'default' -or- 'firefox-container-1 (Personal)'"
+      }
+    }
+  },
+  "addNewExpressionNotificationFailed": {
+    "message": "Impossible de récupérer le domaine à ajouter à partir de l'endroit où le clic droit a été émis.",
+    "description": "Could not fetch domain to add from where right-click was issued."
+  },
+  "addNewExpressionNotificationIgnore": {
+    "message": "Si l'expression existe déjà, ceci sera ignoré.",
+    "description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+  },
   "autoDeleteDisabledText": {
     "message": "Le nettoyage automatique est désactivé",
     "description": "Auto-clean disabled"
@@ -22,6 +48,14 @@
   "chromeDebugMode": {
     "message": "Assurez-vous que le 'Mode Développeur' est activé, puis cliquez sur 'Page d'arrière-plan' dans la vue Inspecter.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+  },
+  "cleanDiscardedText": {
+    "message": "Activer le nettoyage pour les onglets abandonnés/non chargés",
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
+  },
+  "cleanExpiredCookiesText": {
+    "message": "Nettoyer tous les cookies expirés",
+    "description": "Clean All Expired Cookies.  Found in Settings."
   },
   "cleanIgnoringOpenTabsText": {
     "message": "Nettoyer, y compris les onglets ouverts",
@@ -79,6 +113,50 @@
     "message": "Cliquez sur l'onglet Console",
     "description": "Click on the Console Tab.  Found after enabling debug mode."
   },
+  "contextMenusParentClean": {
+    "message": "Menu de nettoyage manuel",
+    "description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+  },
+  "contextMenusParentExpression": {
+    "message": "Ajouter le Domaine/Menu expression",
+    "description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+  },
+  "contextMenusSelectedDomainLink": {
+    "message": "Pour uniquement le domaine du lien sélectionné",
+    "description": "For domain only of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainPage": {
+    "message": "Pour uniquement le domaine de la page sélectionnée",
+    "description": "For domain only of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainText": {
+    "message": "Pour uniquement le domaine du texte sélectionné : $selected$",
+    "description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextMenusSelectedSubdomainLink": {
+    "message": "Pour tous les sous-domaines avec le domaine du lien sélectionné",
+    "description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainPage": {
+    "message": "Pour tous les sous-domaines avec le domaine de la page sélectionnée",
+    "description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainText": {
+    "message": "Pour tous les sous-domaines avec le domaine du texte sélectionné : $selected$",
+    "description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Activer la prise en charge des onglets contextuels de Firefox",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -90,6 +168,10 @@
   "contributorsText": {
     "message": "Contributeurs",
     "description": "Contributors"
+  },
+  "cookiesText": {
+    "message": "Cookies",
+    "description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
   },
   "cookieCleanUpOnStartText": {
     "message": "Nettoyer les cookies des onglets ouverts lors du démarrage",
@@ -138,6 +220,10 @@
   "enableCleanupLogText": {
     "message": "Activer le journal et le compteur de nettoyage",
     "description": "Enable Cleanup Log and Counter"
+  },
+  "enableContextMenus": {
+    "message": "Activer les menus contextuels (menu clic droit)",
+    "description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
   },
   "enableGlobalSubdomainText": {
     "message": "Activer la vérification des sous-domaines",
@@ -251,6 +337,66 @@
     "message": "Attetion : TOUT le contenu existant de la mémoire locale va être nettoyé à l'activation du Nettoyage de la mémoire locale.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
+  "localStorageText": {
+    "message": "Stockage local",
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+  },
+  "manualActionNotification": {
+    "message": "Notification d'action manuelle",
+    "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanError": {
+    "message": "$data$ ne peut pas être nettoyé pour l'onglet :",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "Aucun $cleanType$ n'a été trouvé pour le nettoyage de $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanRemoved": {
+    "message": "Supprimé $deleted$ sur $total$.",
+    "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
+    "placeholders": {
+      "deleted": {
+        "content": "$1",
+        "example": "5"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Nettoyage de $cleanType$ pour $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
   "matchedDomainExpressionText": {
     "message": "Expression de domaine correspondante",
     "description": "Matched Domain Expression"
@@ -340,6 +486,16 @@
   "questionExpression": {
     "message": "Comment fonctionnent les Expressions?",
     "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Nettoyage partiel en raison des cookies expirés de $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
   },
   "reasonCleanCookieName": {
     "message": "Nettoyage partiel en raison de $matchedExpression$ correspondant dans la $listType$",
@@ -451,9 +607,27 @@
     "message": "Supprimer l’expression",
     "description": "Remove expression"
   },
+  "removeStorageCount": {
+    "message": "$count$ élément(s) retiré(s) de $storageType$.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
   "reportIssuesText": {
     "message": "Signaler des problèmes et suggérer des fonctions",
     "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "Réinitialiser les compteurs de cookies",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
   },
   "resetExtensionDataText": {
     "message": "Réinitialiser les données de l'extension",
@@ -480,6 +654,10 @@
   "secondsText": {
     "message": "seconde(s)",
     "description": "second(s)"
+  },
+  "sessionStorageText": {
+    "message": "Stockage de session",
+    "description": "SessionStorage.  Used in manual localstorage clean notification"
   },
   "settingGroupAutoClean": {
     "message": "Options de nettoyage automatique",
