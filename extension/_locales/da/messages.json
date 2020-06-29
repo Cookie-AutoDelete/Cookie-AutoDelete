@@ -53,6 +53,10 @@
     "message": "Aktiver cookie-sletning for kasserede faner",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
+  "cleanExpiredCookiesText": {
+    "message": "Slet alle udløbne cookies",
+    "description": "Clean All Expired Cookies.  Found in Settings."
+  },
   "cleanIgnoringOpenTabsText": {
     "message": "Slet, inkluder åbne faner",
     "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -341,6 +345,30 @@
     "message": "Manuel handlingsunderretning",
     "description": "Manual Action Notification - used as Notification Title."
   },
+  "manualCleanError": {
+    "message": "$siteData$ kan ikke slettes for fane:",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "Ingen $siteData$ blev fundet til sletning på $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
   "manualCleanRemoved": {
     "message": "Slettede $deleted$ af $total$.",
     "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
@@ -352,6 +380,20 @@
       "total": {
         "content": "$2",
         "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Resultat for sletning for $siteData$ på $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
@@ -444,6 +486,16 @@
   "questionExpression": {
     "message": "Hvordan virker udtryk?",
     "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Delvis slet pga. udløbne cookies fra $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
   },
   "reasonCleanCookieName": {
     "message": "Delvis sletning pga. matchet $matchedExpression$ i $listType$",
