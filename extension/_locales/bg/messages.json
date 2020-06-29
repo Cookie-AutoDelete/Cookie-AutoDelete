@@ -275,6 +275,30 @@
     "message": "Известие при действие от потребителя",
     "description": "Manual Action Notification - used as Notification Title."
   },
+  "manualCleanError": {
+    "message": "Информацията в $siteData$ не може да бъде изчистена за раздел:",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "При почистване на $url$ съдържание в $siteData$ не е намерено.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
   "manualCleanRemoved": {
     "message": "Премахнати $deleted$ от $total$.",
     "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
@@ -286,6 +310,20 @@
       "total": {
         "content": "$2",
         "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Резултат от почистване на $siteData$ от $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
       }
     }
   },
