@@ -456,7 +456,7 @@
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notifyCookieCleanupDelayText": {
-    "message": "通知の表示時間",
+    "message": "通知を表示する時間",
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
