@@ -487,6 +487,16 @@
     "message": "Bagaimana Ekspresi bekerja?",
     "description": "How do Expressions work?"
   },
+  "reasonCleanCookieExpired": {
+    "message": "Hapus parsial karena kuki kedaluwarsa dari $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
   "reasonCleanCookieName": {
     "message": "Dihapus sebagian karena cocok dengan $matchedExpression$ di dalam $listType$",
     "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
