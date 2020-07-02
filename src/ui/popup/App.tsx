@@ -300,6 +300,8 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 data-disabled="true"
                 role="menu"
                 style={{
+                  borderBottomLeftRadius: 0,
+                  borderTopLeftRadius: 0,
                   transform: 'translate3d(-3px, 0px, 0px)',
                 }}
               >
