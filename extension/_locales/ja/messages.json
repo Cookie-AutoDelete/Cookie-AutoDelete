@@ -205,6 +205,10 @@
     "message": "ドメイン式",
     "description": "Domain Expression"
   },
+  "domainPlaceholderText": {
+    "message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
+    "description": "Domain Expression.  For this one we'll keep the string as is."
+  },
   "dropdownAdditionalCleaningOptions": {
     "message": "追加のクリーニングアクションのドロップダウンを切り替える",
     "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
