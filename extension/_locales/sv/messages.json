@@ -1,760 +1,760 @@
 {
-	"aboutText": {
-		"message": "Om",
-		"description": "About"
-	},
-	"activeModeDelayText": {
-		"message": "Fördröjning före automatisk rensning",
-		"description": "Delay Before Automatic Cleaning"
-	},
-	"activeModeText": {
-		"message": "Aktivera automatisk rensning",
-		"description": "Enable Automatic Cleaning"
-	},
-	"addNewExpressionNotification": {
-		"message": "Lägger till $expression$ för att lista typ $listType$ under cookielagring $cookieStore$.",
-		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
-		"placeholders": {
-			"expression": {
-				"content": "$1",
-				"example": "example.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "WHITE"
-			},
-			"cookieStore": {
-				"content": "$3",
-				"example": "default -or- firefox-container-1 (Personal)"
-			}
-		}
-	},
-	"addNewExpressionNotificationFailed": {
-		"message": "Kunde inte hämta domänen att lägga till från där högerklick utfördes.",
-		"description": "Could not fetch domain to add from where right-click was issued."
-	},
-	"addNewExpressionNotificationIgnore": {
-		"message": "Om uttrycket redan finn, kommer detta att ignoreras.",
-		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
-	},
-	"autoDeleteDisabledText": {
-		"message": "Automatisk borttagning inaktiverad",
-		"description": "Auto-clean disabled"
-	},
-	"autoDeleteEnabledText": {
-		"message": "Automatisk borttagning aktiverad",
-		"description": "Auto-clean enabled"
-	},
-	"chromeDebugMode": {
-		"message": "Tillse att \"Utvecklarläge\" är aktiverat, klicka sedan på \"Bakgrundssida\" under Inspektionsvy.",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
-	"cleanDiscardedText": {
-		"message": "Aktivera rensning för borttagna/oinlästa flikar",
-		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
-	},
-	"cleanIgnoringOpenTabsText": {
-		"message": "Rensa, inklusive öppna flikar",
-		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
-	},
-	"cleanText": {
-		"message": "Rensa",
-		"description": "Clean"
-	},
-	"cleanupDomainChangeText": {
-		"message": "Aktivera rensning vid domänförändring",
-		"description": "Enable Cleanup on Domain Change"
-	},
-	"cleanupActionsBypass": {
-		"message": "Varning! Åtgärder nedan, ignorerar inställningarna!",
-		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
-	},
-	"cleanupLogText": {
-		"message": "Rensningslogg",
-		"description": "Cleanup Log"
-	},
-	"clearLogsText": {
-		"message": "Rensa loggar",
-		"description": "Clear Logs"
-	},
-	"clearSiteDataForDomainText": {
-		"message": "Ta bort all $siteData$ för $domain$",
-		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"domain": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"clearSiteDataText": {
-		"message": "Ta bort $siteData$ för den här domänen",
-		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			}
-		}
-	},
-	"clearURLText": {
-		"message": "Ta bort alla",
-		"description": "Remove All"
-	},
-	"consoleDebugMode": {
-		"message": "Klicka på fliken Konsol",
-		"description": "Click on the Console Tab.  Found after enabling debug mode."
-	},
-	"contextMenusParentClean": {
-		"message": "Manuell rensningsmeny",
-		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
-	},
-	"contextMenusParentExpression": {
-		"message": "Lägg till domän-/uttrycksmeny",
-		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
-	},
-	"contextMenusSelectedDomainLink": {
-		"message": "För domän endast på vald länk",
-		"description": "For domain only of selected link.  Shown in right-click menu."
-	},
-	"contextMenusSelectedDomainPage": {
-		"message": "För domän endast på vald sida",
-		"description": "For domain only of selected page.  Shown in right-click menu."
-	},
-	"contextMenusSelectedDomainText": {
-		"message": "För domän endast för vald text: $selected$",
-		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
-		"placeholders": {
-			"selected": {
-				"content": "$1",
-				"example": "github.com"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomainLink": {
-		"message": "För alla underdomäner med domän för vald länk",
-		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
-	},
-	"contextMenusSelectedSubdomainPage": {
-		"message": "För alla underdomäner med domän för vald sida",
-		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
-	},
-	"contextMenusSelectedSubdomainText": {
-		"message": "För alla underdomäner med domän av vald text: $selected$",
-		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
-		"placeholders": {
-			"selected": {
-				"content": "$1",
-				"example": "github.com"
-			}
-		}
-	},
-	"contextualIdentitiesEnabledText": {
-		"message": "Aktivera stöd för Firefox container-flikar",
-		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
-	},
-	"contributeText": {
-		"message": "Bidra",
-		"description": "Contribute"
-	},
-	"contributorsText": {
-		"message": "Medhjälpare",
-		"description": "Contributors"
-	},
-	"cookiesText": {
-		"message": "Cookies",
-		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
-	},
-	"cookieCleanUpOnStartText": {
-		"message": "Ta bort cookies från öppna flikar vid uppstart",
-		"description": "Clean Cookies from Open Tabs on Startup"
-	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Kör rensning nu, inkludera domäner från öppna flikar",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "Kör rensning nu, undanta domäner från öppna flikar",
-		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
-	},
-	"debugMode": {
-		"message": "Aktivera felsökningsläge (ytterligare konsolutdata)",
-		"description": "Enable Debug Mode (Additional Console Outputs)"
-	},
-	"defaultSettingsText": {
-		"message": "Återställ standardinställningar",
-		"description": "Restore Default Settings"
-	},
-	"disableAutoDeleteText": {
-		"message": "Växla om du vill inaktivera automatisk rensning (manuellt läge)",
-		"description": "Toggle to disable automatic cleanup (manual mode)"
-	},
-	"documentationText": {
-		"message": "Dokumentation",
-		"description": "Documentation"
-	},
-	"domainExpressionsText": {
-		"message": "Domänuttryck",
-		"description": "Domain Expression"
-	},
-	"dropdownAdditionalCleaningOptions": {
-		"message": "Växlingsknapp för ytterligare rensningsåtgärder",
-		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
-	},
-	"editExpressionText": {
-		"message": "Redigera uttryck",
-		"description": "Edit expression"
-	},
-	"enableAutoDeleteText": {
-		"message": "Växla om du vill aktivera automatisk rensning (automatiskt läge)",
-		"description": "Toggle to enable automatic cleanup (automatic mode)"
-	},
-	"enableCleanupLogText": {
-		"message": "Aktivera rensningslogg och räknare",
-		"description": "Enable Cleanup Log and Counter"
-	},
-	"enableGlobalSubdomainText": {
-		"message": "Aktivera kontroll av underdomäner",
-		"description": "Enable Check for Subdomains"
-	},
-	"enableGreyListCleanup": {
-		"message": "Aktivera rensning av grålistan vid omstart av webbläsare",
-		"description": "Enable Greylist Cleanup on Browser Restart"
-	},
-	"enableNewVersionPopup": {
-		"message": "Aktivera popupmeddelande när ny version släpps",
-		"description": "Enable Popup when New Version is Released"
-	},
-	"errorText": {
-		"message": "Fel!",
-		"description": "Error!"
-	},
-	"exportSettingsText": {
-		"message": "Exportera kärninställningar",
-		"description": "Export Core Settings"
-	},
-	"exportURLSText": {
-		"message": "Exportera uttryck",
-		"description": "Export Expressions"
-	},
-	"exportTitleTimestamp": {
-		"message": "En tidsstämpel kommer att läggas till i filnamnet vid export.",
-		"description": "A timestamp will be appended to the filename on export."
-	},
-	"extensionDescription": {
-		"message": "Kontrollera dina cookies! Ta automatiskt bort oanvända cookies efter stängda flikar, samtidigt som du bevarar de du vill ha kvar.",
-		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-	},
-	"extensionName": {
-		"message": "Cookie AutoDelete",
-		"description": "Name of the extension."
-	},
-	"faqText": {
-		"message": "Vanliga frågor, vanliga problem och lösningar",
-		"description": "Frequently Asked Questions, Common issues and solutions"
-	},
-	"filterDebugMode": {
-		"message": "För att se endast felsökningsutdata för detta tillägg, filtrera utdata efter följande rad:",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
-	"filterText": {
-		"message": "Filtrera",
-		"description": "Filter"
-	},
-	"greyCleanLocalstorage": {
-		"message": "Avmarkera \"Behåll lokal lagring\" i nya grålisteuttryck",
-		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-	},
-	"greyListWordText": {
-		"message": "Grålista",
-		"description": "Greylist"
-	},
-	"importCoreSettingsFailed": {
-		"message": "Import av kärninställningar misslyckades. - Okänd inställning hittades.",
-		"description": "Import Core Settings Failed - Found unknown setting"
-	},
-	"importCoreSettingsText": {
-		"message": "Importera kärninställningar",
-		"description": "Import Core Settings"
-	},
-	"importFileTypeInvalid": {
-		"message": "Filen är inte av en typ vi hanterar",
-		"description": "File given is not a type we handle"
-	},
-	"importFileValidationFailed": {
-		"message": "Filen kunde inte valideras",
-		"description": "File given failed validation"
-	},
-	"importMissingKey": {
-		"message": "Identifierare saknas",
-		"description": "Missing identifier"
-	},
-	"importURLSText": {
-		"message": "Importera uttryck",
-		"description": "Import Expressions"
-	},
-	"keepAllCookiesText": {
-		"message": "Behåll alla cookies",
-		"description": "Keep All Cookies"
-	},
-	"keepDefaultIcon": {
-		"message": "Behåll standardikoner på alla listtyper",
-		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
-	},
-	"keepLocalstorageText": {
-		"message": "Behåll lokal lagring",
-		"description": "Keep LocalStorage"
-	},
-	"keepText": {
-		"message": "Behåll",
-		"description": "Keep"
-	},
-	"listTypeText": {
-		"message": "Listtyp",
-		"description": "List Type"
-	},
-	"localstorageAndContextualIdentitiesWarning": {
-		"message": "VARNING: Att aktivera både lokallagringsrensning och containerflikar kan orsaka oönskade biverkningar på grund av API-begränsningar. LokalLagring kommer att rensas med värdnamn på ALLA behållare.",
-		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-	},
-	"localstorageCleanupText": {
-		"message": "LocalStorage borttagning",
-		"description": "LocalStorage Cleanup"
-	},
-	"localstorageCleanupWarning": {
-		"message": "Varning! ALL befintlig lokal lagring kommer att rensas när du aktiverar rensning av lokal lagring.",
-		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-	},
-	"localStorageText": {
-		"message": "Lokal lagring",
-		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
-	},
-	"manualActionNotification": {
-		"message": "Manuell åtgärdsavisering",
-		"description": "Manual Action Notification - used as Notification Title."
-	},
-	"manualCleanError": {
-		"message": "$data$ kan inte rensas för flik:",
-		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
-		"placeholders": {
-			"data": {
-				"content": "$1",
-				"example": "cookies"
-			}
-		}
-	},
-	"manualCleanNothing": {
-		"message": "Ingen $cleanType$ hittades för rensning på $url$.",
-		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
-		"placeholders": {
-			"cleanType": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"url": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"manualCleanRemoved": {
-		"message": "Tog bort $deleted$ av $total$.",
-		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
-		"placeholders": {
-			"deleted": {
-				"content": "$1",
-				"example": "5"
-			},
-			"total": {
-				"content": "$2",
-				"example": "5"
-			}
-		}
-	},
-	"manualCleanSuccess": {
-		"message": "Resultat av rensning för $cleanType$ på $url$:",
-		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
-		"placeholders": {
-			"cleanType": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"url": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"matchedDomainExpressionText": {
-		"message": "Matchade domänuttryck",
-		"description": "Matched Domain Expression"
-	},
-	"menuText": {
-		"message": "Meny",
-		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
-	},
-	"minutesText": {
-		"message": "minut(er)",
-		"description": "minute(s)"
-	},
-	"noCleanupLogText": {
-		"message": "Inga rensningsloggar hittades",
-		"description": "No Cleanup Logs Found"
-	},
-	"noExpressionsText": {
-		"message": "Inget uttryck definierat.",
-		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "Rensningsloggar kommer inte att genereras för flikar i privat surfning",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
-	},
-	"noRulesText": {
-		"message": "Inga regler matchade denna domän.",
-		"description": "No rules matched this domain"
-	},
-	"noneText": {
-		"message": "Inget",
-		"description": "None"
-	},
-	"notificationContent": {
-		"message": "$Num$ borttagna cookies från: $Websites$",
-		"description": "123 Deleted Cookies from: google.com, facebook.com",
-		"placeholders": {
-			"num": {
-				"content": "$1",
-				"example": "123"
-			},
-			"websites": {
-				"content": "$2",
-				"example": "google.com, facebook.com"
-			}
-		}
-	},
-	"notificationDisabledText": {
-		"message": "Avisering inaktiverad",
-		"description": "Notification disabled"
-	},
-	"notificationEnabledText": {
-		"message": "Avisering aktiverad",
-		"description": "Notification enabled"
-	},
-	"notificationTitle": {
-		"message": "Cookies har tagits bort!",
-		"description": "Cookies were deleted!  Used in Notification Title."
-	},
-	"notifyCookieCleanupDelayText": {
-		"message": "Varaktighet för aviseringar",
-		"description": "Duration for Notifications"
-	},
-	"notifyCookieCleanUpText": {
-		"message": "Visa avisering efter cookie-borttagning",
-		"description": "Show Notification After Cookie Cleanup"
-	},
-	"oldReleasesText": {
-		"message": "Äldre versionsfakta kan ses online på",
-		"description": "Older release notes can be viewed online at"
-	},
-	"openDebugMode": {
-		"message": "För att se felsökningsresult, öppna en ny flik och besök",
-		"description": "To view the debug outputs, open a new tab and visit"
-	},
-	"optionsText": {
-		"message": "Alternativ",
-		"description": "Options"
-	},
-	"popupCookieCountText": {
-		"message": "Cookie(s)",
-		"description": "Cookie(s)"
-	},
-	"preferencesText": {
-		"message": "Inställningar",
-		"description": "Settings"
-	},
-	"questionExpression": {
-		"message": "Hur fungerar uttryck?",
-		"description": "How do Expressions work?"
-	},
-	"reasonCleanCookieName": {
-		"message": "Rensa partiellt på grund av matchad $matchedExpression$ i $listType$",
-		"description": "Partial clean because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonCleanGreyList": {
-		"message": "Rensa eftersom uppstartsrensning och $matchedExpression$ finns i grålistan",
-		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			}
-		}
-	},
-	"reasonCleanNoList": {
-		"message": "Rensa eftersom $hostname$ inte finns i vit-/grålistan",
-		"description": "Clean because sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonCleanStartupNoList": {
-		"message": "Rensa eftersom uppstartsrensning och $hostname$ inte finns i vit-/grålistan",
-		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonKeep": {
-		"message": "Behåll på grund av matchande $matchedExpression$ i $listType$",
-		"description": "Keep because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonKeepOpenTab": {
-		"message": "Behåll på grund av öppna flikar i *.$mainDomain$",
-		"description": "Keep because of open tabs of *.google.com",
-		"placeholders": {
-			"mainDomain": {
-				"content": "$1",
-				"example": "google.com"
-			}
-		}
-	},
-	"reasonTabsWereIgnored": {
-		"message": "och även öppna flikar ignorerades",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-	},
-	"reasonTabsWereNotIgnored": {
-		"message": "eller i någon öppen flik",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-	},
-	"regularExpressionEquivalentText": {
-		"message": "Reguljärt uttryck motsvarande",
-		"description": "Regular Expression Equivalent"
-	},
-	"releaseNotesText": {
-		"message": "Versionsinformation",
-		"description": "Release Notes"
-	},
-	"removeAllExpressions": {
-		"message": "Ta bort alla uttryck",
-		"description": "Remove All Expressions"
-	},
-	"removeAllExpressionsConfirm": {
-		"message": "Vill du verkligen ta bort ALLA ($expressionCount$) sparade uttryck från ($listCount$) listor?\n\nDETTA KAN INTE ÅNGRAS!\n\nSkriv [ $expressionCount$ ] och klicka på OK för att ta bort.",
-		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
-		"placeholders": {
-			"expressionCount": {
-				"content": "$1",
-				"example": "75"
-			},
-			"listCount": {
-				"content": "$2",
-				"example": "5"
-			}
-		}
-	},
-	"removeAllExpressionsNoneFound": {
-		"message": "Inga uttryck att ta bort!",
-		"description": "No expressions to remove!"
-	},
-	"removeExpressionText": {
-		"message": "Ta bort uttrycket",
-		"description": "Remove expression"
-	},
-	"removeStorageCount": {
-		"message": "Tog bort $count$ objekt från $storageType$.",
-		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
-		"placeholders": {
-			"count": {
-				"content": "$1",
-				"example": "1"
-			},
-			"storageType": {
-				"content": "$2",
-				"example": "LocalStorage"
-			}
-		}
-	},
-	"reportIssuesText": {
-		"message": "Rapportera problem och föreslå programfunktioner",
-		"description": "Report issues and suggest features"
-	},
-	"resetExtensionDataText": {
-		"message": "Återställ tilläggsdata",
-		"description": "Reset Extension Data"
-	},
-	"restoreText": {
-		"message": "Återställ",
-		"description": "Ex: Restore Cleanup"
-	},
-	"reviewLinkMessage": {
-		"message": "Tack för att du provar $cadTitle$. Om du gillar det, kanske du vill lämna en recension.",
-		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			}
-		}
-	},
-	"saveExpressionText": {
-		"message": "Spara uttryck",
-		"description": "Save expression"
-	},
-	"secondsText": {
-		"message": "Sekund(er)",
-		"description": "second(s)"
-	},
-	"sessionStorageText": {
-		"message": "Sessionslagring",
-		"description": "SessionStorage.  Used in manual localstorage clean notification"
-	},
-	"settingGroupAutoClean": {
-		"message": "Alternativ för automatisk rensning",
-		"description": "Automatic Cleaning Options"
-	},
-	"settingGroupExpression": {
-		"message": "Uttrycksalternativ",
-		"description": "Expression Options"
-	},
-	"settingGroupExtension": {
-		"message": "Tilläggsalternativ",
-		"description": "Extension Options"
-	},
-	"settingGroupOtherBrowsing": {
-		"message": "Andra alternativ för rensning av surfdata",
-		"description": "Other Browsing Data Cleanup Options"
-	},
-	"settingsText": {
-		"message": "$CAD$ Inställningar",
-		"description": "$CAD$ Settings",
-		"placeholders": {
-			"CAD": {
-				"content": "CAD",
-				"example": "CAD - Short form of Cookie AutoDelete"
-			}
-		}
-	},
-	"showNumberOfCookiesInIconText": {
-		"message": "Visa antal cookies för den domänen över ikonen",
-		"description": "Show Number of Cookies for that Domain over the Icon"
-	},
-	"sizePopupText": {
-		"message": "Storlek på popup (i px)",
-		"description": "Size of Popup (in px).  This sets the font size in the Popup."
-	},
-	"sizeSettingText": {
-		"message": "Storlek på inställningssidor (i px)",
-		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
-	},
-	"stopEditingText": {
-		"message": "Avsluta redigering",
-		"description": "Stop editing"
-	},
-	"successText": {
-		"message": "Slutfört!",
-		"description": "Success!"
-	},
-	"toGreyListText": {
-		"message": "Lägg till i grålistan (Ta bort när webbläsaren startas)",
-		"description": "Add to Greylist (Clean on Browser Restart)"
-	},
-	"toWhiteListText": {
-		"message": "Lägg till i vitlistan (ta aldrig bort)",
-		"description": "Add to Whitelist (Never Clean)"
-	},
-	"toggleNotificationText": {
-		"message": "Aktivera/Inaktivera aviseringar",
-		"description": "Toggle to enable or disable notifications"
-	},
-	"toggleToGreyListWordText": {
-		"message": "Växla till grålista",
-		"description": "Toggle to greylist"
-	},
-	"toggleToWhiteListWordText": {
-		"message": "Växla till vitlista",
-		"description": "Toggle to whitelist"
-	},
-	"versionNumberText": {
-		"message": "$CAD$ version",
-		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
-		"placeholders": {
-			"CAD": {
-				"content": "$1",
-				"example": "CAD or Cookie AutoDelete"
-			}
-		}
-	},
-	"versionText": {
-		"message": "$browser$ version",
-		"description": "Firefox version",
-		"placeholders": {
-			"browser": {
-				"content": "$1",
-				"example": "Firefox"
-			}
-		}
-	},
-	"welcomeMessage": {
-		"message": "Hej! Under den här sessionen har $cadTitle$ tagit bort $sessionDeleted$ av sammanlagt $totalDeleted$ cookies.",
-		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			},
-			"sessionDeleted": {
-				"content": "$2",
-				"example": "123"
-			},
-			"totalDeleted": {
-				"content": "$3",
-				"example": "456"
-			}
-		}
-	},
-	"welcomeText": {
-		"message": "Välkommen",
-		"description": "Welcome"
-	},
-	"whiteCleanLocalstorage": {
-		"message": "Avmarkera \"Behåll lokal lagring\" i nya vitlisteuttryck",
-		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-	},
-	"whiteListText": {
-		"message": "Lista över uttryck",
-		"description": "List of Expressions"
-	},
-	"whiteListWordText": {
-		"message": "Vitlista",
-		"description": "Whitelist"
-	}
+  "aboutText": {
+    "message": "Om",
+    "description": "About"
+  },
+  "activeModeDelayText": {
+    "message": "Fördröjning före automatisk rensning",
+    "description": "Delay Before Automatic Cleaning"
+  },
+  "activeModeText": {
+    "message": "Aktivera automatisk rensning",
+    "description": "Enable Automatic Cleaning"
+  },
+  "addNewExpressionNotification": {
+    "message": "Lägger till $expression$ för att lista typ $listType$ under cookielagring $cookieStore$.",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+    "placeholders": {
+      "expression": {
+        "content": "$1",
+        "example": "example.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "WHITE"
+      },
+      "cookieStore": {
+        "content": "$3",
+        "example": "'default' -or- 'firefox-container-1 (Personal)'"
+      }
+    }
+  },
+  "addNewExpressionNotificationFailed": {
+    "message": "Kunde inte hämta domänen att lägga till från där högerklick utfördes.",
+    "description": "Could not fetch domain to add from where right-click was issued."
+  },
+  "addNewExpressionNotificationIgnore": {
+    "message": "Om uttrycket redan finn, kommer detta att ignoreras.",
+    "description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+  },
+  "autoDeleteDisabledText": {
+    "message": "Automatisk borttagning inaktiverad",
+    "description": "Auto-clean disabled"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Automatisk borttagning aktiverad",
+    "description": "Auto-clean enabled"
+  },
+  "chromeDebugMode": {
+    "message": "Tillse att \"Utvecklarläge\" är aktiverat, klicka sedan på \"Bakgrundssida\" under Inspektionsvy.",
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+  },
+  "cleanDiscardedText": {
+    "message": "Aktivera rensning för borttagna/oinlästa flikar",
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
+  },
+  "cleanIgnoringOpenTabsText": {
+    "message": "Rensa, inklusive öppna flikar",
+    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+  },
+  "cleanText": {
+    "message": "Rensa",
+    "description": "Clean"
+  },
+  "cleanupDomainChangeText": {
+    "message": "Aktivera rensning vid domänförändring",
+    "description": "Enable Cleanup on Domain Change"
+  },
+  "cleanupActionsBypass": {
+    "message": "Varning! Åtgärder nedan, ignorerar inställningarna!",
+    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+  },
+  "cleanupLogText": {
+    "message": "Rensningslogg",
+    "description": "Cleanup Log"
+  },
+  "clearLogsText": {
+    "message": "Rensa loggar",
+    "description": "Clear Logs"
+  },
+  "clearSiteDataForDomainText": {
+    "message": "Ta bort all $siteData$ för $domain$",
+    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "clearSiteDataText": {
+    "message": "Ta bort $siteData$ för den här domänen",
+    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "clearURLText": {
+    "message": "Ta bort alla",
+    "description": "Remove All"
+  },
+  "consoleDebugMode": {
+    "message": "Klicka på fliken Konsol",
+    "description": "Click on the Console Tab.  Found after enabling debug mode."
+  },
+  "contextMenusParentClean": {
+    "message": "Manuell rensningsmeny",
+    "description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+  },
+  "contextMenusParentExpression": {
+    "message": "Lägg till domän-/uttrycksmeny",
+    "description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+  },
+  "contextMenusSelectedDomainLink": {
+    "message": "För domän endast på vald länk",
+    "description": "For domain only of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainPage": {
+    "message": "För domän endast på vald sida",
+    "description": "For domain only of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainText": {
+    "message": "För domän endast för vald text: $selected$",
+    "description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextMenusSelectedSubdomainLink": {
+    "message": "För alla underdomäner med domän för vald länk",
+    "description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainPage": {
+    "message": "För alla underdomäner med domän för vald sida",
+    "description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainText": {
+    "message": "För alla underdomäner med domän av vald text: $selected$",
+    "description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktivera stöd för Firefox container-flikar",
+    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+  },
+  "contributeText": {
+    "message": "Bidra",
+    "description": "Contribute"
+  },
+  "contributorsText": {
+    "message": "Medhjälpare",
+    "description": "Contributors"
+  },
+  "cookiesText": {
+    "message": "Cookies",
+    "description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "Ta bort cookies från öppna flikar vid uppstart",
+    "description": "Clean Cookies from Open Tabs on Startup"
+  },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Kör rensning nu, inkludera domäner från öppna flikar",
+    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+  },
+  "cookieCleanupText": {
+    "message": "Kör rensning nu, undanta domäner från öppna flikar",
+    "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "debugMode": {
+    "message": "Aktivera felsökningsläge (ytterligare konsolutdata)",
+    "description": "Enable Debug Mode (Additional Console Outputs)"
+  },
+  "defaultSettingsText": {
+    "message": "Återställ standardinställningar",
+    "description": "Restore Default Settings"
+  },
+  "disableAutoDeleteText": {
+    "message": "Växla om du vill inaktivera automatisk rensning (manuellt läge)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "documentationText": {
+    "message": "Dokumentation",
+    "description": "Documentation"
+  },
+  "domainExpressionsText": {
+    "message": "Domänuttryck",
+    "description": "Domain Expression"
+  },
+  "dropdownAdditionalCleaningOptions": {
+    "message": "Växlingsknapp för ytterligare rensningsåtgärder",
+    "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+  },
+  "editExpressionText": {
+    "message": "Redigera uttryck",
+    "description": "Edit expression"
+  },
+  "enableAutoDeleteText": {
+    "message": "Växla om du vill aktivera automatisk rensning (automatiskt läge)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "enableCleanupLogText": {
+    "message": "Aktivera rensningslogg och räknare",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "enableGlobalSubdomainText": {
+    "message": "Aktivera kontroll av underdomäner",
+    "description": "Enable Check for Subdomains"
+  },
+  "enableGreyListCleanup": {
+    "message": "Aktivera rensning av grålistan vid omstart av webbläsare",
+    "description": "Enable Greylist Cleanup on Browser Restart"
+  },
+  "enableNewVersionPopup": {
+    "message": "Aktivera popupmeddelande när ny version släpps",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "errorText": {
+    "message": "Fel!",
+    "description": "Error!"
+  },
+  "exportSettingsText": {
+    "message": "Exportera kärninställningar",
+    "description": "Export Core Settings"
+  },
+  "exportURLSText": {
+    "message": "Exportera uttryck",
+    "description": "Export Expressions"
+  },
+  "exportTitleTimestamp": {
+    "message": "En tidsstämpel kommer att läggas till i filnamnet vid export.",
+    "description": "A timestamp will be appended to the filename on export."
+  },
+  "extensionDescription": {
+    "message": "Kontrollera dina cookies! Ta automatiskt bort oanvända cookies efter stängda flikar, samtidigt som du bevarar de du vill ha kvar.",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+  "faqText": {
+    "message": "Vanliga frågor, vanliga problem och lösningar",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "filterDebugMode": {
+    "message": "För att se endast felsökningsutdata för detta tillägg, filtrera utdata efter följande rad:",
+    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+  },
+  "filterText": {
+    "message": "Filtrera",
+    "description": "Filter"
+  },
+  "greyCleanLocalstorage": {
+    "message": "Avmarkera \"Behåll lokal lagring\" i nya grålisteuttryck",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "greyListWordText": {
+    "message": "Grålista",
+    "description": "Greylist"
+  },
+  "importCoreSettingsFailed": {
+    "message": "Import av kärninställningar misslyckades. - Okänd inställning hittades.",
+    "description": "Import Core Settings Failed - Found unknown setting"
+  },
+  "importCoreSettingsText": {
+    "message": "Importera kärninställningar",
+    "description": "Import Core Settings"
+  },
+  "importFileTypeInvalid": {
+    "message": "Filen är inte av en typ vi hanterar",
+    "description": "File given is not a type we handle"
+  },
+  "importFileValidationFailed": {
+    "message": "Filen kunde inte valideras",
+    "description": "File given failed validation"
+  },
+  "importMissingKey": {
+    "message": "Identifierare saknas",
+    "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importera uttryck",
+    "description": "Import Expressions"
+  },
+  "keepAllCookiesText": {
+    "message": "Behåll alla cookies",
+    "description": "Keep All Cookies"
+  },
+  "keepDefaultIcon": {
+    "message": "Behåll standardikoner på alla listtyper",
+    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+  },
+  "keepLocalstorageText": {
+    "message": "Behåll lokal lagring",
+    "description": "Keep LocalStorage"
+  },
+  "keepText": {
+    "message": "Behåll",
+    "description": "Keep"
+  },
+  "listTypeText": {
+    "message": "Listtyp",
+    "description": "List Type"
+  },
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "VARNING: Att aktivera både lokallagringsrensning och containerflikar kan orsaka oönskade biverkningar på grund av API-begränsningar. LokalLagring kommer att rensas med värdnamn på ALLA behållare.",
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+  },
+  "localstorageCleanupText": {
+    "message": "LocalStorage borttagning",
+    "description": "LocalStorage Cleanup"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Varning! ALL befintlig lokal lagring kommer att rensas när du aktiverar rensning av lokal lagring.",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+  },
+  "localStorageText": {
+    "message": "Lokal lagring",
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+  },
+  "manualActionNotification": {
+    "message": "Manuell åtgärdsavisering",
+    "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanError": {
+    "message": "$siteData$ kan inte rensas för flik:",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "Ingen $siteData$ hittades för rensning på $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanRemoved": {
+    "message": "Tog bort $deleted$ av $total$.",
+    "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
+    "placeholders": {
+      "deleted": {
+        "content": "$1",
+        "example": "5"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Resultat av rensning för $siteData$ på $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "matchedDomainExpressionText": {
+    "message": "Matchade domänuttryck",
+    "description": "Matched Domain Expression"
+  },
+  "menuText": {
+    "message": "Meny",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "minutesText": {
+    "message": "minut(er)",
+    "description": "minute(s)"
+  },
+  "noCleanupLogText": {
+    "message": "Inga rensningsloggar hittades",
+    "description": "No Cleanup Logs Found"
+  },
+  "noExpressionsText": {
+    "message": "Inget uttryck definierat.",
+    "description": "No expressions defined."
+  },
+  "noPrivateLogging": {
+    "message": "Rensningsloggar kommer inte att genereras för flikar i privat surfning",
+    "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noRulesText": {
+    "message": "Inga regler matchade denna domän.",
+    "description": "No rules matched this domain"
+  },
+  "noneText": {
+    "message": "Inget",
+    "description": "None"
+  },
+  "notificationContent": {
+    "message": "$Num$ borttagna cookies från: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "notificationDisabledText": {
+    "message": "Avisering inaktiverad",
+    "description": "Notification disabled"
+  },
+  "notificationEnabledText": {
+    "message": "Avisering aktiverad",
+    "description": "Notification enabled"
+  },
+  "notificationTitle": {
+    "message": "Cookies har tagits bort!",
+    "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "notifyCookieCleanupDelayText": {
+    "message": "Varaktighet för aviseringar",
+    "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Visa avisering efter cookie-borttagning",
+    "description": "Show Notification After Cookie Cleanup"
+  },
+  "oldReleasesText": {
+    "message": "Äldre versionsfakta kan ses online på",
+    "description": "Older release notes can be viewed online at"
+  },
+  "openDebugMode": {
+    "message": "För att se felsökningsresult, öppna en ny flik och besök",
+    "description": "To view the debug outputs, open a new tab and visit"
+  },
+  "optionsText": {
+    "message": "Alternativ",
+    "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
+  },
+  "preferencesText": {
+    "message": "Inställningar",
+    "description": "Settings"
+  },
+  "questionExpression": {
+    "message": "Hur fungerar uttryck?",
+    "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieName": {
+    "message": "Rensa partiellt på grund av matchad $matchedExpression$ i $listType$",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Rensa eftersom uppstartsrensning och $matchedExpression$ finns i grålistan",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Rensa eftersom $hostname$ inte finns i vit-/grålistan",
+    "description": "Clean because $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Rensa eftersom uppstartsrensning och $hostname$ inte finns i vit-/grålistan",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Behåll på grund av matchande $matchedExpression$ i $listType$",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Behåll på grund av öppna flikar i *.$mainDomain$",
+    "description": "Keep because of open tabs of *.$mainDomain$",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonTabsWereIgnored": {
+    "message": "och även öppna flikar ignorerades",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "eller i någon öppen flik",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "Reguljärt uttryck motsvarande",
+    "description": "Regular Expression Equivalent"
+  },
+  "releaseNotesText": {
+    "message": "Versionsinformation",
+    "description": "Release Notes"
+  },
+  "removeAllExpressions": {
+    "message": "Ta bort alla uttryck",
+    "description": "Remove All Expressions"
+  },
+  "removeAllExpressionsConfirm": {
+    "message": "Vill du verkligen ta bort ALLA ($expressionCount$) sparade uttryck från ($listCount$) listor?\n\nDETTA KAN INTE ÅNGRAS!\n\nSkriv [ $expressionCount$ ] och klicka på OK för att ta bort.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "placeholders": {
+      "expressionCount": {
+        "content": "$1",
+        "example": "75"
+      },
+      "listCount": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "removeAllExpressionsNoneFound": {
+    "message": "Inga uttryck att ta bort!",
+    "description": "No expressions to remove!"
+  },
+  "removeExpressionText": {
+    "message": "Ta bort uttrycket",
+    "description": "Remove expression"
+  },
+  "removeStorageCount": {
+    "message": "Tog bort $count$ objekt från $storageType$.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
+  "reportIssuesText": {
+    "message": "Rapportera problem och föreslå programfunktioner",
+    "description": "Report issues and suggest features"
+  },
+  "resetExtensionDataText": {
+    "message": "Återställ tilläggsdata",
+    "description": "Reset Extension Data"
+  },
+  "restoreText": {
+    "message": "Återställ",
+    "description": "Ex: Restore Cleanup"
+  },
+  "reviewLinkMessage": {
+    "message": "Tack för att du provar $cadTitle$. Om du gillar det, kanske du vill lämna en recension.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
+  },
+  "saveExpressionText": {
+    "message": "Spara uttryck",
+    "description": "Save expression"
+  },
+  "secondsText": {
+    "message": "Sekund(er)",
+    "description": "second(s)"
+  },
+  "sessionStorageText": {
+    "message": "Sessionslagring",
+    "description": "SessionStorage.  Used in manual localstorage clean notification"
+  },
+  "settingGroupAutoClean": {
+    "message": "Alternativ för automatisk rensning",
+    "description": "Automatic Cleaning Options"
+  },
+  "settingGroupExpression": {
+    "message": "Uttrycksalternativ",
+    "description": "Expression Options"
+  },
+  "settingGroupExtension": {
+    "message": "Tilläggsalternativ",
+    "description": "Extension Options"
+  },
+  "settingGroupOtherBrowsing": {
+    "message": "Andra alternativ för rensning av surfdata",
+    "description": "Other Browsing Data Cleanup Options"
+  },
+  "settingsText": {
+    "message": "$CAD$ Inställningar",
+    "description": "$CAD$ Settings",
+    "placeholders": {
+      "CAD": {
+        "content": "CAD",
+        "example": "CAD - Short form of Cookie AutoDelete"
+      }
+    }
+  },
+  "showNumberOfCookiesInIconText": {
+    "message": "Visa antal cookies för den domänen över ikonen",
+    "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "sizePopupText": {
+    "message": "Storlek på popup (i px)",
+    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+  },
+  "sizeSettingText": {
+    "message": "Storlek på inställningssidor (i px)",
+    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+  },
+  "stopEditingText": {
+    "message": "Avsluta redigering",
+    "description": "Stop editing"
+  },
+  "successText": {
+    "message": "Slutfört!",
+    "description": "Success!"
+  },
+  "toGreyListText": {
+    "message": "Lägg till i grålistan (Ta bort när webbläsaren startas)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "toWhiteListText": {
+    "message": "Lägg till i vitlistan (ta aldrig bort)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toggleNotificationText": {
+    "message": "Aktivera/Inaktivera aviseringar",
+    "description": "Toggle to enable or disable notifications"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Växla till grålista",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Växla till vitlista",
+    "description": "Toggle to whitelist"
+  },
+  "versionNumberText": {
+    "message": "$CAD$ version",
+    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "placeholders": {
+      "CAD": {
+        "content": "$1",
+        "example": "CAD or Cookie AutoDelete"
+      }
+    }
+  },
+  "versionText": {
+    "message": "$browser$ version",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "welcomeMessage": {
+    "message": "Hej! Under den här sessionen har $cadTitle$ tagit bort $sessionDeleted$ av sammanlagt $totalDeleted$ cookies.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
+  "welcomeText": {
+    "message": "Välkommen",
+    "description": "Welcome"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Avmarkera \"Behåll lokal lagring\" i nya vitlisteuttryck",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "whiteListText": {
+    "message": "Lista över uttryck",
+    "description": "List of Expressions"
+  },
+  "whiteListWordText": {
+    "message": "Vitlista",
+    "description": "Whitelist"
+  }
 }

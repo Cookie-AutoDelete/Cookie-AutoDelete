@@ -1,764 +1,782 @@
 {
-	"aboutText": {
-		"message": "Tentang",
-		"description": "About"
-	},
-	"activeModeDelayText": {
-		"message": "Tundaan Sebelum Hapus Otomatis",
-		"description": "Delay Before Automatic Cleaning"
-	},
-	"activeModeText": {
-		"message": "Aktifkan Hapus Otomatis",
-		"description": "Enable Automatic Cleaning"
-	},
-	"addNewExpressionNotification": {
-		"message": "Menambahkan $expression$ ke daftar $listType$ di penyimpanan kuki $cookieStore$.",
-		"description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
-		"placeholders": {
-			"expression": {
-				"content": "$1",
-				"example": "example.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "WHITE"
-			},
-			"cookieStore": {
-				"content": "$3",
-				"example": "default -or- firefox-container-1 (Personal)"
-			}
-		}
-	},
-	"addNewExpressionNotificationFailed": {
-		"message": "Tidak bisa mengambil domain yang ditambahkan dari saat klik kanan dijalankan.",
-		"description": "Could not fetch domain to add from where right-click was issued."
-	},
-	"addNewExpressionNotificationIgnore": {
-		"message": "Jika ekspresi sudah ada, ini akan diabaikan.",
-		"description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
-	},
-	"autoDeleteDisabledText": {
-		"message": "Hapus otomatis nonaktif",
-		"description": "Auto-clean disabled"
-	},
-	"autoDeleteEnabledText": {
-		"message": "Hapus otomatis aktif",
-		"description": "Auto-clean enabled"
-	},
-	"chromeDebugMode": {
-		"message": "Pastikan 'Mode Pengembang' diaktifkan, lalu klik pada 'halaman latar belakang'.",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
-	"cleanDiscardedText": {
-		"message": "Aktifkan Hapus untuk Tab yang ditutup / belum dimuat",
-		"description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
-	},
-	"cleanIgnoringOpenTabsText": {
-		"message": "Hapus, termasuk tab yang terbuka",
-		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
-	},
-	"cleanText": {
-		"message": "Hapus",
-		"description": "Clean"
-	},
-	"cleanupDomainChangeText": {
-		"message": "Aktifkan Hapus saat Domain Berubah",
-		"description": "Enable Cleanup on Domain Change"
-	},
-	"cleanupActionsBypass": {
-		"message": "Peringatan - Tindakan di bawah mengabaikan pengaturan!",
-		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
-	},
-	"cleanupLogText": {
-		"message": "Catatan Penghapusan",
-		"description": "Cleanup Log"
-	},
-	"clearLogsText": {
-		"message": "Hapus Catatan",
-		"description": "Clear Logs"
-	},
-	"clearSiteDataForDomainText": {
-		"message": "Hapus semua $siteData$ untuk $domain$",
-		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"domain": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"clearSiteDataText": {
-		"message": "Hapus $siteData$ untuk domain ini",
-		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			}
-		}
-	},
-	"clearURLText": {
-		"message": "Buang Semua",
-		"description": "Remove All"
-	},
-	"consoleDebugMode": {
-		"message": "Klik pada Tab Console",
-		"description": "Click on the Console Tab.  Found after enabling debug mode."
-	},
-	"contextMenusParentClean": {
-		"message": "Menu Hapus Manual",
-		"description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
-	},
-	"contextMenusParentExpression": {
-		"message": "Menu Tambah Domain/Ekspresi",
-		"description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
-	},
-	"contextMenusSelectedDomainLink": {
-		"message": "Hanya untuk domain dari tautan yang dipilih",
-		"description": "For domain only of selected link.  Shown in right-click menu."
-	},
-	"contextMenusSelectedDomainPage": {
-		"message": "Hanya untuk domain dari halaman yang dipilih",
-		"description": "For domain only of selected page.  Shown in right-click menu."
-	},
-	"contextMenusSelectedDomainText": {
-		"message": "Hanya untuk domain dari teks yang dipilih: $selected$",
-		"description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
-		"placeholders": {
-			"selected": {
-				"content": "$1",
-				"example": "github.com"
-			}
-		}
-	},
-	"contextMenusSelectedSubdomainLink": {
-		"message": "Untuk subdomain dengan domain dari tautan yang dipilih",
-		"description": "For all subdomains with domain of selected link.  Shown in right-click menu."
-	},
-	"contextMenusSelectedSubdomainPage": {
-		"message": "Untuk subdomain dengan domain dari halaman yang dipilih",
-		"description": "For all subdomains with domain of selected page.  Shown in right-click menu."
-	},
-	"contextMenusSelectedSubdomainText": {
-		"message": "Untuk subdomain dengan domain dari teks yang dipilih: $selected$",
-		"description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
-		"placeholders": {
-			"selected": {
-				"content": "$1",
-				"example": "github.com"
-			}
-		}
-	},
-	"contextualIdentitiesEnabledText": {
-		"message": "Aktifkan Dukungan untuk Tab Container Firefox",
-		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
-	},
-	"contributeText": {
-		"message": "Kontribusi",
-		"description": "Contribute"
-	},
-	"contributorsText": {
-		"message": "Kontributor",
-		"description": "Contributors"
-	},
-	"cookiesText": {
-		"message": "Kuki",
-		"description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
-	},
-	"cookieCleanUpOnStartText": {
-		"message": "Hapus Kuki dari Tab yang Terbuka saat Memulai",
-		"description": "Clean Cookies from Open Tabs on Startup"
-	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "Jalankan cleanup sekarang, sertakan domain dari tab terbuka",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "Jalankan pembersihan sekarang, kecualikan domain dari tab terbuka",
-		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
-	},
-	"debugMode": {
-		"message": "Aktifkan Mode Debug (Keluaran Console Tambahan)",
-		"description": "Enable Debug Mode (Additional Console Outputs)"
-	},
-	"defaultSettingsText": {
-		"message": "Kembalikan ke Pengaturan Bawaan",
-		"description": "Restore Default Settings"
-	},
-	"disableAutoDeleteText": {
-		"message": "Klik untuk menonaktifkan hapus otomatis (mode manual)",
-		"description": "Toggle to disable automatic cleanup (manual mode)"
-	},
-	"documentationText": {
-		"message": "Dokumentasi",
-		"description": "Documentation"
-	},
-	"domainExpressionsText": {
-		"message": "Ekspresi Domain",
-		"description": "Domain Expression"
-	},
-	"dropdownAdditionalCleaningOptions": {
-		"message": "Aktif/Nonaktifkan Dropdown Tindakan Hapus Tambahan",
-		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
-	},
-	"editExpressionText": {
-		"message": "Sunting ekspresi",
-		"description": "Edit expression"
-	},
-	"enableAutoDeleteText": {
-		"message": "Klik untuk mengaktifkan hapus otomatis (mode otomatis)",
-		"description": "Toggle to enable automatic cleanup (automatic mode)"
-	},
-	"enableCleanupLogText": {
-		"message": "Aktifkan Penghitung dan Catatan Penghapusan",
-		"description": "Enable Cleanup Log and Counter"
-	},
-	"enableContextMenus": {
-		"message": "Aktifkan Menu Konteks (Menu Klik-Kanan)",
-		"description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
-	},
-	"enableGlobalSubdomainText": {
-		"message": "Aktifkan Pengecekan Subdomain",
-		"description": "Enable Check for Subdomains"
-	},
-	"enableGreyListCleanup": {
-		"message": "Aktifkan Hapus Daftar Abu-abu saat Peramban Dimulai Ulang",
-		"description": "Enable Greylist Cleanup on Browser Restart"
-	},
-	"enableNewVersionPopup": {
-		"message": "Aktifkan Popup saat Versi Baru Dirilis",
-		"description": "Enable Popup when New Version is Released"
-	},
-	"errorText": {
-		"message": "Galat!",
-		"description": "Error!"
-	},
-	"exportSettingsText": {
-		"message": "Ekspor Pengaturan Inti",
-		"description": "Export Core Settings"
-	},
-	"exportURLSText": {
-		"message": "Ekspor Ekspresi",
-		"description": "Export Expressions"
-	},
-	"exportTitleTimestamp": {
-		"message": "Tanggal dan waktu akan ditambahkan ke nama berkas saat mengekspor.",
-		"description": "A timestamp will be appended to the filename on export."
-	},
-	"extensionDescription": {
-		"message": "Kelola kuki anda! Otomatis hapus kuki yang tidak digunakan dari tab yang ditutup dan tetap simpan yang anda inginkan.",
-		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-	},
-	"extensionName": {
-		"message": "Cookie AutoDelete",
-		"description": "Name of the extension."
-	},
-	"faqText": {
-		"message": "Pertanyaan yang Sering Diajukan, Permasalahan umum dan solusinya",
-		"description": "Frequently Asked Questions, Common issues and solutions"
-	},
-	"filterDebugMode": {
-		"message": "Untuk hanya melihat keluaran debug ekstensi ini, saring keluaran berdasarkan:",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
-	"filterText": {
-		"message": "Filter",
-		"description": "Filter"
-	},
-	"greyCleanLocalstorage": {
-		"message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Abu-abu Baru",
-		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-	},
-	"greyListWordText": {
-		"message": "Daftar Abu-abu",
-		"description": "Greylist"
-	},
-	"importCoreSettingsFailed": {
-		"message": "Gagal Impor Pengaturan Inti - Ditemukan pengaturan yang tidak valid",
-		"description": "Import Core Settings Failed - Found unknown setting"
-	},
-	"importCoreSettingsText": {
-		"message": "Impor Pengaturan Inti",
-		"description": "Import Core Settings"
-	},
-	"importFileTypeInvalid": {
-		"message": "Berkas yang diproses bukan tipe yang valid",
-		"description": "File given is not a type we handle"
-	},
-	"importFileValidationFailed": {
-		"message": "Berkas yang diproses gagal divalidasi",
-		"description": "File given failed validation"
-	},
-	"importMissingKey": {
-		"message": "Kehilangan Pengidentifikasi",
-		"description": "Missing identifier"
-	},
-	"importURLSText": {
-		"message": "Impor Ekspresi",
-		"description": "Import Expressions"
-	},
-	"keepAllCookiesText": {
-		"message": "Simpan Semua Kuki",
-		"description": "Keep All Cookies"
-	},
-	"keepDefaultIcon": {
-		"message": "Simpan Ikon Bawaan pada semua tipe daftar",
-		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
-	},
-	"keepLocalstorageText": {
-		"message": "Simpan Localstorage",
-		"description": "Keep LocalStorage"
-	},
-	"keepText": {
-		"message": "Simpan",
-		"description": "Keep"
-	},
-	"listTypeText": {
-		"message": "Tipe Daftar",
-		"description": "List Type"
-	},
-	"localstorageAndContextualIdentitiesWarning": {
-		"message": "Mengaktifkan Penghapusan Localstorage dan Tab Container mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API.  LocalStorage akan dihapus oleh hostname di SEMUA wadah.",
-		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-	},
-	"localstorageCleanupText": {
-		"message": "Hapus Localstorage",
-		"description": "LocalStorage Cleanup"
-	},
-	"localstorageCleanupWarning": {
-		"message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
-		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-	},
-	"localStorageText": {
-		"message": "Penyimpanan Lokal",
-		"description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown."
-	},
-	"manualActionNotification": {
-		"message": "Notifikasi Tindakan Manual",
-		"description": "Manual Action Notification - used as Notification Title."
-	},
-	"manualCleanError": {
-		"message": "$data$ tidak bisa dihapus untuk tab:",
-		"description": "$data$ [Cookies/LocalStorage] cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
-		"placeholders": {
-			"data": {
-				"content": "$1",
-				"example": "cookies"
-			}
-		}
-	},
-	"manualCleanNothing": {
-		"message": "Tidak ada $cleanType$ yang ditemukan untuk dihapus pada $url$.",
-		"description": "No $cleanType$ were found for cleaning on $url$.  Used in notification after manual clean.",
-		"placeholders": {
-			"cleanType": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"url": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"manualCleanRemoved": {
-		"message": "Menghapus $deleted$ dari $total$.",
-		"description": "Removed $deleted$ of $total$.  Used as part of success notificaton on manual clean.",
-		"placeholders": {
-			"deleted": {
-				"content": "$1",
-				"example": "5"
-			},
-			"total": {
-				"content": "$2",
-				"example": "5"
-			}
-		}
-	},
-	"manualCleanSuccess": {
-		"message": "Menghapus $cleanType$ pada $url$ hasilnya:",
-		"description": "Cleanup for $cleanType$ on $url$ result:  Shown as notification after successful manual cleaning.",
-		"placeholders": {
-			"cleanType": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"url": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"matchedDomainExpressionText": {
-		"message": "Ekspresi Domain yang Cocok",
-		"description": "Matched Domain Expression"
-	},
-	"menuText": {
-		"message": "Menu",
-		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
-	},
-	"minutesText": {
-		"message": "Menit",
-		"description": "minute(s)"
-	},
-	"noCleanupLogText": {
-		"message": "Tidak Ada Catatan Penghapusan yang Ditemukan",
-		"description": "No Cleanup Logs Found"
-	},
-	"noExpressionsText": {
-		"message": "Belum ada ekspresi.",
-		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "Catatan Penghapusan tidak akan dibuat untuk tab dalam Mode Jendela Pribadi",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
-	},
-	"noRulesText": {
-		"message": "Tidak ada aturan yang cocok dengan domain ini.",
-		"description": "No rules matched this domain"
-	},
-	"noneText": {
-		"message": "Nihil",
-		"description": "None"
-	},
-	"notificationContent": {
-		"message": "$Num$ Kuki Dihapus dari: $Websites$",
-		"description": "123 Deleted Cookies from: google.com, facebook.com",
-		"placeholders": {
-			"num": {
-				"content": "$1",
-				"example": "123"
-			},
-			"websites": {
-				"content": "$2",
-				"example": "google.com, facebook.com"
-			}
-		}
-	},
-	"notificationDisabledText": {
-		"message": "Notifikasi nonaktif",
-		"description": "Notification disabled"
-	},
-	"notificationEnabledText": {
-		"message": "Notifikasi aktif",
-		"description": "Notification enabled"
-	},
-	"notificationTitle": {
-		"message": "Kuki telah dihapus!",
-		"description": "Cookies were deleted!  Used in Notification Title."
-	},
-	"notifyCookieCleanupDelayText": {
-		"message": "Durasi untuk Notifikasi",
-		"description": "Duration for Notifications"
-	},
-	"notifyCookieCleanUpText": {
-		"message": "Tampilkan Notifikasi Setelah Menghapus Kuki",
-		"description": "Show Notification After Cookie Cleanup"
-	},
-	"oldReleasesText": {
-		"message": "Catatan perubahan versi yang lama bisa dilihat di",
-		"description": "Older release notes can be viewed online at"
-	},
-	"openDebugMode": {
-		"message": "Untuk melihat keluaran debug, buka tab baru dan kunjungi",
-		"description": "To view the debug outputs, open a new tab and visit"
-	},
-	"optionsText": {
-		"message": "Opsi",
-		"description": "Options"
-	},
-	"popupCookieCountText": {
-		"message": "Kuki",
-		"description": "Cookie(s)"
-	},
-	"preferencesText": {
-		"message": "Pengaturan",
-		"description": "Settings"
-	},
-	"questionExpression": {
-		"message": "Bagaimana Ekspresi bekerja?",
-		"description": "How do Expressions work?"
-	},
-	"reasonCleanCookieName": {
-		"message": "Dihapus sebagian karena cocok dengan $matchedExpression$ di dalam $listType$",
-		"description": "Partial clean because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonCleanGreyList": {
-		"message": "Dihapus karena penghapusan saat memulai dan $matchedExpression$ ada di dalam daftar Abu-abu",
-		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			}
-		}
-	},
-	"reasonCleanNoList": {
-		"message": "Dihapus karena $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
-		"description": "Clean because sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonCleanStartupNoList": {
-		"message": "Dihapus karena penghapusan saat memulai dan $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
-		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonKeep": {
-		"message": "Disimpan karena $matchedExpression$ ada di dalam $listType$",
-		"description": "Keep because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonKeepOpenTab": {
-		"message": "Disimpan karena tab yang terbuka dari *.$mainDomain$",
-		"description": "Keep because of open tabs of *.google.com",
-		"placeholders": {
-			"mainDomain": {
-				"content": "$1",
-				"example": "google.com"
-			}
-		}
-	},
-	"reasonTabsWereIgnored": {
-		"message": "dan tab yang terbuka juga diabaikan",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-	},
-	"reasonTabsWereNotIgnored": {
-		"message": "atau di dalam tab yang terbuka manapun",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-	},
-	"regularExpressionEquivalentText": {
-		"message": "Padanan Ekspresi Reguler",
-		"description": "Regular Expression Equivalent"
-	},
-	"releaseNotesText": {
-		"message": "Catatan Rilis",
-		"description": "Release Notes"
-	},
-	"removeAllExpressions": {
-		"message": "Buang Semua Ekspresi",
-		"description": "Remove All Expressions"
-	},
-	"removeAllExpressionsConfirm": {
-		"message": "Apakah anda yakin ingin menghapus SEMUA ($expressionCount$) ekspresi yang disimpan dari ($listCount$) daftar?\n\nINI TIDAK BISA DIURUNGKAN!\n\nKetik [ $expressionCount$ ] dan klik OK untuk menghapus.",
-		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
-		"placeholders": {
-			"expressionCount": {
-				"content": "$1",
-				"example": "75"
-			},
-			"listCount": {
-				"content": "$2",
-				"example": "5"
-			}
-		}
-	},
-	"removeAllExpressionsNoneFound": {
-		"message": "Tidak ada ekspresi untuk dihapus!",
-		"description": "No expressions to remove!"
-	},
-	"removeExpressionText": {
-		"message": "Buang ekspresi",
-		"description": "Remove expression"
-	},
-	"removeStorageCount": {
-		"message": "Menghapus $count$ item dari $storageType$.",
-		"description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
-		"placeholders": {
-			"count": {
-				"content": "$1",
-				"example": "1"
-			},
-			"storageType": {
-				"content": "$2",
-				"example": "LocalStorage"
-			}
-		}
-	},
-	"reportIssuesText": {
-		"message": "Laporkan masalah dan sarankan fitur",
-		"description": "Report issues and suggest features"
-	},
-	"resetExtensionDataText": {
-		"message": "Setel Ulang Data Ekstensi",
-		"description": "Reset Extension Data"
-	},
-	"restoreText": {
-		"message": "Pulihkan",
-		"description": "Ex: Restore Cleanup"
-	},
-	"reviewLinkMessage": {
-		"message": "Terima kasih telah mencoba $cadTitle$. Jika anda menyukainya, silakan berikan tinjauan.",
-		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			}
-		}
-	},
-	"saveExpressionText": {
-		"message": "Simpan ekspresi",
-		"description": "Save expression"
-	},
-	"secondsText": {
-		"message": "Detik",
-		"description": "second(s)"
-	},
-	"sessionStorageText": {
-		"message": "Penyimpanan Sesi",
-		"description": "SessionStorage.  Used in manual localstorage clean notification"
-	},
-	"settingGroupAutoClean": {
-		"message": "Opsi Hapus Otomatis",
-		"description": "Automatic Cleaning Options"
-	},
-	"settingGroupExpression": {
-		"message": "Opsi Ekspresi",
-		"description": "Expression Options"
-	},
-	"settingGroupExtension": {
-		"message": "Opsi Ekstensi",
-		"description": "Extension Options"
-	},
-	"settingGroupOtherBrowsing": {
-		"message": "Opsi Hapus Data Peramban Lainnya",
-		"description": "Other Browsing Data Cleanup Options"
-	},
-	"settingsText": {
-		"message": "Pengaturan $CAD$",
-		"description": "$CAD$ Settings",
-		"placeholders": {
-			"CAD": {
-				"content": "CAD",
-				"example": "CAD - Short form of Cookie AutoDelete"
-			}
-		}
-	},
-	"showNumberOfCookiesInIconText": {
-		"message": "Tampilkan Jumlah Cookie untuk Domain tersebut di atas Ikon",
-		"description": "Show Number of Cookies for that Domain over the Icon"
-	},
-	"sizePopupText": {
-		"message": "Ukuran Popup (dalam px)",
-		"description": "Size of Popup (in px).  This sets the font size in the Popup."
-	},
-	"sizeSettingText": {
-		"message": "Ukuran Halaman Pengaturan (dalam px)",
-		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
-	},
-	"stopEditingText": {
-		"message": "Setop menyunting",
-		"description": "Stop editing"
-	},
-	"successText": {
-		"message": "Sukses!",
-		"description": "Success!"
-	},
-	"toGreyListText": {
-		"message": "Tambahkan ke Daftar Abu-abu (Dihapus saat Memulai Ulang Peramban)",
-		"description": "Add to Greylist (Clean on Browser Restart)"
-	},
-	"toWhiteListText": {
-		"message": "Tambahkan ke Daftar Putih (Tidak Dihapus)",
-		"description": "Add to Whitelist (Never Clean)"
-	},
-	"toggleNotificationText": {
-		"message": "Klik untuk mengaktifkan atau menonaktifkan notifikasi",
-		"description": "Toggle to enable or disable notifications"
-	},
-	"toggleToGreyListWordText": {
-		"message": "Ubah ke daftar abu-abu",
-		"description": "Toggle to greylist"
-	},
-	"toggleToWhiteListWordText": {
-		"message": "Ubah ke daftar putih",
-		"description": "Toggle to whitelist"
-	},
-	"versionNumberText": {
-		"message": "versi $CAD$",
-		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
-		"placeholders": {
-			"CAD": {
-				"content": "$1",
-				"example": "CAD or Cookie AutoDelete"
-			}
-		}
-	},
-	"versionText": {
-		"message": "Versi $browser$",
-		"description": "Firefox version",
-		"placeholders": {
-			"browser": {
-				"content": "$1",
-				"example": "Firefox"
-			}
-		}
-	},
-	"welcomeMessage": {
-		"message": "Hai! Sepanjang sesi ini, $cadTitle$ telah menghapus $sessionDeleted$ kuki dan total $totalDeleted$ kuki.",
-		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			},
-			"sessionDeleted": {
-				"content": "$2",
-				"example": "123"
-			},
-			"totalDeleted": {
-				"content": "$3",
-				"example": "456"
-			}
-		}
-	},
-	"welcomeText": {
-		"message": "Selamat Datang",
-		"description": "Welcome"
-	},
-	"whiteCleanLocalstorage": {
-		"message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Putih Baru",
-		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-	},
-	"whiteListText": {
-		"message": "Daftar Ekspresi",
-		"description": "List of Expressions"
-	},
-	"whiteListWordText": {
-		"message": "Daftar Putih",
-		"description": "Whitelist"
-	}
+  "aboutText": {
+    "message": "Tentang",
+    "description": "About"
+  },
+  "activeModeDelayText": {
+    "message": "Tundaan Sebelum Hapus Otomatis",
+    "description": "Delay Before Automatic Cleaning"
+  },
+  "activeModeText": {
+    "message": "Aktifkan Hapus Otomatis",
+    "description": "Enable Automatic Cleaning"
+  },
+  "addNewExpressionNotification": {
+    "message": "Menambahkan $expression$ ke daftar $listType$ di penyimpanan kuki $cookieStore$.",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+    "placeholders": {
+      "expression": {
+        "content": "$1",
+        "example": "example.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "WHITE"
+      },
+      "cookieStore": {
+        "content": "$3",
+        "example": "'default' -or- 'firefox-container-1 (Personal)'"
+      }
+    }
+  },
+  "addNewExpressionNotificationFailed": {
+    "message": "Tidak bisa mengambil domain yang ditambahkan dari saat klik kanan dijalankan.",
+    "description": "Could not fetch domain to add from where right-click was issued."
+  },
+  "addNewExpressionNotificationIgnore": {
+    "message": "Jika ekspresi sudah ada, ini akan diabaikan.",
+    "description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+  },
+  "autoDeleteDisabledText": {
+    "message": "Hapus otomatis nonaktif",
+    "description": "Auto-clean disabled"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Hapus otomatis aktif",
+    "description": "Auto-clean enabled"
+  },
+  "chromeDebugMode": {
+    "message": "Pastikan 'Mode Pengembang' diaktifkan, lalu klik pada 'halaman latar belakang'.",
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+  },
+  "cleanDiscardedText": {
+    "message": "Aktifkan Hapus untuk Tab yang ditutup / belum dimuat",
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
+  },
+  "cleanExpiredCookiesText": {
+    "message": "Hapus Semua Kuki Kedaluwarsa",
+    "description": "Clean All Expired Cookies.  Found in Settings."
+  },
+  "cleanIgnoringOpenTabsText": {
+    "message": "Hapus, termasuk tab yang terbuka",
+    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+  },
+  "cleanText": {
+    "message": "Hapus",
+    "description": "Clean"
+  },
+  "cleanupDomainChangeText": {
+    "message": "Aktifkan Hapus saat Domain Berubah",
+    "description": "Enable Cleanup on Domain Change"
+  },
+  "cleanupActionsBypass": {
+    "message": "Peringatan - Tindakan di bawah mengabaikan pengaturan!",
+    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+  },
+  "cleanupLogText": {
+    "message": "Catatan Penghapusan",
+    "description": "Cleanup Log"
+  },
+  "clearLogsText": {
+    "message": "Hapus Catatan",
+    "description": "Clear Logs"
+  },
+  "clearSiteDataForDomainText": {
+    "message": "Hapus semua $siteData$ untuk $domain$",
+    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "clearSiteDataText": {
+    "message": "Hapus $siteData$ untuk domain ini",
+    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "clearURLText": {
+    "message": "Buang Semua",
+    "description": "Remove All"
+  },
+  "consoleDebugMode": {
+    "message": "Klik pada Tab Console",
+    "description": "Click on the Console Tab.  Found after enabling debug mode."
+  },
+  "contextMenusParentClean": {
+    "message": "Menu Hapus Manual",
+    "description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+  },
+  "contextMenusParentExpression": {
+    "message": "Menu Tambah Domain/Ekspresi",
+    "description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+  },
+  "contextMenusSelectedDomainLink": {
+    "message": "Hanya untuk domain dari tautan yang dipilih",
+    "description": "For domain only of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainPage": {
+    "message": "Hanya untuk domain dari halaman yang dipilih",
+    "description": "For domain only of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainText": {
+    "message": "Hanya untuk domain dari teks yang dipilih: $selected$",
+    "description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextMenusSelectedSubdomainLink": {
+    "message": "Untuk subdomain dengan domain dari tautan yang dipilih",
+    "description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainPage": {
+    "message": "Untuk subdomain dengan domain dari halaman yang dipilih",
+    "description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainText": {
+    "message": "Untuk subdomain dengan domain dari teks yang dipilih: $selected$",
+    "description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktifkan Dukungan untuk Tab Container Firefox",
+    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+  },
+  "contributeText": {
+    "message": "Kontribusi",
+    "description": "Contribute"
+  },
+  "contributorsText": {
+    "message": "Kontributor",
+    "description": "Contributors"
+  },
+  "cookiesText": {
+    "message": "Kuki",
+    "description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "Hapus Kuki dari Tab yang Terbuka saat Memulai",
+    "description": "Clean Cookies from Open Tabs on Startup"
+  },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Jalankan cleanup sekarang, sertakan domain dari tab terbuka",
+    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+  },
+  "cookieCleanupText": {
+    "message": "Jalankan pembersihan sekarang, kecualikan domain dari tab terbuka",
+    "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "debugMode": {
+    "message": "Aktifkan Mode Debug (Keluaran Console Tambahan)",
+    "description": "Enable Debug Mode (Additional Console Outputs)"
+  },
+  "defaultSettingsText": {
+    "message": "Kembalikan ke Pengaturan Bawaan",
+    "description": "Restore Default Settings"
+  },
+  "disableAutoDeleteText": {
+    "message": "Klik untuk menonaktifkan hapus otomatis (mode manual)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "documentationText": {
+    "message": "Dokumentasi",
+    "description": "Documentation"
+  },
+  "domainExpressionsText": {
+    "message": "Ekspresi Domain",
+    "description": "Domain Expression"
+  },
+  "dropdownAdditionalCleaningOptions": {
+    "message": "Aktif/Nonaktifkan Dropdown Tindakan Hapus Tambahan",
+    "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+  },
+  "editExpressionText": {
+    "message": "Sunting ekspresi",
+    "description": "Edit expression"
+  },
+  "enableAutoDeleteText": {
+    "message": "Klik untuk mengaktifkan hapus otomatis (mode otomatis)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "enableCleanupLogText": {
+    "message": "Aktifkan Penghitung dan Catatan Penghapusan",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "enableContextMenus": {
+    "message": "Aktifkan Menu Konteks (Menu Klik-Kanan)",
+    "description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
+  },
+  "enableGlobalSubdomainText": {
+    "message": "Aktifkan Pengecekan Subdomain",
+    "description": "Enable Check for Subdomains"
+  },
+  "enableGreyListCleanup": {
+    "message": "Aktifkan Hapus Daftar Abu-abu saat Peramban Dimulai Ulang",
+    "description": "Enable Greylist Cleanup on Browser Restart"
+  },
+  "enableNewVersionPopup": {
+    "message": "Aktifkan Popup saat Versi Baru Dirilis",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "errorText": {
+    "message": "Galat!",
+    "description": "Error!"
+  },
+  "exportSettingsText": {
+    "message": "Ekspor Pengaturan Inti",
+    "description": "Export Core Settings"
+  },
+  "exportURLSText": {
+    "message": "Ekspor Ekspresi",
+    "description": "Export Expressions"
+  },
+  "exportTitleTimestamp": {
+    "message": "Tanggal dan waktu akan ditambahkan ke nama berkas saat mengekspor.",
+    "description": "A timestamp will be appended to the filename on export."
+  },
+  "extensionDescription": {
+    "message": "Kelola kuki anda! Otomatis hapus kuki yang tidak digunakan dari tab yang ditutup dan tetap simpan yang anda inginkan.",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+  "faqText": {
+    "message": "Pertanyaan yang Sering Diajukan, Permasalahan umum dan solusinya",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "filterDebugMode": {
+    "message": "Untuk hanya melihat keluaran debug ekstensi ini, saring keluaran berdasarkan:",
+    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+  },
+  "filterText": {
+    "message": "Filter",
+    "description": "Filter"
+  },
+  "greyCleanLocalstorage": {
+    "message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Abu-abu Baru",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "greyListWordText": {
+    "message": "Daftar Abu-abu",
+    "description": "Greylist"
+  },
+  "importCoreSettingsFailed": {
+    "message": "Gagal Impor Pengaturan Inti - Ditemukan pengaturan yang tidak valid",
+    "description": "Import Core Settings Failed - Found unknown setting"
+  },
+  "importCoreSettingsText": {
+    "message": "Impor Pengaturan Inti",
+    "description": "Import Core Settings"
+  },
+  "importFileTypeInvalid": {
+    "message": "Berkas yang diproses bukan tipe yang valid",
+    "description": "File given is not a type we handle"
+  },
+  "importFileValidationFailed": {
+    "message": "Berkas yang diproses gagal divalidasi",
+    "description": "File given failed validation"
+  },
+  "importMissingKey": {
+    "message": "Kehilangan Pengidentifikasi",
+    "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Impor Ekspresi",
+    "description": "Import Expressions"
+  },
+  "keepAllCookiesText": {
+    "message": "Simpan Semua Kuki",
+    "description": "Keep All Cookies"
+  },
+  "keepDefaultIcon": {
+    "message": "Simpan Ikon Bawaan pada semua tipe daftar",
+    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+  },
+  "keepLocalstorageText": {
+    "message": "Simpan Localstorage",
+    "description": "Keep LocalStorage"
+  },
+  "keepText": {
+    "message": "Simpan",
+    "description": "Keep"
+  },
+  "listTypeText": {
+    "message": "Tipe Daftar",
+    "description": "List Type"
+  },
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "Mengaktifkan Penghapusan Localstorage dan Tab Container mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API.  LocalStorage akan dihapus oleh hostname di SEMUA wadah.",
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+  },
+  "localstorageCleanupText": {
+    "message": "Hapus Localstorage",
+    "description": "LocalStorage Cleanup"
+  },
+  "localstorageCleanupWarning": {
+    "message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+  },
+  "localStorageText": {
+    "message": "Penyimpanan Lokal",
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+  },
+  "manualActionNotification": {
+    "message": "Notifikasi Tindakan Manual",
+    "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanError": {
+    "message": "$siteData$ tidak bisa dihapus untuk tab:",
+    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "Tidak ada $siteData$ yang ditemukan untuk dihapus pada $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanRemoved": {
+    "message": "Menghapus $deleted$ dari $total$.",
+    "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
+    "placeholders": {
+      "deleted": {
+        "content": "$1",
+        "example": "5"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Menghapus $siteData$ pada $url$ hasilnya:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "matchedDomainExpressionText": {
+    "message": "Ekspresi Domain yang Cocok",
+    "description": "Matched Domain Expression"
+  },
+  "menuText": {
+    "message": "Menu",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "minutesText": {
+    "message": "Menit",
+    "description": "minute(s)"
+  },
+  "noCleanupLogText": {
+    "message": "Tidak Ada Catatan Penghapusan yang Ditemukan",
+    "description": "No Cleanup Logs Found"
+  },
+  "noExpressionsText": {
+    "message": "Belum ada ekspresi.",
+    "description": "No expressions defined."
+  },
+  "noPrivateLogging": {
+    "message": "Catatan Penghapusan tidak akan dibuat untuk tab dalam Mode Jendela Pribadi",
+    "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noRulesText": {
+    "message": "Tidak ada aturan yang cocok dengan domain ini.",
+    "description": "No rules matched this domain"
+  },
+  "noneText": {
+    "message": "Nihil",
+    "description": "None"
+  },
+  "notificationContent": {
+    "message": "$Num$ Kuki Dihapus dari: $Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "notificationDisabledText": {
+    "message": "Notifikasi nonaktif",
+    "description": "Notification disabled"
+  },
+  "notificationEnabledText": {
+    "message": "Notifikasi aktif",
+    "description": "Notification enabled"
+  },
+  "notificationTitle": {
+    "message": "Kuki telah dihapus!",
+    "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "notifyCookieCleanupDelayText": {
+    "message": "Durasi untuk Notifikasi",
+    "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Tampilkan Notifikasi Setelah Menghapus Kuki",
+    "description": "Show Notification After Cookie Cleanup"
+  },
+  "oldReleasesText": {
+    "message": "Catatan perubahan versi yang lama bisa dilihat di",
+    "description": "Older release notes can be viewed online at"
+  },
+  "openDebugMode": {
+    "message": "Untuk melihat keluaran debug, buka tab baru dan kunjungi",
+    "description": "To view the debug outputs, open a new tab and visit"
+  },
+  "optionsText": {
+    "message": "Opsi",
+    "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Kuki",
+    "description": "Cookie(s)"
+  },
+  "preferencesText": {
+    "message": "Pengaturan",
+    "description": "Settings"
+  },
+  "questionExpression": {
+    "message": "Bagaimana Ekspresi bekerja?",
+    "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Hapus parsial karena kuki kedaluwarsa dari $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
+  "reasonCleanCookieName": {
+    "message": "Dihapus sebagian karena cocok dengan $matchedExpression$ di dalam $listType$",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Dihapus karena penghapusan saat memulai dan $matchedExpression$ ada di dalam daftar Abu-abu",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Dihapus karena $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
+    "description": "Clean because $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Dihapus karena penghapusan saat memulai dan $hostname$ tidak ada di dalam daftar Putih/Abu-abu",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Disimpan karena $matchedExpression$ ada di dalam $listType$",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Disimpan karena tab yang terbuka dari *.$mainDomain$",
+    "description": "Keep because of open tabs of *.$mainDomain$",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonTabsWereIgnored": {
+    "message": "dan tab yang terbuka juga diabaikan",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "atau di dalam tab yang terbuka manapun",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "Padanan Ekspresi Reguler",
+    "description": "Regular Expression Equivalent"
+  },
+  "releaseNotesText": {
+    "message": "Catatan Rilis",
+    "description": "Release Notes"
+  },
+  "removeAllExpressions": {
+    "message": "Buang Semua Ekspresi",
+    "description": "Remove All Expressions"
+  },
+  "removeAllExpressionsConfirm": {
+    "message": "Apakah anda yakin ingin menghapus SEMUA ($expressionCount$) ekspresi yang disimpan dari ($listCount$) daftar?\n\nINI TIDAK BISA DIURUNGKAN!\n\nKetik [ $expressionCount$ ] dan klik OK untuk menghapus.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "placeholders": {
+      "expressionCount": {
+        "content": "$1",
+        "example": "75"
+      },
+      "listCount": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "removeAllExpressionsNoneFound": {
+    "message": "Tidak ada ekspresi untuk dihapus!",
+    "description": "No expressions to remove!"
+  },
+  "removeExpressionText": {
+    "message": "Buang ekspresi",
+    "description": "Remove expression"
+  },
+  "removeStorageCount": {
+    "message": "Menghapus $count$ item dari $storageType$.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
+  "reportIssuesText": {
+    "message": "Laporkan masalah dan sarankan fitur",
+    "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "Setel Ulang Penghitung Kuki",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
+  },
+  "resetExtensionDataText": {
+    "message": "Setel Ulang Data Ekstensi",
+    "description": "Reset Extension Data"
+  },
+  "restoreText": {
+    "message": "Pulihkan",
+    "description": "Ex: Restore Cleanup"
+  },
+  "reviewLinkMessage": {
+    "message": "Terima kasih telah mencoba $cadTitle$. Jika anda menyukainya, silakan berikan tinjauan.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
+  },
+  "saveExpressionText": {
+    "message": "Simpan ekspresi",
+    "description": "Save expression"
+  },
+  "secondsText": {
+    "message": "Detik",
+    "description": "second(s)"
+  },
+  "sessionStorageText": {
+    "message": "Penyimpanan Sesi",
+    "description": "SessionStorage.  Used in manual localstorage clean notification"
+  },
+  "settingGroupAutoClean": {
+    "message": "Opsi Hapus Otomatis",
+    "description": "Automatic Cleaning Options"
+  },
+  "settingGroupExpression": {
+    "message": "Opsi Ekspresi",
+    "description": "Expression Options"
+  },
+  "settingGroupExtension": {
+    "message": "Opsi Ekstensi",
+    "description": "Extension Options"
+  },
+  "settingGroupOtherBrowsing": {
+    "message": "Opsi Hapus Data Peramban Lainnya",
+    "description": "Other Browsing Data Cleanup Options"
+  },
+  "settingsText": {
+    "message": "Pengaturan $CAD$",
+    "description": "$CAD$ Settings",
+    "placeholders": {
+      "CAD": {
+        "content": "CAD",
+        "example": "CAD - Short form of Cookie AutoDelete"
+      }
+    }
+  },
+  "showNumberOfCookiesInIconText": {
+    "message": "Tampilkan Jumlah Cookie untuk Domain tersebut di atas Ikon",
+    "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "sizePopupText": {
+    "message": "Ukuran Popup (dalam px)",
+    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+  },
+  "sizeSettingText": {
+    "message": "Ukuran Halaman Pengaturan (dalam px)",
+    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+  },
+  "stopEditingText": {
+    "message": "Setop menyunting",
+    "description": "Stop editing"
+  },
+  "successText": {
+    "message": "Sukses!",
+    "description": "Success!"
+  },
+  "toGreyListText": {
+    "message": "Tambahkan ke Daftar Abu-abu (Dihapus saat Memulai Ulang Peramban)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "toWhiteListText": {
+    "message": "Tambahkan ke Daftar Putih (Tidak Dihapus)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toggleNotificationText": {
+    "message": "Klik untuk mengaktifkan atau menonaktifkan notifikasi",
+    "description": "Toggle to enable or disable notifications"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Ubah ke daftar abu-abu",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Ubah ke daftar putih",
+    "description": "Toggle to whitelist"
+  },
+  "versionNumberText": {
+    "message": "versi $CAD$",
+    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "placeholders": {
+      "CAD": {
+        "content": "$1",
+        "example": "CAD or Cookie AutoDelete"
+      }
+    }
+  },
+  "versionText": {
+    "message": "Versi $browser$",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "welcomeMessage": {
+    "message": "Hai! Sepanjang sesi ini, $cadTitle$ telah menghapus $sessionDeleted$ kuki dan total $totalDeleted$ kuki.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
+  "welcomeText": {
+    "message": "Selamat Datang",
+    "description": "Welcome"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Putih Baru",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "whiteListText": {
+    "message": "Daftar Ekspresi",
+    "description": "List of Expressions"
+  },
+  "whiteListWordText": {
+    "message": "Daftar Putih",
+    "description": "Whitelist"
+  }
 }

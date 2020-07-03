@@ -1,604 +1,604 @@
 {
-	"aboutText": {
-		"message": "關於",
-		"description": "About"
-	},
-	"activeModeDelayText": {
-		"message": "自動清潔前的延遲",
-		"description": "Delay Before Automatic Cleaning"
-	},
-	"activeModeText": {
-		"message": "啟用自動清潔",
-		"description": "Enable Automatic Cleaning"
-	},
-	"autoDeleteDisabledText": {
-		"message": "已停用自動清除",
-		"description": "Auto-clean disabled"
-	},
-	"autoDeleteEnabledText": {
-		"message": "已啟用自動清除",
-		"description": "Auto-clean enabled"
-	},
-	"chromeDebugMode": {
-		"message": "確保啟用了“開發人員模式”，然後在檢查視圖下單擊“背景頁”。",
-		"description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-	},
-	"cleanIgnoringOpenTabsText": {
-		"message": "清除，包括已開分頁",
-		"description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
-	},
-	"cleanText": {
-		"message": "清除",
-		"description": "Clean"
-	},
-	"cleanupDomainChangeText": {
-		"message": "啟用域名變更時清理",
-		"description": "Enable Cleanup on Domain Change"
-	},
-	"cleanupActionsBypass": {
-		"message": "警告-以下操作將忽略設置！",
-		"description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
-	},
-	"cleanupLogText": {
-		"message": "清理記錄",
-		"description": "Cleanup Log"
-	},
-	"clearLogsText": {
-		"message": "清除記錄",
-		"description": "Clear Logs"
-	},
-	"clearSiteDataForDomainText": {
-		"message": "清除 $domain$ 的所有 $siteData$",
-		"description": "Clear all cookies for example.com.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			},
-			"domain": {
-				"content": "$2",
-				"example": "example.com"
-			}
-		}
-	},
-	"clearSiteDataText": {
-		"message": "清除於此域名的 $siteData$",
-		"description": "Clear cookies for this domain.    Found in the additional cleanup options in the popup.",
-		"placeholders": {
-			"siteData": {
-				"content": "$1",
-				"example": "cookies"
-			}
-		}
-	},
-	"clearURLText": {
-		"message": "全部移除",
-		"description": "Remove All"
-	},
-	"consoleDebugMode": {
-		"message": "單擊控制台選項卡",
-		"description": "Click on the Console Tab.  Found after enabling debug mode."
-	},
-	"contextualIdentitiesEnabledText": {
-		"message": "啟用對 Firefox 背景身份功能的支援",
-		"description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
-	},
-	"contributeText": {
-		"message": "貢獻",
-		"description": "Contribute"
-	},
-	"contributorsText": {
-		"message": "貢獻者",
-		"description": "Contributors"
-	},
-	"cookieCleanUpOnStartText": {
-		"message": "啟動時清除已開分頁的 Cookie",
-		"description": "Clean Cookies from Open Tabs on Startup"
-	},
-	"cookieCleanupIgnoreOpenTabsText": {
-		"message": "立即運行清理，從打開的選項卡中包含域",
-		"description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
-	},
-	"cookieCleanupText": {
-		"message": "立即運行清理，從打開的選項卡中排除域",
-		"description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
-	},
-	"debugMode": {
-		"message": "啟用調試模式（其他控制台輸出）",
-		"description": "Enable Debug Mode (Additional Console Outputs)"
-	},
-	"defaultSettingsText": {
-		"message": "恢復預設設定",
-		"description": "Restore Default Settings"
-	},
-	"disableAutoDeleteText": {
-		"message": "切換至手動模式（停止自動清除）",
-		"description": "Toggle to disable automatic cleanup (manual mode)"
-	},
-	"documentationText": {
-		"message": "文件集",
-		"description": "Documentation"
-	},
-	"domainExpressionsText": {
-		"message": "域名表示式",
-		"description": "Domain Expression"
-	},
-	"dropdownAdditionalCleaningOptions": {
-		"message": "切換其他清潔動作下拉菜單",
-		"description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
-	},
-	"editExpressionText": {
-		"message": "編輯表示式",
-		"description": "Edit expression"
-	},
-	"enableAutoDeleteText": {
-		"message": "切換至自動模式（自動清除）",
-		"description": "Toggle to enable automatic cleanup (automatic mode)"
-	},
-	"enableCleanupLogText": {
-		"message": "啟用清除記錄和計算器",
-		"description": "Enable Cleanup Log and Counter"
-	},
-	"enableGlobalSubdomainText": {
-		"message": "檢查子域名",
-		"description": "Enable Check for Subdomains"
-	},
-	"enableGreyListCleanup": {
-		"message": "在瀏覽器重啟時啟用灰名單清除",
-		"description": "Enable Greylist Cleanup on Browser Restart"
-	},
-	"enableNewVersionPopup": {
-		"message": "發布新版本時啟用彈出窗口",
-		"description": "Enable Popup when New Version is Released"
-	},
-	"errorText": {
-		"message": "錯誤！",
-		"description": "Error!"
-	},
-	"exportSettingsText": {
-		"message": "導出核心設置",
-		"description": "Export Core Settings"
-	},
-	"exportURLSText": {
-		"message": "匯出表示式",
-		"description": "Export Expressions"
-	},
-	"exportTitleTimestamp": {
-		"message": "導出時，時間戳將附加到文件名中。",
-		"description": "A timestamp will be appended to the filename on export."
-	},
-	"extensionDescription": {
-		"message": "掌控您的 cookie！關閉分頁後自動清除沒用的 cookie，同時保留有用的 cookie。",
-		"description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-	},
-	"extensionName": {
-		"message": "Cookie AutoDelete",
-		"description": "Name of the extension."
-	},
-	"faqText": {
-		"message": "常見問題，常見問題和解決方案",
-		"description": "Frequently Asked Questions, Common issues and solutions"
-	},
-	"filterDebugMode": {
-		"message": "要僅通過此擴展名查看調試輸出，請在下一行過濾輸出:",
-		"description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
-	},
-	"filterText": {
-		"message": "過濾器",
-		"description": "Filter"
-	},
-	"greyCleanLocalstorage": {
-		"message": "在新的灰名單表達式上取消選中“保留LocalStorage”",
-		"description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-	},
-	"greyListWordText": {
-		"message": "灰名單",
-		"description": "Greylist"
-	},
-	"importCoreSettingsFailed": {
-		"message": "導入核心設置失敗-找到未知設置",
-		"description": "Import Core Settings Failed - Found unknown setting"
-	},
-	"importCoreSettingsText": {
-		"message": "導入核心設置",
-		"description": "Import Core Settings"
-	},
-	"importFileTypeInvalid": {
-		"message": "給定的文件不是我們處理的類型",
-		"description": "File given is not a type we handle"
-	},
-	"importFileValidationFailed": {
-		"message": "給出的文件驗證失敗",
-		"description": "File given failed validation"
-	},
-	"importMissingKey": {
-		"message": "缺少標識符",
-		"description": "Missing identifier"
-	},
-	"importURLSText": {
-		"message": "匯入表示式",
-		"description": "Import Expressions"
-	},
-	"keepAllCookiesText": {
-		"message": "保留所有 cookie",
-		"description": "Keep All Cookies"
-	},
-	"keepDefaultIcon": {
-		"message": "在所有列表類型上保留默認圖標",
-		"description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
-	},
-	"keepLocalstorageText": {
-		"message": "保持本機存放區",
-		"description": "Keep LocalStorage"
-	},
-	"keepText": {
-		"message": "保留",
-		"description": "Keep"
-	},
-	"listTypeText": {
-		"message": "名單",
-		"description": "List Type"
-	},
-	"localstorageAndContextualIdentitiesWarning": {
-		"message": "警告：由於API限制，同時啟用 LocalStorage Cleanup 和 Container Tab 可能會導致有害的副作用。 LocalStorage 將通過所有容器上的主機名清除。",
-		"description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-	},
-	"localstorageCleanupText": {
-		"message": "本地儲存清理",
-		"description": "LocalStorage Cleanup"
-	},
-	"localstorageCleanupWarning": {
-		"message": "警告：啟用 LocalStorage Cleanup 後，將清除所有現有的 LocalStorage。",
-		"description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-	},
-	"matchedDomainExpressionText": {
-		"message": "吻合的域名表示式",
-		"description": "Matched Domain Expression"
-	},
-	"menuText": {
-		"message": "選單",
-		"description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
-	},
-	"minutesText": {
-		"message": "分鐘",
-		"description": "minute(s)"
-	},
-	"noCleanupLogText": {
-		"message": "沒有找到清理記錄",
-		"description": "No Cleanup Logs Found"
-	},
-	"noExpressionsText": {
-		"message": "沒有定義表達式。",
-		"description": "No expressions defined."
-	},
-	"noPrivateLogging": {
-		"message": "私人瀏覽 / 隱身 / InPrivate 中的選項卡將不會生成清除日誌。",
-		"description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
-	},
-	"noRulesText": {
-		"message": "沒有符合此域名的規則。",
-		"description": "No rules matched this domain"
-	},
-	"noneText": {
-		"message": "無",
-		"description": "None"
-	},
-	"notificationContent": {
-		"message": "已清除 $Num$ 個來自下列網站的 cookie：$Websites$",
-		"description": "123 Deleted Cookies from: google.com, facebook.com",
-		"placeholders": {
-			"num": {
-				"content": "$1",
-				"example": "123"
-			},
-			"websites": {
-				"content": "$2",
-				"example": "google.com, facebook.com"
-			}
-		}
-	},
-	"notificationDisabledText": {
-		"message": "已停用通知",
-		"description": "Notification disabled"
-	},
-	"notificationEnabledText": {
-		"message": "已啟用通知",
-		"description": "Notification enabled"
-	},
-	"notificationTitle": {
-		"message": "已清除 cookie！",
-		"description": "Cookies were deleted!  Used in Notification Title."
-	},
-	"notifyCookieCleanupDelayText": {
-		"message": "通知期限",
-		"description": "Duration for Notifications"
-	},
-	"notifyCookieCleanUpText": {
-		"message": "清除 Cookie 後通知我",
-		"description": "Show Notification After Cookie Cleanup"
-	},
-	"oldReleasesText": {
-		"message": "可以在以下位置在線查看較早的發行說明：",
-		"description": "Older release notes can be viewed online at"
-	},
-	"openDebugMode": {
-		"message": "要查看調試輸出，請打開新標籤並訪問",
-		"description": "To view the debug outputs, open a new tab and visit"
-	},
-	"optionsText": {
-		"message": "選項",
-		"description": "Options"
-	},
-	"popupCookieCountText": {
-		"message": "Cookie(s)",
-		"description": "Cookie(s)"
-	},
-	"preferencesText": {
-		"message": "設定",
-		"description": "Settings"
-	},
-	"questionExpression": {
-		"message": "運算式是如何工作的？",
-		"description": "How do Expressions work?"
-	},
-	"reasonCleanCookieName": {
-		"message": "保留，因為在 $listType$ 中找到相符的 $matchedExpression$",
-		"description": "Partial clean because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonCleanGreyList": {
-		"message": "清理，因為啟動清理及 $matchedExpression$ 都在灰名單當中。",
-		"description": "Clean because of startup cleanup and *.google.com is in the Greylist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			}
-		}
-	},
-	"reasonCleanNoList": {
-		"message": "清理，因為 $hostname$ 不在白名單/灰名單當中",
-		"description": "Clean because sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonCleanStartupNoList": {
-		"message": "清理，因為啟動清理及 $hostname$ 不能同時在白名單/灰名單當中。",
-		"description": "Clean because of startup cleanup and sub.google.com is not in the White or Grey lists",
-		"placeholders": {
-			"hostname": {
-				"content": "$1",
-				"example": "sub.google.com"
-			}
-		}
-	},
-	"reasonKeep": {
-		"message": "保留，因為在 $listType$ 中找到相符的 $matchedExpression$",
-		"description": "Keep because of matched *.google.com in the Whitelist",
-		"placeholders": {
-			"matchedExpression": {
-				"content": "$1",
-				"example": "*.google.com"
-			},
-			"listType": {
-				"content": "$2",
-				"example": "Whitelist"
-			}
-		}
-	},
-	"reasonKeepOpenTab": {
-		"message": "保留，因為 *.$mainDomain$ 在打開的標籤頁中",
-		"description": "Keep because of open tabs of *.google.com",
-		"placeholders": {
-			"mainDomain": {
-				"content": "$1",
-				"example": "google.com"
-			}
-		}
-	},
-	"reasonTabsWereIgnored": {
-		"message": "同時打開的標籤頁也會被忽略",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists and also open tabs were ignored"
-	},
-	"reasonTabsWereNotIgnored": {
-		"message": "或任何打開的標籤頁中",
-		"description": "Clean because of sub.google.com is not in the White or Grey lists or in any open tabs"
-	},
-	"regularExpressionEquivalentText": {
-		"message": "正規表示式",
-		"description": "Regular Expression Equivalent"
-	},
-	"releaseNotesText": {
-		"message": "版本資訊",
-		"description": "Release Notes"
-	},
-	"removeAllExpressions": {
-		"message": "刪除所有表達式",
-		"description": "Remove All Expressions"
-	},
-	"removeAllExpressionsConfirm": {
-		"message": "您確定要從（$listCount$）個列表中刪除所有（$expressionCount$）個已保存的表達式嗎？這不能被撤消！鍵入 [ $expressionCount$ ]，然後單擊“確定”刪除。",
-		"description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
-		"placeholders": {
-			"expressionCount": {
-				"content": "$1",
-				"example": "75"
-			},
-			"listCount": {
-				"content": "$2",
-				"example": "5"
-			}
-		}
-	},
-	"removeAllExpressionsNoneFound": {
-		"message": "沒有要刪除的表情！",
-		"description": "No expressions to remove!"
-	},
-	"removeExpressionText": {
-		"message": "移除表示式",
-		"description": "Remove expression"
-	},
-	"reportIssuesText": {
-		"message": "彙報問題及建議新功能",
-		"description": "Report issues and suggest features"
-	},
-	"resetExtensionDataText": {
-		"message": "重置擴展數據",
-		"description": "Reset Extension Data"
-	},
-	"restoreText": {
-		"message": "還原",
-		"description": "Ex: Restore Cleanup"
-	},
-	"reviewLinkMessage": {
-		"message": "感謝您使用 $cadTitle$。如果您喜歡此擴充套件，請給我們寫一篇評論。",
-		"description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			}
-		}
-	},
-	"saveExpressionText": {
-		"message": "儲存表示式",
-		"description": "Save expression"
-	},
-	"secondsText": {
-		"message": "秒",
-		"description": "second(s)"
-	},
-	"settingGroupAutoClean": {
-		"message": "自動清潔選項",
-		"description": "Automatic Cleaning Options"
-	},
-	"settingGroupExpression": {
-		"message": "表情選項",
-		"description": "Expression Options"
-	},
-	"settingGroupExtension": {
-		"message": "擴展選項",
-		"description": "Extension Options"
-	},
-	"settingGroupOtherBrowsing": {
-		"message": "其他瀏覽數據清除選項",
-		"description": "Other Browsing Data Cleanup Options"
-	},
-	"settingsText": {
-		"message": "$CAD$ 設定",
-		"description": "$CAD$ Settings",
-		"placeholders": {
-			"CAD": {
-				"content": "CAD",
-				"example": "CAD - Short form of Cookie AutoDelete"
-			}
-		}
-	},
-	"showNumberOfCookiesInIconText": {
-		"message": "在圖標上顯示該域的Cookie數",
-		"description": "Show Number of Cookies for that Domain over the Icon"
-	},
-	"sizePopupText": {
-		"message": "彈出窗口的大小（以像素為單位）",
-		"description": "Size of Popup (in px).  This sets the font size in the Popup."
-	},
-	"sizeSettingText": {
-		"message": "設置頁面大小（以像素為單位）",
-		"description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
-	},
-	"stopEditingText": {
-		"message": "停止編輯",
-		"description": "Stop editing"
-	},
-	"successText": {
-		"message": "成功！",
-		"description": "Success!"
-	},
-	"toGreyListText": {
-		"message": "加入灰名單（在瀏覽器重啟後清除）",
-		"description": "Add to Greylist (Clean on Browser Restart)"
-	},
-	"toWhiteListText": {
-		"message": "加入白名單（永不清除）",
-		"description": "Add to Whitelist (Never Clean)"
-	},
-	"toggleNotificationText": {
-		"message": "切換以啟用或禁用通知",
-		"description": "Toggle to enable or disable notifications"
-	},
-	"toggleToGreyListWordText": {
-		"message": "轉換至灰名單",
-		"description": "Toggle to greylist"
-	},
-	"toggleToWhiteListWordText": {
-		"message": "轉換至白名單",
-		"description": "Toggle to whitelist"
-	},
-	"versionNumberText": {
-		"message": "$CAD$ 版本",
-		"description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
-		"placeholders": {
-			"CAD": {
-				"content": "$1",
-				"example": "CAD or Cookie AutoDelete"
-			}
-		}
-	},
-	"versionText": {
-		"message": "$browser$ 版本",
-		"description": "Firefox version",
-		"placeholders": {
-			"browser": {
-				"content": "$1",
-				"example": "Firefox"
-			}
-		}
-	},
-	"welcomeMessage": {
-		"message": "您好！$cadTitle$ 在此對談期間已清除 $sessionDeleted$ 個 cookie，累計清除了 $totalDeleted$ 個 cookie。",
-		"description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
-		"placeholders": {
-			"cadTitle": {
-				"content": "$1",
-				"example": "Cookie AutoDelete"
-			},
-			"sessionDeleted": {
-				"content": "$2",
-				"example": "123"
-			},
-			"totalDeleted": {
-				"content": "$3",
-				"example": "456"
-			}
-		}
-	},
-	"welcomeText": {
-		"message": "歡迎使用",
-		"description": "Welcome"
-	},
-	"whiteCleanLocalstorage": {
-		"message": "在新的白名單表達式上取消選中“保留 LocalStorage”",
-		"description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-	},
-	"whiteListText": {
-		"message": "表示式列表",
-		"description": "List of Expressions"
-	},
-	"whiteListWordText": {
-		"message": "白名單",
-		"description": "Whitelist"
-	}
+  "aboutText": {
+    "message": "關於",
+    "description": "About"
+  },
+  "activeModeDelayText": {
+    "message": "自動清潔前的延遲",
+    "description": "Delay Before Automatic Cleaning"
+  },
+  "activeModeText": {
+    "message": "啟用自動清潔",
+    "description": "Enable Automatic Cleaning"
+  },
+  "autoDeleteDisabledText": {
+    "message": "已停用自動清除",
+    "description": "Auto-clean disabled"
+  },
+  "autoDeleteEnabledText": {
+    "message": "已啟用自動清除",
+    "description": "Auto-clean enabled"
+  },
+  "chromeDebugMode": {
+    "message": "確保啟用了“開發人員模式”，然後在檢查視圖下單擊“背景頁”。",
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+  },
+  "cleanIgnoringOpenTabsText": {
+    "message": "清除，包括已開分頁",
+    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+  },
+  "cleanText": {
+    "message": "清除",
+    "description": "Clean"
+  },
+  "cleanupDomainChangeText": {
+    "message": "啟用域名變更時清理",
+    "description": "Enable Cleanup on Domain Change"
+  },
+  "cleanupActionsBypass": {
+    "message": "警告-以下操作將忽略設置！",
+    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+  },
+  "cleanupLogText": {
+    "message": "清理記錄",
+    "description": "Cleanup Log"
+  },
+  "clearLogsText": {
+    "message": "清除記錄",
+    "description": "Clear Logs"
+  },
+  "clearSiteDataForDomainText": {
+    "message": "清除 $domain$ 的所有 $siteData$",
+    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "domain": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "clearSiteDataText": {
+    "message": "清除於此域名的 $siteData$",
+    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "clearURLText": {
+    "message": "全部移除",
+    "description": "Remove All"
+  },
+  "consoleDebugMode": {
+    "message": "單擊控制台選項卡",
+    "description": "Click on the Console Tab.  Found after enabling debug mode."
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "啟用對 Firefox 背景身份功能的支援",
+    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+  },
+  "contributeText": {
+    "message": "貢獻",
+    "description": "Contribute"
+  },
+  "contributorsText": {
+    "message": "貢獻者",
+    "description": "Contributors"
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "啟動時清除已開分頁的 Cookie",
+    "description": "Clean Cookies from Open Tabs on Startup"
+  },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "立即運行清理，從打開的選項卡中包含域",
+    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+  },
+  "cookieCleanupText": {
+    "message": "立即運行清理，從打開的選項卡中排除域",
+    "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "debugMode": {
+    "message": "啟用調試模式（其他控制台輸出）",
+    "description": "Enable Debug Mode (Additional Console Outputs)"
+  },
+  "defaultSettingsText": {
+    "message": "恢復預設設定",
+    "description": "Restore Default Settings"
+  },
+  "disableAutoDeleteText": {
+    "message": "切換至手動模式（停止自動清除）",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "documentationText": {
+    "message": "文件集",
+    "description": "Documentation"
+  },
+  "domainExpressionsText": {
+    "message": "域名表示式",
+    "description": "Domain Expression"
+  },
+  "dropdownAdditionalCleaningOptions": {
+    "message": "切換其他清潔動作下拉菜單",
+    "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+  },
+  "editExpressionText": {
+    "message": "編輯表示式",
+    "description": "Edit expression"
+  },
+  "enableAutoDeleteText": {
+    "message": "切換至自動模式（自動清除）",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "enableCleanupLogText": {
+    "message": "啟用清除記錄和計算器",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "enableGlobalSubdomainText": {
+    "message": "檢查子域名",
+    "description": "Enable Check for Subdomains"
+  },
+  "enableGreyListCleanup": {
+    "message": "在瀏覽器重啟時啟用灰名單清除",
+    "description": "Enable Greylist Cleanup on Browser Restart"
+  },
+  "enableNewVersionPopup": {
+    "message": "發布新版本時啟用彈出窗口",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "errorText": {
+    "message": "錯誤！",
+    "description": "Error!"
+  },
+  "exportSettingsText": {
+    "message": "導出核心設置",
+    "description": "Export Core Settings"
+  },
+  "exportURLSText": {
+    "message": "匯出表示式",
+    "description": "Export Expressions"
+  },
+  "exportTitleTimestamp": {
+    "message": "導出時，時間戳將附加到文件名中。",
+    "description": "A timestamp will be appended to the filename on export."
+  },
+  "extensionDescription": {
+    "message": "掌控您的 cookie！關閉分頁後自動清除沒用的 cookie，同時保留有用的 cookie。",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+  "faqText": {
+    "message": "常見問題，常見問題和解決方案",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "filterDebugMode": {
+    "message": "要僅通過此擴展名查看調試輸出，請在下一行過濾輸出:",
+    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+  },
+  "filterText": {
+    "message": "過濾器",
+    "description": "Filter"
+  },
+  "greyCleanLocalstorage": {
+    "message": "在新的灰名單表達式上取消選中“保留LocalStorage”",
+    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
+  },
+  "greyListWordText": {
+    "message": "灰名單",
+    "description": "Greylist"
+  },
+  "importCoreSettingsFailed": {
+    "message": "導入核心設置失敗-找到未知設置",
+    "description": "Import Core Settings Failed - Found unknown setting"
+  },
+  "importCoreSettingsText": {
+    "message": "導入核心設置",
+    "description": "Import Core Settings"
+  },
+  "importFileTypeInvalid": {
+    "message": "給定的文件不是我們處理的類型",
+    "description": "File given is not a type we handle"
+  },
+  "importFileValidationFailed": {
+    "message": "給出的文件驗證失敗",
+    "description": "File given failed validation"
+  },
+  "importMissingKey": {
+    "message": "缺少標識符",
+    "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "匯入表示式",
+    "description": "Import Expressions"
+  },
+  "keepAllCookiesText": {
+    "message": "保留所有 cookie",
+    "description": "Keep All Cookies"
+  },
+  "keepDefaultIcon": {
+    "message": "在所有列表類型上保留默認圖標",
+    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+  },
+  "keepLocalstorageText": {
+    "message": "保持本機存放區",
+    "description": "Keep LocalStorage"
+  },
+  "keepText": {
+    "message": "保留",
+    "description": "Keep"
+  },
+  "listTypeText": {
+    "message": "名單",
+    "description": "List Type"
+  },
+  "localstorageAndContextualIdentitiesWarning": {
+    "message": "警告：由於API限制，同時啟用 LocalStorage Cleanup 和 Container Tab 可能會導致有害的副作用。 LocalStorage 將通過所有容器上的主機名清除。",
+    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
+  },
+  "localstorageCleanupText": {
+    "message": "本地儲存清理",
+    "description": "LocalStorage Cleanup"
+  },
+  "localstorageCleanupWarning": {
+    "message": "警告：啟用 LocalStorage Cleanup 後，將清除所有現有的 LocalStorage。",
+    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+  },
+  "matchedDomainExpressionText": {
+    "message": "吻合的域名表示式",
+    "description": "Matched Domain Expression"
+  },
+  "menuText": {
+    "message": "選單",
+    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "minutesText": {
+    "message": "分鐘",
+    "description": "minute(s)"
+  },
+  "noCleanupLogText": {
+    "message": "沒有找到清理記錄",
+    "description": "No Cleanup Logs Found"
+  },
+  "noExpressionsText": {
+    "message": "沒有定義表達式。",
+    "description": "No expressions defined."
+  },
+  "noPrivateLogging": {
+    "message": "私人瀏覽 / 隱身 / InPrivate 中的選項卡將不會生成清除日誌。",
+    "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noRulesText": {
+    "message": "沒有符合此域名的規則。",
+    "description": "No rules matched this domain"
+  },
+  "noneText": {
+    "message": "無",
+    "description": "None"
+  },
+  "notificationContent": {
+    "message": "已清除 $Num$ 個來自下列網站的 cookie：$Websites$",
+    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "notificationDisabledText": {
+    "message": "已停用通知",
+    "description": "Notification disabled"
+  },
+  "notificationEnabledText": {
+    "message": "已啟用通知",
+    "description": "Notification enabled"
+  },
+  "notificationTitle": {
+    "message": "已清除 cookie！",
+    "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "notifyCookieCleanupDelayText": {
+    "message": "通知期限",
+    "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "清除 Cookie 後通知我",
+    "description": "Show Notification After Cookie Cleanup"
+  },
+  "oldReleasesText": {
+    "message": "可以在以下位置在線查看較早的發行說明：",
+    "description": "Older release notes can be viewed online at"
+  },
+  "openDebugMode": {
+    "message": "要查看調試輸出，請打開新標籤並訪問",
+    "description": "To view the debug outputs, open a new tab and visit"
+  },
+  "optionsText": {
+    "message": "選項",
+    "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Cookie(s)",
+    "description": "Cookie(s)"
+  },
+  "preferencesText": {
+    "message": "設定",
+    "description": "Settings"
+  },
+  "questionExpression": {
+    "message": "運算式是如何工作的？",
+    "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieName": {
+    "message": "保留，因為在 $listType$ 中找到相符的 $matchedExpression$",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "清理，因為啟動清理及 $matchedExpression$ 都在灰名單當中。",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "清理，因為 $hostname$ 不在白名單/灰名單當中",
+    "description": "Clean because $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "清理，因為啟動清理及 $hostname$ 不能同時在白名單/灰名單當中。",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "保留，因為在 $listType$ 中找到相符的 $matchedExpression$",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonKeepOpenTab": {
+    "message": "保留，因為 *.$mainDomain$ 在打開的標籤頁中",
+    "description": "Keep because of open tabs of *.$mainDomain$",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonTabsWereIgnored": {
+    "message": "同時打開的標籤頁也會被忽略",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "或任何打開的標籤頁中",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+  },
+  "regularExpressionEquivalentText": {
+    "message": "正規表示式",
+    "description": "Regular Expression Equivalent"
+  },
+  "releaseNotesText": {
+    "message": "版本資訊",
+    "description": "Release Notes"
+  },
+  "removeAllExpressions": {
+    "message": "刪除所有表達式",
+    "description": "Remove All Expressions"
+  },
+  "removeAllExpressionsConfirm": {
+    "message": "您確定要從（$listCount$）個列表中刪除所有（$expressionCount$）個已保存的表達式嗎？這不能被撤消！鍵入 [ $expressionCount$ ]，然後單擊“確定”刪除。",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "placeholders": {
+      "expressionCount": {
+        "content": "$1",
+        "example": "75"
+      },
+      "listCount": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "removeAllExpressionsNoneFound": {
+    "message": "沒有要刪除的表情！",
+    "description": "No expressions to remove!"
+  },
+  "removeExpressionText": {
+    "message": "移除表示式",
+    "description": "Remove expression"
+  },
+  "reportIssuesText": {
+    "message": "彙報問題及建議新功能",
+    "description": "Report issues and suggest features"
+  },
+  "resetExtensionDataText": {
+    "message": "重置擴展數據",
+    "description": "Reset Extension Data"
+  },
+  "restoreText": {
+    "message": "還原",
+    "description": "Ex: Restore Cleanup"
+  },
+  "reviewLinkMessage": {
+    "message": "感謝您使用 $cadTitle$。如果您喜歡此擴充套件，請給我們寫一篇評論。",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
+  },
+  "saveExpressionText": {
+    "message": "儲存表示式",
+    "description": "Save expression"
+  },
+  "secondsText": {
+    "message": "秒",
+    "description": "second(s)"
+  },
+  "settingGroupAutoClean": {
+    "message": "自動清潔選項",
+    "description": "Automatic Cleaning Options"
+  },
+  "settingGroupExpression": {
+    "message": "表情選項",
+    "description": "Expression Options"
+  },
+  "settingGroupExtension": {
+    "message": "擴展選項",
+    "description": "Extension Options"
+  },
+  "settingGroupOtherBrowsing": {
+    "message": "其他瀏覽數據清除選項",
+    "description": "Other Browsing Data Cleanup Options"
+  },
+  "settingsText": {
+    "message": "$CAD$ 設定",
+    "description": "$CAD$ Settings",
+    "placeholders": {
+      "CAD": {
+        "content": "CAD",
+        "example": "CAD - Short form of Cookie AutoDelete"
+      }
+    }
+  },
+  "showNumberOfCookiesInIconText": {
+    "message": "在圖標上顯示該域的Cookie數",
+    "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "sizePopupText": {
+    "message": "彈出窗口的大小（以像素為單位）",
+    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+  },
+  "sizeSettingText": {
+    "message": "設置頁面大小（以像素為單位）",
+    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+  },
+  "stopEditingText": {
+    "message": "停止編輯",
+    "description": "Stop editing"
+  },
+  "successText": {
+    "message": "成功！",
+    "description": "Success!"
+  },
+  "toGreyListText": {
+    "message": "加入灰名單（在瀏覽器重啟後清除）",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "toWhiteListText": {
+    "message": "加入白名單（永不清除）",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toggleNotificationText": {
+    "message": "切換以啟用或禁用通知",
+    "description": "Toggle to enable or disable notifications"
+  },
+  "toggleToGreyListWordText": {
+    "message": "轉換至灰名單",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "轉換至白名單",
+    "description": "Toggle to whitelist"
+  },
+  "versionNumberText": {
+    "message": "$CAD$ 版本",
+    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "placeholders": {
+      "CAD": {
+        "content": "$1",
+        "example": "CAD or Cookie AutoDelete"
+      }
+    }
+  },
+  "versionText": {
+    "message": "$browser$ 版本",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "welcomeMessage": {
+    "message": "您好！$cadTitle$ 在此對談期間已清除 $sessionDeleted$ 個 cookie，累計清除了 $totalDeleted$ 個 cookie。",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
+  "welcomeText": {
+    "message": "歡迎使用",
+    "description": "Welcome"
+  },
+  "whiteCleanLocalstorage": {
+    "message": "在新的白名單表達式上取消選中“保留 LocalStorage”",
+    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "whiteListText": {
+    "message": "表示式列表",
+    "description": "List of Expressions"
+  },
+  "whiteListWordText": {
+    "message": "白名單",
+    "description": "Whitelist"
+  }
 }
