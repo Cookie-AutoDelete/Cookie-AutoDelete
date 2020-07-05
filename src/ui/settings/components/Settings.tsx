@@ -473,7 +473,7 @@ class Settings extends React.Component<SettingProps> {
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
-                <SettingsTooltip hrefURL={'#keep-default-icon'} />
+                <SettingsTooltip hrefURL={'#keep-default-icon-on-all-list-types'} />
               </div>
             )}
           <div className="form-group">
