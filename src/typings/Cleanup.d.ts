@@ -22,6 +22,13 @@ type ActivityLog = {
   storeIds: {
     [storeId: string]: CleanReasonObject[];
   };
+  browsingDataCleanup: {
+    cache?: string[];
+    indexedDB?: string[];
+    localStorage?: string[];
+    pluginData?: string[];
+    serviceWorkers?: string[];
+  };
 } & {
   // Remove this after update
   [storeId: string]: any;

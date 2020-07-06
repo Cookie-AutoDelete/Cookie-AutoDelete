@@ -81,14 +81,13 @@ class Settings extends React.Component<SettingProps> {
     );
     // Do check for import first!
     if (importFile.type !== 'application/json') {
-      this.setState({
-        error: `${browser.i18n.getMessage(
-          'errorText',
-        )} ${browser.i18n.getMessage('importFileTypeInvalid')}:  ${
-          importFile.name
-        } (${importFile.type})`,
-        success: '',
-      });
+      this.setError(
+        new Error(
+          `${browser.i18n.getMessage('errorText')} ${browser.i18n.getMessage(
+            'importFileTypeInvalid',
+          )}:  ${importFile.name} (${importFile.type})`,
+        ),
+      );
       return;
     }
     const { onUpdateSetting } = this.props;
@@ -96,7 +95,10 @@ class Settings extends React.Component<SettingProps> {
     const reader = new FileReader();
     reader.onload = (file) => {
       try {
-        if (!file.target) throw Error('File Not Found!');
+        if (!file.target) {
+          this.setError(new Error('File Not Found!'));
+          return;
+        }
         // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
         const target: FileReader = file.target;
         const result: string = target.result as string;
@@ -112,13 +114,16 @@ class Settings extends React.Component<SettingProps> {
             },
             debug,
           );
-          throw new Error(
-            `${browser.i18n.getMessage(
-              'importFileValidationFailed',
-            )}. ${browser.i18n.getMessage('importMissingKey')} 'settings': ${
-              importFile.name
-            }`,
+          this.setError(
+            new Error(
+              `${browser.i18n.getMessage(
+                'importFileValidationFailed',
+              )}. ${browser.i18n.getMessage('importMissingKey')} 'settings': ${
+                importFile.name
+              }`,
+            ),
           );
+          return;
         }
         // from { name, value } to name:{ name, value }
         const newSettings: MapToSettingObject = ((jsonImport.settings as unknown) as Setting[]).reduce(
@@ -133,11 +138,14 @@ class Settings extends React.Component<SettingProps> {
           (key) => !initialSettingKeys.includes(key),
         );
         if (unknownKeys.length > 0) {
-          throw new Error(
-            `${browser.i18n.getMessage(
-              'importCoreSettingsFailed',
-            )}:  ${unknownKeys.join(', ')}`,
+          this.setError(
+            new Error(
+              `${browser.i18n.getMessage(
+                'importCoreSettingsFailed',
+              )}:  ${unknownKeys.join(', ')}`,
+            ),
           );
+          return;
         }
         settingKeys.forEach((setting) => {
           if (settings[setting].value !== newSettings[setting].value) {
@@ -385,12 +393,94 @@ class Settings extends React.Component<SettingProps> {
           </div>
         </fieldset>
         <hr />
+        {(isFirefoxNotAndroid(cache) || isChrome(cache)) && (
+          <fieldset>
+            <legend>
+              {browser.i18n.getMessage('settingGroupOtherBrowsing')}
+            </legend>
+            <div className="alert alert-warning">
+              {browser.i18n.getMessage('browsingDataWarning')}
+            </div>
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '78') ||
+              isChrome(cache)) && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage('cacheCleanupText')}
+                  settingObject={settings.cacheCleanup}
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip
+                  hrefURL={'#other-browsing-data-cleanup-options'}
+                />
+              </div>
+            )}
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '77') ||
+              isChrome(cache)) && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage('indexedDBCleanupText')}
+                  settingObject={settings.indexedDBCleanup}
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip
+                  hrefURL={'#other-browsing-data-cleanup-options'}
+                />
+              </div>
+            )}
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '58') ||
+              isChrome(cache)) && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage('localstorageCleanupText')}
+                  settingObject={settings.localstorageCleanup}
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip
+                  hrefURL={'#other-browsing-data-cleanup-options'}
+                />
+              </div>
+            )}
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '78') ||
+              isChrome(cache)) && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage('pluginDataCleanupText')}
+                  settingObject={settings.pluginDataCleanup}
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip
+                  hrefURL={'#other-browsing-data-cleanup-options'}
+                />
+              </div>
+            )}
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '77') ||
+              isChrome(cache)) && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage('serviceWorkersCleanupText')}
+                  settingObject={settings.serviceWorkersCleanup}
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip
+                  hrefURL={'#other-browsing-data-cleanup-options'}
+                />
+              </div>
+            )}
+          </fieldset>
+        )}
+        {(isFirefoxNotAndroid(cache) || isChrome(cache)) && <hr />}
         <fieldset>
-          <legend>
-            {browser.i18n.getMessage('settingGroupOtherBrowsing')}
-          </legend>
+          <legend>{browser.i18n.getMessage('settingGroupExtension')}</legend>
           {isFirefoxNotAndroid(cache) && (
             <div className="form-group">
+              <div className="alert alert-warning">
+                {browser.i18n.getMessage('containerSiteDataWarning')}
+              </div>
               <CheckboxSetting
                 text={browser.i18n.getMessage(
                   'contextualIdentitiesEnabledText',
@@ -406,37 +496,6 @@ class Settings extends React.Component<SettingProps> {
               />
             </div>
           )}
-          {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '58') ||
-            isChrome(cache)) && (
-            <div className="form-group">
-              <CheckboxSetting
-                text={`${browser.i18n.getMessage(
-                  'localstorageCleanupText',
-                )} (Firefox 58+, Chrome 74+)`}
-                settingObject={settings.localstorageCleanup}
-                inline={true}
-                updateSetting={(payload) => onUpdateSetting(payload)}
-              />
-              <SettingsTooltip hrefURL={'#enable-localstorage-support'} />
-              {!settings.localstorageCleanup.value && (
-                <div className="alert alert-warning">
-                  {browser.i18n.getMessage('localstorageCleanupWarning')}
-                </div>
-              )}
-              {settings.contextualIdentities.value &&
-                settings.localstorageCleanup.value && (
-                  <div className="alert alert-warning">
-                    {browser.i18n.getMessage(
-                      'localstorageAndContextualIdentitiesWarning',
-                    )}
-                  </div>
-                )}
-            </div>
-          )}
-        </fieldset>
-        <hr />
-        <fieldset>
-          <legend>{browser.i18n.getMessage('settingGroupExtension')}</legend>
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('enableCleanupLogText')}
@@ -588,6 +647,13 @@ class Settings extends React.Component<SettingProps> {
         <br />
       </div>
     );
+  }
+
+  private setError(e: Error): void {
+    this.setState({
+      error: e.toString(),
+      success: '',
+    });
   }
 }
 

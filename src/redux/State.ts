@@ -22,6 +22,10 @@ export const initialState: State = {
       name: 'activeMode',
       value: false,
     },
+    cacheCleanup: {
+      name: 'cacheCleanup',
+      value: false,
+    },
     cleanCookiesFromOpenTabsOnStartup: {
       name: 'cleanCookiesFromOpenTabsOnStartup',
       value: false,
@@ -66,6 +70,10 @@ export const initialState: State = {
       name: 'greyCleanLocalstorage',
       value: false,
     },
+    indexedDBCleanup: {
+      name: 'indexedDBCleanup',
+      value: false,
+    },
     keepDefaultIcon: {
       name: 'keepDefaultIcon',
       value: false,
@@ -77,6 +85,14 @@ export const initialState: State = {
     notificationOnScreen: {
       name: 'notificationOnScreen',
       value: 3,
+    },
+    pluginDataCleanup: {
+      name: 'pluginDataCleanup',
+      value: false,
+    },
+    serviceWorkersCleanup: {
+      name: 'serviceWorkersCleanup',
+      value: false,
     },
     showNotificationAfterCleanup: {
       name: 'showNotificationAfterCleanup',

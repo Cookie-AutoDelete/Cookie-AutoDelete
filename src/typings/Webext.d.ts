@@ -12,11 +12,20 @@
  */
 
 declare namespace browser.browsingData {
-  function removeLocalStorage(removalOptions: {
-    hostnames?: string[];
-    origins?: string[]; // Added in Chrome 74+
-    since?: number;
-  }): Promise<void>;
+  function remove(
+    removalOptions: {
+      hostnames?: string[];
+      origins?: string[]; // Added in Chrome 74+
+      since?: number;
+    },
+    dataTypeSet: {
+      cache?: boolean;
+      indexedDB?: boolean;
+      localStorage?: boolean;
+      pluginData?: boolean;
+      serviceWorkers?: boolean;
+    },
+  ): Promise<void>;
 }
 
 declare namespace browser.cookies {

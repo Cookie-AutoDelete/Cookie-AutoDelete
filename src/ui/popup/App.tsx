@@ -24,6 +24,7 @@ import {
   clearLocalstorageForThisDomain,
 } from '../../services/CleanupService';
 import {
+  CADCOOKIENAME,
   extractMainDomain,
   getHostname,
   getSetting,
@@ -32,7 +33,6 @@ import {
   isFirefoxNotAndroid,
   isFirstPartyIsolate,
   localFileToRegex,
-  LSCLEANUPNAME,
   parseCookieStoreId,
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
@@ -139,7 +139,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     this.setState({
       cookieCount:
         cookies.length -
-        cookies.filter((cookie) => cookie.name === LSCLEANUPNAME).length,
+        cookies.filter((cookie) => cookie.name === CADCOOKIENAME).length,
     });
   }
 
@@ -291,79 +291,78 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
               text={browser.i18n.getMessage('cleanText')}
             />
 
-            <div className="dropdown">
+            <button
+              aria-haspopup="true"
+              aria-expanded="false"
+              className="btn btn-warning dropdown-toggle dropdown-toggle-split"
+              data-toggle="dropdown"
+              data-disabled="true"
+              role="menu"
+              style={{
+                borderLeftColor: 'rgb(176, 132, 0)',
+                transform: 'translate3d(-3px, 0px, 0px)',
+              }}
+            >
+              <span className="sr-only">
+                {browser.i18n.getMessage('dropdownAdditionalCleaningOptions')}
+              </span>
+            </button>
+            <div className="dropdown-menu dropdown-menu-right">
               <button
-                aria-haspopup="true"
-                aria-expanded="false"
-                className="btn btn-warning dropdown-toggle dropdown-toggle-split"
-                data-toggle="dropdown"
-                data-disabled="true"
-                role="menu"
-                style={{
-                  transform: 'translate3d(-3px, 0px, 0px)',
+                className="dropdown-item"
+                onClick={() => {
+                  onCookieCleanup({
+                    greyCleanup: false,
+                    ignoreOpenTabs: true,
+                  });
+                  this.animateFlash(this.cleanButtonContainerRef, true);
                 }}
+                title={browser.i18n.getMessage(
+                  'cookieCleanupIgnoreOpenTabsText',
+                )}
+                type="button"
               >
-                <span className="sr-only">
-                  {browser.i18n.getMessage('dropdownAdditionalCleaningOptions')}
-                </span>
+                {browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
               </button>
-              <div className="dropdown-menu dropdown-menu-right">
-                <button
-                  className="dropdown-item"
-                  onClick={() => {
-                    onCookieCleanup({
-                      greyCleanup: false,
-                      ignoreOpenTabs: true,
-                    });
-                    this.animateFlash(this.cleanButtonContainerRef, true);
-                  }}
-                  title={browser.i18n.getMessage(
-                    'cookieCleanupIgnoreOpenTabsText',
-                  )}
-                  type="button"
-                >
-                  {browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
-                </button>
-                <h6 className="dropdown-header">
-                  {browser.i18n.getMessage('cleanupActionsBypass')}
-                </h6>
-                <button
-                  className="dropdown-item"
-                  onClick={async () => {
-                    const success = await clearCookiesForThisDomain(state, tab);
-                    this.animateFlash(this.cleanButtonContainerRef, success);
-                  }}
-                  title={browser.i18n.getMessage('clearSiteDataForDomainText', [
-                    browser.i18n.getMessage('cookiesText'),
-                    hostname,
-                  ])}
-                  type="button"
-                >
-                  {browser.i18n.getMessage('clearSiteDataText', [
-                    browser.i18n.getMessage('cookiesText'),
-                  ])}
-                </button>
-                <div className="dropdown-header" />
-                <button
-                  className="dropdown-item"
-                  onClick={async () => {
-                    const success = await clearLocalstorageForThisDomain(
-                      state,
-                      tab,
-                    );
-                    this.animateFlash(this.cleanButtonContainerRef, success);
-                  }}
-                  title={browser.i18n.getMessage('clearSiteDataForDomainText', [
-                    browser.i18n.getMessage('localStorageText'),
-                    hostname,
-                  ])}
-                  type="button"
-                >
-                  {browser.i18n.getMessage('clearSiteDataText', [
-                    browser.i18n.getMessage('localStorageText'),
-                  ])}
-                </button>
-              </div>
+              <h6 className="dropdown-header">
+                {browser.i18n.getMessage('cleanupActionsBypass')}
+              </h6>
+              <button
+                className="dropdown-item"
+                onClick={async () => {
+                  const success = await clearCookiesForThisDomain(state, tab);
+                  this.animateFlash(this.cleanButtonContainerRef, success);
+                }}
+                title={browser.i18n.getMessage('clearSiteDataForDomainText', [
+                  browser.i18n.getMessage('cookiesText'),
+                  hostname,
+                ])}
+                type="button"
+              >
+                {browser.i18n.getMessage('clearSiteDataText', [
+                  browser.i18n.getMessage('cookiesText'),
+                ])}
+              </button>
+              <div className="dropdown-header" />
+              <button
+                className="dropdown-item"
+                onClick={async () => {
+                  const success = await clearLocalstorageForThisDomain(
+                    state,
+                    tab,
+                  );
+                  this.animateFlash(this.cleanButtonContainerRef, success);
+                }}
+                title={browser.i18n.getMessage('clearSiteDataForDomainText', [
+                  browser.i18n.getMessage('localStorageText'),
+                  hostname,
+                ])}
+                type="button"
+              >
+                {browser.i18n.getMessage('clearSiteDataText', [
+                  browser.i18n.getMessage('localStorageText'),
+                ])}
+              </button>
             </div>
           </div>
           <IconButton

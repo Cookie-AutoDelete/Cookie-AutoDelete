@@ -12,6 +12,7 @@
  */
 
 import {
+  CADCOOKIENAME,
   cadLog,
   extractMainDomain,
   getHostname,
@@ -20,7 +21,6 @@ import {
   isChrome,
   isFirefoxNotAndroid,
   isFirstPartyIsolate,
-  LSCLEANUPNAME,
   prepareCleanupDomains,
   prepareCookieDomain,
   returnMatchedExpressionObject,
@@ -29,6 +29,7 @@ import {
   throwErrorNotification,
   undefinedIsTrue,
 } from './Libs';
+import ActivityLog from '../ui/settings/components/ActivityLog';
 
 /** Prepare a cookie for deletion */
 export const prepareCookie = (
@@ -310,7 +311,8 @@ export const clearCookiesForThisDomain = async (
       firstPartyIsolate,
     ),
   );
-  const cookies = getCookies.filter((c) => c.name !== LSCLEANUPNAME);
+  // Filter out our own CAD cookie that cleans up other Browsing Data
+  const cookies = getCookies.filter((c) => c.name !== CADCOOKIENAME);
 
   if (cookies.length > 0) {
     let cookieDeletedCount = 0;
@@ -404,110 +406,182 @@ export const clearLocalstorageForThisDomain = async (
   }
 };
 
+export const removeSiteData = async (
+  siteData: string,
+  isChrome: boolean,
+  domains: string[],
+  debug: boolean,
+): Promise<boolean> => {
+  const listName = isChrome ? 'origins' : 'hostnames';
+  cadLog(
+    {
+      msg: `CleanupService.removeSiteData: Cleanup of ${listName} for ${siteData}:`,
+      x: domains,
+    },
+    debug,
+  );
+  try {
+    await browser.browsingData.remove(
+      {
+        [listName]: domains,
+      },
+      {
+        [siteData]: true,
+      },
+    );
+    return true;
+  } catch (e) {
+    cadLog(
+      {
+        msg: `CleanupService.removeSiteData:  browser.browsingData.remove of ${listName} for ${siteData} returned an error:`,
+        type: 'error',
+        x: e,
+      },
+      debug,
+    );
+    throwErrorNotification(e);
+    return false;
+  }
+};
+
 /** This will use the browsingData's hostname/origin attribute to delete any extra browsing data */
 export const otherBrowsingDataCleanup = async (
   state: State,
-  domains: string[],
-): Promise<boolean> => {
+  isSafeToCleanObjects: CleanReasonObject[],
+): Promise<ActivityLog['browsingDataCleanup']> => {
+  const chrome = isChrome(state.cache);
   const debug = getSetting(state, 'debugMode') as boolean;
-  if (getSetting(state, 'localstorageCleanup')) {
-    if (
-      isFirefoxNotAndroid(state.cache) &&
-      state.cache.browserVersion >= '58'
-    ) {
-      const cleanList: string[] = [];
-      for (const domain of domains) {
-        for (const d of prepareCleanupDomains(domain)) {
-          if (d !== '' && d.trim() !== '') cleanList.push(d);
-        }
-      }
-      if (cleanList.length === 0) return false;
-      const hostnames = [...new Set(cleanList)];
-      cadLog(
-        {
-          msg:
-            'CleanupService.otherBrowsingDataCleanup: Hostnames sent to Firefox LocalStorage Cleanup:',
-          x: hostnames,
-        },
-        debug,
-      );
-      await browser.browsingData
-        .removeLocalStorage({
-          hostnames,
-        })
-        .catch((e) => {
-          cadLog(
-            {
-              msg:
-                'CleanupService.otherBrowsingDataCleanup: removeLocalStorage returned an error:',
-              type: 'error',
-              x: e,
-            },
-            debug,
-          );
-          throw e;
-        });
-      return true;
-    }
-    if (isChrome(state.cache)) {
-      const cleanList: string[] = [];
-      for (const domain of domains) {
-        for (const d of prepareCleanupDomains(domain)) {
-          if (d !== '' && d.trim() !== '') {
-            cleanList.push(`http://${d}`);
-            cleanList.push(`https://${d}`);
-          }
-        }
-      }
-      if (cleanList.length === 0) return false;
-      const origins = [...new Set(cleanList)];
-      cadLog(
-        {
-          msg: `CleanupService.otherBrowsingDataCleanup: Origins sent to Chrome LocalStorage Cleanup`,
-          x: origins,
-        },
-        debug,
-      );
-      await browser.browsingData
-        .removeLocalStorage({
-          origins,
-        })
-        .catch((e) => {
-          cadLog(
-            {
-              msg:
-                'CleanupService.otherBrowsingDataCleanup: removeLocalStorage returned an error:',
-              type: 'error',
-              x: e,
-            },
-            debug,
-          );
-          throw e;
-        });
-      return true;
-    }
+  const browsingDataResult: ActivityLog['browsingDataCleanup'] = {};
+  if (
+    getSetting(state, 'cacheCleanup') &&
+    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '78') ||
+      chrome)
+  ) {
+    browsingDataResult.cache = await cleanSiteData(
+      'Cache',
+      isSafeToCleanObjects,
+      chrome,
+      debug,
+    );
   }
-  return false;
+  if (
+    getSetting(state, 'indexedDBCleanup') &&
+    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '77') ||
+      chrome)
+  ) {
+    browsingDataResult.indexedDB = await cleanSiteData(
+      'IndexedDB',
+      isSafeToCleanObjects,
+      chrome,
+      debug,
+    );
+  }
+  if (
+    getSetting(state, 'localstorageCleanup') &&
+    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '58') ||
+      chrome)
+  ) {
+    browsingDataResult.localStorage = await cleanSiteData(
+      'LocalStorage',
+      isSafeToCleanObjects,
+      chrome,
+      debug,
+    );
+  }
+  if (
+    getSetting(state, 'pluginDataCleanup') &&
+    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '78') ||
+      isChrome(state.cache))
+  ) {
+    browsingDataResult.pluginData = await cleanSiteData(
+      'PluginData',
+      isSafeToCleanObjects,
+      chrome,
+      debug,
+    );
+  }
+  if (
+    getSetting(state, 'serviceWorkersCleanup') &&
+    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '77') ||
+      isChrome(state.cache))
+  ) {
+    browsingDataResult.serviceWorkers = await cleanSiteData(
+      'ServiceWorkers',
+      isSafeToCleanObjects,
+      chrome,
+      debug,
+    );
+  }
+
+  return browsingDataResult;
 };
 
-/** Setup Localstorage cleaning */
-export const cleanLocalstorage = (bool?: boolean): boolean => {
+/**
+ * Filters incoming objects with the site data to clean.
+ * @param siteData The site data type
+ * @param cleanReasonObjects Objects returned from isSafeToClean()
+ * @param isChrome True if Chrome Browser
+ * @param debug True if debug mode.
+ */
+export const cleanSiteData = async (
+  siteData: string,
+  cleanReasonObjects: CleanReasonObject[],
+  isChrome: boolean,
+  debug: boolean,
+): Promise<string[] | undefined> => {
+  const domains = cleanReasonObjects
+    .filter((obj) => {
+      return filterSiteData(
+        obj,
+        `${siteData[0].toUpperCase()}${siteData.slice(1)}`,
+        debug,
+      );
+    })
+    .map((o) => o.cookie.domain)
+    .filter((domain) => domain.trim() !== '');
+
+  const cleanList: string[] = [];
+  for (const domain of domains) {
+    cleanList.push(...prepareCleanupDomains(domain, isChrome));
+  }
+
+  if (cleanList.length > 0) {
+    const r = await removeSiteData(
+      `${siteData[0].toLowerCase()}${siteData.slice(1)}`,
+      isChrome,
+      [...new Set(cleanList)],
+      debug,
+    );
+    if (r) {
+      return domains;
+    }
+  }
+  return undefined;
+};
+
+/** Setup SiteData cleaning.  Undefined will not be cleaned. */
+export const parseCleanSiteData = (bool?: boolean): boolean => {
   return bool === undefined ? false : bool;
 };
 
-/** Filter the deleted cookies */
-export const filterLocalstorage = (
+/** Filter the deleted cookies from site data type */
+export const filterSiteData = (
   obj: CleanReasonObject,
+  siteData: string,
   debug = false,
 ): boolean => {
   const notProtectedByOpenTab = obj.reason !== ReasonKeep.OpenTabs;
   const notInAnyLists =
     obj.reason === ReasonClean.NoMatchedExpression ||
     obj.reason === ReasonClean.StartupNoMatchedExpression;
-  const listCleanLocalstorage = cleanLocalstorage(
-    obj.expression ? obj.expression.cleanLocalStorage : undefined,
-  );
   const nonBlankCookieHostName = obj.cookie.hostname.trim() !== '';
+  const canCleanSiteData = parseCleanSiteData(
+    obj.expression
+      ? (obj.expression[`clean${siteData}` as keyof Expression] as
+          | boolean
+          | undefined)
+      : undefined,
+  );
   const cro: CleanReasonObject = {
     ...obj,
     cookie: {
@@ -517,23 +591,29 @@ export const filterLocalstorage = (
   };
   cadLog(
     {
-      msg: 'CleanupService.filterLocalstorage: debug data.',
+      msg: 'CleanupService.filterSiteData: debug data.',
       x: {
+        siteData,
         notProtectedByOpenTab,
         notInAnyLists,
-        listCleanLocalstorage,
+        canCleanSiteData,
         nonBlankCookieHostName,
-        clean1: notInAnyLists,
-        clean2: notProtectedByOpenTab && listCleanLocalstorage,
+        clean2: notProtectedByOpenTab && canCleanSiteData,
         CleanReasonObject: cro,
       },
     },
     debug,
   );
-  return (
-    (notInAnyLists || (notProtectedByOpenTab && listCleanLocalstorage)) &&
-    nonBlankCookieHostName
+  const r =
+    (notInAnyLists || (notProtectedByOpenTab && canCleanSiteData)) &&
+    nonBlankCookieHostName;
+  cadLog(
+    {
+      msg: `CleanupService.filterSiteData: ${siteData} cleanup returned ${r} for ${cro.cookie.hostname}`,
+    },
+    debug,
   );
+  return r;
 };
 
 /**
@@ -576,14 +656,19 @@ export const cleanCookiesOperation = async (
     greyCleanup: false,
     ignoreOpenTabs: false,
   },
-): Promise<Record<string, any> | undefined> => {
+): Promise<Record<string, any>> => {
   const debug = getSetting(state, 'debugMode') as boolean;
-  let allLocalstorageToClean: CleanReasonObject[] = [];
+  const setOfDeletedDomainCaches = new Set<string>();
   const setOfDeletedDomainCookies = new Set<string>();
+  const setOfDeletedDomainIndexedDB = new Set<string>();
+  const setOfDeletedDomainLocalStorage = new Set<string>();
+  const setOfDeletedDomainPluginData = new Set<string>();
+  const setOfDeletedDomainServiceWorkers = new Set<string>();
   const cachedResults: ActivityLog = {
     dateTime: new Date().toString(),
     recentlyCleaned: 0,
     storeIds: {},
+    browsingDataCleanup: {},
   };
   const openTabDomains = await returnContainersOfOpenTabDomains(
     cleanupProperties.ignoreOpenTabs,
@@ -739,7 +824,6 @@ export const cleanCookiesOperation = async (
         true,
       );
       throwErrorNotification(e);
-      return undefined;
     }
 
     if (markedForDeletion.length !== 0) {
@@ -754,42 +838,44 @@ export const cleanCookiesOperation = async (
       );
     });
 
-    const markedForLocalStorageDeletion = isSafeToCleanObjects.filter((obj) => {
-      const r = filterLocalstorage(obj, debug);
-      cadLog(
-        {
-          msg: `CleanupService.filterLocalstorage: returned ${r} for ${obj.cookie.hostname}`,
-        },
-        debug,
-      );
-      return r;
-    });
-
-    // Side effects
-    allLocalstorageToClean = [
-      ...allLocalstorageToClean,
-      ...markedForLocalStorageDeletion,
-    ];
-
-    // Clean other browsingdata.  Pass in Domain for specific cleanup for LocalStorage.
-    const domainsToClean = allLocalstorageToClean
-      .map((obj) => obj.cookie.domain)
-      .filter((domain) => domain.trim() !== '');
-
-    try {
-      await otherBrowsingDataCleanup(state, domainsToClean);
-    } catch (e) {
-      cadLog(
-        {
-          type: 'error',
-          x: { e, domainsToClean },
-        },
-        true,
-      );
-      // if it reaches this point then cookies were deleted, so don't return undefined
-      throwErrorNotification(e);
+    // Handle all other browsingData cleanups.
+    const storeResults = await otherBrowsingDataCleanup(
+      state,
+      isSafeToCleanObjects,
+    );
+    if (storeResults.cache) {
+      storeResults.cache.forEach((d) => {
+        setOfDeletedDomainCaches.add(d);
+      });
+    }
+    if (storeResults.indexedDB) {
+      storeResults.indexedDB.forEach((d) => {
+        setOfDeletedDomainIndexedDB.add(d);
+      });
+    }
+    if (storeResults.localStorage) {
+      storeResults.localStorage.forEach((d) => {
+        setOfDeletedDomainLocalStorage.add(d);
+      });
+    }
+    if (storeResults.pluginData) {
+      storeResults.pluginData.forEach((d) => {
+        setOfDeletedDomainPluginData.add(d);
+      });
+    }
+    if (storeResults.serviceWorkers) {
+      storeResults.serviceWorkers.forEach((d) => {
+        setOfDeletedDomainServiceWorkers.add(d);
+      });
     }
   }
+  cachedResults.browsingDataCleanup = {
+    cache: Array.from(setOfDeletedDomainCaches),
+    indexedDB: Array.from(setOfDeletedDomainIndexedDB),
+    localStorage: Array.from(setOfDeletedDomainLocalStorage),
+    pluginData: Array.from(setOfDeletedDomainPluginData),
+    serviceWorkers: Array.from(setOfDeletedDomainServiceWorkers),
+  };
 
   // Scrub private cookieStores
   const storesIdsToScrub = ['firefox-private', 'private', '1'];

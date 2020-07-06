@@ -15,7 +15,7 @@ import ipRegex from 'ip-regex';
 import shortid from 'shortid';
 
 /* --- CONSTANTS --- */
-export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
+export const CADCOOKIENAME = 'CookieAutoDeleteBrowsingDataCleanup';
 
 /* --- FUNCTIONS --- */
 /**
@@ -211,7 +211,7 @@ export const getStoreId = (state: State, storeId: string): string => {
 export const globExpressionToRegExp = (glob: string): string => {
   const normalizedGlob = glob.trim();
   if (normalizedGlob.slice(0, 1) === '/' && normalizedGlob.slice(-1) === '/') {
-    // Treat /str/ as regular exprssion str
+    // Treat /str/ as regular expression str
     return normalizedGlob.slice(1, -1);
   }
 
@@ -344,12 +344,15 @@ export const parseCookieStoreId = (
 /**
  * Prepare Domains for all cleanups.
  */
-export const prepareCleanupDomains = (domain: string): string[] => {
+export const prepareCleanupDomains = (
+  domain: string,
+  isChrome: boolean,
+): string[] => {
   if (domain.trim() === '') return [];
   const www = new RegExp(/^www[0-9a-z]?\./i);
   const sDot = new RegExp(/^\./);
   let d: string = domain.trim();
-  const domains = new Set();
+  const domains = new Set<string>();
   if (sDot.test(d)) {
     // dot at beginning.  .sub.doma.in(.)
     d = d.slice(1);
@@ -363,7 +366,16 @@ export const prepareCleanupDomains = (domain: string): string[] => {
     domains.add(`.www.${d}`); // .www.sub.doma.in
   }
 
-  return Array.from(domains) as string[];
+  if (isChrome) {
+    const origins: string[] = [];
+    for (const d of domains) {
+      origins.push(`http://${d}`);
+      origins.push(`https://${d}`);
+    }
+    return origins;
+  }
+
+  return Array.from(domains);
 };
 
 /**

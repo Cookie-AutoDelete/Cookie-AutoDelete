@@ -129,11 +129,10 @@ export const settings = (
 ): MapToSettingObject => {
   switch (action.type) {
     case ReduxConstants.UPDATE_SETTING: {
-      const { name } = action.payload;
       const newObject = {
         ...state,
       };
-      newObject[name] = {
+      newObject[action.payload.name] = {
         ...action.payload,
       };
       return newObject;
@@ -153,11 +152,8 @@ export const cookieDeletedCounterTotal = (
   action: ReduxAction,
 ): number => {
   switch (action.type) {
-    case ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER: {
-      const incrementBy = action.payload === undefined ? 1 : action.payload;
-      return state + incrementBy;
-    }
-
+    case ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER:
+      return state + (action.payload === undefined ? 1 : action.payload);
     case ReduxConstants.RESET_ALL:
     case ReduxConstants.RESET_COOKIE_DELETED_COUNTER:
       return 0;
@@ -208,7 +204,10 @@ export const activityLog = (
   }
 };
 
-export const cache = (state: CacheMap = {}, action: ReduxAction): Record<string, unknown> => {
+export const cache = (
+  state: CacheMap = {},
+  action: ReduxAction,
+): Record<string, unknown> => {
   switch (action.type) {
     case ReduxConstants.ADD_CACHE: {
       const newCacheObject = {

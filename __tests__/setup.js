@@ -46,11 +46,27 @@ const apis = {
     fn: ['clear', 'clearAll', 'create', 'get', 'getAll'],
   },
   browserAction: {
-    fn: ['getBadgeText', 'getTitle', 'setBadgeBackgroundColor', 'setBadgeText', 'setBadgeTextColor', 'setIcon', 'setTitle'],
+    fn: [
+      'getBadgeText',
+      'getTitle',
+      'setBadgeBackgroundColor',
+      'setBadgeText',
+      'setBadgeTextColor',
+      'setIcon',
+      'setTitle',
+    ],
     events: ['onClicked'],
   },
   browsingData: {
-    fn: ['remove', 'removeCache', 'removeCookies', 'removeDownloads', 'removeFormData', 'removeLocalStorage', 'removePluginData'],
+    fn: [
+      'remove',
+      'removeCache',
+      'removeCookies',
+      'removeDownloads',
+      'removeFormData',
+      'removeLocalStorage',
+      'removePluginData',
+    ],
   },
   contextualIdentities: {
     fn: ['create', 'get', 'query', 'remove', 'update'],
@@ -72,24 +88,57 @@ const apis = {
     events: ['onClicked', 'onClosed'],
   },
   pageAction: {
-    fn: ['getPopup', 'getTitle', 'hide', 'setIcon', 'setPopup', 'setTitle', 'show'],
+    fn: [
+      'getPopup',
+      'getTitle',
+      'hide',
+      'setIcon',
+      'setPopup',
+      'setTitle',
+      'show',
+    ],
     events: ['onClicked'],
   },
   permissions: {
     fn: ['contains', 'getAll', 'remove', 'request'],
   },
   runtime: {
-    fn: ['connect', 'getBackgroundPage', 'getBrowserInfo', 'getManifest', 'getPlatformInfo', 'getURL', 'openOptionsPage', 'reload', 'sendMessage'],
+    fn: [
+      'connect',
+      'getBackgroundPage',
+      'getBrowserInfo',
+      'getManifest',
+      'getPlatformInfo',
+      'getURL',
+      'openOptionsPage',
+      'reload',
+      'sendMessage',
+    ],
     events: ['onConnect', 'onInstalled', 'onMessage', 'onStartup'],
   },
   tabs: {
-    fn: ['connect', 'create', 'executeScript', 'get', 'getCurrent', 'query', 'reload', 'sendMessage', 'update'],
+    fn: [
+      'connect',
+      'create',
+      'executeScript',
+      'get',
+      'getCurrent',
+      'query',
+      'reload',
+      'sendMessage',
+      'update',
+    ],
     events: ['onDetached', 'onRemoved', 'onSelectionChanged', 'onUpdated'],
   },
   webRequest: {
-    events: ['onCompleted', 'onErrorOccurred', 'onHeadersReceived', 'onResponseStarted'],
-  }
-}
+    events: [
+      'onCompleted',
+      'onErrorOccurred',
+      'onHeadersReceived',
+      'onResponseStarted',
+    ],
+  },
+};
 
 const browser = {
   extension: {
@@ -110,18 +159,18 @@ const browser = {
 };
 
 // Add in rest of webextension functions
-Object.keys(apis).forEach(api => {
+Object.keys(apis).forEach((api) => {
   if (!browser[api]) {
     browser[api] = {};
   }
-  Object.keys(apis[api]).forEach(a => {
+  Object.keys(apis[api]).forEach((a) => {
     if (a === 'events') {
-      apis[api][a].forEach(ev => {
+      apis[api][a].forEach((ev) => {
         // e.g. browser.cookies.onChanged = eventListeners;
         browser[api][ev] = eventListeners;
       });
     } else if (a === 'fn') {
-      apis[api][a].forEach(fn => {
+      apis[api][a].forEach((fn) => {
         // e.g. browser.cookies.getAll = jest.fn();
         browser[api][fn] = jest.fn();
       });
@@ -133,14 +182,16 @@ Object.keys(apis).forEach(api => {
 
 global.browser = browser;
 global.chrome = browser;
-// Hide test console debug logs from jest results.
 
+/**
+ * This hides the test console debug logs from jest results.
+ */
 global.console = {
-  _error: console.error,
-  _debug: console.debug,
-  _info: console.info,
-  _log: console.log,
-  _warn: console.warn,
+  _error: console.error, // eslint-disable-line no-console
+  _debug: console.debug, // eslint-disable-line no-console
+  _info: console.info, // eslint-disable-line no-console
+  _log: console.log, // eslint-disable-line no-console
+  _warn: console.warn, // eslint-disable-line no-console
   error: jest.fn(),
   debug: jest.fn(),
   info: jest.fn(),
@@ -148,6 +199,11 @@ global.console = {
   warn: jest.fn(),
 };
 
+/**
+ * Generate Jest Mock Spies for a given class.
+ * @param parent The class to spy on.
+ * @returns {{}} an object which contains the generated spy functions
+ */
 function generateSpies(parent) {
   const spyParent = {};
   for (const k of Object.keys(parent)) {

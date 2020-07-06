@@ -40,8 +40,12 @@ type State = Readonly<{
 
 type Expression = Readonly<{
   expression: string;
-  cleanLocalStorage?: boolean;
   cleanAllCookies?: boolean;
+  cleanCache?: boolean;
+  cleanIndexedDB?: boolean;
+  cleanLocalStorage?: boolean;
+  cleanPluginData?: boolean;
+  cleanServiceWorkers?: boolean;
   listType: ListType;
   storeId: string;
   id?: string;

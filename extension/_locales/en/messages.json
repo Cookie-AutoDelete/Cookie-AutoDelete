@@ -45,6 +45,14 @@
     "message": "Auto-clean enabled",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.",
+    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
+  },
+  "cacheCleanupText": {
+    "message": "Enable Cache Cleanup (Firefox 78+, Chrome 74+)",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+  },
   "chromeDebugMode": {
     "message": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
@@ -112,6 +120,10 @@
   "consoleDebugMode": {
     "message": "Click on the Console Tab",
     "description": "Click on the Console Tab.  Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.",
+    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Manual Cleaning Menu",
@@ -309,17 +321,61 @@
     "message": "Import Expressions",
     "description": "Import Expressions"
   },
+  "indexedDBCleanupText": {
+    "message": "Enable indexedDB Cleanup (Firefox 77+, Chrome 74+)",
+    "description": "Enable indexedDB Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+  },
   "keepAllCookiesText": {
     "message": "Keep All Cookies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+  },
+  "keepAllCookiesGreyText": {
+    "message": "Keep All Cookies until restart",
+    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepCacheText": {
+    "message": "Keep Cache",
+    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+  },
+  "keepCacheGreyText": {
+    "message": "Keep Cache until restart",
+    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
   },
   "keepDefaultIcon": {
     "message": "Keep Default Icons on all list types",
     "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
   },
+  "keepIndexedDBText": {
+    "message": "Keep IndexedDB",
+    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+  },
+  "keepIndexedDBGreyText": {
+    "message": "Keep IndexedDB until restart",
+    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+  },
   "keepLocalstorageText": {
     "message": "Keep LocalStorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "Keep LocalStorage until restart",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepPluginDataText": {
+    "message": "Keep Plugin Data",
+    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+  },
+  "keepPluginDataGreyText": {
+    "message": "Keep Plugin Data until restart",
+    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepServiceWorkersText": {
+    "message": "Keep Service Workers",
+    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+  },
+  "keepServiceWorkersGreyText": {
+    "message": "Keep Service Workers until restart",
+    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
   },
   "keepText": {
     "message": "Keep",
@@ -329,17 +385,9 @@
     "message": "List Type",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localstorageCleanupText": {
-    "message": "LocalStorage Cleanup",
-    "description": "LocalStorage Cleanup"
-  },
-  "localstorageCleanupWarning": {
-    "message": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+  "localStorageCleanupText": {
+    "message": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+)",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+).  Found in CAD Settings."
   },
   "localStorageText": {
     "message": "LocalStorage",
@@ -478,6 +526,10 @@
   "optionsText": {
     "message": "Options",
     "description": "Options"
+  },
+  "pluginDataCleanupText": {
+    "message": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+)",
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "popupCookieCountText": {
     "message": "Cookie(s)",
@@ -658,6 +710,10 @@
   "secondsText": {
     "message": "second(s)",
     "description": "second(s)"
+  },
+  "serviceWorkersCleanupText": {
+    "message": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+)",
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
   },
   "sessionStorageText": {
     "message": "SessionStorage",
