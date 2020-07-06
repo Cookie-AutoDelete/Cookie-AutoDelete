@@ -3,7 +3,7 @@
     {
       "version": "3.5.0-unreleased",
       "notes": [
-        "Added:  Cleanup of additional site data types by hostname.  For backwards compatibility, existing rules will be keeping all newly implemented site data types.  Closes #792 (Plugin Data-Firefox 78+ and Chrome), #551 (Cache-Firefox 77+ and Chrome), #287 (Service Workers-Firefox 77+ and Chrome), #283 (ETag/Cache), #171 (indexedDB-Firefox 77+ and Chrome))",
+        "Added:  Cleanup of additional site data types by hostname.  For backwards compatibility, existing rules will be keeping all newly implemented site data types.  Closes #792 (Plugin Data-Firefox 78+ and Chrome), #551 (Cache-Firefox 77+ and Chrome), #287 (Service Workers-Firefox 77+ and Chrome), #283 (ETag/Cache), #264 (Flash Cookies/Plugin Data) #171 (indexedDB-Firefox 77+ and Chrome))",
         "Added:  Cleanup of Expired Cookies regardless of lists.  Closes #344.",
         "Added:  Clear Cookie Counter function.  Will only clear counters and not activity log.  Added as enhancement from #777",
         "Changed:  Minor CSS Styling on Clean button + dropdown.  Enhanced based on PR#793.",
