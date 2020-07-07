@@ -19,6 +19,7 @@ import {
 import {
   clearCookiesForThisDomain,
   clearLocalstorageForThisDomain,
+  clearSiteDataForThisDomain,
 } from './CleanupService';
 import {
   cadLog,
@@ -34,8 +35,6 @@ export default class ContextMenuEvents extends StoreUser {
   public static MenuID = {
     ACTIVE_MODE: 'cad-active-mode',
     CLEAN: 'cad-clean',
-    CLEAN_COOKIES: 'cad-clean-cookies',
-    CLEAN_LOCALSTORAGE: 'cad-clean-localstorage',
     CLEAN_OPEN: 'cad-clean-open',
     LINK_ADD_GREY_DOMAIN: 'cad-link-add-grey-domain',
     LINK_ADD_GREY_SUBS: 'cad-link-add-grey-subs',
@@ -53,6 +52,7 @@ export default class ContextMenuEvents extends StoreUser {
     PARENT_PAGE_SUBS: 'cad-parent-page-subs',
     PARENT_SELECT_DOMAIN: 'cad-parent-select-domain',
     PARENT_SELECT_SUBS: 'cad-parent-select-subs',
+    MANUAL_CLEAN_SITEDATA: 'cad-clean-sitedata-',
     SELECT_ADD_GREY_DOMAIN: 'cad-select-add-grey-domain',
     SELECT_ADD_GREY_SUBS: 'cad-select-add-grey-subs',
     SELECT_ADD_WHITE_DOMAIN: 'cad-select-add-white-domain',
@@ -60,7 +60,7 @@ export default class ContextMenuEvents extends StoreUser {
     SETTINGS: 'cad-settings',
   };
 
-  public static menuInit() {
+  public static menuInit(): void {
     if (!browser.contextMenus) return;
     if (!getSetting(StoreUser.store.getState(), 'contextMenus') as boolean)
       return;
@@ -118,27 +118,73 @@ export default class ContextMenuEvents extends StoreUser {
       },
       ContextMenuEvents.onCreatedOrUpdated,
     );
-    // Clean cookies for domain
+    // Clean all available site data for domain
     browser.contextMenus.create(
       {
         contexts: defaultContexts,
-        id: ContextMenuEvents.MenuID.CLEAN_COOKIES,
+        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}All`,
         parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('clearSiteDataText', [
-          browser.i18n.getMessage('cookiesText'),
-        ]),
+        title: browser.i18n.getMessage('manualCleanSiteDataAll'),
       },
       ContextMenuEvents.onCreatedOrUpdated,
     );
-    // Clean localstorage for domain
+    // Clean Cache for domain
     browser.contextMenus.create(
       {
         contexts: defaultContexts,
-        id: ContextMenuEvents.MenuID.CLEAN_LOCALSTORAGE,
+        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}Cache`,
         parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('clearSiteDataText', [
-          browser.i18n.getMessage('localStorageText'),
-        ]),
+        title: browser.i18n.getMessage('manualCleanSiteDataCache'),
+      },
+      ContextMenuEvents.onCreatedOrUpdated,
+    );
+    // Clean Cookies for domain
+    browser.contextMenus.create(
+      {
+        contexts: defaultContexts,
+        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}Cookies`,
+        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
+        title: browser.i18n.getMessage('manualCleanSiteDataCookies'),
+      },
+      ContextMenuEvents.onCreatedOrUpdated,
+    );
+    // Clean IndexedDB for domain
+    browser.contextMenus.create(
+      {
+        contexts: defaultContexts,
+        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}IndexedDB`,
+        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
+        title: browser.i18n.getMessage('manualCleanSiteDataIndexedDB'),
+      },
+      ContextMenuEvents.onCreatedOrUpdated,
+    );
+    // Clean Localstorage for domain
+    browser.contextMenus.create(
+      {
+        contexts: defaultContexts,
+        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}LocalStorage`,
+        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
+        title: browser.i18n.getMessage('manualCleanSiteDataLocalStorage'),
+      },
+      ContextMenuEvents.onCreatedOrUpdated,
+    );
+    // Clean Plugin Data for domain
+    browser.contextMenus.create(
+      {
+        contexts: defaultContexts,
+        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}PluginData`,
+        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
+        title: browser.i18n.getMessage('manualCleanSiteDataPluginData'),
+      },
+      ContextMenuEvents.onCreatedOrUpdated,
+    );
+    // Clean Service Workers for domain
+    browser.contextMenus.create(
+      {
+        contexts: defaultContexts,
+        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}ServiceWorkers`,
+        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
+        title: browser.i18n.getMessage('manualCleanSiteDataServiceWorkers'),
       },
       ContextMenuEvents.onCreatedOrUpdated,
     );
@@ -374,7 +420,7 @@ export default class ContextMenuEvents extends StoreUser {
     }
   }
 
-  public static async menuClear() {
+  public static async menuClear(): Promise<void> {
     await browser.contextMenus.removeAll();
     browser.contextMenus.onClicked.removeListener(
       ContextMenuEvents.onContextMenuClicked,
@@ -388,7 +434,7 @@ export default class ContextMenuEvents extends StoreUser {
     );
   }
 
-  public static updateMenuItemCheckbox(id: string, checked: boolean) {
+  public static updateMenuItemCheckbox(id: string, checked: boolean): void {
     browser.contextMenus
       .update(id, {
         checked,
@@ -403,7 +449,7 @@ export default class ContextMenuEvents extends StoreUser {
     );
   }
 
-  public static onCreatedOrUpdated() {
+  public static onCreatedOrUpdated(): void {
     const debug = getSetting(
       StoreUser.store.getState(),
       'debugMode',
@@ -429,7 +475,7 @@ export default class ContextMenuEvents extends StoreUser {
   public static async onContextMenuClicked(
     info: browser.contextMenus.OnClickData,
     tab: browser.tabs.Tab,
-  ) {
+  ): Promise<void> {
     const debug = getSetting(
       StoreUser.store.getState(),
       'debugMode',
@@ -447,6 +493,78 @@ export default class ContextMenuEvents extends StoreUser {
     );
     const cookieStoreId = (tab && tab.cookieStoreId) || '';
     const selectionText = (info && info.selectionText) || '';
+    if (
+      info.menuItemId
+        .toString()
+        .startsWith(ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA)
+    ) {
+      const siteData = info.menuItemId
+        .toString()
+        .slice(ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA.length);
+      const hostname = getHostname(tab.url);
+      if (!hostname) {
+        cadLog(
+          {
+            msg: `ContextMenuEvents.onContextMenuClicked cannot clean ${siteData} from tab:`,
+            type: 'warn',
+            x: { tab },
+          },
+          debug,
+        );
+        showNotification({
+          duration: getSetting(
+            StoreUser.store.getState(),
+            'notificationOnScreen',
+          ) as number,
+          msg: `${browser.i18n.getMessage('manualCleanError', [
+            browser.i18n.getMessage(
+              `${siteData[0].toLowerCase()}${siteData.slice(1)}Text`,
+            ),
+          ])}\n
+              ${tab.title}\n\n
+              ${tab.url}
+              `,
+        });
+        return;
+      }
+      cadLog(
+        {
+          msg: `ContextMenuEvents.onContextMenuClicked triggered Clean Site Data (${siteData}) For This Domain.`,
+        },
+        debug,
+      );
+      switch (siteData) {
+        case 'All':
+        case 'Cache':
+        case 'IndexedDB':
+        case 'PluginData':
+        case 'ServiceWorkers':
+          await clearSiteDataForThisDomain(
+            StoreUser.store.getState(),
+            siteData,
+            hostname,
+          );
+          break;
+        case 'Cookies':
+          await clearCookiesForThisDomain(StoreUser.store.getState(), tab);
+          break;
+        case 'LocalStorage':
+          await clearLocalstorageForThisDomain(StoreUser.store.getState(), tab);
+          break;
+        default:
+          cadLog(
+            {
+              msg: `ContextMenuEvents.onContextMenuClicked received unknown manual clean site data type: ${info.menuItemId}`,
+              type: 'warn',
+              x: { info, tab },
+            },
+            debug,
+          );
+          break;
+      }
+      return;
+    }
+
     switch (info.menuItemId) {
       case ContextMenuEvents.MenuID.CLEAN:
         cadLog(
@@ -475,69 +593,6 @@ export default class ContextMenuEvents extends StoreUser {
             ignoreOpenTabs: true,
           }),
         );
-        break;
-      case ContextMenuEvents.MenuID.CLEAN_COOKIES:
-        {
-          cadLog(
-            {
-              msg: `ContextMenuEvents.onContextMenuClicked triggered Clean All Cookies For This Domain.`,
-            },
-            debug,
-          );
-          if (getHostname(tab.url)) {
-            await clearCookiesForThisDomain(StoreUser.store.getState(), tab);
-          } else {
-            cadLog(
-              {
-                msg: `ContextMenuEvents.onContextMenuClicked cannot clean cookies from tab:`,
-                type: 'warn',
-                x: { tab },
-              },
-              debug,
-            );
-            showNotification({
-              duration: getSetting(
-                StoreUser.store.getState(),
-                'notificationOnScreen',
-              ) as number,
-              msg: `${browser.i18n.getMessage('manualCleanError', [
-                browser.i18n.getMessage('cookiesText'),
-              ])}\n
-              ${tab.title}\n\n
-              ${tab.url}
-              `,
-            });
-          }
-        }
-        break;
-      case ContextMenuEvents.MenuID.CLEAN_LOCALSTORAGE:
-        {
-          cadLog(
-            {
-              msg: `ContextMenuEvents.onContextMenuClicked triggered Clean LocalStorage For This Domain.`,
-            },
-            debug,
-          );
-          if (getHostname(tab.url)) {
-            await clearLocalstorageForThisDomain(
-              StoreUser.store.getState(),
-              tab,
-            );
-          } else {
-            showNotification({
-              duration: getSetting(
-                StoreUser.store.getState(),
-                'notificationOnScreen',
-              ) as number,
-              msg: `${browser.i18n.getMessage('manualCleanError', [
-                browser.i18n.getMessage('localStorageText'),
-              ])}\n
-              ${tab.title}\n\n
-              ${tab.url}
-              `,
-            });
-          }
-        }
         break;
       case ContextMenuEvents.MenuID.LINK_ADD_GREY_DOMAIN:
         cadLog(
@@ -863,6 +918,7 @@ export default class ContextMenuEvents extends StoreUser {
           StoreUser.store.dispatch<any>(
             updateSetting({
               name: 'activeMode',
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               value: info.checked!,
             }),
           );
@@ -897,7 +953,7 @@ export default class ContextMenuEvents extends StoreUser {
     input: string,
     listType: ListType,
     cookieStoreId: string | undefined,
-  ) {
+  ): void {
     if (input.trim() === '' || input === '*.') {
       showNotification({
         duration: getSetting(

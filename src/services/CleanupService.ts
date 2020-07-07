@@ -406,6 +406,42 @@ export const clearLocalstorageForThisDomain = async (
   }
 };
 
+export const clearSiteDataForThisDomain = async (
+  state: State,
+  siteData: string,
+  hostname: string,
+): Promise<boolean> => {
+  if (hostname.trim() === '') return false;
+  const debug = getSetting(state, 'debugMode') as boolean;
+  cadLog(
+    {
+      msg: `CleanupService.clearSiteDataForThisDomain: Received ${siteData} clean request for ${hostname}.`,
+    },
+    debug,
+  );
+  const domains = prepareCleanupDomains(hostname, isChrome(state.cache));
+  if (siteData === 'All') {
+    for (const sd of [
+      'cache',
+      'cookies',
+      'indexedDB',
+      'localStorage',
+      'pluginData',
+      'serviceWorkers',
+    ]) {
+      await removeSiteData(sd, isChrome(state.cache), domains, debug);
+    }
+  } else {
+    await removeSiteData(
+      `${siteData[0].toLowerCase()}${siteData.slice(1)}`,
+      isChrome(state.cache),
+      domains,
+      debug,
+    );
+  }
+  return true;
+};
+
 export const removeSiteData = async (
   siteData: string,
   isChrome: boolean,

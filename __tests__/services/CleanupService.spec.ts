@@ -7,6 +7,7 @@ import {
   cleanSiteData,
   clearCookiesForThisDomain,
   clearLocalstorageForThisDomain,
+  clearSiteDataForThisDomain,
   filterSiteData,
   isSafeToClean,
   otherBrowsingDataCleanup,
@@ -844,6 +845,19 @@ describe('CleanupService', () => {
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(spyLib.throwErrorNotification).toBeCalledTimes(1);
       expect(spyLib.showNotification).toBeCalledTimes(1);
+    });
+  });
+
+  describe('clearSiteDataForThisDomain()', () => {
+    it('should return false if hostname is empty', async () => {
+      expect(await clearSiteDataForThisDomain(initialState, 'test', '')).toBe(
+        false,
+      );
+    });
+    it('should return false if hostname only has whitespaces', async () => {
+      expect(await clearSiteDataForThisDomain(initialState, 'test', '  ')).toBe(
+        false,
+      );
     });
   });
 
