@@ -53,6 +53,10 @@
     "message": "Abilita Pulizia per le Schede Scartate/Caricate",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
+  "cleanExpiredCookiesText": {
+    "message": "Pulisci tutti i cookie scaduti",
+    "description": "Clean All Expired Cookies.  Found in Settings."
+  },
   "cleanIgnoringOpenTabsText": {
     "message": "Pulisci, incluse le schede aperte",
     "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -483,6 +487,16 @@
     "message": "Come funzionano le espressioni?",
     "description": "How do Expressions work?"
   },
+  "reasonCleanCookieExpired": {
+    "message": "Pulizia parziale a causa dei cookie scaduti da $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
   "reasonCleanCookieName": {
     "message": "Pulizia parziale a causa di $matchedExpression$ trovato in $listType$",
     "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
@@ -610,6 +624,10 @@
   "reportIssuesText": {
     "message": "Segnala problemi e suggerisci funzionalità",
     "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "Azzera contatori cookie",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
   },
   "resetExtensionDataText": {
     "message": "Ripristina dati estensione",
