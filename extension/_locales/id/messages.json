@@ -329,11 +329,11 @@
     "message": "Mengaktifkan Penghapusan Localstorage dan Tab Container mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API.  LocalStorage akan dihapus oleh hostname di SEMUA wadah.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Hapus Localstorage",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

@@ -26,6 +26,8 @@ import {
   returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
   showNotification,
+  SITEDATATYPES,
+  sleep,
   throwErrorNotification,
   undefinedIsTrue,
 } from './Libs';
@@ -364,11 +366,11 @@ export const clearCookiesForThisDomain = async (
   return cookies.length > 0;
 };
 
-export const clearLocalstorageForThisDomain = async (
+export const clearLocalStorageForThisDomain = async (
   state: State,
   tab: browser.tabs.Tab,
 ): Promise<boolean> => {
-  // Using this method to ensure cross browser compatiblity
+  // Using this method to ensure cross browser compatibility
   try {
     let local = 0;
     let session = 0;
@@ -408,7 +410,7 @@ export const clearLocalstorageForThisDomain = async (
 
 export const clearSiteDataForThisDomain = async (
   state: State,
-  siteData: string,
+  siteData: SiteDataType | 'All',
   hostname: string,
 ): Promise<boolean> => {
   if (hostname.trim() === '') return false;
@@ -419,22 +421,22 @@ export const clearSiteDataForThisDomain = async (
     },
     debug,
   );
-  const domains = prepareCleanupDomains(hostname, isChrome(state.cache));
+  const domains = prepareCleanupDomains(hostname, state.cache.browserDetect);
   if (siteData === 'All') {
-    for (const sd of [
-      'cache',
-      'cookies',
-      'indexedDB',
-      'localStorage',
-      'pluginData',
-      'serviceWorkers',
-    ]) {
-      await removeSiteData(sd, isChrome(state.cache), domains, debug);
+    for (const sd of SITEDATATYPES) {
+      await removeSiteData(
+        state,
+        sd,
+        state.cache.browserDetect,
+        domains,
+        debug,
+      );
     }
   } else {
     await removeSiteData(
-      `${siteData[0].toLowerCase()}${siteData.slice(1)}`,
-      isChrome(state.cache),
+      state,
+      siteData,
+      state.cache.browserDetect,
       domains,
       debug,
     );
@@ -443,15 +445,25 @@ export const clearSiteDataForThisDomain = async (
 };
 
 export const removeSiteData = async (
-  siteData: string,
-  isChrome: boolean,
+  state: State,
+  siteData: SiteDataType,
+  browserDetect: string,
   domains: string[],
   debug: boolean,
 ): Promise<boolean> => {
-  const listName = isChrome ? 'origins' : 'hostnames';
+  const listName = ((b: string) => {
+    switch (b) {
+      case 'Chrome':
+        return 'origins';
+      case 'Firefox':
+      default:
+        return 'hostnames';
+    }
+  })(browserDetect);
+  const sd = `${siteData[0].toLowerCase()}${siteData.slice(1)}`;
   cadLog(
     {
-      msg: `CleanupService.removeSiteData: Cleanup of ${listName} for ${siteData}:`,
+      msg: `CleanupService.removeSiteData: Cleanup of ${listName} in ${browserDetect} for ${sd}:`,
       x: domains,
     },
     debug,
@@ -462,14 +474,14 @@ export const removeSiteData = async (
         [listName]: domains,
       },
       {
-        [siteData]: true,
+        [sd]: true,
       },
     );
     return true;
   } catch (e) {
     cadLog(
       {
-        msg: `CleanupService.removeSiteData:  browser.browsingData.remove of ${listName} for ${siteData} returned an error:`,
+        msg: `CleanupService.removeSiteData:  browser.browsingData.remove of ${listName} for ${sd} returned an error:`,
         type: 'error',
         x: e,
       },
@@ -493,10 +505,11 @@ export const otherBrowsingDataCleanup = async (
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '78') ||
       chrome)
   ) {
-    browsingDataResult.cache = await cleanSiteData(
-      'Cache',
+    browsingDataResult[SiteDataType.CACHE] = await cleanSiteData(
+      state,
+      SiteDataType.CACHE,
       isSafeToCleanObjects,
-      chrome,
+      state.cache.browserDetect,
       debug,
     );
   }
@@ -505,46 +518,50 @@ export const otherBrowsingDataCleanup = async (
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '77') ||
       chrome)
   ) {
-    browsingDataResult.indexedDB = await cleanSiteData(
-      'IndexedDB',
+    browsingDataResult[SiteDataType.INDEXEDDB] = await cleanSiteData(
+      state,
+      SiteDataType.INDEXEDDB,
       isSafeToCleanObjects,
-      chrome,
+      state.cache.browserDetect,
       debug,
     );
   }
   if (
-    getSetting(state, 'localstorageCleanup') &&
+    getSetting(state, 'localStorageCleanup') &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '58') ||
       chrome)
   ) {
-    browsingDataResult.localStorage = await cleanSiteData(
-      'LocalStorage',
+    browsingDataResult[SiteDataType.LOCALSTORAGE] = await cleanSiteData(
+      state,
+      SiteDataType.LOCALSTORAGE,
       isSafeToCleanObjects,
-      chrome,
+      state.cache.browserDetect,
       debug,
     );
   }
   if (
     getSetting(state, 'pluginDataCleanup') &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '78') ||
-      isChrome(state.cache))
+      chrome)
   ) {
-    browsingDataResult.pluginData = await cleanSiteData(
-      'PluginData',
+    browsingDataResult[SiteDataType.PLUGINDATA] = await cleanSiteData(
+      state,
+      SiteDataType.PLUGINDATA,
       isSafeToCleanObjects,
-      chrome,
+      state.cache.browserDetect,
       debug,
     );
   }
   if (
     getSetting(state, 'serviceWorkersCleanup') &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '77') ||
-      isChrome(state.cache))
+      chrome)
   ) {
-    browsingDataResult.serviceWorkers = await cleanSiteData(
-      'ServiceWorkers',
+    browsingDataResult[SiteDataType.SERVICEWORKERS] = await cleanSiteData(
+      state,
+      SiteDataType.SERVICEWORKERS,
       isSafeToCleanObjects,
-      chrome,
+      state.cache.browserDetect,
       debug,
     );
   }
@@ -554,37 +571,36 @@ export const otherBrowsingDataCleanup = async (
 
 /**
  * Filters incoming objects with the site data to clean.
+ * @param state The State.
  * @param siteData The site data type
  * @param cleanReasonObjects Objects returned from isSafeToClean()
- * @param isChrome True if Chrome Browser
+ * @param browserDetect - Browser Name per browserDetect() function
  * @param debug True if debug mode.
  */
 export const cleanSiteData = async (
-  siteData: string,
+  state: State,
+  siteData: SiteDataType,
   cleanReasonObjects: CleanReasonObject[],
-  isChrome: boolean,
+  browserDetect: string,
   debug: boolean,
-): Promise<string[] | undefined> => {
+): Promise<string[]> => {
   const domains = cleanReasonObjects
     .filter((obj) => {
-      return filterSiteData(
-        obj,
-        `${siteData[0].toUpperCase()}${siteData.slice(1)}`,
-        debug,
-      );
+      return filterSiteData(obj, siteData, debug);
     })
     .map((o) => o.cookie.domain)
     .filter((domain) => domain.trim() !== '');
 
   const cleanList: string[] = [];
   for (const domain of domains) {
-    cleanList.push(...prepareCleanupDomains(domain, isChrome));
+    cleanList.push(...prepareCleanupDomains(domain, browserDetect));
   }
 
   if (cleanList.length > 0) {
     const r = await removeSiteData(
-      `${siteData[0].toLowerCase()}${siteData.slice(1)}`,
-      isChrome,
+      state,
+      siteData,
+      browserDetect,
       [...new Set(cleanList)],
       debug,
     );
@@ -592,7 +608,7 @@ export const cleanSiteData = async (
       return domains;
     }
   }
-  return undefined;
+  return [];
 };
 
 /** Setup SiteData cleaning.  Undefined will not be cleaned. */
@@ -603,7 +619,7 @@ export const parseCleanSiteData = (bool?: boolean): boolean => {
 /** Filter the deleted cookies from site data type */
 export const filterSiteData = (
   obj: CleanReasonObject,
-  siteData: string,
+  siteData: SiteDataType,
   debug = false,
 ): boolean => {
   const notProtectedByOpenTab = obj.reason !== ReasonKeep.OpenTabs;
@@ -613,9 +629,9 @@ export const filterSiteData = (
   const nonBlankCookieHostName = obj.cookie.hostname.trim() !== '';
   const canCleanSiteData = parseCleanSiteData(
     obj.expression
-      ? (obj.expression[`clean${siteData}` as keyof Expression] as
-          | boolean
-          | undefined)
+      ? obj.expression.cleanSiteData
+        ? obj.expression.cleanSiteData.includes(siteData)
+        : undefined
       : undefined,
   );
   const cro: CleanReasonObject = {
@@ -629,9 +645,9 @@ export const filterSiteData = (
     {
       msg: 'CleanupService.filterSiteData: debug data.',
       x: {
-        siteData,
         notProtectedByOpenTab,
         notInAnyLists,
+        siteData,
         canCleanSiteData,
         nonBlankCookieHostName,
         clean2: notProtectedByOpenTab && canCleanSiteData,
@@ -685,7 +701,7 @@ export const returnContainersOfOpenTabDomains = async (
   return openTabsArray;
 };
 
-/** Main function for cookie cleanup. Returns a list of domains that cookies were deleted from */
+/** Main function for cookie cleanup. Returns a list of domains that cookies and other site data were deleted from */
 export const cleanCookiesOperation = async (
   state: State,
   cleanupProperties: CleanupProperties = {
@@ -694,17 +710,14 @@ export const cleanCookiesOperation = async (
   },
 ): Promise<Record<string, any>> => {
   const debug = getSetting(state, 'debugMode') as boolean;
-  const setOfDeletedDomainCaches = new Set<string>();
+  const deletedSiteDataArrays: ActivityLog['browsingDataCleanup'] = {};
   const setOfDeletedDomainCookies = new Set<string>();
-  const setOfDeletedDomainIndexedDB = new Set<string>();
-  const setOfDeletedDomainLocalStorage = new Set<string>();
-  const setOfDeletedDomainPluginData = new Set<string>();
-  const setOfDeletedDomainServiceWorkers = new Set<string>();
   const cachedResults: ActivityLog = {
     dateTime: new Date().toString(),
     recentlyCleaned: 0,
     storeIds: {},
     browsingDataCleanup: {},
+    siteDataCleaned: false,
   };
   const openTabDomains = await returnContainersOfOpenTabDomains(
     cleanupProperties.ignoreOpenTabs,
@@ -894,24 +907,13 @@ export const cleanCookiesOperation = async (
         setOfDeletedDomainLocalStorage.add(d);
       });
     }
-    if (storeResults.pluginData) {
-      storeResults.pluginData.forEach((d) => {
-        setOfDeletedDomainPluginData.add(d);
-      });
-    }
-    if (storeResults.serviceWorkers) {
-      storeResults.serviceWorkers.forEach((d) => {
-        setOfDeletedDomainServiceWorkers.add(d);
-      });
-    }
   }
-  cachedResults.browsingDataCleanup = {
-    cache: Array.from(setOfDeletedDomainCaches),
-    indexedDB: Array.from(setOfDeletedDomainIndexedDB),
-    localStorage: Array.from(setOfDeletedDomainLocalStorage),
-    pluginData: Array.from(setOfDeletedDomainPluginData),
-    serviceWorkers: Array.from(setOfDeletedDomainServiceWorkers),
-  };
+
+  for (const sd of SITEDATATYPES) {
+    cachedResults.browsingDataCleanup[sd] = deletedSiteDataArrays[sd]
+      ? Array.from(new Set(deletedSiteDataArrays[sd] as string[]))
+      : [];
+  }
 
   // Scrub private cookieStores
   const storesIdsToScrub = ['firefox-private', 'private', '1'];

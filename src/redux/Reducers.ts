@@ -29,6 +29,9 @@ const newExpressionObject = (
 ) => ({
   ...action.payload,
   cookieNames: !action.payload.cookieNames ? [] : action.payload.cookieNames,
+  cleanSiteData: !action.payload.cleanSiteData
+    ? []
+    : action.payload.cleanSiteData,
   id: shortid.generate(),
   listType: !action.payload.listType ? ListType.WHITE : action.payload.listType,
 });

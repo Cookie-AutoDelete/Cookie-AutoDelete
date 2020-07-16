@@ -329,11 +329,11 @@
     "message": "WAARSCHUWING: Het inschakelen van zowel LocalStorage Cleanup als Container Tabs kan ongewenste bijeffecten veroorzaken vanwege API beperkingen. LocalStorage zal worden gewist met de hostnaam op ALLE containers.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Opruimen van lokale opslag",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Waarschuwing: ALLE bestaande lokale opslag zal worden gewist bij inschakelen van lokale opslag opruimen.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

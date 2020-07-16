@@ -329,11 +329,11 @@
     "message": "UWAGA: jednoczesne włączenie czyszczenia localStorage i obsługi kontenerów kart w Firefoksie może powodować niepożądane efekty uboczne z powodu ograniczeń API. localStorage będzie czyszczony według hostów we wszystkich kontenerach.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Wyczyść localStorage",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Uwaga:  wszystkie istniejące dane w localStorage zostaną usunięte przy włączeniu opcji \"Wyczyść localStorage\".",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

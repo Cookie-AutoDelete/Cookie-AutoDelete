@@ -214,7 +214,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting('localstorageCleanup', true);
+      TestStore.changeSetting('localStorageCleanup', true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',

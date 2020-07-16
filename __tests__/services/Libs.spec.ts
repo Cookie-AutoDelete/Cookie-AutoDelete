@@ -783,22 +783,22 @@ describe('Library Functions', () => {
 
   describe('prepareCleanupDomains()', () => {
     it('should return empty array for empty domain', () => {
-      expect(prepareCleanupDomains('', false)).toEqual([]);
+      expect(prepareCleanupDomains('', 'Firefox')).toEqual([]);
     });
 
     it('should return empty array for domains with only whitespaces', () => {
-      expect(prepareCleanupDomains(' ', false)).toEqual([]);
+      expect(prepareCleanupDomains(' ', 'Firefox')).toEqual([]);
     });
 
     it('should return cleanup domains from www.example.com', () => {
-      expect(prepareCleanupDomains('www.example.com', false)).toEqual([
+      expect(prepareCleanupDomains('www.example.com', 'Firefox')).toEqual([
         'www.example.com',
         '.www.example.com',
       ]);
     });
 
     it('should return cleanup domains from .example.com', () => {
-      expect(prepareCleanupDomains('.example.com', false)).toEqual([
+      expect(prepareCleanupDomains('.example.com', 'Firefox')).toEqual([
         'example.com',
         '.example.com',
         'www.example.com',
@@ -807,7 +807,7 @@ describe('Library Functions', () => {
     });
 
     it('should return cleanup domains from example.com', () => {
-      expect(prepareCleanupDomains('example.com', false)).toEqual([
+      expect(prepareCleanupDomains('example.com', 'Firefox')).toEqual([
         'example.com',
         '.example.com',
         'www.example.com',
@@ -816,7 +816,7 @@ describe('Library Functions', () => {
     });
 
     it('should return cleanup domains from example.com for Chrome', () => {
-      expect(prepareCleanupDomains('example.com', true)).toEqual([
+      expect(prepareCleanupDomains('example.com', 'Chrome')).toEqual([
         'http://example.com',
         'https://example.com',
         'http://.example.com',

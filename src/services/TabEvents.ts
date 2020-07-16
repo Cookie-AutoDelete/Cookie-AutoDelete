@@ -347,7 +347,7 @@ export default class TabEvents extends StoreUser {
       cookies.length === 0 &&
       (getSetting(StoreUser.store.getState(), 'cacheCleanup') ||
         getSetting(StoreUser.store.getState(), 'indexedDBCleanup') ||
-        getSetting(StoreUser.store.getState(), 'localstorageCleanup') ||
+        getSetting(StoreUser.store.getState(), 'localStorageCleanup') ||
         getSetting(StoreUser.store.getState(), 'pluginDataCleanup') ||
         getSetting(StoreUser.store.getState(), 'serviceWorkersCleanup')) &&
       isAWebpage(tab.url) &&

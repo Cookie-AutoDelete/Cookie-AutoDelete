@@ -41,16 +41,22 @@ type State = Readonly<{
 type Expression = Readonly<{
   expression: string;
   cleanAllCookies?: boolean;
-  cleanCache?: boolean;
-  cleanIndexedDB?: boolean;
+  // Deprecated as of 3.5.0, but kept for backwards-compatibility for pre-3.4.0.
   cleanLocalStorage?: boolean;
-  cleanPluginData?: boolean;
-  cleanServiceWorkers?: boolean;
+  cleanSiteData?: SiteDataType[];
   listType: ListType;
   storeId: string;
   id?: string;
   cookieNames?: string[];
 }>;
+
+declare const enum SiteDataType {
+  CACHE = 'Cache',
+  INDEXEDDB = 'IndexedDB',
+  LOCALSTORAGE = 'LocalStorage',
+  PLUGINDATA = 'PluginData',
+  SERVICEWORKERS = 'ServiceWorkers',
+}
 
 type Setting = Readonly<{
   id?: string | number;

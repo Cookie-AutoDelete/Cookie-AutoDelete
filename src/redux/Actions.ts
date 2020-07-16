@@ -228,6 +228,7 @@ export const validateSettings: ActionCreator<ThunkAction<
   if (isFirefoxAndroid(cache)) {
     disableSettingIfTrue(settings.showNumOfCookiesInIcon);
     disableSettingIfTrue(settings.localstorageCleanup);
+    disableSettingIfTrue(settings.localStorageCleanup);
     disableSettingIfTrue(settings.contextualIdentities);
     disableSettingIfTrue(settings.contextMenus);
   }

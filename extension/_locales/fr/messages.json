@@ -329,11 +329,11 @@
     "message": "Activer à la fois le nettoyage du localstorage et des onglets contextuels de Firefox peut causer des effets indésirables en raison de limitations de l’API",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Nettoyer la mémoire locale",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Attetion : TOUT le contenu existant de la mémoire locale va être nettoyé à l'activation du Nettoyage de la mémoire locale.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

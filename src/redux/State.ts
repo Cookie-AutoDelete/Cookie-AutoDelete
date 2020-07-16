@@ -79,7 +79,12 @@ export const initialState: State = {
       value: false,
     },
     localstorageCleanup: {
+      id: 'DEPRECATED - use localStorageCleanup',
       name: 'localstorageCleanup',
+      value: false,
+    },
+    localStorageCleanup: {
+      name: 'localStorageCleanup',
       value: false,
     },
     notificationOnScreen: {

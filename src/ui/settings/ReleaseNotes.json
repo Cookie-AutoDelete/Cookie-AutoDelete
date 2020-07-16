@@ -3,6 +3,8 @@
     {
       "version": "3.5.0-unreleased",
       "notes": [
+        "MIGRATION NOTE 1:  'Uncheck Keep Localstorage on new expressions' has been deprecated in favor of default expression entries.  Those that have this enabled will see new default expression entries for all containers for that list type.  Only the localStorage option in the global default expression entry will be downgraded for use in 3.4.0!",
+        "MIGRATION NOTE 2:  'LocalStorage Cleanup' setting has its internal naming changed to be consistent with other new site data cleanup types.  Its value have been migrated, and should persist when downgrading back to 3.4.0.",
         "Added:  Cleanup of additional site data types by hostname.  For backwards compatibility, existing rules will be keeping all newly implemented site data types.  Closes #792 (Plugin Data-Firefox 78+ and Chrome), #551 (Cache-Firefox 77+ and Chrome), #287 (Service Workers-Firefox 77+ and Chrome), #283 (ETag/Cache), #264 (Flash Cookies/Plugin Data) #171 (indexedDB-Firefox 77+ and Chrome))",
         "Added:  Cleanup of Expired Cookies regardless of lists.  Closes #344.",
         "Added:  Clear Cookie Counter function.  Will only clear counters and not activity log.  Added as enhancement from #777",

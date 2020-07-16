@@ -333,11 +333,11 @@
     "message": "ADVERTENCIA: Habilitar tanto la limpieza del almacenamiento local como los contenedores de pestañas puede causar algunos efectos secundarios no deseados debido a las limitaciones de la API. El almacenamiento local se borrará por nombre de host en TODOS los contenedores.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Limpieza del almacenamiento local",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Advertencia: TODO el almacenamiento local existente se borrará al habilitar la limpieza del almacenamiento local.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

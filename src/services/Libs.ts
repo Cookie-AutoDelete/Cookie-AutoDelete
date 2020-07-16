@@ -16,6 +16,13 @@ import shortid from 'shortid';
 
 /* --- CONSTANTS --- */
 export const CADCOOKIENAME = 'CookieAutoDeleteBrowsingDataCleanup';
+export const SITEDATATYPES = [
+  SiteDataType.CACHE,
+  SiteDataType.INDEXEDDB,
+  SiteDataType.LOCALSTORAGE,
+  SiteDataType.PLUGINDATA,
+  SiteDataType.SERVICEWORKERS,
+];
 
 /* --- FUNCTIONS --- */
 /**
@@ -147,6 +154,7 @@ export const extractMainDomain = (domain: string): string => {
 /**
  * Returns the host name of the url.
  *   - https://en.wikipedia.org/wiki/Cat ==> en.wikipedia.org
+ *
  * Local file will return the directory of that file.
  *   - file:///home/user/documents/file.html ==> file:///home/user/documents
  *   - file:///D:/user/documents/file.html ==> file:///D:/user/documents
@@ -346,7 +354,7 @@ export const parseCookieStoreId = (
  */
 export const prepareCleanupDomains = (
   domain: string,
-  isChrome: boolean,
+  browserDetect: string,
 ): string[] => {
   if (domain.trim() === '') return [];
   const www = new RegExp(/^www[0-9a-z]?\./i);
@@ -366,7 +374,7 @@ export const prepareCleanupDomains = (
     domains.add(`.www.${d}`); // .www.sub.doma.in
   }
 
-  if (isChrome) {
+  if (browserDetect === 'Chrome') {
     const origins: string[] = [];
     for (const d of domains) {
       origins.push(`http://${d}`);
@@ -400,7 +408,7 @@ export const prepareCookieDomain = (cookie: browser.cookies.Cookie): string => {
 };
 
 /**
- * Returns the first availble matched expression
+ * Returns the first available matched expression
  */
 export const returnMatchedExpressionObject = (
   state: State,

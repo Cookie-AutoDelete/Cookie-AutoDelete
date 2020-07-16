@@ -18,7 +18,7 @@ import {
 } from '../redux/Actions';
 import {
   clearCookiesForThisDomain,
-  clearLocalstorageForThisDomain,
+  clearLocalStorageForThisDomain,
   clearSiteDataForThisDomain,
 } from './CleanupService';
 import {
@@ -28,6 +28,7 @@ import {
   localFileToRegex,
   parseCookieStoreId,
   showNotification,
+  SITEDATATYPES,
 } from './Libs';
 import StoreUser from './StoreUser';
 
@@ -118,76 +119,19 @@ export default class ContextMenuEvents extends StoreUser {
       },
       ContextMenuEvents.onCreatedOrUpdated,
     );
-    // Clean all available site data for domain
-    browser.contextMenus.create(
-      {
-        contexts: defaultContexts,
-        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}All`,
-        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('manualCleanSiteDataAll'),
-      },
-      ContextMenuEvents.onCreatedOrUpdated,
-    );
-    // Clean Cache for domain
-    browser.contextMenus.create(
-      {
-        contexts: defaultContexts,
-        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}Cache`,
-        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('manualCleanSiteDataCache'),
-      },
-      ContextMenuEvents.onCreatedOrUpdated,
-    );
-    // Clean Cookies for domain
-    browser.contextMenus.create(
-      {
-        contexts: defaultContexts,
-        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}Cookies`,
-        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('manualCleanSiteDataCookies'),
-      },
-      ContextMenuEvents.onCreatedOrUpdated,
-    );
-    // Clean IndexedDB for domain
-    browser.contextMenus.create(
-      {
-        contexts: defaultContexts,
-        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}IndexedDB`,
-        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('manualCleanSiteDataIndexedDB'),
-      },
-      ContextMenuEvents.onCreatedOrUpdated,
-    );
-    // Clean Localstorage for domain
-    browser.contextMenus.create(
-      {
-        contexts: defaultContexts,
-        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}LocalStorage`,
-        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('manualCleanSiteDataLocalStorage'),
-      },
-      ContextMenuEvents.onCreatedOrUpdated,
-    );
-    // Clean Plugin Data for domain
-    browser.contextMenus.create(
-      {
-        contexts: defaultContexts,
-        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}PluginData`,
-        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('manualCleanSiteDataPluginData'),
-      },
-      ContextMenuEvents.onCreatedOrUpdated,
-    );
-    // Clean Service Workers for domain
-    browser.contextMenus.create(
-      {
-        contexts: defaultContexts,
-        id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}ServiceWorkers`,
-        parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
-        title: browser.i18n.getMessage('manualCleanSiteDataServiceWorkers'),
-      },
-      ContextMenuEvents.onCreatedOrUpdated,
-    );
+    // Clean all available site data for domain.
+    // SiteDataType (declare enum via Global.d.ts) somehow doesn't exist through the browser...
+    [...SITEDATATYPES, 'All', 'Cookies'].sort().forEach((sd) => {
+      browser.contextMenus.create(
+        {
+          contexts: defaultContexts,
+          id: `${ContextMenuEvents.MenuID.MANUAL_CLEAN_SITEDATA}${sd}`,
+          parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
+          title: browser.i18n.getMessage(`manualCleanSiteData${sd}`),
+        },
+        ContextMenuEvents.onCreatedOrUpdated,
+      );
+    });
     // Separator
     browser.contextMenus.create(
       {
@@ -533,23 +477,24 @@ export default class ContextMenuEvents extends StoreUser {
         },
         debug,
       );
+      if (siteData === 'Cookies') {
+        await clearCookiesForThisDomain(StoreUser.store.getState(), tab);
+        return;
+      }
       switch (siteData) {
         case 'All':
-        case 'Cache':
-        case 'IndexedDB':
-        case 'PluginData':
-        case 'ServiceWorkers':
+        case SiteDataType.CACHE:
+        case SiteDataType.INDEXEDDB:
+        case SiteDataType.PLUGINDATA:
+        case SiteDataType.SERVICEWORKERS:
           await clearSiteDataForThisDomain(
             StoreUser.store.getState(),
             siteData,
             hostname,
           );
           break;
-        case 'Cookies':
-          await clearCookiesForThisDomain(StoreUser.store.getState(), tab);
-          break;
-        case 'LocalStorage':
-          await clearLocalstorageForThisDomain(StoreUser.store.getState(), tab);
+        case SiteDataType.LOCALSTORAGE:
+          await clearLocalStorageForThisDomain(StoreUser.store.getState(), tab);
           break;
         default:
           cadLog(

@@ -28,6 +28,7 @@ import {
   convertVersionToNumber,
   extractMainDomain,
   getSetting,
+  SITEDATATYPES,
   sleep,
 } from './services/Libs';
 import StoreUser from './services/StoreUser';
@@ -51,6 +52,23 @@ const saveToStorage = () => {
   }
 };
 
+const browsingDataCleanup = async (
+  siteData: SiteDataType,
+  debug: boolean,
+): Promise<void> => {
+  await browser.browsingData.remove(
+    { since: 0 },
+    { [`${siteData[0].toLowerCase()}${siteData.slice(1)}`]: true },
+  );
+  cadLog(
+    {
+      msg: `${siteData} setting has been activated.  All previous ${siteData} has been cleared to give it a clean slate.`,
+      type: 'info',
+    },
+    debug,
+  );
+};
+
 const onSettingsChange = async () => {
   const previousSettings = currentSettings;
   currentSettings = store.getState().settings;
@@ -62,22 +80,17 @@ const onSettingsChange = async () => {
     store.dispatch<any>(cacheCookieStoreIdNames());
   }
 
-  // Localstorage support enabled
-  if (
-    !previousSettings.localstorageCleanup.value &&
-    currentSettings.localstorageCleanup.value
-  ) {
-    await browser.browsingData.removeLocalStorage({
-      since: 0,
-    });
-    cadLog(
-      {
-        msg:
-          'LocalStorage setting has been activated.  All previous LocalStorage has been cleared to give it a clean slate.',
-        type: 'info',
-      },
-      currentSettings.debugMode.value as boolean,
-    );
+  // BrowsingData Settings Check.
+  for (const siteData of SITEDATATYPES) {
+    const sd = `${siteData[0].toLowerCase()}${siteData.slice(1)}Cleanup`;
+    if (
+      (previousSettings[sd] === undefined || !previousSettings[sd].value) &&
+      currentSettings[sd].value
+    )
+      await browsingDataCleanup(
+        siteData,
+        currentSettings.debugMode.value as boolean,
+      );
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
@@ -101,6 +114,20 @@ const onSettingsChange = async () => {
     } else {
       await ContextMenuEvents.menuClear();
     }
+  }
+
+  // Deprecated Settings adjustments - only for localstorageCleanup<->localStorageCleanup
+  if (
+    previousSettings.localStorageCleanup.value !==
+    currentSettings.localStorageCleanup.value
+  ) {
+    store.dispatch({
+      payload: {
+        name: 'localstorageCleanup',
+        value: currentSettings.localStorageCleanup.value as boolean,
+      },
+      type: ReduxConstants.UPDATE_SETTING,
+    });
   }
 
   await checkIfProtected(store.getState());
@@ -296,6 +323,67 @@ browser.runtime.onInstalled.addListener(async (details) => {
       await browser.runtime.openOptionsPage();
       break;
     case 'update':
+      // Validate Settings to get new settings (if any).
+      store.dispatch<any>(validateSettings());
+      if (convertVersionToNumber(details.previousVersion) < 350) {
+        // Migrate State Setting Name localstorageCleanup to localStorageCleanup
+        if (store.getState().settings.localstorageCleanup) {
+          store.dispatch({
+            payload: {
+              name: 'localStorageCleanup',
+              value: store.getState().settings.localstorageCleanup
+                .value as boolean,
+            },
+            type: ReduxConstants.UPDATE_SETTING,
+          });
+        }
+        // Migrate Expression Option 'cleanLocalStorage' to cleanSiteData: [ LocalStorage ]
+        Object.values(store.getState().lists).forEach((list) => {
+          list.forEach((exp) => {
+            // Only migrate if cleanSiteData array is undefined/empty.
+            if (exp.cleanLocalStorage && !exp.cleanSiteData) {
+              store.dispatch({
+                payload: {
+                  ...exp,
+                  cleanSiteData: [SiteDataType.LOCALSTORAGE],
+                },
+                type: ReduxConstants.UPDATE_EXPRESSION,
+              });
+            }
+          });
+        });
+        // Migrate Settings [uncheck 'Keep LocalStorage' on New [GREY/WHITE] Expressions]
+        // Only does this if either was checked.
+        for (const lt of [ListType.GREY, ListType.WHITE]) {
+          if (
+            getSetting(store.getState(), `${lt.toLowerCase()}CleanLocalstorage`)
+          ) {
+            const containers = new Set<string>(
+              Object.keys(store.getState().lists),
+            );
+            containers.add('default');
+            if (getSetting(store.getState(), 'contextualIdentities')) {
+              const contextualIdentitiesObjects = await browser.contextualIdentities.query(
+                {},
+              );
+              contextualIdentitiesObjects.forEach((c) =>
+                containers.add(c.cookieStoreId),
+              );
+            }
+            containers.forEach((list) => {
+              store.dispatch({
+                payload: {
+                  expression: `_Default:${lt}`,
+                  cleanSiteData: [SiteDataType.LOCALSTORAGE],
+                  listType: lt,
+                  storeId: list,
+                },
+                type: ReduxConstants.ADD_EXPRESSION,
+              });
+            });
+          }
+        }
+      }
       if (convertVersionToNumber(details.previousVersion) < 300) {
         store.dispatch({
           type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,

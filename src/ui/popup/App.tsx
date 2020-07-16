@@ -21,7 +21,7 @@ import {
 } from '../../redux/Actions';
 import {
   clearCookiesForThisDomain,
-  clearLocalstorageForThisDomain,
+  clearLocalStorageForThisDomain,
   clearSiteDataForThisDomain,
 } from '../../services/CleanupService';
 import {
@@ -36,6 +36,7 @@ import {
   localFileToRegex,
   parseCookieStoreId,
   returnOptionalCookieAPIAttributes,
+  showNotification,
 } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
 import { ReduxAction } from '../../typings/ReduxConstants';
@@ -122,7 +123,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   }
 
   public createSiteDataButton(
-    siteData: string,
+    siteData: SiteDataType | 'All',
     hostname: string,
   ): Partial<HTMLButtonElement> {
     return (
@@ -143,12 +144,23 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   }
 
   public async cleanSiteDataUI(
-    siteData: string,
+    siteData: SiteDataType | 'All',
     hostname: string,
   ): Promise<boolean> {
     const { state } = this.props;
     if (!hostname) return false;
-    return await clearSiteDataForThisDomain(state, siteData, hostname);
+    const result = await clearSiteDataForThisDomain(state, siteData, hostname);
+    await showNotification({
+      duration: getSetting(state, 'notificationOnScreen') as number,
+      msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+        browser.i18n.getMessage(
+          `${siteData[0].toLowerCase()}${siteData.slice(1)}Text`,
+        ),
+        hostname,
+      ]),
+      title: browser.i18n.getMessage('notificationTitleSiteData'),
+    });
+    return result;
   }
 
   public async setPopupCookieCount(hostname: string) {
@@ -359,7 +371,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 {browser.i18n.getMessage('cleanupActionsBypass')}
               </h6>
               {this.createSiteDataButton('All', hostname)}
-              {this.createSiteDataButton('Cache', hostname)}
+              {this.createSiteDataButton(SiteDataType.CACHE, hostname)}
               <button
                 className="dropdown-item"
                 onClick={async () => {
@@ -374,26 +386,28 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
               >
                 {browser.i18n.getMessage('manualCleanSiteDataCookies')}
               </button>
-              {this.createSiteDataButton('IndexedDB', hostname)}
+              {this.createSiteDataButton(SiteDataType.INDEXEDDB, hostname)}
               <button
                 className="dropdown-item"
                 onClick={async () => {
-                  const success = await clearLocalstorageForThisDomain(
+                  const success = await clearLocalStorageForThisDomain(
                     state,
                     tab,
                   );
                   this.animateFlash(this.cleanButtonContainerRef, success);
                 }}
                 title={browser.i18n.getMessage(
-                  'manualCleanSiteDataLocalStorageDomain',
+                  `manualCleanSiteData${SiteDataType.LOCALSTORAGE}Domain`,
                   [hostname],
                 )}
                 type="button"
               >
-                {browser.i18n.getMessage('manualCleanSiteDataLocalStorage')}
+                {browser.i18n.getMessage(
+                  `manualCleanSiteData${SiteDataType.LOCALSTORAGE}`,
+                )}
               </button>
-              {this.createSiteDataButton('PluginData', hostname)}
-              {this.createSiteDataButton('ServiceWorkers', hostname)}
+              {this.createSiteDataButton(SiteDataType.PLUGINDATA, hostname)}
+              {this.createSiteDataButton(SiteDataType.SERVICEWORKERS, hostname)}
             </div>
           </div>
           <IconButton

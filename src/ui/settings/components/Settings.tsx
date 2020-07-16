@@ -433,8 +433,8 @@ class Settings extends React.Component<SettingProps> {
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
-                  text={browser.i18n.getMessage('localstorageCleanupText')}
-                  settingObject={settings.localstorageCleanup}
+                  text={browser.i18n.getMessage('localStorageCleanupText')}
+                  settingObject={settings.localStorageCleanup}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />

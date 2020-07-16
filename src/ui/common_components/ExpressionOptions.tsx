@@ -194,29 +194,36 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     });
   }
 
-  public toggleCleanSiteData(key: string, checked: any) {
+  public toggleCleanSiteData(key: SiteDataType, canClean: boolean) {
     const { expression, onUpdateExpression } = this.props;
+    let newCleanSiteData: SiteDataType[] = expression.cleanSiteData || [];
+    if (canClean) {
+      newCleanSiteData.push(key);
+    } else {
+      newCleanSiteData = newCleanSiteData.filter((s) => s !== key);
+    }
+
     onUpdateExpression({
       ...expression,
-      [key]: checked,
+      cleanSiteData: newCleanSiteData,
+      cleanLocalStorage:
+        expression.cleanLocalStorage === undefined ? undefined : canClean,
     });
   }
 
   /**
-   * Use for all Site Data Type except cleanAllCookies
-   * @param cleanData In Expression Type, the site data to clean.  Can omit 'clean'.  Check Expression Type for cleanType.  Case Sensitive.
+   * Use for all Site Data Type except cleanAllCookies and Cookies
+   * @param cleanData In Expression Type, the site data to clean (SiteDataType enum). Check Expression Type for cleanType.  Case Sensitive.
    */
-  public createSiteDataCheckbox(cleanData: string) {
+  public createSiteDataCheckbox(cleanData: SiteDataType) {
     const { expression } = this.props;
-    const cleanType = cleanData.startsWith('clean')
-      ? cleanData
-      : `clean${cleanData}`;
+    const cleanType = `clean${cleanData}`;
     const keyID = `${expression.id}-${cleanType}`;
     // undefined will be false to keep them.
-    const checked = expression[cleanType as keyof Expression] as
-      | boolean
-      | undefined;
-    const localeText = (function (lt: ListType): string {
+    const checked = expression.cleanSiteData
+      ? expression.cleanSiteData.includes(cleanData)
+      : false;
+    const localeText = ((lt: ListType) => {
       switch (lt) {
         case ListType.WHITE:
           return `keep${cleanData}Text`;
@@ -231,7 +238,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
         <span
           className={'addHover'}
           onClick={() => {
-            this.toggleCleanSiteData(cleanType, !checked);
+            this.toggleCleanSiteData(cleanData, !checked);
           }}
         >
           <FontAwesomeIcon
@@ -262,27 +269,27 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
           ((isFirefoxNotAndroid(state.cache) &&
             state.cache.browserVersion >= '78') ||
             isChrome(state.cache)) &&
-          this.createSiteDataCheckbox('Cache')}
+          this.createSiteDataCheckbox(SiteDataType.CACHE)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
             state.cache.browserVersion >= '77') ||
             isChrome(state.cache)) &&
-          this.createSiteDataCheckbox('IndexedDB')}
+          this.createSiteDataCheckbox(SiteDataType.INDEXEDDB)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
             state.cache.browserVersion >= '58') ||
             isChrome(state.cache)) &&
-          this.createSiteDataCheckbox('LocalStorage')}
+          this.createSiteDataCheckbox(SiteDataType.LOCALSTORAGE)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
             state.cache.browserVersion >= '78') ||
             isChrome(state.cache)) &&
-          this.createSiteDataCheckbox('PluginData')}
+          this.createSiteDataCheckbox(SiteDataType.PLUGINDATA)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
             state.cache.browserVersion >= '77') ||
             isChrome(state.cache)) &&
-          this.createSiteDataCheckbox('ServiceWorkers')}
+          this.createSiteDataCheckbox(SiteDataType.SERVICEWORKERS)}
         <div className={'checkbox'}>
           <span
             className={'addHover'}

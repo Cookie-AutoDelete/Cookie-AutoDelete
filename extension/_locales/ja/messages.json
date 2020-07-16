@@ -333,11 +333,11 @@
     "message": "警告: ローカルストレージのクリーンアップとコンテナタブの両方を有効にすると、API の制限により不要な副作用が発生する可能性があります。 ローカルストレージは、すべてのコンテナのホスト名でクリアされます。",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "ローカルストレージのクリーンアップ",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "警告: ローカルストレージのクリーンアップを有効にすると、すべての既存のローカルストレージがクリアされます。",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

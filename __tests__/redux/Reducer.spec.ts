@@ -26,6 +26,7 @@ describe('Reducer', () => {
         test: [],
       },
       browsingDataCleanup: {},
+      siteDataCleaned: false,
     };
     const log2 = {
       dateTime: 'Thu Jan 11 2019 08:00:00 GMT-0800 (Pacific Standard Time)',
@@ -34,6 +35,7 @@ describe('Reducer', () => {
         test: [],
       },
       browsingDataCleanup: {},
+      siteDataCleaned: false,
     };
     const state: ActivityLog[] = [log1];
 
@@ -397,6 +399,34 @@ describe('Reducer', () => {
         type: ReduxConstants.ON_STARTUP,
       });
       expect(newState).toEqual(state);
+    });
+    it('should be an empty array if no cleanSiteData entries were provided', () => {
+      const newState = expressions([], {
+        payload: {
+          ...mockExpression,
+        },
+        type: ReduxConstants.ADD_EXPRESSION,
+      });
+      expect(newState[0]).toEqual(
+        expect.objectContaining({ cleanSiteData: [] }),
+      );
+    });
+    it('should be included in cleanSiteData if siteDataType entries were provided', () => {
+      const newState = expressions([], {
+        payload: {
+          ...mockExpression,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE, SiteDataType.INDEXEDDB],
+        },
+        type: ReduxConstants.ADD_EXPRESSION,
+      });
+      expect(newState[0]).toEqual(
+        expect.objectContaining({
+          cleanSiteData: expect.arrayContaining([
+            SiteDataType.INDEXEDDB,
+            SiteDataType.LOCALSTORAGE,
+          ]),
+        }),
+      );
     });
   });
 

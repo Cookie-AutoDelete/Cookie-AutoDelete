@@ -6,7 +6,7 @@ import {
   cleanCookiesOperation,
   cleanSiteData,
   clearCookiesForThisDomain,
-  clearLocalstorageForThisDomain,
+  clearLocalStorageForThisDomain,
   clearSiteDataForThisDomain,
   filterSiteData,
   isSafeToClean,
@@ -53,7 +53,7 @@ const wildCardWhiteListGoogle: Expression = {
 
 const whiteListYoutube: Expression = {
   expression: 'youtube.com',
-  cleanCache: true,
+  cleanSiteData: [SiteDataType.CACHE],
   id: '2',
   listType: ListType.WHITE,
   storeId: 'default',
@@ -523,9 +523,9 @@ describe('CleanupService', () => {
           },
           cleanupProperties,
         );
-        expect(ffResult.cachedResults.browsingDataCleanup.cache).toEqual(
-          expect.arrayContaining(['youtube.com']),
-        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.CACHE],
+        ).toEqual(expect.arrayContaining(['youtube.com']));
       });
 
       it('should have test.com as part of domains that has indexedDB cleared', async () => {
@@ -546,9 +546,9 @@ describe('CleanupService', () => {
           },
           cleanupProperties,
         );
-        expect(ffResult.cachedResults.browsingDataCleanup.indexedDB).toEqual(
-          expect.arrayContaining(['test.com']),
-        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.INDEXEDDB],
+        ).toEqual(expect.arrayContaining(['test.com']));
       });
 
       it('should have test.com as part of domains that has localstorage cleared', async () => {
@@ -557,17 +557,17 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              localstorageCleanup: {
-                name: 'localstorageCleanup',
+              localStorageCleanup: {
+                name: 'localStorageCleanup',
                 value: true,
               },
             },
           },
           cleanupProperties,
         );
-        expect(ffResult.cachedResults.browsingDataCleanup.localStorage).toEqual(
-          expect.arrayContaining(['test.com']),
-        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.LOCALSTORAGE],
+        ).toEqual(expect.arrayContaining(['test.com']));
       });
       it('should have test.com as part of domains that has pluginData cleared', async () => {
         const ffResult = await cleanCookiesOperation(
@@ -587,9 +587,9 @@ describe('CleanupService', () => {
           },
           cleanupProperties,
         );
-        expect(ffResult.cachedResults.browsingDataCleanup.pluginData).toEqual(
-          expect.arrayContaining(['test.com']),
-        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.PLUGINDATA],
+        ).toEqual(expect.arrayContaining(['test.com']));
       });
       it('should have test.com as part of domains that has serviceWorkers cleared', async () => {
         const ffResult = await cleanCookiesOperation(
@@ -610,7 +610,9 @@ describe('CleanupService', () => {
           cleanupProperties,
         );
         expect(
-          ffResult.cachedResults.browsingDataCleanup.serviceWorkers,
+          ffResult.cachedResults.browsingDataCleanup[
+            SiteDataType.SERVICEWORKERS
+          ],
         ).toEqual(expect.arrayContaining(['test.com']));
       });
     });
@@ -685,50 +687,51 @@ describe('CleanupService', () => {
 
     it('should return domains cleaned if there are domains to clean', async () => {
       const result = await cleanSiteData(
-        'Cache',
+        sampleState,
+        SiteDataType.CACHE,
         [
           {
             ...mockCleanReasonObj,
             expression: {
               ...whiteListYoutube,
-              cleanCache: true,
             },
           },
         ],
-        false,
+        'Firefox',
         false,
       );
       expect(result).toEqual(['youtube.com']);
     });
 
-    it('should return undefined if no domains to clean', async () => {
+    it('should return empty array if no domains to clean', async () => {
       const result = await cleanSiteData(
-        'Cache',
+        sampleState,
+        SiteDataType.CACHE,
         [mockCleanReasonObjFile],
-        false,
+        'Firefox',
         false,
       );
-      expect(result).toBeUndefined();
+      expect(result).toEqual([]);
     });
-    it('should return undefined if removeSiteData returned false', async () => {
+    it('should return empty array if removeSiteData returned false', async () => {
       when(global.browser.browsingData.remove)
         .calledWith(expect.any(Object), expect.any(Object))
         .mockRejectedValue(new Error('test') as never);
       const result = await cleanSiteData(
-        'Cache',
+        sampleState,
+        SiteDataType.CACHE,
         [
           {
             ...mockCleanReasonObj,
             expression: {
               ...whiteListYoutube,
-              cleanCache: true,
             },
           },
         ],
-        false,
+        'Firefox',
         false,
       );
-      expect(result).toBeUndefined();
+      expect(result).toEqual([]);
     });
   });
 
@@ -824,13 +827,13 @@ describe('CleanupService', () => {
     });
   });
 
-  describe('clearLocalstorageForThisDomain()', () => {
+  describe('clearLocalStorageForThisDomain()', () => {
     it('should clear localstorage from active tab (via tabs.executeScript)', async () => {
       when(global.browser.tabs.executeScript)
         .calledWith(undefined, expect.any(Object))
         .mockResolvedValue([{ local: 2, session: 0 }] as never);
       expect(
-        await clearLocalstorageForThisDomain(initialState, sampleTab),
+        await clearLocalStorageForThisDomain(initialState, sampleTab),
       ).toBe(true);
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(global.browser.notifications.create).toBeCalledTimes(1);
@@ -840,7 +843,7 @@ describe('CleanupService', () => {
         .calledWith(undefined, expect.any(Object))
         .mockRejectedValue(new Error('test') as never);
       expect(
-        await clearLocalstorageForThisDomain(initialState, sampleTab),
+        await clearLocalStorageForThisDomain(initialState, sampleTab),
       ).toBe(false);
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(spyLib.throwErrorNotification).toBeCalledTimes(1);
@@ -850,14 +853,18 @@ describe('CleanupService', () => {
 
   describe('clearSiteDataForThisDomain()', () => {
     it('should return false if hostname is empty', async () => {
-      expect(await clearSiteDataForThisDomain(initialState, 'test', '')).toBe(
+      expect(await clearSiteDataForThisDomain(initialState, 'All', '')).toBe(
         false,
       );
     });
     it('should return false if hostname only has whitespaces', async () => {
-      expect(await clearSiteDataForThisDomain(initialState, 'test', '  ')).toBe(
-        false,
-      );
+      expect(
+        await clearSiteDataForThisDomain(
+          initialState,
+          SiteDataType.CACHE,
+          '  ',
+        ),
+      ).toBe(false);
     });
   });
 
@@ -873,7 +880,7 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.NoMatchedExpression,
       };
-      const result = filterSiteData(cleanReasonObj, 'test');
+      const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
       expect(result).toBe(false);
     });
 
@@ -887,7 +894,7 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.NoMatchedExpression,
       };
-      const result = filterSiteData(cleanReasonObj, 'test');
+      const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
       expect(result).toBe(true);
     });
 
@@ -904,7 +911,7 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.MatchedExpression,
       };
-      const result = filterSiteData(cleanReasonObj, 'LocalStorage');
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(false);
     });
 
@@ -917,12 +924,12 @@ describe('CleanupService', () => {
         },
         expression: {
           ...whiteListYoutube,
-          cleanLocalStorage: true,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.MatchedExpression,
       };
-      const result = filterSiteData(cleanReasonObj, 'LocalStorage');
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(true);
     });
 
@@ -935,12 +942,12 @@ describe('CleanupService', () => {
         },
         expression: {
           ...whiteListYoutube,
-          cleanLocalStorage: true,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.OpenTabs,
       };
-      const result = filterSiteData(cleanReasonObj, 'LocalStorage');
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(false);
     });
 
@@ -954,7 +961,7 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.NoMatchedExpression,
       };
-      filterSiteData(cleanReasonObj, 'test');
+      filterSiteData(cleanReasonObj, SiteDataType.CACHE);
       expect(
         spyLib.cadLog.mock.calls[0][0].x.CleanReasonObject.cookie.value,
       ).toEqual('value');
@@ -969,7 +976,7 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.NoMatchedExpression,
       };
-      filterSiteData(cleanReasonObj, 'test', true);
+      filterSiteData(cleanReasonObj, SiteDataType.CACHE, true);
       expect(
         spyLib.cadLog.mock.calls[0][0].x.CleanReasonObject.cookie.value,
       ).toEqual('***');
@@ -1338,8 +1345,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        localstorageCleanup: {
-          name: 'localstorageCleanup',
+        localStorageCleanup: {
+          name: 'localStorageCleanup',
           value: true,
         },
       },
@@ -1636,14 +1643,26 @@ describe('CleanupService', () => {
 
   describe('removeSiteData()', () => {
     it('should use hostnames for domains if removal is in firefox', async () => {
-      await removeSiteData('test', false, ['test'], false);
+      await removeSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        'Firefox',
+        ['test'],
+        false,
+      );
       expect(global.browser.browsingData.remove).toHaveBeenCalledWith(
         expect.objectContaining({ hostnames: ['test'] }),
         expect.any(Object),
       );
     });
     it('should use origins for domains if removal is in Chrome', async () => {
-      await removeSiteData('test', true, ['test'], false);
+      await removeSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        'Chrome',
+        ['test'],
+        false,
+      );
       expect(global.browser.browsingData.remove).toHaveBeenCalledWith(
         expect.objectContaining({ origins: ['test'] }),
         expect.any(Object),
@@ -1653,7 +1672,15 @@ describe('CleanupService', () => {
       when(global.browser.browsingData.remove)
         .calledWith(expect.any(Object), expect.any(Object))
         .mockRejectedValue(new Error('test') as never);
-      expect(await removeSiteData('test', false, ['test'], false)).toBe(false);
+      expect(
+        await removeSiteData(
+          sampleState,
+          SiteDataType.CACHE,
+          'Firefox',
+          ['test'],
+          false,
+        ),
+      ).toBe(false);
     });
   });
 

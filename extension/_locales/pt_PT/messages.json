@@ -333,11 +333,11 @@
     "message": "AVISO: Ativar a limpeza de LocalStorage e separadores contentores pode causar alguns efeitos secundários indesejados devido a limitações de API. LocalStorage irá ser limpa por servidor em TODOS os contentores.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Limpeza de LocalStorage",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Aviso: TODA a LocalStorage existente irá ser removida após a ativação da Limpeza de LocalStorage.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

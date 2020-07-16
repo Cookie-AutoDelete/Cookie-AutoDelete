@@ -243,11 +243,11 @@
     "message": "تحذير: تمكين تنظيف التخزين المحلي وعلامات تبويب الحاويات قد يسبب تأثيرات جانبية غير مرغوب فيها بسبب حدود API. سيتم مسح التخزين المحلي بواسطة اسم المضيف على جميع الحاويات.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "تنظيف التخزين المحلي",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "تحذير: سيتم مسح جميع التخزين المحلي الحالي عند تمكين تنظيف التخزين المحلي.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

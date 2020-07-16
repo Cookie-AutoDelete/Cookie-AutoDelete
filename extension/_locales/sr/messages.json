@@ -247,11 +247,11 @@
     "message": "УПОЗОРЕЊЕ: Омогућивање локалног чишћења и картица контејнера може проузроковати нежељене нежељене ефекте због ограничења АПИ-ја. ЛоцалСтораге ће бити обрисано именом хоста на СВИМ контејнерима.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Чишћење локалног складишта",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Упозорење: Целокупно постојеће локално складиште биће очишћено након омогућавања опције LocalStorage чишћење.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

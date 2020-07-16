@@ -243,11 +243,11 @@
     "message": "Advarsel: Aktivering av både LocalStorage Cleanup og Container Faner kan føre til uønskede bivirkninger på grunn av API-begrensninger. Lokal lagring vil bli fjernet ved vertsnavn på ALLE beholdere.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Lokal lagring opprydding",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Advarsel: ALLE eksisterende Lokal lagring vil bli fjernet ved aktivering av Lokal lagring.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

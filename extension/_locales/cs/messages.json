@@ -243,11 +243,11 @@
     "message": "Povolení LocalStorage Cleanup a Container Tabs by mohlo způsobit některé nežádoucí vedlejší efekty kvůli API omezením",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "LocalStorage čištění",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Upozornění: VŠECHNY stávající LocalStorage bude vymazáno při povolení vyčištění LocalStorage.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

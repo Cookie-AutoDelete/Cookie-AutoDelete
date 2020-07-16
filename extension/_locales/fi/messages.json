@@ -243,7 +243,7 @@
     "message": "VAROITUS: Sekä LocalStorage Cleanup- että Container Tabs -välilehteiden ottaminen käyttöön voi aiheuttaa API-rajoituksista johtuvia ei-toivottuja sivuvaikutuksia. LocalStorage tyhjennetään isäntänimellä kaikissa säilöissä.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "LocalStorage-siivous",
     "description": "LocalStorage Cleanup"
   },

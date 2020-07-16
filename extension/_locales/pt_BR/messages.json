@@ -243,11 +243,11 @@
     "message": "AVISO: Habilitando a Limpeza de Local Storage e Abas Contêiner pode causar efeitos indesejados devido a Limitação de API. LocalStorage será limpo pelo nome de host em TODOS os contêineres.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Limpeza de Local Storage",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Atenção: TODO o armazenamento local existente será removido após ativação da \"Limpeza de Armazenamento Local\".",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

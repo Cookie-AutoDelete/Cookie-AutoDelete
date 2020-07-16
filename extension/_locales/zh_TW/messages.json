@@ -243,11 +243,11 @@
     "message": "警告：由於API限制，同時啟用 LocalStorage Cleanup 和 Container Tab 可能會導致有害的副作用。 LocalStorage 將通過所有容器上的主機名清除。",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "本地儲存清理",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "警告：啟用 LocalStorage Cleanup 後，將清除所有現有的 LocalStorage。",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },

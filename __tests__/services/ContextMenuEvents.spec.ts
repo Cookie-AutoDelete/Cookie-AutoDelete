@@ -214,7 +214,7 @@ describe('ContextMenuEvents', () => {
       when(spyCleanupService.clearCookiesForThisDomain)
         .calledWith(expect.any(Object), expect.any(Object))
         .mockResolvedValue(true as never);
-      when(spyCleanupService.clearLocalstorageForThisDomain)
+      when(spyCleanupService.clearLocalStorageForThisDomain)
         .calledWith(expect.any(Object), expect.any(Object))
         .mockResolvedValue(true as never);
     });
@@ -331,7 +331,7 @@ describe('ContextMenuEvents', () => {
         sampleTab,
       );
       expect(
-        spyCleanupService.clearLocalstorageForThisDomain,
+        spyCleanupService.clearLocalStorageForThisDomain,
       ).toHaveBeenCalledTimes(1);
     });
     it('Trigger Clear Plugin Data For This Domain', () => {
