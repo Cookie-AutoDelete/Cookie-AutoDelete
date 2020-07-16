@@ -892,20 +892,13 @@ export const cleanCookiesOperation = async (
       state,
       isSafeToCleanObjects,
     );
-    if (storeResults.cache) {
-      storeResults.cache.forEach((d) => {
-        setOfDeletedDomainCaches.add(d);
-      });
-    }
-    if (storeResults.indexedDB) {
-      storeResults.indexedDB.forEach((d) => {
-        setOfDeletedDomainIndexedDB.add(d);
-      });
-    }
-    if (storeResults.localStorage) {
-      storeResults.localStorage.forEach((d) => {
-        setOfDeletedDomainLocalStorage.add(d);
-      });
+    for (const sd of SITEDATATYPES) {
+      if (storeResults[sd]) {
+        cachedResults.siteDataCleaned = true;
+        deletedSiteDataArrays[sd] = (deletedSiteDataArrays[sd] || []).concat(
+          (storeResults[sd] as string[]).map((domain) => trimDot(domain)),
+        );
+      }
     }
   }
 
