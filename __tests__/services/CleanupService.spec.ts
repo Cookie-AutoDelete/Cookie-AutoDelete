@@ -24,6 +24,7 @@ const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
 
 jest.requireActual('../../src/services/CleanupService');
 import * as CleanupService from '../../src/services/CleanupService';
+import { CADCOOKIENAME } from '../../src/services/Libs';
 const spyCleanupService: {
   [s: string]: jest.SpyInstance;
 } = global.generateSpies(CleanupService);
@@ -1315,6 +1316,21 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonKeep.MatchedExpression);
       expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return true if cookie was created through CAD', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        name: CADCOOKIENAME,
+        hostname: 'sub.google.com',
+        mainDomain: 'google.com',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.CADSiteDataCookie);
+      expect(result.cleanCookie).toBe(true);
     });
   });
 

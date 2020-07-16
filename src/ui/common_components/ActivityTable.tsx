@@ -70,6 +70,7 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
   const { hostname, mainDomain } = cleanReasonObject.cookie;
   const matchedExpression = cleanReasonObject.expression;
   switch (reason) {
+    case ReasonClean.CADSiteDataCookie:
     case ReasonClean.ExpiredCookie: {
       return browser.i18n.getMessage(reason, [hostname]);
     }

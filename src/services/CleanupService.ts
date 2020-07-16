@@ -127,6 +127,23 @@ export const isSafeToClean = (
       };
     }
   }
+  if (cookieProperties.name === CADCOOKIENAME) {
+    cadLog(
+      {
+        msg:
+          'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups.',
+        x: { partialCookieInfo },
+      },
+      debug,
+    );
+    return {
+      cached: false,
+      cleanCookie: true,
+      cookie: cookieProperties,
+      openTabStatus,
+      reason: ReasonClean.CADSiteDataCookie,
+    };
+  }
 
   // Tests if the main domain is open on that specific storeId/container
   if (openTabDomains[storeId] && openTabDomains[storeId].includes(mainDomain)) {
