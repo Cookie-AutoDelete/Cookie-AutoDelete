@@ -14,7 +14,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { addExpressionUI, clearExpressionsUI } from '../../../redux/Actions';
-import { getSetting } from '../../../services/Libs';
+import { cadLog, getSetting } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
@@ -38,6 +38,7 @@ interface OwnProps {
 interface StateProps {
   lists: StoreIdToExpressionList;
   contextualIdentities: boolean;
+  debug: boolean;
 }
 
 interface DispatchProps {
@@ -111,7 +112,7 @@ class Expressions extends React.Component<ExpressionProps> {
   }
 
   public clearListsConfirmation(lists: StoreIdToExpressionList) {
-    const { onClearExpressions } = this.props;
+    const { debug, onClearExpressions } = this.props;
     const listKeys = Object.keys(lists);
     let expCount = 0;
     listKeys.forEach((k) => {
@@ -128,7 +129,13 @@ class Expressions extends React.Component<ExpressionProps> {
           listKeys.length.toString(),
         ]),
       );
-      console.info(`Clear Expressions Prompt returned [ ${r} ]`);
+      cadLog(
+        {
+          msg: `Clear Expressions Prompt returned [ ${r} ]`,
+          type: 'info',
+        },
+        debug,
+      );
       if (r !== null && r === expCount.toString()) {
         onClearExpressions(this.props.lists);
       }
@@ -415,6 +422,7 @@ const mapStateToProps = (state: State) => {
   const { lists } = state;
   return {
     contextualIdentities: getSetting(state, 'contextualIdentities') as boolean,
+    debug: getSetting(state, 'debugMode') as boolean,
     lists,
   };
 };
