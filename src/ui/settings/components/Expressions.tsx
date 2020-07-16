@@ -159,7 +159,7 @@ class Expressions extends React.Component<ExpressionProps> {
     const { error, contextualIdentitiesObjects, storeId } = this.state;
     return (
       <div className="col" style={style}>
-        <h1>{browser.i18n.getMessage('whiteListText')}</h1>
+        <h1>{browser.i18n.getMessage('expressionListText')}</h1>
 
         <div className="row">
           <input

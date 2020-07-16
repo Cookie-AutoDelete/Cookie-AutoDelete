@@ -593,7 +593,7 @@
     "message": "Ontmerk die 'Keep LocalStorage' op nuwe witlysuitdrukkings",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Lys van Uitdrukkings",
     "description": "List of Expressions"
   },

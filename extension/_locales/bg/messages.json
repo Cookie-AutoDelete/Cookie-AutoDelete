@@ -681,7 +681,7 @@
     "message": "Размаркиране на 'Запазване на местното хранилище' в новия бял списък с изрази",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Списък с изрази",
     "description": "List of Expressions"
   },

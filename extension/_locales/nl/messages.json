@@ -761,7 +761,7 @@
     "message": "Vink 'lokale opslag behouden' uit bij nieuwe Whitelist Expressies",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Lijst met expressies",
     "description": "List of Expressions"
   },

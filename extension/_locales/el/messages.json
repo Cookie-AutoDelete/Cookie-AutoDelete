@@ -593,7 +593,7 @@
     "message": "Καταργήστε την επιλογή \"Διατήρηση τοπικής αποθήκευσης\" στις Νέες εκφράσεις της λίστας",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Λίστα εκφράσεων",
     "description": "List of Expressions"
   },

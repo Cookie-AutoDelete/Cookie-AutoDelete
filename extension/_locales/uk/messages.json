@@ -607,7 +607,7 @@
     "message": "Зніміть прапорець 'Зберегти локальне сховище' для Нового Списку винятків",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Список правил",
     "description": "List of Expressions"
   },

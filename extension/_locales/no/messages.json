@@ -607,7 +607,7 @@
     "message": "Fjern markeringen for \"Behold lokallagring\" på nye Whitelist uttrykk",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Liste over uttrykk",
     "description": "List of Expressions"
   },

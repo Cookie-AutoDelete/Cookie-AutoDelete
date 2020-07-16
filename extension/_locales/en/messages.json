@@ -921,7 +921,7 @@
     "message": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "List of Expressions",
     "description": "List of Expressions"
   },

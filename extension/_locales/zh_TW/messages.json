@@ -593,7 +593,7 @@
     "message": "在新的白名單表達式上取消選中“保留 LocalStorage”",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "表示式列表",
     "description": "List of Expressions"
   },

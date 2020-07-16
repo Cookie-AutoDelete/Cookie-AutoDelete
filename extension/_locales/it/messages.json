@@ -753,7 +753,7 @@
     "message": "Deseleziona 'Mantieni Localstorage' nelle nuove espressioni in lista bianca",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Elenco di espressioni",
     "description": "List of Expressions"
   },

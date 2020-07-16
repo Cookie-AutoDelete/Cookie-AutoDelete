@@ -247,7 +247,7 @@
     "message": "LocalStorage-siivous",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Varoitus: KAIKKI olemassa oleva LocalStorage poistetaan, kun LocalStorage-siivous otetaan käyttöön.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -593,7 +593,7 @@
     "message": "Poista valinta kohdasta Pidä LocalStorage uusissa sallittujen luetteloiden lausekkeissa",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Sääntölista",
     "description": "List of Expressions"
   },

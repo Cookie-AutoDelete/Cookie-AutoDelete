@@ -771,7 +771,7 @@
     "message": "Odznacz 'Zachowaj localStorage' w nowych formułach białej listy",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Lista formuł",
     "description": "List of Expressions"
   },

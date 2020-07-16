@@ -775,7 +775,7 @@
     "message": "新しいホワイトリスト式の 'ローカルストレージを保持する' のチェックを外す",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "式のリスト",
     "description": "List of Expressions"
   },

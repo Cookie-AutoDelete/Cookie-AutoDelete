@@ -29,7 +29,7 @@ const sideBarTabs = [
   },
   {
     tabId: 'tabExpressionList',
-    tabText: browser.i18n.getMessage('whiteListText'),
+    tabText: browser.i18n.getMessage('expressionListText'),
   },
   {
     tabId: 'tabCleanupLog',

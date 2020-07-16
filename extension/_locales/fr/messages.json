@@ -771,7 +771,7 @@
     "message": "Décocher \"Garder la mémoire locale\" sur les nouvelles expressions de la liste blanche",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Liste d’expressions",
     "description": "List of Expressions"
   },

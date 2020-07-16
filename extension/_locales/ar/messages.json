@@ -593,7 +593,7 @@
     "message": "إلغاء تحديد 'الحفاظ على التخزين المحلي' على تعبيرات القائمة البيضاء الجديدة",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "قائمة التعبيرات",
     "description": "List of Expressions"
   },
