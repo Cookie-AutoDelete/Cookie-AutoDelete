@@ -185,6 +185,41 @@ export const getHostname = (urlToGetHostName: string | undefined): string => {
 };
 
 /**
+ * Gets the default expression options depending on the list/storeId.
+ * If storeId is not default, it will try to get defaults set in default list
+ * before using CAD defaults (all checked).
+ * @param state The State (store.getState())
+ * @param storeId The container id, or 'default'
+ * @param listType The List Type
+ */
+export const getContainerExpressionDefault = (
+  state: State,
+  storeId: string,
+  listType: ListType,
+): Expression => {
+  const getExpression = (list: string): Expression | undefined => {
+    return state.lists[list]
+      ? state.lists[list].find((exp) => {
+          return (
+            exp.listType === listType &&
+            exp.expression === `_Default:${listType}`
+          );
+        })
+      : undefined;
+  };
+  const exp: Expression = {
+    expression: '',
+    listType: ListType.WHITE,
+    storeId: '',
+  };
+  const expDefault =
+    storeId !== 'default' && getSetting(state, 'contextualIdentities')
+      ? getExpression('default') || exp
+      : exp;
+  return getExpression(storeId) || expDefault;
+};
+
+/**
  * Gets the value of the setting
  */
 export const getSetting = (

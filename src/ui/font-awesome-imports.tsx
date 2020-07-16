@@ -13,6 +13,7 @@ import { faCog } from '@fortawesome/free-solid-svg-icons/faCog';
 import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 import { faEraser } from '@fortawesome/free-solid-svg-icons/faEraser';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons/faExchangeAlt';
+import { faListAlt } from '@fortawesome/free-solid-svg-icons/faListAlt';
 import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons/faPowerOff';
@@ -22,7 +23,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import { faUndo } from '@fortawesome/free-solid-svg-icons/faUndo';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 
-export default () => {
+export default (): void => {
   library.add(
     faCheckSquare,
     faQuestionCircle,
@@ -35,6 +36,7 @@ export default () => {
     faDownload,
     faEraser,
     faExchangeAlt,
+    faListAlt,
     faPen,
     faPlus,
     faPowerOff,

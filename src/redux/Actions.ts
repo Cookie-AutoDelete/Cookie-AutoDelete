@@ -16,6 +16,7 @@ import { ThunkAction } from 'redux-thunk';
 import { checkIfProtected } from '../services/BrowserActionService';
 import { cleanCookiesOperation } from '../services/CleanupService';
 import {
+  getContainerExpressionDefault,
   getSetting,
   getStoreId,
   isChrome,
@@ -67,22 +68,24 @@ export const addExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ): void => {
-  const localStorageDefault = (listType: string): boolean => {
-    switch (listType) {
-      case 'GREY':
-        return getSetting(getState(), 'greyCleanLocalstorage') === true;
-      case 'WHITE':
-        return getSetting(getState(), 'whiteCleanLocalstorage') === true;
-      default:
-        return true;
-    }
-  };
+  // Sanitize the payload's storeId
+  const storeId = getStoreId(getState(), payload.storeId);
+  const defaultOptions = getContainerExpressionDefault(
+    getState(),
+    storeId,
+    payload.listType as ListType,
+  );
+
   dispatch({
     payload: {
       ...payload,
-      cleanLocalStorage: localStorageDefault(payload.listType),
-      // Sanitize the payload's storeId
-      storeId: getStoreId(getState(), payload.storeId),
+      cleanAllCookies: payload.cleanAllCookies
+        ? payload.cleanAllCookies
+        : defaultOptions.cleanAllCookies,
+      cleanSiteData: payload.cleanSiteData
+        ? payload.cleanSiteData
+        : defaultOptions.cleanSiteData || [],
+      storeId,
     },
     type: ReduxConstants.ADD_EXPRESSION,
   });
@@ -119,14 +122,56 @@ export const updateExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ): void => {
+  // Sanitize the payload's storeId
+  const sanitizedStoreId = getStoreId(getState(), payload.storeId);
   dispatch({
     payload: {
       ...payload,
-      // Sanitize the payload's storeId
-      storeId: getStoreId(getState(), payload.storeId),
+      storeId: sanitizedStoreId,
     },
     type: ReduxConstants.UPDATE_EXPRESSION,
   });
+  // Migration Downgrades between 3.5.0 and 3.4.0
+  // Uncheck 'Keep LocalStorage' on New ... Expressions
+  if (
+    payload.expression === `_Default:${payload.listType}` &&
+    sanitizedStoreId === 'default' &&
+    payload.cleanSiteData
+  ) {
+    if (payload.cleanSiteData.includes(SiteDataType.LOCALSTORAGE)) {
+      if (
+        !getSetting(
+          getState(),
+          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+        )
+      ) {
+        // Enable Deprecated Option
+        dispatch({
+          payload: {
+            name: `${payload.listType.toLowerCase()}CleanLocalstorage`,
+            value: true,
+          },
+          type: ReduxConstants.UPDATE_SETTING,
+        });
+      }
+    } else {
+      if (
+        getSetting(
+          getState(),
+          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+        )
+      ) {
+        // Disable Deprecated Option
+        dispatch({
+          payload: {
+            name: `${payload.listType.toLowerCase()}CleanLocalstorage`,
+            value: false,
+          },
+          type: ReduxConstants.UPDATE_SETTING,
+        });
+      }
+    }
+  }
   checkIfProtected(getState());
 };
 

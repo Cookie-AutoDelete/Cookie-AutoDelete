@@ -191,6 +191,10 @@
     "message": "Run cleanup now, exclude domains from open tabs",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "createDefaultExpressionOptionsText": {
+    "message": "Create Default Expression Options",
+    "description": "Create Default Expression Options.  Used in 'List of Expressions'"
+  },
   "debugMode": {
     "message": "Enable Debug Mode (Additional Console Outputs)",
     "description": "Enable Debug Mode (Additional Console Outputs)"
@@ -298,6 +302,16 @@
   "greyListWordText": {
     "message": "Greylist",
     "description": "Greylist"
+  },
+  "groupExpressionDefaultNotice": {
+    "message": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!",
+    "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
+    "placeholders": {
+      "listExpression": {
+        "content":"$1",
+        "example": "List of Expressions <- the translated version"
+      }
+    }
   },
   "importCoreSettingsFailed": {
     "message": "Import Core Settings Failed - Found unknown setting",

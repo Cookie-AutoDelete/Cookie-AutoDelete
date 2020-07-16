@@ -67,6 +67,7 @@ export const initialState: State = {
       value: false,
     },
     greyCleanLocalstorage: {
+      id: 'DEPRECATED - use default expressions',
       name: 'greyCleanLocalstorage',
       value: false,
     },
@@ -120,6 +121,7 @@ export const initialState: State = {
       value: true,
     },
     whiteCleanLocalstorage: {
+      id: 'DEPRECATED - use default expressions',
       name: 'whiteCleanLocalstorage',
       value: false,
     },

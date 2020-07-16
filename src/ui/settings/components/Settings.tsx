@@ -217,8 +217,8 @@ class Settings extends React.Component<SettingProps> {
       <div style={style}>
         <h1>{browser.i18n.getMessage('settingsText')}</h1>
         <br />
-        <div className="row">
-          <div className="col-sm col-md-auto btn-group">
+        <div className="row no-gutters justify-content-between justify-content-md-start">
+          <div className="col-7 col-md-auto">
             <IconButton
               className="btn-primary"
               iconName="download"
@@ -228,6 +228,8 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('exportSettingsText')}
               styleReact={styles.buttonStyle}
             />
+          </div>
+          <div className="col-7 col-md-auto">
             <IconButton
               tag="input"
               className="btn-info"
@@ -239,6 +241,8 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('importCoreSettingsText')}
               styleReact={styles.buttonStyle}
             />
+          </div>
+          <div className="col-7 col-md-auto">
             <IconButton
               className="btn-danger"
               role="button"
@@ -367,29 +371,11 @@ class Settings extends React.Component<SettingProps> {
         <hr />
         <fieldset>
           <legend>{browser.i18n.getMessage('settingGroupExpression')}</legend>
-          <div className="form-group">
-            <CheckboxSetting
-              text={browser.i18n.getMessage('greyCleanLocalstorage')}
-              settingObject={settings.greyCleanLocalstorage}
-              inline={true}
-              updateSetting={(payload) => onUpdateSetting(payload)}
-            />
-            <SettingsTooltip
-              hrefURL={'#uncheck-keep-localstorage-on-new-greylist-expressions'}
-            />
-          </div>
-          <div className="form-group">
-            <CheckboxSetting
-              text={browser.i18n.getMessage('whiteCleanLocalstorage')}
-              settingObject={settings.whiteCleanLocalstorage}
-              inline={true}
-              updateSetting={(payload) => onUpdateSetting(payload)}
-            />
-            <SettingsTooltip
-              hrefURL={
-                '#uncheck-keep-localstorage-on-new-whitelist-expressions'
-              }
-            />
+          <div className="alert alert-info">
+            {browser.i18n.getMessage('groupExpressionDefaultNotice', [
+              browser.i18n.getMessage('expressionListText'),
+            ])}{' '}
+            <SettingsTooltip hrefURL={'#default-expression-options'} />
           </div>
         </fieldset>
         <hr />
@@ -532,7 +518,9 @@ class Settings extends React.Component<SettingProps> {
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
-                <SettingsTooltip hrefURL={'#keep-default-icon-on-all-list-types'} />
+                <SettingsTooltip
+                  hrefURL={'#keep-default-icon-on-all-list-types'}
+                />
               </div>
             )}
           <div className="form-group">

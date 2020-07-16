@@ -18,6 +18,7 @@ import {
   convertVersionToNumber,
   createPartialTabInfo,
   extractMainDomain,
+  getContainerExpressionDefault,
   getHostname,
   getSetting,
   getStoreId,
@@ -366,6 +367,99 @@ describe('Library Functions', () => {
 
     it('should return nothing on empty string', () => {
       expect(extractMainDomain('')).toEqual('');
+    });
+  });
+
+  describe('getContainerExpressionDefault()', () => {
+    const mockExpression: Expression = {
+      expression: '',
+      listType: ListType.WHITE,
+      storeId: '',
+    };
+    it('should return default expression if list does not contain storeId given', () => {
+      expect(
+        getContainerExpressionDefault(initialState, 'default', ListType.WHITE),
+      ).toEqual(mockExpression);
+    });
+    it('should return default expression if existing list does not contain default expression key', () => {
+      expect(
+        getContainerExpressionDefault(
+          { ...initialState, lists: { default: [mockExpression] } },
+          'default',
+          ListType.WHITE,
+        ),
+      ).toEqual(mockExpression);
+    });
+    it('should return customized default expression if existing list contains default expression key', () => {
+      expect(
+        getContainerExpressionDefault(
+          {
+            ...initialState,
+            lists: {
+              default: [
+                {
+                  expression: `_Default:${ListType.WHITE}`,
+                  cleanSiteData: [SiteDataType.PLUGINDATA],
+                  listType: ListType.WHITE,
+                  storeId: 'default',
+                },
+              ],
+            },
+          },
+          'default',
+          ListType.WHITE,
+        ),
+      ).toEqual(
+        expect.objectContaining({ cleanSiteData: [SiteDataType.PLUGINDATA] }),
+      );
+    });
+    it('should return customized default expression for non-default container from default container if non-default container is missing defaults', () => {
+      expect(
+        getContainerExpressionDefault(
+          {
+            ...initialState,
+            settings: {
+              ...initialState.settings,
+              contextualIdentities: {
+                name: 'contextualIdentities',
+                value: true,
+              },
+            },
+            lists: {
+              default: [
+                {
+                  expression: `_Default:${ListType.WHITE}`,
+                  cleanSiteData: [SiteDataType.PLUGINDATA],
+                  listType: ListType.WHITE,
+                  storeId: 'default',
+                },
+              ],
+            },
+          },
+          'firefox-container-1',
+          ListType.WHITE,
+        ),
+      ).toEqual(
+        expect.objectContaining({ cleanSiteData: [SiteDataType.PLUGINDATA] }),
+      );
+    });
+    it('should return default expression for non-default container if non-default and default container is missing defaults', () => {
+      expect(
+        getContainerExpressionDefault(
+          {
+            ...initialState,
+            settings: {
+              ...initialState.settings,
+              contextualIdentities: {
+                name: 'contextualIdentities',
+                value: true,
+              },
+            },
+          },
+          'firefox-container-1',
+          ListType.WHITE,
+        ),
+      ).toEqual(mockExpression);
     });
   });
 

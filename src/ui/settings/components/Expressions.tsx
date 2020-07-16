@@ -130,6 +130,27 @@ class Expressions extends React.Component<ExpressionProps> {
     }
   }
 
+  public createDefaultOptions() {
+    const { contextualIdentities, lists, onNewExpression } = this.props;
+    const { contextualIdentitiesObjects } = this.state;
+    const containers = new Set<string>(Object.keys(lists));
+    if (contextualIdentities) {
+      contextualIdentitiesObjects.forEach((c) =>
+        containers.add(c.cookieStoreId),
+      );
+    }
+    containers.add('default');
+    containers.forEach((id) => {
+      [ListType.GREY, ListType.WHITE].forEach((lt) => {
+        onNewExpression({
+          expression: `_Default:${lt}`,
+          listType: lt,
+          storeId: id,
+        });
+      });
+    });
+  }
+
   public getDerivedStateFromProps(nextProps: ExpressionProps) {
     if (!nextProps.contextualIdentities) {
       this.changeStoreIdTab('default');
@@ -206,48 +227,75 @@ class Expressions extends React.Component<ExpressionProps> {
             paddingTop: '8px',
           }}
         >
-          <div
-            className="col-sm col-md-auto btn-group"
-            style={{
-              paddingLeft: 0,
-              paddingRight: 0,
-            }}
-          >
-            <IconButton
-              className="btn-primary"
-              iconName="download"
-              role="button"
-              onClick={() =>
-                downloadObjectAsJSON(this.props.lists, 'Expressions')
-              }
-              title={browser.i18n.getMessage('exportTitleTimestamp')}
-              text={browser.i18n.getMessage('exportURLSText')}
-              styleReact={styles.buttonStyle}
-            />
-            <IconButton
-              tag="input"
-              className="btn-info"
-              iconName="upload"
-              type="file"
-              accept="application/json"
-              onChange={(e) => this.importExpressions(e.target.files)}
-              text={browser.i18n.getMessage('importURLSText')}
-              title={browser.i18n.getMessage('importURLSText')}
-              styleReact={styles.buttonStyle}
-            />
-            <IconButton
-              tag="button"
-              className="btn-danger"
-              iconName="trash"
-              role="button"
-              onClick={() => this.clearListsConfirmation(this.props.lists)}
-              text={browser.i18n.getMessage('removeAllExpressions')}
-              title={browser.i18n.getMessage('removeAllExpressions')}
-              styleReact={styles.buttonStyle}
-            />
+          <div className="col-sm col-md-auto">
+            <div
+              className="row justify-content-sm-center justify-content-md-start"
+              style={{
+                paddingLeft: 0,
+                paddingRight: 0,
+              }}
+            >
+              <IconButton
+                className="btn-primary"
+                iconName="download"
+                role="button"
+                onClick={() =>
+                  downloadObjectAsJSON(this.props.lists, 'Expressions')
+                }
+                title={browser.i18n.getMessage('exportTitleTimestamp')}
+                text={browser.i18n.getMessage('exportURLSText')}
+                styleReact={styles.buttonStyle}
+              />
+              <IconButton
+                tag="input"
+                className="btn-info"
+                iconName="upload"
+                type="file"
+                accept="application/json"
+                onChange={(e) => this.importExpressions(e.target.files)}
+                text={browser.i18n.getMessage('importURLSText')}
+                title={browser.i18n.getMessage('importURLSText')}
+                styleReact={styles.buttonStyle}
+              />
+            </div>
+            <div className="w-100" />
+            <div
+              className="row justify-content-sm-center justify-content-md-start"
+              style={{
+                marginTop: '5px',
+                marginBottom: '5px',
+                paddingLeft: 0,
+                paddingRight: 0,
+              }}
+            >
+              <IconButton
+                tag="button"
+                className="btn-danger"
+                iconName="trash"
+                role="button"
+                onClick={() => this.clearListsConfirmation(this.props.lists)}
+                text={browser.i18n.getMessage('removeAllExpressions')}
+                title={browser.i18n.getMessage('removeAllExpressions')}
+                styleReact={styles.buttonStyle}
+              />
+              <IconButton
+                tag="button"
+                className="btn-dark"
+                iconName="list-alt"
+                role="button"
+                onClick={() => this.createDefaultOptions()}
+                text={browser.i18n.getMessage(
+                  'createDefaultExpressionOptionsText',
+                )}
+                title={browser.i18n.getMessage(
+                  'createDefaultExpressionOptionsText',
+                )}
+                styleReact={styles.buttonStyle}
+              />
+            </div>
           </div>
           <div
-            className="col-sm col-md-auto btn-group"
+            className="col-sm col-md-auto"
             style={{
               justifyContent: 'flex-end',
               paddingLeft: 0,
