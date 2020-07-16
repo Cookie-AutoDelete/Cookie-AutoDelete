@@ -234,7 +234,7 @@ export const validateSettings: ActionCreator<ThunkAction<
   }
 
   // Minimum 1 second autoclean delay.
-  if (settings.delayBeforeClean.value < 0) {
+  if (settings.delayBeforeClean.value < 1) {
     dispatch({
       payload: {
         ...settings.delayBeforeClean,
