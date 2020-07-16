@@ -63,7 +63,12 @@ class Expressions extends React.Component<ExpressionProps> {
     const reader = new FileReader();
     reader.onload = (file) => {
       try {
-        if (!file.target) throw Error('File not found');
+        if (!file.target) {
+          this.setState({
+            error: `${(files[0] as File).name} - File Not Found.`,
+          });
+          return;
+        }
         // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
         const target: any = file.target;
         const result: string = target.result;
