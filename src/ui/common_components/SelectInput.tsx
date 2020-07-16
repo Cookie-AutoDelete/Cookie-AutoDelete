@@ -29,7 +29,9 @@ const SelectInput: React.FunctionComponent<OwnProps> = ({
   updateSetting,
 }) => {
   const { name, value } = settingObject;
-  const numbers: string[] = (numSize ? Array.from(Array(numSize + 1), (x,i) => i + (numStart || 0)).map(String) : []);
+  const numbers: string[] = numSize
+    ? Array.from(Array(numSize + 1), (x, i) => i + (numStart || 0)).map(String)
+    : [];
   const options: string[] = inputOptions || numbers || [];
   return (
     <span>
@@ -37,21 +39,27 @@ const SelectInput: React.FunctionComponent<OwnProps> = ({
         name={name}
         id={name}
         className={'selectOptions custom-select '}
-        onChange={e => {
-          const newValue = options.includes(e.target.value as string) ? e.target.value : value;
+        onChange={(e) => {
+          const newValue = options.includes(e.target.value as string)
+            ? e.target.value
+            : value;
           updateSetting({
             name,
             value: newValue,
           });
         }}
-        style={{minWidth: '5em', width: 'auto',}}
+        style={{ minWidth: '5em', width: 'auto' }}
         value={value as string}
-        >
-        {options.map(opt => (
-          <option key={`${name}-${opt}`} selected={opt===value}>{opt}</option>
+      >
+        {options.map((opt) => (
+          <option key={`${name}-${opt}`} selected={opt === value}>
+            {opt}
+          </option>
         ))}
       </select>
-      <label htmlFor={name} aria-labelledby={name}>{text}</label>
+      <label htmlFor={name} aria-labelledby={name}>
+        {text}
+      </label>
     </span>
   );
 };
