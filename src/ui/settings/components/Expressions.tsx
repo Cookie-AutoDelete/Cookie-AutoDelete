@@ -312,7 +312,8 @@ class Expressions extends React.Component<ExpressionProps> {
                 className={`nav-link ${storeId === 'default' ? 'active' : ''}`}
                 href="#tabExpressionList"
               >
-                Default
+                {browser.i18n.getMessage('defaultText')}
+                <br />({browser.i18n.getMessage('defaultContainerText')})
               </a>
             </li>
             {contextualIdentitiesObjects.map((element) => (
@@ -330,6 +331,8 @@ class Expressions extends React.Component<ExpressionProps> {
                   href="#tabExpressionList"
                 >
                   {element.name}
+                  <br />
+                  {`(${element.cookieStoreId})`}
                 </a>
               </li>
             ))}

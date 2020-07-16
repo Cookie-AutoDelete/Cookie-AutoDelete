@@ -195,6 +195,14 @@
     "message": "Enable Debug Mode (Additional Console Outputs)",
     "description": "Enable Debug Mode (Additional Console Outputs)"
   },
+  "defaultText": {
+    "message": "Default",
+    "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
+  },
+  "defaultContainerText": {
+    "message": "No Container",
+    "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
+  },
   "defaultSettingsText": {
     "message": "Restore Default Settings",
     "description": "Restore Default Settings"

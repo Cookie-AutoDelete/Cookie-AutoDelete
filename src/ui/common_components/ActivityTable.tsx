@@ -339,7 +339,12 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                     <div key={`${storeId}-${log.dateTime}`}>
                       {(storeIdEntries.length > 1 ||
                         getSetting(state, 'contextualIdentities')) && (
-                        <h6>{storeId}</h6>
+                        <h6>
+                          {cache[storeId] !== undefined
+                            ? `${cache[storeId]} `
+                            : ''}
+                          ({storeId})
+                        </h6>
                       )}
                       {createDetailedSummary(cleanReasonObjects)}
                     </div>
