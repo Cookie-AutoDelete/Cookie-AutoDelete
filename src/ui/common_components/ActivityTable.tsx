@@ -30,6 +30,9 @@ const createSummary = (cleanupObj: ActivityLog) => {
   Object.values(cleanupObj.storeIds).forEach((value) => {
     value.forEach((deletedLog) => domainSet.add(deletedLog.cookie.hostname));
   });
+  Object.values(cleanupObj.browsingDataCleanup).forEach((sd) => {
+    sd && sd.forEach((domain) => domainSet.add(domain));
+  });
   return Array.from(domainSet).join(', ');
 };
 
@@ -204,7 +207,10 @@ const restoreCookies = async (
     // If any error/rejection was thrown, the rest of the promises are not processed.
     // FUTURE:  Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled to process all regardless of rejection. ** Perhaps too early to implement at this time 2020-May-03 **
     await Promise.all(promiseArr).catch((e) => {
-      throwErrorNotification(e);
+      throwErrorNotification(
+        e,
+        getSetting(state, 'notificationOnScreen') as number,
+      );
       cadLog(
         {
           msg:
@@ -226,7 +232,7 @@ const restoreCookies = async (
 };
 
 const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
-  const { activityLog, numberToShow, state, onRemoveActivity } = props;
+  const { activityLog, cache, numberToShow, state, onRemoveActivity } = props;
   if (props.activityLog.length === 0) {
     return (
       <div className="alert alert-primary" role="alert">
@@ -252,6 +258,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
           log.recentlyCleaned.toString(),
           summary !== '' ? summary : '(Private)',
         ]);
+        const browsingDataEntries = Object.entries(log.browsingDataCleanup);
         const storeIdEntries = Object.entries(log.storeIds);
         return (
           <div key={index} className="card">
@@ -260,12 +267,14 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
               className="card-header"
               id={`heading${index}`}
             >
-              <IconButton
-                iconName={'undo'}
-                className={'btn-primary'}
-                title={browser.i18n.getMessage('restoreText')}
-                onClick={() => restoreCookies(state, log, onRemoveActivity)}
-              />
+              {(log.recentlyCleaned > 0 && (
+                <IconButton
+                  className={'btn-primary mr-auto'}
+                  iconName={'undo'}
+                  onClick={() => restoreCookies(state, log, onRemoveActivity)}
+                  title={browser.i18n.getMessage('restoreText')}
+                />
+              )) || <div className={'mr-auto'} style={{ minWidth: '42px' }} />}
               <h5
                 className="mb-0"
                 style={{
@@ -285,6 +294,12 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                   })} - ${message}`}
                 </button>
               </h5>
+              <IconButton
+                className={'btn-outline-danger ml-auto'}
+                iconName={'trash'}
+                onClick={() => onRemoveActivity(log)}
+                title={browser.i18n.getMessage('removeActivityLogEntryText')}
+              />
             </div>
             <div
               id={`collapse${index}`}
@@ -293,6 +308,31 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
               data-parent="#accordion"
             >
               <div className="card-body">
+                {browsingDataEntries.map(([siteData, domains]) => {
+                  if (!domains || domains.length === 0) return '';
+                  return (
+                    <div
+                      key={`${siteData}-${log.dateTime}`}
+                      style={{
+                        marginLeft: '10px',
+                      }}
+                      className={`alert alert-info`}
+                      role="alert"
+                    >
+                      {browser.i18n.getMessage(
+                        'activityLogSiteDataDomainsText',
+                        [
+                          browser.i18n.getMessage(
+                            `${siteData[0].toLowerCase()}${siteData.slice(
+                              1,
+                            )}Text`,
+                          ),
+                          domains.join(', '),
+                        ],
+                      )}
+                    </div>
+                  );
+                })}
                 {storeIdEntries.map(([storeId, cleanReasonObjects]) => {
                   return (
                     <div key={`${storeId}-${log.dateTime}`}>

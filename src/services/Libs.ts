@@ -456,13 +456,17 @@ export const returnOptionalCookieAPIAttributes = (
 
 /**
  * Show a notification
+ * @param x Contains object consisting of:
+ *          - duration: number in seconds
+ *          - msg: notification content
+ *          - title: notification title
  */
 export const showNotification = (x: {
   duration: number;
   msg: string;
   title?: string;
 }): void => {
-  const sid = `manual-${shortid.generate()}`;
+  const sid = `CAD-notification-${shortid.generate()}`;
   browser.notifications.create(sid, {
     iconUrl: browser.runtime.getURL('icons/icon_48.png'),
     message: x.msg,
@@ -489,14 +493,20 @@ export const sleep = (ms: number): Promise<any> => {
 
 /**
  * Show an Error notification
+ * @param e The Error (Error Object)
+ * @param duration number in seconds
  */
-export const throwErrorNotification = (e: Error): void => {
-  browser.notifications.create('failed-notification', {
+export const throwErrorNotification = (e: Error, duration: number): void => {
+  const nid = `CAD-notification-failed-${shortid.generate()}`;
+  browser.notifications.create(nid, {
     iconUrl: browser.runtime.getURL('icons/icon_red_48.png'),
     message: e.message,
     title: browser.i18n.getMessage('errorText'),
     type: 'basic',
   });
+  setTimeout(() => {
+    browser.notifications.clear(nid);
+  }, duration * 1000);
 };
 
 /**

@@ -206,6 +206,12 @@ describe('CleanupService', () => {
     when(global.browser.runtime.getManifest)
       .calledWith()
       .mockReturnValue({ version: '0.12.34' });
+    when(global.browser.notifications.create)
+      .calledWith(expect.any(String), expect.any(Object))
+      .mockResolvedValue('testID' as never);
+    when(global.browser.notifications.clear)
+      .calledWith(expect.any(String))
+      .mockResolvedValue(true as never);
   });
   afterEach(() => {
     clear();

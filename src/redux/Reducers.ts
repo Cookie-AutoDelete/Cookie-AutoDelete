@@ -190,7 +190,10 @@ export const activityLog = (
 ): ReadonlyArray<ActivityLog> => {
   switch (action.type) {
     case ReduxConstants.ADD_ACTIVITY_LOG: {
-      if (Object.keys(action.payload.storeIds).length > 0) {
+      if (
+        Object.keys(action.payload.storeIds).length > 0 ||
+        action.payload.siteDataCleaned
+      ) {
         return [action.payload, ...state].slice(0, 10);
       }
       return state;

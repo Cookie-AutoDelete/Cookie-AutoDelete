@@ -20,6 +20,8 @@ import {
   getStoreId,
   isChrome,
   isFirefoxAndroid,
+  showNotification,
+  sleep,
 } from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
@@ -39,8 +41,6 @@ import {
   UPDATE_SETTING,
 } from '../typings/ReduxConstants';
 import { initialState } from './State';
-
-const COOKIE_CLEANUP_NOTIFICATION = 'COOKIE_CLEANUP_NOTIFICATION';
 
 export const addExpressionUI = (payload: Expression): ADD_EXPRESSION => ({
   payload,
@@ -282,41 +282,54 @@ export const cookieCleanup: ActionCreator<ThunkAction<
   const cleanupDoneObject = await cleanCookiesOperation(getState(), options);
   if (!cleanupDoneObject) return;
   const { setOfDeletedDomainCookies, cachedResults } = cleanupDoneObject;
-  const { recentlyCleaned } = cachedResults;
+  const {
+    browsingDataCleanup,
+    recentlyCleaned,
+    siteDataCleaned,
+  } = cachedResults as ActivityLog;
 
   // Increment the count
   if (recentlyCleaned !== 0 && getSetting(getState(), 'statLogging')) {
     dispatch(incrementCookieDeletedCounter(recentlyCleaned));
   }
 
-  if (recentlyCleaned !== 0 && getSetting(getState(), 'statLogging')) {
+  if (
+    (recentlyCleaned !== 0 || siteDataCleaned) &&
+    getSetting(getState(), 'statLogging')
+  ) {
     dispatch(addActivity(cachedResults));
   }
 
   // Show notifications after cleanup
-  if (
-    setOfDeletedDomainCookies.length > 0 &&
-    getSetting(getState(), 'showNotificationAfterCleanup')
-  ) {
-    const notifyMessage = browser.i18n.getMessage('notificationContent', [
-      recentlyCleaned.toString(),
-      setOfDeletedDomainCookies.join(', '),
-    ]);
-    await browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
-      iconUrl: browser.extension.getURL('icons/icon_48.png'),
-      message: notifyMessage,
-      title: `${browser.i18n.getMessage('extensionName')} ${
-        browser.runtime.getManifest().version
-      }:  ${browser.i18n.getMessage('notificationTitle')}`,
-      type: 'basic',
-    });
-    const seconds = parseInt(
-      `${getSetting(getState(), 'notificationOnScreen')}000`,
-      10,
-    );
-    setTimeout(() => {
-      browser.notifications.clear(COOKIE_CLEANUP_NOTIFICATION);
-    }, seconds);
+  if (getSetting(getState(), 'showNotificationAfterCleanup')) {
+    if (setOfDeletedDomainCookies.length > 0) {
+      // Cookie Notification
+      const notifyMessage = browser.i18n.getMessage('notificationContent', [
+        recentlyCleaned.toString(),
+        setOfDeletedDomainCookies.join(', '),
+      ]);
+      showNotification({
+        duration: getSetting(getState(), 'notificationOnScreen') as number,
+        msg: notifyMessage,
+        title: browser.i18n.getMessage('notificationTitle'),
+      });
+      await sleep(750);
+    }
+    if (siteDataCleaned) {
+      Object.entries(browsingDataCleanup).map(async ([siteData, domains]) => {
+        if (!domains || domains.length === 0) return;
+        await showNotification({
+          duration: getSetting(getState(), 'notificationOnScreen') as number,
+          msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+            browser.i18n.getMessage(
+              `${siteData[0].toLowerCase()}${siteData.slice(1)}Text`,
+            ),
+            domains.join(', '),
+          ]),
+          title: browser.i18n.getMessage('notificationTitleSiteData'),
+        });
+      });
+    }
   }
 };
 

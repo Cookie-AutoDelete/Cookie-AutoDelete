@@ -397,7 +397,11 @@ export const clearLocalStorageForThisDomain = async (
     });
     return true;
   } catch (e) {
-    throwErrorNotification(e);
+    throwErrorNotification(
+      e,
+      getSetting(state, 'notificationOnScreen') as number,
+    );
+    await sleep(750);
     showNotification({
       duration: getSetting(state, 'notificationOnScreen') as number,
       msg: `${browser.i18n.getMessage('manualCleanNothing', [
@@ -488,7 +492,10 @@ export const removeSiteData = async (
       },
       debug,
     );
-    throwErrorNotification(e);
+    throwErrorNotification(
+      e,
+      getSetting(state, 'notificationOnScreen') as number,
+    );
     return false;
   }
 };
@@ -873,7 +880,10 @@ export const cleanCookiesOperation = async (
         },
         true,
       );
-      throwErrorNotification(e);
+      throwErrorNotification(
+        e,
+        getSetting(state, 'notificationOnScreen') as number,
+      );
     }
 
     if (markedForDeletion.length !== 0) {

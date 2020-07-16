@@ -11,6 +11,20 @@
     "message": "Enable Automatic Cleaning",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "Attempted to clean $siteData$ for: $domains$",
+    "description": "Attempted to clean $siteData$ for: $domains$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
   "addNewExpressionNotification": {
     "message": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.",
     "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
@@ -564,8 +578,8 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "$Num$ Deleted Cookies from: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "message": "Some site data, including $Num$ Cookie(s), removed from: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -588,6 +602,10 @@
   "notificationTitle": {
     "message": "Cookies were deleted!",
     "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "notificationTitleSiteData": {
+    "message": "Site Data Removal Triggered!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
   },
   "notifyCookieCleanupDelayText": {
     "message": "Duration for Notifications",
@@ -722,6 +740,10 @@
   "releaseNotesText": {
     "message": "Release Notes",
     "description": "Release Notes"
+  },
+  "removeActivityLogEntryText": {
+    "message": "Remove Log Entry",
+    "description": "Remove Log Entry.  Shown in summary activity log for individual log removal."
   },
   "removeAllExpressions": {
     "message": "Remove All Expressions",

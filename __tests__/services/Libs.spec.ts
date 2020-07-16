@@ -1012,6 +1012,12 @@ describe('Library Functions', () => {
 
   describe('showNotification()', () => {
     beforeAll(() => {
+      when(global.browser.notifications.create)
+        .calledWith(expect.any(String), expect.any(Object))
+        .mockResolvedValue('testID' as never);
+      when(global.browser.notifications.clear)
+        .calledWith(expect.any(String))
+        .mockResolvedValue(true as never);
       when(global.browser.i18n.getMessage)
         .calledWith('manualActionNotification')
         .mockReturnValue('manual');
@@ -1035,7 +1041,7 @@ describe('Library Functions', () => {
       showNotification({ duration: 1, msg: 'Test Notification' });
       expect(global.browser.notifications.create).toHaveBeenCalled();
       expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(
-        expect.stringContaining('manual-'),
+        expect.stringContaining('CAD-notification-'),
       );
       expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(
         expect.objectContaining({
@@ -1046,6 +1052,9 @@ describe('Library Functions', () => {
       );
       expect(setTimeout).toHaveBeenCalled();
       expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+
+      jest.runAllTimers();
+      expect(browser.notifications.clear).toHaveBeenCalledTimes(1);
     });
 
     it('should expect one call to browser.notifications.create with custom title', async () => {
@@ -1055,9 +1064,6 @@ describe('Library Functions', () => {
         title: 'custom',
       });
       expect(global.browser.notifications.create).toHaveBeenCalled();
-      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(
-        expect.stringContaining('manual-'),
-      );
       expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(
         expect.objectContaining({
           message: 'Test Notification',
@@ -1065,8 +1071,6 @@ describe('Library Functions', () => {
           type: 'basic',
         }),
       );
-      expect(setTimeout).toHaveBeenCalled();
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
     });
   });
 
@@ -1135,6 +1139,12 @@ describe('Library Functions', () => {
 
   describe('throwErrorNotification()', () => {
     beforeAll(() => {
+      when(global.browser.notifications.create)
+        .calledWith(expect.any(String), expect.any(Object))
+        .mockResolvedValue('testID' as never);
+      when(global.browser.notifications.clear)
+        .calledWith(expect.any(String))
+        .mockResolvedValue(true as never);
       when(global.browser.i18n.getMessage)
         .calledWith('errorText')
         .mockReturnValue('Error!');
@@ -1145,6 +1155,12 @@ describe('Library Functions', () => {
         .calledWith(expect.anything())
         .mockReturnValue('');
     });
+    beforeEach(() => {
+      jest.spyOn(global, 'setTimeout');
+    });
+    afterEach(() => {
+      jest.clearAllTimers();
+    });
     afterAll(() => {
       global.browser.i18n.getMessage.clearMocks();
       global.browser.runtime.getManifest.clearMocks();
@@ -1152,10 +1168,10 @@ describe('Library Functions', () => {
     });
 
     it('should expect one call to browser.notifications.create', () => {
-      throwErrorNotification({ name: 'Test Error', message: 'An ERROR!' });
+      throwErrorNotification({ name: 'Test Error', message: 'An ERROR!' }, 1);
       expect(global.browser.notifications.create).toHaveBeenCalled();
       expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(
-        'failed-notification',
+        expect.stringContaining('CAD-notification-failed-'),
       );
       expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(
         expect.objectContaining({
@@ -1164,6 +1180,10 @@ describe('Library Functions', () => {
           type: 'basic',
         }),
       );
+      expect(setTimeout).toHaveBeenCalled();
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+      jest.runAllTimers();
+      expect(browser.notifications.clear).toHaveBeenCalledTimes(1);
     });
   });
 
