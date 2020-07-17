@@ -44,6 +44,7 @@ interface StateProps {
   lists: StoreIdToExpressionList;
   contextualIdentities: boolean;
   debug: boolean;
+  browserDetect: string;
 }
 
 interface DispatchProps {
@@ -186,7 +187,12 @@ class Expressions extends React.Component<ExpressionProps> {
   }
 
   public createDefaultOptions() {
-    const { contextualIdentities, lists, onNewExpression } = this.props;
+    const {
+      browserDetect,
+      contextualIdentities,
+      lists,
+      onNewExpression,
+    } = this.props;
     const { contextualIdentitiesObjects } = this.state;
     const containers = new Set<string>(Object.keys(lists));
     if (contextualIdentities) {
@@ -194,7 +200,18 @@ class Expressions extends React.Component<ExpressionProps> {
         containers.add(c.cookieStoreId),
       );
     }
-    containers.add('default');
+    containers.add(
+      ((browser) => {
+        switch (browser) {
+          case 'Chrome':
+          case 'Opera':
+            return '0';
+          case 'Firefox':
+          default:
+            return 'firefox-default';
+        }
+      })(browserDetect),
+    );
     containers.forEach((id) => {
       [ListType.GREY, ListType.WHITE].forEach((lt) => {
         onNewExpression({
@@ -239,6 +256,7 @@ class Expressions extends React.Component<ExpressionProps> {
         mapIDtoName[c.cookieStoreId] = c.name;
       });
       Object.keys(lists).forEach((list) => {
+        if (list === 'default') return;
         const container = contextualIdentitiesObjects.find((c) => {
           return c.cookieStoreId === list;
         });
@@ -503,8 +521,9 @@ class Expressions extends React.Component<ExpressionProps> {
 }
 
 const mapStateToProps = (state: State) => {
-  const { lists } = state;
+  const { cache, lists } = state;
   return {
+    browserDetect: cache.browserDetect,
     contextualIdentities: getSetting(state, 'contextualIdentities') as boolean,
     debug: getSetting(state, 'debugMode') as boolean,
     lists,
