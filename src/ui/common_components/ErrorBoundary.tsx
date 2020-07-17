@@ -35,7 +35,6 @@ interface StateProps {
 type ErrorBoundaryProps = ChildrenProps & DispatchProps & StateProps;
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
-
   public static getDerivedStateFromError(error: Error) {
     // update state so next render will show fallback UI
     if (error.message !== 'state is undefined') {
@@ -51,11 +50,14 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
 
   public componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Shouldn't update state here but can be used to log errors somewhere else.
-    cadLog({
-      msg: `React ErrorBoundary - An Error was caught:  ${error}`,
-      type: 'error',
-      x: {message: error.message, stack: error.stack, errorInfo},
-    }, true);
+    cadLog(
+      {
+        msg: `React ErrorBoundary - An Error was caught:  ${error}`,
+        type: 'error',
+        x: { message: error.message, stack: error.stack, errorInfo },
+      },
+      true,
+    );
   }
 
   public async resetExtensionData() {
@@ -85,7 +87,9 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
               className="btn-primary"
               iconName="download"
               role="button"
-              onClick={() => downloadObjectAsJSON(this.props.state.settings, 'CoreSettings')}
+              onClick={() =>
+                downloadObjectAsJSON(this.props.state.settings, 'CoreSettings')
+              }
               title={browser.i18n.getMessage('exportTitleTimestamp')}
               text={browser.i18n.getMessage('exportSettingsText')}
               styleReact={{ marginRight: '5px' }}
@@ -94,7 +98,9 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
               className="btn-primary"
               iconName="download"
               role="button"
-              onClick={() => downloadObjectAsJSON(this.props.state.lists, 'Expressions')}
+              onClick={() =>
+                downloadObjectAsJSON(this.props.state.lists, 'Expressions')
+              }
               title={browser.i18n.getMessage('exportTitleTimestamp')}
               text={browser.i18n.getMessage('exportURLSText')}
               styleReact={{ marginRight: '5px' }}
@@ -127,7 +133,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ErrorBoundary);
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorBoundary);

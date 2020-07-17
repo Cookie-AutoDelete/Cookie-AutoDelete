@@ -16,7 +16,7 @@ import { getSetting, sleep } from './Libs';
 import StoreUser from './StoreUser';
 
 export default class AlarmEvents extends StoreUser {
-  public static createActiveModeAlarm = async () => {
+  public static createActiveModeAlarm = async (): Promise<void> => {
     const seconds = parseInt(
       getSetting(StoreUser.store.getState(), 'delayBeforeClean') as string,
       10,
@@ -36,7 +36,7 @@ export default class AlarmEvents extends StoreUser {
       );
     }
     AlarmEvents.alarmFlag = false;
-  }
+  };
   // Create an alarm delay or use setTimeout before cookie cleanup
   private static alarmFlag = false;
 }

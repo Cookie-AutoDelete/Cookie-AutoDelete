@@ -121,7 +121,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   },
 });
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(ActivityLog);
+export default connect(null, mapDispatchToProps)(ActivityLog);

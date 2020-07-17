@@ -213,18 +213,18 @@ describe('Reducer', () => {
           storeId: 'default',
         },
       ],
-      firefox_container_1: [
+      'firefox-container-1': [
         {
           expression: 'messenger.com*',
           id: '456',
           listType: ListType.WHITE,
-          storeId: 'firefox_container_1',
+          storeId: 'firefox-container-1',
         },
         {
           expression: 'facebook.com*',
           id: '123',
           listType: ListType.GREY,
-          storeId: 'firefox_container_1',
+          storeId: 'firefox-container-1',
         },
       ],
     };
@@ -247,19 +247,19 @@ describe('Reducer', () => {
       expect(newExpression).toHaveProperty('id');
     });
 
-    it('should return github.com on firefox_container_1', () => {
+    it('should return github.com on firefox-container-1', () => {
       const newState = lists(
         { ...state },
         {
           payload: {
             expression: 'github.com',
             listType: ListType.GREY,
-            storeId: 'firefox_container_1',
+            storeId: 'firefox-container-1',
           },
           type: ReduxConstants.ADD_EXPRESSION,
         },
       );
-      const newExpression = newState.firefox_container_1[2];
+      const newExpression = newState['firefox-container-1'][2];
       expect(newExpression).toHaveProperty('expression', 'github.com');
       expect(newExpression).toHaveProperty('listType', ListType.GREY);
       expect(newExpression).toHaveProperty('id');
@@ -300,7 +300,7 @@ describe('Reducer', () => {
       expect(newExpression).toHaveProperty('id');
     });
 
-    it('should return google.com and WHITE for updated expression on firefox_container_1', () => {
+    it('should return google.com and WHITE for updated expression on firefox-container-1', () => {
       const newState = lists(
         { ...state },
         {
@@ -308,13 +308,13 @@ describe('Reducer', () => {
             expression: 'google.com',
             id: '123',
             listType: ListType.WHITE,
-            storeId: 'firefox_container_1',
+            storeId: 'firefox-container-1',
           },
           type: ReduxConstants.UPDATE_EXPRESSION,
         },
       );
 
-      const newExpression = newState.firefox_container_1[0];
+      const newExpression = newState['firefox-container-1'][0];
       expect(newExpression).toHaveProperty('expression', 'google.com');
       expect(newExpression).toHaveProperty('listType', ListType.WHITE);
       expect(newExpression).toHaveProperty('id');
@@ -325,6 +325,34 @@ describe('Reducer', () => {
         payload: {},
         type: ReduxConstants.CLEAR_EXPRESSIONS,
       });
+      expect(newState).toEqual({});
+    });
+
+    it('should remove a single list if REMOVE_LIST was called.', () => {
+      const newState = lists(state, {
+        payload: 'firefox-container-1',
+        type: ReduxConstants.REMOVE_LIST,
+      });
+      expect(Object.keys(newState)).toEqual(
+        expect.not.arrayContaining(['firefox-container-1']),
+      );
+    });
+
+    it('should not remove anything if REMOVE_LIST was called but with invalid id.', () => {
+      const newState = lists(state, {
+        payload: 'firefox-container-99',
+        type: ReduxConstants.REMOVE_LIST,
+      });
+      expect(newState).toEqual(state);
+    });
+    it('should return empty object if REMOVE_LIST removed last list.', () => {
+      const newState = lists(
+        { default: state['default'] },
+        {
+          payload: 'default',
+          type: ReduxConstants.REMOVE_LIST,
+        },
+      );
       expect(newState).toEqual({});
     });
   });

@@ -14,6 +14,8 @@
         "Added:  Remove Individual Activity Log Entry.",
         "Added:  Container Display Names to Activity Log Entries",
         "Added:  Container ID to Expression Table Tabs",
+        "Added:  Ability to remove all expressions from one list.",
+        "Added:  Lists stored in CAD that don't have a matching Firefox container will now show as invalid container in Red Text.",
         "Changed:  Minor CSS Styling on Clean button + dropdown.  Enhanced based on PR#793.",
         "Fixed:  Clearing Logs will not affect cookie counters anymore.  Closes #777.",
         "Fixed:  A setting link wasn't linked accurately.  Thanks to szpak per PR#797.",

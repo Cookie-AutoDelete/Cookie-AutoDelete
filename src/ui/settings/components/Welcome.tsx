@@ -70,12 +70,12 @@ interface DispatchProps {
 type WelcomeProps = OwnProps & DispatchProps;
 
 const Welcome: React.FunctionComponent<WelcomeProps> = ({
-                                                          style,
-                                                          cookieDeletedCounterTotal,
-                                                          cookieDeletedCounterSession,
-                                                          browserDetect,
-                                                          onResetCounterButtonClick,
-                                                        }) => {
+  style,
+  cookieDeletedCounterTotal,
+  cookieDeletedCounterSession,
+  browserDetect,
+  onResetCounterButtonClick,
+}) => {
   const { releases } = ReleaseNotes as { releases: ReleaseNote[] };
   return (
     <div style={style}>
@@ -138,7 +138,4 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Welcome);
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

@@ -1126,12 +1126,11 @@ describe('Library Functions', () => {
       global.browser.i18n.getMessage.clearMocks();
       global.browser.runtime.getManifest.clearMocks();
       global.browser.runtime.getURL.clearMocks();
-    });
-    beforeEach(() => {
-      jest.spyOn(global, 'setTimeout');
+      jest.clearAllTimers();
     });
 
     it('should expect one call to browser.notifications.create with default title', async () => {
+      const spyTimeout = jest.spyOn(global, 'setTimeout');
       showNotification({ duration: 1, msg: 'Test Notification' });
       expect(global.browser.notifications.create).toHaveBeenCalled();
       expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(
@@ -1144,8 +1143,8 @@ describe('Library Functions', () => {
           type: 'basic',
         }),
       );
-      expect(setTimeout).toHaveBeenCalled();
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+      expect(spyTimeout).toHaveBeenCalled();
+      expect(spyTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
 
       jest.runAllTimers();
       expect(browser.notifications.clear).toHaveBeenCalledTimes(1);

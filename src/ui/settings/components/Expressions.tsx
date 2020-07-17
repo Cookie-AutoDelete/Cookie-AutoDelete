@@ -13,12 +13,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { addExpressionUI, clearExpressionsUI } from '../../../redux/Actions';
+import {
+  addExpressionUI,
+  clearExpressionsUI,
+  removeListUI,
+} from '../../../redux/Actions';
 import { cadLog, getSetting } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
 import { downloadObjectAsJSON } from '../../UILibs';
+import SettingsTooltip from './SettingsTooltip';
 const styles = {
   buttonStyle: {
     height: 'max-content',
@@ -44,6 +49,7 @@ interface StateProps {
 interface DispatchProps {
   onClearExpressions: (lists: StoreIdToExpressionList) => void;
   onNewExpression: (expression: Expression) => void;
+  onRemoveList: (list: keyof StoreIdToExpressionList) => void;
 }
 
 type ExpressionProps = OwnProps & StateProps & DispatchProps;
@@ -53,6 +59,7 @@ class InitialState {
   public error = '';
   public expressionInput = '';
   public storeId = 'default';
+  public success = '';
 }
 
 class Expressions extends React.Component<ExpressionProps> {
@@ -138,6 +145,42 @@ class Expressions extends React.Component<ExpressionProps> {
       );
       if (r !== null && r === expCount.toString()) {
         onClearExpressions(this.props.lists);
+        this.setState({
+          success: browser.i18n.getMessage('removeAllExpressions'),
+        });
+      }
+    }
+  }
+
+  public removeListConfirmation(
+    list: keyof StoreIdToExpressionList,
+    expressions: ReadonlyArray<Expression>,
+  ) {
+    const { debug, onRemoveList } = this.props;
+    const expCount = (expressions || []).length;
+    if (expCount === 0) {
+      this.setState({
+        error: browser.i18n.getMessage('removeAllExpressionsNoneFound'),
+      });
+    } else {
+      const r = window.prompt(
+        browser.i18n.getMessage('removeAllExpressionsConfirm', [
+          expCount.toString(),
+          list.toString(),
+        ]),
+      );
+      cadLog(
+        {
+          msg: `Remove Expressions Prompt for ${list} returned [ ${r} ]`,
+          type: 'info',
+        },
+        debug,
+      );
+      if (r !== null && r === expCount.toString()) {
+        onRemoveList(list);
+        this.setState({
+          success: `${browser.i18n.getMessage('removeListText')}: ${list}`,
+        });
       }
     }
   }
@@ -189,7 +232,22 @@ class Expressions extends React.Component<ExpressionProps> {
 
   public render() {
     const { style, lists, contextualIdentities } = this.props;
-    const { error, contextualIdentitiesObjects, storeId } = this.state;
+    const { error, contextualIdentitiesObjects, storeId, success } = this.state;
+    const mapIDtoName: { [k: string]: string | undefined } = {};
+    if (contextualIdentities) {
+      contextualIdentitiesObjects.forEach((c) => {
+        mapIDtoName[c.cookieStoreId] = c.name;
+      });
+      Object.keys(lists).forEach((list) => {
+        const container = contextualIdentitiesObjects.find((c) => {
+          return c.cookieStoreId === list;
+        });
+        if (!container) {
+          mapIDtoName[list] = undefined;
+        }
+      });
+    }
+
     return (
       <div className="col" style={style}>
         <h1>{browser.i18n.getMessage('expressionListText')}</h1>
@@ -224,10 +282,11 @@ class Expressions extends React.Component<ExpressionProps> {
         <div className="row">
           <a
             target="_blank"
-            rel="noreferrer"
+            rel="help noreferrer noopener"
             href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enter-expression"
           >
             {browser.i18n.getMessage('questionExpression')}
+            <SettingsTooltip hrefURL="#enter-expression" />
           </a>
         </div>
         <div
@@ -348,11 +407,7 @@ class Expressions extends React.Component<ExpressionProps> {
 
         {error !== '' ? (
           <div
-            onClick={() =>
-              this.setState({
-                error: '',
-              })
-            }
+            onClick={() => this.setState({ error: '' })}
             className="row alert alert-danger"
           >
             {error}
@@ -360,7 +415,38 @@ class Expressions extends React.Component<ExpressionProps> {
         ) : (
           ''
         )}
-        {contextualIdentities ? (
+        {success !== '' ? (
+          <div
+            onClick={() => this.setState({ success: '' })}
+            className="row alert alert-success"
+          >
+            {browser.i18n.getMessage('successText')} {success}
+          </div>
+        ) : (
+          ''
+        )}
+        {contextualIdentities && (
+          <div className="row" style={{ paddingBottom: '8px' }}>
+            <div className="col-sm col-md-auto" style={{ paddingLeft: 0 }}>
+              <IconButton
+                tag="button"
+                className="btn-danger"
+                iconName="trash"
+                role="button"
+                onClick={() => {
+                  this.removeListConfirmation(
+                    storeId,
+                    this.props.lists[storeId],
+                  );
+                }}
+                text={browser.i18n.getMessage('removeListText')}
+                title={browser.i18n.getMessage('removeListText')}
+                styleReact={styles.buttonStyle}
+              />
+            </div>
+          </div>
+        )}
+        {contextualIdentities && (
           <ul className="row nav nav-tabs flex-column flex-sm-row">
             <li
               onClick={() => {
@@ -376,29 +462,27 @@ class Expressions extends React.Component<ExpressionProps> {
                 <br />({browser.i18n.getMessage('defaultContainerText')})
               </a>
             </li>
-            {contextualIdentitiesObjects.map((element) => (
+            {Object.entries(mapIDtoName).map(([cookieStoreId, name]) => (
               <li
-                key={`navTab-${element.cookieStoreId}`}
+                key={`navTab-${cookieStoreId}`}
                 onClick={() => {
-                  this.changeStoreIdTab(element.cookieStoreId);
+                  this.changeStoreIdTab(cookieStoreId);
                 }}
                 className="nav-item"
               >
                 <a
                   className={`nav-link ${
-                    storeId === element.cookieStoreId ? 'active' : ''
-                  }`}
+                    storeId === cookieStoreId ? 'active' : ''
+                  } ${name ? '' : 'text-danger'}`}
                   href="#tabExpressionList"
                 >
-                  {element.name}
+                  {name || browser.i18n.getMessage('missingContainerText')}
                   <br />
-                  {`(${element.cookieStoreId})`}
+                  {`(${cookieStoreId})`}
                 </a>
               </li>
             ))}
           </ul>
-        ) : (
-          ''
         )}
 
         <div className="row" style={styles.tableContainer}>
@@ -433,6 +517,9 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
   },
   onNewExpression(payload: Expression) {
     dispatch(addExpressionUI(payload));
+  },
+  onRemoveList(payload: keyof StoreIdToExpressionList) {
+    dispatch(removeListUI(payload));
   },
 });
 

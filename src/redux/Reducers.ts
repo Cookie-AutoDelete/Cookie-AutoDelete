@@ -117,6 +117,12 @@ export const lists = (
       );
       return newListObject;
     }
+    case ReduxConstants.REMOVE_LIST: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { [action.payload.toString()]: _, ...newState } = state;
+      return newState;
+    }
+
     case ReduxConstants.CLEAR_EXPRESSIONS:
     case ReduxConstants.RESET_ALL:
       return {};

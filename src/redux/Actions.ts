@@ -35,6 +35,7 @@ import {
   ReduxConstants,
   REMOVE_ACTIVITY_LOG,
   REMOVE_EXPRESSION,
+  REMOVE_LIST,
   RESET_ALL,
   RESET_COOKIE_DELETED_COUNTER,
   RESET_SETTINGS,
@@ -62,6 +63,12 @@ export const removeExpressionUI = (payload: Expression): REMOVE_EXPRESSION => ({
 export const updateExpressionUI = (payload: Expression): UPDATE_EXPRESSION => ({
   payload,
   type: ReduxConstants.UPDATE_EXPRESSION,
+});
+export const removeListUI = (
+  payload: keyof StoreIdToExpressionList,
+): REMOVE_LIST => ({
+  payload,
+  type: ReduxConstants.REMOVE_LIST,
 });
 
 export const addExpression = (payload: Expression) => (
@@ -172,6 +179,17 @@ export const updateExpression = (payload: Expression) => (
       }
     }
   }
+  checkIfProtected(getState());
+};
+
+export const removeList = (payload: keyof StoreIdToExpressionList) => (
+  dispatch: Dispatch<ReduxAction>,
+  getState: GetState,
+): void => {
+  dispatch({
+    payload,
+    type: ReduxConstants.REMOVE_LIST,
+  });
   checkIfProtected(getState());
 };
 

@@ -16,6 +16,7 @@ export const enum ReduxConstants {
   CLEAR_EXPRESSIONS = 'CLEAR_EXPRESSIONS',
   REMOVE_EXPRESSION = 'REMOVE_EXPRESSION',
   UPDATE_EXPRESSION = 'UPDATE_EXPRESSION',
+  REMOVE_LIST = 'REMOVE_LIST',
   COOKIE_CLEANUP = 'COOKIE_CLEANUP',
   ON_STARTUP = 'ON_STARTUP',
   ADD_CACHE = 'ADD_CACHE',
@@ -34,6 +35,7 @@ export type ReduxAction =
   | CLEAR_EXPRESSIONS
   | REMOVE_EXPRESSION
   | UPDATE_EXPRESSION
+  | REMOVE_LIST
   | COOKIE_CLEANUP
   | ON_STARTUP
   | ADD_CACHE
@@ -61,6 +63,10 @@ export type REMOVE_EXPRESSION = Readonly<{
 export type UPDATE_EXPRESSION = Readonly<{
   type: ReduxConstants.UPDATE_EXPRESSION;
   payload: Expression;
+}>;
+export type REMOVE_LIST = Readonly<{
+  type: ReduxConstants.REMOVE_LIST;
+  payload: keyof StoreIdToExpressionList;
 }>;
 export type COOKIE_CLEANUP = Readonly<{
   type: ReduxConstants.COOKIE_CLEANUP;
