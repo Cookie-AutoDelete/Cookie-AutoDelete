@@ -28,6 +28,7 @@ import {
   convertVersionToNumber,
   extractMainDomain,
   getSetting,
+  siteDataToBrowser,
   SITEDATATYPES,
   sleep,
 } from './services/Libs';
@@ -58,7 +59,7 @@ const browsingDataCleanup = async (
 ): Promise<void> => {
   await browser.browsingData.remove(
     { since: 0 },
-    { [`${siteData[0].toLowerCase()}${siteData.slice(1)}`]: true },
+    { [siteDataToBrowser(siteData)]: true },
   );
   cadLog(
     {
@@ -82,7 +83,7 @@ const onSettingsChange = async () => {
 
   // BrowsingData Settings Check.
   for (const siteData of SITEDATATYPES) {
-    const sd = `${siteData[0].toLowerCase()}${siteData.slice(1)}Cleanup`;
+    const sd = `${siteDataToBrowser(siteData)}Cleanup`;
     if (
       (previousSettings[sd] === undefined || !previousSettings[sd].value) &&
       currentSettings[sd].value
@@ -158,7 +159,7 @@ const onStartUp = async () => {
     type: ReduxConstants.ON_STARTUP,
   });
   // Store the FF version in cache
-  if (browserDetect() === 'Firefox') {
+  if (browserDetect() === browserName.Firefox) {
     const browserInfo = await browser.runtime.getBrowserInfo();
     const browserVersion = browserInfo.version.split('.')[0];
     store.dispatch({
@@ -247,8 +248,14 @@ function handleConnect(p: browser.runtime.Port) {
     browser.cookies.onChanged.addListener(onCookiePopupUpdates);
   }
   p.onMessage.addListener((m) => {
-    console.warn('Received Unexpected message from CAD Popup');
-    console.warn(JSON.stringify(m));
+    cadLog(
+      {
+        msg: 'Received unexpected message from CAD Popup',
+        type: 'warn',
+        x: JSON.stringify(m),
+      },
+      true,
+    );
   });
   p.onDisconnect.addListener((dp: browser.runtime.Port) => {
     if (

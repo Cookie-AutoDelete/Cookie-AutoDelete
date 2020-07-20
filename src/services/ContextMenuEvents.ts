@@ -28,6 +28,7 @@ import {
   localFileToRegex,
   parseCookieStoreId,
   showNotification,
+  siteDataToBrowser,
   SITEDATATYPES,
 } from './Libs';
 import StoreUser from './StoreUser';
@@ -462,7 +463,7 @@ export default class ContextMenuEvents extends StoreUser {
           ) as number,
           msg: `${browser.i18n.getMessage('manualCleanError', [
             browser.i18n.getMessage(
-              `${siteData[0].toLowerCase()}${siteData.slice(1)}Text`,
+              `${siteDataToBrowser(siteData as SiteDataType)}Text`,
             ),
           ])}\n
               ${tab.title}\n\n

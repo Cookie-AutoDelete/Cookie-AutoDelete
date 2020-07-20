@@ -345,6 +345,18 @@ describe('Reducer', () => {
       });
       expect(newState).toEqual(state);
     });
+
+    it('should return empty object if REMOVE_LIST was called with empty state/list.', () => {
+      const newState = lists(
+        {},
+        {
+          payload: 'firefox-container-9',
+          type: ReduxConstants.REMOVE_LIST,
+        },
+      );
+      expect(newState).toEqual({});
+    });
+
     it('should return empty object if REMOVE_LIST removed last list.', () => {
       const newState = lists(
         { default: state['default'] },
@@ -460,9 +472,10 @@ describe('Reducer', () => {
 
   describe('cache', () => {
     const state = {
-      browserDetect: 'Firefox',
+      browserDetect: browserName.Firefox,
+      browserVersion: 123,
     };
-    it('should return empty object if RESET_ALL was triggered', () => {
+    it('should return empty object only if RESET_ALL was triggered', () => {
       const newState = cache(state, {
         type: ReduxConstants.RESET_ALL,
       });

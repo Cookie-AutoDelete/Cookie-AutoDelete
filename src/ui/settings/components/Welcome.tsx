@@ -43,13 +43,13 @@ const displayReleaseNotes = (releases: ReleaseNote[]) => {
 };
 
 // Get the review link for different browsers
-const getReviewLink = (browserDetect: string) => {
-  switch (browserDetect) {
-    case 'Chrome':
+const getReviewLink = (bName: browserName = browserDetect() as browserName) => {
+  switch (bName) {
+    case browserName.Chrome:
       return 'https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews';
-    case 'EdgeChromium':
+    case browserName.EdgeChromium:
       return 'https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo#reviewList';
-    case 'Firefox':
+    case browserName.Firefox:
       return 'https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/';
     default:
       return '';
@@ -60,7 +60,7 @@ interface OwnProps {
   style?: React.CSSProperties;
   cookieDeletedCounterSession: number;
   cookieDeletedCounterTotal: number;
-  browserDetect: string;
+  bName: browserName;
 }
 
 interface DispatchProps {
@@ -73,7 +73,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({
   style,
   cookieDeletedCounterTotal,
   cookieDeletedCounterSession,
-  browserDetect,
+  bName,
   onResetCounterButtonClick,
 }) => {
   const { releases } = ReleaseNotes as { releases: ReleaseNote[] };
@@ -95,13 +95,22 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({
           className="btn-warning"
         />
       </p>
-      <a href={getReviewLink(browserDetect)}>
+      <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation">
+        <span>{`${browser.i18n.getMessage('documentationText')}`}</span>
+      </a>
+      <br />
+      <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues">
+        <span>{`${browser.i18n.getMessage('faqText')}`}</span>
+      </a>
+      <br />
+      <br />
+      <a href={getReviewLink(bName)}>
         {browser.i18n.getMessage(
           'reviewLinkMessage',
           browser.i18n.getMessage('extensionName'),
         )}
       </a>
-
+      <hr />
       <h2>{browser.i18n.getMessage('releaseNotesText')}</h2>
 
       <div className="row">{displayReleaseNotes(releases.slice(0, 5))}</div>
@@ -132,7 +141,7 @@ const mapStateToProps = (state: State) => {
     cache,
   } = state;
   return {
-    browserDetect: cache.browserDetect,
+    bName: cache.browserDetect || (browserDetect() as browserName),
     cookieDeletedCounterSession,
     cookieDeletedCounterTotal,
   };

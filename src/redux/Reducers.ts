@@ -108,9 +108,7 @@ export const lists = (
     case ReduxConstants.ADD_EXPRESSION:
     case ReduxConstants.REMOVE_EXPRESSION:
     case ReduxConstants.UPDATE_EXPRESSION: {
-      const newListObject = {
-        ...state,
-      };
+      const newListObject = { ...state };
       newListObject[action.payload.storeId] = expressions(
         state[action.payload.storeId],
         action,
@@ -118,9 +116,9 @@ export const lists = (
       return newListObject;
     }
     case ReduxConstants.REMOVE_LIST: {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { [action.payload.toString()]: _, ...newState } = state;
-      return newState;
+      const newListObject = { ...state };
+      delete newListObject[action.payload.toString()];
+      return newListObject;
     }
 
     case ReduxConstants.CLEAR_EXPRESSIONS:
@@ -219,7 +217,7 @@ export const activityLog = (
 export const cache = (
   state: CacheMap = {},
   action: ReduxAction,
-): Record<string, unknown> => {
+): Record<string, any> => {
   switch (action.type) {
     case ReduxConstants.ADD_CACHE: {
       const newCacheObject = {

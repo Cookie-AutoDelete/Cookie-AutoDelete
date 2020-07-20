@@ -515,7 +515,7 @@ describe('Library Functions', () => {
     const contextualIdentitiesFalseChrome = {
       ...initialState,
       cache: {
-        browserDetect: 'Chrome',
+        browserDetect: browserName.Chrome,
       },
       settings: {
         contextualIdentities: {
@@ -528,7 +528,7 @@ describe('Library Functions', () => {
     const contextualIdentitiesFalseFF = {
       ...initialState,
       cache: {
-        browserDetect: 'Firefox',
+        browserDetect: browserName.Firefox,
       },
       settings: {
         contextualIdentities: {
@@ -541,7 +541,7 @@ describe('Library Functions', () => {
     const contextualIdentitiesTrue = {
       ...initialState,
       cache: {
-        browserDetect: 'Firefox',
+        browserDetect: browserName.Firefox,
       },
       settings: {
         contextualIdentities: {
@@ -571,7 +571,7 @@ describe('Library Functions', () => {
           {
             ...contextualIdentitiesFalseChrome,
             cache: {
-              browserDetect: 'Opera',
+              browserDetect: browserName.Opera,
             },
           },
           '0',
@@ -764,10 +764,10 @@ describe('Library Functions', () => {
       expect(isChrome({})).toBe(false);
     });
     it('should return false if browserDetect is not Chrome', () => {
-      expect(isChrome({ browserDetect: 'test' })).toBe(false);
+      expect(isChrome({ browserDetect: browserName.Unknown })).toBe(false);
     });
     it('should return true if browserDetect is Chrome', () => {
-      expect(isChrome({ browserDetect: 'Chrome' })).toBe(true);
+      expect(isChrome({ browserDetect: browserName.Chrome })).toBe(true);
     });
   });
 
@@ -776,10 +776,10 @@ describe('Library Functions', () => {
       expect(isFirefox({})).toBe(false);
     });
     it('should return false if browserDetect is not Firefox', () => {
-      expect(isFirefox({ browserDetect: 'test' })).toBe(false);
+      expect(isFirefox({ browserDetect: browserName.Unknown })).toBe(false);
     });
     it('should return true if browserDetect is Firefox', () => {
-      expect(isFirefox({ browserDetect: 'Firefox' })).toBe(true);
+      expect(isFirefox({ browserDetect: browserName.Firefox })).toBe(true);
     });
   });
 
@@ -789,29 +789,40 @@ describe('Library Functions', () => {
     });
     it('should return false if platformOs is not android', () => {
       expect(
-        isFirefoxAndroid({ browserDetect: 'test', platformOs: 'linux' }),
+        isFirefoxAndroid({
+          browserDetect: browserName.Unknown,
+          platformOs: 'linux',
+        }),
       ).toBe(false);
     });
     it('should return true if platformOs is android', () => {
       expect(
-        isFirefoxAndroid({ browserDetect: 'Firefox', platformOs: 'android' }),
+        isFirefoxAndroid({
+          browserDetect: browserName.Firefox,
+          platformOs: 'android',
+        }),
       ).toBe(true);
     });
   });
 
   describe('isFirefoxNotAndroid()', () => {
     it('should return false if platformOs is undefined', () => {
-      expect(isFirefoxNotAndroid({})).toBe(false);
+      expect(isFirefoxNotAndroid({ browserDetect: browserName.Unknown })).toBe(
+        false,
+      );
     });
     it('should return true if platformOs is not android', () => {
       expect(
-        isFirefoxNotAndroid({ browserDetect: 'Firefox', platformOs: 'linux' }),
+        isFirefoxNotAndroid({
+          browserDetect: browserName.Firefox,
+          platformOs: 'linux',
+        }),
       ).toBe(true);
     });
     it('should return false if platformOs is android', () => {
       expect(
         isFirefoxNotAndroid({
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
           platformOs: 'android',
         }),
       ).toBe(false);
@@ -877,22 +888,23 @@ describe('Library Functions', () => {
 
   describe('prepareCleanupDomains()', () => {
     it('should return empty array for empty domain', () => {
-      expect(prepareCleanupDomains('', 'Firefox')).toEqual([]);
+      expect(prepareCleanupDomains('', browserName.Firefox)).toEqual([]);
     });
 
     it('should return empty array for domains with only whitespaces', () => {
-      expect(prepareCleanupDomains(' ', 'Firefox')).toEqual([]);
+      expect(prepareCleanupDomains(' ', browserName.Firefox)).toEqual([]);
     });
 
     it('should return cleanup domains from www.example.com', () => {
-      expect(prepareCleanupDomains('www.example.com', 'Firefox')).toEqual([
-        'www.example.com',
-        '.www.example.com',
-      ]);
+      expect(
+        prepareCleanupDomains('www.example.com', browserName.Firefox),
+      ).toEqual(['www.example.com', '.www.example.com']);
     });
 
     it('should return cleanup domains from .example.com', () => {
-      expect(prepareCleanupDomains('.example.com', 'Firefox')).toEqual([
+      expect(
+        prepareCleanupDomains('.example.com', browserName.Firefox),
+      ).toEqual([
         'example.com',
         '.example.com',
         'www.example.com',
@@ -901,7 +913,9 @@ describe('Library Functions', () => {
     });
 
     it('should return cleanup domains from example.com', () => {
-      expect(prepareCleanupDomains('example.com', 'Firefox')).toEqual([
+      expect(
+        prepareCleanupDomains('example.com', browserName.Firefox),
+      ).toEqual([
         'example.com',
         '.example.com',
         'www.example.com',
@@ -910,7 +924,7 @@ describe('Library Functions', () => {
     });
 
     it('should return cleanup domains from example.com for Chrome', () => {
-      expect(prepareCleanupDomains('example.com', 'Chrome')).toEqual([
+      expect(prepareCleanupDomains('example.com', browserName.Chrome)).toEqual([
         'http://example.com',
         'https://example.com',
         'http://.example.com',
@@ -1012,7 +1026,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
         },
       };
       const cookieAPIAttributes = {
@@ -1036,7 +1050,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
         },
       };
       const cookieAPIAttributes = {
@@ -1061,7 +1075,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
         },
       };
       const cookieAPIAttributes = {
@@ -1084,7 +1098,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Chrome',
+          browserDetect: browserName.Chrome,
         },
       };
       const cookieAPIAttributes = {

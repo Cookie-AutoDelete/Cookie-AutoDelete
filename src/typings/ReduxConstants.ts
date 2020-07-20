@@ -54,7 +54,7 @@ export type ADD_EXPRESSION = Readonly<{
 }>;
 export type CLEAR_EXPRESSIONS = Readonly<{
   type: ReduxConstants.CLEAR_EXPRESSIONS;
-  payload: Record<string, unknown>;
+  payload: StoreIdToExpressionList;
 }>;
 export type REMOVE_EXPRESSION = Readonly<{
   type: ReduxConstants.REMOVE_EXPRESSION;
@@ -77,7 +77,7 @@ export type ON_STARTUP = Readonly<{
 }>;
 export type ADD_CACHE = Readonly<{
   type: ReduxConstants.ADD_CACHE;
-  payload: any;
+  payload: { [k: string]: any };
 }>;
 export type INCREMENT_COOKIE_DELETED_COUNTER = Readonly<{
   type: ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER;

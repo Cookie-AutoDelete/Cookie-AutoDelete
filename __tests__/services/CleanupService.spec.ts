@@ -307,7 +307,9 @@ describe('CleanupService', () => {
     });
 
     it('should not clean anything if browserDetect value is missing or is not Firefox or Chrome', async () => {
+      const spyBrowserDetect = jest.spyOn(global, 'browserDetect');
       await cleanCookiesOperation(sampleState, cleanupProperties);
+      expect(spyBrowserDetect).toHaveBeenCalledTimes(1);
       expect(global.browser.cookies.remove).not.toHaveBeenCalled();
     });
 
@@ -315,7 +317,7 @@ describe('CleanupService', () => {
       const firefoxState = {
         ...sampleState,
         cache: {
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
           browserVersion: '77',
           platformOs: 'desktop',
         },
@@ -482,6 +484,44 @@ describe('CleanupService', () => {
         });
       });
 
+      it('should not include sites from private containers in site data domains', async () => {
+        when(global.browser.extension.isAllowedIncognitoAccess)
+          .calledWith()
+          .mockResolvedValue(true as never);
+        when(global.browser.cookies.getAll)
+          .calledWith({ storeId: 'firefox-private' })
+          .mockResolvedValue([
+            {
+              ...mockCookie,
+              domain: 'private.com',
+              hostname: 'private.com',
+              mainDomain: 'private.com',
+              preparedCookieDomain: 'https://private.com/',
+              storeId: 'firefox-private',
+            },
+          ] as never);
+        const result = await cleanCookiesOperation(
+          {
+            ...firefoxState,
+            settings: {
+              ...firefoxState.settings,
+              cacheCleanup: {
+                name: 'cacheCleanup',
+                value: true,
+              },
+            },
+            cache: {
+              ...firefoxState.cache,
+              browserVersion: '78',
+            },
+          },
+          cleanupProperties,
+        );
+        expect(result.cachedResults.browsingDataCleanup.Cache).toEqual(
+          expect.not.arrayContaining(['private.com']),
+        );
+      });
+
       it('should not clean containers if contextualIdentities is disabled', async () => {
         when(global.browser.cookies.getAllCookieStores)
           .calledWith()
@@ -628,7 +668,7 @@ describe('CleanupService', () => {
       const chromeState = {
         ...sampleState,
         cache: {
-          browserDetect: 'Chrome',
+          browserDetect: browserName.Chrome,
         },
       };
       const chromeCookies = [
@@ -704,7 +744,7 @@ describe('CleanupService', () => {
             },
           },
         ],
-        'Firefox',
+        browserName.Firefox,
         false,
       );
       expect(result).toEqual(['youtube.com']);
@@ -715,11 +755,12 @@ describe('CleanupService', () => {
         sampleState,
         SiteDataType.CACHE,
         [mockCleanReasonObjFile],
-        'Firefox',
+        browserName.Firefox,
         false,
       );
       expect(result).toEqual([]);
     });
+
     it('should return empty array if removeSiteData returned false', async () => {
       when(global.browser.browsingData.remove)
         .calledWith(expect.any(Object), expect.any(Object))
@@ -735,10 +776,22 @@ describe('CleanupService', () => {
             },
           },
         ],
-        'Firefox',
+        browserName.Firefox,
         false,
       );
       expect(result).toEqual([]);
+    });
+
+    it('should call browserDetect if one in cache is undefined', async () => {
+      const spyBrowserDetect = jest.spyOn(global, 'browserDetect');
+      await cleanSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        [mockCleanReasonObj],
+        undefined,
+        false,
+      );
+      expect(spyBrowserDetect).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -1338,7 +1391,7 @@ describe('CleanupService', () => {
     const ffState = {
       ...initialState,
       cache: {
-        browserDetect: 'Firefox',
+        browserDetect: browserName.Firefox,
         browserVersion: '77',
         platformOs: 'desktop',
       },
@@ -1444,7 +1497,7 @@ describe('CleanupService', () => {
           {
             ...cacheState,
             cache: {
-              browserDetect: 'Chrome',
+              browserDetect: browserName.Chrome,
             },
           },
           [],
@@ -1492,7 +1545,7 @@ describe('CleanupService', () => {
           {
             ...indexedDBState,
             cache: {
-              browserDetect: 'Chrome',
+              browserDetect: browserName.Chrome,
             },
           },
           [],
@@ -1531,7 +1584,7 @@ describe('CleanupService', () => {
           {
             ...indexedDBState,
             cache: {
-              browserDetect: 'Chrome',
+              browserDetect: browserName.Chrome,
             },
           },
           [],
@@ -1579,7 +1632,7 @@ describe('CleanupService', () => {
           {
             ...pluginDataState,
             cache: {
-              browserDetect: 'Chrome',
+              browserDetect: browserName.Chrome,
             },
           },
           [],
@@ -1627,7 +1680,7 @@ describe('CleanupService', () => {
           {
             ...serviceWorkersState,
             cache: {
-              browserDetect: 'Chrome',
+              browserDetect: browserName.Chrome,
             },
           },
           [],
@@ -1668,7 +1721,7 @@ describe('CleanupService', () => {
       await removeSiteData(
         sampleState,
         SiteDataType.CACHE,
-        'Firefox',
+        browserName.Firefox,
         ['test'],
         false,
       );
@@ -1677,11 +1730,12 @@ describe('CleanupService', () => {
         expect.any(Object),
       );
     });
+
     it('should use origins for domains if removal is in Chrome', async () => {
       await removeSiteData(
         sampleState,
         SiteDataType.CACHE,
-        'Chrome',
+        browserName.Chrome,
         ['test'],
         false,
       );
@@ -1698,11 +1752,23 @@ describe('CleanupService', () => {
         await removeSiteData(
           sampleState,
           SiteDataType.CACHE,
-          'Firefox',
+          browserName.Firefox,
           ['test'],
           false,
         ),
       ).toBe(false);
+    });
+
+    it('should call browserDetect if one in cache is undefined', async () => {
+      const spyBrowserDetect = jest.spyOn(global, 'browserDetect');
+      await removeSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        undefined,
+        ['test'],
+        false,
+      );
+      expect(spyBrowserDetect).toHaveBeenCalledTimes(1);
     });
   });
 

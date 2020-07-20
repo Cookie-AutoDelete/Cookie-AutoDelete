@@ -19,6 +19,7 @@ import {
   getSetting,
   isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
+  siteDataToBrowser,
   throwErrorNotification,
 } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
@@ -325,8 +326,8 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                         'activityLogSiteDataDomainsText',
                         [
                           browser.i18n.getMessage(
-                            `${siteData[0].toLowerCase()}${siteData.slice(
-                              1,
+                            `${siteDataToBrowser(
+                              siteData as SiteDataType,
                             )}Text`,
                           ),
                           domains.join(', '),

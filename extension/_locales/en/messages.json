@@ -12,8 +12,8 @@
     "description": "Enable Automatic Cleaning"
   },
   "activityLogSiteDataDomainsText": {
-    "message": "Attempted to clean $siteData$ for: $domains$",
-    "description": "Attempted to clean $siteData$ for: $domains$.  Found in Activity Log Detailed Entries.",
+    "message": "Invoked cleanup of $siteData$ for: $domains$",
+    "description": "Invoked cleanup of $siteData$ for: $domains$.  Found in Activity Log Detailed Entries.",
     "placeholders": {
       "siteData": {
         "content": "$1",
@@ -194,6 +194,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Create Default Expression Options",
     "description": "Create Default Expression Options.  Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Current Container Selected:  $ID$ ( $Name$ )",
+    "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Enable Debug Mode (Additional Console Outputs)",

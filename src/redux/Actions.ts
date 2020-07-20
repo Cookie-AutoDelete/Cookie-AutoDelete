@@ -22,6 +22,7 @@ import {
   isChrome,
   isFirefoxAndroid,
   showNotification,
+  siteDataToBrowser,
   sleep,
 } from '../services/Libs';
 import {
@@ -385,7 +386,7 @@ export const cookieCleanup: ActionCreator<ThunkAction<
           duration: getSetting(getState(), 'notificationOnScreen') as number,
           msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
             browser.i18n.getMessage(
-              `${siteData[0].toLowerCase()}${siteData.slice(1)}Text`,
+              `${siteDataToBrowser(siteData as SiteDataType)}Text`,
             ),
             domains.join(', '),
           ]),

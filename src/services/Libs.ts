@@ -237,7 +237,7 @@ export const getStoreId = (state: State, storeId: string): string => {
       storeId !== 'firefox-private' &&
       isFirefox(state.cache)) ||
     (isChrome(state.cache) && storeId === '0') ||
-    (state.cache.browserDetect === 'Opera' && storeId === '0')
+    (state.cache.browserDetect === browserName.Opera && storeId === '0')
   ) {
     return 'default';
   }
@@ -301,7 +301,7 @@ export const isAWebpage = (URL: string | undefined): boolean => {
 export const isChrome = (cache: CacheMap): boolean => {
   return (
     Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
-    cache.browserDetect === 'Chrome'
+    cache.browserDetect === browserName.Chrome
   );
 };
 
@@ -312,7 +312,7 @@ export const isChrome = (cache: CacheMap): boolean => {
 export const isFirefox = (cache: CacheMap): boolean => {
   return (
     Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
-    cache.browserDetect === 'Firefox'
+    cache.browserDetect === browserName.Firefox
   );
 };
 
@@ -389,7 +389,7 @@ export const parseCookieStoreId = (
  */
 export const prepareCleanupDomains = (
   domain: string,
-  browserDetect: string,
+  bName: browserName = browserDetect() as browserName,
 ): string[] => {
   if (domain.trim() === '') return [];
   const www = new RegExp(/^www[0-9a-z]?\./i);
@@ -409,7 +409,7 @@ export const prepareCleanupDomains = (
     domains.add(`.www.${d}`); // .www.sub.doma.in
   }
 
-  if (browserDetect === 'Chrome') {
+  if (bName === browserName.Chrome || bName === browserName.Opera) {
     const origins: string[] = [];
     for (const d of domains) {
       origins.push(`http://${d}`);
@@ -514,6 +514,14 @@ export const showNotification = (x: {
     browser.notifications.clear(sid);
   }, x.duration * 1000);
 };
+
+/**
+ * Makes the proper site data property key for browser.browsingData.remove.
+ * i.e. Cache => cache ; LocalStorage => localStorage
+ * @param siteData The Site Data to convert to browser format.
+ */
+export const siteDataToBrowser = (siteData: SiteDataType): string =>
+  `${siteData[0].toLowerCase()}${siteData.slice(1)}`;
 
 /**
  * Sleep execution for ms.

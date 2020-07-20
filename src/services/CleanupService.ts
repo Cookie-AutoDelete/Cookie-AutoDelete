@@ -26,6 +26,7 @@ import {
   returnMatchedExpressionObject,
   returnOptionalCookieAPIAttributes,
   showNotification,
+  siteDataToBrowser,
   SITEDATATYPES,
   sleep,
   throwErrorNotification,
@@ -469,23 +470,24 @@ export const clearSiteDataForThisDomain = async (
 export const removeSiteData = async (
   state: State,
   siteData: SiteDataType,
-  browserDetect: string,
+  bName: browserName = browserDetect() as browserName,
   domains: string[],
   debug: boolean,
 ): Promise<boolean> => {
-  const listName = ((b: string) => {
+  const listName = ((b: browserName) => {
     switch (b) {
-      case 'Chrome':
+      case browserName.Chrome:
+      case browserName.Opera:
         return 'origins';
-      case 'Firefox':
+      case browserName.Firefox:
       default:
         return 'hostnames';
     }
-  })(browserDetect);
-  const sd = `${siteData[0].toLowerCase()}${siteData.slice(1)}`;
+  })(bName);
+  const sd = siteDataToBrowser(siteData);
   cadLog(
     {
-      msg: `CleanupService.removeSiteData: Cleanup of ${listName} in ${browserDetect} for ${sd}:`,
+      msg: `CleanupService.removeSiteData: Cleanup of ${listName} in ${bName} for ${sd}:`,
       x: domains,
     },
     debug,
@@ -499,6 +501,14 @@ export const removeSiteData = async (
         [sd]: true,
       },
     );
+    showNotification({
+      duration: getSetting(state, 'notificationOnScreen') as number,
+      msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+        browser.i18n.getMessage(`${sd}Text`),
+        domains.join(', '),
+      ]),
+      title: browser.i18n.getMessage('notificationTitleSiteData'),
+    });
     return true;
   } catch (e) {
     cadLog(
@@ -599,14 +609,14 @@ export const otherBrowsingDataCleanup = async (
  * @param state The State.
  * @param siteData The site data type
  * @param cleanReasonObjects Objects returned from isSafeToClean()
- * @param browserDetect - Browser Name per browserDetect() function
+ * @param bName - Browser Name per browserDetect() function
  * @param debug True if debug mode.
  */
 export const cleanSiteData = async (
   state: State,
   siteData: SiteDataType,
   cleanReasonObjects: CleanReasonObject[],
-  browserDetect: string,
+  bName: browserName = browserDetect() as browserName,
   debug: boolean,
 ): Promise<string[]> => {
   const domains = cleanReasonObjects
@@ -618,14 +628,14 @@ export const cleanSiteData = async (
 
   const cleanList: string[] = [];
   for (const domain of domains) {
-    cleanList.push(...prepareCleanupDomains(domain, browserDetect));
+    cleanList.push(...prepareCleanupDomains(domain, bName));
   }
 
   if (cleanList.length > 0) {
     const r = await removeSiteData(
       state,
       siteData,
-      browserDetect,
+      bName,
       [...new Set(cleanList)],
       debug,
     );
@@ -744,6 +754,8 @@ export const cleanCookiesOperation = async (
     browsingDataCleanup: {},
     siteDataCleaned: false,
   };
+  // Scrub private cookieStores
+  const storesIdsToScrub = ['firefox-private', 'private', '1'];
   const openTabDomains = await returnContainersOfOpenTabDomains(
     cleanupProperties.ignoreOpenTabs,
     getSetting(state, 'discardedCleanup') as boolean,
@@ -757,8 +769,8 @@ export const cleanCookiesOperation = async (
   const cookieStoreIds = new Set<string>();
 
   // Manually add default containers.
-  switch (state.cache.browserDetect) {
-    case 'Firefox':
+  switch (state.cache.browserDetect || (browserDetect() as browserName)) {
+    case browserName.Firefox:
       cookieStoreIds.add('default');
       cookieStoreIds.add('firefox-default');
       if (await browser.extension.isAllowedIncognitoAccess()) {
@@ -766,8 +778,8 @@ export const cleanCookiesOperation = async (
         cookieStoreIds.add('private');
       }
       break;
-    case 'Chrome':
-    case 'Opera':
+    case browserName.Chrome:
+    case browserName.Opera:
       cookieStoreIds.add('0');
       if (await browser.extension.isAllowedIncognitoAccess()) {
         cookieStoreIds.add('1');
@@ -920,8 +932,10 @@ export const cleanCookiesOperation = async (
       state,
       isSafeToCleanObjects,
     );
+    // Don't store domains for private browsing data
+    if (storesIdsToScrub.includes(id)) continue;
     for (const sd of SITEDATATYPES) {
-      if (storeResults[sd]) {
+      if ((storeResults[sd] || []).length > 0) {
         cachedResults.siteDataCleaned = true;
         deletedSiteDataArrays[sd] = (deletedSiteDataArrays[sd] || []).concat(
           (storeResults[sd] as string[]).map((domain) => trimDot(domain)),
@@ -936,8 +950,6 @@ export const cleanCookiesOperation = async (
       : [];
   }
 
-  // Scrub private cookieStores
-  const storesIdsToScrub = ['firefox-private', 'private', '1'];
   for (const id of storesIdsToScrub) {
     delete cachedResults.storeIds[id];
   }

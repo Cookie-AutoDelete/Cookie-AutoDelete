@@ -15,7 +15,22 @@ declare module '*.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 declare const global: any;
-declare const browserDetect: () => string;
+declare const browserDetect: () => browserName;
+
+/**
+ * This only works if browserDetect function doesn't change its return method/string.
+ */
+declare const enum browserName {
+  Firefox = 'Firefox',
+  Chrome = 'Chrome',
+  Safari = 'Safari',
+  Opera = 'Opera',
+  IE = 'IE',
+  Edge = 'Edge',
+  EdgeChromium = 'EdgeChromium',
+  Blink = 'Blink',
+  Unknown = 'UnknownBrowser',
+}
 
 type StoreIdToExpressionList = Readonly<{
   [storeId: string]: ReadonlyArray<Expression>;
@@ -24,7 +39,7 @@ type StoreIdToExpressionList = Readonly<{
 type MapToSettingObject = Readonly<{ [setting: string]: Setting }>;
 
 type CacheMap = Readonly<
-  { [browserDetect: string]: string } & { [key: string]: any }
+  { [browserDetect: string]: browserName } & { [key: string]: any }
 >;
 
 type GetState = () => State;

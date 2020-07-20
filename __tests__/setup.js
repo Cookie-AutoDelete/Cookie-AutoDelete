@@ -184,6 +184,16 @@ global.browser = browser;
 global.chrome = browser;
 
 /**
+ * Simple browerDetect function for testing purposes.
+ * Should only be called if cache's browserDetect was undefined
+ * @returns {string} 'UnknownBrowser'
+ */
+function browserDetect() {
+  return 'UnknownBrowser';
+}
+global.browserDetect = browserDetect;
+
+/**
  * This hides the test console debug logs from jest results.
  */
 global.console = {

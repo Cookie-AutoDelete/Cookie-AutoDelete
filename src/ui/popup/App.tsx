@@ -36,7 +36,6 @@ import {
   localFileToRegex,
   parseCookieStoreId,
   returnOptionalCookieAPIAttributes,
-  showNotification,
 } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
 import { ReduxAction } from '../../typings/ReduxConstants';
@@ -149,17 +148,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   ): Promise<boolean> {
     const { state } = this.props;
     if (!hostname) return false;
-    const result = await clearSiteDataForThisDomain(state, siteData, hostname);
-    await showNotification({
-      duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
-        browser.i18n.getMessage(
-          `${siteData[0].toLowerCase()}${siteData.slice(1)}Text`,
-        ),
-        hostname,
-      ]),
-      title: browser.i18n.getMessage('notificationTitleSiteData'),
-    });
+    let result = await clearSiteDataForThisDomain(state, siteData, hostname);
+    if (siteData === 'All') {
+      const { tab } = this.state;
+      if (!tab) return false;
+      const success = await clearCookiesForThisDomain(state, tab);
+      result = result || success;
+    }
     return result;
   }
 

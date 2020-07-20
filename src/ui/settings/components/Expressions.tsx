@@ -41,10 +41,10 @@ interface OwnProps {
 }
 
 interface StateProps {
-  lists: StoreIdToExpressionList;
+  bName: browserName;
   contextualIdentities: boolean;
   debug: boolean;
-  browserDetect: string;
+  lists: StoreIdToExpressionList;
 }
 
 interface DispatchProps {
@@ -187,12 +187,7 @@ class Expressions extends React.Component<ExpressionProps> {
   }
 
   public createDefaultOptions() {
-    const {
-      browserDetect,
-      contextualIdentities,
-      lists,
-      onNewExpression,
-    } = this.props;
+    const { bName, contextualIdentities, lists, onNewExpression } = this.props;
     const { contextualIdentitiesObjects } = this.state;
     const containers = new Set<string>(Object.keys(lists));
     if (contextualIdentities) {
@@ -203,14 +198,14 @@ class Expressions extends React.Component<ExpressionProps> {
     containers.add(
       ((browser) => {
         switch (browser) {
-          case 'Chrome':
-          case 'Opera':
+          case browserName.Chrome:
+          case browserName.Opera:
             return '0';
-          case 'Firefox':
+          case browserName.Firefox:
           default:
             return 'firefox-default';
         }
-      })(browserDetect),
+      })(bName),
     );
     containers.forEach((id) => {
       [ListType.GREY, ListType.WHITE].forEach((lt) => {
@@ -381,6 +376,23 @@ class Expressions extends React.Component<ExpressionProps> {
                 )}
                 styleReact={styles.buttonStyle}
               />
+              {contextualIdentities && (
+                <IconButton
+                  tag="button"
+                  className="btn-danger"
+                  iconName="trash"
+                  role="button"
+                  onClick={() => {
+                    this.removeListConfirmation(
+                      storeId,
+                      this.props.lists[storeId],
+                    );
+                  }}
+                  text={browser.i18n.getMessage('removeListText')}
+                  title={browser.i18n.getMessage('removeListText')}
+                  styleReact={styles.buttonStyle}
+                />
+              )}
             </div>
           </div>
           <div
@@ -444,25 +456,19 @@ class Expressions extends React.Component<ExpressionProps> {
           ''
         )}
         {contextualIdentities && (
-          <div className="row" style={{ paddingBottom: '8px' }}>
-            <div className="col-sm col-md-auto" style={{ paddingLeft: 0 }}>
-              <IconButton
-                tag="button"
-                className="btn-danger"
-                iconName="trash"
-                role="button"
-                onClick={() => {
-                  this.removeListConfirmation(
-                    storeId,
-                    this.props.lists[storeId],
-                  );
-                }}
-                text={browser.i18n.getMessage('removeListText')}
-                title={browser.i18n.getMessage('removeListText')}
-                styleReact={styles.buttonStyle}
-              />
-            </div>
-          </div>
+          <h5>
+            {browser.i18n.getMessage('currentContainerInfo', [
+              storeId === 'default'
+                ? browser.i18n.getMessage('defaultText')
+                : storeId,
+              mapIDtoName[storeId] ||
+                browser.i18n.getMessage(
+                  storeId === 'default'
+                    ? 'defaultContainerText'
+                    : 'missingContainerText',
+                ),
+            ])}
+          </h5>
         )}
         {contextualIdentities && (
           <ul className="row nav nav-tabs flex-column flex-sm-row">
@@ -477,7 +483,6 @@ class Expressions extends React.Component<ExpressionProps> {
                 href="#tabExpressionList"
               >
                 {browser.i18n.getMessage('defaultText')}
-                <br />({browser.i18n.getMessage('defaultContainerText')})
               </a>
             </li>
             {Object.entries(mapIDtoName).map(([cookieStoreId, name]) => (
@@ -495,8 +500,6 @@ class Expressions extends React.Component<ExpressionProps> {
                   href="#tabExpressionList"
                 >
                   {name || browser.i18n.getMessage('missingContainerText')}
-                  <br />
-                  {`(${cookieStoreId})`}
                 </a>
               </li>
             ))}
@@ -523,7 +526,7 @@ class Expressions extends React.Component<ExpressionProps> {
 const mapStateToProps = (state: State) => {
   const { cache, lists } = state;
   return {
-    browserDetect: cache.browserDetect,
+    bName: cache.browserDetect || (browserDetect() as browserName),
     contextualIdentities: getSetting(state, 'contextualIdentities') as boolean,
     debug: getSetting(state, 'debugMode') as boolean,
     lists,

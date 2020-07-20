@@ -26,9 +26,6 @@ type ActivityLog = {
     [siteDataType in SiteDataType]?: string[];
   };
   siteDataCleaned: boolean;
-} & {
-  // Remove this after update
-  [storeId: string]: any;
 };
 
 interface CleanupPropertiesInternal extends CleanupProperties {
