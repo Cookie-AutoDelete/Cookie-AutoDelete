@@ -361,26 +361,33 @@ export const clearCookiesForThisDomain = async (
       );
       if (r) cookieDeletedCount += 1;
     }
-    showNotification({
-      duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `${browser.i18n.getMessage('manualCleanSuccess', [
-        browser.i18n.getMessage('cookiesText'),
-        hostname,
-      ])}\n${browser.i18n.getMessage('manualCleanRemoved', [
-        cookieDeletedCount.toString(),
-        cookies.length.toString(),
-      ])}`,
-    });
+    showNotification(
+      {
+        duration: getSetting(state, 'notificationOnScreen') as number,
+        msg: `${browser.i18n.getMessage('manualCleanSuccess', [
+          browser.i18n.getMessage('cookiesText'),
+          hostname,
+        ])}\n${browser.i18n.getMessage('manualCleanRemoved', [
+          cookieDeletedCount.toString(),
+          cookies.length.toString(),
+        ])}`,
+      },
+      getSetting(state, 'manualNotifications') as boolean,
+    );
+
     return cookieDeletedCount > 0;
   }
 
-  showNotification({
-    duration: getSetting(state, 'notificationOnScreen') as number,
-    msg: `${browser.i18n.getMessage('manualCleanNothing', [
-      browser.i18n.getMessage('cookiesText'),
-      hostname,
-    ])}`,
-  });
+  showNotification(
+    {
+      duration: getSetting(state, 'notificationOnScreen') as number,
+      msg: `${browser.i18n.getMessage('manualCleanNothing', [
+        browser.i18n.getMessage('cookiesText'),
+        hostname,
+      ])}`,
+    },
+    getSetting(state, 'manualNotifications') as boolean,
+  );
 
   return cookies.length > 0;
 };
@@ -400,19 +407,22 @@ export const clearLocalStorageForThisDomain = async (
       local += frame.local;
       session += frame.session;
     });
-    showNotification({
-      duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: `${browser.i18n.getMessage('manualCleanSuccess', [
-        browser.i18n.getMessage('localStorageText'),
-        getHostname(tab.url),
-      ])}\n${browser.i18n.getMessage('removeStorageCount', [
-        local.toString(),
-        browser.i18n.getMessage('localStorageText'),
-      ])}\n${browser.i18n.getMessage('removeStorageCount', [
-        session.toString(),
-        browser.i18n.getMessage('sessionStorageText'),
-      ])}`,
-    });
+    showNotification(
+      {
+        duration: getSetting(state, 'notificationOnScreen') as number,
+        msg: `${browser.i18n.getMessage('manualCleanSuccess', [
+          browser.i18n.getMessage('localStorageText'),
+          getHostname(tab.url),
+        ])}\n${browser.i18n.getMessage('removeStorageCount', [
+          local.toString(),
+          browser.i18n.getMessage('localStorageText'),
+        ])}\n${browser.i18n.getMessage('removeStorageCount', [
+          session.toString(),
+          browser.i18n.getMessage('sessionStorageText'),
+        ])}`,
+      },
+      getSetting(state, 'manualNotifications') as boolean,
+    );
     return true;
   } catch (e) {
     throwErrorNotification(
@@ -453,6 +463,7 @@ export const clearSiteDataForThisDomain = async (
         state.cache.browserDetect,
         domains,
         debug,
+        true,
       );
     }
   } else {
@@ -462,6 +473,7 @@ export const clearSiteDataForThisDomain = async (
       state.cache.browserDetect,
       domains,
       debug,
+      true,
     );
   }
   return true;
@@ -473,6 +485,7 @@ export const removeSiteData = async (
   bName: browserName = browserDetect() as browserName,
   domains: string[],
   debug: boolean,
+  manual = false,
 ): Promise<boolean> => {
   const listName = ((b: browserName) => {
     switch (b) {
@@ -501,14 +514,17 @@ export const removeSiteData = async (
         [sd]: true,
       },
     );
-    showNotification({
-      duration: getSetting(state, 'notificationOnScreen') as number,
-      msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
-        browser.i18n.getMessage(`${sd}Text`),
-        domains.join(', '),
-      ]),
-      title: browser.i18n.getMessage('notificationTitleSiteData'),
-    });
+    showNotification(
+      {
+        duration: getSetting(state, 'notificationOnScreen') as number,
+        msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+          browser.i18n.getMessage(`${sd}Text`),
+          domains.join(', '),
+        ]),
+        title: browser.i18n.getMessage('notificationTitleSiteData'),
+      },
+      manual && (getSetting(state, 'manualNotifications') as boolean),
+    );
     return true;
   } catch (e) {
     cadLog(
@@ -605,7 +621,7 @@ export const otherBrowsingDataCleanup = async (
 };
 
 /**
- * Filters incoming objects with the site data to clean.
+ * Filters incoming objects with the site data to clean. (From Autoclean trigger)
  * @param state The State.
  * @param siteData The site data type
  * @param cleanReasonObjects Objects returned from isSafeToClean()
@@ -638,6 +654,7 @@ export const cleanSiteData = async (
       bName,
       [...new Set(cleanList)],
       debug,
+      false,
     );
     if (r) {
       return domains;

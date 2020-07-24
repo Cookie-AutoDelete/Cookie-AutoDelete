@@ -495,12 +495,17 @@ export const returnOptionalCookieAPIAttributes = (
  *          - duration: number in seconds
  *          - msg: notification content
  *          - title: notification title
+ * @param display Whether to display the notification.
  */
-export const showNotification = (x: {
-  duration: number;
-  msg: string;
-  title?: string;
-}): void => {
+export const showNotification = (
+  x: {
+    duration: number;
+    msg: string;
+    title?: string;
+  },
+  display = true,
+): void => {
+  if (!display) return;
   const sid = `CAD-notification-${shortid.generate()}`;
   browser.notifications.create(sid, {
     iconUrl: browser.runtime.getURL('icons/icon_48.png'),

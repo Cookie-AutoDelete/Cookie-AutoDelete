@@ -88,6 +88,10 @@ export const initialState: State = {
       name: 'localStorageCleanup',
       value: false,
     },
+    manualNotifications: {
+      name: 'manualNotifications',
+      value: true,
+    },
     notificationOnScreen: {
       name: 'notificationOnScreen',
       value: 3,

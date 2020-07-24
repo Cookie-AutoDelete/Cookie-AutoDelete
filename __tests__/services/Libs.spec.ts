@@ -1179,6 +1179,17 @@ describe('Library Functions', () => {
         }),
       );
     });
+
+    it('should not show notification if display was false', async () => {
+      showNotification(
+        {
+          duration: 1,
+          msg: 'Unshown Notification',
+        },
+        false,
+      );
+      expect(global.browser.notifications.create).not.toHaveBeenCalled();
+    });
   });
 
   describe('sleep()', () => {

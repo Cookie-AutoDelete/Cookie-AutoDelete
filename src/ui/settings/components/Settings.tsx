@@ -531,12 +531,23 @@ class Settings extends React.Component<SettingProps> {
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
-              hrefURL={'#show-notification-after-cookie-cleanup'}
+              hrefURL={'#show-notification-after-automatic-cleanup'}
+            />
+          </div>
+          <div className="form-group">
+            <CheckboxSetting
+              inline={true}
+              settingObject={settings.manualNotifications}
+              text={browser.i18n.getMessage('manualNotificationsText')}
+              updateSetting={(payload) => onUpdateSetting(payload)}
+            />
+            <SettingsTooltip
+              hrefURL={'show-notification-from-manual-site-data-cleanups'}
             />
           </div>
           <div className="form-group">
             <SelectInput
-              numSize={4}
+              numSize={9}
               numStart={1}
               settingObject={settings.notificationOnScreen}
               text={`${browser.i18n.getMessage(
@@ -546,9 +557,7 @@ class Settings extends React.Component<SettingProps> {
                 onUpdateSetting(payload);
               }}
             />
-            <SettingsTooltip
-              hrefURL={'#show-notification-after-cookie-cleanup'}
-            />
+            <SettingsTooltip hrefURL={'#duration-for-notifications'} />
           </div>
           <div className="form-group">
             <CheckboxSetting

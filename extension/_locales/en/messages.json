@@ -581,6 +581,10 @@
       }
     }
   },
+  "manualNotificationsText": {
+    "message": "Show Notification from Manual Site Data Cleanups",
+    "description": "Show Notification from Manual Site Data Cleanups.  Found in settings"
+  },
   "matchedDomainExpressionText": {
     "message": "Matched Domain Expression",
     "description": "Matched Domain Expression"
@@ -652,8 +656,8 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Show Notification After Cookie Cleanup",
-    "description": "Show Notification After Cookie Cleanup"
+    "message": "Show Notification After Automatic Cleanup",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Older release notes can be viewed online at",
