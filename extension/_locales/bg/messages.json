@@ -241,7 +241,7 @@
   },
   "keepAllCookiesText": {
     "message": "Запазване на всички бисквитки",
-    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+    "description": "Keep All Cookies"
   },
   "keepDefaultIcon": {
     "message": "Запазете иконите по подразбиране за всички видове списъци",
@@ -249,7 +249,7 @@
   },
   "keepLocalstorageText": {
     "message": "Запазване на местното хранилище",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+    "description": "Keep LocalStorage"
   },
   "keepText": {
     "message": "Запазване",
@@ -273,7 +273,7 @@
   },
   "localStorageText": {
     "message": "LocalStorage",
-    "description": "LocalStorage.  Primarily used in notifications."
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
   },
   "manualActionNotification": {
     "message": "Известие при действие от потребителя",

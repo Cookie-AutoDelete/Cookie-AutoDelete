@@ -299,7 +299,7 @@
   },
   "keepAllCookiesText": {
     "message": "Behåll alla cookies",
-    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+    "description": "Keep All Cookies"
   },
   "keepDefaultIcon": {
     "message": "Behåll standardikoner på alla listtyper",
@@ -307,7 +307,7 @@
   },
   "keepLocalstorageText": {
     "message": "Behåll lokal lagring",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+    "description": "Keep LocalStorage"
   },
   "keepText": {
     "message": "Behåll",
@@ -331,7 +331,7 @@
   },
   "localStorageText": {
     "message": "Lokal lagring",
-    "description": "LocalStorage.  Primarily used in notifications."
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
   },
   "manualActionNotification": {
     "message": "Manuell åtgärdsavisering",

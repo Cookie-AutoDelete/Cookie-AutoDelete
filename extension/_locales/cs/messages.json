@@ -221,7 +221,7 @@
   },
   "keepAllCookiesText": {
     "message": "Zachovat všechny cookies",
-    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+    "description": "Keep All Cookies"
   },
   "keepDefaultIcon": {
     "message": "Ponechat výchozí ikony ve všech typech seznamu",
@@ -229,7 +229,7 @@
   },
   "keepLocalstorageText": {
     "message": "Ponechat lokální úložiště",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+    "description": "Keep LocalStorage"
   },
   "keepText": {
     "message": "Zachovat",

@@ -307,7 +307,7 @@
   },
   "keepAllCookiesText": {
     "message": "Simpan Semua Kuki",
-    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+    "description": "Keep All Cookies"
   },
   "keepDefaultIcon": {
     "message": "Simpan Ikon Bawaan pada semua tipe daftar",
@@ -315,7 +315,7 @@
   },
   "keepLocalstorageText": {
     "message": "Simpan Localstorage",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+    "description": "Keep LocalStorage"
   },
   "keepText": {
     "message": "Simpan",
@@ -339,7 +339,7 @@
   },
   "localStorageText": {
     "message": "Penyimpanan Lokal",
-    "description": "LocalStorage.  Primarily used in notifications."
+    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
   },
   "manualActionNotification": {
     "message": "Notifikasi Tindakan Manual",

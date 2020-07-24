@@ -225,7 +225,7 @@
   },
   "keepAllCookiesText": {
     "message": "Задржи колачиће",
-    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+    "description": "Keep All Cookies"
   },
   "keepDefaultIcon": {
     "message": "Задржите подразумеване иконе на свим врстама листе",
@@ -233,7 +233,7 @@
   },
   "keepLocalstorageText": {
     "message": "Задржи локално складиште",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+    "description": "Keep LocalStorage"
   },
   "keepText": {
     "message": "Задржи",

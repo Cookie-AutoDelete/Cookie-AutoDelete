@@ -221,7 +221,7 @@
   },
   "keepAllCookiesText": {
     "message": "Lưu trữ tất cả các cookie",
-    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+    "description": "Keep All Cookies"
   },
   "keepDefaultIcon": {
     "message": "Giữ biểu tượng mặc định trên tất cả các loại danh sách",
@@ -229,7 +229,7 @@
   },
   "keepLocalstorageText": {
     "message": "Lưu trữ cục bộ",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+    "description": "Keep LocalStorage"
   },
   "keepText": {
     "message": "Giữ",
