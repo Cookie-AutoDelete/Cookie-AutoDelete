@@ -184,11 +184,11 @@
     "description": "Clean Cookies from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "Executar limpeza agora, incluir domínios de abas abertas",
+    "message": "Executar limpeza agora, incluir domínios de separadores abertos",
     "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
-    "message": "Executar limpeza agora, excluir domínios de abas abertas",
+    "message": "Executar limpeza agora, excluir domínios de separadores abertos",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
   "createDefaultExpressionOptionsText": {
