@@ -53,6 +53,10 @@
     "message": "Abilita Pulizia per le Schede Scartate/Caricate",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
+  "cleanExpiredCookiesText": {
+    "message": "Pulisci tutti i cookie scaduti",
+    "description": "Clean All Expired Cookies.  Found in Settings."
+  },
   "cleanIgnoringOpenTabsText": {
     "message": "Pulisci, incluse le schede aperte",
     "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -76,30 +80,6 @@
   "clearLogsText": {
     "message": "Cancella il registro",
     "description": "Clear Logs"
-  },
-  "clearSiteDataForDomainText": {
-    "message": "Elimina tutti i $siteData$ di $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Elimina i $siteData$ di questo dominio",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
   },
   "clearURLText": {
     "message": "Rimuovi tutti",
@@ -303,7 +283,7 @@
   },
   "keepAllCookiesText": {
     "message": "Mantieni tutti i cookie",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Mantieni icone predefinite su tutti i tipi di lista",
@@ -311,7 +291,7 @@
   },
   "keepLocalstorageText": {
     "message": "Mantieni Localstorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Mantieni",
@@ -321,21 +301,9 @@
     "message": "Tipo di elenco",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "ATTENZIONE: abilitare sia la pulizia del LocalStorage che le schede contenitore può causare effetti collaterali indesiderati a causa di limitazioni delle API. Il LocalStorage verrà pulito dal nome host su TUTTI i contenitori.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Pulizia del LocalStorage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Attenzione: TUTTO il LocalStorage esistente verrà eliminato all'attivazione della Pulitura del LocalStorage.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "LocalStorage",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Notifica Azione Manuale",
@@ -425,20 +393,6 @@
     "message": "Nessuno",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ cookie eliminati da: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Notifica disattivata",
     "description": "Notification disabled"
@@ -454,10 +408,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Durata delle notifiche",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Mostra una notifica dopo la pulizia dei cookie",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "La vecchia cronologia può essere letta online su",
@@ -482,6 +432,16 @@
   "questionExpression": {
     "message": "Come funzionano le espressioni?",
     "description": "How do Expressions work?"
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Pulizia parziale a causa dei cookie scaduti da $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
   },
   "reasonCleanCookieName": {
     "message": "Pulizia parziale a causa di $matchedExpression$ trovato in $listType$",
@@ -610,6 +570,10 @@
   "reportIssuesText": {
     "message": "Segnala problemi e suggerisci funzionalità",
     "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "Azzera contatori cookie",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
   },
   "resetExtensionDataText": {
     "message": "Ripristina dati estensione",
@@ -752,10 +716,6 @@
   "whiteCleanLocalstorage": {
     "message": "Deseleziona 'Mantieni Localstorage' nelle nuove espressioni in lista bianca",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Elenco di espressioni",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Lista bianca",
