@@ -214,7 +214,7 @@
     "description": "Enable Popup when New Version is Released"
   },
   "errorText": {
-    "message": "Erreur!",
+    "message": "Erreur !",
     "description": "Error!"
   },
   "exportSettingsText": {
@@ -394,11 +394,11 @@
     "description": "None"
   },
   "notificationDisabledText": {
-    "message": "Les notifications sont désactivées",
+    "message": "Notifications désactivées",
     "description": "Notification disabled"
   },
   "notificationEnabledText": {
-    "message": "Les notifications sont activées",
+    "message": "Notifications activées",
     "description": "Notification enabled"
   },
   "notificationTitle": {
@@ -430,7 +430,7 @@
     "description": "Settings"
   },
   "questionExpression": {
-    "message": "Comment fonctionnent les Expressions?",
+    "message": "Comment fonctionnent les expressions ?",
     "description": "How do Expressions work?"
   },
   "reasonCleanCookieExpired": {
