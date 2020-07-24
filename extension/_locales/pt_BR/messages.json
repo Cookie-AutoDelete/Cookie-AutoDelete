@@ -221,7 +221,7 @@
   },
   "keepAllCookiesText": {
     "message": "Manter todos os cookies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Manter ícones padrão em todos os tipos de listas",
@@ -229,7 +229,7 @@
   },
   "keepLocalstorageText": {
     "message": "Manter localstorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Manter",
