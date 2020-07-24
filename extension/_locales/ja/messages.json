@@ -81,30 +81,6 @@
     "message": "ログを削除",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "$domain$ から $siteData$ をすべて消去する",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "ドメインから $siteData$ を消去する",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "すべて削除",
     "description": "Remove All"
@@ -311,7 +287,7 @@
   },
   "keepAllCookiesText": {
     "message": "すべてのクッキーを維持する",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "すべてのリストタイプでデフォルトのアイコンを維持する",
@@ -319,7 +295,7 @@
   },
   "keepLocalstorageText": {
     "message": "ローカルストレージを維持する",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "保持する",
@@ -329,21 +305,9 @@
     "message": "種類のリスト",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "警告: ローカルストレージのクリーンアップとコンテナタブの両方を有効にすると、API の制限により不要な副作用が発生する可能性があります。 ローカルストレージは、すべてのコンテナのホスト名でクリアされます。",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "ローカルストレージのクリーンアップ",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "警告: ローカルストレージのクリーンアップを有効にすると、すべての既存のローカルストレージがクリアされます。",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "ローカルストレージ",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "手動での動作を通知する",
@@ -433,20 +397,6 @@
     "message": "なし",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ 個のクッキーを $Websites$ から削除",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "通知無効",
     "description": "Notification disabled"
@@ -462,10 +412,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "通知を表示する時間",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "クッキーのクリーンアップ後に通知を表示する",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "過去のリリースノートは、オンラインで表示できます：",
@@ -774,10 +720,6 @@
   "whiteCleanLocalstorage": {
     "message": "新しいホワイトリスト式の 'ローカルストレージを保持する' のチェックを外す",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "式のリスト",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "ホワイトリスト",
