@@ -307,7 +307,7 @@
   },
   "keepAllCookiesText": {
     "message": "Alle cookies behouden",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Behoud standaard iconen bij alle lijstypes",
@@ -315,7 +315,7 @@
   },
   "keepLocalstorageText": {
     "message": "Lokale opslag behouden",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Behouden",
@@ -339,7 +339,7 @@
   },
   "localStorageText": {
     "message": "Lokale opslag",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Handmatige actie notificatie",
