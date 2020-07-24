@@ -221,7 +221,7 @@
   },
   "keepAllCookiesText": {
     "message": "保留所有 cookie",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "在所有列表類型上保留默認圖標",
@@ -229,7 +229,7 @@
   },
   "keepLocalstorageText": {
     "message": "保持本機存放區",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "保留",
