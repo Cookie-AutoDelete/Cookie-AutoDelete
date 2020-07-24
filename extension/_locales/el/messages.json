@@ -221,7 +221,7 @@
   },
   "keepAllCookiesText": {
     "message": "Διατηρήστε όλα τα cookie",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Διατηρήστε τα προεπιλεγμένα εικονίδια σε όλους τους τύπους λιστών",
@@ -229,7 +229,7 @@
   },
   "keepLocalstorageText": {
     "message": "Διατηρήστε το LocalStorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Διατήρηση",
