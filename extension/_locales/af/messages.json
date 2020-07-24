@@ -221,7 +221,7 @@
   },
   "keepAllCookiesText": {
     "message": "Hou alle koekies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Hou standaardikone by alle lystipes",
@@ -229,7 +229,7 @@
   },
   "keepLocalstorageText": {
     "message": "Hou LocalStorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Hou",
