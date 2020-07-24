@@ -307,7 +307,7 @@
   },
   "keepAllCookiesText": {
     "message": "Garder tous les cookies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Garder les icônes par défaut sur tous les types de listes",
@@ -315,7 +315,7 @@
   },
   "keepLocalstorageText": {
     "message": "Garder la mémoire locale",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Conserver",
@@ -339,7 +339,7 @@
   },
   "localStorageText": {
     "message": "Stockage local",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Notification d'action manuelle",
