@@ -81,30 +81,6 @@
     "message": "Hapus Catatan",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Hapus semua $siteData$ untuk $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Hapus $siteData$ untuk domain ini",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Buang Semua",
     "description": "Remove All"
@@ -156,10 +132,6 @@
         "example": "github.com"
       }
     }
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Aktifkan Dukungan untuk Tab Container Firefox",
-    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
   },
   "contributeText": {
     "message": "Kontribusi",
@@ -307,7 +279,7 @@
   },
   "keepAllCookiesText": {
     "message": "Simpan Semua Kuki",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Simpan Ikon Bawaan pada semua tipe daftar",
@@ -315,7 +287,7 @@
   },
   "keepLocalstorageText": {
     "message": "Simpan Localstorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Simpan",
@@ -325,21 +297,9 @@
     "message": "Tipe Daftar",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Mengaktifkan Penghapusan Localstorage dan Tab Container mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API.  LocalStorage akan dihapus oleh hostname di SEMUA wadah.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Hapus Localstorage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "Penyimpanan Lokal",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Notifikasi Tindakan Manual",
@@ -429,20 +389,6 @@
     "message": "Nihil",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ Kuki Dihapus dari: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Notifikasi nonaktif",
     "description": "Notification disabled"
@@ -458,10 +404,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Durasi untuk Notifikasi",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Tampilkan Notifikasi Setelah Menghapus Kuki",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Catatan perubahan versi yang lama bisa dilihat di",
@@ -770,10 +712,6 @@
   "whiteCleanLocalstorage": {
     "message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Putih Baru",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Daftar Ekspresi",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Daftar Putih",
