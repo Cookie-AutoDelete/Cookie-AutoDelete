@@ -81,30 +81,6 @@
     "message": "Slet logger",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Slet alle $siteData$ for $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Slet $siteData$ for dette domæne",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Fjern alle",
     "description": "Remove All"
@@ -307,7 +283,7 @@
   },
   "keepAllCookiesText": {
     "message": "Behold alle cookies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Behold standardikoner på alle listetyper",
@@ -315,7 +291,7 @@
   },
   "keepLocalstorageText": {
     "message": "Behold lokallager",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Behold",
@@ -325,21 +301,9 @@
     "message": "Listetype",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "ADVARSEL: Aktivering af både Lokallagersletning og Container-faner kan forårsage uønskede bivirkninger på grund af API-begrænsninger. Lokallager ryddes af værtsnavnet på ALLE containere.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Ryd op i lokallager",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Advarsel: ALLE eksisterende lokallagre ryddes ved aktivering af Lokallagersletning.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "Lokallager",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Manuel handlingsunderretning",
@@ -429,20 +393,6 @@
     "message": "Intet",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ slettede cookies fra: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Meddelelser deaktiveret",
     "description": "Notification disabled"
@@ -458,10 +408,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Varighed for underretninger",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Vis meddelelse efter sletning af cookies",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Gamle udgivelsesnoter kan ses online på",
@@ -770,10 +716,6 @@
   "whiteCleanLocalstorage": {
     "message": "Fjern markeringen i 'Behold lokallager' på nye hvidlisteudtryk",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Liste af udtryk",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Hvidliste",
