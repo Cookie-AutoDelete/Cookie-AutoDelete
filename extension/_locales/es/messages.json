@@ -59,6 +59,10 @@
     "message": "Limpieza automática habilitada",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "ADVERTENCIA: Al habilitar cualquiera de las siguientes opciones de limpieza de datos del sitio, se borrarán TODOS los datos existentes de ese tipo.",
+    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Habilitar limpieza de caché (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
@@ -643,6 +647,10 @@
     "message": "¡Las cookies fueron borradas!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
+  "notificationTitleSiteData": {
+    "message": "¡Borrado de datos del sitio iniciado!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
+  },
   "notifyCookieCleanupDelayText": {
     "message": "Duración de las notificaciones",
     "description": "Duration for Notifications"
@@ -682,6 +690,16 @@
   "questionExpression": {
     "message": "¿Cómo funcionan las expresiones?",
     "description": "How do Expressions work?"
+  },
+  "reasonCADSiteDataCookie": {
+    "message": "Limpiar para iniciar la limpieza de datos del sitio para $hostname$.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
   },
   "reasonCleanCookieExpired": {
     "message": "Limpieza parcial de $hostname$ debido a las cookies expiradas.",
