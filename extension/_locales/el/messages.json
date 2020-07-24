@@ -243,11 +243,11 @@
     "message": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η ενεργοποίηση τόσο του LocalStorage Cleanup όσο και του Container Tabs μπορεί να προκαλέσει ανεπιθύμητες παρενέργειες λόγω των περιορισμών API. Το LocalStorage θα διαγραφεί από το όνομα κεντρικού υπολογιστή σε ΟΛΑ τα κοντέινερ.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Εκκαθάριση LocalStorage",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Προειδοποίηση: ΟΛΕΣ οι υπάρχουσες LocalStorage θα διαγραφούν μετά την ενεργοποίηση του LocalStorage Cleanup.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -593,7 +593,7 @@
     "message": "Καταργήστε την επιλογή \"Διατήρηση τοπικής αποθήκευσης\" στις Νέες εκφράσεις της λίστας",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Λίστα εκφράσεων",
     "description": "List of Expressions"
   },

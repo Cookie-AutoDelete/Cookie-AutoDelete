@@ -186,11 +186,59 @@ describe('TabEvents', () => {
       expect(spyBrowserActions.checkIfProtected.mock.calls[0][2]).toBe(1);
     });
 
+    it('should create a cookie if clean cache was enabled and no cookie was found', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
+        .mockResolvedValue([] as never);
+      TestStore.changeSetting('cacheCleanup', true);
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://cookie.net',
+      });
+      expect(global.browser.cookies.set).toHaveBeenCalledTimes(1);
+    });
+
+    it('should create a cookie if clean indexedDB was enabled and no cookie was found', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
+        .mockResolvedValue([] as never);
+      TestStore.changeSetting('indexedDBCleanup', true);
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://cookie.net',
+      });
+      expect(global.browser.cookies.set).toHaveBeenCalledTimes(1);
+    });
+
     it('should create a cookie if clean localstorage was enabled and no cookie was found', async () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting('localstorageCleanup', true);
+      TestStore.changeSetting('localStorageCleanup', true);
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://cookie.net',
+      });
+      expect(global.browser.cookies.set).toHaveBeenCalledTimes(1);
+    });
+
+    it('should create a cookie if clean plugin data was enabled and no cookie was found', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
+        .mockResolvedValue([] as never);
+      TestStore.changeSetting('pluginDataCleanup', true);
+      await TabEvents.getAllCookieActions({
+        ...sampleTab,
+        url: 'http://cookie.net',
+      });
+      expect(global.browser.cookies.set).toHaveBeenCalledTimes(1);
+    });
+
+    it('should create a cookie if clean service workers was enabled and no cookie was found', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
+        .mockResolvedValue([] as never);
+      TestStore.changeSetting('serviceWorkersCleanup', true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',
@@ -202,7 +250,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([
-          { ...testCookie, name: Lib.LSCLEANUPNAME },
+          { ...testCookie, name: Lib.CADCOOKIENAME },
         ] as never);
       await TabEvents.getAllCookieActions({
         ...sampleTab,

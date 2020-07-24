@@ -243,11 +243,11 @@
     "message": "AVERTISMENT: Activarea curățării locale de stocare și a filelor de container poate provoca efecte secundare nedorite din cauza limitărilor API. LocalStorage va fi golit de hostname pe TOATE containerele.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Ștergere Localstorage",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Avertisment: TOATE Localage existente vor fi eliminate la activarea curățării depozitului local.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -593,7 +593,7 @@
     "message": "Debifați \"Păstrare LocalStorage\" în noi expresii albe",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Lista de expresii",
     "description": "List of Expressions"
   },

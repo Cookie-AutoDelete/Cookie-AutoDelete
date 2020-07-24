@@ -307,11 +307,11 @@
     "message": "ВНИМАНИЕ: Включение и очистки локального хранилища, и вкладок контейнеров может привести к нежелательным побочным эффектам из-за ограничений API. Локальное хранилище будет очищено по имени хоста во ВСЕХ контейнерах.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Очистка локального хранилища",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Предупреждение: ВСЁ существующее локальное хранилище будет очищаться после включения очистки локального хранилища.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -739,7 +739,7 @@
     "message": "Снять флажок 'Сохранять локальное хранилище' для новых записей в белом списке",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Список правил",
     "description": "List of Expressions"
   },

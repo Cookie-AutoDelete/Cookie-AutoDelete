@@ -194,18 +194,72 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     });
   }
 
-  public toggleCleanLocalstorage(checked: boolean) {
+  public toggleCleanSiteData(key: SiteDataType, canClean: boolean) {
     const { expression, onUpdateExpression } = this.props;
+    let newCleanSiteData: SiteDataType[] = expression.cleanSiteData || [];
+    if (canClean) {
+      newCleanSiteData.push(key);
+    } else {
+      newCleanSiteData = newCleanSiteData.filter((s) => s !== key);
+    }
+
     onUpdateExpression({
       ...expression,
-      cleanLocalStorage: checked,
+      cleanSiteData: newCleanSiteData,
+      cleanLocalStorage:
+        expression.cleanLocalStorage === undefined ? undefined : canClean,
     });
+  }
+
+  /**
+   * Use for all Site Data Type except cleanAllCookies and Cookies
+   * @param cleanData In Expression Type, the site data to clean (SiteDataType enum). Check Expression Type for cleanType.  Case Sensitive.
+   */
+  public createSiteDataCheckbox(cleanData: SiteDataType) {
+    const { expression } = this.props;
+    const cleanType = `clean${cleanData}`;
+    const keyID = `${expression.id}-${cleanType}`;
+    // undefined will be false to keep them.
+    const checked = expression.cleanSiteData
+      ? expression.cleanSiteData.includes(cleanData)
+      : false;
+    const localeText = ((lt: ListType) => {
+      switch (lt) {
+        case ListType.WHITE:
+          return `keep${cleanData}Text`;
+        case ListType.GREY:
+          return `keep${cleanData}GreyText`;
+        default:
+          return '';
+      }
+    })(expression.listType);
+    return (
+      <div className={'checkbox'}>
+        <span
+          className={'addHover'}
+          onClick={() => {
+            this.toggleCleanSiteData(cleanData, !checked);
+          }}
+        >
+          <FontAwesomeIcon
+            icon={['far', checked ? 'square' : 'check-square']}
+            id={keyID}
+            style={styles.checkbox}
+            size={'lg'}
+            role={'checkbox'}
+            aria-checked={!checked}
+          />
+          <label htmlFor={keyID} aria-labelledby={keyID}>
+            {browser.i18n.getMessage(localeText)}
+          </label>
+        </span>
+      </div>
+    );
   }
 
   public render() {
     const { cookies } = this.state;
     const { expression, state } = this.props;
-    const keyLocalStorage = `${expression.id}-cleanLocalStorage`;
     const keyCleanAllCookies = `${expression.id}-cleanAllCookies`;
 
     const dropList = coerceBoolean(expression.cleanAllCookies);
@@ -213,36 +267,29 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       <div>
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= '57') ||
-            isChrome(state.cache)) && (
-            <div className={'checkbox'}>
-              <span
-                className={'addHover'}
-                onClick={() =>
-                  this.toggleCleanLocalstorage(!expression.cleanLocalStorage)
-                }
-              >
-                <FontAwesomeIcon
-                  id={keyLocalStorage}
-                  style={styles.checkbox}
-                  size={'lg'}
-                  icon={[
-                    'far',
-                    expression.cleanLocalStorage ? 'square' : 'check-square',
-                  ]}
-                  role="checkbox"
-                  aria-checked={!expression.cleanLocalStorage as boolean}
-                />
-                <label
-                  htmlFor={keyLocalStorage}
-                  aria-labelledby={keyLocalStorage}
-                >
-                  {browser.i18n.getMessage('keepLocalstorageText')}
-                </label>
-              </span>
-            </div>
-          )}
-        {}
+            state.cache.browserVersion >= '78') ||
+            isChrome(state.cache)) &&
+          this.createSiteDataCheckbox(SiteDataType.CACHE)}
+        {!expression.expression.startsWith('file:') &&
+          ((isFirefoxNotAndroid(state.cache) &&
+            state.cache.browserVersion >= '77') ||
+            isChrome(state.cache)) &&
+          this.createSiteDataCheckbox(SiteDataType.INDEXEDDB)}
+        {!expression.expression.startsWith('file:') &&
+          ((isFirefoxNotAndroid(state.cache) &&
+            state.cache.browserVersion >= '58') ||
+            isChrome(state.cache)) &&
+          this.createSiteDataCheckbox(SiteDataType.LOCALSTORAGE)}
+        {!expression.expression.startsWith('file:') &&
+          ((isFirefoxNotAndroid(state.cache) &&
+            state.cache.browserVersion >= '78') ||
+            isChrome(state.cache)) &&
+          this.createSiteDataCheckbox(SiteDataType.PLUGINDATA)}
+        {!expression.expression.startsWith('file:') &&
+          ((isFirefoxNotAndroid(state.cache) &&
+            state.cache.browserVersion >= '77') ||
+            isChrome(state.cache)) &&
+          this.createSiteDataCheckbox(SiteDataType.SERVICEWORKERS)}
         <div className={'checkbox'}>
           <span
             className={'addHover'}
@@ -276,7 +323,11 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               htmlFor={keyCleanAllCookies}
               aria-labelledby={keyCleanAllCookies}
             >
-              {browser.i18n.getMessage('keepAllCookiesText')}
+              {browser.i18n.getMessage(
+                `keepAllCookies${
+                  expression.listType === ListType.GREY ? 'Grey' : ''
+                }Text`,
+              )}
             </label>
           </span>
         </div>

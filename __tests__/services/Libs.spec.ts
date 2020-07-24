@@ -18,6 +18,7 @@ import {
   convertVersionToNumber,
   createPartialTabInfo,
   extractMainDomain,
+  getContainerExpressionDefault,
   getHostname,
   getSetting,
   getStoreId,
@@ -369,6 +370,99 @@ describe('Library Functions', () => {
     });
   });
 
+  describe('getContainerExpressionDefault()', () => {
+    const mockExpression: Expression = {
+      expression: '',
+      listType: ListType.WHITE,
+      storeId: '',
+    };
+    it('should return default expression if list does not contain storeId given', () => {
+      expect(
+        getContainerExpressionDefault(initialState, 'default', ListType.WHITE),
+      ).toEqual(mockExpression);
+    });
+    it('should return default expression if existing list does not contain default expression key', () => {
+      expect(
+        getContainerExpressionDefault(
+          { ...initialState, lists: { default: [mockExpression] } },
+          'default',
+          ListType.WHITE,
+        ),
+      ).toEqual(mockExpression);
+    });
+    it('should return customized default expression if existing list contains default expression key', () => {
+      expect(
+        getContainerExpressionDefault(
+          {
+            ...initialState,
+            lists: {
+              default: [
+                {
+                  expression: `_Default:${ListType.WHITE}`,
+                  cleanSiteData: [SiteDataType.PLUGINDATA],
+                  listType: ListType.WHITE,
+                  storeId: 'default',
+                },
+              ],
+            },
+          },
+          'default',
+          ListType.WHITE,
+        ),
+      ).toEqual(
+        expect.objectContaining({ cleanSiteData: [SiteDataType.PLUGINDATA] }),
+      );
+    });
+    it('should return customized default expression for non-default container from default container if non-default container is missing defaults', () => {
+      expect(
+        getContainerExpressionDefault(
+          {
+            ...initialState,
+            settings: {
+              ...initialState.settings,
+              contextualIdentities: {
+                name: 'contextualIdentities',
+                value: true,
+              },
+            },
+            lists: {
+              default: [
+                {
+                  expression: `_Default:${ListType.WHITE}`,
+                  cleanSiteData: [SiteDataType.PLUGINDATA],
+                  listType: ListType.WHITE,
+                  storeId: 'default',
+                },
+              ],
+            },
+          },
+          'firefox-container-1',
+          ListType.WHITE,
+        ),
+      ).toEqual(
+        expect.objectContaining({ cleanSiteData: [SiteDataType.PLUGINDATA] }),
+      );
+    });
+    it('should return default expression for non-default container if non-default and default container is missing defaults', () => {
+      expect(
+        getContainerExpressionDefault(
+          {
+            ...initialState,
+            settings: {
+              ...initialState.settings,
+              contextualIdentities: {
+                name: 'contextualIdentities',
+                value: true,
+              },
+            },
+          },
+          'firefox-container-1',
+          ListType.WHITE,
+        ),
+      ).toEqual(mockExpression);
+    });
+  });
+
   describe('getHostname()', () => {
     it('should return en.wikipedia.org from https://en.wikipedia.org/wiki/Cat', () => {
       expect(getHostname('https://en.wikipedia.org/wiki/Cat')).toEqual(
@@ -421,7 +515,7 @@ describe('Library Functions', () => {
     const contextualIdentitiesFalseChrome = {
       ...initialState,
       cache: {
-        browserDetect: 'Chrome',
+        browserDetect: browserName.Chrome,
       },
       settings: {
         contextualIdentities: {
@@ -434,7 +528,7 @@ describe('Library Functions', () => {
     const contextualIdentitiesFalseFF = {
       ...initialState,
       cache: {
-        browserDetect: 'Firefox',
+        browserDetect: browserName.Firefox,
       },
       settings: {
         contextualIdentities: {
@@ -447,7 +541,7 @@ describe('Library Functions', () => {
     const contextualIdentitiesTrue = {
       ...initialState,
       cache: {
-        browserDetect: 'Firefox',
+        browserDetect: browserName.Firefox,
       },
       settings: {
         contextualIdentities: {
@@ -477,7 +571,7 @@ describe('Library Functions', () => {
           {
             ...contextualIdentitiesFalseChrome,
             cache: {
-              browserDetect: 'Opera',
+              browserDetect: browserName.Opera,
             },
           },
           '0',
@@ -670,10 +764,10 @@ describe('Library Functions', () => {
       expect(isChrome({})).toBe(false);
     });
     it('should return false if browserDetect is not Chrome', () => {
-      expect(isChrome({ browserDetect: 'test' })).toBe(false);
+      expect(isChrome({ browserDetect: browserName.Unknown })).toBe(false);
     });
     it('should return true if browserDetect is Chrome', () => {
-      expect(isChrome({ browserDetect: 'Chrome' })).toBe(true);
+      expect(isChrome({ browserDetect: browserName.Chrome })).toBe(true);
     });
   });
 
@@ -682,10 +776,10 @@ describe('Library Functions', () => {
       expect(isFirefox({})).toBe(false);
     });
     it('should return false if browserDetect is not Firefox', () => {
-      expect(isFirefox({ browserDetect: 'test' })).toBe(false);
+      expect(isFirefox({ browserDetect: browserName.Unknown })).toBe(false);
     });
     it('should return true if browserDetect is Firefox', () => {
-      expect(isFirefox({ browserDetect: 'Firefox' })).toBe(true);
+      expect(isFirefox({ browserDetect: browserName.Firefox })).toBe(true);
     });
   });
 
@@ -695,29 +789,40 @@ describe('Library Functions', () => {
     });
     it('should return false if platformOs is not android', () => {
       expect(
-        isFirefoxAndroid({ browserDetect: 'test', platformOs: 'linux' }),
+        isFirefoxAndroid({
+          browserDetect: browserName.Unknown,
+          platformOs: 'linux',
+        }),
       ).toBe(false);
     });
     it('should return true if platformOs is android', () => {
       expect(
-        isFirefoxAndroid({ browserDetect: 'Firefox', platformOs: 'android' }),
+        isFirefoxAndroid({
+          browserDetect: browserName.Firefox,
+          platformOs: 'android',
+        }),
       ).toBe(true);
     });
   });
 
   describe('isFirefoxNotAndroid()', () => {
     it('should return false if platformOs is undefined', () => {
-      expect(isFirefoxNotAndroid({})).toBe(false);
+      expect(isFirefoxNotAndroid({ browserDetect: browserName.Unknown })).toBe(
+        false,
+      );
     });
     it('should return true if platformOs is not android', () => {
       expect(
-        isFirefoxNotAndroid({ browserDetect: 'Firefox', platformOs: 'linux' }),
+        isFirefoxNotAndroid({
+          browserDetect: browserName.Firefox,
+          platformOs: 'linux',
+        }),
       ).toBe(true);
     });
     it('should return false if platformOs is android', () => {
       expect(
         isFirefoxNotAndroid({
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
           platformOs: 'android',
         }),
       ).toBe(false);
@@ -783,22 +888,23 @@ describe('Library Functions', () => {
 
   describe('prepareCleanupDomains()', () => {
     it('should return empty array for empty domain', () => {
-      expect(prepareCleanupDomains('')).toEqual([]);
+      expect(prepareCleanupDomains('', browserName.Firefox)).toEqual([]);
     });
 
     it('should return empty array for domains with only whitespaces', () => {
-      expect(prepareCleanupDomains(' ')).toEqual([]);
+      expect(prepareCleanupDomains(' ', browserName.Firefox)).toEqual([]);
     });
 
     it('should return cleanup domains from www.example.com', () => {
-      expect(prepareCleanupDomains('www.example.com')).toEqual([
-        'www.example.com',
-        '.www.example.com',
-      ]);
+      expect(
+        prepareCleanupDomains('www.example.com', browserName.Firefox),
+      ).toEqual(['www.example.com', '.www.example.com']);
     });
 
     it('should return cleanup domains from .example.com', () => {
-      expect(prepareCleanupDomains('.example.com')).toEqual([
+      expect(
+        prepareCleanupDomains('.example.com', browserName.Firefox),
+      ).toEqual([
         'example.com',
         '.example.com',
         'www.example.com',
@@ -807,11 +913,26 @@ describe('Library Functions', () => {
     });
 
     it('should return cleanup domains from example.com', () => {
-      expect(prepareCleanupDomains('example.com')).toEqual([
+      expect(
+        prepareCleanupDomains('example.com', browserName.Firefox),
+      ).toEqual([
         'example.com',
         '.example.com',
         'www.example.com',
         '.www.example.com',
+      ]);
+    });
+
+    it('should return cleanup domains from example.com for Chrome', () => {
+      expect(prepareCleanupDomains('example.com', browserName.Chrome)).toEqual([
+        'http://example.com',
+        'https://example.com',
+        'http://.example.com',
+        'https://.example.com',
+        'http://www.example.com',
+        'https://www.example.com',
+        'http://.www.example.com',
+        'https://.www.example.com',
       ]);
     });
   });
@@ -905,7 +1026,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
         },
       };
       const cookieAPIAttributes = {
@@ -929,7 +1050,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
         },
       };
       const cookieAPIAttributes = {
@@ -954,7 +1075,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Firefox',
+          browserDetect: browserName.Firefox,
         },
       };
       const cookieAPIAttributes = {
@@ -977,7 +1098,7 @@ describe('Library Functions', () => {
       const state = {
         ...initialState,
         cache: {
-          browserDetect: 'Chrome',
+          browserDetect: browserName.Chrome,
         },
       };
       const cookieAPIAttributes = {
@@ -999,6 +1120,12 @@ describe('Library Functions', () => {
 
   describe('showNotification()', () => {
     beforeAll(() => {
+      when(global.browser.notifications.create)
+        .calledWith(expect.any(String), expect.any(Object))
+        .mockResolvedValue('testID' as never);
+      when(global.browser.notifications.clear)
+        .calledWith(expect.any(String))
+        .mockResolvedValue(true as never);
       when(global.browser.i18n.getMessage)
         .calledWith('manualActionNotification')
         .mockReturnValue('manual');
@@ -1013,16 +1140,15 @@ describe('Library Functions', () => {
       global.browser.i18n.getMessage.clearMocks();
       global.browser.runtime.getManifest.clearMocks();
       global.browser.runtime.getURL.clearMocks();
-    });
-    beforeEach(() => {
-      jest.spyOn(global, 'setTimeout');
+      jest.clearAllTimers();
     });
 
     it('should expect one call to browser.notifications.create with default title', async () => {
+      const spyTimeout = jest.spyOn(global, 'setTimeout');
       showNotification({ duration: 1, msg: 'Test Notification' });
       expect(global.browser.notifications.create).toHaveBeenCalled();
       expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(
-        expect.stringContaining('manual-'),
+        expect.stringContaining('CAD-notification-'),
       );
       expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(
         expect.objectContaining({
@@ -1031,8 +1157,11 @@ describe('Library Functions', () => {
           type: 'basic',
         }),
       );
-      expect(setTimeout).toHaveBeenCalled();
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+      expect(spyTimeout).toHaveBeenCalled();
+      expect(spyTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+
+      jest.runAllTimers();
+      expect(browser.notifications.clear).toHaveBeenCalledTimes(1);
     });
 
     it('should expect one call to browser.notifications.create with custom title', async () => {
@@ -1042,9 +1171,6 @@ describe('Library Functions', () => {
         title: 'custom',
       });
       expect(global.browser.notifications.create).toHaveBeenCalled();
-      expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(
-        expect.stringContaining('manual-'),
-      );
       expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(
         expect.objectContaining({
           message: 'Test Notification',
@@ -1052,8 +1178,17 @@ describe('Library Functions', () => {
           type: 'basic',
         }),
       );
-      expect(setTimeout).toHaveBeenCalled();
-      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+    });
+
+    it('should not show notification if display was false', async () => {
+      showNotification(
+        {
+          duration: 1,
+          msg: 'Unshown Notification',
+        },
+        false,
+      );
+      expect(global.browser.notifications.create).not.toHaveBeenCalled();
     });
   });
 
@@ -1122,6 +1257,12 @@ describe('Library Functions', () => {
 
   describe('throwErrorNotification()', () => {
     beforeAll(() => {
+      when(global.browser.notifications.create)
+        .calledWith(expect.any(String), expect.any(Object))
+        .mockResolvedValue('testID' as never);
+      when(global.browser.notifications.clear)
+        .calledWith(expect.any(String))
+        .mockResolvedValue(true as never);
       when(global.browser.i18n.getMessage)
         .calledWith('errorText')
         .mockReturnValue('Error!');
@@ -1132,6 +1273,12 @@ describe('Library Functions', () => {
         .calledWith(expect.anything())
         .mockReturnValue('');
     });
+    beforeEach(() => {
+      jest.spyOn(global, 'setTimeout');
+    });
+    afterEach(() => {
+      jest.clearAllTimers();
+    });
     afterAll(() => {
       global.browser.i18n.getMessage.clearMocks();
       global.browser.runtime.getManifest.clearMocks();
@@ -1139,10 +1286,10 @@ describe('Library Functions', () => {
     });
 
     it('should expect one call to browser.notifications.create', () => {
-      throwErrorNotification({ name: 'Test Error', message: 'An ERROR!' });
+      throwErrorNotification({ name: 'Test Error', message: 'An ERROR!' }, 1);
       expect(global.browser.notifications.create).toHaveBeenCalled();
       expect(global.browser.notifications.create.mock.calls[0][0]).toEqual(
-        'failed-notification',
+        expect.stringContaining('CAD-notification-failed-'),
       );
       expect(global.browser.notifications.create.mock.calls[0][1]).toEqual(
         expect.objectContaining({
@@ -1151,6 +1298,10 @@ describe('Library Functions', () => {
           type: 'basic',
         }),
       );
+      expect(setTimeout).toHaveBeenCalled();
+      expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+      jest.runAllTimers();
+      expect(browser.notifications.clear).toHaveBeenCalledTimes(1);
     });
   });
 

@@ -243,11 +243,11 @@
     "message": "VAROITUS: Sekä LocalStorage Cleanup- että Container Tabs -välilehteiden ottaminen käyttöön voi aiheuttaa API-rajoituksista johtuvia ei-toivottuja sivuvaikutuksia. LocalStorage tyhjennetään isäntänimellä kaikissa säilöissä.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "LocalStorage-siivous",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Varoitus: KAIKKI olemassa oleva LocalStorage poistetaan, kun LocalStorage-siivous otetaan käyttöön.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -593,7 +593,7 @@
     "message": "Poista valinta kohdasta Pidä LocalStorage uusissa sallittujen luetteloiden lausekkeissa",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Sääntölista",
     "description": "List of Expressions"
   },

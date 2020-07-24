@@ -15,7 +15,22 @@ declare module '*.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 declare const global: any;
-declare const browserDetect: () => string;
+declare const browserDetect: () => browserName;
+
+/**
+ * This only works if browserDetect function doesn't change its return method/string.
+ */
+declare const enum browserName {
+  Firefox = 'Firefox',
+  Chrome = 'Chrome',
+  Safari = 'Safari',
+  Opera = 'Opera',
+  IE = 'IE',
+  Edge = 'Edge',
+  EdgeChromium = 'EdgeChromium',
+  Blink = 'Blink',
+  Unknown = 'UnknownBrowser',
+}
 
 type StoreIdToExpressionList = Readonly<{
   [storeId: string]: ReadonlyArray<Expression>;
@@ -24,7 +39,7 @@ type StoreIdToExpressionList = Readonly<{
 type MapToSettingObject = Readonly<{ [setting: string]: Setting }>;
 
 type CacheMap = Readonly<
-  { [browserDetect: string]: string } & { [key: string]: any }
+  { [browserDetect: string]: browserName } & { [key: string]: any }
 >;
 
 type GetState = () => State;
@@ -40,13 +55,23 @@ type State = Readonly<{
 
 type Expression = Readonly<{
   expression: string;
-  cleanLocalStorage?: boolean;
   cleanAllCookies?: boolean;
+  // Deprecated as of 3.5.0, but kept for backwards-compatibility for pre-3.4.0.
+  cleanLocalStorage?: boolean;
+  cleanSiteData?: SiteDataType[];
   listType: ListType;
   storeId: string;
   id?: string;
   cookieNames?: string[];
 }>;
+
+declare const enum SiteDataType {
+  CACHE = 'Cache',
+  INDEXEDDB = 'IndexedDB',
+  LOCALSTORAGE = 'LocalStorage',
+  PLUGINDATA = 'PluginData',
+  SERVICEWORKERS = 'ServiceWorkers',
+}
 
 type Setting = Readonly<{
   id?: string | number;

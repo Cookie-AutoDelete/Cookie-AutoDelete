@@ -243,11 +243,11 @@
     "message": "WAARSKUWING: As u Tabs vir LocalStorage Cleanup en Container inskakel, kan dit ongewenste newe-effekte veroorsaak as gevolg van API-beperkinge. LocalStorage word op ALLE houers deur die gasheernaam skoongemaak.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Localstorage skoonmaak",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Waarskuwing: AL die bestaande LocalStorage sal skoongemaak word wanneer LocalStorage Cleanup geaktiveer word.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -593,7 +593,7 @@
     "message": "Ontmerk die 'Keep LocalStorage' op nuwe witlysuitdrukkings",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Lys van Uitdrukkings",
     "description": "List of Expressions"
   },

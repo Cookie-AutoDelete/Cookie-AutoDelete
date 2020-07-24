@@ -329,11 +329,11 @@
     "message": "ADVARSEL: Aktivering af både Lokallagersletning og Container-faner kan forårsage uønskede bivirkninger på grund af API-begrænsninger. Lokallager ryddes af værtsnavnet på ALLE containere.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Ryd op i lokallager",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Advarsel: ALLE eksisterende lokallagre ryddes ved aktivering af Lokallagersletning.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -771,7 +771,7 @@
     "message": "Fjern markeringen i 'Behold lokallager' på nye hvidlisteudtryk",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Liste af udtryk",
     "description": "List of Expressions"
   },

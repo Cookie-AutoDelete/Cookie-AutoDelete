@@ -22,9 +22,10 @@ type ActivityLog = {
   storeIds: {
     [storeId: string]: CleanReasonObject[];
   };
-} & {
-  // Remove this after update
-  [storeId: string]: any;
+  browsingDataCleanup: {
+    [siteDataType in SiteDataType]?: string[];
+  };
+  siteDataCleaned: boolean;
 };
 
 interface CleanupPropertiesInternal extends CleanupProperties {
@@ -42,6 +43,7 @@ declare const enum ReasonClean {
   NoMatchedExpression = 'reasonCleanNoList',
   MatchedExpressionButNoCookieName = 'reasonCleanCookieName',
   ExpiredCookie = 'reasonCleanCookieExpired',
+  CADSiteDataCookie = 'reasonCADSiteDataCookie',
 }
 
 declare const enum OpenTabStatus {

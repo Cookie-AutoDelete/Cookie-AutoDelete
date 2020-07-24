@@ -6,8 +6,10 @@ import {
   expression,
   expressions,
   lists,
+  settings,
 } from '../../src/redux/Reducers';
 import { ReduxConstants } from '../../src/typings/ReduxConstants';
+import { initialState } from '../../src/redux/State';
 
 const mockExpression: Expression = {
   expression: '',
@@ -23,6 +25,8 @@ describe('Reducer', () => {
       storeIds: {
         test: [],
       },
+      browsingDataCleanup: {},
+      siteDataCleaned: false,
     };
     const log2 = {
       dateTime: 'Thu Jan 11 2019 08:00:00 GMT-0800 (Pacific Standard Time)',
@@ -30,6 +34,8 @@ describe('Reducer', () => {
       storeIds: {
         test: [],
       },
+      browsingDataCleanup: {},
+      siteDataCleaned: false,
     };
     const state: ActivityLog[] = [log1];
 
@@ -45,7 +51,7 @@ describe('Reducer', () => {
       const result = activityLog(state, {
         type: ReduxConstants.CLEAR_ACTIVITY_LOG,
       });
-      expect(result.length).toBe(0);
+      expect(result).toHaveLength(0);
     });
 
     it('should be added to the front', () => {
@@ -66,13 +72,23 @@ describe('Reducer', () => {
       });
       expect(result).toEqual([log1]);
     });
+    it('should return empty array on RESET_ALL', () => {
+      const result = activityLog(state, { type: ReduxConstants.RESET_ALL });
+      expect(result).toHaveLength(0);
+    });
   });
   describe('cookieDeletedCounterTotal', () => {
     const state = 5;
 
-    it('should return 0', () => {
+    it('should return 0 through RESET_COOKIE_DELETED_COUNTER', () => {
       const newState = cookieDeletedCounterTotal(state, {
         type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+      });
+      expect(newState).toBe(0);
+    });
+    it('should return 0 through RESET_ALL', () => {
+      const newState = cookieDeletedCounterTotal(state, {
+        type: ReduxConstants.RESET_ALL,
       });
       expect(newState).toBe(0);
     });
@@ -89,14 +105,26 @@ describe('Reducer', () => {
       });
       expect(newState).toBe(10);
     });
+    it('should return 1 if nothing was given', () => {
+      const newState = cookieDeletedCounterTotal(undefined, {
+        type: ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER,
+      });
+      expect(newState).toBe(1);
+    });
   });
 
   describe('cookieDeletedCounterSession', () => {
     const state = 5;
 
-    it('should return 0', () => {
+    it('should return 0 on RESET_COOKIE_DELETED_COUNTER', () => {
       const newState = cookieDeletedCounterSession(state, {
         type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+      });
+      expect(newState).toBe(0);
+    });
+    it('should return 0 on RESET_ALL', () => {
+      const newState = cookieDeletedCounterSession(state, {
+        type: ReduxConstants.RESET_ALL,
       });
       expect(newState).toBe(0);
     });
@@ -185,18 +213,18 @@ describe('Reducer', () => {
           storeId: 'default',
         },
       ],
-      firefox_container_1: [
+      'firefox-container-1': [
         {
           expression: 'messenger.com*',
           id: '456',
           listType: ListType.WHITE,
-          storeId: 'firefox_container_1',
+          storeId: 'firefox-container-1',
         },
         {
           expression: 'facebook.com*',
           id: '123',
           listType: ListType.GREY,
-          storeId: 'firefox_container_1',
+          storeId: 'firefox-container-1',
         },
       ],
     };
@@ -219,19 +247,19 @@ describe('Reducer', () => {
       expect(newExpression).toHaveProperty('id');
     });
 
-    it('should return github.com on firefox_container_1', () => {
+    it('should return github.com on firefox-container-1', () => {
       const newState = lists(
         { ...state },
         {
           payload: {
             expression: 'github.com',
             listType: ListType.GREY,
-            storeId: 'firefox_container_1',
+            storeId: 'firefox-container-1',
           },
           type: ReduxConstants.ADD_EXPRESSION,
         },
       );
-      const newExpression = newState.firefox_container_1[2];
+      const newExpression = newState['firefox-container-1'][2];
       expect(newExpression).toHaveProperty('expression', 'github.com');
       expect(newExpression).toHaveProperty('listType', ListType.GREY);
       expect(newExpression).toHaveProperty('id');
@@ -272,7 +300,7 @@ describe('Reducer', () => {
       expect(newExpression).toHaveProperty('id');
     });
 
-    it('should return google.com and WHITE for updated expression on firefox_container_1', () => {
+    it('should return google.com and WHITE for updated expression on firefox-container-1', () => {
       const newState = lists(
         { ...state },
         {
@@ -280,13 +308,13 @@ describe('Reducer', () => {
             expression: 'google.com',
             id: '123',
             listType: ListType.WHITE,
-            storeId: 'firefox_container_1',
+            storeId: 'firefox-container-1',
           },
           type: ReduxConstants.UPDATE_EXPRESSION,
         },
       );
 
-      const newExpression = newState.firefox_container_1[0];
+      const newExpression = newState['firefox-container-1'][0];
       expect(newExpression).toHaveProperty('expression', 'google.com');
       expect(newExpression).toHaveProperty('listType', ListType.WHITE);
       expect(newExpression).toHaveProperty('id');
@@ -299,19 +327,102 @@ describe('Reducer', () => {
       });
       expect(newState).toEqual({});
     });
+
+    it('should remove a single list if REMOVE_LIST was called.', () => {
+      const newState = lists(state, {
+        payload: 'firefox-container-1',
+        type: ReduxConstants.REMOVE_LIST,
+      });
+      expect(Object.keys(newState)).toEqual(
+        expect.not.arrayContaining(['firefox-container-1']),
+      );
+    });
+
+    it('should not remove anything if REMOVE_LIST was called but with invalid id.', () => {
+      const newState = lists(state, {
+        payload: 'firefox-container-99',
+        type: ReduxConstants.REMOVE_LIST,
+      });
+      expect(newState).toEqual(state);
+    });
+
+    it('should return empty object if REMOVE_LIST was called with empty state/list.', () => {
+      const newState = lists(
+        {},
+        {
+          payload: 'firefox-container-9',
+          type: ReduxConstants.REMOVE_LIST,
+        },
+      );
+      expect(newState).toEqual({});
+    });
+
+    it('should return empty object if REMOVE_LIST removed last list.', () => {
+      const newState = lists(
+        { default: state['default'] },
+        {
+          payload: 'default',
+          type: ReduxConstants.REMOVE_LIST,
+        },
+      );
+      expect(newState).toEqual({});
+    });
   });
 
   describe('expression', () => {
     it('should return unchanged expression if expression is not being updated.', () => {
-      const newState = expression({ ...mockExpression },
+      const newState = expression(
+        { ...mockExpression },
         {
           payload: {
             ...mockExpression,
             expression: 'unchanged',
           },
           type: ReduxConstants.ADD_EXPRESSION,
-        });
+        },
+      );
       expect(newState).toEqual(mockExpression);
+    });
+    it('should use default empty expression if none was given', () => {
+      const newState = expression(undefined, {
+        payload: { ...mockExpression },
+        type: ReduxConstants.ADD_EXPRESSION,
+      });
+      expect(newState).toEqual({
+        ...mockExpression,
+        id: '1',
+        cookieNames: [],
+      });
+    });
+    it('should update the expression with new cookieNames list if given', () => {
+      const newState = expression(
+        { ...mockExpression },
+        {
+          payload: {
+            ...mockExpression,
+            cookieNames: ['test'],
+          },
+          type: ReduxConstants.UPDATE_EXPRESSION,
+        },
+      );
+      expect(newState).toEqual(
+        expect.objectContaining({ cookieNames: ['test'] }),
+      );
+    });
+    it('should update the expression with default listType if none was given', () => {
+      const newState = expression(
+        { ...mockExpression },
+        {
+          payload: {
+            ...mockExpression,
+            listType: (undefined as unknown) as ListType,
+          },
+          type: ReduxConstants.UPDATE_EXPRESSION,
+        },
+      );
+      expect(newState).toEqual(
+        expect.objectContaining({ listType: ListType.WHITE }),
+      );
     });
   });
 
@@ -329,17 +440,91 @@ describe('Reducer', () => {
       });
       expect(newState).toEqual(state);
     });
+    it('should be an empty array if no cleanSiteData entries were provided', () => {
+      const newState = expressions([], {
+        payload: {
+          ...mockExpression,
+        },
+        type: ReduxConstants.ADD_EXPRESSION,
+      });
+      expect(newState[0]).toEqual(
+        expect.objectContaining({ cleanSiteData: [] }),
+      );
+    });
+    it('should be included in cleanSiteData if siteDataType entries were provided', () => {
+      const newState = expressions([], {
+        payload: {
+          ...mockExpression,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE, SiteDataType.INDEXEDDB],
+        },
+        type: ReduxConstants.ADD_EXPRESSION,
+      });
+      expect(newState[0]).toEqual(
+        expect.objectContaining({
+          cleanSiteData: expect.arrayContaining([
+            SiteDataType.INDEXEDDB,
+            SiteDataType.LOCALSTORAGE,
+          ]),
+        }),
+      );
+    });
   });
 
   describe('cache', () => {
     const state = {
-      browserDetect: 'Firefox',
+      browserDetect: browserName.Firefox,
+      browserVersion: 123,
     };
-    it('should return empty object if RESET_ALL was triggered', () => {
+    it('should return empty object only if RESET_ALL was triggered', () => {
       const newState = cache(state, {
         type: ReduxConstants.RESET_ALL,
       });
       expect(newState).toEqual({});
+    });
+  });
+
+  describe('settings', () => {
+    it('should update settings accordingly', () => {
+      const newState = settings(initialState.settings, {
+        payload: {
+          name: 'activeMode',
+          value: true,
+        },
+        type: ReduxConstants.UPDATE_SETTING,
+      });
+      expect(newState['activeMode']).toEqual(
+        expect.objectContaining({ name: 'activeMode', value: true }),
+      );
+    });
+    it('should reset settings to initial via RESET_ALL', () => {
+      const newState = settings(
+        {
+          ...initialState.settings,
+          activeMode: {
+            name: 'activeMode',
+            value: true,
+          },
+        },
+        {
+          type: ReduxConstants.RESET_ALL,
+        },
+      );
+      expect(newState).toStrictEqual(initialState.settings);
+    });
+    it('should reset settings to initial via RESET_SETTINGS', () => {
+      const newState = settings(
+        {
+          ...initialState.settings,
+          activeMode: {
+            name: 'activeMode',
+            value: true,
+          },
+        },
+        {
+          type: ReduxConstants.RESET_SETTINGS,
+        },
+      );
+      expect(newState).toStrictEqual(initialState.settings);
     });
   });
 });

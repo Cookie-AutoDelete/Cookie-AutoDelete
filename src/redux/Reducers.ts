@@ -29,6 +29,9 @@ const newExpressionObject = (
 ) => ({
   ...action.payload,
   cookieNames: !action.payload.cookieNames ? [] : action.payload.cookieNames,
+  cleanSiteData: !action.payload.cleanSiteData
+    ? []
+    : action.payload.cleanSiteData,
   id: shortid.generate(),
   listType: !action.payload.listType ? ListType.WHITE : action.payload.listType,
 });
@@ -105,15 +108,19 @@ export const lists = (
     case ReduxConstants.ADD_EXPRESSION:
     case ReduxConstants.REMOVE_EXPRESSION:
     case ReduxConstants.UPDATE_EXPRESSION: {
-      const newListObject = {
-        ...state,
-      };
+      const newListObject = { ...state };
       newListObject[action.payload.storeId] = expressions(
         state[action.payload.storeId],
         action,
       );
       return newListObject;
     }
+    case ReduxConstants.REMOVE_LIST: {
+      const newListObject = { ...state };
+      delete newListObject[action.payload.toString()];
+      return newListObject;
+    }
+
     case ReduxConstants.CLEAR_EXPRESSIONS:
     case ReduxConstants.RESET_ALL:
       return {};
@@ -129,11 +136,10 @@ export const settings = (
 ): MapToSettingObject => {
   switch (action.type) {
     case ReduxConstants.UPDATE_SETTING: {
-      const { name } = action.payload;
       const newObject = {
         ...state,
       };
-      newObject[name] = {
+      newObject[action.payload.name] = {
         ...action.payload,
       };
       return newObject;
@@ -153,11 +159,8 @@ export const cookieDeletedCounterTotal = (
   action: ReduxAction,
 ): number => {
   switch (action.type) {
-    case ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER: {
-      const incrementBy = action.payload === undefined ? 1 : action.payload;
-      return state + incrementBy;
-    }
-
+    case ReduxConstants.INCREMENT_COOKIE_DELETED_COUNTER:
+      return state + (action.payload === undefined ? 1 : action.payload);
     case ReduxConstants.RESET_ALL:
     case ReduxConstants.RESET_COOKIE_DELETED_COUNTER:
       return 0;
@@ -191,7 +194,10 @@ export const activityLog = (
 ): ReadonlyArray<ActivityLog> => {
   switch (action.type) {
     case ReduxConstants.ADD_ACTIVITY_LOG: {
-      if (Object.keys(action.payload.storeIds).length > 0) {
+      if (
+        Object.keys(action.payload.storeIds).length > 0 ||
+        action.payload.siteDataCleaned
+      ) {
         return [action.payload, ...state].slice(0, 10);
       }
       return state;
@@ -208,7 +214,10 @@ export const activityLog = (
   }
 };
 
-export const cache = (state: CacheMap = {}, action: ReduxAction): Record<string, unknown> => {
+export const cache = (
+  state: CacheMap = {},
+  action: ReduxAction,
+): Record<string, any> => {
   switch (action.type) {
     case ReduxConstants.ADD_CACHE: {
       const newCacheObject = {

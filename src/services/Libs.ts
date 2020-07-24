@@ -15,7 +15,14 @@ import ipRegex from 'ip-regex';
 import shortid from 'shortid';
 
 /* --- CONSTANTS --- */
-export const LSCLEANUPNAME = 'CookieAutoDeleteLocalStorageCleanup';
+export const CADCOOKIENAME = 'CookieAutoDeleteBrowsingDataCleanup';
+export const SITEDATATYPES = [
+  SiteDataType.CACHE,
+  SiteDataType.INDEXEDDB,
+  SiteDataType.LOCALSTORAGE,
+  SiteDataType.PLUGINDATA,
+  SiteDataType.SERVICEWORKERS,
+];
 
 /* --- FUNCTIONS --- */
 /**
@@ -147,6 +154,7 @@ export const extractMainDomain = (domain: string): string => {
 /**
  * Returns the host name of the url.
  *   - https://en.wikipedia.org/wiki/Cat ==> en.wikipedia.org
+ *
  * Local file will return the directory of that file.
  *   - file:///home/user/documents/file.html ==> file:///home/user/documents
  *   - file:///D:/user/documents/file.html ==> file:///D:/user/documents
@@ -177,6 +185,41 @@ export const getHostname = (urlToGetHostName: string | undefined): string => {
 };
 
 /**
+ * Gets the default expression options depending on the list/storeId.
+ * If storeId is not default, it will try to get defaults set in default list
+ * before using CAD defaults (all checked).
+ * @param state The State (store.getState())
+ * @param storeId The container id, or 'default'
+ * @param listType The List Type
+ */
+export const getContainerExpressionDefault = (
+  state: State,
+  storeId: string,
+  listType: ListType,
+): Expression => {
+  const getExpression = (list: string): Expression | undefined => {
+    return state.lists[list]
+      ? state.lists[list].find((exp) => {
+          return (
+            exp.listType === listType &&
+            exp.expression === `_Default:${listType}`
+          );
+        })
+      : undefined;
+  };
+  const exp: Expression = {
+    expression: '',
+    listType: ListType.WHITE,
+    storeId: '',
+  };
+  const expDefault =
+    storeId !== 'default' && getSetting(state, 'contextualIdentities')
+      ? getExpression('default') || exp
+      : exp;
+  return getExpression(storeId) || expDefault;
+};
+
+/**
  * Gets the value of the setting
  */
 export const getSetting = (
@@ -194,7 +237,7 @@ export const getStoreId = (state: State, storeId: string): string => {
       storeId !== 'firefox-private' &&
       isFirefox(state.cache)) ||
     (isChrome(state.cache) && storeId === '0') ||
-    (state.cache.browserDetect === 'Opera' && storeId === '0')
+    (state.cache.browserDetect === browserName.Opera && storeId === '0')
   ) {
     return 'default';
   }
@@ -211,7 +254,7 @@ export const getStoreId = (state: State, storeId: string): string => {
 export const globExpressionToRegExp = (glob: string): string => {
   const normalizedGlob = glob.trim();
   if (normalizedGlob.slice(0, 1) === '/' && normalizedGlob.slice(-1) === '/') {
-    // Treat /str/ as regular exprssion str
+    // Treat /str/ as regular expression str
     return normalizedGlob.slice(1, -1);
   }
 
@@ -258,7 +301,7 @@ export const isAWebpage = (URL: string | undefined): boolean => {
 export const isChrome = (cache: CacheMap): boolean => {
   return (
     Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
-    cache.browserDetect === 'Chrome'
+    cache.browserDetect === browserName.Chrome
   );
 };
 
@@ -269,7 +312,7 @@ export const isChrome = (cache: CacheMap): boolean => {
 export const isFirefox = (cache: CacheMap): boolean => {
   return (
     Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
-    cache.browserDetect === 'Firefox'
+    cache.browserDetect === browserName.Firefox
   );
 };
 
@@ -344,12 +387,15 @@ export const parseCookieStoreId = (
 /**
  * Prepare Domains for all cleanups.
  */
-export const prepareCleanupDomains = (domain: string): string[] => {
+export const prepareCleanupDomains = (
+  domain: string,
+  bName: browserName = browserDetect() as browserName,
+): string[] => {
   if (domain.trim() === '') return [];
   const www = new RegExp(/^www[0-9a-z]?\./i);
   const sDot = new RegExp(/^\./);
   let d: string = domain.trim();
-  const domains = new Set();
+  const domains = new Set<string>();
   if (sDot.test(d)) {
     // dot at beginning.  .sub.doma.in(.)
     d = d.slice(1);
@@ -363,7 +409,16 @@ export const prepareCleanupDomains = (domain: string): string[] => {
     domains.add(`.www.${d}`); // .www.sub.doma.in
   }
 
-  return Array.from(domains) as string[];
+  if (bName === browserName.Chrome || bName === browserName.Opera) {
+    const origins: string[] = [];
+    for (const d of domains) {
+      origins.push(`http://${d}`);
+      origins.push(`https://${d}`);
+    }
+    return origins;
+  }
+
+  return Array.from(domains);
 };
 
 /**
@@ -388,7 +443,7 @@ export const prepareCookieDomain = (cookie: browser.cookies.Cookie): string => {
 };
 
 /**
- * Returns the first availble matched expression
+ * Returns the first available matched expression
  */
 export const returnMatchedExpressionObject = (
   state: State,
@@ -436,13 +491,22 @@ export const returnOptionalCookieAPIAttributes = (
 
 /**
  * Show a notification
+ * @param x Contains object consisting of:
+ *          - duration: number in seconds
+ *          - msg: notification content
+ *          - title: notification title
+ * @param display Whether to display the notification.
  */
-export const showNotification = (x: {
-  duration: number;
-  msg: string;
-  title?: string;
-}): void => {
-  const sid = `manual-${shortid.generate()}`;
+export const showNotification = (
+  x: {
+    duration: number;
+    msg: string;
+    title?: string;
+  },
+  display = true,
+): void => {
+  if (!display) return;
+  const sid = `CAD-notification-${shortid.generate()}`;
   browser.notifications.create(sid, {
     iconUrl: browser.runtime.getURL('icons/icon_48.png'),
     message: x.msg,
@@ -457,6 +521,14 @@ export const showNotification = (x: {
 };
 
 /**
+ * Makes the proper site data property key for browser.browsingData.remove.
+ * i.e. Cache => cache ; LocalStorage => localStorage
+ * @param siteData The Site Data to convert to browser format.
+ */
+export const siteDataToBrowser = (siteData: SiteDataType): string =>
+  `${siteData[0].toLowerCase()}${siteData.slice(1)}`;
+
+/**
  * Sleep execution for ms.
  * Ensures no 0 second setTimeout otherwise side effects.
  * Ensures we don't go over max signed 32-bit Int of 2,147,483,647
@@ -469,14 +541,20 @@ export const sleep = (ms: number): Promise<any> => {
 
 /**
  * Show an Error notification
+ * @param e The Error (Error Object)
+ * @param duration number in seconds
  */
-export const throwErrorNotification = (e: Error): void => {
-  browser.notifications.create('failed-notification', {
+export const throwErrorNotification = (e: Error, duration: number): void => {
+  const nid = `CAD-notification-failed-${shortid.generate()}`;
+  browser.notifications.create(nid, {
     iconUrl: browser.runtime.getURL('icons/icon_red_48.png'),
     message: e.message,
     title: browser.i18n.getMessage('errorText'),
     type: 'basic',
   });
+  setTimeout(() => {
+    browser.notifications.clear(nid);
+  }, duration * 1000);
 };
 
 /**

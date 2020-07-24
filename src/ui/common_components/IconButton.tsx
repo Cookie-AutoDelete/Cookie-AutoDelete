@@ -11,12 +11,16 @@
  * SOFTWARE.
  */
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  FontAwesomeIcon,
+  FontAwesomeIconProps,
+} from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
 interface IconButtonProps {
   accept?: string;
   iconName: IconProp;
+  iconSize?: FontAwesomeIconProps['size'];
   className: string;
   styleReact?: React.CSSProperties;
   text?: string;
@@ -33,10 +37,17 @@ interface IconButtonProps {
 }
 
 export default class IconButton extends React.Component<IconButtonProps> {
-  public render() {
+  public render(): Partial<
+    | HTMLButtonElement
+    | HTMLInputElement
+    | HTMLLabelElement
+    | HTMLBaseElement
+    | HTMLElement
+  > {
     const {
       className,
       iconName,
+      iconSize,
       styleReact,
       tag,
       text,
@@ -66,6 +77,7 @@ export default class IconButton extends React.Component<IconButtonProps> {
               : undefined
           }
           icon={iconName}
+          size={iconSize}
         />
         {text}
         {tag === 'input' ? (

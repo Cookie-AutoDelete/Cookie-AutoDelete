@@ -263,11 +263,11 @@
     "message": "ВНИМАНИЕ: Активирането на LocalStorage Cleanup и Container Tabs може да причини нежелани странични ефекти поради Ограниченията на API. LocalStorage ще бъде изчистен от името на хоста на ВСИЧКИ контейнери.",
     "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
   },
-  "localstorageCleanupText": {
+  "localStorageCleanupText": {
     "message": "Изчистване на локалното хранилище",
     "description": "LocalStorage Cleanup"
   },
-  "localstorageCleanupWarning": {
+  "localStorageCleanupWarning": {
     "message": "Внимание: ЦЯЛОТО съдържание в местното хранилище ще бъде премахнато при избиране на отметката „Изчистване на местното хранилище“.",
     "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
@@ -681,7 +681,7 @@
     "message": "Размаркиране на 'Запазване на местното хранилище' в новия бял списък с изрази",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
-  "whiteListText": {
+  "expressionListText": {
     "message": "Списък с изрази",
     "description": "List of Expressions"
   },

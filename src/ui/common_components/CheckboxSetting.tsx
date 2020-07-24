@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 interface OwnProps {
   inline?: boolean;
-  bsStyle?: string;
   settingObject: Setting;
   text: string;
   updateSetting: (payload: Setting) => void;
@@ -28,13 +27,12 @@ const styles = {
 
 const CheckboxSetting: React.FunctionComponent<OwnProps> = ({
   inline,
-  bsStyle,
   settingObject,
   text,
   updateSetting,
 }) => {
   const { name, value } = settingObject;
-  const inlineElement = inline ? {display: 'inline',} : {};
+  const inlineElement = inline ? { display: 'inline' } : {};
   return (
     <span style={inlineElement} className={'checkbox'}>
       <span
@@ -54,7 +52,9 @@ const CheckboxSetting: React.FunctionComponent<OwnProps> = ({
           role="checkbox"
           aria-checked={value as boolean}
         />
-        <label htmlFor={name} aria-labelledby={name}>{text}</label>
+        <label htmlFor={name} aria-labelledby={name}>
+          {text}
+        </label>
       </span>
     </span>
   );

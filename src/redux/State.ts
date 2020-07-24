@@ -22,6 +22,10 @@ export const initialState: State = {
       name: 'activeMode',
       value: false,
     },
+    cacheCleanup: {
+      name: 'cacheCleanup',
+      value: false,
+    },
     cleanCookiesFromOpenTabsOnStartup: {
       name: 'cleanCookiesFromOpenTabsOnStartup',
       value: false,
@@ -63,7 +67,12 @@ export const initialState: State = {
       value: false,
     },
     greyCleanLocalstorage: {
+      id: 'DEPRECATED - use default expressions',
       name: 'greyCleanLocalstorage',
+      value: false,
+    },
+    indexedDBCleanup: {
+      name: 'indexedDBCleanup',
       value: false,
     },
     keepDefaultIcon: {
@@ -71,12 +80,29 @@ export const initialState: State = {
       value: false,
     },
     localstorageCleanup: {
+      id: 'DEPRECATED - use localStorageCleanup',
       name: 'localstorageCleanup',
       value: false,
+    },
+    localStorageCleanup: {
+      name: 'localStorageCleanup',
+      value: false,
+    },
+    manualNotifications: {
+      name: 'manualNotifications',
+      value: true,
     },
     notificationOnScreen: {
       name: 'notificationOnScreen',
       value: 3,
+    },
+    pluginDataCleanup: {
+      name: 'pluginDataCleanup',
+      value: false,
+    },
+    serviceWorkersCleanup: {
+      name: 'serviceWorkersCleanup',
+      value: false,
     },
     showNotificationAfterCleanup: {
       name: 'showNotificationAfterCleanup',
@@ -99,6 +125,7 @@ export const initialState: State = {
       value: true,
     },
     whiteCleanLocalstorage: {
+      id: 'DEPRECATED - use default expressions',
       name: 'whiteCleanLocalstorage',
       value: false,
     },

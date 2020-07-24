@@ -16,10 +16,14 @@ import { ThunkAction } from 'redux-thunk';
 import { checkIfProtected } from '../services/BrowserActionService';
 import { cleanCookiesOperation } from '../services/CleanupService';
 import {
+  getContainerExpressionDefault,
   getSetting,
   getStoreId,
   isChrome,
   isFirefoxAndroid,
+  showNotification,
+  siteDataToBrowser,
+  sleep,
 } from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
@@ -32,6 +36,7 @@ import {
   ReduxConstants,
   REMOVE_ACTIVITY_LOG,
   REMOVE_EXPRESSION,
+  REMOVE_LIST,
   RESET_ALL,
   RESET_COOKIE_DELETED_COUNTER,
   RESET_SETTINGS,
@@ -39,8 +44,6 @@ import {
   UPDATE_SETTING,
 } from '../typings/ReduxConstants';
 import { initialState } from './State';
-
-const COOKIE_CLEANUP_NOTIFICATION = 'COOKIE_CLEANUP_NOTIFICATION';
 
 export const addExpressionUI = (payload: Expression): ADD_EXPRESSION => ({
   payload,
@@ -62,27 +65,35 @@ export const updateExpressionUI = (payload: Expression): UPDATE_EXPRESSION => ({
   payload,
   type: ReduxConstants.UPDATE_EXPRESSION,
 });
+export const removeListUI = (
+  payload: keyof StoreIdToExpressionList,
+): REMOVE_LIST => ({
+  payload,
+  type: ReduxConstants.REMOVE_LIST,
+});
 
 export const addExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ): void => {
-  const localStorageDefault = (listType: string): boolean => {
-    switch (listType) {
-      case 'GREY':
-        return getSetting(getState(), 'greyCleanLocalstorage') === true;
-      case 'WHITE':
-        return getSetting(getState(), 'whiteCleanLocalstorage') === true;
-      default:
-        return true;
-    }
-  };
+  // Sanitize the payload's storeId
+  const storeId = getStoreId(getState(), payload.storeId);
+  const defaultOptions = getContainerExpressionDefault(
+    getState(),
+    storeId,
+    payload.listType as ListType,
+  );
+
   dispatch({
     payload: {
       ...payload,
-      cleanLocalStorage: localStorageDefault(payload.listType),
-      // Sanitize the payload's storeId
-      storeId: getStoreId(getState(), payload.storeId),
+      cleanAllCookies: payload.cleanAllCookies
+        ? payload.cleanAllCookies
+        : defaultOptions.cleanAllCookies,
+      cleanSiteData: payload.cleanSiteData
+        ? payload.cleanSiteData
+        : defaultOptions.cleanSiteData || [],
+      storeId,
     },
     type: ReduxConstants.ADD_EXPRESSION,
   });
@@ -119,13 +130,66 @@ export const updateExpression = (payload: Expression) => (
   dispatch: Dispatch<ReduxAction>,
   getState: GetState,
 ): void => {
+  // Sanitize the payload's storeId
+  const sanitizedStoreId = getStoreId(getState(), payload.storeId);
   dispatch({
     payload: {
       ...payload,
-      // Sanitize the payload's storeId
-      storeId: getStoreId(getState(), payload.storeId),
+      storeId: sanitizedStoreId,
     },
     type: ReduxConstants.UPDATE_EXPRESSION,
+  });
+  // Migration Downgrades between 3.5.0 and 3.4.0
+  // Uncheck 'Keep LocalStorage' on New ... Expressions
+  if (
+    payload.expression === `_Default:${payload.listType}` &&
+    sanitizedStoreId === 'default' &&
+    payload.cleanSiteData
+  ) {
+    if (payload.cleanSiteData.includes(SiteDataType.LOCALSTORAGE)) {
+      if (
+        !getSetting(
+          getState(),
+          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+        )
+      ) {
+        // Enable Deprecated Option
+        dispatch({
+          payload: {
+            name: `${payload.listType.toLowerCase()}CleanLocalstorage`,
+            value: true,
+          },
+          type: ReduxConstants.UPDATE_SETTING,
+        });
+      }
+    } else {
+      if (
+        getSetting(
+          getState(),
+          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+        )
+      ) {
+        // Disable Deprecated Option
+        dispatch({
+          payload: {
+            name: `${payload.listType.toLowerCase()}CleanLocalstorage`,
+            value: false,
+          },
+          type: ReduxConstants.UPDATE_SETTING,
+        });
+      }
+    }
+  }
+  checkIfProtected(getState());
+};
+
+export const removeList = (payload: keyof StoreIdToExpressionList) => (
+  dispatch: Dispatch<ReduxAction>,
+  getState: GetState,
+): void => {
+  dispatch({
+    payload,
+    type: ReduxConstants.REMOVE_LIST,
   });
   checkIfProtected(getState());
 };
@@ -228,12 +292,13 @@ export const validateSettings: ActionCreator<ThunkAction<
   if (isFirefoxAndroid(cache)) {
     disableSettingIfTrue(settings.showNumOfCookiesInIcon);
     disableSettingIfTrue(settings.localstorageCleanup);
+    disableSettingIfTrue(settings.localStorageCleanup);
     disableSettingIfTrue(settings.contextualIdentities);
     disableSettingIfTrue(settings.contextMenus);
   }
 
   // Minimum 1 second autoclean delay.
-  if (settings.delayBeforeClean.value < 0) {
+  if (settings.delayBeforeClean.value < 1) {
     dispatch({
       payload: {
         ...settings.delayBeforeClean,
@@ -281,41 +346,54 @@ export const cookieCleanup: ActionCreator<ThunkAction<
   const cleanupDoneObject = await cleanCookiesOperation(getState(), options);
   if (!cleanupDoneObject) return;
   const { setOfDeletedDomainCookies, cachedResults } = cleanupDoneObject;
-  const { recentlyCleaned } = cachedResults;
+  const {
+    browsingDataCleanup,
+    recentlyCleaned,
+    siteDataCleaned,
+  } = cachedResults as ActivityLog;
 
   // Increment the count
   if (recentlyCleaned !== 0 && getSetting(getState(), 'statLogging')) {
     dispatch(incrementCookieDeletedCounter(recentlyCleaned));
   }
 
-  if (recentlyCleaned !== 0 && getSetting(getState(), 'statLogging')) {
+  if (
+    (recentlyCleaned !== 0 || siteDataCleaned) &&
+    getSetting(getState(), 'statLogging')
+  ) {
     dispatch(addActivity(cachedResults));
   }
 
   // Show notifications after cleanup
-  if (
-    setOfDeletedDomainCookies.length > 0 &&
-    getSetting(getState(), 'showNotificationAfterCleanup')
-  ) {
-    const notifyMessage = browser.i18n.getMessage('notificationContent', [
-      recentlyCleaned.toString(),
-      setOfDeletedDomainCookies.join(', '),
-    ]);
-    await browser.notifications.create(COOKIE_CLEANUP_NOTIFICATION, {
-      iconUrl: browser.extension.getURL('icons/icon_48.png'),
-      message: notifyMessage,
-      title: `${browser.i18n.getMessage('extensionName')} ${
-        browser.runtime.getManifest().version
-      }:  ${browser.i18n.getMessage('notificationTitle')}`,
-      type: 'basic',
-    });
-    const seconds = parseInt(
-      `${getSetting(getState(), 'notificationOnScreen')}000`,
-      10,
-    );
-    setTimeout(() => {
-      browser.notifications.clear(COOKIE_CLEANUP_NOTIFICATION);
-    }, seconds);
+  if (getSetting(getState(), 'showNotificationAfterCleanup')) {
+    if (setOfDeletedDomainCookies.length > 0) {
+      // Cookie Notification
+      const notifyMessage = browser.i18n.getMessage('notificationContent', [
+        recentlyCleaned.toString(),
+        setOfDeletedDomainCookies.join(', '),
+      ]);
+      showNotification({
+        duration: getSetting(getState(), 'notificationOnScreen') as number,
+        msg: notifyMessage,
+        title: browser.i18n.getMessage('notificationTitle'),
+      });
+      await sleep(750);
+    }
+    if (siteDataCleaned) {
+      Object.entries(browsingDataCleanup).map(async ([siteData, domains]) => {
+        if (!domains || domains.length === 0) return;
+        await showNotification({
+          duration: getSetting(getState(), 'notificationOnScreen') as number,
+          msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+            browser.i18n.getMessage(
+              `${siteDataToBrowser(siteData as SiteDataType)}Text`,
+            ),
+            domains.join(', '),
+          ]),
+          title: browser.i18n.getMessage('notificationTitleSiteData'),
+        });
+      });
+    }
   }
 };
 

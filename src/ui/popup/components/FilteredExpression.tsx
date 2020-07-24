@@ -25,9 +25,9 @@ interface ReduxState {
   expressions: Expression[];
 }
 
-const FilteredExpression: React.FunctionComponent<
-  OwnProps & ReduxState
-> = props => {
+const FilteredExpression: React.FunctionComponent<OwnProps & ReduxState> = (
+  props,
+) => {
   const { expressions, storeId } = props;
   return (
     <ExpressionTable
@@ -65,7 +65,7 @@ const getExpression = (state: State, props: OwnProps) =>
 const getMatchedExpressions = (state: State, props: OwnProps) => {
   const expressions = getExpression(state, props);
   const url = props.url;
-  return expressions.filter(expression =>
+  return expressions.filter((expression) =>
     new RegExp(globExpressionToRegExp(expression.expression)).test(url),
   );
 };

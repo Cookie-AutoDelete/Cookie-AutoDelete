@@ -78,7 +78,7 @@ class ExpressionTable extends React.Component<
 
   public commitEdit() {
     const original = (this.props.expressions || []).find(
-      expression => expression.id === this.state.id,
+      (expression) => expression.id === this.state.id,
     );
     if (original) {
       this.props.onUpdateExpression({
@@ -116,7 +116,7 @@ class ExpressionTable extends React.Component<
           </tr>
         </thead>
         <tbody className="expressionTable">
-          {expressions.map(expression => (
+          {expressions.map((expression) => (
             <tr key={`${expression.expression}-${expression.listType}`}>
               <td
                 style={{
@@ -135,13 +135,13 @@ class ExpressionTable extends React.Component<
               {editMode && id === expression.id ? (
                 <td className="editableExpression">
                   <input
-                    ref={c => {
+                    ref={(c) => {
                       this.editInput = c;
                     }}
                     className="form-control"
                     value={expressionInput}
                     onFocus={this.moveCaretToEnd}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.setState({
                         expressionInput: e.target.value,
                       })
@@ -265,7 +265,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
     dispatch(updateExpressionUI(payload));
   },
 });
-export default connect(
-  null,
-  mapDispatchToProps,
-)(ExpressionTable);
+export default connect(null, mapDispatchToProps)(ExpressionTable);

@@ -4,12 +4,15 @@ import { initialState } from '../../src/redux/State';
 import {
   cleanCookies,
   cleanCookiesOperation,
+  cleanSiteData,
   clearCookiesForThisDomain,
-  clearLocalstorageForThisDomain,
-  filterLocalstorage,
+  clearLocalStorageForThisDomain,
+  clearSiteDataForThisDomain,
+  filterSiteData,
   isSafeToClean,
   otherBrowsingDataCleanup,
   prepareCookie,
+  removeSiteData,
   returnContainersOfOpenTabDomains,
 } from '../../src/services/CleanupService';
 
@@ -18,6 +21,13 @@ import * as Lib from '../../src/services/Libs';
 
 // This dynamically generates the spies for all functions in Libs
 const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
+
+jest.requireActual('../../src/services/CleanupService');
+import * as CleanupService from '../../src/services/CleanupService';
+import { CADCOOKIENAME } from '../../src/services/Libs';
+const spyCleanupService: {
+  [s: string]: jest.SpyInstance;
+} = global.generateSpies(CleanupService);
 
 const sampleTab: browser.tabs.Tab = {
   active: true,
@@ -44,6 +54,7 @@ const wildCardWhiteListGoogle: Expression = {
 
 const whiteListYoutube: Expression = {
   expression: 'youtube.com',
+  cleanSiteData: [SiteDataType.CACHE],
   id: '2',
   listType: ListType.WHITE,
   storeId: 'default',
@@ -134,6 +145,15 @@ const mockCookie: CookiePropertiesCleanup = {
   value: 'value',
 };
 
+const fileCookie: CookiePropertiesCleanup = {
+  ...mockCookie,
+  domain: '',
+  hostname: 'file:///test/test.html',
+  mainDomain: 'file:///test/test.html',
+  path: 'file:///test/',
+  preparedCookieDomain: 'file:///test/test.html',
+};
+
 const googleCookie: CookiePropertiesCleanup = {
   ...mockCookie,
   domain: 'google.com',
@@ -187,6 +207,12 @@ describe('CleanupService', () => {
     when(global.browser.runtime.getManifest)
       .calledWith()
       .mockReturnValue({ version: '0.12.34' });
+    when(global.browser.notifications.create)
+      .calledWith(expect.any(String), expect.any(Object))
+      .mockResolvedValue('testID' as never);
+    when(global.browser.notifications.clear)
+      .calledWith(expect.any(String))
+      .mockResolvedValue(true as never);
   });
   afterEach(() => {
     clear();
@@ -281,7 +307,9 @@ describe('CleanupService', () => {
     });
 
     it('should not clean anything if browserDetect value is missing or is not Firefox or Chrome', async () => {
+      const spyBrowserDetect = jest.spyOn(global, 'browserDetect');
       await cleanCookiesOperation(sampleState, cleanupProperties);
+      expect(spyBrowserDetect).toHaveBeenCalledTimes(1);
       expect(global.browser.cookies.remove).not.toHaveBeenCalled();
     });
 
@@ -289,8 +317,8 @@ describe('CleanupService', () => {
       const firefoxState = {
         ...sampleState,
         cache: {
-          browserDetect: 'Firefox',
-          browserVersion: '75',
+          browserDetect: browserName.Firefox,
+          browserVersion: '77',
           platformOs: 'desktop',
         },
       };
@@ -346,15 +374,12 @@ describe('CleanupService', () => {
           storeId: 'default',
         });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(2);
-        expect(
-          global.browser.browsingData.removeLocalStorage,
-        ).not.toHaveBeenCalled();
-        expect(ffResult).not.toBe(undefined);
-        expect(ffResult!.cachedResults.dateTime.indexOf('12:34:56')).not.toBe(
+        expect(global.browser.browsingData.remove).not.toHaveBeenCalled();
+        expect(ffResult.cachedResults.dateTime.indexOf('12:34:56')).not.toBe(
           -1,
         );
-        expect(ffResult!.cachedResults.recentlyCleaned).toBe(2);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+        expect(ffResult.cachedResults.recentlyCleaned).toBe(2);
+        expect(ffResult.setOfDeletedDomainCookies).toEqual([
           'test.com',
           'yahoo.com',
         ]);
@@ -371,8 +396,8 @@ describe('CleanupService', () => {
           greyCleanup: true,
         });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(3);
-        expect(ffResult!.cachedResults.recentlyCleaned).toBe(3);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+        expect(ffResult.cachedResults.recentlyCleaned).toBe(3);
+        expect(ffResult.setOfDeletedDomainCookies).toEqual([
           'test.com',
           'yahoo.com',
           'github.com',
@@ -385,8 +410,8 @@ describe('CleanupService', () => {
           ignoreOpenTabs: true,
         });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(5);
-        expect(ffResult!.cachedResults.recentlyCleaned).toBe(5);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+        expect(ffResult.cachedResults.recentlyCleaned).toBe(5);
+        expect(ffResult.setOfDeletedDomainCookies).toEqual([
           'test.com',
           'google.com',
           'yahoo.com',
@@ -401,8 +426,8 @@ describe('CleanupService', () => {
           ignoreOpenTabs: true,
         });
         expect(global.browser.cookies.remove).toHaveBeenCalledTimes(3);
-        expect(ffResult!.cachedResults.recentlyCleaned).toBe(3);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual([
+        expect(ffResult.cachedResults.recentlyCleaned).toBe(3);
+        expect(ffResult.setOfDeletedDomainCookies).toEqual([
           'test.com',
           'yahoo.com',
           'sub.domain.com',
@@ -418,8 +443,8 @@ describe('CleanupService', () => {
           cleanupProperties,
         );
         expect(global.browser.cookies.remove).not.toHaveBeenCalled();
-        expect(ffResult!.cachedResults.recentlyCleaned).toBe(0);
-        expect(ffResult!.setOfDeletedDomainCookies).toEqual([]);
+        expect(ffResult.cachedResults.recentlyCleaned).toBe(0);
+        expect(ffResult.setOfDeletedDomainCookies).toEqual([]);
       });
 
       it('Regular clean, exclude open tabs to catch errors during browser.cookies.getAll', async () => {
@@ -427,7 +452,7 @@ describe('CleanupService', () => {
           .calledWith(expect.any(Object))
           .mockRejectedValue(new Error('test') as never);
         await cleanCookiesOperation(firefoxState, cleanupProperties);
-        expect(console.error).toHaveBeenCalledTimes(2);
+        expect(global.console.error).toHaveBeenCalledTimes(2);
       });
 
       it('Debug mode should sanitize cookie value', async () => {
@@ -457,6 +482,44 @@ describe('CleanupService', () => {
         expect(global.browser.cookies.getAll).toHaveBeenCalledWith({
           storeId: 'private',
         });
+      });
+
+      it('should not include sites from private containers in site data domains', async () => {
+        when(global.browser.extension.isAllowedIncognitoAccess)
+          .calledWith()
+          .mockResolvedValue(true as never);
+        when(global.browser.cookies.getAll)
+          .calledWith({ storeId: 'firefox-private' })
+          .mockResolvedValue([
+            {
+              ...mockCookie,
+              domain: 'private.com',
+              hostname: 'private.com',
+              mainDomain: 'private.com',
+              preparedCookieDomain: 'https://private.com/',
+              storeId: 'firefox-private',
+            },
+          ] as never);
+        const result = await cleanCookiesOperation(
+          {
+            ...firefoxState,
+            settings: {
+              ...firefoxState.settings,
+              cacheCleanup: {
+                name: 'cacheCleanup',
+                value: true,
+              },
+            },
+            cache: {
+              ...firefoxState.cache,
+              browserVersion: '78',
+            },
+          },
+          cleanupProperties,
+        );
+        expect(result.cachedResults.browsingDataCleanup.Cache).toEqual(
+          expect.not.arrayContaining(['private.com']),
+        );
       });
 
       it('should not clean containers if contextualIdentities is disabled', async () => {
@@ -489,21 +552,115 @@ describe('CleanupService', () => {
         });
       });
 
-      it('Regular clean, exclude open tabs with localstorageCleanup enabled', async () => {
-        const localStorageState = {
-          ...firefoxState,
-          settings: {
-            ...firefoxState.settings,
-            localstorageCleanup: {
-              name: 'localstorageCleanup',
-              value: true,
+      it('should have youtube.com as part of domains that has cache cleared', async () => {
+        const ffResult = await cleanCookiesOperation(
+          {
+            ...firefoxState,
+            settings: {
+              ...firefoxState.settings,
+              cacheCleanup: {
+                name: 'cacheCleanup',
+                value: true,
+              },
+            },
+            cache: {
+              ...firefoxState.cache,
+              browserVersion: '78',
             },
           },
-        };
-        await cleanCookiesOperation(localStorageState, cleanupProperties);
+          cleanupProperties,
+        );
         expect(
-          global.browser.browsingData.removeLocalStorage,
-        ).toHaveBeenCalledTimes(1);
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.CACHE],
+        ).toEqual(expect.arrayContaining(['youtube.com']));
+      });
+
+      it('should have test.com as part of domains that has indexedDB cleared', async () => {
+        const ffResult = await cleanCookiesOperation(
+          {
+            ...firefoxState,
+            settings: {
+              ...firefoxState.settings,
+              indexedDBCleanup: {
+                name: 'indexedDBCleanup',
+                value: true,
+              },
+            },
+            cache: {
+              ...firefoxState.cache,
+              browserVersion: '78',
+            },
+          },
+          cleanupProperties,
+        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.INDEXEDDB],
+        ).toEqual(expect.arrayContaining(['test.com']));
+      });
+
+      it('should have test.com as part of domains that has localstorage cleared', async () => {
+        const ffResult = await cleanCookiesOperation(
+          {
+            ...firefoxState,
+            settings: {
+              ...firefoxState.settings,
+              localStorageCleanup: {
+                name: 'localStorageCleanup',
+                value: true,
+              },
+            },
+          },
+          cleanupProperties,
+        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.LOCALSTORAGE],
+        ).toEqual(expect.arrayContaining(['test.com']));
+      });
+      it('should have test.com as part of domains that has pluginData cleared', async () => {
+        const ffResult = await cleanCookiesOperation(
+          {
+            ...firefoxState,
+            settings: {
+              ...firefoxState.settings,
+              pluginDataCleanup: {
+                name: 'pluginDataCleanup',
+                value: true,
+              },
+            },
+            cache: {
+              ...firefoxState.cache,
+              browserVersion: '78',
+            },
+          },
+          cleanupProperties,
+        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[SiteDataType.PLUGINDATA],
+        ).toEqual(expect.arrayContaining(['test.com']));
+      });
+      it('should have test.com as part of domains that has serviceWorkers cleared', async () => {
+        const ffResult = await cleanCookiesOperation(
+          {
+            ...firefoxState,
+            settings: {
+              ...firefoxState.settings,
+              serviceWorkersCleanup: {
+                name: 'serviceWorkersCleanup',
+                value: true,
+              },
+            },
+            cache: {
+              ...firefoxState.cache,
+              browserVersion: '78',
+            },
+          },
+          cleanupProperties,
+        );
+        expect(
+          ffResult.cachedResults.browsingDataCleanup[
+            SiteDataType.SERVICEWORKERS
+          ],
+        ).toEqual(expect.arrayContaining(['test.com']));
       });
     });
 
@@ -511,7 +668,7 @@ describe('CleanupService', () => {
       const chromeState = {
         ...sampleState,
         cache: {
-          browserDetect: 'Chrome',
+          browserDetect: browserName.Chrome,
         },
       };
       const chromeCookies = [
@@ -549,6 +706,92 @@ describe('CleanupService', () => {
           storeId: '1',
         });
       });
+    });
+  });
+
+  describe('cleanSiteData()', () => {
+    afterEach(() => {
+      spyCleanupService.removeSiteData.mockRestore();
+    });
+    const mockCleanReasonObj: CleanReasonObject = {
+      cached: false,
+      cleanCookie: true,
+      cookie: {
+        ...youtubeCookie,
+      },
+      expression: {
+        ...whiteListYoutube,
+      },
+      openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+      reason: ReasonClean.MatchedExpressionButNoCookieName,
+    };
+    const mockCleanReasonObjFile = {
+      ...mockCleanReasonObj,
+      cookie: {
+        ...fileCookie,
+      },
+    };
+
+    it('should return domains cleaned if there are domains to clean', async () => {
+      const result = await cleanSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        [
+          {
+            ...mockCleanReasonObj,
+            expression: {
+              ...whiteListYoutube,
+            },
+          },
+        ],
+        browserName.Firefox,
+        false,
+      );
+      expect(result).toEqual(['youtube.com']);
+    });
+
+    it('should return empty array if no domains to clean', async () => {
+      const result = await cleanSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        [mockCleanReasonObjFile],
+        browserName.Firefox,
+        false,
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should return empty array if removeSiteData returned false', async () => {
+      when(global.browser.browsingData.remove)
+        .calledWith(expect.any(Object), expect.any(Object))
+        .mockRejectedValue(new Error('test') as never);
+      const result = await cleanSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        [
+          {
+            ...mockCleanReasonObj,
+            expression: {
+              ...whiteListYoutube,
+            },
+          },
+        ],
+        browserName.Firefox,
+        false,
+      );
+      expect(result).toEqual([]);
+    });
+
+    it('should call browserDetect if one in cache is undefined', async () => {
+      const spyBrowserDetect = jest.spyOn(global, 'browserDetect');
+      await cleanSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        [mockCleanReasonObj],
+        undefined,
+        false,
+      );
+      expect(spyBrowserDetect).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -644,13 +887,13 @@ describe('CleanupService', () => {
     });
   });
 
-  describe('clearLocalstorageForThisDomain()', () => {
+  describe('clearLocalStorageForThisDomain()', () => {
     it('should clear localstorage from active tab (via tabs.executeScript)', async () => {
       when(global.browser.tabs.executeScript)
         .calledWith(undefined, expect.any(Object))
         .mockResolvedValue([{ local: 2, session: 0 }] as never);
       expect(
-        await clearLocalstorageForThisDomain(initialState, sampleTab),
+        await clearLocalStorageForThisDomain(initialState, sampleTab),
       ).toBe(true);
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(global.browser.notifications.create).toBeCalledTimes(1);
@@ -660,7 +903,7 @@ describe('CleanupService', () => {
         .calledWith(undefined, expect.any(Object))
         .mockRejectedValue(new Error('test') as never);
       expect(
-        await clearLocalstorageForThisDomain(initialState, sampleTab),
+        await clearLocalStorageForThisDomain(initialState, sampleTab),
       ).toBe(false);
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(spyLib.throwErrorNotification).toBeCalledTimes(1);
@@ -668,7 +911,24 @@ describe('CleanupService', () => {
     });
   });
 
-  describe('filterLocalstorage()', () => {
+  describe('clearSiteDataForThisDomain()', () => {
+    it('should return false if hostname is empty', async () => {
+      expect(await clearSiteDataForThisDomain(initialState, 'All', '')).toBe(
+        false,
+      );
+    });
+    it('should return false if hostname only has whitespaces', async () => {
+      expect(
+        await clearSiteDataForThisDomain(
+          initialState,
+          SiteDataType.CACHE,
+          '  ',
+        ),
+      ).toBe(false);
+    });
+  });
+
+  describe('filterSiteData()', () => {
     it('should return false for a blank cookie hostname', () => {
       const cleanReasonObj: CleanReasonObject = {
         cached: false,
@@ -680,7 +940,7 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.NoMatchedExpression,
       };
-      const result = filterLocalstorage(cleanReasonObj);
+      const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
       expect(result).toBe(false);
     });
 
@@ -694,26 +954,24 @@ describe('CleanupService', () => {
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.NoMatchedExpression,
       };
-      const result = filterLocalstorage(cleanReasonObj);
+      const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
       expect(result).toBe(true);
     });
 
-    it('should return false because of a matched expression', () => {
+    it('should return false because of a matched expression but cleanLocalStorage was undefined', () => {
       const cleanReasonObj: CleanReasonObject = {
         cached: false,
         cleanCookie: true,
         cookie: {
-          ...mockCookie,
+          ...youtubeCookie,
         },
         expression: {
-          expression: '',
-          listType: ListType.WHITE,
-          storeId: 'default',
+          ...whiteListYoutube,
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.MatchedExpression,
       };
-      const result = filterLocalstorage(cleanReasonObj);
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(false);
     });
 
@@ -722,18 +980,16 @@ describe('CleanupService', () => {
         cached: false,
         cleanCookie: true,
         cookie: {
-          ...mockCookie,
+          ...youtubeCookie,
         },
         expression: {
-          cleanLocalStorage: true,
-          expression: '',
-          listType: ListType.WHITE,
-          storeId: 'default',
+          ...whiteListYoutube,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.MatchedExpression,
       };
-      const result = filterLocalstorage(cleanReasonObj);
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(true);
     });
 
@@ -742,19 +998,48 @@ describe('CleanupService', () => {
         cached: false,
         cleanCookie: true,
         cookie: {
-          ...mockCookie,
+          ...youtubeCookie,
         },
         expression: {
-          cleanLocalStorage: true,
-          expression: '',
-          listType: ListType.WHITE,
-          storeId: 'default',
+          ...whiteListYoutube,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.OpenTabs,
       };
-      const result = filterLocalstorage(cleanReasonObj);
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(false);
+    });
+
+    it('should not sanitize cookie value in cadLog if debug is off', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.NoMatchedExpression,
+      };
+      filterSiteData(cleanReasonObj, SiteDataType.CACHE);
+      expect(
+        spyLib.cadLog.mock.calls[0][0].x.CleanReasonObject.cookie.value,
+      ).toEqual('value');
+    });
+    it('should sanitize cookie value in cadLog if debug is on', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.NoMatchedExpression,
+      };
+      filterSiteData(cleanReasonObj, SiteDataType.CACHE, true);
+      expect(
+        spyLib.cadLog.mock.calls[0][0].x.CleanReasonObject.cookie.value,
+      ).toEqual('***');
     });
   });
 
@@ -1085,119 +1370,323 @@ describe('CleanupService', () => {
       expect(result.reason).toBe(ReasonKeep.MatchedExpression);
       expect(result.cleanCookie).toBe(false);
     });
+
+    it('should return true if cookie was created through CAD', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        name: CADCOOKIENAME,
+        hostname: 'sub.google.com',
+        mainDomain: 'google.com',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.CADSiteDataCookie);
+      expect(result.cleanCookie).toBe(true);
+    });
   });
 
   describe('otherBrowsingDataCleanup()', () => {
-    const domains = ['domain.com', 'example.org'];
-    const localStorageState = {
+    const ffState = {
       ...initialState,
+      cache: {
+        browserDetect: browserName.Firefox,
+        browserVersion: '77',
+        platformOs: 'desktop',
+      },
+    };
+    const cacheState = {
+      ...ffState,
       settings: {
         ...initialState.settings,
-        localstorageCleanup: {
-          name: 'localstorageCleanup',
+        cacheCleanup: {
+          name: 'cacheCleanup',
           value: true,
         },
       },
     };
-    const chromeState = {
-      ...localStorageState,
-      cache: {
-        browserDetect: 'Chrome',
+    const indexedDBState = {
+      ...ffState,
+      settings: {
+        ...initialState.settings,
+        indexedDBCleanup: {
+          name: 'indexedDBCleanup',
+          value: true,
+        },
       },
     };
-    const firefoxState = {
-      ...localStorageState,
-      cache: {
-        browserDetect: 'Firefox',
-        browserVersion: '76',
-        platformOs: 'desktop',
+    const localStorageState = {
+      ...ffState,
+      settings: {
+        ...initialState.settings,
+        localStorageCleanup: {
+          name: 'localStorageCleanup',
+          value: true,
+        },
       },
     };
+    const pluginDataState = {
+      ...ffState,
+      settings: {
+        ...initialState.settings,
+        pluginDataCleanup: {
+          name: 'pluginDataCleanup',
+          value: true,
+        },
+      },
+    };
+    const serviceWorkersState = {
+      ...ffState,
+      settings: {
+        ...initialState.settings,
+        serviceWorkersCleanup: {
+          name: 'serviceWorkersCleanup',
+          value: true,
+        },
+      },
+    };
+
     beforeEach(() => {
-      when(global.browser.browsingData.removeLocalStorage)
-        .calledWith(expect.any(Object))
+      when(global.browser.browsingData.remove)
+        .calledWith(expect.any(Object), expect.any(Object))
         .mockResolvedValue(undefined as never);
     });
 
-    it('should remove localStorage given domains in Firefox', async () => {
-      expect(await otherBrowsingDataCleanup(firefoxState, domains)).toBe(true);
-      expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(1);
+    it('should return empty object if no other browsingData cleanup setting was enabled.', async () => {
+      await otherBrowsingDataCleanup(ffState, []);
+      expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
     });
 
-    it('should not call browser.browsingData.removeLocalStorage if only domain(s) containing spaces/empty string are there (Firefox)', async () => {
-      expect(await otherBrowsingDataCleanup(firefoxState, [' ', ''])).toBe(
-        false,
-      );
-      expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(0);
-    });
+    describe('Cache', () => {
+      it('should not call cleanSiteData for: Firefox 77, cacheCleanup true', async () => {
+        await otherBrowsingDataCleanup(cacheState, []);
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
 
-    it('rather extreme case:  a domain that consists of only a dot (.)', async () => {
-      expect(await otherBrowsingDataCleanup(firefoxState, ['.'])).toBe(true);
-      expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(1);
-      expect(
-        global.browser.browsingData.removeLocalStorage.mock.calls[0][0]
-          .hostnames,
-      ).toEqual(['.', 'www.', '.www.']);
-    });
-
-    it('should remove localStorage given domains in Chrome', async () => {
-      expect(await otherBrowsingDataCleanup(chromeState, domains)).toBe(true);
-      expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(1);
-    });
-
-    it('should not call browser.browsingData.removeLocalStorage if only domain(s) containing spaces/empty string are there (Chrome).', async () => {
-      expect(await otherBrowsingDataCleanup(chromeState, [' ', ''])).toBe(
-        false,
-      );
-      expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(0);
-    });
-
-    it('rather extreme case:  a domain that consists of only a dot (.) (Chrome).', async () => {
-      expect(await otherBrowsingDataCleanup(chromeState, ['.'])).toBe(true);
-      expect(global.browser.browsingData.removeLocalStorage).toBeCalledTimes(1);
-      expect(
-        global.browser.browsingData.removeLocalStorage.mock.calls[0][0].origins,
-      ).toEqual([
-        'http://.',
-        'https://.',
-        'http://www.',
-        'https://www.',
-        'http://.www.',
-        'https://.www.',
-      ]);
-    });
-
-    it('should catch and throw an error thrown from removeLocalStorage in Firefox.', async () => {
-      when(global.browser.browsingData.removeLocalStorage)
-        .calledWith(expect.any(Object))
-        .mockRejectedValue(new Error('error') as never);
-
-      await expect(
-        otherBrowsingDataCleanup(firefoxState, domains),
-      ).rejects.toThrow();
-    });
-
-    it('should catch and throw an error thrown from removeLocalStorage in Chrome.', async () => {
-      when(global.browser.browsingData.removeLocalStorage)
-        .calledWith(expect.any(Object))
-        .mockRejectedValue(new Error('error') as never);
-
-      await expect(
-        otherBrowsingDataCleanup(chromeState, domains),
-      ).rejects.toThrow();
-    });
-
-    it('should return false if localStorage cleaning is disabled', async () => {
-      expect(await otherBrowsingDataCleanup(initialState, domains)).toBe(false);
-    });
-
-    it('should return false if browserDetect is not Firefox or Chrome', async () => {
-      expect(
+      it('should not call cleanSiteData for: Firefox 78, cacheCleanup false', async () => {
         await otherBrowsingDataCleanup(
-          { ...chromeState, cache: { browserDetect: 'Unknown' } },
-          domains,
-        ),
-      ).toBe(false);
+          {
+            ...ffState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '78',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should call cleanSiteData for: Firefox 78, cacheCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...cacheState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '78',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+
+      it('should call cleanSiteData for: Chrome, cacheCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...cacheState,
+            cache: {
+              browserDetect: browserName.Chrome,
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('IndexedDB', () => {
+      it('should not call cleanSiteData for: Firefox 76, indexedDBCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...indexedDBState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '76',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should not call cleanSiteData for: Firefox 77, indexedDBCleanup false', async () => {
+        await otherBrowsingDataCleanup(ffState, []);
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should call cleanSiteData for: Firefox 77, indexedDBCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...indexedDBState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '77',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+
+      it('should call cleanSiteData for: Chrome, indexedDBCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...indexedDBState,
+            cache: {
+              browserDetect: browserName.Chrome,
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('LocalStorage', () => {
+      it('should not call cleanSiteData for: Firefox 57, localStorageCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...localStorageState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '57',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should not call cleanSiteData for: Firefox 77, localStorageCleanup false', async () => {
+        await otherBrowsingDataCleanup(ffState, []);
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should call cleanSiteData for: Firefox 77, localStorageCleanup true', async () => {
+        await otherBrowsingDataCleanup(localStorageState, []);
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+
+      it('should call cleanSiteData for: Chrome, localStorageCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...indexedDBState,
+            cache: {
+              browserDetect: browserName.Chrome,
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('PluginData', () => {
+      it('should not call cleanSiteData for: Firefox 77, pluginDataCleanup true', async () => {
+        await otherBrowsingDataCleanup(pluginDataState, []);
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should not call cleanSiteData for: Firefox 78, pluginDataCleanup false', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...ffState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '78',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should call cleanSiteData for: Firefox 77, pluginDataCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...pluginDataState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '78',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+
+      it('should call cleanSiteData for: Chrome, pluginDataCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...pluginDataState,
+            cache: {
+              browserDetect: browserName.Chrome,
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('ServiceWorkers', () => {
+      it('should not call cleanSiteData for: Firefox 76, serviceWorkersCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...serviceWorkersState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '76',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should not call cleanSiteData for: Firefox 77, serviceWorkersCleanup false', async () => {
+        await otherBrowsingDataCleanup(ffState, []);
+        expect(spyCleanupService.cleanSiteData).not.toHaveBeenCalled();
+      });
+
+      it('should call cleanSiteData for: Firefox 77, serviceWorkersCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...serviceWorkersState,
+            cache: {
+              ...ffState.cache,
+              browserVersion: '77',
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
+
+      it('should call cleanSiteData for: Chrome, serviceWorkersCleanup true', async () => {
+        await otherBrowsingDataCleanup(
+          {
+            ...serviceWorkersState,
+            cache: {
+              browserDetect: browserName.Chrome,
+            },
+          },
+          [],
+        );
+        expect(spyCleanupService.cleanSiteData).toHaveBeenCalledTimes(1);
+      });
     });
   });
 
@@ -1224,6 +1713,62 @@ describe('CleanupService', () => {
       expect(result.preparedCookieDomain).toBe('file:///folder/file.html');
       expect(result.hostname).toBe('file:///folder/file.html');
       expect(result.mainDomain).toBe('file:///folder/file.html');
+    });
+  });
+
+  describe('removeSiteData()', () => {
+    it('should use hostnames for domains if removal is in firefox', async () => {
+      await removeSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        browserName.Firefox,
+        ['test'],
+        false,
+      );
+      expect(global.browser.browsingData.remove).toHaveBeenCalledWith(
+        expect.objectContaining({ hostnames: ['test'] }),
+        expect.any(Object),
+      );
+    });
+
+    it('should use origins for domains if removal is in Chrome', async () => {
+      await removeSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        browserName.Chrome,
+        ['test'],
+        false,
+      );
+      expect(global.browser.browsingData.remove).toHaveBeenCalledWith(
+        expect.objectContaining({ origins: ['test'] }),
+        expect.any(Object),
+      );
+    });
+    it('should return false if an error occurred', async () => {
+      when(global.browser.browsingData.remove)
+        .calledWith(expect.any(Object), expect.any(Object))
+        .mockRejectedValue(new Error('test') as never);
+      expect(
+        await removeSiteData(
+          sampleState,
+          SiteDataType.CACHE,
+          browserName.Firefox,
+          ['test'],
+          false,
+        ),
+      ).toBe(false);
+    });
+
+    it('should call browserDetect if one in cache is undefined', async () => {
+      const spyBrowserDetect = jest.spyOn(global, 'browserDetect');
+      await removeSiteData(
+        sampleState,
+        SiteDataType.CACHE,
+        undefined,
+        ['test'],
+        false,
+      );
+      expect(spyBrowserDetect).toHaveBeenCalledTimes(1);
     });
   });
 

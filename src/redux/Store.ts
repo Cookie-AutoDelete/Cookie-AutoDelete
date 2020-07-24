@@ -24,6 +24,7 @@ import {
   cookieCleanup,
   removeActivity,
   removeExpression,
+  removeList,
   resetAll,
   resetCookieDeletedCounter,
   resetSettings,
@@ -32,6 +33,7 @@ import {
 } from './Actions';
 import reducer from './Reducers';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const consoleMessages = (store: any) => (next: any) => (action: any) => {
   // console.log(
   //   `dispatching action => ${action.type}
@@ -48,6 +50,7 @@ const actions: { [key in ReduxConstants]?: any } = {
   COOKIE_CLEANUP: cookieCleanup,
   REMOVE_ACTIVITY_LOG: removeActivity,
   REMOVE_EXPRESSION: removeExpression,
+  REMOVE_LIST: removeList,
   RESET_ALL: resetAll,
   RESET_COOKIE_DELETED_COUNTER: resetCookieDeletedCounter,
   RESET_SETTINGS: resetSettings,
@@ -55,7 +58,7 @@ const actions: { [key in ReduxConstants]?: any } = {
   UPDATE_SETTING: updateSetting,
 };
 
-export default (state = {}) => {
+export default (state = {}): any => {
   return createBackgroundStore({
     actions,
     store: createStore(reducer, state, applyMiddleware(thunk, consoleMessages)),
