@@ -16,6 +16,7 @@
         "Added:  Display Container ID for selected/active expression list.",
         "Added:  Ability to remove all expressions from one list.",
         "Added:  Lists stored in CAD that don't have a matching Firefox container will now show as invalid container in Red Text.",
+        "Added:  Option to show manual notifications (clean site data for a domain actions).  Closes #779",
         "Changed:  Minor CSS Styling on Clean button + dropdown.  Enhanced based on PR#793.",
         "Fixed:  Clearing Logs will not affect cookie counters anymore.  Closes #777.",
         "Fixed:  A setting link wasn't linked accurately.  Thanks to szpak per PR#797.",
