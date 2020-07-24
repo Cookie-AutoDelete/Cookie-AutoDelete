@@ -299,7 +299,7 @@
   },
   "keepAllCookiesText": {
     "message": "Çerez bilgilerini koru",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Tüm liste türlerinde Varsayılan Simgeleri Koru",
@@ -307,7 +307,7 @@
   },
   "keepLocalstorageText": {
     "message": "Yerel Depolama bilgilerini koru",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Koru",
@@ -331,7 +331,7 @@
   },
   "localStorageText": {
     "message": "YerelDepolama",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Manuel Eylem Bildirimi",
