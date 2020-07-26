@@ -11,6 +11,20 @@
     "message": "Automatisches Aufräumen aktivieren",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "Aufräumen von $siteData$ ausgeführt für: $domains$",
+    "description": "Invoked cleanup of $siteData$ for: $domains$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
   "addNewExpressionNotification": {
     "message": "Füge $expression$ zum Listentyp $listType$ unter dem Cookiespeicher $cookieStore$ hinzu.",
     "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
@@ -276,6 +290,16 @@
   "greyListWordText": {
     "message": "Greylist",
     "description": "Greylist"
+  },
+  "groupExpressionDefaultNotice": {
+    "message": "Möchtest du Standard-Ausdruckoptionen für neue Ausdrücke festlegen? Es wurde zur eigenen Ausdruck-Option erweitert! Besuche $listExpression$, um loszulegen!",
+    "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
+    "placeholders": {
+      "listExpression": {
+        "content": "$1",
+        "example": "List of Expressions <- the translated version"
+      }
+    }
   },
   "importCoreSettingsFailed": {
     "message": "Import der Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
@@ -570,6 +594,20 @@
   "noneText": {
     "message": "Kein Filter",
     "description": "None"
+  },
+  "notificationContent": {
+    "message": "Einige Website-Daten, einschließlich $Num$ Cookie(s), gelöscht von: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
   },
   "notificationDisabledText": {
     "message": "Benachrichtigung deaktiviert",
@@ -936,6 +974,10 @@
   "whiteCleanLocalstorage": {
     "message": "'Local Storage behalten' bei neuen Whitelist-Ausdrücken abwählen",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "expressionListText": {
+    "message": "Liste der Ausdrücke",
+    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Whitelist",
