@@ -59,6 +59,10 @@
     "message": "Automatisches Aufräumen aktiviert",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "WARNUNG: Wenn Sie eine der folgenden Optionen zur Datenbereinigung aktivieren, werden ALLE existierenden Daten dieses Typs gelöscht.",
+    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Cache-Bereinigung aktivieren (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
@@ -191,6 +195,20 @@
     "message": "Standard-Ausdruckoptionen erstellen",
     "description": "Create Default Expression Options.  Used in 'List of Expressions'"
   },
+  "currentContainerInfo": {
+    "message": "Aktueller Container ausgewählt: $ID$ ( $Name$ )",
+    "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
+  },
   "debugMode": {
     "message": "Debug-Modus aktivieren (zusätzliche Konsolen-Ausgabe)",
     "description": "Enable Debug Mode (Additional Console Outputs)"
@@ -296,7 +314,7 @@
     "description": "Greylist"
   },
   "groupExpressionDefaultNotice": {
-    "message": "Möchtest du Standard-Ausdruckoptionen für neue Ausdrücke festlegen? Es wurde zur eigenen Ausdruck-Option erweitert! Besuche $listExpression$, um loszulegen!",
+    "message": "Möchten Sie Standard-Ausdruckoptionen für neue Ausdrücke festlegen? Es wurde zur eigenen Ausdruck-Option erweitert! Besuchen Sie $listExpression$, um loszulegen!",
     "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
     "placeholders": {
       "listExpression": {
@@ -838,7 +856,7 @@
     "description": "Ex: Restore Cleanup"
   },
   "reviewLinkMessage": {
-    "message": "Danke, dass Du $cadTitle$ ausprobierst! Falls es dir gefällt, gib bitte eine Bewertung ab.",
+    "message": "Danke, dass Sie $cadTitle$ ausprobieren! Falls es Ihnen gefällt, geben Sie bitte eine Bewertung ab.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
