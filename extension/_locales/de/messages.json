@@ -81,30 +81,6 @@
     "message": "Protokolle leeren",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Alle $siteData$ von $domain$ aufräumen",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "$siteData$ dieser Domain aufräumen",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Alle löschen",
     "description": "Remove All"
@@ -307,7 +283,7 @@
   },
   "keepAllCookiesText": {
     "message": "Alle Cookies behalten",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Standardsymbole bei allen Listentypen behalten",
@@ -315,7 +291,7 @@
   },
   "keepLocalstorageText": {
     "message": "Local Storage behalten",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Behalten",
@@ -325,21 +301,9 @@
     "message": "Listentyp",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Die gleichzeitige Aktivierung von \"Local Storage aufräumen\" und \"Container-Tabs\" könnte unerwünschte Nebeneffekte aufgrund von API-Beschränkungen verursachen. Local Storage wird nach Hostnamen bei ALLEN Containern gelöscht.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Local Storage aufräumen",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Warnung: Bei aktiviertem Aufräumen des Local Storage wird der GESAMTE vorhandene Local Storage gelöscht.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "Local Storage",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Manuelle Aktions-Benachrichtigung",
@@ -429,20 +393,6 @@
     "message": "Kein Filter",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ Cookies gelöscht von: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Benachrichtigung deaktiviert",
     "description": "Notification disabled"
@@ -458,10 +408,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Dauer für Benachrichtigungen",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Zeige Benachrichtigung nach Aufräumen von Cookies",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Ältere Versionshinweise können online eingesehen werden unter",
@@ -770,10 +716,6 @@
   "whiteCleanLocalstorage": {
     "message": "'Local Storage behalten' bei neuen Whitelist-Ausdrücken abwählen",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Liste von Ausdrücken",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Whitelist",
