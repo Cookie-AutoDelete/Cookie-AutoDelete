@@ -405,6 +405,10 @@
     "message": "Cookies wurden gelöscht!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
+  "notificationTitleSiteData": {
+    "message": "Datenbereinigung ausgelöst!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
+  },
   "notifyCookieCleanupDelayText": {
     "message": "Dauer für Benachrichtigungen",
     "description": "Duration for Notifications"
@@ -421,6 +425,10 @@
     "message": "Optionen",
     "description": "Options"
   },
+  "pluginDataCleanupText": {
+    "message": "Plugin-Daten-Bereinigung aktivieren (Firefox 78+, Chrome 74+)",
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+  },
   "popupCookieCountText": {
     "message": "Cookie(s)",
     "description": "Cookie(s)"
@@ -432,6 +440,16 @@
   "questionExpression": {
     "message": "Wie funktionieren Ausdrücke?",
     "description": "How do Expressions work?"
+  },
+  "reasonCADSiteDataCookie": {
+    "message": "Löschen, um Datenbereinigung für $hostname$ auszulösen.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
   },
   "reasonCleanCookieExpired": {
     "message": "Teilbereinigung aufgrund von abgelaufenen Cookies von $hostname$.",
