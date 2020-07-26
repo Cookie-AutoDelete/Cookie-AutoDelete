@@ -45,6 +45,14 @@
     "message": "Automatisches Aufräumen aktiviert",
     "description": "Auto-clean enabled"
   },
+  "cacheCleanupText": {
+    "message": "Cache-Bereinigung aktivieren (Firefox 78+, Chrome 74+)",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+  },
+  "cacheText": {
+    "message": "Cache",
+    "description": "Cache.  Primarily used in notifications."
+  },
   "chromeDebugMode": {
     "message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' unter Ansichten prüfen.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
@@ -161,9 +169,21 @@
     "message": "Jetzt aufräumen, Domains von offenen Tabs ausschließen",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "createDefaultExpressionOptionsText": {
+    "message": "Standard-Ausdruckoptionen erstellen",
+    "description": "Create Default Expression Options.  Used in 'List of Expressions'"
+  },
   "debugMode": {
     "message": "Debug-Modus aktivieren (zusätzliche Konsolen-Ausgabe)",
     "description": "Enable Debug Mode (Additional Console Outputs)"
+  },
+  "defaultText": {
+    "message": "Standard",
+    "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
+  },
+  "defaultContainerText": {
+    "message": "Kein Container",
+    "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
     "message": "Standardeinstellungen wiederherstellen",
@@ -281,17 +301,65 @@
     "message": "Ausdrücke importieren",
     "description": "Import Expressions"
   },
+  "indexedDBCleanupText": {
+    "message": "Indexed DB-Bereinigung aktivieren (Firefox 77+, Chrome 74+)",
+    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+  },
+  "indexedDBText": {
+    "message": "Indexed DB",
+    "description": "IndexedDB.  Primarily used in notifications."
+  },
   "keepAllCookiesText": {
     "message": "Alle Cookies behalten",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+  },
+  "keepAllCookiesGreyText": {
+    "message": "Alle Cookies bis zum Neustart behalten",
+    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepCacheText": {
+    "message": "Cache behalten",
+    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+  },
+  "keepCacheGreyText": {
+    "message": "Cache bis zum Neustart behalten",
+    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
   },
   "keepDefaultIcon": {
     "message": "Standardsymbole bei allen Listentypen behalten",
     "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
   },
+  "keepIndexedDBText": {
+    "message": "Indexed DB behalten",
+    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+  },
+  "keepIndexedDBGreyText": {
+    "message": "Indexed DB bis zum Neustart behalten",
+    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+  },
   "keepLocalstorageText": {
     "message": "Local Storage behalten",
     "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "Local Storage bis zum Neustart behalten",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepPluginDataText": {
+    "message": "Plugin-Daten behalten",
+    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+  },
+  "keepPluginDataGreyText": {
+    "message": "Plugin-Daten bis zum Neustart behalten",
+    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepServiceWorkersText": {
+    "message": "Service-Worker behalten",
+    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+  },
+  "keepServiceWorkersGreyText": {
+    "message": "Service-Worker bis zum Neustart behalten",
+    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
   },
   "keepText": {
     "message": "Behalten",
@@ -300,6 +368,10 @@
   "listTypeText": {
     "message": "Listentyp",
     "description": "List Type"
+  },
+  "localStorageCleanupText": {
+    "message": "Local Storage-Bereinigung aktivieren (Firefox 58+, Chrome 74+)",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+).  Found in CAD Settings."
   },
   "localStorageText": {
     "message": "Local Storage",
@@ -346,6 +418,10 @@
         "example": "5"
       }
     }
+  },
+  "manualCleanSiteDataAll": {
+    "message": "Alles für diese Domain aufräumen",
+    "description": "Clean All for this domain.  Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataAllDomain": {
     "message": "Alle Website-Daten für $domain$ aufräumen",
