@@ -379,7 +379,7 @@ export const cookieCleanup: ActionCreator<ThunkAction<
       });
       await sleep(750);
     }
-    if (siteDataCleaned) {
+    if (siteDataCleaned && browsingDataCleanup) {
       Object.entries(browsingDataCleanup).map(async ([siteData, domains]) => {
         if (!domains || domains.length === 0) return;
         await showNotification({
