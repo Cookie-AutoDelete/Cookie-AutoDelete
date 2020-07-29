@@ -950,9 +950,9 @@ export const cleanCookiesOperation = async (
       isSafeToCleanObjects,
     );
     // Don't store domains for private browsing data
-    if (storesIdsToScrub.includes(id)) continue;
+    if (storesIdsToScrub.includes(id) || !storeResults) continue;
     for (const sd of SITEDATATYPES) {
-      if (storeResults && (storeResults[sd] || []).length > 0) {
+      if ((storeResults[sd] || []).length > 0) {
         cachedResults.siteDataCleaned = true;
         deletedSiteDataArrays[sd] = (deletedSiteDataArrays[sd] || []).concat(
           (storeResults[sd] as string[]).map((domain) => trimDot(domain)),
