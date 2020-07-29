@@ -31,9 +31,12 @@ const createSummary = (cleanupObj: ActivityLog) => {
   Object.values(cleanupObj.storeIds).forEach((value) => {
     value.forEach((deletedLog) => domainSet.add(deletedLog.cookie.hostname));
   });
-  Object.values(cleanupObj.browsingDataCleanup).forEach((sd) => {
-    sd && sd.forEach((domain) => domainSet.add(domain));
-  });
+  if (cleanupObj.browsingDataCleanup) {
+    Object.values(cleanupObj.browsingDataCleanup).forEach((sd) => {
+      sd && sd.forEach((domain) => domainSet.add(domain));
+    });
+  }
+
   return Array.from(domainSet).join(', ');
 };
 
@@ -261,7 +264,9 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
           log.recentlyCleaned.toString(),
           summary !== '' ? summary : '(Private)',
         ]);
-        const browsingDataEntries = Object.entries(log.browsingDataCleanup);
+        const browsingDataEntries = Object.entries(
+          log.browsingDataCleanup || {},
+        );
         const storeIdEntries = Object.entries(log.storeIds);
         return (
           <div key={index} className="card">

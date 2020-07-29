@@ -950,7 +950,7 @@ export const cleanCookiesOperation = async (
       isSafeToCleanObjects,
     );
     // Don't store domains for private browsing data
-    if (storesIdsToScrub.includes(id)) continue;
+    if (storesIdsToScrub.includes(id) || !storeResults) continue;
     for (const sd of SITEDATATYPES) {
       if ((storeResults[sd] || []).length > 0) {
         cachedResults.siteDataCleaned = true;
@@ -961,10 +961,12 @@ export const cleanCookiesOperation = async (
     }
   }
 
-  for (const sd of SITEDATATYPES) {
-    cachedResults.browsingDataCleanup[sd] = deletedSiteDataArrays[sd]
-      ? Array.from(new Set(deletedSiteDataArrays[sd] as string[]))
-      : [];
+  if (cachedResults.browsingDataCleanup) {
+    for (const sd of SITEDATATYPES) {
+      cachedResults.browsingDataCleanup[sd] = deletedSiteDataArrays[sd]
+        ? Array.from(new Set(deletedSiteDataArrays[sd] as string[]))
+        : [];
+    }
   }
 
   for (const id of storesIdsToScrub) {

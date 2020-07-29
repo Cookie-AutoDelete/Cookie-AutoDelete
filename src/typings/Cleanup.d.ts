@@ -22,7 +22,7 @@ type ActivityLog = {
   storeIds: {
     [storeId: string]: CleanReasonObject[];
   };
-  browsingDataCleanup: {
+  browsingDataCleanup?: {
     [siteDataType in SiteDataType]?: string[];
   };
   siteDataCleaned: boolean;
