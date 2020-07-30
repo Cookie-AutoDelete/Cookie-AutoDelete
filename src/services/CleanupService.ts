@@ -33,7 +33,6 @@ import {
   trimDot,
   undefinedIsTrue,
 } from './Libs';
-import ActivityLog from '../ui/settings/components/ActivityLog';
 
 /** Prepare a cookie for deletion */
 export const prepareCookie = (
@@ -778,7 +777,7 @@ export const cleanCookiesOperation = async (
   const debug = getSetting(state, 'debugMode') as boolean;
   const deletedSiteDataArrays: ActivityLog['browsingDataCleanup'] = {};
   const setOfDeletedDomainCookies = new Set<string>();
-  const cachedResults: ActivityLog = {
+  const cachedResults: Required<ActivityLog> = {
     dateTime: new Date().toString(),
     recentlyCleaned: 0,
     storeIds: {},
@@ -975,12 +974,10 @@ export const cleanCookiesOperation = async (
     }
   }
 
-  if (cachedResults.browsingDataCleanup) {
-    for (const sd of SITEDATATYPES) {
-      cachedResults.browsingDataCleanup[sd] = deletedSiteDataArrays[sd]
-        ? Array.from(new Set(deletedSiteDataArrays[sd] as string[]))
-        : [];
-    }
+  for (const sd of SITEDATATYPES) {
+    cachedResults.browsingDataCleanup[sd] = deletedSiteDataArrays[sd]
+      ? Array.from(new Set(deletedSiteDataArrays[sd] as string[]))
+      : [];
   }
 
   for (const id of storesIdsToScrub) {
