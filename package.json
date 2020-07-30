@@ -41,7 +41,7 @@
     "@types/shortid": "0.0.29",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/eslint-plugin-tslint": "^3.7.1",
-    "@typescript-eslint/parser": "^3.2.0",
+    "@typescript-eslint/parser": "^3.7.1",
     "ajv": "^6.12.2",
     "archiver": "^4.0.1",
     "copy-webpack-plugin": "^6.0.2",
