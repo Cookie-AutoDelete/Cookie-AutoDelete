@@ -22,7 +22,6 @@ import {
   isChrome,
   isFirefoxAndroid,
   showNotification,
-  siteDataToBrowser,
   sleep,
 } from '../services/Libs';
 import {
@@ -379,20 +378,23 @@ export const cookieCleanup: ActionCreator<ThunkAction<
       });
       await sleep(750);
     }
+    // Here we just show a generic 'Site Data' cleaned instead of the specifics, with all domains.
     if (siteDataCleaned && browsingDataCleanup) {
-      Object.entries(browsingDataCleanup).map(async ([siteData, domains]) => {
+      const domainsAll: string[] = [];
+      for (const domains of Object.values(browsingDataCleanup)) {
         if (!domains || domains.length === 0) return;
+        domainsAll.push(...domains);
+      }
+      if (domainsAll.length > 0) {
         await showNotification({
           duration: getSetting(getState(), 'notificationOnScreen') as number,
           msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
-            browser.i18n.getMessage(
-              `${siteDataToBrowser(siteData as SiteDataType)}Text`,
-            ),
-            domains.join(', '),
+            browser.i18n.getMessage('siteDataText'),
+            domainsAll.join(', '),
           ]),
           title: browser.i18n.getMessage('notificationTitleSiteData'),
         });
-      });
+      }
     }
   }
 };

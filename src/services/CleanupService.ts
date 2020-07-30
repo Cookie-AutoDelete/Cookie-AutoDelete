@@ -456,6 +456,7 @@ export const clearSiteDataForThisDomain = async (
   );
   const domains = prepareCleanupDomains(hostname, state.cache.browserDetect);
   if (siteData === 'All') {
+    const siteDataAll: string[] = [];
     for (const sd of SITEDATATYPES) {
       await removeSiteData(
         state,
@@ -463,9 +464,22 @@ export const clearSiteDataForThisDomain = async (
         state.cache.browserDetect,
         domains,
         debug,
-        true,
+        false,
       );
+      siteDataAll.push(browser.i18n.getMessage(`${siteDataToBrowser(sd)}Text`));
     }
+    // To consolidate the notification shown, we do it out here.
+    showNotification(
+      {
+        duration: getSetting(state, 'notificationOnScreen') as number,
+        msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+          siteDataAll.join(', '),
+          domains.join(', '),
+        ]),
+        title: browser.i18n.getMessage('notificationTitleSiteData'),
+      },
+      getSetting(state, 'manualNotifications') as boolean,
+    );
   } else {
     await removeSiteData(
       state,
