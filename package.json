@@ -45,7 +45,7 @@
     "ajv": "^6.12.3",
     "archiver": "^5.0.0",
     "copy-webpack-plugin": "^6.0.3",
-    "eslint": "^7.2.0",
+    "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jsdoc": "^27.0.7",
     "eslint-plugin-prefer-arrow": "^1.2.1",
