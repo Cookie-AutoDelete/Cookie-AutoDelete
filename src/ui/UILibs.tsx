@@ -10,8 +10,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-// Dynamically generate timestamp as a string
-export const appendDynamicTimestamp = () => {
+
+/**
+ *  Dynamically generate timestamp as a string
+ */
+export const appendDynamicTimestamp = (): string => {
   // We take into account the timezone offset since using Date.toISOString() returns in UTC/GMT.
   return new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
     .toISOString()
@@ -20,12 +23,14 @@ export const appendDynamicTimestamp = () => {
     .replace(/:/g, '.');
 };
 
-// Dynamically generate data to be downloaded and executes the download.
-// https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
+/**
+ * Dynamically generate data to be downloaded and executes the download.
+ * https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
+ */
 export const downloadObjectAsJSON = (
   exportObj: Record<string, unknown>,
   exportName = 'ExportedData',
-) => {
+): Record<string, boolean | null | string> => {
   const dataHref = `data:text/json;charset=urf-8,${encodeURIComponent(
     JSON.stringify(exportObj, null, 2),
   )}`;
