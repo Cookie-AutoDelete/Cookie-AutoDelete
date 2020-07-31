@@ -55,30 +55,6 @@
     "message": "Изчистване на дневниците",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Изчистване на всички $siteData$ за $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Изчистване на $siteData$ за този домейн",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Премахване на всички",
     "description": "Remove All"
@@ -241,7 +217,7 @@
   },
   "keepAllCookiesText": {
     "message": "Запазване на всички бисквитки",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Запазете иконите по подразбиране за всички видове списъци",
@@ -249,7 +225,7 @@
   },
   "keepLocalstorageText": {
     "message": "Запазване на местното хранилище",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Запазване",
@@ -259,21 +235,9 @@
     "message": "Тип списък",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "ВНИМАНИЕ: Активирането на LocalStorage Cleanup и Container Tabs може да причини нежелани странични ефекти поради Ограниченията на API. LocalStorage ще бъде изчистен от името на хоста на ВСИЧКИ контейнери.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Изчистване на локалното хранилище",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Внимание: ЦЯЛОТО съдържание в местното хранилище ще бъде премахнато при избиране на отметката „Изчистване на местното хранилище“.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "LocalStorage",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Известие при действие от потребителя",
@@ -363,20 +327,6 @@
     "message": "Без",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "Изтрити са $Num$ бисквитки от: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Без известия",
     "description": "Notification disabled"
@@ -392,10 +342,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Времетраене за известия",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Показване на известия след изчистване на бисквитки",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Бележките към по-старите издания могат да бъдат прочетени онлайн на",
@@ -680,10 +626,6 @@
   "whiteCleanLocalstorage": {
     "message": "Размаркиране на 'Запазване на местното хранилище' в новия бял списък с изрази",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Списък с изрази",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Бял списък",
