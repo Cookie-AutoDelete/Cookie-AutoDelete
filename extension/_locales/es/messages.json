@@ -919,6 +919,10 @@
     "message": "Mostrar el número de cookies de ese dominio en el icono",
     "description": "Show Number of Cookies for that Domain over the Icon"
   },
+  "siteDataText": {
+    "message": "datos del sitio",
+    "description": "Site Data.  Found in Activity Log Summary and Notifications."
+  },
   "sizePopupText": {
     "message": "Tamaño de la ventana emergente (en px)",
     "description": "Size of Popup (in px).  This sets the font size in the Popup."
