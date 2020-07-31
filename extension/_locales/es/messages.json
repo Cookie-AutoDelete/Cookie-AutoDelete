@@ -920,7 +920,7 @@
     "description": "Show Number of Cookies for that Domain over the Icon"
   },
   "siteDataText": {
-    "message": "datos del sitio",
+    "message": "Datos del sitio",
     "description": "Site Data.  Found in Activity Log Summary and Notifications."
   },
   "sizePopupText": {
