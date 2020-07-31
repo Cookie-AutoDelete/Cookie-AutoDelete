@@ -33,7 +33,6 @@ import {
   trimDot,
   undefinedIsTrue,
 } from './Libs';
-import ActivityLog from '../ui/settings/components/ActivityLog';
 
 /** Prepare a cookie for deletion */
 export const prepareCookie = (
@@ -456,6 +455,7 @@ export const clearSiteDataForThisDomain = async (
   );
   const domains = prepareCleanupDomains(hostname, state.cache.browserDetect);
   if (siteData === 'All') {
+    const siteDataAll: string[] = [];
     for (const sd of SITEDATATYPES) {
       await removeSiteData(
         state,
@@ -463,9 +463,22 @@ export const clearSiteDataForThisDomain = async (
         state.cache.browserDetect,
         domains,
         debug,
-        true,
+        false,
       );
+      siteDataAll.push(browser.i18n.getMessage(`${siteDataToBrowser(sd)}Text`));
     }
+    // To consolidate the notification shown, we do it out here.
+    showNotification(
+      {
+        duration: getSetting(state, 'notificationOnScreen') as number,
+        msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+          siteDataAll.join(', '),
+          domains.join(', '),
+        ]),
+        title: browser.i18n.getMessage('notificationTitleSiteData'),
+      },
+      getSetting(state, 'manualNotifications') as boolean,
+    );
   } else {
     await removeSiteData(
       state,
@@ -764,7 +777,7 @@ export const cleanCookiesOperation = async (
   const debug = getSetting(state, 'debugMode') as boolean;
   const deletedSiteDataArrays: ActivityLog['browsingDataCleanup'] = {};
   const setOfDeletedDomainCookies = new Set<string>();
-  const cachedResults: ActivityLog = {
+  const cachedResults: Required<ActivityLog> = {
     dateTime: new Date().toString(),
     recentlyCleaned: 0,
     storeIds: {},
@@ -950,7 +963,7 @@ export const cleanCookiesOperation = async (
       isSafeToCleanObjects,
     );
     // Don't store domains for private browsing data
-    if (storesIdsToScrub.includes(id)) continue;
+    if (storesIdsToScrub.includes(id) || !storeResults) continue;
     for (const sd of SITEDATATYPES) {
       if ((storeResults[sd] || []).length > 0) {
         cachedResults.siteDataCleaned = true;

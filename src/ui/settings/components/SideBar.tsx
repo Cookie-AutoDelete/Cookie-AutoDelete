@@ -48,7 +48,7 @@ interface OwnProps {
 
 class SideBar extends React.Component<OwnProps> {
   // Switches tabs
-  public toggleClass(element: HTMLElement | null, className: string) {
+  public toggleClass(element: HTMLElement | null, className: string): void {
     if (!element) return;
     const classes = element.className.split(/\s+/);
     const length = classes.length;
@@ -68,7 +68,7 @@ class SideBar extends React.Component<OwnProps> {
   }
 
   // Toggles the sidebar
-  public toggleAll() {
+  public toggleAll(): void {
     const active = 'active';
     const layout = document.getElementById('layout');
     const menu = document.getElementById('menu');
@@ -77,7 +77,7 @@ class SideBar extends React.Component<OwnProps> {
     this.toggleClass(menu, active);
     this.toggleClass(menuLink, active);
   }
-  public render() {
+  public render(): React.ReactNode {
     const { activeTab, switchTabs } = this.props;
     return (
       <div>
@@ -100,7 +100,7 @@ class SideBar extends React.Component<OwnProps> {
               <br />
               <b>{browser.runtime.getManifest().version}</b>
             </div>
-            {sideBarTabs.map((element, index) => (
+            {sideBarTabs.map((element) => (
               <div
                 key={element.tabId}
                 id={`${element.tabId}`}
