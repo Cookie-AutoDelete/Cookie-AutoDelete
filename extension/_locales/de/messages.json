@@ -915,6 +915,10 @@
     "message": "Anzahl der Cookies für diese Domain über dem Symbol anzeigen",
     "description": "Show Number of Cookies for that Domain over the Icon"
   },
+  "siteDataText": {
+    "message": "Website-Daten",
+    "description": "Site Data.  Found in Activity Log Summary and Notifications."
+  },
   "sizePopupText": {
     "message": "Größe des Pop-ups (in px)",
     "description": "Size of Popup (in px).  This sets the font size in the Popup."
