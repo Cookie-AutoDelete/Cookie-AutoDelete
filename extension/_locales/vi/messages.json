@@ -47,30 +47,6 @@
     "message": "Xoá các nhật ký",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Xóa tất cả $siteData$ cho $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Xoá $siteData$ của tên miền này",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Xoá tất cả",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Lưu trữ tất cả các cookie",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Giữ biểu tượng mặc định trên tất cả các loại danh sách",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Lưu trữ cục bộ",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Giữ",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Kiểu danh sách",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "CẢNH BÁO: Kích hoạt cả LocalStorage Cleanup và Container Tab có thể gây ra tác dụng phụ không mong muốn do Hạn chế API. LocalStorage sẽ bị xóa bởi tên máy chủ trên TẤT CẢ các container.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Dọn dẹp lưu trữ cục bộ",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Cảnh báo: TẤT CẢ LocalStorage hiện tại sẽ bị xóa khi bật chức năng Dọn dẹp LocalStorage.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "Trùng tên miền biểu thức",
@@ -283,20 +247,6 @@
     "message": "Trống",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ Các Cookie bị xoá đến từ: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Tắt thông báo",
     "description": "Notification disabled"
@@ -312,10 +262,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Thời lượng thông báo",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Hiện thông báo sau khi dọn sạch Cookie",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Ghi chú phát hành cũ hơn có thể được xem trực tuyến tại",
@@ -592,10 +538,6 @@
   "whiteCleanLocalstorage": {
     "message": "Bỏ chọn 'Giữ LocalStorage' trên Biểu thức danh sách trắng mới",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Danh sách các Biểu thức",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Danh sách trắng",
