@@ -81,30 +81,6 @@
     "message": "Wyczyść log",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Wyczyść całość $siteData$ dla $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Wyczyść $siteData$ dla tej domeny",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Usuń wszystko",
     "description": "Remove All"
@@ -307,7 +283,7 @@
   },
   "keepAllCookiesText": {
     "message": "Zachowaj wszystkie ciasteczka",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Użyj domyślnej ikony dla wszystkich typów list",
@@ -315,7 +291,7 @@
   },
   "keepLocalstorageText": {
     "message": "Zachowaj localStorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Zachowaj",
@@ -325,21 +301,9 @@
     "message": "Typ listy",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "UWAGA: jednoczesne włączenie czyszczenia localStorage i obsługi kontenerów kart w Firefoksie może powodować niepożądane efekty uboczne z powodu ograniczeń API. localStorage będzie czyszczony według hostów we wszystkich kontenerach.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Wyczyść localStorage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Uwaga:  wszystkie istniejące dane w localStorage zostaną usunięte przy włączeniu opcji \"Wyczyść localStorage\".",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "localStorage",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Powiadomienie czyszczenia ręcznego",
@@ -429,20 +393,6 @@
     "message": "Brak",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ usuniętych ciasteczek z: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Powiadomienia wyłączone",
     "description": "Notification disabled"
@@ -458,10 +408,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Czas trwania powiadomień",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Pokaż powiadomienie po wyczyszczeniu ciasteczek",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Starsze notatki o wydaniu można oglądać online na",
@@ -770,10 +716,6 @@
   "whiteCleanLocalstorage": {
     "message": "Odznacz 'Zachowaj localStorage' w nowych formułach białej listy",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Lista formuł",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Biała lista",
