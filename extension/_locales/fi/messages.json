@@ -47,30 +47,6 @@
     "message": "Tyhjennä loki",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Poista kaikki $siteData$ for $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Tyhjennä tämän verkkotunnuksen $siteData$",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Poista kaikki",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Pidä kaikki evästeet",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Pidä oletuskuvakkeet kaikissa luettelotyypeissä",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Pidä LocalStorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Säilytä",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Tyyppi",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "VAROITUS: Sekä LocalStorage Cleanup- että Container Tabs -välilehteiden ottaminen käyttöön voi aiheuttaa API-rajoituksista johtuvia ei-toivottuja sivuvaikutuksia. LocalStorage tyhjennetään isäntänimellä kaikissa säilöissä.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "LocalStorage-siivous",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Varoitus: KAIKKI olemassa oleva LocalStorage poistetaan, kun LocalStorage-siivous otetaan käyttöön.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "Vastaava verkkotunnuksen lauseke",
@@ -283,20 +247,6 @@
     "message": "Ei mitään",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "Poistettu $Num$ evästettä sivulta $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Ilmoitus poistettu käytöstä",
     "description": "Notification disabled"
@@ -312,10 +262,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Ilmoitusten kesto",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Näytä ilmoitus evästeiden puhdistuksen jälkeen",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Vanhemmat julkaisutiedot voidaan katsella verkossa osoitteessa",
@@ -592,10 +538,6 @@
   "whiteCleanLocalstorage": {
     "message": "Poista valinta kohdasta Pidä LocalStorage uusissa sallittujen luetteloiden lausekkeissa",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Sääntölista",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Sallitut sivut",
