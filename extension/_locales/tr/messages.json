@@ -77,30 +77,6 @@
     "message": "Kayıtları temizle",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "$domain$ alan adı için tüm $siteData$leri temizle",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Alan adı için $siteData$ leri temizle",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Hepsini sil",
     "description": "Remove All"
@@ -299,7 +275,7 @@
   },
   "keepAllCookiesText": {
     "message": "Çerez bilgilerini koru",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Tüm liste türlerinde Varsayılan Simgeleri Koru",
@@ -307,7 +283,7 @@
   },
   "keepLocalstorageText": {
     "message": "Yerel Depolama bilgilerini koru",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Koru",
@@ -317,21 +293,9 @@
     "message": "Liste türü",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "UYARI: Hem LocalStorage Cleanup hem de Container Sekmelerinin etkinleştirilmesi, API Sınırlamaları nedeniyle istenmeyen yan etkilere neden olabilir. LocalStorage, TÜM kapsayıcılardaki ana bilgisayar adıyla silinir.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Yerel Depolama içeriğini temizle",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Dikkat: Yerel Depolama Bilgileri Temizliği aktifleştirildiğinde, tüm mevcut Yerel Depolama Bilgileri silinecektir.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "YerelDepolama",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Manuel Eylem Bildirimi",
@@ -421,20 +385,6 @@
     "message": "Hiç biri",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "\"$Websites$\" sitesinden $Num$ adet çerez temizlendi",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Bildirimler kapatıldı",
     "description": "Notification disabled"
@@ -450,10 +400,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Bildirim Süresi",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Çerezleri temizledikten sonra bildirim göster",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Eski sürüm notları çevrimiçi olarak şurada görülebilir",
@@ -748,10 +694,6 @@
   "whiteCleanLocalstorage": {
     "message": "Yeni Beyaz Liste Kurallarında \"Yerel Depolama bilgilerini koru\" işaretini kaldır",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Kural Listesi",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Whitelist (Güvenilir-liste)",
