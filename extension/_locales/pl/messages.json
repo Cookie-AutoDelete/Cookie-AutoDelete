@@ -250,7 +250,7 @@
     "description": "Filter"
   },
   "greyCleanLocalstorage": {
-    "message": "Odznacz 'Zachowaj localStorage' w nowych formułach szarej listy",
+    "message": "Odznacz 'Zachowaj LocalStorage' w nowych formułach szarej listy",
     "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
   },
   "greyListWordText": {
@@ -289,10 +289,6 @@
     "message": "Użyj domyślnej ikony dla wszystkich typów list",
     "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
   },
-  "keepLocalstorageText": {
-    "message": "Zachowaj localStorage",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
-  },
   "keepText": {
     "message": "Zachowaj",
     "description": "Keep"
@@ -300,10 +296,6 @@
   "listTypeText": {
     "message": "Typ listy",
     "description": "List Type"
-  },
-  "localStorageText": {
-    "message": "localStorage",
-    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Powiadomienie czyszczenia ręcznego",
@@ -601,10 +593,6 @@
     "message": "sekund",
     "description": "second(s)"
   },
-  "sessionStorageText": {
-    "message": "sessionStorage",
-    "description": "SessionStorage.  Used in manual localstorage clean notification"
-  },
   "settingGroupAutoClean": {
     "message": "Opcje automatycznego czyszczenia",
     "description": "Automatic Cleaning Options"
@@ -712,10 +700,6 @@
   "welcomeText": {
     "message": "Witaj",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Odznacz 'Zachowaj localStorage' w nowych formułach białej listy",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Biała lista",
