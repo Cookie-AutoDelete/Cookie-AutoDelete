@@ -396,36 +396,22 @@ export const getHostname = (urlToGetHostName: string | undefined): string => {
 };
 
 /**
- * Retrieves all Expressions within a single list/container.
- * @param state The WebExtension State
- * @param storeId The storeId/Container to get
- */
-export const getListSingle = (
-  state: State,
-  storeId: string,
-): ReadonlyArray<Expression> => state.lists[storeId] || [];
-
-/**
  * Returns all matched Expressions from a single list.
  * Can pass in either a single list of Expression or the entire State
  * First checks for IP, then CIDR, then falls back to Regular Expression.
  * If no input given, return all expressions from that list.
- * @param stateOrList The WebExtension State or A Single List of Expressions
+ * @param lists The Container List of Expressions from State.lists
  * @param search whether we're searching for a regex or matching
  * @param input The string for testing
  * @param storeId The storeId/Container
  */
 export const getMatchedExpressions = (
-  stateOrList: ReadonlyArray<Expression> | State,
+  lists: StoreIdToExpressionList,
+  storeId: string,
   input?: string,
-  storeId?: string,
   search = false,
 ): ReadonlyArray<Expression> => {
-  const expressions = Array.isArray(stateOrList)
-    ? (stateOrList as ReadonlyArray<Expression>)
-    : storeId
-    ? getListSingle(stateOrList as State, storeId)
-    : [];
+  const expressions = lists[storeId] || [];
   if (expressions.length === 0 || !input || input.trim().length == 0)
     return expressions;
   // Check if input is a valid IP Address (IPv4 or IPv6) (non-CIDR)
@@ -736,9 +722,9 @@ export const returnMatchedExpressionObject = (
   hostname: string,
 ): Expression | undefined => {
   return getMatchedExpressions(
-    state,
-    hostname,
+    state.lists,
     getStoreId(state, cookieStoreId),
+    hostname,
   )[0];
 };
 

@@ -59,7 +59,7 @@ const FilteredExpression: React.FunctionComponent<OwnProps & ReduxState> = (
 };
 
 const mapStateToProps = (state: State, props: OwnProps) => ({
-  expressions: getMatchedExpressions(state, props.url, props.storeId),
+  expressions: getMatchedExpressions(state.lists, props.storeId, props.url),
 });
 
 export default connect(mapStateToProps)(FilteredExpression);

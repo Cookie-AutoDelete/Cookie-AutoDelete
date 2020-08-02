@@ -617,6 +617,10 @@
     "message": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "No expressions found from search above.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "No rules matched this domain.",
     "description": "No rules matched this domain"

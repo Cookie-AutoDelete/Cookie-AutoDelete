@@ -516,14 +516,20 @@ class Expressions extends React.Component<ExpressionProps> {
               'domainExpressionsText',
             )}
             expressions={getMatchedExpressions(
-              lists[storeId],
-              this.state.expressionInput,
+              lists,
               storeId,
+              this.state.expressionInput,
               true,
             )}
             storeId={storeId}
             emptyElement={
-              <span>{browser.i18n.getMessage('noExpressionsText')}</span>
+              <span>
+                {browser.i18n.getMessage(
+                  this.state.expressionInput.trim().length === 0
+                    ? 'noExpressionsText'
+                    : 'noSearchExpressionsFound',
+                )}
+              </span>
             }
           />
         </div>
