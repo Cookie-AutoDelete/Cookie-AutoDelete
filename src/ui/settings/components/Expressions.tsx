@@ -18,7 +18,11 @@ import {
   clearExpressionsUI,
   removeListUI,
 } from '../../../redux/Actions';
-import { cadLog, getSetting } from '../../../services/Libs';
+import {
+  cadLog,
+  getMatchedExpressions,
+  getSetting,
+} from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
@@ -511,7 +515,12 @@ class Expressions extends React.Component<ExpressionProps> {
             expressionColumnTitle={browser.i18n.getMessage(
               'domainExpressionsText',
             )}
-            expressions={lists[storeId]}
+            expressions={getMatchedExpressions(
+              lists[storeId],
+              this.state.expressionInput,
+              storeId,
+              true,
+            )}
             storeId={storeId}
             emptyElement={
               <span>{browser.i18n.getMessage('noExpressionsText')}</span>

@@ -13,7 +13,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { globExpressionToRegExp } from '../../../services/Libs';
+import { getMatchedExpressions } from '../../../services/Libs';
 import ExpressionTable from '../../common_components/ExpressionTable';
 
 interface OwnProps {
@@ -22,7 +22,7 @@ interface OwnProps {
 }
 
 interface ReduxState {
-  expressions: Expression[];
+  expressions: ReadonlyArray<Expression>;
 }
 
 const FilteredExpression: React.FunctionComponent<OwnProps & ReduxState> = (
@@ -58,20 +58,8 @@ const FilteredExpression: React.FunctionComponent<OwnProps & ReduxState> = (
   );
 };
 
-const getExpression = (state: State, props: OwnProps) =>
-  state.lists[props.storeId] === undefined ? [] : state.lists[props.storeId];
-
-// Filter the expression list from the current url
-const getMatchedExpressions = (state: State, props: OwnProps) => {
-  const expressions = getExpression(state, props);
-  const url = props.url;
-  return expressions.filter((expression) =>
-    new RegExp(globExpressionToRegExp(expression.expression)).test(url),
-  );
-};
-
 const mapStateToProps = (state: State, props: OwnProps) => ({
-  expressions: getMatchedExpressions(state, props),
+  expressions: getMatchedExpressions(state, props.url, props.storeId),
 });
 
 export default connect(mapStateToProps)(FilteredExpression);

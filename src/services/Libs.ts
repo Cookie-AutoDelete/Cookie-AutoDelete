@@ -11,7 +11,7 @@
  * SOFTWARE.
  */
 
-import ipRegex from 'ip-regex';
+import ipaddr from 'ipaddr.js';
 import shortid from 'shortid';
 
 /* --- CONSTANTS --- */
@@ -138,11 +138,7 @@ export const eventListenerActions = (
 export const extractMainDomain = (domain: string): string => {
   if (domain === '') return '';
   // return itself if it is a local html file or IP Address.
-  if (
-    domain.startsWith('file://') ||
-    ipRegex({ exact: true, includeBoundaries: true }).test(domain)
-  )
-    return domain;
+  if (domain.startsWith('file://') || ipaddr.isValid(domain)) return domain;
 
   // https://en.wikipedia.org/wiki/Second-level_domain
   const secondLvlDomains = [
@@ -332,39 +328,6 @@ export const getAllCookiesForDomain = async (
 };
 
 /**
- * Returns the host name of the url.
- *   - https://en.wikipedia.org/wiki/Cat ==> en.wikipedia.org
- *
- * Local file will return the directory of that file.
- *   - file:///home/user/documents/file.html ==> file:///home/user/documents
- *   - file:///D:/user/documents/file.html ==> file:///D:/user/documents
- */
-export const getHostname = (urlToGetHostName: string | undefined): string => {
-  if (!urlToGetHostName) {
-    return '';
-  }
-  if (urlToGetHostName.startsWith('file:')) {
-    // This assumes the browser supplied us with a valid local file url.
-    // E.g. file:///C:/test.html or file:///home/user/test.html
-    return urlToGetHostName.substring(0, urlToGetHostName.lastIndexOf('/'));
-  }
-  try {
-    // Strip "www." if the URL starts with it.
-    const hostname = new URL(urlToGetHostName).hostname.replace(
-      /^www[a-z0-9]?\./,
-      '',
-    );
-    // Additional check for IPv6 for ipRegex to be happy.
-    if (hostname.startsWith('[') && hostname.endsWith(']')) {
-      return hostname.slice(1, -1);
-    }
-    return hostname;
-  } catch (e) {
-    return '';
-  }
-};
-
-/**
  * Gets the default expression options depending on the list/storeId.
  * If storeId is not default, it will try to get defaults set in default list
  * before using CAD defaults (all checked).
@@ -397,6 +360,147 @@ export const getContainerExpressionDefault = (
       ? getExpression('default') || exp
       : exp;
   return getExpression(storeId) || expDefault;
+};
+
+/**
+ * Returns the host name of the url.
+ *   - https://en.wikipedia.org/wiki/Cat ==> en.wikipedia.org
+ *
+ * Local file will return the directory of that file.
+ *   - file:///home/user/documents/file.html ==> file:///home/user/documents
+ *   - file:///D:/user/documents/file.html ==> file:///D:/user/documents
+ */
+export const getHostname = (urlToGetHostName: string | undefined): string => {
+  if (!urlToGetHostName) {
+    return '';
+  }
+  if (urlToGetHostName.startsWith('file:')) {
+    // This assumes the browser supplied us with a valid local file url.
+    // E.g. file:///C:/test.html or file:///home/user/test.html
+    return urlToGetHostName.substring(0, urlToGetHostName.lastIndexOf('/'));
+  }
+  try {
+    // Strip "www." if the URL starts with it.
+    const hostname = new URL(urlToGetHostName).hostname.replace(
+      /^www[a-z0-9]?\./,
+      '',
+    );
+    // Remove enclosing [ ] from IPv6 for ipaddr parsing
+    if (hostname.startsWith('[') && hostname.endsWith(']')) {
+      return hostname.slice(1, -1);
+    }
+    return hostname;
+  } catch (e) {
+    return '';
+  }
+};
+
+/**
+ * Retrieves all Expressions within a single list/container.
+ * @param state The WebExtension State
+ * @param storeId The storeId/Container to get
+ */
+export const getListSingle = (
+  state: State,
+  storeId: string,
+): ReadonlyArray<Expression> => state.lists[storeId] || [];
+
+/**
+ * Returns all matched Expressions from a single list.
+ * Can pass in either a single list of Expression or the entire State
+ * First checks for IP, then CIDR, then falls back to Regular Expression.
+ * If no input given, return all expressions from that list.
+ * @param stateOrList The WebExtension State or A Single List of Expressions
+ * @param search whether we're searching for a regex or matching
+ * @param input The string for testing
+ * @param storeId The storeId/Container
+ */
+export const getMatchedExpressions = (
+  stateOrList: ReadonlyArray<Expression> | State,
+  input?: string,
+  storeId?: string,
+  search = false,
+): ReadonlyArray<Expression> => {
+  const expressions = Array.isArray(stateOrList)
+    ? (stateOrList as ReadonlyArray<Expression>)
+    : storeId
+    ? getListSingle(stateOrList as State, storeId)
+    : [];
+  if (expressions.length === 0 || !input || input.trim().length == 0)
+    return expressions;
+  // Check if input is a valid IP Address (IPv4 or IPv6) (non-CIDR)
+  // This takes care of IPv4-mapped IPv6 address (converts to IPv4 counterpart)
+  let iip = ipaddr.isValid(input) ? ipaddr.process(input) : undefined;
+  // If initial test passes, do further checks.
+  // This makes sure the IP Address is a full four part decimal.
+  if (
+    iip &&
+    iip.kind() == 'ipv4' &&
+    !ipaddr.IPv4.isValidFourPartDecimal(input)
+  ) {
+    iip = undefined;
+  }
+  return expressions.filter((expression) => {
+    const expe = expression.expression;
+    if (iip) {
+      // Check if expression is a single IP Address (IPv4 or IPv6), non CIDR
+      if (ipaddr.isValid(expe)) {
+        // This takes care of IPv4-mapped IPv6 address (converts to IPv4 counterpart)
+        const eip = ipaddr.process(expe);
+        // Returns false if trying to match IPv4 and IPv6 together.
+        // Putting this through the match function below will throw error.
+        if (iip.kind() !== eip.kind()) return false;
+        // Both kinds match at this point.
+        const bits = (kind = eip.kind()) => {
+          switch (kind) {
+            case 'ipv4':
+              return 32;
+            case 'ipv6':
+              return 128;
+            default:
+              return 0;
+          }
+        };
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore Needed otherwise TS complains about no compatibility in union signatures.
+        return eip.match(iip, bits);
+      } // Not a single IP Address in Expression.
+      // Check for CIDR notation '10.0.0.0/8' or '::/48'
+      const cidrNotation = expe.split('/');
+      // [0] should be IP, [1] should be CIDR range number
+      if (cidrNotation.length === 2) {
+        if (ipaddr.isValid(cidrNotation[0])) {
+          try {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore Needed otherwise TS complains about no compatibility in union signatures.
+            return iip.match(ipaddr.parseCIDR(expe));
+          } catch (e) {
+            // Most likely an attempt to match IPv4 and IPv6 together,
+            // or CIDR is invalid.
+            return false;
+          }
+        } // First part is not an IP.  Fallback to Regexp.
+      } // Expression Slash Array length not 2.  Fallback to Regexp.
+    } // Input not an IP.  Fallback to Regexp
+    // A very loose search.
+    if (search) {
+      const ixp1 = globExpressionToRegExp(input).slice(0, -1).toLowerCase();
+      const exp1 = expe.toLowerCase();
+      const exp2 = exp1.slice(exp1.startsWith('*.') ? 2 : 0);
+      return (
+        new RegExp(globExpressionToRegExp(expe), 'i').test(input) ||
+        new RegExp(globExpressionToRegExp(input), 'i').test(expe) ||
+        new RegExp(ixp1, 'i').test(expe) ||
+        exp1.startsWith(ixp1) ||
+        exp1.startsWith(input) ||
+        exp2.startsWith(input) ||
+        exp2.startsWith(ixp1) ||
+        exp1.endsWith(ixp1) ||
+        exp1.endsWith(input)
+      );
+    }
+    return new RegExp(globExpressionToRegExp(expe)).test(input);
+  });
 };
 
 /**
@@ -461,7 +565,7 @@ export const isAnIP = (url: string | undefined): boolean => {
     return false;
   }
   const hostname = getHostname(url);
-  return ipRegex({ exact: true, includeBoundaries: true }).test(hostname);
+  return ipaddr.isValid(hostname);
 };
 
 /**
@@ -623,18 +727,19 @@ export const prepareCookieDomain = (cookie: browser.cookies.Cookie): string => {
 };
 
 /**
- * Returns the first available matched expression
+ * Returns the first available matched expression.
+ * wrapper for getMatchedExpressions
  */
 export const returnMatchedExpressionObject = (
   state: State,
   cookieStoreId: string,
   hostname: string,
 ): Expression | undefined => {
-  const storeId = getStoreId(state, cookieStoreId);
-  const expressionList = state.lists[storeId] || [];
-  return expressionList.find((expression) =>
-    new RegExp(globExpressionToRegExp(expression.expression)).test(hostname),
-  );
+  return getMatchedExpressions(
+    state,
+    hostname,
+    getStoreId(state, cookieStoreId),
+  )[0];
 };
 
 /**
