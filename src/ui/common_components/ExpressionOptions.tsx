@@ -10,6 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import ipaddr from 'ipaddr.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -111,12 +112,37 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
         (cookie) => cookie.domain === '' && regExp.test(cookie.path),
       );
     } else {
-      cookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(this.props.state, {
-          domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
-          storeId: this.toPublicStoreId(expression.storeId),
-        }),
-      );
+      try {
+        // Check if expression was a CIDR Notation
+        const cidrEXP = ipaddr.parseCIDR(exp);
+        const allCookies = await browser.cookies.getAll(
+          returnOptionalCookieAPIAttributes(
+            this.props.state,
+            { storeId: this.toPublicStoreId(expression.storeId) },
+          ),
+        );
+        cookies = allCookies.filter((cookie) => {
+          try {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore Union types of IPv4 and IPv6 not compatible.
+            return ipaddr.parse(cookie.domain).match(cidrEXP);
+          } catch {
+            // Cookie domain is not an IP Address
+            return false;
+          }
+        });
+      } catch {
+        // Not valid CIDR.  Proceed with default fetch.  Also applies to IP Addresses with no CIDR.
+        cookies = await browser.cookies.getAll(
+          returnOptionalCookieAPIAttributes(
+            this.props.state,
+            {
+              domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
+              storeId: this.toPublicStoreId(expression.storeId),
+            }),
+
+        );
+      }
     }
     this.setState({ cookies });
   }
