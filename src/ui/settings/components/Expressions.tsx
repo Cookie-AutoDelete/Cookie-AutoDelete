@@ -282,7 +282,7 @@ class Expressions extends React.Component<ExpressionProps> {
               if (e.key === 'Enter') {
                 this.addExpressionByInput({
                   expression: this.state.expressionInput,
-                  listType: ListType.WHITE,
+                  listType: e.shiftKey ? ListType.GREY : ListType.WHITE,
                   storeId,
                 });
               }
