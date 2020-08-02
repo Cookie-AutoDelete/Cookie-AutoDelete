@@ -100,3 +100,8 @@ type CADLogItem = Readonly<{
   msg?: string;
   x?: any;
 }>;
+
+declare const enum EventListenerAction {
+  ADD = 'ADD',
+  REMOVE = 'REMOVE',
+}

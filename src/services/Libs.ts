@@ -105,6 +105,32 @@ export const convertVersionToNumber = (version?: string): number => {
 };
 
 /**
+ * Abstract Event Listener call to add/remove with checks.
+ * @param event The event listener
+ * @param listener The callback function to add/check/remove.
+ * @param action The EventListenerAction (add/remove).
+ */
+export const eventListenerActions = (
+  event: EvListener<any>,
+  listener: (...args: any[]) => void,
+  action: EventListenerAction,
+): void => {
+  if (!event) return;
+  switch (action) {
+    case EventListenerAction.ADD:
+      if (!event.hasListener(listener)) {
+        event.addListener(listener);
+      }
+      break;
+    case EventListenerAction.REMOVE:
+      if (event.hasListener(listener)) {
+        event.removeListener(listener);
+      }
+      break;
+  }
+};
+
+/**
  * Extract the main domain from sub domains
  *   - sub.sub.domain.com ==> domain.com
  * Local html directory/files will return itself

@@ -26,6 +26,7 @@ import CookieEvents from './services/CookieEvents';
 import {
   cadLog,
   convertVersionToNumber,
+  eventListenerActions,
   extractMainDomain,
   getSetting,
   siteDataToBrowser,
@@ -35,6 +36,7 @@ import {
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
+import ContextualIdentitiesEvents from './services/ContextualIdentitiesEvents';
 
 let store: Store<State, ReduxAction>;
 let currentSettings: { [setting: string]: Setting };
@@ -73,12 +75,17 @@ const browsingDataCleanup = async (
 const onSettingsChange = async () => {
   const previousSettings = currentSettings;
   currentSettings = store.getState().settings;
-  // Container Mode enabled
+  // Container Mode changes
   if (
-    !previousSettings.contextualIdentities.value &&
+    previousSettings.contextualIdentities.value !==
     currentSettings.contextualIdentities.value
   ) {
-    store.dispatch<any>(cacheCookieStoreIdNames());
+    if (currentSettings.contextualIdentities.value) {
+      ContextualIdentitiesEvents.init();
+      store.dispatch<any>(cacheCookieStoreIdNames());
+    } else {
+      await ContextualIdentitiesEvents.deInit();
+    }
   }
 
   // BrowsingData Settings Check.
@@ -199,10 +206,6 @@ const onStartUp = async () => {
     type: ReduxConstants.ADD_CACHE,
   });
 
-  // Temporary fix until contextualIdentities events land
-  if (getSetting(store.getState(), 'contextualIdentities')) {
-    store.dispatch<any>(cacheCookieStoreIdNames());
-  }
   currentSettings = store.getState().settings;
   store.subscribe(onSettingsChange);
   store.subscribe(saveToStorage);
@@ -227,6 +230,10 @@ const onStartUp = async () => {
 
   if (browser.contextMenus) {
     ContextMenuEvents.menuInit();
+  }
+
+  if (browser.contextualIdentities) {
+    ContextualIdentitiesEvents.init();
   }
   browser.browserAction.setTitle({
     title: `${mf.name} ${mf.version} [READY] (0)`,
@@ -254,9 +261,11 @@ async function onCookiePopupUpdates(changeInfo: {
 
 function handleConnect(p: browser.runtime.Port) {
   if (!p.name || !p.name.startsWith('popupCAD_')) return;
-  if (!browser.cookies.onChanged.hasListener(onCookiePopupUpdates)) {
-    browser.cookies.onChanged.addListener(onCookiePopupUpdates);
-  }
+  eventListenerActions(
+    browser.cookies.onChanged,
+    onCookiePopupUpdates,
+    EventListenerAction.ADD,
+  );
   p.onMessage.addListener((m) => {
     cadLog(
       {
@@ -268,11 +277,12 @@ function handleConnect(p: browser.runtime.Port) {
     );
   });
   p.onDisconnect.addListener((dp: browser.runtime.Port) => {
-    if (
-      cookiePopupPorts.length - 1 === 0 &&
-      browser.cookies.onChanged.hasListener(onCookiePopupUpdates)
-    ) {
-      browser.cookies.onChanged.removeListener(onCookiePopupUpdates);
+    if (cookiePopupPorts.length - 1 === 0) {
+      eventListenerActions(
+        browser.cookies.onChanged,
+        onCookiePopupUpdates,
+        EventListenerAction.REMOVE,
+      );
     }
     if (!dp.name) return;
     const i: number = cookiePopupPorts.findIndex((pp: browser.runtime.Port) => {
