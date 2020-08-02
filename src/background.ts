@@ -111,11 +111,11 @@ const onSettingsChange = async () => {
     }
   }
 
-  if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {
-    await browser.alarms.clear('activeModeAlarm');
-  }
-
+  // Active Mode (Automatic Cleaning) changes
   if (previousSettings.activeMode.value !== currentSettings.activeMode.value) {
+    if (!currentSettings.activeMode.value) {
+      await browser.alarms.clear('activeModeAlarm');
+    }
     await setGlobalIcon(currentSettings.activeMode.value as boolean);
     ContextMenuEvents.updateMenuItemCheckbox(
       ContextMenuEvents.MenuID.ACTIVE_MODE,
@@ -136,13 +136,29 @@ const onSettingsChange = async () => {
 
   // Deprecated Settings adjustments - only for localstorageCleanup<->localStorageCleanup
   if (
+    previousSettings.localStorageCleanup &&
+    currentSettings.localStorageCleanup &&
     previousSettings.localStorageCleanup.value !==
-    currentSettings.localStorageCleanup.value
+      currentSettings.localStorageCleanup.value
   ) {
     store.dispatch({
       payload: {
         name: 'localstorageCleanup',
         value: currentSettings.localStorageCleanup.value as boolean,
+      },
+      type: ReduxConstants.UPDATE_SETTING,
+    });
+  }
+  if (
+    previousSettings.localstorageCleanup &&
+    currentSettings.localstorageCleanup &&
+    previousSettings.localstorageCleanup.value !==
+      currentSettings.localstorageCleanup.value
+  ) {
+    store.dispatch({
+      payload: {
+        name: 'localStorageCleanup',
+        value: currentSettings.localstorageCleanup.value as boolean,
       },
       type: ReduxConstants.UPDATE_SETTING,
     });
