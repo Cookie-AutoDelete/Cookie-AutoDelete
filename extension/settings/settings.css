@@ -21,6 +21,10 @@ input[type='number'] {
   width: 5em;
 }
 
+input[type='number']#delayBeforeClean {
+  width: 7em;
+}
+
 label:hover {
   background-color: #d3d3d3;
   cursor: pointer;
