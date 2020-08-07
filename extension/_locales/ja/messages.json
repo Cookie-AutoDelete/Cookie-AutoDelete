@@ -11,6 +11,20 @@
     "message": "自動クリーニングを有効にする",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "$domains$ の $siteData$ のクリーンアップ処理を呼びだしました",
+    "description": "Invoked cleanup of $siteData$ for: $domains$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
   "addNewExpressionNotification": {
     "message": "クッキーストア $cookieStore$ の下のリスト型 $listType$ に $expression$ を追加します。",
     "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
@@ -44,6 +58,18 @@
   "autoDeleteEnabledText": {
     "message": "自動削除有効",
     "description": "Auto-clean enabled"
+  },
+  "browsingDataWarning": {
+    "message": "警告：以下のサイトデータクリーンアップオプションのいずれかを有効にすると、そのタイプの既存のデータはすべて消去されます。",
+    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
+  },
+  "cacheCleanupText": {
+    "message": "キャッシュのクリーンアップを有効化（Firefox 78 以降、Chrome 74 以降）",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+  },
+  "cacheText": {
+    "message": "キャッシュ",
+    "description": "Cache.  Primarily used in notifications."
   },
   "chromeDebugMode": {
     "message": "「開発者モード」が有効になっていることを確認し、検査ビューの「バックグラウンドページ」をクリックします。",
@@ -88,6 +114,10 @@
   "consoleDebugMode": {
     "message": "コンソールタブをクリックします",
     "description": "Click on the Console Tab.  Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "警告：「コンテナ」タブを有効化したまま、上記のいずれかの閲覧データのクリーンアップをすると、ブラウザー API の制限により、望ましくない副作用が発生する可能性があります。 クッキーを除くサイトデータタイプは、すべてのコンテナのホスト名によって消去されます。",
+    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "手動でのクリーニングメニュー",
@@ -161,9 +191,35 @@
     "message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "createDefaultExpressionOptionsText": {
+    "message": "既定値の「式のオプション」を作成する",
+    "description": "Create Default Expression Options.  Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "現在選択されているコンテナ：$ID$ ( $Name$ )",
+    "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
+  },
   "debugMode": {
     "message": "デバッグモードを有効にする（追加のコンソール出力）",
     "description": "Enable Debug Mode (Additional Console Outputs)"
+  },
+  "defaultText": {
+    "message": "既定値",
+    "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
+  },
+  "defaultContainerText": {
+    "message": "コンテナ無し",
+    "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
     "message": "初期設定に戻す",
@@ -261,6 +317,16 @@
     "message": "グレイリスト",
     "description": "Greylist"
   },
+  "groupExpressionDefaultNotice": {
+    "message": "新しい式の既定値での「式のオプション」を設定する方法をお探しですか？ それ自体が「式のオプション」になるように拡張されています！  開始するには $listExpression$ にアクセスしてください！",
+    "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
+    "placeholders": {
+      "listExpression": {
+        "content": "$1",
+        "example": "List of Expressions <- the translated version"
+      }
+    }
+  },
   "importCoreSettingsFailed": {
     "message": "コア設定のインポートに失敗しました - 不明な設定が見つかりました",
     "description": "Import Core Settings Failed - Found unknown setting"
@@ -285,17 +351,65 @@
     "message": "式のインポート",
     "description": "Import Expressions"
   },
+  "indexedDBCleanupText": {
+    "message": "IndexedDB のクリーンアップを有効化（Firefox 77 以降、Chrome 74 以降）",
+    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+  },
+  "indexedDBText": {
+    "message": "IndexedDB",
+    "description": "IndexedDB.  Primarily used in notifications."
+  },
   "keepAllCookiesText": {
     "message": "すべてのクッキーを維持する",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+  },
+  "keepAllCookiesGreyText": {
+    "message": "再起動するまで、すべてのクッキーを保持する",
+    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepCacheText": {
+    "message": "キャッシュを保持する",
+    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+  },
+  "keepCacheGreyText": {
+    "message": "再起動するまで、キャッシュを保持する",
+    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
   },
   "keepDefaultIcon": {
     "message": "すべてのリストタイプでデフォルトのアイコンを維持する",
     "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
   },
+  "keepIndexedDBText": {
+    "message": "IndexedDB を保持",
+    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+  },
+  "keepIndexedDBGreyText": {
+    "message": "再起動するまで、IndexedDB を保持する",
+    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+  },
   "keepLocalstorageText": {
     "message": "ローカルストレージを維持する",
     "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "再起動するまで、LocalStorage を保持する",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepPluginDataText": {
+    "message": "プラグインデータを保持する",
+    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+  },
+  "keepPluginDataGreyText": {
+    "message": "再起動するまで、プラグインデータを保持する",
+    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepServiceWorkersText": {
+    "message": "サービスワーカーを保持する",
+    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+  },
+  "keepServiceWorkersGreyText": {
+    "message": "再起動するまで、サービスワーカーを保持する",
+    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
   },
   "keepText": {
     "message": "保持する",
@@ -304,6 +418,10 @@
   "listTypeText": {
     "message": "種類のリスト",
     "description": "List Type"
+  },
+  "localStorageCleanupText": {
+    "message": "LocalStorage のクリーンアップを有効化（Firefox 58 以降、Chrome 74 以降）",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+).  Found in CAD Settings."
   },
   "localStorageText": {
     "message": "ローカルストレージ",
@@ -350,6 +468,94 @@
         "example": "5"
       }
     }
+  },
+  "manualCleanSiteDataAll": {
+    "message": "このドメインのすべてを消去する",
+    "description": "Clean All for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataAllDomain": {
+    "message": "$domain$ のすべてのサイトデータを消去する",
+    "description": "Clear all site data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCache": {
+    "message": "このドメインのキャッシュを消去",
+    "description": "Clean Cache for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCacheDomain": {
+    "message": "$domain$ のすべてのキャッシュを消去する",
+    "description": "Clear all Cache for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCookies": {
+    "message": "このドメインのクッキーを消去する",
+    "description": "Clean Cookies for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCookiesDomain": {
+    "message": "$domain$ のすべてのクッキーを消去する",
+    "description": "Clear all Cookies for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataIndexedDB": {
+    "message": "このドメインの IndexedDB を消去する",
+    "description": "Clean IndexedDB for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataIndexedDBDomain": {
+    "message": "$domain$ のすべての IndexedDB を消去する",
+    "description": "Clear all IndexedDB for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataLocalStorage": {
+    "message": "このドメインの LocalStorage を消去する",
+    "description": "Clean LocalStorage for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataLocalStorageDomain": {
+    "message": "$domain$ のすべての LocalStorage を消去する",
+    "description": "Clear all LocalStorage for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataPluginData": {
+    "message": "このドメインのプラグインデータを消去する",
+    "description": "Clean Plugin Data for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataPluginDataDomain": {
+    "message": "$domain$ のすべてのプラグインデータを消去する",
+    "description": "Clear all Plugin Data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataServiceWorkers": {
+    "message": "このドメインのサービスワーカーを消去する",
+    "description": "Clean Service Workers for this domain.  Found in Popup clean dropdown menu."
   },
   "manualCleanSuccess": {
     "message": "$url$ の $siteData$ のクリーンアップした結果です：",
