@@ -465,12 +465,12 @@ export const returnOptionalCookieAPIAttributes = (
   cookieAPIAttributes: Partial<CookiePropertiesCleanup> & {
     [x: string]: any;
   },
-  firstPartyIsolate: boolean,
 ): Partial<CookiePropertiesCleanup> => {
   // Add optional firstPartyDomain attribute
+  // To fetch firstPartyIsolation cookies even if FPI is off,
+  // set firstPartyDomain to null.
   if (
     isFirefox(state.cache) &&
-    firstPartyIsolate &&
     !Object.prototype.hasOwnProperty.call(
       cookieAPIAttributes,
       'firstPartyDomain',
@@ -481,7 +481,8 @@ export const returnOptionalCookieAPIAttributes = (
       firstPartyDomain: undefined,
     };
   }
-  if (!(isFirefox(state.cache) && firstPartyIsolate)) {
+  // Only remove FPI Property if it is NOT firefox.
+  if (!isFirefox(state.cache)) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { firstPartyDomain, ...rest } = cookieAPIAttributes;
     return rest;

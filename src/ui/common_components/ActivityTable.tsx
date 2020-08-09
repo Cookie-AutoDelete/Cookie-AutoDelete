@@ -17,7 +17,6 @@ import { removeActivity } from '../../redux/Actions';
 import {
   cadLog,
   getSetting,
-  isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
   siteDataToBrowser,
   throwErrorNotification,
@@ -135,7 +134,6 @@ const restoreCookies = async (
   const debug = getSetting(state, 'debugMode') as boolean;
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
-  const firstPartyIsolate = await isFirstPartyIsolate();
   cadLog(
     {
       msg: `ActivityTable.restoreCookies:  Restoring Cookies for triggered ActivityLog entry`,
@@ -189,13 +187,9 @@ const restoreCookies = async (
       // and url should already start with https://
       // Only modify cookie names starting with __Host- as it shouldn't have domain.
       const cookieProperties = {
-        ...returnOptionalCookieAPIAttributes(
-          state,
-          {
-            firstPartyDomain,
-          },
-          firstPartyIsolate,
-        ),
+        ...returnOptionalCookieAPIAttributes(state, {
+          firstPartyDomain,
+        }),
         domain: name.startsWith('__Host-') || hostOnly ? undefined : domain,
         expirationDate,
         httpOnly,

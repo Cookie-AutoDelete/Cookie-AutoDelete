@@ -32,7 +32,6 @@ import {
   isAnIP,
   isChrome,
   isFirefoxNotAndroid,
-  isFirstPartyIsolate,
   localFileToRegex,
   parseCookieStoreId,
   returnOptionalCookieAPIAttributes,
@@ -162,17 +161,12 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     const { state } = this.props;
     if (!this.state.tab) return;
     const { cookieStoreId } = this.state.tab;
-    const firstPartyIsolate = await isFirstPartyIsolate();
     const cookies = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(
-        state,
-        {
-          domain: hostname,
-          firstPartyDomain: extractMainDomain(hostname),
-          storeId: cookieStoreId,
-        },
-        firstPartyIsolate,
-      ),
+      returnOptionalCookieAPIAttributes(state, {
+        domain: hostname,
+        firstPartyDomain: extractMainDomain(hostname),
+        storeId: cookieStoreId,
+      }),
     );
     this.setState({
       cookieCount:

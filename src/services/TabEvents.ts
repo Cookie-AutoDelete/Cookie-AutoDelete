@@ -25,7 +25,6 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
-  isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
 } from './Libs';
 import StoreUser from './StoreUser';
@@ -281,17 +280,12 @@ export default class TabEvents extends StoreUser {
       );
       return;
     }
-    const firstPartyIsolate = await isFirstPartyIsolate();
     let cookies: browser.cookies.Cookie[];
     if (hostname.startsWith('file:')) {
       const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          StoreUser.store.getState(),
-          {
-            storeId: tab.cookieStoreId,
-          },
-          firstPartyIsolate,
-        ),
+        returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
+          storeId: tab.cookieStoreId,
+        }),
       );
       const regExp = new RegExp(hostname.slice(7)); // take out file://
       cadLog(
@@ -319,15 +313,11 @@ export default class TabEvents extends StoreUser {
         debug,
       );
       cookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          StoreUser.store.getState(),
-          {
-            domain: hostname,
-            firstPartyDomain: extractMainDomain(hostname),
-            storeId: tab.cookieStoreId,
-          },
-          firstPartyIsolate,
-        ),
+        returnOptionalCookieAPIAttributes(StoreUser.store.getState(), {
+          domain: hostname,
+          firstPartyDomain: extractMainDomain(hostname),
+          storeId: tab.cookieStoreId,
+        }),
       );
     }
     cadLog(
@@ -364,7 +354,6 @@ export default class TabEvents extends StoreUser {
           url: tab.url,
           value: CADCOOKIENAME,
         },
-        firstPartyIsolate,
       );
       await browser.cookies.set({ ...cookiesAttributes, url: tab.url });
       cadLog(

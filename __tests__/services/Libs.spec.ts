@@ -1022,7 +1022,7 @@ describe('Library Functions', () => {
   });
 
   describe('returnOptionalCookieAPIAttributes()', () => {
-    it('should return an object with an undefined firstPartyDomain when firstPartyIsolate is true and firstPartyDomain was not already defined.', () => {
+    it('should return an object with an undefined firstPartyDomain if browser was Firefox and firstPartyDomain was not already defined.', () => {
       const state = {
         ...initialState,
         cache: {
@@ -1036,7 +1036,6 @@ describe('Library Functions', () => {
       const results = returnOptionalCookieAPIAttributes(
         state,
         cookieAPIAttributes,
-        true,
       );
       expect(results).toEqual(
         expect.objectContaining({
@@ -1046,7 +1045,7 @@ describe('Library Functions', () => {
       );
     });
 
-    it('should return an object the same object with a firstPartyDomain if firstPartyIsolate was true', () => {
+    it('should return an object the same object with a firstPartyDomain if browser was firefox and firstPartyDomain was given', () => {
       const state = {
         ...initialState,
         cache: {
@@ -1061,7 +1060,6 @@ describe('Library Functions', () => {
       const results = returnOptionalCookieAPIAttributes(
         state,
         cookieAPIAttributes,
-        true,
       );
       expect(results).toEqual(
         expect.objectContaining({
@@ -1071,30 +1069,7 @@ describe('Library Functions', () => {
       );
     });
 
-    it('should return an object with no firstPartyDomain if firstPartyIsolate was false', () => {
-      const state = {
-        ...initialState,
-        cache: {
-          browserDetect: browserName.Firefox,
-        },
-      };
-      const cookieAPIAttributes = {
-        ...mockCookie,
-        firstPartyDomain: '',
-      };
-      const results = returnOptionalCookieAPIAttributes(
-        state,
-        cookieAPIAttributes,
-        false,
-      );
-      expect(results).toEqual(
-        expect.not.objectContaining({
-          firstPartyDomain: '',
-        }),
-      );
-    });
-
-    it('should return an object with no firstPartyDomain (Browser other than FF) (firstPartyIsolate is false)', () => {
+    it('should return an object with no firstPartyDomain (Browser other than FF)', () => {
       const state = {
         ...initialState,
         cache: {
@@ -1108,13 +1083,8 @@ describe('Library Functions', () => {
       const results = returnOptionalCookieAPIAttributes(
         state,
         cookieAPIAttributes,
-        false,
       );
-      expect(results).toEqual(
-        expect.not.objectContaining({
-          firstPartyDomain: '',
-        }),
-      );
+      expect(results).not.toHaveProperty('firstPartyDomain');
     });
   });
 
