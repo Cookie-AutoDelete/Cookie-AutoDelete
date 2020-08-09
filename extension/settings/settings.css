@@ -17,10 +17,6 @@ input[type='file'] {
   display: none;
 }
 
-input[type='number'] {
-  width: 5em;
-}
-
 label:hover {
   background-color: #d3d3d3;
   cursor: pointer;
