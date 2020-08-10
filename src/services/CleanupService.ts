@@ -291,6 +291,7 @@ export const cleanCookies = async (
       name: cookieProperties.name,
       url: cookieProperties.preparedCookieDomain,
     };
+    // url: "http://domain.com" + cookies[i].path
     cadLog(
       {
         msg:
@@ -299,7 +300,6 @@ export const cleanCookies = async (
       },
       getSetting(state, 'debugMode') as boolean,
     );
-    // url: "http://domain.com" + cookies[i].path
     const promise = browser.cookies.remove(cookieRemove);
     promiseArr.push(promise);
   });
