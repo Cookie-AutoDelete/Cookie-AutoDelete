@@ -120,12 +120,6 @@ describe('TabEvents', () => {
   describe('getAllCookieActions', () => {
     beforeAll(() => {
       when(global.browser.cookies.getAll)
-        .calledWith({ storeId: 'firefox-default' })
-        .mockResolvedValue([
-          testCookie,
-          { ...testCookie, domain: '', path: '/test/' },
-        ] as never);
-      when(global.browser.cookies.getAll)
         .calledWith({ domain: '' })
         .mockResolvedValue([] as never);
       when(global.browser.cookies.getAll)
@@ -148,12 +142,12 @@ describe('TabEvents', () => {
 
     it('should do nothing if url is undefined', async () => {
       await TabEvents.getAllCookieActions({ ...sampleTab, url: undefined });
-      expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
+      expect(spyLib.getAllCookiesForDomain).not.toHaveBeenCalled();
     });
 
     it('should do nothing if url is empty string', async () => {
       await TabEvents.getAllCookieActions({ ...sampleTab, url: '' });
-      expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
+      expect(spyLib.getAllCookiesForDomain).not.toHaveBeenCalled();
     });
 
     it('should do nothing if url is an internal page', async () => {
@@ -162,20 +156,12 @@ describe('TabEvents', () => {
         ...sampleTab,
         url: 'chrome:newtab',
       });
-      expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
+      expect(spyLib.getAllCookiesForDomain).not.toHaveBeenCalled();
     });
 
     it('should do nothing if url is not valid', async () => {
       await TabEvents.getAllCookieActions({ ...sampleTab, url: 'bad' });
       expect(global.browser.cookies.getAll).not.toHaveBeenCalled();
-    });
-
-    it('should work on local files', async () => {
-      await TabEvents.getAllCookieActions({
-        ...sampleTab,
-        url: 'file:///test/file.html',
-      });
-      expect(spyBrowserActions.checkIfProtected.mock.calls[0][2]).toBe(1);
     });
 
     it('should work on regular domains', async () => {
@@ -210,7 +196,7 @@ describe('TabEvents', () => {
       expect(global.browser.cookies.set).toHaveBeenCalledTimes(1);
     });
 
-    it('should create a cookie if clean localstorage was enabled and no cookie was found', async () => {
+    it('should create a cookie if clean localStorage was enabled and no cookie was found', async () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
@@ -246,7 +232,7 @@ describe('TabEvents', () => {
       expect(global.browser.cookies.set).toHaveBeenCalledTimes(1);
     });
 
-    it('should filter out CAD LocalStorage cookie from total cookie count', async () => {
+    it('should filter out CAD browsingDataCleanup cookie from total cookie count', async () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([

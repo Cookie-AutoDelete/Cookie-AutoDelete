@@ -160,7 +160,7 @@ export const getAllCookiesForDomain = async (
   state: State,
   tab: browser.tabs.Tab,
 ): Promise<browser.cookies.Cookie[] | undefined> => {
-  if (!tab.url) return;
+  if (!tab.url || tab.url === '') return;
   if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
   const debug = getSetting(state, 'debugMode') as boolean;
   const partialTabInfo = createPartialTabInfo(tab);

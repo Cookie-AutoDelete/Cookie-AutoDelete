@@ -18,6 +18,7 @@ import {
   convertVersionToNumber,
   createPartialTabInfo,
   extractMainDomain,
+  getAllCookiesForDomain,
   getContainerExpressionDefault,
   getHostname,
   getSetting,
@@ -367,6 +368,196 @@ describe('Library Functions', () => {
 
     it('should return nothing on empty string', () => {
       expect(extractMainDomain('')).toEqual('');
+    });
+  });
+
+  describe('getAllCookiesForDomain()', () => {
+    beforeAll(() => {
+      when(global.browser.cookies.getAll)
+        .calledWith({ domain: expect.any(String), storeId: 'firefox-default' })
+        .mockResolvedValue([] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: expect.any(String),
+          firstPartyDomain: expect.any(String),
+          storeId: 'firefox-default',
+        })
+        .mockResolvedValue([] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({ storeId: 'firefox-default' })
+        .mockResolvedValue([
+          testCookie,
+          { ...testCookie, domain: '', path: '/test/' },
+        ] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({ storeId: 'firefox-default', firstPartyDomain: undefined })
+        .mockResolvedValue([
+          testCookie,
+          { ...testCookie, domain: '', path: '/test/' },
+        ] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({ domain: '' })
+        .mockResolvedValue([] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({ domain: 'domain.com', storeId: 'firefox-default' })
+        .mockResolvedValue([testCookie] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: '10.1.1.1',
+          firstPartyDomain: '10.1.1.1',
+          storeId: 'firefox-default',
+        })
+        .mockResolvedValue([testCookie] as never);
+    });
+
+    const testCookie: browser.cookies.Cookie = {
+      domain: 'domain.com',
+      hostOnly: true,
+      httpOnly: true,
+      name: 'blah',
+      path: '/',
+      sameSite: 'no_restriction',
+      secure: true,
+      session: true,
+      storeId: 'firefox-default',
+      value: 'test value',
+    };
+
+    const sampleTab: browser.tabs.Tab = {
+      active: true,
+      cookieStoreId: 'firefox-default',
+      discarded: false,
+      hidden: false,
+      highlighted: false,
+      incognito: false,
+      index: 0,
+      isArticle: false,
+      isInReaderMode: false,
+      lastAccessed: 12345678,
+      pinned: false,
+      selected: true,
+      url: 'https://www.example.com',
+      windowId: 1,
+    };
+
+    const chromeState: State = {
+      ...initialState,
+      cache: {
+        browserDetect: browserName.Chrome,
+      },
+    };
+
+    const firefoxState: State = {
+      ...initialState,
+      cache: {
+        browserDetect: browserName.Firefox,
+      },
+    };
+
+    it('should do nothing if url is an internal page', async () => {
+      const result = await getAllCookiesForDomain(chromeState, {
+        ...sampleTab,
+        url: 'about:home',
+      });
+      const result2 = await getAllCookiesForDomain(chromeState, {
+        ...sampleTab,
+        url: 'chrome:newtab',
+      });
+      expect(result).toBeUndefined();
+      expect(result2).toBeUndefined();
+    });
+
+    it('should do nothing if url is empty string', async () => {
+      const result = await getAllCookiesForDomain(chromeState, {
+        ...sampleTab,
+        url: '',
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it('should do nothing if url is undefined', async () => {
+      const result = await getAllCookiesForDomain(chromeState, {
+        ...sampleTab,
+        url: undefined,
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it('should do nothing if url is not valid', async () => {
+      const result = await getAllCookiesForDomain(firefoxState, {
+        ...sampleTab,
+        url: 'bad',
+      });
+      expect(result).toBeUndefined();
+    });
+
+    // Test in Chrome, though both FF and Chrome should return same thing.
+    it('should work on local files', async () => {
+      const result = await getAllCookiesForDomain(chromeState, {
+        ...sampleTab,
+        url: 'file:///test/file.html',
+      });
+      expect(result).toStrictEqual(
+        expect.arrayContaining([{ ...testCookie, domain: '', path: '/test/' }]),
+      );
+    });
+
+    it('should fetch additional FPI Cookies (use_site enabled) as needed', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: 'domain.com',
+          firstPartyDomain: 'domain.com',
+          storeId: 'firefox-default',
+        })
+        .mockResolvedValue([{ ...testCookie, name: 'old FPI' }] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: 'domain.com',
+          firstPartyDomain: '(https,domain.com)',
+          storeId: 'firefox-default',
+        })
+        .mockResolvedValue([{ ...testCookie, name: 'FPI_use_case' }] as never);
+      const result = await getAllCookiesForDomain(firefoxState, {
+        ...sampleTab,
+        url: 'https://domain.com',
+      });
+      expect(result).toStrictEqual([
+        { ...testCookie, name: 'old FPI' },
+        { ...testCookie, name: 'FPI_use_case' },
+      ]);
+    });
+    it('should fetch additional FPI Cookies (use_site enabled) with a port in URL as needed', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: '10.1.1.1',
+          firstPartyDomain: '10.1.1.1',
+          storeId: 'firefox-default',
+        })
+        .mockResolvedValue([testCookie] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: '10.1.1.1',
+          firstPartyDomain: '(https,10.1.1.1)',
+          storeId: 'firefox-default',
+        })
+        .mockResolvedValue([] as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: '10.1.1.1',
+          firstPartyDomain: '(https,10.1.1.1,8080)',
+          storeId: 'firefox-default',
+        })
+        .mockResolvedValue([
+          { ...testCookie, name: 'FPI_usecase_port' },
+        ] as never);
+      const result = await getAllCookiesForDomain(firefoxState, {
+        ...sampleTab,
+        url: 'https://10.1.1.1:8080',
+      });
+      expect(result).toStrictEqual([
+        testCookie,
+        { ...testCookie, name: 'FPI_usecase_port' },
+      ]);
     });
   });
 
