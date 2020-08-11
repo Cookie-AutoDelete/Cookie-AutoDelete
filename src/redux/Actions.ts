@@ -352,19 +352,22 @@ export const cookieCleanup: ActionCreator<ThunkAction<
   } = cachedResults as ActivityLog;
 
   // Increment the count
-  if (recentlyCleaned !== 0 && getSetting(getState(), 'statLogging')) {
+  if (
+    recentlyCleaned !== 0 &&
+    getSetting(getState(), `${SettingID.STAT_LOGGING}`)
+  ) {
     dispatch(incrementCookieDeletedCounter(recentlyCleaned));
   }
 
   if (
     (recentlyCleaned !== 0 || siteDataCleaned) &&
-    getSetting(getState(), 'statLogging')
+    getSetting(getState(), `${SettingID.STAT_LOGGING}`)
   ) {
     dispatch(addActivity(cachedResults));
   }
 
   // Show notifications after cleanup
-  if (getSetting(getState(), 'showNotificationAfterCleanup')) {
+  if (getSetting(getState(), `${SettingID.NOTIFY_AUTO}`)) {
     if (setOfDeletedDomainCookies.length > 0) {
       // Cookie Notification
       const notifyMessage = browser.i18n.getMessage('notificationContent', [
@@ -372,7 +375,10 @@ export const cookieCleanup: ActionCreator<ThunkAction<
         setOfDeletedDomainCookies.join(', '),
       ]);
       showNotification({
-        duration: getSetting(getState(), 'notificationOnScreen') as number,
+        duration: getSetting(
+          getState(),
+          `${SettingID.NOTIFY_DURATION}`,
+        ) as number,
         msg: notifyMessage,
         title: browser.i18n.getMessage('notificationTitle'),
       });
@@ -387,7 +393,10 @@ export const cookieCleanup: ActionCreator<ThunkAction<
       }
       if (domainsAll.size > 0) {
         await showNotification({
-          duration: getSetting(getState(), 'notificationOnScreen') as number,
+          duration: getSetting(
+            getState(),
+            `${SettingID.NOTIFY_DURATION}`,
+          ) as number,
           msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
             browser.i18n.getMessage('siteDataText'),
             Array.from(domainsAll).join(', '),

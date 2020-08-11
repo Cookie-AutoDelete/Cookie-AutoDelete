@@ -527,8 +527,11 @@ const mapStateToProps = (state: State) => {
   const { cache, lists } = state;
   return {
     bName: cache.browserDetect || (browserDetect() as browserName),
-    contextualIdentities: getSetting(state, 'contextualIdentities') as boolean,
-    debug: getSetting(state, 'debugMode') as boolean,
+    contextualIdentities: getSetting(
+      state,
+      `${SettingID.CONTEXTUAL_IDENTITIES}`,
+    ) as boolean,
+    debug: getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean,
     lists,
   };
 };

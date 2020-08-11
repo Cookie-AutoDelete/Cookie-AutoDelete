@@ -21,7 +21,10 @@ export default class ContextualIdentitiesEvents extends StoreUser {
   public static init(): void {
     if (!browser.contextualIdentities) return;
     if (
-      !getSetting(StoreUser.store.getState(), 'contextualIdentities') as boolean
+      !getSetting(
+        StoreUser.store.getState(),
+        `${SettingID.CONTEXTUAL_IDENTITIES}`,
+      ) as boolean
     )
       return;
     if (ContextualIdentitiesEvents.isInitialized) return;
@@ -47,7 +50,10 @@ export default class ContextualIdentitiesEvents extends StoreUser {
       {
         msg: `ContextualIdentitiesEvents.deInit:  Container Events have been added.`,
       },
-      getSetting(StoreUser.store.getState(), 'debugMode') as boolean,
+      getSetting(
+        StoreUser.store.getState(),
+        `${SettingID.DEBUG_MODE}`,
+      ) as boolean,
     );
   }
 
@@ -86,7 +92,10 @@ export default class ContextualIdentitiesEvents extends StoreUser {
       {
         msg: `ContextualIdentitiesEvents.deInit:  Container Events have been removed.`,
       },
-      getSetting(StoreUser.store.getState(), 'debugMode') as boolean,
+      getSetting(
+        StoreUser.store.getState(),
+        `${SettingID.DEBUG_MODE}`,
+      ) as boolean,
     );
   }
 

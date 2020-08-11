@@ -79,6 +79,36 @@ type Setting = Readonly<{
   value: boolean | number | string;
 }>;
 
+declare const enum SettingID {
+  ACTIVE_MODE = 'activeMode',
+  CLEAN_DELAY = 'delayBeforeClean',
+  CLEAN_DISCARDED = 'discardedCleanup',
+  CLEAN_DOMAIN_CHANGE = 'domainChangeCleanup',
+  CLEAN_EXPIRED = 'cleanExpiredCookies',
+  CLEAN_OPEN_TABS_STARTUP = 'cleanCookiesFromOpenTabsOnStartup',
+  CLEANUP_CACHE = 'cacheCleanup',
+  CLEANUP_INDEXEDDB = 'indexedDBCleanup',
+  CLEANUP_LOCALSTORAGE = 'localStorageCleanup',
+  CLEANUP_LOCALSTORAGE_OLD = 'localstorageCleanup',
+  CLEANUP_PLUGIN_DATA = 'pluginDataCleanup',
+  CLEANUP_SERVICE_WORKERS = 'serviceWorkersCleanup',
+  CONTEXT_MENUS = 'contextMenus',
+  CONTEXTUAL_IDENTITIES = 'contextualIdentities',
+  DEBUG_MODE = 'debugMode',
+  ENABLE_GREYLIST = 'enableGreyListCleanup',
+  ENABLE_NEW_POPUP = 'enableNewVersionPopup',
+  KEEP_DEFAULT_ICON = 'keepDefaultIcon',
+  NOTIFY_AUTO = 'showNotificationAfterCleanup',
+  NOTIFY_MANUAL = 'manualNotifications',
+  NOTIFY_DURATION = 'notificationOnScreen',
+  NUM_COOKIES_ICON = 'showNumOfCookiesInIcon',
+  OLD_GREY_CLEAN_LOCALSTORAGE = 'greyCleanLocalstorage',
+  OLD_WHITE_CLEAN_LOCALSTORAGE = 'whiteCleanLocalstorage',
+  SIZE_POPUP = 'sizePopup',
+  SIZE_SETTING = 'sizeSetting',
+  STAT_LOGGING = 'statLogging',
+}
+
 declare const enum ListType {
   WHITE = 'WHITE',
   GREY = 'GREY',

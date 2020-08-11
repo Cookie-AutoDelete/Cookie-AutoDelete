@@ -116,6 +116,7 @@ export const eventListenerActions = (
   action: EventListenerAction,
 ): void => {
   if (!event) return;
+  if (!event.hasListener) return;
   switch (action) {
     case EventListenerAction.ADD:
       if (!event.hasListener(listener)) {
@@ -393,7 +394,8 @@ export const getContainerExpressionDefault = (
     storeId: '',
   };
   const expDefault =
-    storeId !== 'default' && getSetting(state, 'contextualIdentities')
+    storeId !== 'default' &&
+    getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`)
       ? getExpression('default') || exp
       : exp;
   return getExpression(storeId) || expDefault;
@@ -413,7 +415,7 @@ export const getSetting = (
 export const getStoreId = (state: State, storeId: string): string => {
   if (
     storeId === 'firefox-default' ||
-    (!getSetting(state, 'contextualIdentities') &&
+    (!getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`) &&
       storeId !== 'firefox-private' &&
       isFirefox(state.cache)) ||
     (isChrome(state.cache) && storeId === '0') ||

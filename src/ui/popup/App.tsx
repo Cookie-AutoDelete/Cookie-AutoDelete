@@ -547,7 +547,10 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
 
 const mapStateToProps = (state: State) => {
   return {
-    contextualIdentities: getSetting(state, 'contextualIdentities') as boolean,
+    contextualIdentities: getSetting(
+      state,
+      `${SettingID.CONTEXTUAL_IDENTITIES}`,
+    ) as boolean,
     state,
   };
 };

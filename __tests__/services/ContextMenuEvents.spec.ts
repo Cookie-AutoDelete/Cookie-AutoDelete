@@ -134,7 +134,7 @@ describe('ContextMenuEvents', () => {
       global.browser.contextMenus = jestContextMenus;
     });
     it('should do nothing if contextMenus setting is disabled', () => {
-      TestStore.changeSetting('contextMenus', false);
+      TestStore.changeSetting(`${SettingID.CONTEXT_MENUS}`, false);
       ContextMenuEvents.menuInit();
       expect(global.browser.contextMenus.create).not.toHaveBeenCalled();
     });
@@ -142,7 +142,7 @@ describe('ContextMenuEvents', () => {
       when(global.browser.contextMenus.onClicked.hasListener)
         .calledWith(expect.any(Function))
         .mockReturnValue(false);
-      TestStore.changeSetting('contextMenus', true);
+      TestStore.changeSetting(`${SettingID.CONTEXT_MENUS}`, true);
       ContextMenuEvents.menuInit();
       expect(TestContextMenuEvents.getIsInitialized()).toBe(true);
       expect(global.browser.contextMenus.create).toHaveBeenCalledTimes(35);
@@ -154,7 +154,7 @@ describe('ContextMenuEvents', () => {
       when(global.browser.contextMenus.onClicked.hasListener)
         .calledWith(expect.any(Function))
         .mockReturnValue(true);
-      TestStore.changeSetting('contextMenus', true);
+      TestStore.changeSetting(`${SettingID.CONTEXT_MENUS}`, true);
       TestContextMenuEvents.setIsInitialized(false);
       ContextMenuEvents.menuInit();
       expect(
@@ -162,7 +162,7 @@ describe('ContextMenuEvents', () => {
       ).not.toHaveBeenCalled();
     });
     it('should do nothing if contextMenus setting is enabled and menus were already created', () => {
-      TestStore.changeSetting('contextMenus', true);
+      TestStore.changeSetting(`${SettingID.CONTEXT_MENUS}`, true);
       TestContextMenuEvents.setIsInitialized(true);
       ContextMenuEvents.menuInit();
       expect(global.browser.contextMenus.create).not.toHaveBeenCalled();
@@ -504,7 +504,7 @@ describe('ContextMenuEvents', () => {
       );
     });
     it('Trigger SELECT_ADD_GREY_DOMAIN and contextualIdentities was enabled', () => {
-      TestStore.changeSetting('contextualIdentities', true);
+      TestStore.changeSetting(`${SettingID.CONTEXTUAL_IDENTITIES}`, true);
       TestStore.addCache({
         key: 'firefox-container-1',
         value: 'Personal',
@@ -523,7 +523,7 @@ describe('ContextMenuEvents', () => {
       );
     });
     it('Trigger SELECT_ADD_GREY_DOMAIN and contextualIdentities was enabled with no matching container', () => {
-      TestStore.changeSetting('contextualIdentities', true);
+      TestStore.changeSetting(`${SettingID.CONTEXTUAL_IDENTITIES}`, true);
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
@@ -645,7 +645,7 @@ describe('ContextMenuEvents', () => {
         sampleTab,
       );
       expect(spyActions.updateSetting).toHaveBeenCalledWith({
-        name: 'activeMode',
+        name: `${SettingID.ACTIVE_MODE}`,
         value: true,
       });
     });
