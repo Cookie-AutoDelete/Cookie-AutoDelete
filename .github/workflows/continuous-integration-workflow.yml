@@ -4,7 +4,7 @@ on:
   push:
     branches-ignore:
       - '_archived__**'
-  pull_request:
+  pull_request_target:
     branches-ignore:
       - '_archived__**'
     paths-ignore:
@@ -111,7 +111,7 @@ jobs:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: Create PR Build Comment
-        if: (github.event_name == 'pull_request') && (github.event.pull_request.head.repo.full_name == github.repository)
+        if: (github.event_name == 'pull_request')
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           issue-number: ${{ github.event.pull_request.number }}
