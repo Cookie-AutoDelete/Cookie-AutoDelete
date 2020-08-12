@@ -25,9 +25,11 @@ jobs:
           GH_GH: ${{ toJson(github) }}
           GH_SHA: ${{ github.event.after }}
           PR_FIRSTSHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUM: ${{ github.event.pull_request.number }}
         run: |
           echo "Run ID    : $GITHUB_RUN_ID"
           echo "Event Name: $GITHUB_EVENT_NAME"
+          echo "PR_NUM    : $PR_NUM"
           EXP_REF="ds\/(.*)$"
           if [[ $GITHUB_REF =~ $EXP_REF ]]; then
             GH_REF=${BASH_REMATCH[1]}
@@ -83,7 +85,7 @@ jobs:
       - name: Codecov.io Coverage upload
         uses: codecov/codecov-action@v1
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           file: ./coverage/*
           token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
       - name: Coveralls.io Coverage Upload
@@ -91,7 +93,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Extract zip builds for individual artifact upload
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         id: extbuilds
         run: |
           for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
@@ -99,19 +101,19 @@ jobs:
           echo "::set-output name=crdir::$(ls -d *Chrome)"
         working-directory: ./builds
       - name: Upload Artifact for Mozilla Firefox Build
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.ffdir }}
           path: builds/${{ steps.extbuilds.outputs.ffdir }}
       - name: Upload Artifact for Google Chrome Build
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: Create PR Build Comment
-        if: (github.event_name == 'pull_request')
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         uses: peter-evans/create-or-update-comment@v1.4.2
         with:
           issue-number: ${{ github.event.pull_request.number }}
