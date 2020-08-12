@@ -89,10 +89,10 @@ jobs:
           file: ./coverage/*
           token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
       - name: Codecov.io Coverage Alternative Upload
-        if: failure() && github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
+        if: failure() && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
         env:
           PR_NUM: ${{ github.event.pull_request.number }}
-        run: bash <(curl -s https://codecov.io/bash)> -v -e PR_NUM -f ./coverage/* -P $PR_NUM -n  -F
+        run: bash ./.github/codecov_alt.sh $GITHUB_EVENT_PATH
       - name: Coveralls.io Coverage Upload
         uses: coverallsapp/github-action@v1.1.1
         with:
