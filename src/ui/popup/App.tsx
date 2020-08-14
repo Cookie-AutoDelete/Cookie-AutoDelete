@@ -27,15 +27,14 @@ import {
 import {
   CADCOOKIENAME,
   extractMainDomain,
+  getAllCookiesForDomain,
   getHostname,
   getSetting,
   isAnIP,
   isChrome,
   isFirefoxNotAndroid,
-  isFirstPartyIsolate,
   localFileToRegex,
   parseCookieStoreId,
-  returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
 import { FilterOptions } from '../../typings/Enums';
 import { ReduxAction } from '../../typings/ReduxConstants';
@@ -158,26 +157,17 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
     return result;
   }
 
-  public async setPopupCookieCount(hostname: string) {
+  public async setPopupCookieCount() {
     const { state } = this.props;
-    if (!this.state.tab) return;
-    const { cookieStoreId } = this.state.tab;
-    const firstPartyIsolate = await isFirstPartyIsolate();
-    const cookies = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(
-        state,
-        {
-          domain: hostname,
-          firstPartyDomain: extractMainDomain(hostname),
-          storeId: cookieStoreId,
-        },
-        firstPartyIsolate,
-      ),
-    );
+    const { tab } = this.state;
+    if (!tab || !tab.url) return;
+    const cookies = await getAllCookiesForDomain(state, tab);
+
     this.setState({
-      cookieCount:
-        cookies.length -
-        cookies.filter((cookie) => cookie.name === CADCOOKIENAME).length,
+      cookieCount: cookies
+        ? cookies.length -
+          cookies.filter((cookie) => cookie.name === CADCOOKIENAME).length
+        : 0,
     });
   }
 
@@ -212,7 +202,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
         this.port.onMessage.addListener((m) => {
           const msg = m as CookieCountMsg;
           if (msg.cookieUpdated !== undefined && msg.cookieUpdated) {
-            this.setPopupCookieCount(hostname);
+            this.setPopupCookieCount();
           }
         });
         this.port.onDisconnect.addListener((p) => {

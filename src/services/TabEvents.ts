@@ -22,10 +22,10 @@ import {
   cadLog,
   createPartialTabInfo,
   extractMainDomain,
+  getAllCookiesForDomain,
   getHostname,
   getSetting,
   isAWebpage,
-  isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
 } from './Libs';
 import StoreUser from './StoreUser';
@@ -269,79 +269,22 @@ export default class TabEvents extends StoreUser {
       'debugMode',
     ) as boolean;
     const partialTabInfo = createPartialTabInfo(tab);
-    const hostname = getHostname(tab.url);
-    if (hostname === '') {
+    const cookies = await getAllCookiesForDomain(
+      StoreUser.store.getState(),
+      tab,
+    );
+
+    if (!cookies) {
       cadLog(
         {
           msg:
-            'TabEvents.getAllCookieActions: hostname parsed empty for tab url.  Skipping Cookie Actions.',
-          x: { partialTabInfo, hostname },
+            'TabEvents.getAllCookieActions: Libs.getAllCookiesForDomain returned undefined.  Skipping Cookie Actions.',
+          x: { partialTabInfo },
         },
         debug,
       );
       return;
     }
-    const firstPartyIsolate = await isFirstPartyIsolate();
-    let cookies: browser.cookies.Cookie[];
-    if (hostname.startsWith('file:')) {
-      const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          StoreUser.store.getState(),
-          {
-            storeId: tab.cookieStoreId,
-          },
-          firstPartyIsolate,
-        ),
-      );
-      const regExp = new RegExp(hostname.slice(7)); // take out file://
-      cadLog(
-        {
-          msg:
-            'TabEvents.getAllCookieActions:  Local File Regex to test on cookie.path',
-          x: { partialTabInfo, hostname, regExp: regExp.toString() },
-        },
-        debug,
-      );
-      cookies = allCookies.filter(
-        (cookie) => cookie.domain === '' && regExp.test(cookie.path),
-      );
-    } else {
-      cadLog(
-        {
-          msg:
-            'TabEvents.getAllCookieActions:  browser.cookies.getAll for domain.',
-          x: {
-            partialTabInfo,
-            domain: hostname,
-            firstPartyDomain: extractMainDomain(hostname),
-          },
-        },
-        debug,
-      );
-      cookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          StoreUser.store.getState(),
-          {
-            domain: hostname,
-            firstPartyDomain: extractMainDomain(hostname),
-            storeId: tab.cookieStoreId,
-          },
-          firstPartyIsolate,
-        ),
-      );
-    }
-    cadLog(
-      {
-        msg: 'TabEvents.getAllCookieActions:  Filtered Cookie Count',
-        x: {
-          partialTabInfo,
-          tabURL: tab.url,
-          hostname,
-          cookieCount: cookies.length,
-        },
-      },
-      debug,
-    );
 
     if (
       cookies.length === 0 &&
@@ -364,7 +307,6 @@ export default class TabEvents extends StoreUser {
           url: tab.url,
           value: CADCOOKIENAME,
         },
-        firstPartyIsolate,
       );
       await browser.cookies.set({ ...cookiesAttributes, url: tab.url });
       cadLog(
@@ -414,7 +356,7 @@ export default class TabEvents extends StoreUser {
       showNumberOfCookiesInIcon(tab, cookieLength);
     }
   };
-  // Add a delay to prevent multiple spawns of the localstorage cookie
+  // Add a delay to prevent multiple spawns of the browsingDataCleanup cookie
   protected static onTabUpdateDelay = false;
 
   protected static tabToDomain: { [key: number]: string } = {};
