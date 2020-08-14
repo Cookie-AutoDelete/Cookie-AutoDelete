@@ -393,6 +393,20 @@
     "message": "Geen",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Sommige site-gegevens, waaronder $Num$ Cookie(s), verwijderd van: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Meldingen uitgeschakeld",
     "description": "Notification disabled"
@@ -408,6 +422,10 @@
   "notifyCookieCleanupDelayText": {
     "message": "Duur voor meldingen",
     "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Melding weergeven na automatisch opruimen",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Oudere uitgaveopmerkingen kunnen online worden bekeken op",
