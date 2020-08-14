@@ -245,7 +245,7 @@ describe('CleanupService', () => {
     });
 
     it('should be called 5 times for cookies.remove', async () => {
-      await cleanCookies(initialState, removeCookies, false);
+      await cleanCookies(initialState, removeCookies);
       expect(global.browser.cookies.remove).toBeCalledTimes(5);
     });
 
@@ -254,9 +254,7 @@ describe('CleanupService', () => {
         .calledWith(expect.any(Object))
         .mockResolvedValueOnce(true as never)
         .mockRejectedValueOnce(new Error('test') as never);
-      await expect(
-        cleanCookies(initialState, removeCookies, false),
-      ).rejects.toThrow();
+      await expect(cleanCookies(initialState, removeCookies)).rejects.toThrow();
       expect(global.browser.cookies.remove.mock.results[2].value).toEqual(
         undefined,
       );

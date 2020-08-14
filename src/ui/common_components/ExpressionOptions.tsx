@@ -19,7 +19,6 @@ import {
   isChrome,
   isFirefox,
   isFirefoxNotAndroid,
-  isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
@@ -83,18 +82,13 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public async getAllCookies() {
     const { expression } = this.props;
     const exp = expression.expression;
-    const firstPartyIsolate = await isFirstPartyIsolate();
     let cookies: browser.cookies.CookieProperties[];
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          this.props.state,
-          {
-            storeId: this.toPublicStoreId(expression.storeId),
-          },
-          firstPartyIsolate,
-        ),
+        returnOptionalCookieAPIAttributes(this.props.state, {
+          storeId: this.toPublicStoreId(expression.storeId),
+        }),
       );
       if (exp.slice(1).startsWith('file:')) {
         // Regex with Local Directories
@@ -108,13 +102,9 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       }
     } else if (exp.startsWith('file:')) {
       const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          this.props.state,
-          {
-            storeId: this.toPublicStoreId(expression.storeId),
-          },
-          firstPartyIsolate,
-        ),
+        returnOptionalCookieAPIAttributes(this.props.state, {
+          storeId: this.toPublicStoreId(expression.storeId),
+        }),
       );
       const regExp = new RegExp(exp.slice(7)); // take out file://
       cookies = allCookies.filter(
@@ -122,14 +112,10 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       );
     } else {
       cookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          this.props.state,
-          {
-            domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
-            storeId: this.toPublicStoreId(expression.storeId),
-          },
-          firstPartyIsolate,
-        ),
+        returnOptionalCookieAPIAttributes(this.props.state, {
+          domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
+          storeId: this.toPublicStoreId(expression.storeId),
+        }),
       );
     }
     this.setState({ cookies });

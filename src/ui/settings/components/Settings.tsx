@@ -297,7 +297,7 @@ class Settings extends React.Component<SettingProps> {
             <input
               id="delayBeforeClean"
               type="number"
-              className="form-control"
+              className="form-control w-auto"
               style={styles.inlineNumberInput}
               onChange={(e) => {
                 const eValue = Number.parseInt(e.target.value, 10);
@@ -311,6 +311,7 @@ class Settings extends React.Component<SettingProps> {
               value={settings.delayBeforeClean.value as number}
               min="1"
               max="2147483"
+              size={10}
             />
             <label htmlFor="delayBeforeClean">
               {browser.i18n.getMessage('secondsText')}{' '}

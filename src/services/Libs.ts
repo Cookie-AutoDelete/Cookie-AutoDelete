@@ -152,6 +152,134 @@ export const extractMainDomain = (domain: string): string => {
 };
 
 /**
+ * This fetches all (first party) cookies for a given tab domain
+ * @param state The webextension state
+ * @param tab The tab to fetch all (first party) cookies for.
+ */
+export const getAllCookiesForDomain = async (
+  state: State,
+  tab: browser.tabs.Tab,
+): Promise<browser.cookies.Cookie[] | undefined> => {
+  if (!tab.url || tab.url === '') return;
+  if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
+  const debug = getSetting(state, 'debugMode') as boolean;
+  const partialTabInfo = createPartialTabInfo(tab);
+  const { cookieStoreId, url } = tab;
+  const hostname = getHostname(url);
+  if (hostname === '') {
+    cadLog(
+      {
+        msg: 'Libs.getAllCookiesForDomain:  hostname parsed empty for tab url.',
+        x: { partialTabInfo, hostname },
+      },
+      debug,
+    );
+    return;
+  }
+  let cookies: browser.cookies.Cookie[] = [];
+  const mainDomain = extractMainDomain(hostname);
+
+  if (hostname.startsWith('file:')) {
+    const allCookies = await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(state, {
+        storeId: cookieStoreId,
+      }),
+    );
+    const regExp = new RegExp(hostname.slice(7)); // take out 'file://'
+    cadLog(
+      {
+        msg:
+          'Libs.getAllCookiesForDomain:  Local File Regex to rest on cookie.path',
+        x: { partialTabInfo, hostname, regExp: regExp.toString() },
+      },
+      debug,
+    );
+    cookies = allCookies.filter((c) => c.domain === '' && regExp.test(c.path));
+  } else {
+    cadLog(
+      {
+        msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain.',
+        x: {
+          partialTabInfo,
+          domain: hostname,
+          firstPartyDomain: mainDomain,
+        },
+      },
+      debug,
+    );
+    cookies = await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(state, {
+        domain: hostname,
+        firstPartyDomain: mainDomain,
+        storeId: cookieStoreId,
+      }),
+    );
+  }
+  cadLog(
+    {
+      msg: 'Libs.getAllCookiesForDomain:  Filtered Cookie Count',
+      x: {
+        partialTabInfo,
+        tabURL: tab.url,
+        hostname,
+        cookieCount: cookies.length,
+      },
+    },
+    debug,
+  );
+
+  if (!isFirefox(state.cache)) return cookies;
+  // Firefox only - try to get additional firstParty Isolation cookies
+  // if firstparty.isolation.use_site was enabled, to which we don't know
+  const siteURL = new URL(url);
+  const proto = siteURL.protocol.replace(':', '');
+  // firstPartyDomain = (https,domain.com)
+  cadLog(
+    {
+      msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain.',
+      x: {
+        partialTabInfo,
+        domain: hostname,
+        firstPartyDomain: `(${proto},${mainDomain})`,
+      },
+    },
+    debug,
+  );
+  const cookiesFPIUseSite = await browser.cookies.getAll(
+    returnOptionalCookieAPIAttributes(state, {
+      domain: hostname,
+      firstPartyDomain: `(${proto},${mainDomain})`,
+      storeId: cookieStoreId,
+    }),
+  );
+  cookiesFPIUseSite.forEach((c) => cookies.push(c));
+  // firstPartyDomain = (https,domain.com,2048)
+  // Should only be used when domain is an IP, but just in case.
+  if (siteURL.port) {
+    cadLog(
+      {
+        msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain.',
+        x: {
+          partialTabInfo,
+          domain: hostname,
+          firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
+        },
+      },
+      debug,
+    );
+    const cookiesFPIUseSitePort = await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(state, {
+        domain: hostname,
+        firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
+        storeId: cookieStoreId,
+      }),
+    );
+    cookiesFPIUseSitePort.forEach((c) => cookies.push(c));
+  }
+  return cookies;
+};
+
+/**
  * Returns the host name of the url.
  *   - https://en.wikipedia.org/wiki/Cat ==> en.wikipedia.org
  *
@@ -465,12 +593,12 @@ export const returnOptionalCookieAPIAttributes = (
   cookieAPIAttributes: Partial<CookiePropertiesCleanup> & {
     [x: string]: any;
   },
-  firstPartyIsolate: boolean,
 ): Partial<CookiePropertiesCleanup> => {
   // Add optional firstPartyDomain attribute
+  // To fetch firstPartyIsolation cookies even if FPI is off,
+  // set firstPartyDomain to null.
   if (
     isFirefox(state.cache) &&
-    firstPartyIsolate &&
     !Object.prototype.hasOwnProperty.call(
       cookieAPIAttributes,
       'firstPartyDomain',
@@ -481,7 +609,8 @@ export const returnOptionalCookieAPIAttributes = (
       firstPartyDomain: undefined,
     };
   }
-  if (!(isFirefox(state.cache) && firstPartyIsolate)) {
+  // Only remove FPI Property if it is NOT firefox.
+  if (!isFirefox(state.cache)) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { firstPartyDomain, ...rest } = cookieAPIAttributes;
     return rest;

@@ -20,7 +20,6 @@ import {
   isAWebpage,
   isChrome,
   isFirefoxNotAndroid,
-  isFirstPartyIsolate,
   prepareCleanupDomains,
   prepareCookieDomain,
   returnMatchedExpressionObject,
@@ -279,24 +278,20 @@ export const isSafeToClean = (
 export const cleanCookies = async (
   state: State,
   markedForDeletion: CleanReasonObject[],
-  firstPartyIsolate: boolean,
 ): Promise<void> => {
   const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
   markedForDeletion.forEach((obj) => {
     const cookieProperties = obj.cookie;
-    const cookieAPIProperties = returnOptionalCookieAPIAttributes(
-      state,
-      {
-        firstPartyDomain: cookieProperties.firstPartyDomain,
-        storeId: cookieProperties.storeId,
-      },
-      firstPartyIsolate,
-    );
+    const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
+      firstPartyDomain: cookieProperties.firstPartyDomain,
+      storeId: cookieProperties.storeId,
+    });
     const cookieRemove = {
       ...cookieAPIProperties,
       name: cookieProperties.name,
       url: cookieProperties.preparedCookieDomain,
     };
+    // url: "http://domain.com" + cookies[i].path
     cadLog(
       {
         msg:
@@ -305,7 +300,6 @@ export const cleanCookies = async (
       },
       getSetting(state, 'debugMode') as boolean,
     );
-    // url: "http://domain.com" + cookies[i].path
     const promise = browser.cookies.remove(cookieRemove);
     promiseArr.push(promise);
   });
@@ -320,16 +314,11 @@ export const clearCookiesForThisDomain = async (
   tab: browser.tabs.Tab,
 ): Promise<boolean> => {
   const hostname = getHostname(tab.url);
-  const firstPartyIsolate = await isFirstPartyIsolate();
   const getCookies = await browser.cookies.getAll(
-    returnOptionalCookieAPIAttributes(
-      state,
-      {
-        domain: hostname,
-        storeId: tab.cookieStoreId,
-      },
-      firstPartyIsolate,
-    ),
+    returnOptionalCookieAPIAttributes(state, {
+      domain: hostname,
+      storeId: tab.cookieStoreId,
+    }),
   );
   // Filter out our own CAD cookie that cleans up other Browsing Data
   const cookies = getCookies.filter((c) => c.name !== CADCOOKIENAME);
@@ -338,16 +327,12 @@ export const clearCookiesForThisDomain = async (
     let cookieDeletedCount = 0;
     for (const cookie of cookies) {
       const r = await browser.cookies.remove(
-        returnOptionalCookieAPIAttributes(
-          state,
-          {
-            firstPartyDomain: cookie.firstPartyDomain,
-            name: cookie.name,
-            storeId: cookie.storeId,
-            url: prepareCookieDomain(cookie),
-          },
-          firstPartyIsolate,
-        ) as {
+        returnOptionalCookieAPIAttributes(state, {
+          firstPartyDomain: cookie.firstPartyDomain,
+          name: cookie.name,
+          storeId: cookie.storeId,
+          url: prepareCookieDomain(cookie),
+        }) as {
           // This explicit type is required as cookies.remove requires these two
           // parameters, but url is not defined in cookies.Cookie as it is made
           // up of cookie.domain + cookie.path, and neither required parameters
@@ -794,7 +779,6 @@ export const cleanCookiesOperation = async (
     ...cleanupProperties,
     openTabDomains,
   };
-  const firstPartyIsolate = await isFirstPartyIsolate();
 
   const cookieStoreIds = new Set<string>();
 
@@ -846,13 +830,9 @@ export const cleanCookiesOperation = async (
     let cookies: browser.cookies.Cookie[] = [];
     try {
       cookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(
-          state,
-          {
-            storeId: id,
-          },
-          firstPartyIsolate,
-        ),
+        returnOptionalCookieAPIAttributes(state, {
+          storeId: id,
+        }),
       );
     } catch (e) {
       cadLog(
@@ -930,7 +910,7 @@ export const cleanCookiesOperation = async (
     }
 
     try {
-      await cleanCookies(state, markedForDeletion, firstPartyIsolate);
+      await cleanCookies(state, markedForDeletion);
     } catch (e) {
       cadLog(
         {
