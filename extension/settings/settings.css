@@ -13,10 +13,6 @@ input {
   margin-top: 5px;
 }
 
-input[type='file'] {
-  display: none;
-}
-
 label:hover {
   background-color: #d3d3d3;
   cursor: pointer;
