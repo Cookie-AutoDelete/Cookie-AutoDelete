@@ -47,30 +47,6 @@
     "message": "Maak log skoon",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Vee alle $siteData$ vir $domain$ uit",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Maak $siteData$ vir hierdie domein skoon",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Verwyder almal",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Hou alle koekies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Hou standaardikone by alle lystipes",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Hou LocalStorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Hou",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Lys Tipe",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "WAARSKUWING: As u Tabs vir LocalStorage Cleanup en Container inskakel, kan dit ongewenste newe-effekte veroorsaak as gevolg van API-beperkinge. LocalStorage word op ALLE houers deur die gasheernaam skoongemaak.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Localstorage skoonmaak",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Waarskuwing: AL die bestaande LocalStorage sal skoongemaak word wanneer LocalStorage Cleanup geaktiveer word.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "Gepaste Domein Uitdrukking",
@@ -283,20 +247,6 @@
     "message": "Geen",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ geskrapte koekies vanaf: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Kennisgewings gedeaktiveer",
     "description": "Notification disabled"
@@ -312,10 +262,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Tydsduur vir kennisgewings",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Wys kennisgewing na skoonmaak van koekies",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Ouer vrystellingsnotas kan aanlyn gesien word by",
@@ -592,10 +538,6 @@
   "whiteCleanLocalstorage": {
     "message": "Ontmerk die 'Keep LocalStorage' op nuwe witlysuitdrukkings",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Lys van Uitdrukkings",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Witlys",

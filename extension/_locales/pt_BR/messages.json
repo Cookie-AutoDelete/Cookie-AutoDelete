@@ -47,30 +47,6 @@
     "message": "Limpar Registros",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Limpar todos os $siteData$ de $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Limpar $siteData$ deste domínio",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Remover todos",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Manter todos os cookies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Manter ícones padrão em todos os tipos de listas",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Manter localstorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Manter",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Tipo de Lista",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "AVISO: Habilitando a Limpeza de Local Storage e Abas Contêiner pode causar efeitos indesejados devido a Limitação de API. LocalStorage será limpo pelo nome de host em TODOS os contêineres.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Limpeza de Local Storage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Atenção: TODO o armazenamento local existente será removido após ativação da \"Limpeza de Armazenamento Local\".",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "manualCleanSuccess": {
     "message": "Limpeza de $siteData$ em $url$ resultado:",
@@ -298,8 +262,8 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "$Num$ cookies apagados de: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "message": "Alguns dados do site, incluindo $Num$ Cookie(s), removidos de: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -328,8 +292,8 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Mostrar Notificação Após Limpeza de Cookes",
-    "description": "Show Notification After Cookie Cleanup"
+    "message": "Mostrar notificação após a limpeza automática",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "As notas de lançamento mais antigas podem ser vistas online em",
@@ -606,10 +570,6 @@
   "whiteCleanLocalstorage": {
     "message": "Desmarque 'Manter LocalStorage' em Nova Expressões de Lista Branca",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Lista de Expressões",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Lista branca",

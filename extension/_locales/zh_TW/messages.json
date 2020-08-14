@@ -47,30 +47,6 @@
     "message": "清除記錄",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "清除 $domain$ 的所有 $siteData$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "清除於此域名的 $siteData$",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "全部移除",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "保留所有 cookie",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "在所有列表類型上保留默認圖標",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "保持本機存放區",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "保留",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "名單",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "警告：由於API限制，同時啟用 LocalStorage Cleanup 和 Container Tab 可能會導致有害的副作用。 LocalStorage 將通過所有容器上的主機名清除。",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "本地儲存清理",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "警告：啟用 LocalStorage Cleanup 後，將清除所有現有的 LocalStorage。",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "吻合的域名表示式",
@@ -283,20 +247,6 @@
     "message": "無",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "已清除 $Num$ 個來自下列網站的 cookie：$Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "已停用通知",
     "description": "Notification disabled"
@@ -312,10 +262,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "通知期限",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "清除 Cookie 後通知我",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "可以在以下位置在線查看較早的發行說明：",
@@ -592,10 +538,6 @@
   "whiteCleanLocalstorage": {
     "message": "在新的白名單表達式上取消選中“保留 LocalStorage”",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "表示式列表",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "白名單",

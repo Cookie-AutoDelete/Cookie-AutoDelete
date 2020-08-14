@@ -47,30 +47,6 @@
     "message": "Εκκαθάριση αρχείου καταγραφής",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Εκκαθάριση όλων των $siteData$ για $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Εκκαθάριση $siteData$ για αυτόν τον τομέα",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Αφαίρεση Όλων",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Διατηρήστε όλα τα cookie",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Διατηρήστε τα προεπιλεγμένα εικονίδια σε όλους τους τύπους λιστών",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Διατηρήστε το LocalStorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Διατήρηση",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Είδος λίστας",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η ενεργοποίηση τόσο του LocalStorage Cleanup όσο και του Container Tabs μπορεί να προκαλέσει ανεπιθύμητες παρενέργειες λόγω των περιορισμών API. Το LocalStorage θα διαγραφεί από το όνομα κεντρικού υπολογιστή σε ΟΛΑ τα κοντέινερ.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Εκκαθάριση LocalStorage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Προειδοποίηση: ΟΛΕΣ οι υπάρχουσες LocalStorage θα διαγραφούν μετά την ενεργοποίηση του LocalStorage Cleanup.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "Αντιστοιχισμένη έκφραση τομέα",
@@ -283,20 +247,6 @@
     "message": "Κανένα",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ Διαγραφή cookies απο: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Η ειδοποίηση απενεργοποιήθηκε",
     "description": "Notification disabled"
@@ -312,10 +262,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Διάρκεια για ειδοποιήσεις",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Εμφάνιση ειδοποίησης μετά τον καθαρισμό των cookie",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Οι παλαιότερες σημειώσεις έκδοσης μπορούν να προβληθούν στο διαδίκτυο στη διεύθυνση",
@@ -592,10 +538,6 @@
   "whiteCleanLocalstorage": {
     "message": "Καταργήστε την επιλογή \"Διατήρηση τοπικής αποθήκευσης\" στις Νέες εκφράσεις της λίστας",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Λίστα εκφράσεων",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Λίστα επιτρεπόμενων",

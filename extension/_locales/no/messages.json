@@ -47,30 +47,6 @@
     "message": "Tøm logger",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Slett alle $siteData$ for $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Fjern $siteData$ for dette domenet",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Fjern alt",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Behold alle informasjonskapsler",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Behold standard ikoner på alle listetyper",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Behold Lokal lagring",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Behold",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Listetype",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Advarsel: Aktivering av både LocalStorage Cleanup og Container Faner kan føre til uønskede bivirkninger på grunn av API-begrensninger. Lokal lagring vil bli fjernet ved vertsnavn på ALLE beholdere.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Lokal lagring opprydding",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Advarsel: ALLE eksisterende Lokal lagring vil bli fjernet ved aktivering av Lokal lagring.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "manualCleanSuccess": {
     "message": "Opprydding for $siteData$ på $url$ resultat:",
@@ -298,8 +262,8 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "$Num$ Slettet informasjonskapsler fra: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "message": "Noen nettstedsdata, inkludert $Num$ informasjonskapsler, fjernet fra: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -328,8 +292,8 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Vis varsel etter opprydding av informasjonskapsler",
-    "description": "Show Notification After Cookie Cleanup"
+    "message": "Vis varsel etter automatisk opprydding",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Eldre utgivelsesnotater kan sees online på",
@@ -606,10 +570,6 @@
   "whiteCleanLocalstorage": {
     "message": "Fjern markeringen for \"Behold lokallagring\" på nye Whitelist uttrykk",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Liste over uttrykk",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Hviteliste",

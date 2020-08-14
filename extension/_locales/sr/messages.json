@@ -47,30 +47,6 @@
     "message": "Очисти записнике",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Очисти све $siteData$ за $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Очисти $siteData$ овог домена",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Уклони све",
     "description": "Remove All"
@@ -225,7 +201,7 @@
   },
   "keepAllCookiesText": {
     "message": "Задржи колачиће",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Задржите подразумеване иконе на свим врстама листе",
@@ -233,7 +209,7 @@
   },
   "keepLocalstorageText": {
     "message": "Задржи локално складиште",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Задржи",
@@ -242,18 +218,6 @@
   "listTypeText": {
     "message": "Врста списка",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "УПОЗОРЕЊЕ: Омогућивање локалног чишћења и картица контејнера може проузроковати нежељене нежељене ефекте због ограничења АПИ-ја. ЛоцалСтораге ће бити обрисано именом хоста на СВИМ контејнерима.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Чишћење локалног складишта",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Упозорење: Целокупно постојеће локално складиште биће очишћено након омогућавања опције LocalStorage чишћење.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "Подударни доменски изрази",
@@ -287,20 +251,6 @@
     "message": "Ништа",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ обрисаних колачића са сајтова: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Обавештење онемогућено",
     "description": "Notification disabled"
@@ -316,10 +266,6 @@
   "notifyCookieCleanupDelayText": {
     "message": "Трајање обавештења",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Прикажи обавештење након брисања колачића",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Старије белешке о издању се могу видети на адреси",
@@ -600,10 +546,6 @@
   "whiteCleanLocalstorage": {
     "message": "Дештиклирајте „Чувај LocalStorage“ на новом белом списку израза",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Списак израза",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Бели списак",

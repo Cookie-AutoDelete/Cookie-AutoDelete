@@ -11,6 +11,20 @@
     "message": "Aktifkan Hapus Otomatis",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "Jalankan penghapusan data $siteData$ untuk: $domains$",
+    "description": "Invoked cleanup of $siteData$ for: $domains$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
   "addNewExpressionNotification": {
     "message": "Menambahkan $expression$ ke daftar $listType$ di penyimpanan kuki $cookieStore$.",
     "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
@@ -44,6 +58,18 @@
   "autoDeleteEnabledText": {
     "message": "Hapus otomatis aktif",
     "description": "Auto-clean enabled"
+  },
+  "browsingDataWarning": {
+    "message": "PERINGATAN: Setelah mengaktifkan opsi penghapusan data situs tipe apapun, SEMUA data yang ada untuk tipe tersebut akan dihapus.",
+    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
+  },
+  "cacheCleanupText": {
+    "message": "Aktifkan Penghapusan Cache (Firefox 78+, Chrome 74+)",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+  },
+  "cacheText": {
+    "message": "Cache",
+    "description": "Cache.  Primarily used in notifications."
   },
   "chromeDebugMode": {
     "message": "Pastikan 'Mode Pengembang' diaktifkan, lalu klik pada 'halaman latar belakang'.",
@@ -80,30 +106,6 @@
   "clearLogsText": {
     "message": "Hapus Catatan",
     "description": "Clear Logs"
-  },
-  "clearSiteDataForDomainText": {
-    "message": "Hapus semua $siteData$ untuk $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Hapus $siteData$ untuk domain ini",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
   },
   "clearURLText": {
     "message": "Buang Semua",
@@ -158,7 +160,7 @@
     }
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Aktifkan Dukungan untuk Tab Container Firefox",
+    "message": "Aktifkan Dukungan untuk Tab Kontainer Firefox",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
   },
   "contributeText": {
@@ -185,9 +187,35 @@
     "message": "Jalankan pembersihan sekarang, kecualikan domain dari tab terbuka",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "createDefaultExpressionOptionsText": {
+    "message": "Buat Opsi Ekspresi Baku",
+    "description": "Create Default Expression Options.  Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Kontainer yang Dipilih Saat Ini:  $ID$ ( $Name$ )",
+    "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
+  },
   "debugMode": {
     "message": "Aktifkan Mode Debug (Keluaran Console Tambahan)",
     "description": "Enable Debug Mode (Additional Console Outputs)"
+  },
+  "defaultText": {
+    "message": "Bawaan",
+    "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
+  },
+  "defaultContainerText": {
+    "message": "Tanpa Kontainer",
+    "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
     "message": "Kembalikan ke Pengaturan Bawaan",
@@ -305,17 +333,65 @@
     "message": "Impor Ekspresi",
     "description": "Import Expressions"
   },
+  "indexedDBCleanupText": {
+    "message": "Aktifkan Penghapusan IndexedDB (Firefox 77+, Chrome 74+)",
+    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+  },
+  "indexedDBText": {
+    "message": "IndexedDB",
+    "description": "IndexedDB.  Primarily used in notifications."
+  },
   "keepAllCookiesText": {
     "message": "Simpan Semua Kuki",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+  },
+  "keepAllCookiesGreyText": {
+    "message": "Simpan Semua Kuki sampai dimulai ulang",
+    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepCacheText": {
+    "message": "Simpan Cache",
+    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+  },
+  "keepCacheGreyText": {
+    "message": "Simpan Cache sampai dimulai ulang",
+    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
   },
   "keepDefaultIcon": {
     "message": "Simpan Ikon Bawaan pada semua tipe daftar",
     "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
   },
+  "keepIndexedDBText": {
+    "message": "Simpan IndexedDB",
+    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+  },
+  "keepIndexedDBGreyText": {
+    "message": "Simpan IndexedDB sampai dimulai ulang",
+    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+  },
   "keepLocalstorageText": {
     "message": "Simpan Localstorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "Simpan LocalStorage sampai dimulai ulang",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepPluginDataText": {
+    "message": "Simpan Data Plugin",
+    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+  },
+  "keepPluginDataGreyText": {
+    "message": "Simpan Data Plugin sampai dimulai ulang",
+    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepServiceWorkersText": {
+    "message": "Simpan Service Worker",
+    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+  },
+  "keepServiceWorkersGreyText": {
+    "message": "Simpan Service Worker sampai dimulai ulang",
+    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
   },
   "keepText": {
     "message": "Simpan",
@@ -325,21 +401,13 @@
     "message": "Tipe Daftar",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Mengaktifkan Penghapusan Localstorage dan Tab Container mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API.  LocalStorage akan dihapus oleh hostname di SEMUA wadah.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
   "localStorageCleanupText": {
-    "message": "Hapus Localstorage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Peringatan: SEMUA LocalStorage yang ada akan dihapus saat opsi Hapus LocalStorage diaktifkan.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
+    "message": "Aktifkan Penghapusan LocalStorage (Firefox 58+, Chrome 74+)",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+).  Found in CAD Settings."
   },
   "localStorageText": {
     "message": "Penyimpanan Lokal",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Notifikasi Tindakan Manual",
@@ -383,6 +451,104 @@
       }
     }
   },
+  "manualCleanSiteDataAll": {
+    "message": "Hapus Semua untuk domain ini",
+    "description": "Clean All for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataAllDomain": {
+    "message": "Hapus semua data situs untuk $domain$",
+    "description": "Clear all site data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCache": {
+    "message": "Hapus Cache untuk domain ini",
+    "description": "Clean Cache for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCacheDomain": {
+    "message": "Hapus semua Cache untuk $domain$",
+    "description": "Clear all Cache for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCookies": {
+    "message": "Hapus Kuki untuk domain ini",
+    "description": "Clean Cookies for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCookiesDomain": {
+    "message": "Hapus semua kuki untuk $domain$",
+    "description": "Clear all Cookies for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataIndexedDB": {
+    "message": "Hapus IndexedDB untuk domain ini",
+    "description": "Clean IndexedDB for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataIndexedDBDomain": {
+    "message": "Hapus semua IndexedDB untuk $domain$",
+    "description": "Clear all IndexedDB for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataLocalStorage": {
+    "message": "Hapus LocalStorage untuk domain ini",
+    "description": "Clean LocalStorage for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataLocalStorageDomain": {
+    "message": "Hapus semua LocalStorage untuk $domain$",
+    "description": "Clear all LocalStorage for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataPluginData": {
+    "message": "Hapus Data Plugin untuk domain ini",
+    "description": "Clean Plugin Data for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataPluginDataDomain": {
+    "message": "Hapus semua Data Plugin untuk $domain$",
+    "description": "Clear all Plugin Data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataServiceWorkers": {
+    "message": "Hapus Service Worker untuk domain ini",
+    "description": "Clean Service Workers for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataServiceWorkersDomain": {
+    "message": "Hapus semua Service Worker untuk $domain$",
+    "description": "Clear all Service Workers for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
   "manualCleanSuccess": {
     "message": "Menghapus $siteData$ pada $url$ hasilnya:",
     "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
@@ -397,6 +563,10 @@
       }
     }
   },
+  "manualNotificationsText": {
+    "message": "Tampilkan Notifikasi Penghapusan Data Situs Manual",
+    "description": "Show Notification from Manual Site Data Cleanups.  Found in settings"
+  },
   "matchedDomainExpressionText": {
     "message": "Ekspresi Domain yang Cocok",
     "description": "Matched Domain Expression"
@@ -408,6 +578,10 @@
   "minutesText": {
     "message": "Menit",
     "description": "minute(s)"
+  },
+  "missingContainerText": {
+    "message": "KONTAINER TIDAK VALID",
+    "description": "INVALID CONTAINER.  Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
     "message": "Tidak Ada Catatan Penghapusan yang Ditemukan",
@@ -429,20 +603,6 @@
     "message": "Nihil",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ Kuki Dihapus dari: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Notifikasi nonaktif",
     "description": "Notification disabled"
@@ -455,13 +615,13 @@
     "message": "Kuki telah dihapus!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
+  "notificationTitleSiteData": {
+    "message": "Penghapusan Data Situs Dijalankan!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
+  },
   "notifyCookieCleanupDelayText": {
     "message": "Durasi untuk Notifikasi",
     "description": "Duration for Notifications"
-  },
-  "notifyCookieCleanUpText": {
-    "message": "Tampilkan Notifikasi Setelah Menghapus Kuki",
-    "description": "Show Notification After Cookie Cleanup"
   },
   "oldReleasesText": {
     "message": "Catatan perubahan versi yang lama bisa dilihat di",
@@ -474,6 +634,14 @@
   "optionsText": {
     "message": "Opsi",
     "description": "Options"
+  },
+  "pluginDataCleanupText": {
+    "message": "Aktifkan Penghapusan Data Plugin (Firefox 78+, Chrome 74+)",
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+  },
+  "pluginDataText": {
+    "message": "Data Plugin",
+    "description": "Plugin Data.  Primarily used in notifications."
   },
   "popupCookieCountText": {
     "message": "Kuki",
@@ -581,6 +749,10 @@
     "message": "Catatan Rilis",
     "description": "Release Notes"
   },
+  "removeActivityLogEntryText": {
+    "message": "Hapus Entri Log",
+    "description": "Remove Log Entry.  Shown in summary activity log for individual log removal."
+  },
   "removeAllExpressions": {
     "message": "Buang Semua Ekspresi",
     "description": "Remove All Expressions"
@@ -606,6 +778,10 @@
   "removeExpressionText": {
     "message": "Buang ekspresi",
     "description": "Remove expression"
+  },
+  "removeListText": {
+    "message": "Hapus Semua Ekspresi dari Daftar yang Dipilih",
+    "description": "Remove All Expressions from Selected List.  Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
   },
   "removeStorageCount": {
     "message": "Menghapus $count$ item dari $storageType$.",
@@ -655,6 +831,14 @@
     "message": "Detik",
     "description": "second(s)"
   },
+  "serviceWorkersCleanupText": {
+    "message": "Aktifkan Penghapusan Service Worker (Firefox 77+, Chrome 74+)",
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+  },
+  "serviceWorkersText": {
+    "message": "Service Worker",
+    "description": "Service Workers.  Primarily used in notifications."
+  },
   "sessionStorageText": {
     "message": "Penyimpanan Sesi",
     "description": "SessionStorage.  Used in manual localstorage clean notification"
@@ -688,6 +872,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Tampilkan Jumlah Cookie untuk Domain tersebut di atas Ikon",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataText": {
+    "message": "Data Situs",
+    "description": "Site Data.  Found in Activity Log Summary and Notifications."
   },
   "sizePopupText": {
     "message": "Ukuran Popup (dalam px)",

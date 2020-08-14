@@ -47,30 +47,6 @@
     "message": "Șterge jurnalele",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Curăță toate $siteData$ pentru $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Curăță $siteData$ pentru acest domeniu",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Șterge tot",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Păstrează toate cookie-urile",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Păstrați pictogramele implicite pe toate tipurile de liste",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Păstrează Localstorage",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Păstrează",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Tipul de listă",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "AVERTISMENT: Activarea curățării locale de stocare și a filelor de container poate provoca efecte secundare nedorite din cauza limitărilor API. LocalStorage va fi golit de hostname pe TOATE containerele.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Ștergere Localstorage",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Avertisment: TOATE Localage existente vor fi eliminate la activarea curățării depozitului local.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "Expresia corespondentă pentru domeniu",
@@ -284,8 +248,8 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "$Num$ cookie-uri șterse de la: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "message": "Unele date ale site-ului, inclusiv $Num$ cookie(uri), eliminate de la: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -314,8 +278,8 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Arată o notificare după ștergerea cookie-rilor",
-    "description": "Show Notification After Cookie Cleanup"
+    "message": "Arată notificare după ștergerea automată",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Note mai vechi de lansare pot fi vizualizate online la",
@@ -592,10 +556,6 @@
   "whiteCleanLocalstorage": {
     "message": "Debifați \"Păstrare LocalStorage\" în noi expresii albe",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Lista de expresii",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Lista albă",

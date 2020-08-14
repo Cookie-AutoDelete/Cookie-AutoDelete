@@ -59,30 +59,6 @@
     "message": "Очистить журнал",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Очистить все $siteData$ для $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Очистить $siteData$ для этого домена",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Удалить все",
     "description": "Remove All"
@@ -285,7 +261,7 @@
   },
   "keepAllCookiesText": {
     "message": "Сохранять все куки",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Сохранять значки по умолчанию во всех списках",
@@ -293,7 +269,7 @@
   },
   "keepLocalstorageText": {
     "message": "Сохранять локальное хранилище",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Оставить",
@@ -303,21 +279,9 @@
     "message": "Тип списка",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "ВНИМАНИЕ: Включение и очистки локального хранилища, и вкладок контейнеров может привести к нежелательным побочным эффектам из-за ограничений API. Локальное хранилище будет очищено по имени хоста во ВСЕХ контейнерах.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "Очистка локального хранилища",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Предупреждение: ВСЁ существующее локальное хранилище будет очищаться после включения очистки локального хранилища.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "Локальное хранилище",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Уведомление о действии пользователя",
@@ -408,8 +372,8 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "Куки от $Websites$ было удалено: $Num$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "message": "Некоторые данные сайта, включая $Num$ Cookie(ы), удалены из: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -438,8 +402,8 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Показывать уведомление после очистки куки",
-    "description": "Show Notification After Cookie Cleanup"
+    "message": "Показывать уведомление после автоматической очистки",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Примечания к старым релизам можно посмотреть онлайн",
@@ -738,10 +702,6 @@
   "whiteCleanLocalstorage": {
     "message": "Снять флажок 'Сохранять локальное хранилище' для новых записей в белом списке",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Список правил",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Белый список",

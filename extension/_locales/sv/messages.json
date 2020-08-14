@@ -77,30 +77,6 @@
     "message": "Rensa loggar",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Ta bort all $siteData$ för $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Ta bort $siteData$ för den här domänen",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Ta bort alla",
     "description": "Remove All"
@@ -299,7 +275,7 @@
   },
   "keepAllCookiesText": {
     "message": "Behåll alla cookies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Behåll standardikoner på alla listtyper",
@@ -307,7 +283,7 @@
   },
   "keepLocalstorageText": {
     "message": "Behåll lokal lagring",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Behåll",
@@ -317,21 +293,9 @@
     "message": "Listtyp",
     "description": "List Type"
   },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "VARNING: Att aktivera både lokallagringsrensning och containerflikar kan orsaka oönskade biverkningar på grund av API-begränsningar. LokalLagring kommer att rensas med värdnamn på ALLA behållare.",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "LocalStorage borttagning",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Varning! ALL befintlig lokal lagring kommer att rensas när du aktiverar rensning av lokal lagring.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
-  },
   "localStorageText": {
     "message": "Lokal lagring",
-    "description": "LocalStorage.  Primarily used in popup via alternate clean action dropdown and in notifications."
+    "description": "LocalStorage.  Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Manuell åtgärdsavisering",
@@ -422,8 +386,8 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "$Num$ borttagna cookies från: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "message": "Vissa webbplatsdata, inklusive $Num$ Cookie(s), borttagna från: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -452,8 +416,8 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Visa avisering efter cookie-borttagning",
-    "description": "Show Notification After Cookie Cleanup"
+    "message": "Visa avisering efter automatisk rensning",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Äldre versionsfakta kan ses online på",
@@ -748,10 +712,6 @@
   "whiteCleanLocalstorage": {
     "message": "Avmarkera \"Behåll lokal lagring\" i nya vitlisteuttryck",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Lista över uttryck",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Vitlista",

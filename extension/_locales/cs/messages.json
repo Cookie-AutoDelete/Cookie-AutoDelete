@@ -47,30 +47,6 @@
     "message": "Vymazat protokoly",
     "description": "Clear Logs"
   },
-  "clearSiteDataForDomainText": {
-    "message": "Vymazat vše $siteData$ pro $domain$",
-    "description": "Clear all $siteData$ for $domain$.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      },
-      "domain": {
-        "content": "$2",
-        "example": "example.com"
-      }
-    }
-  },
-  "clearSiteDataText": {
-    "message": "Vymazat $siteData$ pro tuto doménu",
-    "description": "Clear $siteData$ for this domain.    Found in the additional cleanup options in the popup.",
-    "placeholders": {
-      "siteData": {
-        "content": "$1",
-        "example": "Cookies"
-      }
-    }
-  },
   "clearURLText": {
     "message": "Odstranit vše",
     "description": "Remove All"
@@ -221,7 +197,7 @@
   },
   "keepAllCookiesText": {
     "message": "Zachovat všechny cookies",
-    "description": "Keep All Cookies"
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepDefaultIcon": {
     "message": "Ponechat výchozí ikony ve všech typech seznamu",
@@ -229,7 +205,7 @@
   },
   "keepLocalstorageText": {
     "message": "Ponechat lokální úložiště",
-    "description": "Keep LocalStorage"
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
   },
   "keepText": {
     "message": "Zachovat",
@@ -238,18 +214,6 @@
   "listTypeText": {
     "message": "Typ seznamu",
     "description": "List Type"
-  },
-  "localstorageAndContextualIdentitiesWarning": {
-    "message": "Povolení LocalStorage Cleanup a Container Tabs by mohlo způsobit některé nežádoucí vedlejší efekty kvůli API omezením",
-    "description": "WARNING:  Enabling both LocalStorage Cleanup and Container Tabs may cause unwanted side effects due to API Limitations.  LocalStorage will be cleared by hostname on ALL containers."
-  },
-  "localStorageCleanupText": {
-    "message": "LocalStorage čištění",
-    "description": "LocalStorage Cleanup"
-  },
-  "localStorageCleanupWarning": {
-    "message": "Upozornění: VŠECHNY stávající LocalStorage bude vymazáno při povolení vyčištění LocalStorage.",
-    "description": "Warning:  ALL existing LocalStorage will be cleared upon enabling of LocalStorage Cleanup."
   },
   "matchedDomainExpressionText": {
     "message": "Odpovídající výraz domény",
@@ -284,8 +248,8 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "$Num$ smazal soubory cookie z: $Websites$",
-    "description": "123 Deleted Cookies from: google.com, facebook.com",
+    "message": "Některá data webu včetně $Num$ cookie odstraněna z: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -314,8 +278,8 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Zobrazit oznámení po vyčištění cookie",
-    "description": "Show Notification After Cookie Cleanup"
+    "message": "Zobrazit oznámení po automatickém čištění",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Starší poznámky k vydání lze zobrazit online na",
@@ -592,10 +556,6 @@
   "whiteCleanLocalstorage": {
     "message": "Zrušte zaškrtnutí 'Ponechat LocalStorage' na Novém Whitelistu výrazů",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
-  },
-  "expressionListText": {
-    "message": "Seznam výrazů",
-    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Seznam povolených",
