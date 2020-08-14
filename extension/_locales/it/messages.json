@@ -617,6 +617,20 @@
     "message": "Nessuno",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Alcuni dati del sito, inclusi $Num$ Cookie(s), rimossi da: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Notifica disattivata",
     "description": "Notification disabled"
@@ -638,7 +652,7 @@
     "description": "Duration for Notifications"
   },
   "notifyCookieCleanUpText": {
-    "message": "Mostra una notifica dopo la pulizia dei cookie",
+    "message": "Mostra una notifica dopo la pulizia automatica",
     "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
