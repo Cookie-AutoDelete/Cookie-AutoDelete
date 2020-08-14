@@ -261,6 +261,20 @@
     "message": "Без фільтра",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Деякі дані сайту, включаючи $Num$ куки(ів), вилучено з: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Повідомлення відключені",
     "description": "Notification disabled"
@@ -276,6 +290,10 @@
   "notifyCookieCleanupDelayText": {
     "message": "Тривалість сповіщень",
     "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Показувати сповіщення після автоматичного очищення",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Примітки до старих релізів можуть бути переглянуті онлайн на",
