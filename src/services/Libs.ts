@@ -245,14 +245,14 @@ export const getAllCookiesForDomain = async (
     },
     debug,
   );
-  const cookies_fpi_usesite = await browser.cookies.getAll(
+  const cookiesFPIUseSite = await browser.cookies.getAll(
     returnOptionalCookieAPIAttributes(state, {
       domain: hostname,
       firstPartyDomain: `(${proto},${mainDomain})`,
       storeId: cookieStoreId,
     }),
   );
-  cookies_fpi_usesite.forEach((c) => cookies.push(c));
+  cookiesFPIUseSite.forEach((c) => cookies.push(c));
   // firstPartyDomain = (https,domain.com,2048)
   // Should only be used when domain is an IP, but just in case.
   if (siteURL.port) {
@@ -267,14 +267,14 @@ export const getAllCookiesForDomain = async (
       },
       debug,
     );
-    const cookies_fpi_usesite_port = await browser.cookies.getAll(
+    const cookiesFPIUseSitePort = await browser.cookies.getAll(
       returnOptionalCookieAPIAttributes(state, {
         domain: hostname,
         firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
         storeId: cookieStoreId,
       }),
     );
-    cookies_fpi_usesite_port.forEach((c) => cookies.push(c));
+    cookiesFPIUseSitePort.forEach((c) => cookies.push(c));
   }
   return cookies;
 };
