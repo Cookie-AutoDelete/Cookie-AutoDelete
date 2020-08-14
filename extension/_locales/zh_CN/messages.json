@@ -247,6 +247,20 @@
     "message": "无",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "某些站点数据，包括 $Num$ Cookie(s)，已从: $Websites$ 移除",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "通知已停用",
     "description": "Notification disabled"
@@ -262,6 +276,10 @@
   "notifyCookieCleanupDelayText": {
     "message": "通知持续时间",
     "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "自动清理后显示通知",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "更早的发布便笺可以在线查看",
