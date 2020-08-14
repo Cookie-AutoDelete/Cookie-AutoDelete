@@ -247,6 +247,20 @@
     "message": "Nic",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Některá data webu včetně $Num$ cookie odstraněna z: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Oznámení zakázáno",
     "description": "Notification disabled"
@@ -262,6 +276,10 @@
   "notifyCookieCleanupDelayText": {
     "message": "Doba trvání oznámení",
     "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Zobrazit oznámení po automatickém čištění",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Starší poznámky k vydání lze zobrazit online na",
