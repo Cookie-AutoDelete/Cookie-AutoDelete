@@ -651,6 +651,10 @@
     "message": "Czas trwania powiadomień",
     "description": "Duration for Notifications"
   },
+  "notifyCookieCleanUpText": {
+    "message": "Pokaż powiadomienie po automatycznym wyczyszczeniu",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
+  },
   "oldReleasesText": {
     "message": "Starsze notatki o wydaniu można oglądać online na",
     "description": "Older release notes can be viewed online at"
