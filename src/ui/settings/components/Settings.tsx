@@ -326,7 +326,7 @@ class Settings extends React.Component<SettingProps> {
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
-            <SettingsTooltip hrefURL={'#enable-cleanup-on-discarded-tabs'} />
+            <SettingsTooltip hrefURL={'#enable-cleanup-for-discardedunloaded-tabs'} />
           </div>
           <div className="form-group">
             <CheckboxSetting
