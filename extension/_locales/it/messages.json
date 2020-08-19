@@ -687,6 +687,16 @@
     "message": "Come funzionano le espressioni?",
     "description": "How do Expressions work?"
   },
+  "reasonCADSiteDataCookie": {
+    "message": "Pulisci per attivare la pulizia dei dati del sito per $hostname$.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
   "reasonCleanCookieExpired": {
     "message": "Pulizia parziale a causa dei cookie scaduti da $hostname$.",
     "description": "Partial clean because of expired cookies from $hostname$.",
@@ -862,6 +872,14 @@
   "secondsText": {
     "message": "secondo/i",
     "description": "second(s)"
+  },
+  "serviceWorkersCleanupText": {
+    "message": "Abilita Pulizia dei Service Workers (Firefox 77+, Chrome 74+)",
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+  },
+  "serviceWorkersText": {
+    "message": "Service Workers",
+    "description": "Service Workers.  Primarily used in notifications."
   },
   "sessionStorageText": {
     "message": "SessionStorage",
