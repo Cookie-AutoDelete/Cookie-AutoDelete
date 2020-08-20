@@ -366,7 +366,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('cleanExpiredCookiesText')}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
-            <SettingsTooltip hrefURL={'#clean-expired-cookies'} />
+            <SettingsTooltip hrefURL={'#clean-all-expired-cookies'} />
           </div>
         </fieldset>
         <hr />
