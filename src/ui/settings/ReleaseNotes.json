@@ -1,6 +1,12 @@
 {
   "releases": [
     {
+      "version": "3.5.1",
+      "notes": [
+        "Fixed:  LocalStorage should not be fully cleaned if migrating from 3.4.0.  Closes #847."
+      ]
+    },
+    {
       "version": "3.5.0",
       "notes": [
         "MIGRATION NOTE 1:  'Uncheck Keep Localstorage on new expressions' has been deprecated in favor of default expression entries.  Those that have this enabled will see new default expression entries for all containers for that list type.  Only the localStorage option in the global default expression entry will be downgraded for use in 3.4.0!",
