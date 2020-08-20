@@ -319,6 +319,54 @@ export const cleanCookies = async (
   });
 };
 
+/**
+ * Removes all cookies from specified container.
+ * @param state WebExtension state
+ * @param storeId The cookieStoreId/container to remove all cookies from.
+ */
+export const clearCookiesForThisContainer = async (
+  state: State,
+  storeId: string,
+): Promise<boolean> => {
+  cadLog(
+    {
+      msg: `CleanupService.clearCookiesForThisContainer:  storeId to clean:  ${storeId}`,
+    },
+    getSetting(state, 'debugMode') as boolean,
+  );
+  const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
+  const allContainerCookies = await browser.cookies.getAll(
+    returnOptionalCookieAPIAttributes(state, {
+      storeId: storeId,
+    }),
+  );
+  allContainerCookies.forEach((c) => {
+    const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
+      firstPartyDomain: c.firstPartyDomain,
+      storeId: c.storeId,
+    });
+    const cookie = prepareCookie(c);
+    const cookieRemove = {
+      ...cookieAPIProperties,
+      name: cookie.name,
+      url: cookie.preparedCookieDomain,
+    };
+
+    const promise = browser.cookies.remove(cookieRemove);
+    promiseArr.push(promise);
+  });
+  await Promise.all(promiseArr).catch((e) => {
+    throwErrorNotification(
+      e,
+      getSetting(state, 'notificationOnScreen') as number,
+    );
+    // TODO: let user know a cookie removal failed
+    return false;
+  });
+  // TODO: manual notification - all cookie cleaned for container.
+  return true;
+};
+
 // Cleanup of all cookies for domain.
 export const clearCookiesForThisDomain = async (
   state: State,
