@@ -543,7 +543,7 @@ class Settings extends React.Component<SettingProps> {
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
-              hrefURL={'show-notification-from-manual-site-data-cleanups'}
+              hrefURL={'#show-notification-from-manual-site-data-cleanups'}
             />
           </div>
           <div className="form-group">
