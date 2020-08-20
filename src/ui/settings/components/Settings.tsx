@@ -326,7 +326,7 @@ class Settings extends React.Component<SettingProps> {
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
-            <SettingsTooltip hrefURL={'#enable-cleanup-on-discarded-tabs'} />
+            <SettingsTooltip hrefURL={'#enable-cleanup-for-discardedunloaded-tabs'} />
           </div>
           <div className="form-group">
             <CheckboxSetting
@@ -366,7 +366,7 @@ class Settings extends React.Component<SettingProps> {
               text={browser.i18n.getMessage('cleanExpiredCookiesText')}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
-            <SettingsTooltip hrefURL={'#clean-expired-cookies'} />
+            <SettingsTooltip hrefURL={'#clean-all-expired-cookies'} />
           </div>
         </fieldset>
         <hr />
@@ -543,7 +543,7 @@ class Settings extends React.Component<SettingProps> {
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
-              hrefURL={'show-notification-from-manual-site-data-cleanups'}
+              hrefURL={'#show-notification-from-manual-site-data-cleanups'}
             />
           </div>
           <div className="form-group">
