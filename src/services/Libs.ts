@@ -176,7 +176,7 @@ export const getAllCookiesForDomain = async (
     );
     return;
   }
-  let cookies: browser.cookies.Cookie[] = [];
+  const cookies: browser.cookies.Cookie[] = [];
   const mainDomain = extractMainDomain(hostname);
 
   if (hostname.startsWith('file:')) {
@@ -194,11 +194,15 @@ export const getAllCookiesForDomain = async (
       },
       debug,
     );
-    cookies = allCookies.filter((c) => c.domain === '' && regExp.test(c.path));
-  } else {
+    allCookies
+      .filter((c) => c.domain === '' && regExp.test(c.path))
+      .forEach((cc) => cookies.push(cc));
+  } else if (await isFirstPartyIsolate()) {
+    // Firefox Only - FirstPartyIsolation - original method
     cadLog(
       {
-        msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain.',
+        msg:
+          'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (firstPartyIsolation).',
         x: {
           partialTabInfo,
           domain: hostname,
@@ -207,14 +211,84 @@ export const getAllCookiesForDomain = async (
       },
       debug,
     );
-    cookies = await browser.cookies.getAll(
+    const cookiesFPI = await browser.cookies.getAll(
       returnOptionalCookieAPIAttributes(state, {
         domain: hostname,
         firstPartyDomain: mainDomain,
         storeId: cookieStoreId,
       }),
     );
+    cookiesFPI.forEach((c) => cookies.push(c));
+    // Try to get additional firstParty Isolation cookies if
+    // firstparty.isolation.use_site was enabled, to which we don't know
+    const siteURL = new URL(url);
+    const proto = siteURL.protocol.replace(':', '');
+    // firstPartyDomain = (https,domain.com)
+    cadLog(
+      {
+        msg:
+          'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (FirstPartyIsolation - use_site).',
+        x: {
+          partialTabInfo,
+          domain: hostname,
+          firstPartyDomain: `(${proto},${mainDomain})`,
+        },
+      },
+      debug,
+    );
+    const cookiesFPIUseSite = await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(state, {
+        domain: hostname,
+        firstPartyDomain: `(${proto},${mainDomain})`,
+        storeId: cookieStoreId,
+      }),
+    );
+    cookiesFPIUseSite.forEach((c) => cookies.push(c));
+    // firstPartyDomain = (https,domain.com,2048)
+    // Should only be used when domain is an IP, but just in case.
+    if (siteURL.port) {
+      cadLog(
+        {
+          msg:
+            'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (FirstPartyIsolation - use_site + port).',
+          x: {
+            partialTabInfo,
+            domain: hostname,
+            firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
+          },
+        },
+        debug,
+      );
+      const cookiesFPIUseSitePort = await browser.cookies.getAll(
+        returnOptionalCookieAPIAttributes(state, {
+          domain: hostname,
+          firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
+          storeId: cookieStoreId,
+        }),
+      );
+      cookiesFPIUseSitePort.forEach((c) => cookies.push(c));
+    }
+  } else {
+    // Chrome / Firefox non-firstPartyIsolation
+    cadLog(
+      {
+        msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain.',
+        x: {
+          partialTabInfo,
+          domain: hostname,
+        },
+      },
+      debug,
+    );
+    const cookiesDomain = await browser.cookies.getAll(
+      returnOptionalCookieAPIAttributes(state, {
+        domain: hostname,
+        storeId: cookieStoreId,
+      }),
+    );
+    cookiesDomain.forEach((c) => cookies.push(c));
   }
+
   cadLog(
     {
       msg: 'Libs.getAllCookiesForDomain:  Filtered Cookie Count',
@@ -228,54 +302,6 @@ export const getAllCookiesForDomain = async (
     debug,
   );
 
-  if (!isFirefox(state.cache)) return cookies;
-  // Firefox only - try to get additional firstParty Isolation cookies
-  // if firstparty.isolation.use_site was enabled, to which we don't know
-  const siteURL = new URL(url);
-  const proto = siteURL.protocol.replace(':', '');
-  // firstPartyDomain = (https,domain.com)
-  cadLog(
-    {
-      msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain.',
-      x: {
-        partialTabInfo,
-        domain: hostname,
-        firstPartyDomain: `(${proto},${mainDomain})`,
-      },
-    },
-    debug,
-  );
-  const cookiesFPIUseSite = await browser.cookies.getAll(
-    returnOptionalCookieAPIAttributes(state, {
-      domain: hostname,
-      firstPartyDomain: `(${proto},${mainDomain})`,
-      storeId: cookieStoreId,
-    }),
-  );
-  cookiesFPIUseSite.forEach((c) => cookies.push(c));
-  // firstPartyDomain = (https,domain.com,2048)
-  // Should only be used when domain is an IP, but just in case.
-  if (siteURL.port) {
-    cadLog(
-      {
-        msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain.',
-        x: {
-          partialTabInfo,
-          domain: hostname,
-          firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
-        },
-      },
-      debug,
-    );
-    const cookiesFPIUseSitePort = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
-        domain: hostname,
-        firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
-        storeId: cookieStoreId,
-      }),
-    );
-    cookiesFPIUseSitePort.forEach((c) => cookies.push(c));
-  }
   return cookies;
 };
 

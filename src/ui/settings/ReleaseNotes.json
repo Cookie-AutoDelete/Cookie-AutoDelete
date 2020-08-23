@@ -1,7 +1,14 @@
 {
   "releases": [
     {
-      "version": "3.5.0-unreleased",
+      "version": "3.5.1",
+      "notes": [
+        "Fixed:  browsingData cleanup.  Remove Internal CAD Cookie from notifications and cleanup logs.  Closes #846.",
+        "Fixed:  LocalStorage should not be fully cleaned if migrating from 3.4.0.  Closes #847."
+      ]
+    },
+    {
+      "version": "3.5.0",
       "notes": [
         "MIGRATION NOTE 1:  'Uncheck Keep Localstorage on new expressions' has been deprecated in favor of default expression entries.  Those that have this enabled will see new default expression entries for all containers for that list type.  Only the localStorage option in the global default expression entry will be downgraded for use in 3.4.0!",
         "MIGRATION NOTE 2:  'LocalStorage Cleanup' setting has its internal naming changed to be consistent with other new site data cleanup types.  Its value have been migrated, and should persist when downgrading back to 3.4.0.",
@@ -17,8 +24,10 @@
         "Added:  Ability to remove all expressions from one list.",
         "Added:  Lists stored in CAD that don't have a matching Firefox container will now show as invalid container in Red Text.",
         "Added:  Option to show manual notifications (clean site data for a domain actions).  Closes #779",
+        "Added:  Firefox's FirstPartyIsolation enhancements.  This accommodates the new way that firefox sets its firstPartyDomain in cookies.  This also allows cookies previously created with firstPartyIsolation enabled to be removed in non-firstPartyIsolation mode.  Per #801",
         "Changed:  Minor CSS Styling on Clean button + dropdown.  Enhanced based on PR#793.",
         "Fixed:  Clearing Logs will not affect cookie counters anymore.  Closes #777.",
+        "Fixed:  Clean delay textbox was not wide enough to fit the max number.  Closes #822",
         "Fixed:  A setting link wasn't linked accurately.  Thanks to szpak per PR#797.",
         "Updated:  Translations from Crowdin."
       ]

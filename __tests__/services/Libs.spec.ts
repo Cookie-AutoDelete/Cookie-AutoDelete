@@ -505,6 +505,11 @@ describe('Library Functions', () => {
     it('should fetch additional FPI Cookies (use_site enabled) as needed', async () => {
       when(global.browser.cookies.getAll)
         .calledWith({
+          domain: '',
+        })
+        .mockRejectedValueOnce(new Error('firstPartyDomain') as never);
+      when(global.browser.cookies.getAll)
+        .calledWith({
           domain: 'domain.com',
           firstPartyDomain: 'domain.com',
           storeId: 'firefox-default',
@@ -527,6 +532,11 @@ describe('Library Functions', () => {
       ]);
     });
     it('should fetch additional FPI Cookies (use_site enabled) with a port in URL as needed', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith({
+          domain: '',
+        })
+        .mockRejectedValueOnce(new Error('firstPartyDomain') as never);
       when(global.browser.cookies.getAll)
         .calledWith({
           domain: '10.1.1.1',
