@@ -382,7 +382,7 @@ export const cookieCleanup: ActionCreator<ThunkAction<
     if (siteDataCleaned && browsingDataCleanup) {
       const domainsAll: string[] = [];
       for (const domains of Object.values(browsingDataCleanup)) {
-        if (!domains || domains.length === 0) return;
+        if (!domains || domains.length === 0) continue;
         domainsAll.push(...domains);
       }
       if (domainsAll.length > 0) {
