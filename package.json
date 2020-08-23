@@ -1,6 +1,6 @@
 {
   "name": "cookie-autodelete",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "Firefox and Chrome browser extension that manages Cookies and other site data",
   "keywords": [
     "cookie",
