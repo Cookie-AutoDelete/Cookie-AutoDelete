@@ -396,11 +396,11 @@
     "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
   },
   "keepPluginDataText": {
-    "message": "Conservar datos del complemento",
+    "message": "Conservar datos de plugin/s",
     "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
   },
   "keepPluginDataGreyText": {
-    "message": "Conservar datos del complemento hasta el reinicio",
+    "message": "Conservar datos de plugin/s hasta el reinicio",
     "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
   },
   "keepServiceWorkersText": {
@@ -540,11 +540,11 @@
     }
   },
   "manualCleanSiteDataPluginData": {
-    "message": "Limpiar datos del complemento para este dominio",
+    "message": "Limpiar datos de plugin/s para este dominio",
     "description": "Clean Plugin Data for this domain.  Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataPluginDataDomain": {
-    "message": "Borrar todos los datos del complemento para $domain$",
+    "message": "Borrar todos los datos de plugin/s para $domain$",
     "description": "Clear all Plugin Data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
@@ -672,11 +672,11 @@
     "description": "Options"
   },
   "pluginDataCleanupText": {
-    "message": "Habilitar limpieza de datos del complemento (Firefox 78+, Chrome 74+)",
+    "message": "Habilitar limpieza de datos de plugin/s (Firefox 78+, Chrome 74+)",
     "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "pluginDataText": {
-    "message": "Datos del complemento",
+    "message": "Datos de plugin/s",
     "description": "Plugin Data.  Primarily used in notifications."
   },
   "popupCookieCountText": {
