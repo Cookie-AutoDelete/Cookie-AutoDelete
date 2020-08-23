@@ -82,12 +82,12 @@ jobs:
         with:
           name: coverage
           path: coverage
-#      - name: Codecov.io Coverage upload
-#        uses: codecov/codecov-action@v1
-#        with:
-#          fail_ci_if_error: true
-#          file: ./coverage/*
-#          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
+      - name: Codecov.io Coverage upload
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: false
+          file: ./coverage/*
+          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
       - name: Codecov.io Alternative Coverage Upload
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         env:
