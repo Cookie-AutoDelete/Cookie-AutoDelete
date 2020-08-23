@@ -126,23 +126,6 @@ export const isSafeToClean = (
       };
     }
   }
-  if (cookieProperties.name === CADCOOKIENAME) {
-    cadLog(
-      {
-        msg:
-          'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups.',
-        x: { partialCookieInfo },
-      },
-      debug,
-    );
-    return {
-      cached: false,
-      cleanCookie: true,
-      cookie: cookieProperties,
-      openTabStatus,
-      reason: ReasonClean.CADSiteDataCookie,
-    };
-  }
 
   // Tests if the main domain is open on that specific storeId/container
   if (openTabDomains[storeId] && openTabDomains[storeId].includes(mainDomain)) {
@@ -168,6 +151,34 @@ export const isSafeToClean = (
     storeId,
     hostname,
   );
+
+  // Internal CAD Cookie Checks
+  if (
+    matchedExpression &&
+    cookieProperties.name === CADCOOKIENAME &&
+    (matchedExpression.listType === ListType.WHITE ||
+      (greyCleanup && matchedExpression.listType === ListType.GREY))
+  ) {
+    cadLog(
+      {
+        msg:
+          'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups.',
+        x: {
+          partialCookieInfo,
+          cleanSiteData: matchedExpression.cleanSiteData,
+        },
+      },
+      debug,
+    );
+    return {
+      cached: false,
+      cleanCookie: true,
+      cookie: cookieProperties,
+      expression: matchedExpression,
+      openTabStatus,
+      reason: ReasonClean.CADSiteDataCookie,
+    };
+  }
 
   // Startup cleanup checks
   if (greyCleanup && !matchedExpression) {
@@ -634,9 +645,7 @@ export const cleanSiteData = async (
   debug: boolean,
 ): Promise<string[]> => {
   const domains = cleanReasonObjects
-    .filter((obj) => {
-      return filterSiteData(obj, siteData, debug);
-    })
+    .filter((obj) => filterSiteData(obj, siteData, debug))
     .map((o) => o.cookie.domain)
     .filter((domain) => domain.trim() !== '');
 
@@ -700,7 +709,7 @@ export const filterSiteData = (
         siteData,
         canCleanSiteData,
         nonBlankCookieHostName,
-        clean2: notProtectedByOpenTab && canCleanSiteData,
+        notOpenTabAndCanClean: notProtectedByOpenTab && canCleanSiteData,
         CleanReasonObject: cro,
       },
     },
@@ -925,11 +934,16 @@ export const cleanCookiesOperation = async (
       );
     }
 
-    if (markedForDeletion.length !== 0) {
-      cachedResults.storeIds[id] = markedForDeletion;
+    // Extract away the CAD Internal Cookie from Clean Entries.
+    const removedCookies = markedForDeletion.filter((c) => {
+      return c.cookie.name !== CADCOOKIENAME;
+    });
+
+    if (removedCookies.length !== 0) {
+      cachedResults.storeIds[id] = removedCookies;
     }
-    cachedResults.recentlyCleaned += markedForDeletion.length;
-    markedForDeletion.forEach((obj) => {
+    cachedResults.recentlyCleaned += removedCookies.length;
+    removedCookies.forEach((obj) => {
       setOfDeletedDomainCookies.add(
         getSetting(state, 'contextualIdentities')
           ? `${obj.cookie.hostname} (${state.cache[obj.cookie.storeId]})`

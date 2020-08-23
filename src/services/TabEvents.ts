@@ -26,6 +26,7 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
+  isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
 } from './Libs';
 import StoreUser from './StoreUser';
@@ -286,8 +287,12 @@ export default class TabEvents extends StoreUser {
       return;
     }
 
+    const internalCookies = cookies.filter((c) => {
+      return c.name === CADCOOKIENAME;
+    });
+
     if (
-      cookies.length === 0 &&
+      internalCookies.length === 0 &&
       (getSetting(StoreUser.store.getState(), 'cacheCleanup') ||
         getSetting(StoreUser.store.getState(), 'indexedDBCleanup') ||
         getSetting(StoreUser.store.getState(), 'localStorageCleanup') ||
@@ -300,7 +305,9 @@ export default class TabEvents extends StoreUser {
         StoreUser.store.getState(),
         {
           expirationDate: Math.floor(Date.now() / 1000 + 31557600),
-          firstPartyDomain: extractMainDomain(getHostname(tab.url)),
+          firstPartyDomain: (await isFirstPartyIsolate())
+            ? extractMainDomain(getHostname(tab.url))
+            : '',
           name: CADCOOKIENAME,
           path: `/${shortid.generate()}`,
           storeId: tab.cookieStoreId,
@@ -319,9 +326,7 @@ export default class TabEvents extends StoreUser {
       );
     }
     // Filter out cookie(s) that were set by this extension.
-    const cookieLength =
-      cookies.length -
-      cookies.filter((cookie) => cookie.name === CADCOOKIENAME).length;
+    const cookieLength = cookies.length - internalCookies.length;
     if (cookies.length !== cookieLength) {
       cadLog(
         {
