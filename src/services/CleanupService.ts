@@ -152,55 +152,32 @@ export const isSafeToClean = (
     hostname,
   );
 
-  // Internal CAD Cookie Checks -
-  // only return true w/ expression if cleanSiteData has something specific
+  // Internal CAD Cookie Checks
   if (
     matchedExpression &&
-    matchedExpression.cleanSiteData &&
-    cookieProperties.name === CADCOOKIENAME
+    cookieProperties.name === CADCOOKIENAME &&
+    (matchedExpression.listType === ListType.WHITE ||
+      (greyCleanup && matchedExpression.listType === ListType.GREY))
   ) {
-    if (greyCleanup && matchedExpression.listType === ListType.GREY) {
-      cadLog(
-        {
-          msg:
-            'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups on startup.',
-          x: {
-            partialCookieInfo,
-            cleanSiteData: matchedExpression.cleanSiteData,
-          },
+    cadLog(
+      {
+        msg:
+          'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups.',
+        x: {
+          partialCookieInfo,
+          cleanSiteData: matchedExpression.cleanSiteData,
         },
-        debug,
-      );
-      return {
-        cached: false,
-        cleanCookie: true,
-        cookie: cookieProperties,
-        expression: matchedExpression,
-        openTabStatus,
-        reason: ReasonClean.CADSiteDataCookie,
-      };
-    }
-    if (matchedExpression.listType === ListType.WHITE) {
-      cadLog(
-        {
-          msg:
-            'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups.',
-          x: {
-            partialCookieInfo,
-            cleanSiteData: matchedExpression.cleanSiteData,
-          },
-        },
-        debug,
-      );
-      return {
-        cached: false,
-        cleanCookie: true,
-        cookie: cookieProperties,
-        expression: matchedExpression,
-        openTabStatus,
-        reason: ReasonClean.CADSiteDataCookie,
-      };
-    }
+      },
+      debug,
+    );
+    return {
+      cached: false,
+      cleanCookie: true,
+      cookie: cookieProperties,
+      expression: matchedExpression,
+      openTabStatus,
+      reason: ReasonClean.CADSiteDataCookie,
+    };
   }
 
   // Startup cleanup checks

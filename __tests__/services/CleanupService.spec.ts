@@ -83,6 +83,7 @@ const whiteListAllExceptTwitter: Expression = {
 
 const greyMessenger: Expression = {
   expression: 'messenger.com',
+  cleanSiteData: [SiteDataType.CACHE],
   id: '6',
   listType: ListType.GREY,
   storeId: 'firefox-container-1',
@@ -1369,16 +1370,32 @@ describe('CleanupService', () => {
       expect(result.cleanCookie).toBe(false);
     });
 
-    it('should return true if cookie was created through CAD', () => {
+    it('should return true if cookie was created through CAD with matching WHITE expression and at least one browsingData type for cleanup', () => {
       const cookieProperty = {
         ...mockCookie,
         name: CADCOOKIENAME,
-        hostname: 'sub.google.com',
+        hostname: 'youtube.com',
+        mainDomain: 'youtube.com',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.CADSiteDataCookie);
+      expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return true if cookie was created through CAD with matching GREY expression and at least one browsingData type for cleanup', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        name: CADCOOKIENAME,
+        hostname: 'google.com',
         mainDomain: 'google.com',
       };
 
       const result = isSafeToClean(sampleState, cookieProperty, {
         ...cleanupProperties,
+        greyCleanup: true,
       });
       expect(result.reason).toBe(ReasonClean.CADSiteDataCookie);
       expect(result.cleanCookie).toBe(true);
