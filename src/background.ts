@@ -87,11 +87,21 @@ const onSettingsChange = async () => {
     if (
       (previousSettings[sd] === undefined || !previousSettings[sd].value) &&
       currentSettings[sd].value
-    )
+    ) {
+      // Migration Check to prevent LocalStorage from being cleaned again.
+      // Only if migrating from 3.4.0 to 3.5.1+
+      if (
+        siteData === SiteDataType.LOCALSTORAGE &&
+        previousSettings['localstorageCleanup'] !== undefined &&
+        previousSettings['localstorageCleanup'].value
+      ) {
+        continue;
+      }
       await browsingDataCleanup(
         siteData,
         currentSettings.debugMode.value as boolean,
       );
+    }
   }
 
   if (previousSettings.activeMode.value && !currentSettings.activeMode.value) {

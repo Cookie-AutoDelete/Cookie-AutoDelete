@@ -3,7 +3,8 @@
     {
       "version": "3.5.1",
       "notes": [
-        "Fixed:  browsingData cleanup.  Remove Internal CAD Cookie from notifications and cleanup logs.  Closes #846."
+        "Fixed:  browsingData cleanup.  Remove Internal CAD Cookie from notifications and cleanup logs.  Closes #846.",
+        "Fixed:  LocalStorage should not be fully cleaned if migrating from 3.4.0.  Closes #847."
       ]
     },
     {
