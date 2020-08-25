@@ -39,7 +39,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/redux-thunk": "^2.1.0",
     "@types/shortid": "0.0.29",
-    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/eslint-plugin": "^3.10.0",
     "@typescript-eslint/eslint-plugin-tslint": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
     "ajv": "^6.12.3",
