@@ -21,7 +21,7 @@ Support Issues without any activity WILL get closed after a reasonable amount of
  -->
 
 **Bug Report Checklist** <!-- REQUIRED HEADER AND SECTION -->
-
+<!-- Replace [ ] with [x] to 'check' the boxes. -->
 - [ ] I have read and understand the [Documentation](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation).
 - [ ] I have read the [FAQ](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues) and the issue I'm facing is not mentioned in there.
 
