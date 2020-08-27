@@ -60,7 +60,7 @@
     "description": "Auto-clean enabled"
   },
   "browsingDataWarning": {
-    "message": "ATTENZIONE: Prima di abilitare ognuna delle seguenti opzioni di polizia dei dati del sito, TUTTI i dati esistenti per quel tipo saranno eliminati.",
+    "message": "ATTENZIONE: Prima di attivare una delle seguenti opzioni di pulizia dei dati dei siti, TUTTI i dati esistenti per quel tipo saranno eliminati.",
     "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
   },
   "cacheCleanupText": {
@@ -112,7 +112,7 @@
     "description": "Click on the Console Tab.  Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
-    "message": "ATTENZIONE: Abilitare le Schede Contenitori con qualsiasi pulizia dei dati di navigazione aggiuntiva sopra potrebbe causare effetti collaterali indesiderati per le limitazioni delle API del browser. I tipi di dati del sito, con l'eccezione dei cookie, saranno eliminati dal nome del host per TUTTI i contenitori.",
+    "message": "ATTENZIONE: attivare le schede contenitore assieme a qualsiasi delle opzioni di pulizia dei dati di navigazione sopra, potrebbe causare effetti collaterali indesiderati a causa di limitazioni delle API del browser. I tipi di dati del sito, con l'eccezione dei cookie, saranno eliminati dal nome dell'host per TUTTI i contenitori.",
     "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
   },
   "contextMenusParentClean": {
@@ -412,7 +412,7 @@
     "description": "List Type"
   },
   "localStorageCleanupText": {
-    "message": "Abilita Pulizia di LocalStorage (Firefox 58+, Chrome 74+)",
+    "message": "Attiva la pulizia del LocalStorage (Firefox 58+, Chrome 74+)",
     "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+).  Found in CAD Settings."
   },
   "localStorageText": {
@@ -664,7 +664,7 @@
     "description": "Options"
   },
   "pluginDataCleanupText": {
-    "message": "Abilita Pulizia dei Dati dei Plugin (Firefox 78+, Chrome 74+)",
+    "message": "Attiva la pulizia dei dati dei plugin (Firefox 78+, Chrome 74+)",
     "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "pluginDataText": {
@@ -870,7 +870,7 @@
     "description": "second(s)"
   },
   "serviceWorkersCleanupText": {
-    "message": "Abilita Pulizia dei Service Workers (Firefox 77+, Chrome 74+)",
+    "message": "Attiva la pulizia dei Service Workers (Firefox 77+, Chrome 74+)",
     "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
   },
   "serviceWorkersText": {
