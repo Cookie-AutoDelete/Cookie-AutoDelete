@@ -75,6 +75,10 @@
     "message": "Assicurarsi che la 'Modalità sviluppatore' sia abilitata, quindi fare clic su 'pagina di sfondo' sotto Visualizzazione ispezione.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
   },
+  "cleanDiscardedText": {
+    "message": "Attiva la pulizia per le schede scartate/non in memoria",
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
+  },
   "cleanExpiredCookiesText": {
     "message": "Pulisci tutti i cookie scaduti",
     "description": "Clean All Expired Cookies.  Found in Settings."
@@ -188,11 +192,11 @@
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
   "createDefaultExpressionOptionsText": {
-    "message": "Crea Opzioni di Espressione Predefinite",
+    "message": "Crea opzioni predefinite di espressione",
     "description": "Create Default Expression Options.  Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
-    "message": "Contenitore Corrente Selezionato: $ID$ ( $Name$ )",
+    "message": "Attuale contenitore selezionato: $ID$ ( $Name$ )",
     "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
@@ -214,7 +218,7 @@
     "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultContainerText": {
-    "message": "Nessun Contenitore",
+    "message": "Nessun contenitore",
     "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
@@ -232,6 +236,10 @@
   "domainExpressionsText": {
     "message": "Espressione del dominio",
     "description": "Domain Expression"
+  },
+  "domainPlaceholderText": {
+    "message": "esempio.com, sottodominio.esempio.com, *.esempio.com, /(^|.)esempio\\.com/",
+    "description": "Domain Expression.  For this one we'll keep the string as is."
   },
   "dropdownAdditionalCleaningOptions": {
     "message": "Attiva/disattiva tendina di azioni di pulizia aggiuntive",
