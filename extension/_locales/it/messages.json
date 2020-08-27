@@ -64,7 +64,7 @@
     "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
   },
   "cacheCleanupText": {
-    "message": "Abilita Pulizia della Cache (Firefox 78+, Chrome 74+)",
+    "message": "Attiva la pulizia della cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "cacheText": {
@@ -74,10 +74,6 @@
   "chromeDebugMode": {
     "message": "Assicurarsi che la 'Modalità sviluppatore' sia abilitata, quindi fare clic su 'pagina di sfondo' sotto Visualizzazione ispezione.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
-  },
-  "cleanDiscardedText": {
-    "message": "Abilita Pulizia per le Schede Scartate/Caricate",
-    "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
   "cleanExpiredCookiesText": {
     "message": "Pulisci tutti i cookie scaduti",
@@ -262,7 +258,7 @@
     "description": "Enable Check for Subdomains"
   },
   "enableGreyListCleanup": {
-    "message": "Abilita la pulizia della lista grigia al riavvio del browser",
+    "message": "Attiva la pulizia della lista grigia al riavvio del browser",
     "description": "Enable Greylist Cleanup on Browser Restart"
   },
   "enableNewVersionPopup": {
@@ -314,7 +310,7 @@
     "description": "Greylist"
   },
   "groupExpressionDefaultNotice": {
-    "message": "Stai cercando di impostare le opzioni predefinite dell'espressione per le nuove espressioni? È stata migliorata per essere essa stessa un'opzione dell'espressione! Visita $listExpression$ per iniziare!",
+    "message": "Stai cercando di impostare le opzioni predefinite per le nuove espressioni? È stata migliorata per essere essa stessa un'opzione dell'espressione! Visita $listExpression$ per iniziare!",
     "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
     "placeholders": {
       "listExpression": {
@@ -898,7 +894,7 @@
     "description": "Extension Options"
   },
   "settingGroupOtherBrowsing": {
-    "message": "Altre opzioni di pulizia dati di navigazione",
+    "message": "Altre opzioni di pulizia dei dati di navigazione",
     "description": "Other Browsing Data Cleanup Options"
   },
   "settingsText": {
