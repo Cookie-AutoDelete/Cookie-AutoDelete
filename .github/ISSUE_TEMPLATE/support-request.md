@@ -1,23 +1,31 @@
 ---
 name: Support Request
-about: It's not a bug, but you still need help.  Check the FAQ and Documentation first
+about:
+  It's not a bug, but you still need help.  Check the FAQ and Documentation first
   before proceeding.
-title: "[SUPPORT]  "
+title: '[SUPPORT]  ???'
 labels: support
 assignees: kennethtran93
-
 ---
 
-<!-- Please keep the ** headers ** when submitting the post -->
+<!-- Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!
 
-**Please describe what you need support with.**
+- Please check both open and close issues to ensure that your support question has not ben answered yet!  Duplicate issues will be closed.
+
+- Please ensure that the support title starts with '[SUPPORT] '.
+- Please ensure that the support body contains the required section is filled in, keeping the headers intact.
+
+By removing this entire section (from <!-- to ->) you acknowledge that you have searched all the existing open and closed issues and that your support question was not previously answered.
+ -->
+
+**Please describe what you need support with.** <!-- REQUIRED SECTION -->
 
 A clear and concise description of what you need support with.
 
-**Describe the solution you'd like**
+**Describe the solution you'd like** <!-- REQUIRED SECTION -->
 
 A clear and concise description of what you want to happen.
 
-**Additional context**
+**Additional context** <!-- Optional Section and may be removed if unused. -->
 
 Add any other context or screenshots about the feature request here.
