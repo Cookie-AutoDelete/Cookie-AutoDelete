@@ -3,12 +3,12 @@ name: CI
 on:
   push:
     branches-ignore:
-      - '_archived__**'
+      - "_archived__**"
   pull_request_target:
     branches-ignore:
-      - '_archived__**'
+      - "_archived__**"
     paths-ignore:
-      - '**/README.md'
+      - "**/README.md"
 
 jobs:
   pre_info:
@@ -66,8 +66,24 @@ jobs:
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.1.1
         with:
-          node-version: '14.x'
+          node-version: "14.x"
+      - name: Get Node Version
+        id: node
+        run: |
+          echo "Node Version:  $(node -v)"
+          echo "::set-output name=version::$(node -v)"
+      - name: Cache Node Modules
+        id: nodeCache
+        uses: actions/cache@v2
+        with:
+          # npm cache files stored in `~/.npm` on Linux
+          path: ~/.npm
+          key: ${{ runner.os }}-nodejs-${{ steps.node.outputs.version }}-npm-${{ hashFiles('**/package.json', '**/package-lock.json') }}
+      - name: Install dependencies from cache (npm --cache-min install)
+        if: steps.nodeCache.outputs.cache-hit == 'true'
+        run: npm --cache-min 9999999 install
       - name: Install dependencies (npm ci)
+        if: steps.nodeCache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run Tests
         run: npm run test -- --verbose
