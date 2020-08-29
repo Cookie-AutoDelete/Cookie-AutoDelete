@@ -121,6 +121,12 @@ jobs:
           echo "::set-output name=msg::- CAD Version set to **latest**.  Please change this to reflect version that the bug is found in."
           echo "::warning ::CAD Version set to 'latest'."
           echo "::set-env name=issue_close::true"
+      - name: Add Incomplete Label
+        if: env.issue_close == 'true'
+        uses: andymckay/labeler@1.0.2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          add-labels: "incomplete"
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
         uses: peter-evans/close-issue@v1
@@ -195,6 +201,12 @@ jobs:
           echo "::set-output name=msg::- Missing solution for feature request."
           echo "::warning ::Missing Solution to Feature Request."
           echo "::set-env name=issue_close::true"
+      - name: Add Incomplete Label
+        if: env.issue_close == 'true'
+        uses: andymckay/labeler@1.0.2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          add-labels: "incomplete"
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
         uses: peter-evans/close-issue@v1
@@ -263,6 +275,12 @@ jobs:
           echo "::set-output name=msg::- Missing support solution detail."
           echo "::warning ::Missing Support Detail."
           echo "::set-env name=issue_close::true"
+      - name: Add Incomplete Label
+        if: env.issue_close == 'true'
+        uses: andymckay/labeler@1.0.2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          add-labels: "incomplete"
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
         uses: peter-evans/close-issue@v1
