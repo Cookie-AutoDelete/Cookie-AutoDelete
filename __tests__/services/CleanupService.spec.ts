@@ -325,7 +325,7 @@ describe('CleanupService', () => {
         ...firefoxState,
         settings: {
           ...firefoxState.settings,
-          debugMode: {
+          [`${SettingID.DEBUG_MODE}`]: {
             name: `${SettingID.DEBUG_MODE}`,
             value: true,
           },
@@ -504,7 +504,7 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              cacheCleanup: {
+              [`${SettingID.CLEANUP_CACHE}`]: {
                 name: `${SettingID.CLEANUP_CACHE}`,
                 value: true,
               },
@@ -539,7 +539,7 @@ describe('CleanupService', () => {
           ...firefoxState,
           settings: {
             ...firefoxState.settings,
-            contextualIdentities: {
+            [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
               name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
               value: true,
             },
@@ -557,7 +557,7 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              cacheCleanup: {
+              [`${SettingID.CLEANUP_CACHE}`]: {
                 name: `${SettingID.CLEANUP_CACHE}`,
                 value: true,
               },
@@ -580,7 +580,7 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              indexedDBCleanup: {
+              [`${SettingID.CLEANUP_INDEXEDDB}`]: {
                 name: `${SettingID.CLEANUP_INDEXEDDB}`,
                 value: true,
               },
@@ -603,7 +603,7 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              localStorageCleanup: {
+              [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
                 name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
                 value: true,
               },
@@ -621,7 +621,7 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              pluginDataCleanup: {
+              [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
                 name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
                 value: true,
               },
@@ -643,7 +643,7 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              serviceWorkersCleanup: {
+              [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
                 name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
                 value: true,
               },
@@ -1058,7 +1058,7 @@ describe('CleanupService', () => {
       ...sampleState,
       settings: {
         ...sampleState.settings,
-        cleanExpiredCookies: {
+        [`${SettingID.CLEAN_EXPIRED}`]: {
           name: `${SettingID.CLEAN_EXPIRED}`,
           value: true,
         },
@@ -1415,7 +1415,7 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        cacheCleanup: {
+        [`${SettingID.CLEANUP_CACHE}`]: {
           name: `${SettingID.CLEANUP_CACHE}`,
           value: true,
         },
@@ -1425,7 +1425,7 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        indexedDBCleanup: {
+        [`${SettingID.CLEANUP_INDEXEDDB}`]: {
           name: `${SettingID.CLEANUP_INDEXEDDB}`,
           value: true,
         },
@@ -1435,7 +1435,7 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        localStorageCleanup: {
+        [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
           name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
           value: true,
         },
@@ -1445,7 +1445,7 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        pluginDataCleanup: {
+        [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
           name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
           value: true,
         },
@@ -1455,7 +1455,7 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        serviceWorkersCleanup: {
+        [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
           name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
           value: true,
         },

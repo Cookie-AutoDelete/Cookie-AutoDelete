@@ -264,7 +264,7 @@ describe('TabEvents', () => {
         .calledWith({ domain: '' })
         .mockResolvedValueOnce([] as never)
         .mockRejectedValue(new Error('firstPartyDomain') as never);
-      TestStore.changeSetting('cacheCleanup', true);
+      TestStore.changeSetting(SettingID.CLEANUP_CACHE, true);
       TestStore.addCache({ key: 'browserDetect', value: browserName.Firefox });
 
       await TabEvents.getAllCookieActions({

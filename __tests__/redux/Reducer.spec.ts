@@ -503,7 +503,7 @@ describe('Reducer', () => {
       const newState = settings(
         {
           ...initialState.settings,
-          activeMode: {
+          [`${SettingID.ACTIVE_MODE}`]: {
             name: `${SettingID.ACTIVE_MODE}`,
             value: true,
           },
@@ -518,7 +518,7 @@ describe('Reducer', () => {
       const newState = settings(
         {
           ...initialState.settings,
-          activeMode: {
+          [`${SettingID.ACTIVE_MODE}`]: {
             name: `${SettingID.ACTIVE_MODE}`,
             value: true,
           },

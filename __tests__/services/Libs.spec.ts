@@ -694,7 +694,7 @@ describe('Library Functions', () => {
             ...initialState,
             settings: {
               ...initialState.settings,
-              contextualIdentities: {
+              [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
                 name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
                 value: true,
               },
@@ -724,7 +724,7 @@ describe('Library Functions', () => {
             ...initialState,
             settings: {
               ...initialState.settings,
-              contextualIdentities: {
+              [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
                 name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
                 value: true,
               },
@@ -794,7 +794,7 @@ describe('Library Functions', () => {
         browserDetect: browserName.Chrome,
       },
       settings: {
-        contextualIdentities: {
+        [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
           id: 7,
           name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
           value: false,
@@ -807,7 +807,7 @@ describe('Library Functions', () => {
         browserDetect: browserName.Firefox,
       },
       settings: {
-        contextualIdentities: {
+        [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
           id: 7,
           name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
           value: false,
@@ -820,7 +820,7 @@ describe('Library Functions', () => {
         browserDetect: browserName.Firefox,
       },
       settings: {
-        contextualIdentities: {
+        [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
           id: 7,
           name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
           value: true,
