@@ -380,17 +380,17 @@ export const cookieCleanup: ActionCreator<ThunkAction<
     }
     // Here we just show a generic 'Site Data' cleaned instead of the specifics, with all domains.
     if (siteDataCleaned && browsingDataCleanup) {
-      const domainsAll: string[] = [];
+      const domainsAll = new Set<string>();
       for (const domains of Object.values(browsingDataCleanup)) {
         if (!domains || domains.length === 0) continue;
-        domainsAll.push(...domains);
+        domains.forEach((d) => domainsAll.add(d));
       }
-      if (domainsAll.length > 0) {
+      if (domainsAll.size > 0) {
         await showNotification({
           duration: getSetting(getState(), 'notificationOnScreen') as number,
           msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
             browser.i18n.getMessage('siteDataText'),
-            domainsAll.join(', '),
+            Array.from(domainsAll).join(', '),
           ]),
           title: browser.i18n.getMessage('notificationTitleSiteData'),
         });
