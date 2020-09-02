@@ -99,8 +99,8 @@ const onSettingsChange = async () => {
       // Only if migrating from 3.4.0 to 3.5.1+
       if (
         siteData === SiteDataType.LOCALSTORAGE &&
-        previousSettings['localstorageCleanup'] !== undefined &&
-        previousSettings['localstorageCleanup'].value
+        previousSettings[SettingID.CLEANUP_LOCALSTORAGE_OLD] !== undefined &&
+        previousSettings[SettingID.CLEANUP_LOCALSTORAGE_OLD].value
       ) {
         continue;
       }
@@ -380,12 +380,15 @@ browser.runtime.onInstalled.addListener(async (details) => {
       store.dispatch<any>(validateSettings());
       if (convertVersionToNumber(details.previousVersion) < 350) {
         // Migrate State Setting Name localstorageCleanup to localStorageCleanup
-        if (store.getState().settings.localstorageCleanup) {
+        if (
+          store.getState().settings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`]
+        ) {
           store.dispatch({
             payload: {
               name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
-              value: store.getState().settings.localstorageCleanup
-                .value as boolean,
+              value: store.getState().settings[
+                `${SettingID.CLEANUP_LOCALSTORAGE_OLD}`
+              ].value as boolean,
             },
             type: ReduxConstants.UPDATE_SETTING,
           });

@@ -189,7 +189,7 @@ export const getAllCookiesForDomain = async (
 ): Promise<browser.cookies.Cookie[] | undefined> => {
   if (!tab.url || tab.url === '') return;
   if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
-  const debug = getSetting(state, 'debugMode') as boolean;
+  const debug = getSetting(state, SettingID.DEBUG_MODE) as boolean;
   const partialTabInfo = createPartialTabInfo(tab);
   const { cookieStoreId, url } = tab;
   const hostname = getHostname(url);

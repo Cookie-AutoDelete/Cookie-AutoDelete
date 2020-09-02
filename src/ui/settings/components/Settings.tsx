@@ -67,7 +67,7 @@ class Settings extends React.Component<SettingProps> {
   // Import Settings
   public importCoreSettings(importFile: File) {
     const { settings } = this.props;
-    const debug = settings.debugMode.value as boolean;
+    const debug = settings[`${SettingID.DEBUG_MODE}`].value as boolean;
     cadLog(
       {
         msg: 'Import Core Settings received file for parsing.',
@@ -194,7 +194,7 @@ class Settings extends React.Component<SettingProps> {
         type: 'info',
         x: r,
       },
-      settings.debugMode.value as boolean,
+      settings[`${SettingID.DEBUG_MODE}`].value as boolean,
     );
     this.setState({
       error: '',
@@ -326,7 +326,9 @@ class Settings extends React.Component<SettingProps> {
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
-            <SettingsTooltip hrefURL={'#enable-cleanup-for-discardedunloaded-tabs'} />
+            <SettingsTooltip
+              hrefURL={'#enable-cleanup-for-discardedunloaded-tabs'}
+            />
           </div>
           <div className="form-group">
             <CheckboxSetting
@@ -493,7 +495,7 @@ class Settings extends React.Component<SettingProps> {
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#enable-cleanup-log-and-counter'} />
-            {settings.statLogging.value && (
+            {settings[`${SettingID.STAT_LOGGING}`].value && (
               <div className="alert alert-warning">
                 {browser.i18n.getMessage('noPrivateLogging')}
               </div>
@@ -513,7 +515,7 @@ class Settings extends React.Component<SettingProps> {
             </div>
           )}
           {(!isFirefox(cache) || isFirefoxNotAndroid(cache)) &&
-            settings.showNumOfCookiesInIcon.value === true && (
+            settings[`${SettingID.NUM_COOKIES_ICON}`].value === true && (
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage(
@@ -617,7 +619,7 @@ class Settings extends React.Component<SettingProps> {
                 updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip hrefURL={'#debug-mode'} />
-              {settings.debugMode.value && (
+              {settings[`${SettingID.DEBUG_MODE}`].value && (
                 <div className="alert alert-info">
                   <p>{browser.i18n.getMessage('openDebugMode')}</p>
                   <pre>
