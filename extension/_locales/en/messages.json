@@ -799,6 +799,16 @@
     "message": "or in any open tabs",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
+  "regexMissingEndSlash": {
+    "message": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$",
+    "description": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$.  Only if entering a new expression that starts with a slash and does not end with one. Can be found in List of Expressions.",
+    "placeholders": {
+      "errDomains": {
+        "content": "$1",
+        "example": "/regex"
+      }
+    }
+  },
   "regularExpressionEquivalentText": {
     "message": "Regular Expression Equivalent",
     "description": "Regular Expression Equivalent"

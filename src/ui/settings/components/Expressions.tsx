@@ -87,17 +87,32 @@ class Expressions extends React.Component<ExpressionProps> {
         const result: string = target.result;
         const newExpressions: StoreIdToExpressionList = JSON.parse(result);
         const storeIds = Object.keys(newExpressions);
+        const errExps: string[] = [];
         storeIds.forEach((storeId) =>
           newExpressions[storeId].forEach((expression) => {
-            const exps = expression.expression.split(',');
+            const exps = this.parseRawExpression(expression);
             exps.forEach((exp) => {
+              const e = exp.trim();
+              if (e.startsWith('/') && !e.endsWith('/')) {
+                errExps.push(`${e} (${storeId})`);
+              }
               onNewExpression({
                 ...expression,
-                expression: exp.trim(),
+                expression: e,
               });
             });
           }),
         );
+        this.setState({
+          error: '',
+          success:
+            errExps.length > 0
+              ? browser.i18n.getMessage(
+                  'regexMissingEndSlash',
+                  errExps.join(' '),
+                )
+              : '',
+        });
       } catch (error) {
         this.setState({
           error: `${(files[0] as File).name} - ${error.toString()}.`,
@@ -111,16 +126,57 @@ class Expressions extends React.Component<ExpressionProps> {
   // Add the expression using the + button or the Enter key
   public addExpressionByInput(payload: Expression) {
     const { onNewExpression } = this.props;
-    const exps = payload.expression.split(',');
+    const exps = this.parseRawExpression(payload);
+    const errExps: string[] = [];
     exps.forEach((exp) => {
+      const e = exp.trim();
+      if (e.startsWith('/') && !e.endsWith('/')) {
+        errExps.push(e);
+      }
       onNewExpression({
         ...payload,
-        expression: exp.trim(),
+        expression: e,
       });
     });
     this.setState({
       expressionInput: '',
+      success:
+        errExps.length > 0
+          ? browser.i18n.getMessage('regexMissingEndSlash', errExps.join(' '))
+          : '',
     });
+  }
+
+  private parseRawExpression(exp: Expression): string[] {
+    const exps = exp.expression.split(',');
+    const expressions: string[] = [];
+    let skipTimes = 0;
+    exps.forEach((e, i, a) => {
+      // Ignore if expression was a continuation of regex but had a comma
+      if (skipTimes > 0) {
+        skipTimes--;
+        return;
+      }
+      // skipTimes should be 0 at this point
+      let ee = e.trim();
+      // Check for regex slash start
+      if (ee.startsWith('/')) {
+        // Continue to parse next set of comma-separated values until the next end slash
+        while (!ee.endsWith('/')) {
+          skipTimes++;
+          if (i + skipTimes >= a.length) {
+            // We have reached the end of the array and did not find an end slash.
+            // We will import as combined.
+            break;
+          }
+          ee += `,${a[i + skipTimes].trim()}`;
+        }
+      }
+      // At this point it should be either a complete regex with start and end
+      // slash, or a domain.
+      expressions.push(ee);
+    });
+    return expressions;
   }
 
   public clearListsConfirmation(lists: StoreIdToExpressionList) {
