@@ -301,3 +301,24 @@ jobs:
             ${{ steps.missingSolution.outputs.msg }}
 
             If you have modified the initial post or the required sections were already filled out, please comment and ping `@kennethtran93` to reopen it (or open a new support issue and follow the provided template).
+  issue_unknown:
+    name: Unknown Issue
+    runs-on: ubuntu-latest
+    needs: pre_info
+    if: needs.pre_info.outputs.isBug != 'true' && needs.pre_info.outputs.isFeature != 'true' && needs.pre_info.outputs.isSupport != 'true'
+    steps:
+      - name: Add Incomplete Label
+        uses: andymckay/labeler@1.0.2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          add-labels: "incomplete"
+      - name: Comment and Close Issue
+        uses: peter-evans/close-issue@v1
+        with:
+          comment: |
+            @${{ github.actor }} This issue has been automatically closed for not using any of the provided issue templates.
+            As such, responses to this specific issue may not be given at all.
+
+            Please use the provided templates at https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/issues/new/choose.
+
+            Select the relevant issue type, then read and follow the instructions given in the issue body.
