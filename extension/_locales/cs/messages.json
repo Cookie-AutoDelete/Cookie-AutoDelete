@@ -215,6 +215,16 @@
     "message": "Typ seznamu",
     "description": "List Type"
   },
+  "manualCleanSiteDataIndexedDBDomain": {
+    "message": "Vymazat všechny indexované DB pro $domain$",
+    "description": "Clear all IndexedDB for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
   "matchedDomainExpressionText": {
     "message": "Odpovídající výraz domény",
     "description": "Matched Domain Expression"
