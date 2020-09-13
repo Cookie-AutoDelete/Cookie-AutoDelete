@@ -676,7 +676,7 @@
     "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "pluginDataText": {
-    "message": "Datos de complemento(plugin)",
+    "message": "Datos de complemento/s",
     "description": "Plugin Data.  Primarily used in notifications."
   },
   "popupCookieCountText": {
