@@ -23,6 +23,10 @@
     "message": "تأكد من تمكين \"وضع المطور\"، ثم انقر فوق \"صفحة الخلفية\" تحت عرض الفحص.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
   },
+  "cleanExpiredCookiesText": {
+    "message": "تنظيف جميع ملفات تعريف الارتباط منتهية الصلاحية",
+    "description": "Clean All Expired Cookies.  Found in Settings."
+  },
   "cleanIgnoringOpenTabsText": {
     "message": "تنظيف، تضمين علامات التبويب المفتوحة",
     "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
@@ -54,6 +58,10 @@
   "consoleDebugMode": {
     "message": "انقر فوق علامة التبويب وحدة التحكم",
     "description": "Click on the Console Tab.  Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "تحذير: تمكين علامات تبويب الحاوية مع أي من عمليات تنظيف بيانات التصفح الإضافية أعلاه قد يسبب تأثيرات جانبية غير مرغوب فيها بسبب قيود API للمتصفح. سيتم مسح أنواع بيانات الموقع، باستثناء ملفات تعريف الارتباط، بواسطة اسم المضيف لجميع الحاويات.",
+    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
   },
   "contextualIdentitiesEnabledText": {
     "message": "تمكين الدعم لعلامات تبويب حاوية فايرفوكس",
