@@ -525,6 +525,62 @@
     "message": "Vyčistit LocalStorage pro tuto doménu",
     "description": "Clean LocalStorage for this domain.  Found in Popup clean dropdown menu."
   },
+  "manualCleanSiteDataLocalStorageDomain": {
+    "message": "Vymazat všechny lokální úložiště pro $domain$",
+    "description": "Clear all LocalStorage for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataPluginData": {
+    "message": "Vyčistit data pluginů pro tuto doménu",
+    "description": "Clean Plugin Data for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataPluginDataDomain": {
+    "message": "Vymazat všechna data pluginu pro $domain$",
+    "description": "Clear all Plugin Data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataServiceWorkers": {
+    "message": "Čistý servisní pracovníci pro tuto doménu",
+    "description": "Clean Service Workers for this domain.  Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataServiceWorkersDomain": {
+    "message": "Vymazat všechny Service Workers pro $domain$",
+    "description": "Clear all Service Workers for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Vyčistit $siteData$ pro výsledek $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualNotificationsText": {
+    "message": "Zobrazit oznámení z manuálního čištění dat webu",
+    "description": "Show Notification from Manual Site Data Cleanups.  Found in settings"
+  },
   "matchedDomainExpressionText": {
     "message": "Odpovídající výraz domény",
     "description": "Matched Domain Expression"
@@ -536,6 +592,10 @@
   "minutesText": {
     "message": "minut(y)",
     "description": "minute(s)"
+  },
+  "missingContainerText": {
+    "message": "NEPLATNÝ KONTAKTOR",
+    "description": "INVALID CONTAINER.  Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
     "message": "Nebyly nalezeny žádné čistící protokoly",
@@ -583,6 +643,10 @@
     "message": "Cookies were deleted!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
+  "notificationTitleSiteData": {
+    "message": "Odstranění dat webu spuštěno!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
+  },
   "notifyCookieCleanupDelayText": {
     "message": "Doba trvání oznámení",
     "description": "Duration for Notifications"
@@ -603,6 +667,14 @@
     "message": "Možnosti",
     "description": "Options"
   },
+  "pluginDataCleanupText": {
+    "message": "Povolit čištění dat pluginu (Firefox 78+, Chrome 74+)",
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+  },
+  "pluginDataText": {
+    "message": "Data pluginu",
+    "description": "Plugin Data.  Primarily used in notifications."
+  },
   "popupCookieCountText": {
     "message": "Cookies",
     "description": "Cookie(s)"
@@ -614,6 +686,26 @@
   "questionExpression": {
     "message": "Jak fungují výrazy?",
     "description": "How do Expressions work?"
+  },
+  "reasonCADSiteDataCookie": {
+    "message": "Vyčistit a spustit čištění dat webu pro $hostname$.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$.  Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Částečné čištění kvůli vypršení platnosti cookies od $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
   },
   "reasonCleanCookieName": {
     "message": "Částečné čištění z důvodu shodnosti $matchedExpression$ v $listType$",
@@ -699,6 +791,10 @@
     "message": "Poznámky k vydání",
     "description": "Release Notes"
   },
+  "removeActivityLogEntryText": {
+    "message": "Odstranit záznam protokolu",
+    "description": "Remove Log Entry.  Shown in summary activity log for individual log removal."
+  },
   "removeAllExpressions": {
     "message": "Odstranit všechny výrazy",
     "description": "Remove All Expressions"
@@ -725,9 +821,31 @@
     "message": "Odstranit výraz",
     "description": "Remove expression"
   },
+  "removeListText": {
+    "message": "Odstranit všechny výrazy z vybraného seznamu",
+    "description": "Remove All Expressions from Selected List.  Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
+  },
+  "removeStorageCount": {
+    "message": "Odstraněno $count$ položek z $storageType$.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
   "reportIssuesText": {
     "message": "Nahlásit problémy a navrhnout funkce",
     "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "Resetovat počítadla souborů cookie",
+    "description": "Reset Cookie Counters.  Button in Welcome Page."
   },
   "resetExtensionDataText": {
     "message": "Resetovat data rozšíření",
@@ -754,6 +872,18 @@
   "secondsText": {
     "message": "sekund(y)",
     "description": "second(s)"
+  },
+  "serviceWorkersCleanupText": {
+    "message": "Povolit čištění Service Workers (Firefox 77+, Chrome 74+)",
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+  },
+  "serviceWorkersText": {
+    "message": "Servisní pracovníci",
+    "description": "Service Workers.  Primarily used in notifications."
+  },
+  "sessionStorageText": {
+    "message": "Úložiště relací",
+    "description": "SessionStorage.  Used in manual localstorage clean notification"
   },
   "settingGroupAutoClean": {
     "message": "Možnosti automatického čištění",
@@ -784,6 +914,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Zobrazit počet souborů cookie pro danou doménu",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataText": {
+    "message": "Data webu",
+    "description": "Site Data.  Found in Activity Log Summary and Notifications."
   },
   "sizePopupText": {
     "message": "Velikost vyskakovacího okna (v px)",
@@ -866,6 +1000,10 @@
   "whiteCleanLocalstorage": {
     "message": "Zrušte zaškrtnutí 'Ponechat LocalStorage' na Novém Whitelistu výrazů",
     "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
+  },
+  "expressionListText": {
+    "message": "Seznam výrazů",
+    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Seznam povolených",
