@@ -617,6 +617,20 @@
     "message": "Intet",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Nogle webstedsdata, herunder $Num$ Cookie(r), fjernet fra: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "websites": {
+        "content": "$2",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Meddelelser deaktiveret",
     "description": "Notification disabled"
@@ -636,6 +650,10 @@
   "notifyCookieCleanupDelayText": {
     "message": "Varighed for underretninger",
     "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Vis Notifikation Efter Automatisk Oprydning",
+    "description": "Show Notification After Automatic Cleanup.  Found in settings."
   },
   "oldReleasesText": {
     "message": "Gamle udgivelsesnoter kan ses online på",
