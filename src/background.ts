@@ -11,11 +11,7 @@
  * SOFTWARE.
  */
 import { Store } from 'redux';
-import {
-  cacheCookieStoreIdNames,
-  cookieCleanup,
-  validateSettings,
-} from './redux/Actions';
+import { cookieCleanup, validateSettings } from './redux/Actions';
 import createStore from './redux/Store';
 import {
   checkIfProtected,
@@ -29,17 +25,15 @@ import {
   eventListenerActions,
   extractMainDomain,
   getSetting,
-  siteDataToBrowser,
-  SITEDATATYPES,
   sleep,
 } from './services/Libs';
 import StoreUser from './services/StoreUser';
 import TabEvents from './services/TabEvents';
 import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
 import ContextualIdentitiesEvents from './services/ContextualIdentitiesEvents';
+import SettingService from './services/SettingService';
 
 let store: Store<State, ReduxAction>;
-let currentSettings: { [setting: string]: Setting };
 
 // Delay saving to disk to queue up actions
 let delaySave = false;
@@ -53,129 +47,6 @@ const saveToStorage = () => {
       });
     }, 1000);
   }
-};
-
-const browsingDataCleanup = async (
-  siteData: SiteDataType,
-  debug: boolean,
-): Promise<void> => {
-  await browser.browsingData.remove(
-    { since: 0 },
-    { [siteDataToBrowser(siteData)]: true },
-  );
-  cadLog(
-    {
-      msg: `${siteData} setting has been activated.  All previous ${siteData} has been cleared to give it a clean slate.`,
-      type: 'info',
-    },
-    debug,
-  );
-};
-
-const onSettingsChange = async () => {
-  const previousSettings = currentSettings;
-  currentSettings = store.getState().settings;
-  // Container Mode changes
-  if (
-    previousSettings[`${SettingID.CONTEXTUAL_IDENTITIES}`].value !==
-    currentSettings[`${SettingID.CONTEXTUAL_IDENTITIES}`].value
-  ) {
-    if (currentSettings[`${SettingID.CONTEXTUAL_IDENTITIES}`].value) {
-      ContextualIdentitiesEvents.init();
-      store.dispatch<any>(cacheCookieStoreIdNames());
-    } else {
-      await ContextualIdentitiesEvents.deInit();
-    }
-  }
-
-  // BrowsingData Settings Check.
-  for (const siteData of SITEDATATYPES) {
-    const sd = `${siteDataToBrowser(siteData)}Cleanup`;
-    if (
-      (previousSettings[sd] === undefined || !previousSettings[sd].value) &&
-      currentSettings[sd].value
-    ) {
-      // Migration Check to prevent LocalStorage from being cleaned again.
-      // Only if migrating from 3.4.0 to 3.5.1+
-      if (
-        siteData === SiteDataType.LOCALSTORAGE &&
-        previousSettings[SettingID.CLEANUP_LOCALSTORAGE_OLD] !== undefined &&
-        previousSettings[SettingID.CLEANUP_LOCALSTORAGE_OLD].value
-      ) {
-        continue;
-      }
-      await browsingDataCleanup(
-        siteData,
-        currentSettings[`${SettingID.DEBUG_MODE}`].value as boolean,
-      );
-    }
-  }
-
-  // Active Mode (Automatic Cleaning) changes
-  if (
-    previousSettings[`${SettingID.ACTIVE_MODE}`].value !==
-    currentSettings[`${SettingID.ACTIVE_MODE}`].value
-  ) {
-    if (!currentSettings[`${SettingID.ACTIVE_MODE}`].value) {
-      await browser.alarms.clear('activeModeAlarm');
-    }
-    await setGlobalIcon(
-      currentSettings[`${SettingID.ACTIVE_MODE}`].value as boolean,
-    );
-    ContextMenuEvents.updateMenuItemCheckbox(
-      ContextMenuEvents.MenuID.ACTIVE_MODE,
-      currentSettings[`${SettingID.ACTIVE_MODE}`].value as boolean,
-    );
-  }
-
-  // Context Menu Changes
-  if (
-    previousSettings[`${SettingID.CONTEXT_MENUS}`].value !==
-    currentSettings[`${SettingID.CONTEXT_MENUS}`].value
-  ) {
-    if (currentSettings[`${SettingID.CONTEXT_MENUS}`].value) {
-      ContextMenuEvents.menuInit();
-    } else {
-      await ContextMenuEvents.menuClear();
-    }
-  }
-
-  // Deprecated Settings adjustments - only for localstorageCleanup<->localStorageCleanup
-  if (
-    previousSettings[`${SettingID.CLEANUP_LOCALSTORAGE}`] &&
-    currentSettings[`${SettingID.CLEANUP_LOCALSTORAGE}`] &&
-    previousSettings[`${SettingID.CLEANUP_LOCALSTORAGE}`].value !==
-      currentSettings[`${SettingID.CLEANUP_LOCALSTORAGE}`].value
-  ) {
-    store.dispatch({
-      payload: {
-        name: `${SettingID.CLEANUP_LOCALSTORAGE_OLD}`,
-        value: currentSettings[`${SettingID.CLEANUP_LOCALSTORAGE}`]
-          .value as boolean,
-      },
-      type: ReduxConstants.UPDATE_SETTING,
-    });
-  }
-  if (
-    previousSettings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`] &&
-    currentSettings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`] &&
-    previousSettings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`].value !==
-      currentSettings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`].value
-  ) {
-    store.dispatch({
-      payload: {
-        name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
-        value: currentSettings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`]
-          .value as boolean,
-      },
-      type: ReduxConstants.UPDATE_SETTING,
-    });
-  }
-
-  await checkIfProtected(store.getState());
-
-  // Validate Settings again
-  store.dispatch<any>(validateSettings());
 };
 
 const onStartUp = async () => {
@@ -230,12 +101,12 @@ const onStartUp = async () => {
     type: ReduxConstants.ADD_CACHE,
   });
 
-  currentSettings = store.getState().settings;
-  store.subscribe(onSettingsChange);
-  store.subscribe(saveToStorage);
-
   // This is important to initialize the Store for all classes that extend from this
   StoreUser.init(store);
+
+  SettingService.init();
+  store.subscribe(SettingService.onSettingsChange);
+  store.subscribe(saveToStorage);
 
   store.dispatch<any>(validateSettings());
 
