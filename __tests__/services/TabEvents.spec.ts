@@ -26,18 +26,14 @@ import TabEvents from '../../src/services/TabEvents';
 import StoreUser from '../../src/services/StoreUser';
 
 jest.requireActual('../../src/services/AlarmEvents');
-const spyAlarmEvents: { [s: string]: jest.SpyInstance } = global.generateSpies(
-  AlarmEvents,
+const spyAlarmEvents: JestSpyObject = global.generateSpies(AlarmEvents);
+const spyBrowserActions: JestSpyObject = global.generateSpies(
+  BrowserActionService,
 );
-const spyBrowserActions: {
-  [s: string]: jest.SpyInstance;
-} = global.generateSpies(BrowserActionService);
 jest.requireActual('../../src/services/Libs');
-const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
+const spyLib: JestSpyObject = global.generateSpies(Lib);
 jest.requireActual('../../src/services/TabEvents');
-const spyTabEvents: { [s: string]: jest.SpyInstance } = global.generateSpies(
-  TabEvents,
-);
+const spyTabEvents: JestSpyObject = global.generateSpies(TabEvents);
 
 jest.requireActual('../../src/services/StoreUser');
 

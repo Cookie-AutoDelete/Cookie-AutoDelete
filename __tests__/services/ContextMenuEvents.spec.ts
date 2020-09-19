@@ -25,17 +25,13 @@ import * as Lib from '../../src/services/Libs';
 import StoreUser from '../../src/services/StoreUser';
 
 jest.requireActual('../../src/redux/Actions');
-const spyActions: { [s: string]: jest.SpyInstance } = global.generateSpies(
-  Actions,
-);
+const spyActions: JestSpyObject = global.generateSpies(Actions);
 
 jest.requireMock('../../src/services/CleanupService');
-const spyCleanupService: {
-  [s: string]: jest.SpyInstance;
-} = global.generateSpies(CleanupService);
+const spyCleanupService: JestSpyObject = global.generateSpies(CleanupService);
 
 jest.requireActual('../../src/services/Libs');
-const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
+const spyLib: JestSpyObject = global.generateSpies(Lib);
 
 const store: Store<State, ReduxAction> = createStore(initialState);
 StoreUser.init(store);

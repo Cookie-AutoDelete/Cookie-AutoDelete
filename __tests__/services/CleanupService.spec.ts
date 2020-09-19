@@ -20,14 +20,12 @@ jest.requireActual('../../src/services/Libs');
 import * as Lib from '../../src/services/Libs';
 
 // This dynamically generates the spies for all functions in Libs
-const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
+const spyLib: JestSpyObject = global.generateSpies(Lib);
 
 jest.requireActual('../../src/services/CleanupService');
 import * as CleanupService from '../../src/services/CleanupService';
 import { CADCOOKIENAME } from '../../src/services/Libs';
-const spyCleanupService: {
-  [s: string]: jest.SpyInstance;
-} = global.generateSpies(CleanupService);
+const spyCleanupService: JestSpyObject = global.generateSpies(CleanupService);
 
 const sampleTab: browser.tabs.Tab = {
   active: true,

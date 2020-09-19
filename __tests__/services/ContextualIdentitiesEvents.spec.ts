@@ -24,7 +24,7 @@ import * as Lib from '../../src/services/Libs';
 import StoreUser from '../../src/services/StoreUser';
 
 jest.requireActual('../../src/services/Libs');
-const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
+const spyLib: JestSpyObject = global.generateSpies(Lib);
 
 const store: Store<State, ReduxAction> = createStore(initialState);
 StoreUser.init(store);
