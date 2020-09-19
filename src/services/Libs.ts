@@ -115,8 +115,7 @@ export const eventListenerActions = (
   listener: (...args: any[]) => void,
   action: EventListenerAction,
 ): void => {
-  if (!event) return;
-  if (!event.hasListener) return;
+  if (!event || !event.hasListener) return;
   switch (action) {
     case EventListenerAction.ADD:
       if (!event.hasListener(listener)) {

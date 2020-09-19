@@ -19,15 +19,15 @@ import { ReduxConstants } from '../typings/ReduxConstants';
 
 export default class ContextualIdentitiesEvents extends StoreUser {
   public static init(): void {
-    if (!browser.contextualIdentities) return;
     if (
-      !getSetting(
+      !browser.contextualIdentities ||
+      (!getSetting(
         StoreUser.store.getState(),
         `${SettingID.CONTEXTUAL_IDENTITIES}`,
-      ) as boolean
+      ) as boolean) ||
+      ContextualIdentitiesEvents.isInitialized
     )
       return;
-    if (ContextualIdentitiesEvents.isInitialized) return;
     ContextualIdentitiesEvents.isInitialized = true;
     // Populate cache with mapped Container ID to Name
     StoreUser.store.dispatch<any>(cacheCookieStoreIdNames());
