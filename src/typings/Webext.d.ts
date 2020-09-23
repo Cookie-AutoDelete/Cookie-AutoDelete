@@ -51,6 +51,16 @@ declare namespace browser.contextMenus {
   const onShown: typeof browser.menus.onShown;
 }
 
+// Until web-ext-types land events into it.
+declare namespace browser.contextualIdentities {
+  type contextualIdentitiesChangeInfo = {
+    contextualIdentity: ContextualIdentity;
+  };
+  const onCreated: Listener<contextualIdentitiesChangeInfo>;
+  const onRemoved: Listener<contextualIdentitiesChangeInfo>;
+  const onUpdated: Listener<contextualIdentitiesChangeInfo>;
+}
+
 declare namespace browser.tabs {
   interface TabChangeInfo {
     attention?: boolean;

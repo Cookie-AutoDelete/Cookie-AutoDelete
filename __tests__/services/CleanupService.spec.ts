@@ -20,14 +20,12 @@ jest.requireActual('../../src/services/Libs');
 import * as Lib from '../../src/services/Libs';
 
 // This dynamically generates the spies for all functions in Libs
-const spyLib: { [s: string]: jest.SpyInstance } = global.generateSpies(Lib);
+const spyLib: JestSpyObject = global.generateSpies(Lib);
 
 jest.requireActual('../../src/services/CleanupService');
 import * as CleanupService from '../../src/services/CleanupService';
 import { CADCOOKIENAME } from '../../src/services/Libs';
-const spyCleanupService: {
-  [s: string]: jest.SpyInstance;
-} = global.generateSpies(CleanupService);
+const spyCleanupService: JestSpyObject = global.generateSpies(CleanupService);
 
 const sampleTab: browser.tabs.Tab = {
   active: true,
@@ -325,8 +323,8 @@ describe('CleanupService', () => {
         ...firefoxState,
         settings: {
           ...firefoxState.settings,
-          debugMode: {
-            name: 'debugMode',
+          [`${SettingID.DEBUG_MODE}`]: {
+            name: `${SettingID.DEBUG_MODE}`,
             value: true,
           },
         },
@@ -504,8 +502,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              cacheCleanup: {
-                name: 'cacheCleanup',
+              [`${SettingID.CLEANUP_CACHE}`]: {
+                name: `${SettingID.CLEANUP_CACHE}`,
                 value: true,
               },
             },
@@ -539,8 +537,8 @@ describe('CleanupService', () => {
           ...firefoxState,
           settings: {
             ...firefoxState.settings,
-            contextualIdentities: {
-              name: 'contextualIdentities',
+            [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
+              name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
               value: true,
             },
           },
@@ -557,8 +555,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              cacheCleanup: {
-                name: 'cacheCleanup',
+              [`${SettingID.CLEANUP_CACHE}`]: {
+                name: `${SettingID.CLEANUP_CACHE}`,
                 value: true,
               },
             },
@@ -580,8 +578,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              indexedDBCleanup: {
-                name: 'indexedDBCleanup',
+              [`${SettingID.CLEANUP_INDEXEDDB}`]: {
+                name: `${SettingID.CLEANUP_INDEXEDDB}`,
                 value: true,
               },
             },
@@ -603,8 +601,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              localStorageCleanup: {
-                name: 'localStorageCleanup',
+              [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
+                name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
                 value: true,
               },
             },
@@ -621,8 +619,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              pluginDataCleanup: {
-                name: 'pluginDataCleanup',
+              [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
+                name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
                 value: true,
               },
             },
@@ -643,8 +641,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              serviceWorkersCleanup: {
-                name: 'serviceWorkersCleanup',
+              [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
+                name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
                 value: true,
               },
             },
@@ -1058,8 +1056,8 @@ describe('CleanupService', () => {
       ...sampleState,
       settings: {
         ...sampleState.settings,
-        cleanExpiredCookies: {
-          name: 'cleanExpiredCookies',
+        [`${SettingID.CLEAN_EXPIRED}`]: {
+          name: `${SettingID.CLEAN_EXPIRED}`,
           value: true,
         },
       },
@@ -1415,8 +1413,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        cacheCleanup: {
-          name: 'cacheCleanup',
+        [`${SettingID.CLEANUP_CACHE}`]: {
+          name: `${SettingID.CLEANUP_CACHE}`,
           value: true,
         },
       },
@@ -1425,8 +1423,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        indexedDBCleanup: {
-          name: 'indexedDBCleanup',
+        [`${SettingID.CLEANUP_INDEXEDDB}`]: {
+          name: `${SettingID.CLEANUP_INDEXEDDB}`,
           value: true,
         },
       },
@@ -1435,8 +1433,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        localStorageCleanup: {
-          name: 'localStorageCleanup',
+        [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
+          name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
           value: true,
         },
       },
@@ -1445,8 +1443,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        pluginDataCleanup: {
-          name: 'pluginDataCleanup',
+        [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
+          name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
           value: true,
         },
       },
@@ -1455,8 +1453,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        serviceWorkersCleanup: {
-          name: 'serviceWorkersCleanup',
+        [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
+          name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
           value: true,
         },
       },

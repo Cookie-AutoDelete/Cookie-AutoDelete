@@ -75,7 +75,7 @@ export const isSafeToClean = (
   cookieProperties: CookiePropertiesCleanup,
   cleanupProperties: CleanupPropertiesInternal,
 ): CleanReasonObject => {
-  const debug = getSetting(state, 'debugMode') as boolean;
+  const debug = getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean;
   const {
     mainDomain,
     storeId,
@@ -107,7 +107,7 @@ export const isSafeToClean = (
   );
 
   // Check if cookie is expired.
-  if (getSetting(state, 'cleanExpiredCookies') as boolean) {
+  if (getSetting(state, `${SettingID.CLEAN_EXPIRED}`) as boolean) {
     const now = Math.ceil(Date.now() / 1000);
     if (expirationDate && expirationDate < now) {
       cadLog(
@@ -309,7 +309,7 @@ export const cleanCookies = async (
           'CleanupService.cleanCookies: Cookie being removed through browser.cookies.remove via Promises:',
         x: cookieRemove,
       },
-      getSetting(state, 'debugMode') as boolean,
+      getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean,
     );
     const promise = browser.cookies.remove(cookieRemove);
     promiseArr.push(promise);
@@ -358,7 +358,7 @@ export const clearCookiesForThisDomain = async (
     }
     showNotification(
       {
-        duration: getSetting(state, 'notificationOnScreen') as number,
+        duration: getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
         msg: `${browser.i18n.getMessage('manualCleanSuccess', [
           browser.i18n.getMessage('cookiesText'),
           hostname,
@@ -367,7 +367,7 @@ export const clearCookiesForThisDomain = async (
           cookies.length.toString(),
         ])}`,
       },
-      getSetting(state, 'manualNotifications') as boolean,
+      getSetting(state, `${SettingID.NOTIFY_MANUAL}`) as boolean,
     );
 
     return cookieDeletedCount > 0;
@@ -375,13 +375,13 @@ export const clearCookiesForThisDomain = async (
 
   showNotification(
     {
-      duration: getSetting(state, 'notificationOnScreen') as number,
+      duration: getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
       msg: `${browser.i18n.getMessage('manualCleanNothing', [
         browser.i18n.getMessage('cookiesText'),
         hostname,
       ])}`,
     },
-    getSetting(state, 'manualNotifications') as boolean,
+    getSetting(state, `${SettingID.NOTIFY_MANUAL}`) as boolean,
   );
 
   return cookies.length > 0;
@@ -404,7 +404,7 @@ export const clearLocalStorageForThisDomain = async (
     });
     showNotification(
       {
-        duration: getSetting(state, 'notificationOnScreen') as number,
+        duration: getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
         msg: `${browser.i18n.getMessage('manualCleanSuccess', [
           browser.i18n.getMessage('localStorageText'),
           getHostname(tab.url),
@@ -416,17 +416,17 @@ export const clearLocalStorageForThisDomain = async (
           browser.i18n.getMessage('sessionStorageText'),
         ])}`,
       },
-      getSetting(state, 'manualNotifications') as boolean,
+      getSetting(state, `${SettingID.NOTIFY_MANUAL}`) as boolean,
     );
     return true;
   } catch (e) {
     throwErrorNotification(
       e,
-      getSetting(state, 'notificationOnScreen') as number,
+      getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
     );
     await sleep(750);
     showNotification({
-      duration: getSetting(state, 'notificationOnScreen') as number,
+      duration: getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
       msg: `${browser.i18n.getMessage('manualCleanNothing', [
         browser.i18n.getMessage('localStorageText'),
         getHostname(tab.url),
@@ -442,7 +442,7 @@ export const clearSiteDataForThisDomain = async (
   hostname: string,
 ): Promise<boolean> => {
   if (hostname.trim() === '') return false;
-  const debug = getSetting(state, 'debugMode') as boolean;
+  const debug = getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean;
   cadLog(
     {
       msg: `CleanupService.clearSiteDataForThisDomain: Received ${siteData} clean request for ${hostname}.`,
@@ -466,14 +466,14 @@ export const clearSiteDataForThisDomain = async (
     // To consolidate the notification shown, we do it out here.
     showNotification(
       {
-        duration: getSetting(state, 'notificationOnScreen') as number,
+        duration: getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
         msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
           siteDataAll.join(', '),
           domains.join(', '),
         ]),
         title: browser.i18n.getMessage('notificationTitleSiteData'),
       },
-      getSetting(state, 'manualNotifications') as boolean,
+      getSetting(state, `${SettingID.NOTIFY_MANUAL}`) as boolean,
     );
   } else {
     await removeSiteData(
@@ -525,14 +525,14 @@ export const removeSiteData = async (
     );
     showNotification(
       {
-        duration: getSetting(state, 'notificationOnScreen') as number,
+        duration: getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
         msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
           browser.i18n.getMessage(`${sd}Text`),
           domains.join(', '),
         ]),
         title: browser.i18n.getMessage('notificationTitleSiteData'),
       },
-      manual && (getSetting(state, 'manualNotifications') as boolean),
+      manual && (getSetting(state, `${SettingID.NOTIFY_MANUAL}`) as boolean),
     );
     return true;
   } catch (e) {
@@ -546,7 +546,7 @@ export const removeSiteData = async (
     );
     throwErrorNotification(
       e,
-      getSetting(state, 'notificationOnScreen') as number,
+      getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
     );
     return false;
   }
@@ -558,10 +558,10 @@ export const otherBrowsingDataCleanup = async (
   isSafeToCleanObjects: CleanReasonObject[],
 ): Promise<ActivityLog['browsingDataCleanup']> => {
   const chrome = isChrome(state.cache);
-  const debug = getSetting(state, 'debugMode') as boolean;
+  const debug = getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean;
   const browsingDataResult: ActivityLog['browsingDataCleanup'] = {};
   if (
-    getSetting(state, 'cacheCleanup') &&
+    getSetting(state, `${SettingID.CLEANUP_CACHE}`) &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '78') ||
       chrome)
   ) {
@@ -574,7 +574,7 @@ export const otherBrowsingDataCleanup = async (
     );
   }
   if (
-    getSetting(state, 'indexedDBCleanup') &&
+    getSetting(state, `${SettingID.CLEANUP_INDEXEDDB}`) &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '77') ||
       chrome)
   ) {
@@ -587,7 +587,7 @@ export const otherBrowsingDataCleanup = async (
     );
   }
   if (
-    getSetting(state, 'localStorageCleanup') &&
+    getSetting(state, `${SettingID.CLEANUP_LOCALSTORAGE}`) &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '58') ||
       chrome)
   ) {
@@ -600,7 +600,7 @@ export const otherBrowsingDataCleanup = async (
     );
   }
   if (
-    getSetting(state, 'pluginDataCleanup') &&
+    getSetting(state, `${SettingID.CLEANUP_PLUGIN_DATA}`) &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '78') ||
       chrome)
   ) {
@@ -613,7 +613,7 @@ export const otherBrowsingDataCleanup = async (
     );
   }
   if (
-    getSetting(state, 'serviceWorkersCleanup') &&
+    getSetting(state, `${SettingID.CLEANUP_SERVICE_WORKERS}`) &&
     ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= '77') ||
       chrome)
   ) {
@@ -768,7 +768,7 @@ export const cleanCookiesOperation = async (
     ignoreOpenTabs: false,
   },
 ): Promise<Record<string, any>> => {
-  const debug = getSetting(state, 'debugMode') as boolean;
+  const debug = getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean;
   const deletedSiteDataArrays: ActivityLog['browsingDataCleanup'] = {};
   const setOfDeletedDomainCookies = new Set<string>();
   const cachedResults: Required<ActivityLog> = {
@@ -782,7 +782,7 @@ export const cleanCookiesOperation = async (
   const storesIdsToScrub = ['firefox-private', 'private', '1'];
   const openTabDomains = await returnContainersOfOpenTabDomains(
     cleanupProperties.ignoreOpenTabs,
-    getSetting(state, 'discardedCleanup') as boolean,
+    getSetting(state, `${SettingID.CLEAN_DISCARDED}`) as boolean,
   );
   const newCleanupProperties: CleanupPropertiesInternal = {
     ...cleanupProperties,
@@ -813,7 +813,7 @@ export const cleanCookiesOperation = async (
   }
 
   // Store cookieStoreIds from the contextualIdentities API
-  if (getSetting(state, 'contextualIdentities')) {
+  if (getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`)) {
     const contextualIdentitiesObjects = await browser.contextualIdentities.query(
       {},
     );
@@ -827,7 +827,7 @@ export const cleanCookiesOperation = async (
   const cookieStores = (await browser.cookies.getAllCookieStores()) || [];
   for (const store of cookieStores) {
     if (
-      getSetting(state, 'contextualIdentities') ||
+      getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`) ||
       !store.id.startsWith('firefox-container')
     ) {
       cookieStoreIds.add(store.id);
@@ -930,7 +930,7 @@ export const cleanCookiesOperation = async (
       );
       throwErrorNotification(
         e,
-        getSetting(state, 'notificationOnScreen') as number,
+        getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
       );
     }
 
@@ -945,7 +945,7 @@ export const cleanCookiesOperation = async (
     cachedResults.recentlyCleaned += removedCookies.length;
     removedCookies.forEach((obj) => {
       setOfDeletedDomainCookies.add(
-        getSetting(state, 'contextualIdentities')
+        getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`)
           ? `${obj.cookie.hostname} (${state.cache[obj.cookie.storeId]})`
           : obj.cookie.hostname,
       );

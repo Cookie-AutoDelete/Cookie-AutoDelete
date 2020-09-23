@@ -487,21 +487,24 @@ describe('Reducer', () => {
     it('should update settings accordingly', () => {
       const newState = settings(initialState.settings, {
         payload: {
-          name: 'activeMode',
+          name: `${SettingID.ACTIVE_MODE}`,
           value: true,
         },
         type: ReduxConstants.UPDATE_SETTING,
       });
-      expect(newState['activeMode']).toEqual(
-        expect.objectContaining({ name: 'activeMode', value: true }),
+      expect(newState[`${SettingID.ACTIVE_MODE}`]).toEqual(
+        expect.objectContaining({
+          name: `${SettingID.ACTIVE_MODE}`,
+          value: true,
+        }),
       );
     });
     it('should reset settings to initial via RESET_ALL', () => {
       const newState = settings(
         {
           ...initialState.settings,
-          activeMode: {
-            name: 'activeMode',
+          [`${SettingID.ACTIVE_MODE}`]: {
+            name: `${SettingID.ACTIVE_MODE}`,
             value: true,
           },
         },
@@ -515,8 +518,8 @@ describe('Reducer', () => {
       const newState = settings(
         {
           ...initialState.settings,
-          activeMode: {
-            name: 'activeMode',
+          [`${SettingID.ACTIVE_MODE}`]: {
+            name: `${SettingID.ACTIVE_MODE}`,
             value: true,
           },
         },

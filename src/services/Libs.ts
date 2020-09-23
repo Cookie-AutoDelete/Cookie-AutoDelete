@@ -105,6 +105,32 @@ export const convertVersionToNumber = (version?: string): number => {
 };
 
 /**
+ * Abstract Event Listener call to add/remove with checks.
+ * @param event The event listener
+ * @param listener The callback function to add/check/remove.
+ * @param action The EventListenerAction (add/remove).
+ */
+export const eventListenerActions = (
+  event: EvListener<any>,
+  listener: (...args: any[]) => void,
+  action: EventListenerAction,
+): void => {
+  if (!event || !event.hasListener) return;
+  switch (action) {
+    case EventListenerAction.ADD:
+      if (!event.hasListener(listener)) {
+        event.addListener(listener);
+      }
+      break;
+    case EventListenerAction.REMOVE:
+      if (event.hasListener(listener)) {
+        event.removeListener(listener);
+      }
+      break;
+  }
+};
+
+/**
  * Extract the main domain from sub domains
  *   - sub.sub.domain.com ==> domain.com
  * Local html directory/files will return itself
@@ -162,7 +188,7 @@ export const getAllCookiesForDomain = async (
 ): Promise<browser.cookies.Cookie[] | undefined> => {
   if (!tab.url || tab.url === '') return;
   if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
-  const debug = getSetting(state, 'debugMode') as boolean;
+  const debug = getSetting(state, SettingID.DEBUG_MODE) as boolean;
   const partialTabInfo = createPartialTabInfo(tab);
   const { cookieStoreId, url } = tab;
   const hostname = getHostname(url);
@@ -367,7 +393,8 @@ export const getContainerExpressionDefault = (
     storeId: '',
   };
   const expDefault =
-    storeId !== 'default' && getSetting(state, 'contextualIdentities')
+    storeId !== 'default' &&
+    getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`)
       ? getExpression('default') || exp
       : exp;
   return getExpression(storeId) || expDefault;
@@ -387,7 +414,7 @@ export const getSetting = (
 export const getStoreId = (state: State, storeId: string): string => {
   if (
     storeId === 'firefox-default' ||
-    (!getSetting(state, 'contextualIdentities') &&
+    (!getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`) &&
       storeId !== 'firefox-private' &&
       isFirefox(state.cache)) ||
     (isChrome(state.cache) && storeId === '0') ||

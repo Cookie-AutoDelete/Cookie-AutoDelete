@@ -85,7 +85,7 @@ class App extends React.Component<OwnProps> {
 const mapStateToProps = (state: State) => {
   const { settings } = state;
   return {
-    sizeSetting: (settings.sizeSetting.value as number) || 16,
+    sizeSetting: (settings[`${SettingID.SIZE_SETTING}`].value as number) || 16,
   };
 };
 

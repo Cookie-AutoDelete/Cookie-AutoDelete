@@ -18,115 +18,115 @@ export const initialState: State = {
   cookieDeletedCounterTotal: 0,
   cookieDeletedCounterSession: 0,
   settings: {
-    activeMode: {
-      name: 'activeMode',
+    [`${SettingID.ACTIVE_MODE}`]: {
+      name: `${SettingID.ACTIVE_MODE}`,
       value: false,
     },
-    cacheCleanup: {
-      name: 'cacheCleanup',
+    [`${SettingID.CLEANUP_CACHE}`]: {
+      name: `${SettingID.CLEANUP_CACHE}`,
       value: false,
     },
-    cleanCookiesFromOpenTabsOnStartup: {
-      name: 'cleanCookiesFromOpenTabsOnStartup',
+    [`${SettingID.CLEAN_OPEN_TABS_STARTUP}`]: {
+      name: `${SettingID.CLEAN_OPEN_TABS_STARTUP}`,
       value: false,
     },
-    cleanExpiredCookies: {
-      name: 'cleanExpiredCookies',
+    [`${SettingID.CLEAN_EXPIRED}`]: {
+      name: `${SettingID.CLEAN_EXPIRED}`,
       value: false,
     },
-    contextMenus: {
-      name: 'contextMenus',
+    [`${SettingID.CONTEXT_MENUS}`]: {
+      name: `${SettingID.CONTEXT_MENUS}`,
       value: true,
     },
-    contextualIdentities: {
-      name: 'contextualIdentities',
+    [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
+      name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
       value: false,
     },
-    debugMode: {
-      name: 'debugMode',
+    [`${SettingID.DEBUG_MODE}`]: {
+      name: `${SettingID.DEBUG_MODE}`,
       value: false,
     },
-    delayBeforeClean: {
-      name: 'delayBeforeClean',
+    [`${SettingID.CLEAN_DELAY}`]: {
+      name: `${SettingID.CLEAN_DELAY}`,
       value: 15,
     },
-    discardedCleanup: {
-      name: 'discardedCleanup',
+    [`${SettingID.CLEAN_DISCARDED}`]: {
+      name: `${SettingID.CLEAN_DISCARDED}`,
       value: false,
     },
-    domainChangeCleanup: {
-      name: 'domainChangeCleanup',
+    [`${SettingID.CLEAN_DOMAIN_CHANGE}`]: {
+      name: `${SettingID.CLEAN_DOMAIN_CHANGE}`,
       value: false,
     },
-    enableGreyListCleanup: {
-      name: 'enableGreyListCleanup',
+    [`${SettingID.ENABLE_GREYLIST}`]: {
+      name: `${SettingID.ENABLE_GREYLIST}`,
       value: true,
     },
-    enableNewVersionPopup: {
-      name: 'enableNewVersionPopup',
+    [`${SettingID.ENABLE_NEW_POPUP}`]: {
+      name: `${SettingID.ENABLE_NEW_POPUP}`,
       value: false,
     },
-    greyCleanLocalstorage: {
+    [`${SettingID.OLD_GREY_CLEAN_LOCALSTORAGE}`]: {
       id: 'DEPRECATED - use default expressions',
-      name: 'greyCleanLocalstorage',
+      name: `${SettingID.OLD_GREY_CLEAN_LOCALSTORAGE}`,
       value: false,
     },
-    indexedDBCleanup: {
-      name: 'indexedDBCleanup',
+    [`${SettingID.CLEANUP_INDEXEDDB}`]: {
+      name: `${SettingID.CLEANUP_INDEXEDDB}`,
       value: false,
     },
-    keepDefaultIcon: {
-      name: 'keepDefaultIcon',
+    [`${SettingID.KEEP_DEFAULT_ICON}`]: {
+      name: `${SettingID.KEEP_DEFAULT_ICON}`,
       value: false,
     },
-    localstorageCleanup: {
+    [`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`]: {
       id: 'DEPRECATED - use localStorageCleanup',
-      name: 'localstorageCleanup',
+      name: `${SettingID.CLEANUP_LOCALSTORAGE_OLD}`,
       value: false,
     },
-    localStorageCleanup: {
-      name: 'localStorageCleanup',
+    [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
+      name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
       value: false,
     },
-    manualNotifications: {
-      name: 'manualNotifications',
+    [`${SettingID.NOTIFY_MANUAL}`]: {
+      name: `${SettingID.NOTIFY_MANUAL}`,
       value: true,
     },
-    notificationOnScreen: {
-      name: 'notificationOnScreen',
+    [`${SettingID.NOTIFY_DURATION}`]: {
+      name: `${SettingID.NOTIFY_DURATION}`,
       value: 3,
     },
-    pluginDataCleanup: {
-      name: 'pluginDataCleanup',
+    [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
+      name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
       value: false,
     },
-    serviceWorkersCleanup: {
-      name: 'serviceWorkersCleanup',
+    [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
+      name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
       value: false,
     },
-    showNotificationAfterCleanup: {
-      name: 'showNotificationAfterCleanup',
+    [`${SettingID.NOTIFY_AUTO}`]: {
+      name: `${SettingID.NOTIFY_AUTO}`,
       value: true,
     },
-    showNumOfCookiesInIcon: {
-      name: 'showNumOfCookiesInIcon',
+    [`${SettingID.NUM_COOKIES_ICON}`]: {
+      name: `${SettingID.NUM_COOKIES_ICON}`,
       value: true,
     },
-    sizePopup: {
-      name: 'sizePopup',
+    [`${SettingID.SIZE_POPUP}`]: {
+      name: `${SettingID.SIZE_POPUP}`,
       value: 16,
     },
-    sizeSetting: {
-      name: 'sizeSetting',
+    [`${SettingID.SIZE_SETTING}`]: {
+      name: `${SettingID.SIZE_SETTING}`,
       value: 16,
     },
-    statLogging: {
-      name: 'statLogging',
+    [`${SettingID.STAT_LOGGING}`]: {
+      name: `${SettingID.STAT_LOGGING}`,
       value: true,
     },
-    whiteCleanLocalstorage: {
+    [`${SettingID.OLD_WHITE_CLEAN_LOCALSTORAGE}`]: {
       id: 'DEPRECATED - use default expressions',
-      name: 'whiteCleanLocalstorage',
+      name: `${SettingID.OLD_WHITE_CLEAN_LOCALSTORAGE}`,
       value: false,
     },
   },

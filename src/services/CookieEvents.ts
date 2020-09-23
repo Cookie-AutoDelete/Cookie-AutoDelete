@@ -29,12 +29,15 @@ export default class CookieEvents extends StoreUser {
       windowType: 'normal',
     });
     tabQuery.forEach((tab) => {
+      // Tabs.id with tabs.TAB_ID_NONE do not host content tabs
+      // Tabs.url is always present as we already have the 'tabs' permission.
+      if (!tab.id || !tab.url) return;
       if (
-        extractMainDomain(getHostname(tab.url || '')) ===
+        extractMainDomain(getHostname(tab.url)) ===
         extractMainDomain(changeInfo.cookie.domain)
       ) {
         // Force Tab Update function
-        TabEvents.onTabUpdate(tab.id || 0, { cookieChanged: changeInfo }, tab);
+        TabEvents.onTabUpdate(tab.id, { cookieChanged: changeInfo }, tab);
       }
     });
   }
