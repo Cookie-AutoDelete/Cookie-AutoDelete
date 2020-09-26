@@ -131,7 +131,7 @@ export const checkIfProtected = async (
   tab: browser.tabs.Tab | undefined = undefined,
   cookieLength?: number,
 ): Promise<void> => {
-  const active = state.settings[`${SettingID.ACTIVE_MODE}`].value as boolean;
+  const active = state.settings[SettingID.ACTIVE_MODE].value as boolean;
   let activeTabs: browser.tabs.Tab[] = [];
 
   if (tab) {
@@ -181,7 +181,7 @@ export const checkIfProtected = async (
           if (active) {
             setIconColor(
               aTab,
-              state.settings[`${SettingID.KEEP_DEFAULT_ICON}`].value as boolean,
+              state.settings[SettingID.KEEP_DEFAULT_ICON].value as boolean,
               'yellow',
             );
           } else {
@@ -192,7 +192,7 @@ export const checkIfProtected = async (
           if (active) {
             setIconColor(
               aTab,
-              state.settings[`${SettingID.KEEP_DEFAULT_ICON}`].value as boolean,
+              state.settings[SettingID.KEEP_DEFAULT_ICON].value as boolean,
               'red',
             );
           } else {
@@ -211,7 +211,7 @@ export const checkIfProtected = async (
         if (active) {
           setIconColor(
             aTab,
-            state.settings[`${SettingID.KEEP_DEFAULT_ICON}`].value as boolean,
+            state.settings[SettingID.KEEP_DEFAULT_ICON].value as boolean,
             'red',
           );
         } else {

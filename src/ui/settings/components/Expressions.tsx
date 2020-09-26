@@ -531,7 +531,7 @@ const mapStateToProps = (state: State) => {
       state,
       SettingID.CONTEXTUAL_IDENTITIES,
     ) as boolean,
-    debug: getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean,
+    debug: getSetting(state, SettingID.DEBUG_MODE) as boolean,
     lists,
   };
 };

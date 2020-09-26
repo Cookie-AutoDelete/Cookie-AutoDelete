@@ -36,12 +36,25 @@ class TestStore extends StoreUser {
       type: ReduxConstants.ADD_CACHE,
     });
   }
+  public static dispatch(payload: any, type: ReduxConstants) {
+    StoreUser.store.dispatch({
+      payload,
+      type,
+    });
+  }
 
   public static getCacheValue(key: string) {
     return StoreUser.store.getState().cache[key];
   }
 
-  public static changeSetting(name: string, value: string | boolean | number) {
+  public static getLists() {
+    return StoreUser.store.getState().lists;
+  }
+
+  public static changeSetting(
+    name: SettingID,
+    value: string | boolean | number,
+  ) {
     StoreUser.store.dispatch(Actions.updateSetting({ name, value }));
   }
 
@@ -49,6 +62,13 @@ class TestStore extends StoreUser {
     StoreUser.store.dispatch(Actions.resetSettings());
   }
 }
+
+const wildCardWhiteListGoogle: Expression = {
+  expression: '*.google.com',
+  id: '1',
+  listType: ListType.GREY,
+  storeId: 'remove-container-1',
+};
 
 class TestContextualIdentitiesEvents extends ContextualIdentitiesEvents {
   public static getIsInitialized() {
@@ -94,7 +114,7 @@ describe('ContextualIdentitiesEvents', () => {
       global.browser.contextualIdentities = jestContextualIdentities;
     });
     it('should do nothing if contextualIdentities setting is false/disabled', () => {
-      TestStore.changeSetting(`${SettingID.CONTEXTUAL_IDENTITIES}`, false);
+      TestStore.changeSetting(SettingID.CONTEXTUAL_IDENTITIES, false);
       ContextualIdentitiesEvents.init();
       expect(TestContextualIdentitiesEvents.getIsInitialized()).toEqual(false);
     });
@@ -102,7 +122,7 @@ describe('ContextualIdentitiesEvents', () => {
       when(global.browser.contextualIdentities.onCreated.hasListener)
         .calledWith(expect.any(Function))
         .mockReturnValue(false);
-      TestStore.changeSetting(`${SettingID.CONTEXTUAL_IDENTITIES}`, true);
+      TestStore.changeSetting(SettingID.CONTEXTUAL_IDENTITIES, true);
       ContextualIdentitiesEvents.init();
       expect(TestContextualIdentitiesEvents.getIsInitialized()).toEqual(true);
       expect(spyLib.eventListenerActions).toHaveBeenCalledTimes(3);
@@ -165,6 +185,37 @@ describe('ContextualIdentitiesEvents', () => {
         },
       });
       expect(TestStore.getCacheValue('remove-container-1')).toBeUndefined();
+    });
+    it('should not remove expression list if related setting is disabled', () => {
+      TestStore.changeSetting(
+        SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE,
+        false,
+      );
+      TestStore.dispatch(
+        wildCardWhiteListGoogle,
+        ReduxConstants.ADD_EXPRESSION,
+      );
+      ContextualIdentitiesEvents.onContainerRemoved({
+        contextualIdentity: {
+          ...defaultContextualIdentity,
+          cookieStoreId: 'remove-container-1',
+        },
+      });
+      expect(TestStore.getLists()).toHaveProperty('remove-container-1');
+    });
+    it('should remove expression list if related setting is enabled', () => {
+      TestStore.changeSetting(SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE, true);
+      TestStore.dispatch(
+        wildCardWhiteListGoogle,
+        ReduxConstants.ADD_EXPRESSION,
+      );
+      ContextualIdentitiesEvents.onContainerRemoved({
+        contextualIdentity: {
+          ...defaultContextualIdentity,
+          cookieStoreId: 'remove-container-1',
+        },
+      });
+      expect(TestStore.getLists()).not.toHaveProperty('remove-container-1');
     });
   });
 

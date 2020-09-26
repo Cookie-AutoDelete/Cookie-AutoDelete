@@ -18,10 +18,7 @@ import StoreUser from './StoreUser';
 export default class AlarmEvents extends StoreUser {
   public static createActiveModeAlarm = async (): Promise<void> => {
     const seconds = parseInt(
-      getSetting(
-        StoreUser.store.getState(),
-        `${SettingID.CLEAN_DELAY}`,
-      ) as string,
+      getSetting(StoreUser.store.getState(), SettingID.CLEAN_DELAY) as string,
       10,
     );
     const milliseconds = (seconds > 0 ? seconds : 0.5) * 1000;
@@ -30,7 +27,7 @@ export default class AlarmEvents extends StoreUser {
     }
     AlarmEvents.alarmFlag = true;
     await sleep(milliseconds);
-    if (getSetting(StoreUser.store.getState(), `${SettingID.ACTIVE_MODE}`)) {
+    if (getSetting(StoreUser.store.getState(), SettingID.ACTIVE_MODE)) {
       StoreUser.store.dispatch<any>(
         cookieCleanup({
           greyCleanup: false,

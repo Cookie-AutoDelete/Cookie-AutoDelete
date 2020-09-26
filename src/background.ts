@@ -111,7 +111,7 @@ const onStartUp = async () => {
   store.dispatch<any>(validateSettings());
 
   await setGlobalIcon(
-    getSetting(store.getState(), `${SettingID.ACTIVE_MODE}`) as boolean,
+    getSetting(store.getState(), SettingID.ACTIVE_MODE) as boolean,
   );
 
   await checkIfProtected(store.getState());
@@ -202,13 +202,13 @@ onStartUp().then(() => {
       msg: `background.onStartUp has been executed`,
       type: 'info',
     },
-    getSetting(store.getState(), `${SettingID.DEBUG_MODE}`) as boolean,
+    getSetting(store.getState(), SettingID.DEBUG_MODE) as boolean,
   );
 });
 browser.runtime.onStartup.addListener(async () => {
   await awaitStore();
-  if (getSetting(store.getState(), `${SettingID.ACTIVE_MODE}`) === true) {
-    if (getSetting(store.getState(), `${SettingID.ENABLE_GREYLIST}`) === true) {
+  if (getSetting(store.getState(), SettingID.ACTIVE_MODE) === true) {
+    if (getSetting(store.getState(), SettingID.ENABLE_GREYLIST) === true) {
       let isFFSessionRestore = false;
       const startupTabs = await browser.tabs.query({ windowType: 'normal' });
       startupTabs.forEach((tab) => {
@@ -223,7 +223,7 @@ browser.runtime.onStartup.addListener(async () => {
               'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
             type: 'info',
           },
-          getSetting(store.getState(), `${SettingID.DEBUG_MODE}`) === true,
+          getSetting(store.getState(), SettingID.DEBUG_MODE) === true,
         );
       }
     } else {
@@ -233,7 +233,7 @@ browser.runtime.onStartup.addListener(async () => {
             'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
           type: 'info',
         },
-        getSetting(store.getState(), `${SettingID.DEBUG_MODE}`) === true,
+        getSetting(store.getState(), SettingID.DEBUG_MODE) === true,
       );
     }
   }
@@ -251,14 +251,12 @@ browser.runtime.onInstalled.addListener(async (details) => {
       store.dispatch<any>(validateSettings());
       if (convertVersionToNumber(details.previousVersion) < 350) {
         // Migrate State Setting Name localstorageCleanup to localStorageCleanup
-        if (
-          store.getState().settings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`]
-        ) {
+        if (store.getState().settings[SettingID.CLEANUP_LOCALSTORAGE_OLD]) {
           store.dispatch({
             payload: {
-              name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
+              name: SettingID.CLEANUP_LOCALSTORAGE,
               value: store.getState().settings[
-                `${SettingID.CLEANUP_LOCALSTORAGE_OLD}`
+                SettingID.CLEANUP_LOCALSTORAGE_OLD
               ].value as boolean,
             },
             type: ReduxConstants.UPDATE_SETTING,
@@ -283,15 +281,16 @@ browser.runtime.onInstalled.addListener(async (details) => {
         // Only does this if either was checked.
         for (const lt of [ListType.GREY, ListType.WHITE]) {
           if (
-            getSetting(store.getState(), `${lt.toLowerCase()}CleanLocalstorage`)
+            getSetting(
+              store.getState(),
+              `${lt.toLowerCase()}CleanLocalstorage` as SettingID,
+            )
           ) {
             const containers = new Set<string>(
               Object.keys(store.getState().lists),
             );
             containers.add('default');
-            if (
-              getSetting(store.getState(), `${SettingID.CONTEXTUAL_IDENTITIES}`)
-            ) {
+            if (getSetting(store.getState(), SettingID.CONTEXTUAL_IDENTITIES)) {
               const contextualIdentitiesObjects = await browser.contextualIdentities.query(
                 {},
               );
@@ -318,7 +317,7 @@ browser.runtime.onInstalled.addListener(async (details) => {
           type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
         });
       }
-      if (getSetting(store.getState(), `${SettingID.ENABLE_NEW_POPUP}`)) {
+      if (getSetting(store.getState(), SettingID.ENABLE_NEW_POPUP)) {
         await browser.runtime.openOptionsPage();
       }
       break;
@@ -334,19 +333,19 @@ const awaitStore = async () => {
 };
 
 const greyCleanup = () => {
-  if (getSetting(store.getState(), `${SettingID.ACTIVE_MODE}`)) {
+  if (getSetting(store.getState(), SettingID.ACTIVE_MODE)) {
     cadLog(
       {
         msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
       },
-      getSetting(store.getState(), `${SettingID.DEBUG_MODE}`) as boolean,
+      getSetting(store.getState(), SettingID.DEBUG_MODE) as boolean,
     );
     store.dispatch<any>(
       cookieCleanup({
         greyCleanup: true,
         ignoreOpenTabs: getSetting(
           store.getState(),
-          `${SettingID.CLEAN_OPEN_TABS_STARTUP}`,
+          SettingID.CLEAN_OPEN_TABS_STARTUP,
         ),
       }),
     );

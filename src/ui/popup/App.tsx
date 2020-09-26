@@ -68,15 +68,14 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
 
   public async componentDidMount() {
     document.documentElement.style.fontSize = `${
-      (this.props.state.settings[`${SettingID.SIZE_POPUP}`].value as number) ||
-      16
+      (this.props.state.settings[SettingID.SIZE_POPUP].value as number) || 16
     }px`;
     if (isChrome(this.props.state.cache)) {
       // Chrome requires min width otherwise the layout is messed up
       document.documentElement.style.minWidth = `${
         430 +
-        (((this.props.state.settings[`${SettingID.SIZE_POPUP}`]
-          .value as number) || 16) -
+        (((this.props.state.settings[SettingID.SIZE_POPUP].value as number) ||
+          16) -
           10) *
           35
       }px`;
@@ -256,23 +255,23 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           <IconButton
             iconName="power-off"
             className={
-              settings[`${SettingID.ACTIVE_MODE}`].value
+              settings[SettingID.ACTIVE_MODE].value
                 ? 'btn-success'
                 : 'btn-danger'
             }
             onClick={() =>
               onUpdateSetting({
-                ...settings[`${SettingID.ACTIVE_MODE}`],
-                value: !settings[`${SettingID.ACTIVE_MODE}`].value,
+                ...settings[SettingID.ACTIVE_MODE],
+                value: !settings[SettingID.ACTIVE_MODE].value,
               })
             }
             title={
-              settings[`${SettingID.ACTIVE_MODE}`].value
+              settings[SettingID.ACTIVE_MODE].value
                 ? browser.i18n.getMessage('disableAutoDeleteText')
                 : browser.i18n.getMessage('enableAutoDeleteText')
             }
             text={
-              settings[`${SettingID.ACTIVE_MODE}`].value
+              settings[SettingID.ACTIVE_MODE].value
                 ? browser.i18n.getMessage('autoDeleteEnabledText')
                 : browser.i18n.getMessage('autoDeleteDisabledText')
             }
@@ -280,22 +279,22 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
 
           <IconButton
             iconName={
-              settings[`${SettingID.NOTIFY_AUTO}`].value ? 'bell' : 'bell-slash'
+              settings[SettingID.NOTIFY_AUTO].value ? 'bell' : 'bell-slash'
             }
             className={
-              settings[`${SettingID.NOTIFY_AUTO}`].value
+              settings[SettingID.NOTIFY_AUTO].value
                 ? 'btn-success'
                 : 'btn-danger'
             }
             onClick={() =>
               onUpdateSetting({
-                ...settings[`${SettingID.NOTIFY_AUTO}`],
-                value: !settings[`${SettingID.NOTIFY_AUTO}`].value,
+                ...settings[SettingID.NOTIFY_AUTO],
+                value: !settings[SettingID.NOTIFY_AUTO].value,
               })
             }
             title={browser.i18n.getMessage('toggleNotificationText')}
             text={
-              settings[`${SettingID.NOTIFY_AUTO}`].value
+              settings[SettingID.NOTIFY_AUTO].value
                 ? browser.i18n.getMessage('notificationEnabledText')
                 : browser.i18n.getMessage('notificationDisabledText')
             }

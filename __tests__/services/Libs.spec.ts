@@ -694,8 +694,8 @@ describe('Library Functions', () => {
             ...initialState,
             settings: {
               ...initialState.settings,
-              [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
-                name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
+              [SettingID.CONTEXTUAL_IDENTITIES]: {
+                name: SettingID.CONTEXTUAL_IDENTITIES,
                 value: true,
               },
             },
@@ -724,8 +724,8 @@ describe('Library Functions', () => {
             ...initialState,
             settings: {
               ...initialState.settings,
-              [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
-                name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
+              [SettingID.CONTEXTUAL_IDENTITIES]: {
+                name: SettingID.CONTEXTUAL_IDENTITIES,
                 value: true,
               },
             },
@@ -781,9 +781,7 @@ describe('Library Functions', () => {
 
   describe('getSetting()', () => {
     it('should return value of false for activeMode in default settings', () => {
-      expect(getSetting(initialState, `${SettingID.ACTIVE_MODE}`)).toEqual(
-        false,
-      );
+      expect(getSetting(initialState, SettingID.ACTIVE_MODE)).toEqual(false);
     });
   });
 
@@ -794,9 +792,9 @@ describe('Library Functions', () => {
         browserDetect: browserName.Chrome,
       },
       settings: {
-        [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
+        [SettingID.CONTEXTUAL_IDENTITIES]: {
           id: 7,
-          name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
+          name: SettingID.CONTEXTUAL_IDENTITIES,
           value: false,
         },
       },
@@ -807,9 +805,9 @@ describe('Library Functions', () => {
         browserDetect: browserName.Firefox,
       },
       settings: {
-        [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
+        [SettingID.CONTEXTUAL_IDENTITIES]: {
           id: 7,
-          name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
+          name: SettingID.CONTEXTUAL_IDENTITIES,
           value: false,
         },
       },
@@ -820,9 +818,9 @@ describe('Library Functions', () => {
         browserDetect: browserName.Firefox,
       },
       settings: {
-        [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
+        [SettingID.CONTEXTUAL_IDENTITIES]: {
           id: 7,
-          name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
+          name: SettingID.CONTEXTUAL_IDENTITIES,
           value: true,
         },
       },

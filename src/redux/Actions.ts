@@ -149,7 +149,7 @@ export const updateExpression = (payload: Expression) => (
       if (
         !getSetting(
           getState(),
-          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+          `${payload.listType.toLowerCase()}CleanLocalstorage` as SettingID,
         )
       ) {
         // Enable Deprecated Option
@@ -165,7 +165,7 @@ export const updateExpression = (payload: Expression) => (
       if (
         getSetting(
           getState(),
-          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+          `${payload.listType.toLowerCase()}CleanLocalstorage` as SettingID,
         )
       ) {
         // Disable Deprecated Option
@@ -285,19 +285,19 @@ export const validateSettings: ActionCreator<ThunkAction<
 
   // Disable unusable setting in Chrome
   if (isChrome(cache)) {
-    disableSettingIfTrue(settings[`${SettingID.CONTEXTUAL_IDENTITIES}`]);
+    disableSettingIfTrue(settings[SettingID.CONTEXTUAL_IDENTITIES]);
   }
   // Disable unusable setting in Firefox Android
   if (isFirefoxAndroid(cache)) {
-    disableSettingIfTrue(settings[`${SettingID.NUM_COOKIES_ICON}`]);
-    disableSettingIfTrue(settings[`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`]);
-    disableSettingIfTrue(settings[`${SettingID.CLEANUP_LOCALSTORAGE}`]);
-    disableSettingIfTrue(settings[`${SettingID.CONTEXTUAL_IDENTITIES}`]);
-    disableSettingIfTrue(settings[`${SettingID.CONTEXT_MENUS}`]);
+    disableSettingIfTrue(settings[SettingID.NUM_COOKIES_ICON]);
+    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE_OLD]);
+    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE]);
+    disableSettingIfTrue(settings[SettingID.CONTEXTUAL_IDENTITIES]);
+    disableSettingIfTrue(settings[SettingID.CONTEXT_MENUS]);
   }
 
   // Minimum 1 second autoclean delay.
-  if (settings[`${SettingID.CLEAN_DELAY}`].value < 1) {
+  if (settings[SettingID.CLEAN_DELAY].value < 1) {
     dispatch({
       payload: {
         name: SettingID.CLEAN_DELAY,
@@ -307,7 +307,7 @@ export const validateSettings: ActionCreator<ThunkAction<
     });
   }
   // Maximum 2147483 seconds due to signed 32-bit Integer (ms x 1000)
-  if (settings[`${SettingID.CLEAN_DELAY}`].value > 2147483) {
+  if (settings[SettingID.CLEAN_DELAY].value > 2147483) {
     dispatch({
       payload: {
         name: SettingID.CLEAN_DELAY,
@@ -319,10 +319,10 @@ export const validateSettings: ActionCreator<ThunkAction<
 
   // If show cookie count in badge is disabled, force change icon color instead
   if (
-    !settings[`${SettingID.NUM_COOKIES_ICON}`].value &&
-    settings[`${SettingID.KEEP_DEFAULT_ICON}`].value
+    !settings[SettingID.NUM_COOKIES_ICON].value &&
+    settings[SettingID.KEEP_DEFAULT_ICON].value
   ) {
-    disableSettingIfTrue(settings[`${SettingID.KEEP_DEFAULT_ICON}`]);
+    disableSettingIfTrue(settings[SettingID.KEEP_DEFAULT_ICON]);
   }
 };
 
@@ -352,22 +352,19 @@ export const cookieCleanup: ActionCreator<ThunkAction<
   } = cachedResults as ActivityLog;
 
   // Increment the count
-  if (
-    recentlyCleaned !== 0 &&
-    getSetting(getState(), `${SettingID.STAT_LOGGING}`)
-  ) {
+  if (recentlyCleaned !== 0 && getSetting(getState(), SettingID.STAT_LOGGING)) {
     dispatch(incrementCookieDeletedCounter(recentlyCleaned));
   }
 
   if (
     (recentlyCleaned !== 0 || siteDataCleaned) &&
-    getSetting(getState(), `${SettingID.STAT_LOGGING}`)
+    getSetting(getState(), SettingID.STAT_LOGGING)
   ) {
     dispatch(addActivity(cachedResults));
   }
 
   // Show notifications after cleanup
-  if (getSetting(getState(), `${SettingID.NOTIFY_AUTO}`)) {
+  if (getSetting(getState(), SettingID.NOTIFY_AUTO)) {
     if (setOfDeletedDomainCookies.length > 0) {
       // Cookie Notification
       const notifyMessage = browser.i18n.getMessage('notificationContent', [
@@ -375,10 +372,7 @@ export const cookieCleanup: ActionCreator<ThunkAction<
         setOfDeletedDomainCookies.join(', '),
       ]);
       showNotification({
-        duration: getSetting(
-          getState(),
-          `${SettingID.NOTIFY_DURATION}`,
-        ) as number,
+        duration: getSetting(getState(), SettingID.NOTIFY_DURATION) as number,
         msg: notifyMessage,
         title: browser.i18n.getMessage('notificationTitle'),
       });

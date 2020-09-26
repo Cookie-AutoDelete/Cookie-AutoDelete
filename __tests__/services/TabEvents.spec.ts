@@ -50,7 +50,10 @@ class TestStore extends StoreUser {
     });
   }
 
-  public static changeSetting(name: string, value: string | boolean | number) {
+  public static changeSetting(
+    name: SettingID,
+    value: string | boolean | number,
+  ) {
     StoreUser.store.dispatch(updateSetting({ name, value }));
   }
 
@@ -172,7 +175,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting(`${SettingID.CLEANUP_CACHE}`, true);
+      TestStore.changeSetting(SettingID.CLEANUP_CACHE, true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',
@@ -184,7 +187,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting(`${SettingID.CLEANUP_INDEXEDDB}`, true);
+      TestStore.changeSetting(SettingID.CLEANUP_INDEXEDDB, true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',
@@ -196,7 +199,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting(`${SettingID.CLEANUP_LOCALSTORAGE}`, true);
+      TestStore.changeSetting(SettingID.CLEANUP_LOCALSTORAGE, true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',
@@ -208,7 +211,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting(`${SettingID.CLEANUP_PLUGIN_DATA}`, true);
+      TestStore.changeSetting(SettingID.CLEANUP_PLUGIN_DATA, true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',
@@ -220,7 +223,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting(`${SettingID.CLEANUP_SERVICE_WORKERS}`, true);
+      TestStore.changeSetting(SettingID.CLEANUP_SERVICE_WORKERS, true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',
@@ -276,20 +279,20 @@ describe('TabEvents', () => {
 
   describe('onTabDiscarded', () => {
     it('should do nothing if clean discarded tabs setting is not enabled', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DISCARDED}`, false);
+      TestStore.changeSetting(SettingID.CLEAN_DISCARDED, false);
       TabEvents.onTabDiscarded(0, sampleChangeInfo, sampleTab);
       expect(spyLib.createPartialTabInfo).not.toHaveBeenCalled();
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
     });
 
     it('should do nothing if the tab that was updated is not discarded, even if discardedCleanup was true', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DISCARDED}`, true);
+      TestStore.changeSetting(SettingID.CLEAN_DISCARDED, true);
       TabEvents.onTabDiscarded(0, sampleChangeInfo, sampleTab);
       expect(spyTabEvents.cleanFromTabEvents).not.toHaveBeenCalled();
     });
 
     it('should trigger cleaning if clean discarded tabs is enabled and changeInfo was discarded', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DISCARDED}`, true);
+      TestStore.changeSetting(SettingID.CLEAN_DISCARDED, true);
       TabEvents.onTabDiscarded(
         0,
         { ...sampleChangeInfo, discarded: true },
@@ -299,8 +302,8 @@ describe('TabEvents', () => {
     });
 
     it('should sanitize favIconUrl if debug was enabled', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DISCARDED}`, true);
-      TestStore.changeSetting(`${SettingID.DEBUG_MODE}`, true);
+      TestStore.changeSetting(SettingID.CLEAN_DISCARDED, true);
+      TestStore.changeSetting(SettingID.DEBUG_MODE, true);
       TabEvents.onTabDiscarded(0, { ...sampleChangeInfo }, sampleTab);
       expect(spyLib.cadLog.mock.calls[0][0].x.changeInfo.favIconUrl).toBe(
         '***',
@@ -336,7 +339,7 @@ describe('TabEvents', () => {
     });
 
     it('should sanitize favIconUrl if status=complete and debug is true', () => {
-      TestStore.changeSetting(`${SettingID.DEBUG_MODE}`, true);
+      TestStore.changeSetting(SettingID.DEBUG_MODE, true);
       TabEvents.onTabUpdate(0, sampleChangeInfo, {
         ...sampleTab,
         status: 'complete',
@@ -347,7 +350,7 @@ describe('TabEvents', () => {
     });
 
     it('should not queue getAllCookieActions if one is pending already', () => {
-      TestStore.changeSetting(`${SettingID.DEBUG_MODE}`, true);
+      TestStore.changeSetting(SettingID.DEBUG_MODE, true);
       expect(TestTabEvents.getOnTabUpdateDelay()).toBe(false);
       TabEvents.onTabUpdate(0, sampleChangeInfo, {
         ...sampleTab,
@@ -385,7 +388,7 @@ describe('TabEvents', () => {
     });
 
     it('should truncate favIconUrl if debug=true', () => {
-      TestStore.changeSetting(`${SettingID.DEBUG_MODE}`, true);
+      TestStore.changeSetting(SettingID.DEBUG_MODE, true);
       expect(Object.keys(TestTabEvents.getTabToDomain()).length).toBe(1);
       TabEvents.onDomainChange(0, sampleChangeInfo, {
         ...sampleTab,
@@ -417,7 +420,7 @@ describe('TabEvents', () => {
     });
 
     it('should trigger clean if mainDomain was changed and domainChangeCleanup is enabled', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DOMAIN_CHANGE}`, true);
+      TestStore.changeSetting(SettingID.CLEAN_DOMAIN_CHANGE, true);
       // reuse previous tabId to change domain
       expect(TestTabEvents.getTabToDomain()[0]).toBe('domain.cad');
       TabEvents.onDomainChange(0, sampleChangeInfo, {
@@ -429,7 +432,7 @@ describe('TabEvents', () => {
     });
 
     it('should trigger clean if mainDomain was changed to a home/blank/new tab and domainChangeCleanup is enabled', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DOMAIN_CHANGE}`, true);
+      TestStore.changeSetting(SettingID.CLEAN_DOMAIN_CHANGE, true);
       // reuse previous tabId to change domain to blank
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
       TabEvents.onDomainChange(0, sampleChangeInfo, {
@@ -442,7 +445,7 @@ describe('TabEvents', () => {
     });
 
     it('should not trigger cleaning if previous domain was a new/blank/home tab with domainChangeCleanup enabled', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DOMAIN_CHANGE}`, true);
+      TestStore.changeSetting(SettingID.CLEAN_DOMAIN_CHANGE, true);
       // reuse previous tabId of blank tab to new domain.
       expect(TestTabEvents.getTabToDomain()[0]).toBe('');
       TabEvents.onDomainChange(0, sampleChangeInfo, {
@@ -454,7 +457,7 @@ describe('TabEvents', () => {
     });
 
     it('should not trigger if next domain is an empty string (highly unlikely scenario)', () => {
-      TestStore.changeSetting(`${SettingID.CLEAN_DOMAIN_CHANGE}`, true);
+      TestStore.changeSetting(SettingID.CLEAN_DOMAIN_CHANGE, true);
       // reuse previous tabId to go from domain to empty string...which usually doesn't happen
       expect(TestTabEvents.getTabToDomain()[0]).toBe('example.com');
       TabEvents.onDomainChange(0, sampleChangeInfo, {
@@ -494,8 +497,8 @@ describe('TabEvents', () => {
       when(global.browser.alarms.get)
         .calledWith('activeModeAlarm')
         .mockResolvedValue(undefined as never);
-      TestStore.changeSetting(`${SettingID.ACTIVE_MODE}`, true);
-      TestStore.changeSetting(`${SettingID.CLEAN_DELAY}`, 1);
+      TestStore.changeSetting(SettingID.ACTIVE_MODE, true);
+      TestStore.changeSetting(SettingID.CLEAN_DELAY, 1);
       await TabEvents.cleanFromTabEvents();
       expect(spyAlarmEvents.createActiveModeAlarm).toHaveBeenCalledTimes(1);
     });
@@ -504,7 +507,7 @@ describe('TabEvents', () => {
       when(global.browser.alarms.get)
         .calledWith('activeModeAlarm')
         .mockResolvedValue({ name: 'activeModeAlarm' } as never);
-      TestStore.changeSetting(`${SettingID.ACTIVE_MODE}`, true);
+      TestStore.changeSetting(SettingID.ACTIVE_MODE, true);
       await TabEvents.cleanFromTabEvents();
       expect(spyAlarmEvents.createActiveModeAlarm).not.toHaveBeenCalled();
     });

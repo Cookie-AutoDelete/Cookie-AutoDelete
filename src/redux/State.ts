@@ -18,115 +18,119 @@ export const initialState: State = {
   cookieDeletedCounterTotal: 0,
   cookieDeletedCounterSession: 0,
   settings: {
-    [`${SettingID.ACTIVE_MODE}`]: {
-      name: `${SettingID.ACTIVE_MODE}`,
+    [SettingID.ACTIVE_MODE]: {
+      name: SettingID.ACTIVE_MODE,
       value: false,
     },
-    [`${SettingID.CLEANUP_CACHE}`]: {
-      name: `${SettingID.CLEANUP_CACHE}`,
+    [SettingID.CLEANUP_CACHE]: {
+      name: SettingID.CLEANUP_CACHE,
       value: false,
     },
-    [`${SettingID.CLEAN_OPEN_TABS_STARTUP}`]: {
-      name: `${SettingID.CLEAN_OPEN_TABS_STARTUP}`,
+    [SettingID.CLEAN_OPEN_TABS_STARTUP]: {
+      name: SettingID.CLEAN_OPEN_TABS_STARTUP,
       value: false,
     },
-    [`${SettingID.CLEAN_EXPIRED}`]: {
-      name: `${SettingID.CLEAN_EXPIRED}`,
+    [SettingID.CLEAN_EXPIRED]: {
+      name: SettingID.CLEAN_EXPIRED,
       value: false,
     },
-    [`${SettingID.CONTEXT_MENUS}`]: {
-      name: `${SettingID.CONTEXT_MENUS}`,
+    [SettingID.CONTEXT_MENUS]: {
+      name: SettingID.CONTEXT_MENUS,
       value: true,
     },
-    [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
-      name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
+    [SettingID.CONTEXTUAL_IDENTITIES]: {
+      name: SettingID.CONTEXTUAL_IDENTITIES,
       value: false,
     },
-    [`${SettingID.DEBUG_MODE}`]: {
-      name: `${SettingID.DEBUG_MODE}`,
+    [SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE]: {
+      name: SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE,
+      value: true,
+    },
+    [SettingID.DEBUG_MODE]: {
+      name: SettingID.DEBUG_MODE,
       value: false,
     },
-    [`${SettingID.CLEAN_DELAY}`]: {
-      name: `${SettingID.CLEAN_DELAY}`,
+    [SettingID.CLEAN_DELAY]: {
+      name: SettingID.CLEAN_DELAY,
       value: 15,
     },
-    [`${SettingID.CLEAN_DISCARDED}`]: {
-      name: `${SettingID.CLEAN_DISCARDED}`,
+    [SettingID.CLEAN_DISCARDED]: {
+      name: SettingID.CLEAN_DISCARDED,
       value: false,
     },
-    [`${SettingID.CLEAN_DOMAIN_CHANGE}`]: {
-      name: `${SettingID.CLEAN_DOMAIN_CHANGE}`,
+    [SettingID.CLEAN_DOMAIN_CHANGE]: {
+      name: SettingID.CLEAN_DOMAIN_CHANGE,
       value: false,
     },
-    [`${SettingID.ENABLE_GREYLIST}`]: {
-      name: `${SettingID.ENABLE_GREYLIST}`,
+    [SettingID.ENABLE_GREYLIST]: {
+      name: SettingID.ENABLE_GREYLIST,
       value: true,
     },
-    [`${SettingID.ENABLE_NEW_POPUP}`]: {
-      name: `${SettingID.ENABLE_NEW_POPUP}`,
+    [SettingID.ENABLE_NEW_POPUP]: {
+      name: SettingID.ENABLE_NEW_POPUP,
       value: false,
     },
-    [`${SettingID.OLD_GREY_CLEAN_LOCALSTORAGE}`]: {
+    [SettingID.OLD_GREY_CLEAN_LOCALSTORAGE]: {
       id: 'DEPRECATED - use default expressions',
-      name: `${SettingID.OLD_GREY_CLEAN_LOCALSTORAGE}`,
+      name: SettingID.OLD_GREY_CLEAN_LOCALSTORAGE,
       value: false,
     },
-    [`${SettingID.CLEANUP_INDEXEDDB}`]: {
-      name: `${SettingID.CLEANUP_INDEXEDDB}`,
+    [SettingID.CLEANUP_INDEXEDDB]: {
+      name: SettingID.CLEANUP_INDEXEDDB,
       value: false,
     },
-    [`${SettingID.KEEP_DEFAULT_ICON}`]: {
-      name: `${SettingID.KEEP_DEFAULT_ICON}`,
+    [SettingID.KEEP_DEFAULT_ICON]: {
+      name: SettingID.KEEP_DEFAULT_ICON,
       value: false,
     },
-    [`${SettingID.CLEANUP_LOCALSTORAGE_OLD}`]: {
+    [SettingID.CLEANUP_LOCALSTORAGE_OLD]: {
       id: 'DEPRECATED - use localStorageCleanup',
-      name: `${SettingID.CLEANUP_LOCALSTORAGE_OLD}`,
+      name: SettingID.CLEANUP_LOCALSTORAGE_OLD,
       value: false,
     },
-    [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
-      name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
+    [SettingID.CLEANUP_LOCALSTORAGE]: {
+      name: SettingID.CLEANUP_LOCALSTORAGE,
       value: false,
     },
-    [`${SettingID.NOTIFY_MANUAL}`]: {
-      name: `${SettingID.NOTIFY_MANUAL}`,
+    [SettingID.NOTIFY_MANUAL]: {
+      name: SettingID.NOTIFY_MANUAL,
       value: true,
     },
-    [`${SettingID.NOTIFY_DURATION}`]: {
-      name: `${SettingID.NOTIFY_DURATION}`,
+    [SettingID.NOTIFY_DURATION]: {
+      name: SettingID.NOTIFY_DURATION,
       value: 3,
     },
-    [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
-      name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
+    [SettingID.CLEANUP_PLUGIN_DATA]: {
+      name: SettingID.CLEANUP_PLUGIN_DATA,
       value: false,
     },
-    [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
-      name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
+    [SettingID.CLEANUP_SERVICE_WORKERS]: {
+      name: SettingID.CLEANUP_SERVICE_WORKERS,
       value: false,
     },
-    [`${SettingID.NOTIFY_AUTO}`]: {
-      name: `${SettingID.NOTIFY_AUTO}`,
+    [SettingID.NOTIFY_AUTO]: {
+      name: SettingID.NOTIFY_AUTO,
       value: true,
     },
-    [`${SettingID.NUM_COOKIES_ICON}`]: {
-      name: `${SettingID.NUM_COOKIES_ICON}`,
+    [SettingID.NUM_COOKIES_ICON]: {
+      name: SettingID.NUM_COOKIES_ICON,
       value: true,
     },
-    [`${SettingID.SIZE_POPUP}`]: {
-      name: `${SettingID.SIZE_POPUP}`,
+    [SettingID.SIZE_POPUP]: {
+      name: SettingID.SIZE_POPUP,
       value: 16,
     },
-    [`${SettingID.SIZE_SETTING}`]: {
-      name: `${SettingID.SIZE_SETTING}`,
+    [SettingID.SIZE_SETTING]: {
+      name: SettingID.SIZE_SETTING,
       value: 16,
     },
-    [`${SettingID.STAT_LOGGING}`]: {
-      name: `${SettingID.STAT_LOGGING}`,
+    [SettingID.STAT_LOGGING]: {
+      name: SettingID.STAT_LOGGING,
       value: true,
     },
-    [`${SettingID.OLD_WHITE_CLEAN_LOCALSTORAGE}`]: {
+    [SettingID.OLD_WHITE_CLEAN_LOCALSTORAGE]: {
       id: 'DEPRECATED - use default expressions',
-      name: `${SettingID.OLD_WHITE_CLEAN_LOCALSTORAGE}`,
+      name: SettingID.OLD_WHITE_CLEAN_LOCALSTORAGE,
       value: false,
     },
   },

@@ -23,7 +23,7 @@ export default class ContextualIdentitiesEvents extends StoreUser {
       !browser.contextualIdentities ||
       (!getSetting(
         StoreUser.store.getState(),
-        `${SettingID.CONTEXTUAL_IDENTITIES}`,
+        SettingID.CONTEXTUAL_IDENTITIES,
       ) as boolean) ||
       ContextualIdentitiesEvents.isInitialized
     )
@@ -50,10 +50,7 @@ export default class ContextualIdentitiesEvents extends StoreUser {
       {
         msg: `ContextualIdentitiesEvents.deInit:  Container Events have been added.`,
       },
-      getSetting(
-        StoreUser.store.getState(),
-        `${SettingID.DEBUG_MODE}`,
-      ) as boolean,
+      getSetting(StoreUser.store.getState(), SettingID.DEBUG_MODE) as boolean,
     );
   }
 
@@ -92,10 +89,7 @@ export default class ContextualIdentitiesEvents extends StoreUser {
       {
         msg: `ContextualIdentitiesEvents.deInit:  Container Events have been removed.`,
       },
-      getSetting(
-        StoreUser.store.getState(),
-        `${SettingID.DEBUG_MODE}`,
-      ) as boolean,
+      getSetting(StoreUser.store.getState(), SettingID.DEBUG_MODE) as boolean,
     );
   }
 
@@ -122,9 +116,18 @@ export default class ContextualIdentitiesEvents extends StoreUser {
   public static onContainerRemoved(
     changeInfo: contextualIdentitiesChangeInfo,
   ): void {
-    StoreUser.store.dispatch(
-      removeListUI(changeInfo.contextualIdentity.cookieStoreId),
-    );
+    // Only remove expression list id if setting is enabled.
+    if (
+      getSetting(
+        StoreUser.store.getState(),
+        SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE,
+      )
+    ) {
+      StoreUser.store.dispatch(
+        removeListUI(changeInfo.contextualIdentity.cookieStoreId),
+      );
+    }
+
     StoreUser.store.dispatch({
       payload: {
         key: changeInfo.contextualIdentity.cookieStoreId,
