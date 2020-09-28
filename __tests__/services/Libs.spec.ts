@@ -22,6 +22,7 @@ import {
   getAllCookiesForDomain,
   getContainerExpressionDefault,
   getHostname,
+  getMatchedExpressions,
   getSetting,
   getStoreId,
   globExpressionToRegExp,
@@ -776,6 +777,83 @@ describe('Library Functions', () => {
 
     it('should return an empty string from invalid URLs', () => {
       expect(getHostname('test')).toEqual('');
+    });
+  });
+
+  describe('getMatchedExpressions()', () => {
+    const defaultExpression: Expression = {
+      expression: '*.expression.com',
+      listType: ListType.WHITE,
+      storeId: 'default',
+    };
+    const lists: StoreIdToExpressionList = {
+      default: [
+        defaultExpression,
+        {
+          ...defaultExpression,
+          expression: '192.168.1.1',
+        },
+        {
+          ...defaultExpression,
+          expression: 'fd12:3456:789a:1::1',
+        },
+        {
+          ...defaultExpression,
+          expression: '192.168.10.0/24',
+        },
+        {
+          ...defaultExpression,
+          expression: 'fd12:3456:7890:1::/64',
+        },
+        {
+          ...defaultExpression,
+          expression: '192.168.10.256/22',
+        },
+      ],
+    };
+    it('should return empty array if lists have no storeId', () => {
+      expect(getMatchedExpressions(lists, 'test')).toEqual([]);
+    });
+    it('should return entire storeId list if no input was given.', () => {
+      expect(getMatchedExpressions(lists, 'default')).toEqual([
+        ...lists['default'],
+      ]);
+    });
+    it('should return entire storeId list if input was only whitespaces', () => {
+      expect(getMatchedExpressions(lists, 'default', '  ')).toEqual([
+        ...lists['default'],
+      ]);
+    });
+    it('should not match 192.168.1.1 with 0xc0.168.1.1 as not valid IPv4 Four-Part Decimal format', () => {
+      // 0xc0 = 192
+      expect(getMatchedExpressions(lists, 'default', '0xc0.168.1.1')).toEqual(
+        [],
+      );
+    });
+    it('should return expressions with matching IPv4 Address', () => {
+      expect(getMatchedExpressions(lists, 'default', '192.168.1.1')).toEqual([
+        lists['default'][1],
+      ]);
+    });
+    it('should return expressions with matching IPv6 Address', () => {
+      expect(
+        getMatchedExpressions(lists, 'default', 'fd12:3456:789a:1::1'),
+      ).toEqual([lists['default'][2]]);
+    });
+    it('should return expressions with matching IPv4 Address with CIDR', () => {
+      expect(getMatchedExpressions(lists, 'default', '192.168.10.5')).toEqual([
+        lists['default'][3],
+      ]);
+    });
+    it('should return expressions with matching IPv6 Address with CIDR', () => {
+      expect(
+        getMatchedExpressions(lists, 'default', 'fd12:3456:7890:1:5555::'),
+      ).toEqual([lists['default'][4]]);
+    });
+    it('should return partial matched expressions when searching', () => {
+      expect(getMatchedExpressions(lists, 'default', 'express', true)).toEqual([
+        lists['default'][0],
+      ]);
     });
   });
 
