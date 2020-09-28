@@ -483,25 +483,26 @@ class Settings extends React.Component<SettingProps> {
               />
             </div>
           )}
-          {isFirefoxNotAndroid(cache) && (
-            <div className="form-group">
-              <CheckboxSetting
-                text={browser.i18n.getMessage(
-                  'contextualIdentitiesAutoRemoveText',
-                )}
-                settingObject={
-                  settings[SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE]
-                }
-                inline={true}
-                updateSetting={(payload) => onUpdateSetting(payload)}
-              />
-              <SettingsTooltip
-                hrefURL={
-                  '#enable-automatic-removal-of-expression-list-when-its-container-is-removed'
-                }
-              />
-            </div>
-          )}
+          {isFirefoxNotAndroid(cache) &&
+            settings[SettingID.CONTEXTUAL_IDENTITIES].value && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage(
+                    'contextualIdentitiesAutoRemoveText',
+                  )}
+                  settingObject={
+                    settings[SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE]
+                  }
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip
+                  hrefURL={
+                    '#enable-automatic-removal-of-expression-list-when-its-container-is-removed'
+                  }
+                />
+              </div>
+            )}
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('enableCleanupLogText')}
