@@ -437,16 +437,15 @@ export const getMatchedExpressions = (
         // Putting this through the match function below will throw error.
         if (iip.kind() !== eip.kind()) return false;
         // Both kinds match at this point.
-        const bits = (kind = eip.kind()) => {
-          switch (kind) {
-            case 'ipv4':
-              return 32;
-            case 'ipv6':
-              return 128;
-            default:
-              return 0;
-          }
-        };
+        let bits = 0;
+        switch (eip.kind()) {
+          case 'ipv4':
+            bits = 32;
+            break;
+          case 'ipv6':
+            bits = 128;
+            break;
+        }
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore Needed otherwise TS complains about no compatibility in union signatures.
         return eip.match(iip, bits);
