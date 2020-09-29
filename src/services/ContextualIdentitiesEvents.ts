@@ -12,13 +12,13 @@
  */
 
 import StoreUser from './StoreUser';
-import { cacheCookieStoreIdNames, removeListUI } from '../redux/Actions';
+import { removeListUI } from '../redux/Actions';
 import contextualIdentitiesChangeInfo = browser.contextualIdentities.contextualIdentitiesChangeInfo;
 import { cadLog, eventListenerActions, getSetting } from './Libs';
 import { ReduxConstants } from '../typings/ReduxConstants';
 
 export default class ContextualIdentitiesEvents extends StoreUser {
-  public static init(): void {
+  public static async init(): Promise<void> {
     if (
       !browser.contextualIdentities ||
       (!getSetting(
@@ -30,7 +30,7 @@ export default class ContextualIdentitiesEvents extends StoreUser {
       return;
     ContextualIdentitiesEvents.isInitialized = true;
     // Populate cache with mapped Container ID to Name
-    StoreUser.store.dispatch<any>(cacheCookieStoreIdNames());
+    await ContextualIdentitiesEvents.cacheCookieStoreIdNames();
     eventListenerActions(
       browser.contextualIdentities.onCreated,
       ContextualIdentitiesEvents.onContainerCreated,
@@ -155,6 +155,43 @@ export default class ContextualIdentitiesEvents extends StoreUser {
         type: ReduxConstants.ADD_CACHE,
       });
     }
+  }
+
+  // Map the cookieStoreId to their actual names and store in cache
+  public static async cacheCookieStoreIdNames(): Promise<void> {
+    const contextualIdentitiesObjects = await browser.contextualIdentities.query(
+      {},
+    );
+    StoreUser.store.dispatch({
+      payload: {
+        key: 'default',
+        value: 'Default',
+      },
+      type: ReduxConstants.ADD_CACHE,
+    });
+    StoreUser.store.dispatch({
+      payload: {
+        key: 'firefox-default',
+        value: 'Default',
+      },
+      type: ReduxConstants.ADD_CACHE,
+    });
+    StoreUser.store.dispatch({
+      payload: {
+        key: 'firefox-private',
+        value: 'Private',
+      },
+      type: ReduxConstants.ADD_CACHE,
+    });
+    contextualIdentitiesObjects.forEach((object) =>
+      StoreUser.store.dispatch({
+        payload: {
+          key: object.cookieStoreId,
+          value: object.name,
+        },
+        type: ReduxConstants.ADD_CACHE,
+      }),
+    );
   }
 
   protected static isInitialized = false;

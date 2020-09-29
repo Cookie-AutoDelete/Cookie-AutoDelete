@@ -98,12 +98,12 @@ describe('ContextualIdentitiesEvents', () => {
       ContextualIdentitiesEvents.init();
       expect(TestContextualIdentitiesEvents.getIsInitialized()).toEqual(false);
     });
-    it('should populate cache with existing container maps and add listeners.', () => {
+    it('should populate cache with existing container maps and add listeners.', async () => {
       when(global.browser.contextualIdentities.onCreated.hasListener)
         .calledWith(expect.any(Function))
         .mockReturnValue(false);
       TestStore.changeSetting(`${SettingID.CONTEXTUAL_IDENTITIES}`, true);
-      ContextualIdentitiesEvents.init();
+      await ContextualIdentitiesEvents.init();
       expect(TestContextualIdentitiesEvents.getIsInitialized()).toEqual(true);
       expect(spyLib.eventListenerActions).toHaveBeenCalledTimes(3);
     });
