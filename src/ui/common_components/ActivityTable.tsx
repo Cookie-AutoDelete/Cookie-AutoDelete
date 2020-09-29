@@ -36,7 +36,10 @@ const createSummary = (cleanupObj: ActivityLog) => {
     });
   }
 
-  return Array.from(domainSet).join(', ');
+  return {
+    total: domainSet.size.toString(),
+    domains: Array.from(domainSet).slice(0, 5).join(', '),
+  };
 };
 
 const createDetailedSummary = (cleanReasonObjects: CleanReasonObject[]) => {
@@ -256,7 +259,8 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
         const summary = createSummary(log);
         const message = browser.i18n.getMessage('notificationContent', [
           log.recentlyCleaned.toString(),
-          summary !== '' ? summary : '(Private)',
+          summary.total,
+          summary.domains !== '' ? summary.domains : '(Private)',
         ]);
         const browsingDataEntries = Object.entries(
           log.browsingDataCleanup || {},
