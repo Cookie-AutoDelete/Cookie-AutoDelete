@@ -227,6 +227,14 @@ describe('Reducer', () => {
           storeId: 'firefox-container-1',
         },
       ],
+      'firefox-container-2': [
+        {
+          expression: 'remove.me',
+          id: '222',
+          listType: ListType.WHITE,
+          storeId: 'firefox-container-2',
+        },
+      ],
     };
 
     it('should return youtube.com on default', () => {
@@ -366,6 +374,16 @@ describe('Reducer', () => {
         },
       );
       expect(newState).toEqual({});
+    });
+
+    it('should remove list if last expression entry was removed.', () => {
+      const newState = lists(state, {
+        payload: state['firefox-container-2'][0],
+        type: ReduxConstants.REMOVE_EXPRESSION,
+      });
+      expect(Object.keys(newState)).toEqual(
+        expect.not.arrayContaining(['firefox-container-2']),
+      );
     });
   });
 
