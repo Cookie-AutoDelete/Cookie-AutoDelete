@@ -130,7 +130,7 @@ const onStartUp = async () => {
   }
 
   if (browser.contextualIdentities) {
-    ContextualIdentitiesEvents.init();
+    await ContextualIdentitiesEvents.init();
   }
   browser.browserAction.setTitle({
     title: `${mf.name} ${mf.version} [READY] (0)`,
