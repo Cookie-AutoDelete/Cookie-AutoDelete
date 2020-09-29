@@ -450,14 +450,11 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 verticalAlign: 'middle',
               }}
             >
-              {
-                // Temporary fix until contextualIdentities events land
-              }
-              {!contextualIdentities
-                ? `${hostname}`
-                : `${hostname} ${
-                    cache[storeId] !== undefined ? `(${cache[storeId]})` : ''
-                  }`}
+              {`${hostname}${
+                contextualIdentities && cache[storeId] !== undefined
+                  ? ` (${cache[storeId]})`
+                  : ''
+              }`}
             </span>
           </div>
           <div
