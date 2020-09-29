@@ -297,7 +297,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                 >
                   {`${new Date(log.dateTime).toLocaleString([], {
                     timeZoneName: 'short',
-                  })} - ${message}`}
+                  })} - ${message} ...`}
                 </button>
               </h5>
               <IconButton

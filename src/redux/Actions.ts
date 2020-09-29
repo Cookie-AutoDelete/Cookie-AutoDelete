@@ -394,7 +394,7 @@ export const cookieCleanup: ActionCreator<ThunkAction<
           getState(),
           `${SettingID.NOTIFY_DURATION}`,
         ) as number,
-        msg: notifyMessage,
+        msg: `${notifyMessage} ...`,
         title: browser.i18n.getMessage('notificationTitle'),
       });
       await sleep(750);
