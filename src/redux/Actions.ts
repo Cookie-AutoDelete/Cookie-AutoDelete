@@ -368,39 +368,47 @@ export const cookieCleanup: ActionCreator<ThunkAction<
 
   // Show notifications after cleanup
   if (getSetting(getState(), `${SettingID.NOTIFY_AUTO}`)) {
+    const domainsAll = new Set<string>();
+    Object.values((cachedResults as ActivityLog).storeIds).forEach((v) => {
+      v.forEach((d) => domainsAll.add(d.cookie.hostname));
+    });
+    const bDomains = new Set<string>();
+    // Count for Summary Notification
+    if (browsingDataCleanup) {
+      for (const domains of Object.values(browsingDataCleanup)) {
+        if (!domains || domains.length === 0) continue;
+        domains.forEach((d) => bDomains.add(d));
+      }
+      bDomains.forEach((d) => domainsAll.add(d));
+    }
+
     if (setOfDeletedDomainCookies.length > 0) {
       // Cookie Notification
       const notifyMessage = browser.i18n.getMessage('notificationContent', [
         recentlyCleaned.toString(),
-        setOfDeletedDomainCookies.join(', '),
+        domainsAll.size.toString(),
+        (setOfDeletedDomainCookies as string[]).slice(0, 5).join(', '),
       ]);
       showNotification({
         duration: getSetting(
           getState(),
           `${SettingID.NOTIFY_DURATION}`,
         ) as number,
-        msg: notifyMessage,
+        msg: `${notifyMessage} ...`,
         title: browser.i18n.getMessage('notificationTitle'),
       });
       await sleep(750);
     }
     // Here we just show a generic 'Site Data' cleaned instead of the specifics, with all domains.
-    if (siteDataCleaned && browsingDataCleanup) {
-      const domainsAll = new Set<string>();
-      for (const domains of Object.values(browsingDataCleanup)) {
-        if (!domains || domains.length === 0) continue;
-        domains.forEach((d) => domainsAll.add(d));
-      }
-      if (domainsAll.size > 0) {
-        await showNotification({
-          duration: getSetting(getState(), SettingID.NOTIFY_DURATION) as number,
-          msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
-            browser.i18n.getMessage('siteDataText'),
-            Array.from(domainsAll).join(', '),
-          ]),
-          title: browser.i18n.getMessage('notificationTitleSiteData'),
-        });
-      }
+    if (siteDataCleaned && browsingDataCleanup && bDomains.size > 0) {
+      await showNotification({
+        duration: getSetting(getState(), SettingID.NOTIFY_DURATION) as number,
+        msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+          browser.i18n.getMessage('siteDataText'),
+          Array.from(bDomains).join(', '),
+        ]),
+        title: browser.i18n.getMessage('notificationTitleSiteData'),
+      });
     }
   }
 };
