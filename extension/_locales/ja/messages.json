@@ -621,20 +621,6 @@
     "message": "なし",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "$Num$ 個のCookieを $Websites$ から削除",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "通知無効",
     "description": "Notification disabled"
