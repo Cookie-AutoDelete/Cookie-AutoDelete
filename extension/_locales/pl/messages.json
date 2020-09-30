@@ -617,20 +617,6 @@
     "message": "Brak",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "Niektóre dane strony, w tym $Num$ ciasteczek, usunięte z: $Websites$",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Powiadomienia wyłączone",
     "description": "Notification disabled"
