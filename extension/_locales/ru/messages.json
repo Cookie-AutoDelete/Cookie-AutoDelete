@@ -371,20 +371,6 @@
     "message": "Без фильтра",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "Некоторые данные сайта, включая $Num$ Cookie(ы), удалены из: $Websites$",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Уведомления отключены",
     "description": "Notification disabled"
