@@ -76,7 +76,7 @@
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
   },
   "cleanDiscardedText": {
-    "message": "Aktifkan Hapus untuk Tab yang ditutup / belum dimuat",
+    "message": "Aktifkan Penghapusan untuk Tab yang ditutup / belum dimuat",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
   "cleanExpiredCookiesText": {
@@ -90,6 +90,10 @@
   "cleanText": {
     "message": "Hapus",
     "description": "Clean"
+  },
+  "cleanupDomainChangeText": {
+    "message": "Aktifkan Penghapusan saat Domain Berubah",
+    "description": "Enable Cleanup on Domain Change"
   },
   "cleanupActionsBypass": {
     "message": "Peringatan - Tindakan di bawah mengabaikan pengaturan!",
@@ -183,8 +187,12 @@
     "message": "Hapus Kuki dari Tab yang Terbuka saat Memulai",
     "description": "Clean Cookies from Open Tabs on Startup"
   },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Hapus sekarang, sertakan domain dari tab yang terbuka",
+    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+  },
   "cookieCleanupText": {
-    "message": "Jalankan pembersihan sekarang, kecualikan domain dari tab terbuka",
+    "message": "Hapus sekarang, kecualikan domain dari tab yang terbuka",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
   "createDefaultExpressionOptionsText": {
@@ -222,7 +230,7 @@
     "description": "Restore Default Settings"
   },
   "disableAutoDeleteText": {
-    "message": "Klik untuk menonaktifkan hapus otomatis (mode manual)",
+    "message": "Klik untuk menonaktifkan penghapusan otomatis (mode manual)",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "documentationText": {
@@ -242,7 +250,7 @@
     "description": "Edit expression"
   },
   "enableAutoDeleteText": {
-    "message": "Klik untuk mengaktifkan hapus otomatis (mode otomatis)",
+    "message": "Klik untuk mengaktifkan penghapusan otomatis (mode otomatis)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "enableCleanupLogText": {
@@ -258,7 +266,7 @@
     "description": "Enable Check for Subdomains"
   },
   "enableGreyListCleanup": {
-    "message": "Aktifkan Hapus Daftar Abu-abu saat Peramban Dimulai Ulang",
+    "message": "Aktifkan Penghapusan Daftar Abu-abu saat Peramban Dimulai Ulang",
     "description": "Enable Greylist Cleanup on Browser Restart"
   },
   "enableNewVersionPopup": {
@@ -560,7 +568,7 @@
     }
   },
   "manualCleanSuccess": {
-    "message": "Menghapus $siteData$ pada $url$ hasilnya:",
+    "message": "Menghapus $siteData$ pada $url$:",
     "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
     "placeholders": {
       "siteData": {
@@ -898,7 +906,7 @@
     "description": "Extension Options"
   },
   "settingGroupOtherBrowsing": {
-    "message": "Opsi Hapus Data Peramban Lainnya",
+    "message": "Opsi Penghapusan Data Peramban Lainnya",
     "description": "Other Browsing Data Cleanup Options"
   },
   "settingsText": {
