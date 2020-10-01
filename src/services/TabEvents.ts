@@ -37,12 +37,10 @@ export default class TabEvents extends StoreUser {
     changeInfo: browser.tabs.TabChangeInfo,
     tab: browser.tabs.Tab,
   ): void {
-    if (
-      getSetting(StoreUser.store.getState(), `${SettingID.CLEAN_DISCARDED}`)
-    ) {
+    if (getSetting(StoreUser.store.getState(), SettingID.CLEAN_DISCARDED)) {
       const debug = getSetting(
         StoreUser.store.getState(),
-        `${SettingID.DEBUG_MODE}`,
+        SettingID.DEBUG_MODE,
       ) as boolean;
       const partialTabInfo = createPartialTabInfo(tab);
       // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
@@ -78,7 +76,7 @@ export default class TabEvents extends StoreUser {
     if (tab.status === 'complete') {
       const debug = getSetting(
         StoreUser.store.getState(),
-        `${SettingID.DEBUG_MODE}`,
+        SettingID.DEBUG_MODE,
       ) as boolean;
       const partialTabInfo = createPartialTabInfo(tab);
       // Truncate ChangeInfo.favIconUrl as we have no use for it in debug.
@@ -132,7 +130,7 @@ export default class TabEvents extends StoreUser {
   ): void {
     const debug = getSetting(
       StoreUser.store.getState(),
-      `${SettingID.DEBUG_MODE}`,
+      SettingID.DEBUG_MODE,
     ) as boolean;
     if (tab.status === 'complete') {
       const partialTabInfo = createPartialTabInfo(tab);
@@ -161,10 +159,7 @@ export default class TabEvents extends StoreUser {
         const oldMainDomain = TabEvents.tabToDomain[tabId];
         TabEvents.tabToDomain[tabId] = mainDomain;
         if (
-          getSetting(
-            StoreUser.store.getState(),
-            `${SettingID.CLEAN_DOMAIN_CHANGE}`,
-          )
+          getSetting(StoreUser.store.getState(), SettingID.CLEAN_DOMAIN_CHANGE)
         ) {
           if (oldMainDomain === '') {
             cadLog(
@@ -233,10 +228,7 @@ export default class TabEvents extends StoreUser {
           'TabEvents.onDomainChangeRemove: Tab was closed.  Removing old tabToDomain info.',
         x: { tabId, mainDomain: TabEvents.tabToDomain[tabId], removeInfo },
       },
-      getSetting(
-        StoreUser.store.getState(),
-        `${SettingID.DEBUG_MODE}`,
-      ) as boolean,
+      getSetting(StoreUser.store.getState(), SettingID.DEBUG_MODE) as boolean,
     );
     delete TabEvents.tabToDomain[tabId];
   }
@@ -244,9 +236,9 @@ export default class TabEvents extends StoreUser {
   public static cleanFromTabEvents = async (): Promise<void> => {
     const debug = getSetting(
       StoreUser.store.getState(),
-      `${SettingID.DEBUG_MODE}`,
+      SettingID.DEBUG_MODE,
     ) as boolean;
-    if (getSetting(StoreUser.store.getState(), `${SettingID.ACTIVE_MODE}`)) {
+    if (getSetting(StoreUser.store.getState(), SettingID.ACTIVE_MODE)) {
       const alarm = await browser.alarms.get('activeModeAlarm');
       if (!alarm || (alarm.name && alarm.name !== 'activeModeAlarm')) {
         cadLog(
@@ -277,7 +269,7 @@ export default class TabEvents extends StoreUser {
     if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
     const debug = getSetting(
       StoreUser.store.getState(),
-      `${SettingID.DEBUG_MODE}`,
+      SettingID.DEBUG_MODE,
     ) as boolean;
     const partialTabInfo = createPartialTabInfo(tab);
     const cookies = await getAllCookiesForDomain(
@@ -303,22 +295,16 @@ export default class TabEvents extends StoreUser {
 
     if (
       internalCookies.length === 0 &&
-      (getSetting(StoreUser.store.getState(), `${SettingID.CLEANUP_CACHE}`) ||
+      (getSetting(StoreUser.store.getState(), SettingID.CLEANUP_CACHE) ||
+        getSetting(StoreUser.store.getState(), SettingID.CLEANUP_INDEXEDDB) ||
         getSetting(
           StoreUser.store.getState(),
-          `${SettingID.CLEANUP_INDEXEDDB}`,
+          SettingID.CLEANUP_LOCALSTORAGE,
         ) ||
+        getSetting(StoreUser.store.getState(), SettingID.CLEANUP_PLUGIN_DATA) ||
         getSetting(
           StoreUser.store.getState(),
-          `${SettingID.CLEANUP_LOCALSTORAGE}`,
-        ) ||
-        getSetting(
-          StoreUser.store.getState(),
-          `${SettingID.CLEANUP_PLUGIN_DATA}`,
-        ) ||
-        getSetting(
-          StoreUser.store.getState(),
-          `${SettingID.CLEANUP_SERVICE_WORKERS}`,
+          SettingID.CLEANUP_SERVICE_WORKERS,
         )) &&
       isAWebpage(tab.url) &&
       !tab.url.startsWith('file:')
@@ -370,7 +356,7 @@ export default class TabEvents extends StoreUser {
 
     // Exclude Firefox Android for browser icons and badge texts
     if (
-      getSetting(StoreUser.store.getState(), `${SettingID.NUM_COOKIES_ICON}`) &&
+      getSetting(StoreUser.store.getState(), SettingID.NUM_COOKIES_ICON) &&
       (StoreUser.store.getState().cache.platformOs || '') !== 'android'
     ) {
       cadLog(

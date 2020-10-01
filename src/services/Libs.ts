@@ -393,8 +393,7 @@ export const getContainerExpressionDefault = (
     storeId: '',
   };
   const expDefault =
-    storeId !== 'default' &&
-    getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`)
+    storeId !== 'default' && getSetting(state, SettingID.CONTEXTUAL_IDENTITIES)
       ? getExpression('default') || exp
       : exp;
   return getExpression(storeId) || expDefault;
@@ -405,7 +404,7 @@ export const getContainerExpressionDefault = (
  */
 export const getSetting = (
   state: State,
-  settingName: string,
+  settingName: SettingID,
 ): string | number | boolean => state.settings[settingName].value;
 
 /**
@@ -414,7 +413,7 @@ export const getSetting = (
 export const getStoreId = (state: State, storeId: string): string => {
   if (
     storeId === 'firefox-default' ||
-    (!getSetting(state, `${SettingID.CONTEXTUAL_IDENTITIES}`) &&
+    (!getSetting(state, SettingID.CONTEXTUAL_IDENTITIES) &&
       storeId !== 'firefox-private' &&
       isFirefox(state.cache)) ||
     (isChrome(state.cache) && storeId === '0') ||

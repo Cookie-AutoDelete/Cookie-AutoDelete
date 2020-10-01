@@ -323,8 +323,8 @@ describe('CleanupService', () => {
         ...firefoxState,
         settings: {
           ...firefoxState.settings,
-          [`${SettingID.DEBUG_MODE}`]: {
-            name: `${SettingID.DEBUG_MODE}`,
+          [SettingID.DEBUG_MODE]: {
+            name: SettingID.DEBUG_MODE,
             value: true,
           },
         },
@@ -502,8 +502,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [`${SettingID.CLEANUP_CACHE}`]: {
-                name: `${SettingID.CLEANUP_CACHE}`,
+              [SettingID.CLEANUP_CACHE]: {
+                name: SettingID.CLEANUP_CACHE,
                 value: true,
               },
             },
@@ -537,8 +537,8 @@ describe('CleanupService', () => {
           ...firefoxState,
           settings: {
             ...firefoxState.settings,
-            [`${SettingID.CONTEXTUAL_IDENTITIES}`]: {
-              name: `${SettingID.CONTEXTUAL_IDENTITIES}`,
+            [SettingID.CONTEXTUAL_IDENTITIES]: {
+              name: SettingID.CONTEXTUAL_IDENTITIES,
               value: true,
             },
           },
@@ -555,8 +555,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [`${SettingID.CLEANUP_CACHE}`]: {
-                name: `${SettingID.CLEANUP_CACHE}`,
+              [SettingID.CLEANUP_CACHE]: {
+                name: SettingID.CLEANUP_CACHE,
                 value: true,
               },
             },
@@ -578,8 +578,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [`${SettingID.CLEANUP_INDEXEDDB}`]: {
-                name: `${SettingID.CLEANUP_INDEXEDDB}`,
+              [SettingID.CLEANUP_INDEXEDDB]: {
+                name: SettingID.CLEANUP_INDEXEDDB,
                 value: true,
               },
             },
@@ -601,8 +601,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
-                name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
+              [SettingID.CLEANUP_LOCALSTORAGE]: {
+                name: SettingID.CLEANUP_LOCALSTORAGE,
                 value: true,
               },
             },
@@ -619,8 +619,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
-                name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
+              [SettingID.CLEANUP_PLUGIN_DATA]: {
+                name: SettingID.CLEANUP_PLUGIN_DATA,
                 value: true,
               },
             },
@@ -641,8 +641,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
-                name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
+              [SettingID.CLEANUP_SERVICE_WORKERS]: {
+                name: SettingID.CLEANUP_SERVICE_WORKERS,
                 value: true,
               },
             },
@@ -1056,8 +1056,8 @@ describe('CleanupService', () => {
       ...sampleState,
       settings: {
         ...sampleState.settings,
-        [`${SettingID.CLEAN_EXPIRED}`]: {
-          name: `${SettingID.CLEAN_EXPIRED}`,
+        [SettingID.CLEAN_EXPIRED]: {
+          name: SettingID.CLEAN_EXPIRED,
           value: true,
         },
       },
@@ -1413,8 +1413,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        [`${SettingID.CLEANUP_CACHE}`]: {
-          name: `${SettingID.CLEANUP_CACHE}`,
+        [SettingID.CLEANUP_CACHE]: {
+          name: SettingID.CLEANUP_CACHE,
           value: true,
         },
       },
@@ -1423,8 +1423,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        [`${SettingID.CLEANUP_INDEXEDDB}`]: {
-          name: `${SettingID.CLEANUP_INDEXEDDB}`,
+        [SettingID.CLEANUP_INDEXEDDB]: {
+          name: SettingID.CLEANUP_INDEXEDDB,
           value: true,
         },
       },
@@ -1433,8 +1433,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        [`${SettingID.CLEANUP_LOCALSTORAGE}`]: {
-          name: `${SettingID.CLEANUP_LOCALSTORAGE}`,
+        [SettingID.CLEANUP_LOCALSTORAGE]: {
+          name: SettingID.CLEANUP_LOCALSTORAGE,
           value: true,
         },
       },
@@ -1443,8 +1443,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        [`${SettingID.CLEANUP_PLUGIN_DATA}`]: {
-          name: `${SettingID.CLEANUP_PLUGIN_DATA}`,
+        [SettingID.CLEANUP_PLUGIN_DATA]: {
+          name: SettingID.CLEANUP_PLUGIN_DATA,
           value: true,
         },
       },
@@ -1453,8 +1453,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        [`${SettingID.CLEANUP_SERVICE_WORKERS}`]: {
-          name: `${SettingID.CLEANUP_SERVICE_WORKERS}`,
+        [SettingID.CLEANUP_SERVICE_WORKERS]: {
+          name: SettingID.CLEANUP_SERVICE_WORKERS,
           value: true,
         },
       },

@@ -134,7 +134,7 @@ const restoreCookies = async (
   log: ActivityLog,
   onRemoveActivity: ActivityAction,
 ) => {
-  const debug = getSetting(state, `${SettingID.DEBUG_MODE}`) as boolean;
+  const debug = getSetting(state, SettingID.DEBUG_MODE) as boolean;
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
   cadLog(
@@ -212,7 +212,7 @@ const restoreCookies = async (
     await Promise.all(promiseArr).catch((e) => {
       throwErrorNotification(
         e,
-        getSetting(state, `${SettingID.NOTIFY_DURATION}`) as number,
+        getSetting(state, SettingID.NOTIFY_DURATION) as number,
       );
       cadLog(
         {
@@ -343,10 +343,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                   return (
                     <div key={`${storeId}-${log.dateTime}`}>
                       {(storeIdEntries.length > 1 ||
-                        getSetting(
-                          state,
-                          `${SettingID.CONTEXTUAL_IDENTITIES}`,
-                        )) && (
+                        getSetting(state, SettingID.CONTEXTUAL_IDENTITIES)) && (
                         <h6>
                           {cache[storeId] !== undefined
                             ? `${cache[storeId]} `
