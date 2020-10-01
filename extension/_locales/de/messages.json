@@ -617,6 +617,24 @@
     "message": "Kein Filter",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Einige Website-Daten, einschließlich $Num$ Cookie(s), gelöscht von $total$ Domain(s), einschließlich: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Benachrichtigung deaktiviert",
     "description": "Notification disabled"
