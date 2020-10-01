@@ -163,6 +163,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Habilitar borrado automático de la lista de expresiones cuando se borre su contenedor.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Habilitar soporte para los contenedores de pestañas de Firefox",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -620,6 +624,24 @@
   "noneText": {
     "message": "Ninguno",
     "description": "None"
+  },
+  "notificationContent": {
+    "message": "Algunos datos del sitio, $Num$ cookies, borrado de $total$ dominios, incluido en: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
   },
   "notificationDisabledText": {
     "message": "Notificación deshabilitada",
