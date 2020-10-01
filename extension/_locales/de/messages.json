@@ -163,6 +163,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Automatisches Entfernen der Ausdrucks-Liste aktivieren, wenn der zugehörige Container entfernt wurde.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Unterstützung für Firefox' Container-Tabs",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -618,7 +622,7 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "Einige Website-Daten, einschließlich $Num$ Cookie(s), gelöscht von $total$ Domain(s), einschließlich: $Websites$",
+    "message": "Einige Website-Daten, einschließlich $Num$ Cookie(s), von $total$ Domain(s) gelöscht, einschließlich: $Websites$",
     "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
     "placeholders": {
       "num": {
