@@ -13,7 +13,7 @@
 
 import StoreUser from './StoreUser';
 import ContextualIdentitiesEvents from './ContextualIdentitiesEvents';
-import { cacheCookieStoreIdNames, validateSettings } from '../redux/Actions';
+import { validateSettings } from '../redux/Actions';
 import { cadLog, siteDataToBrowser, SITEDATATYPES } from './Libs';
 import { checkIfProtected, setGlobalIcon } from './BrowserActionService';
 import ContextMenuEvents from './ContextMenuEvents';
@@ -35,8 +35,7 @@ export default class SettingService extends StoreUser {
     // Container Mode Changes
     if (SettingService.hasNewValue(previous, SettingID.CONTEXTUAL_IDENTITIES)) {
       if (SettingService.getCurrent(SettingID.CONTEXTUAL_IDENTITIES)) {
-        ContextualIdentitiesEvents.init();
-        StoreUser.store.dispatch<any>(cacheCookieStoreIdNames());
+        await ContextualIdentitiesEvents.init();
       } else {
         await ContextualIdentitiesEvents.deInit();
       }

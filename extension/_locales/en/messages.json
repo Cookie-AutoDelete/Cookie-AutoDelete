@@ -626,15 +626,19 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "Some site data, including $Num$ Cookie(s), removed from: $Websites$",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "message": "Some site data, including $Num$ Cookie(s), removed from $total$ domain(s), including: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
         "example": "123"
       },
-      "websites": {
+      "total": {
         "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
         "example": "google.com, facebook.com"
       }
     }
