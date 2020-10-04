@@ -66,7 +66,7 @@ jobs:
           echo "::set-env name=issue_close::true"
       - name: Body does not contain all required headings
         id: missingHeadings
-        if: ( ! (contains(github.event.issue.body, '**Describe the bug**') && contains(github.event.issue.body, '**To Reproduce**') && contains(github.event.issue.body, '**Expected Behaviour**') && contains(github.event.issue.body, 'Your System Info') && contains(github.event.issue.body, 'OS:') && contains(github.event.issue.body, 'Browser Info:') && contains(github.event.issue.body, 'CookieAutoDelete Version:') ))
+        if: ( ! (contains(github.event.issue.body, '**Describe the bug**') && contains(github.event.issue.body, '**To Reproduce**') && contains(github.event.issue.body, '**Expected Behavior**') && contains(github.event.issue.body, 'Your System Info') && contains(github.event.issue.body, 'OS:') && contains(github.event.issue.body, 'Browser Info:') && contains(github.event.issue.body, 'CookieAutoDelete Version:') ))
         run: |
           echo "::set-output name=msg::- Missing required section headings and details."
           echo "::warning ::Missing Requires section headers."
