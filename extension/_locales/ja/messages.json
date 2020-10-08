@@ -3,10 +3,6 @@
     "message": "このプログラムについて",
     "description": "About"
   },
-  "activeModeDelayText": {
-    "message": "自動クリーニングの前の遅延",
-    "description": "Delay Before Automatic Cleaning"
-  },
   "activeModeText": {
     "message": "自動クリーニングを有効にする",
     "description": "Enable Automatic Cleaning"
@@ -98,10 +94,6 @@
   "cleanupActionsBypass": {
     "message": "警告 - 以下のアクションは設定を無視します！",
     "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
-  },
-  "cleanupLogText": {
-    "message": "クリーンアップのログ",
-    "description": "Cleanup Log"
   },
   "clearLogsText": {
     "message": "ログを削除",
