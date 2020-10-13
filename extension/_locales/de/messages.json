@@ -72,7 +72,7 @@
     "description": "Cache.  Primarily used in notifications."
   },
   "chromeDebugMode": {
-    "message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' unter Ansichten prüfen.",
+    "message": "Stellen Sie sicher, dass 'Entwicklermodus' aktiviert ist, und klicken Sie dann auf 'Hintergrundseite' unter 'Ansichten prüfen'.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
   },
   "cleanDiscardedText": {
