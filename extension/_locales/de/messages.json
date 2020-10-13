@@ -332,7 +332,7 @@
     "description": "Import Core Settings Failed - Found unknown setting"
   },
   "importCoreSettingsText": {
-    "message": "Einstellungen importieren",
+    "message": "Einstellungen importieren...",
     "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
@@ -348,15 +348,15 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "Ausdrücke importieren",
+    "message": "Ausdrücke importieren...",
     "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
-    "message": "Indexed DB-Bereinigung aktivieren (Firefox 77+, Chrome 74+)",
+    "message": "IndexedDB-Bereinigung aktivieren (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
   },
   "indexedDBText": {
-    "message": "Indexed DB",
+    "message": "IndexedDB",
     "description": "IndexedDB.  Primarily used in notifications."
   },
   "keepAllCookiesText": {
@@ -380,11 +380,11 @@
     "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
   },
   "keepIndexedDBText": {
-    "message": "Indexed DB behalten",
+    "message": "IndexedDB behalten",
     "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
   },
   "keepIndexedDBGreyText": {
-    "message": "Indexed DB bis zum Neustart behalten",
+    "message": "IndexedDB bis zum Neustart behalten",
     "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
   },
   "keepLocalstorageText": {
@@ -512,11 +512,11 @@
     }
   },
   "manualCleanSiteDataIndexedDB": {
-    "message": "Indexed DB dieser Domain aufräumen",
+    "message": "IndexedDB dieser Domain aufräumen",
     "description": "Clean IndexedDB for this domain.  Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataIndexedDBDomain": {
-    "message": "Gesamte Indexed DB für $domain$ aufräumen",
+    "message": "Gesamte IndexedDB für $domain$ aufräumen",
     "description": "Clear all IndexedDB for $domain$.  Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
