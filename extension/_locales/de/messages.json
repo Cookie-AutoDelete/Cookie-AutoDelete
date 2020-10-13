@@ -848,7 +848,7 @@
     }
   },
   "reportIssuesText": {
-    "message": "Melde Fehler und schlage neue Funktionen vor",
+    "message": "Fehler melden und neue Funktionen vorschlagen",
     "description": "Report issues and suggest features"
   },
   "resetCookieCounterText": {
@@ -936,7 +936,7 @@
     "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
   },
   "stopEditingText": {
-    "message": "Bearbeiten beenden",
+    "message": "Bearbeitung beenden",
     "description": "Stop editing"
   },
   "successText": {
@@ -948,11 +948,11 @@
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "toWhiteListText": {
-    "message": "Zur Whitelist hinzufügen (Niemals aufräumen)",
+    "message": "Zur Whitelist hinzufügen (niemals aufräumen)",
     "description": "Add to Whitelist (Never Clean)"
   },
   "toggleNotificationText": {
-    "message": "Umstellen, um Benachrichtigungen zu aktivieren oder deaktivieren",
+    "message": "Umstellen, um Benachrichtigungen zu aktivieren oder zu deaktivieren",
     "description": "Toggle to enable or disable notifications"
   },
   "toggleToGreyListWordText": {
