@@ -112,7 +112,7 @@
     "description": "Remove All"
   },
   "consoleDebugMode": {
-    "message": "Klicken Sie auf den Console-Tab",
+    "message": "Klicken Sie auf den Konsolen-Tab",
     "description": "Click on the Console Tab.  Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
@@ -278,11 +278,11 @@
     "description": "Error!"
   },
   "exportSettingsText": {
-    "message": "Einstellungen exportieren",
+    "message": "Einstellungen exportieren...",
     "description": "Export Core Settings"
   },
   "exportURLSText": {
-    "message": "Ausdrücke exportieren",
+    "message": "Ausdrücke exportieren...",
     "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
