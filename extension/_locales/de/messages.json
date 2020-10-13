@@ -26,7 +26,7 @@
     }
   },
   "addNewExpressionNotification": {
-    "message": "Füge $expression$ zum Listentyp $listType$ unter dem Cookiespeicher $cookieStore$ hinzu.",
+    "message": "$expression$ zum Listentyp $listType$ unter dem Cookiespeicher $cookieStore$ hinzufügen.",
     "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
     "placeholders": {
       "expression": {
@@ -96,7 +96,7 @@
     "description": "Enable Cleanup on Domain Change"
   },
   "cleanupActionsBypass": {
-    "message": "Warnung - folgende Aktionen ignorieren Einstellungen!",
+    "message": "WARNUNG: Folgende Aktionen ignorieren die Einstellungen!",
     "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
