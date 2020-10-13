@@ -684,7 +684,7 @@
     "description": "Plugin Data.  Primarily used in notifications."
   },
   "popupCookieCountText": {
-    "message": "Cookie(s)",
+    "message": "Cookies",
     "description": "Cookie(s)"
   },
   "preferencesText": {
