@@ -164,7 +164,7 @@
     }
   },
   "contextualIdentitiesAutoRemoveText": {
-    "message": "Automatisches Entfernen der Ausdrucks-Liste aktivieren, wenn der zugehörige Container entfernt wurde.",
+    "message": "Automatisches Entfernen der Ausdrucksliste aktivieren, wenn der zugehörige Container entfernt wurde.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
   },
   "contextualIdentitiesEnabledText": {
