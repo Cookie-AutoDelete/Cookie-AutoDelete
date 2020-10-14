@@ -318,7 +318,7 @@
     "description": "Greylist"
   },
   "groupExpressionDefaultNotice": {
-    "message": "Möchten Sie Standard-Ausdruckoptionen für neue Ausdrücke festlegen? Es wurde zur eigenen Ausdruck-Option erweitert! Besuchen Sie '$listExpression$', um loszulegen!",
+    "message": "Möchten Sie Standard-Ausdruckoptionen für neue Ausdrücke festlegen? Es wurde zur eigenen Ausdruckoption erweitert! Besuchen Sie '$listExpression$', um loszulegen!",
     "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
     "placeholders": {
       "listExpression": {
@@ -614,7 +614,7 @@
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
   "noRulesText": {
-    "message": "Keine Regeln passen zu dieser Domain.",
+    "message": "Zu dieser Domain passen keine Regeln.",
     "description": "No rules matched this domain"
   },
   "noneText": {
@@ -898,11 +898,11 @@
     "description": "Automatic Cleaning Options"
   },
   "settingGroupExpression": {
-    "message": "Ausdruck-Optionen",
+    "message": "Ausdruckoptionen",
     "description": "Expression Options"
   },
   "settingGroupExtension": {
-    "message": "Erweiterungs-Optionen",
+    "message": "Erweiterungsoptionen",
     "description": "Extension Options"
   },
   "settingGroupOtherBrowsing": {
