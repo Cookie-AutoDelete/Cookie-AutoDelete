@@ -83,7 +83,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public async getAllCookies() {
     const { expression } = this.props;
     const exp = expression.expression;
-    let cookies: browser.cookies.CookieProperties[];
+    let cookies: browser.cookies.CookieProperties[] = [];
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
@@ -112,15 +112,26 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
         (cookie) => cookie.domain === '' && regExp.test(cookie.path),
       );
     } else {
+      let cidrEXP: [ipaddr.IPv4 | ipaddr.IPv6, number];
+      let allCookies;
       try {
         // Check if expression was a CIDR Notation
-        const cidrEXP = ipaddr.parseCIDR(exp);
-        const allCookies = await browser.cookies.getAll(
-          returnOptionalCookieAPIAttributes(
-            this.props.state,
-            { storeId: this.toPublicStoreId(expression.storeId) },
-          ),
+        cidrEXP = ipaddr.parseCIDR(exp);
+        allCookies = await browser.cookies.getAll(
+          returnOptionalCookieAPIAttributes(this.props.state, {
+            storeId: this.toPublicStoreId(expression.storeId),
+          }),
         );
+      } catch {
+        // Not valid CIDR.  Proceed with default fetch.  Also applies to IP Addresses with no CIDR.
+        cookies = await browser.cookies.getAll(
+          returnOptionalCookieAPIAttributes(this.props.state, {
+            domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
+            storeId: this.toPublicStoreId(expression.storeId),
+          }),
+        );
+      }
+      if (allCookies) {
         cookies = allCookies.filter((cookie) => {
           try {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -131,17 +142,6 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
             return false;
           }
         });
-      } catch {
-        // Not valid CIDR.  Proceed with default fetch.  Also applies to IP Addresses with no CIDR.
-        cookies = await browser.cookies.getAll(
-          returnOptionalCookieAPIAttributes(
-            this.props.state,
-            {
-              domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
-              storeId: this.toPublicStoreId(expression.storeId),
-            }),
-
-        );
       }
     }
     this.setState({ cookies });
