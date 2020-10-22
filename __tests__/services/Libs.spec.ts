@@ -23,6 +23,7 @@ import {
   getContainerExpressionDefault,
   getHostname,
   getMatchedExpressions,
+  getSearchResults,
   getSetting,
   getStoreId,
   globExpressionToRegExp,
@@ -34,6 +35,7 @@ import {
   isFirefoxNotAndroid,
   isFirstPartyIsolate,
   localFileToRegex,
+  matchIPInExpression,
   parseCookieStoreId,
   prepareCleanupDomains,
   prepareCookieDomain,
@@ -45,6 +47,8 @@ import {
   trimDot,
   undefinedIsTrue,
 } from '../../src/services/Libs';
+
+import ipaddr from 'ipaddr.js';
 
 const mockCookie: browser.cookies.Cookie = {
   domain: 'domain.com',
@@ -857,6 +861,18 @@ describe('Library Functions', () => {
     });
   });
 
+  describe('getSearchResults()', () => {
+    it('should return false if string is not matched', () => {
+      expect(getSearchResults('*.expression.com', 'test')).toEqual(false);
+    });
+    it('should return true if string was partially matched', () => {
+      expect(getSearchResults('*.expression.com', 'express')).toEqual(true);
+    });
+    it('should return true if string was exactly matched', () => {
+      expect(getSearchResults('test', 'test')).toEqual(true);
+    });
+  });
+
   describe('getSetting()', () => {
     it('should return value of false for activeMode in default settings', () => {
       expect(getSetting(initialState, SettingID.ACTIVE_MODE)).toEqual(false);
@@ -1215,6 +1231,21 @@ describe('Library Functions', () => {
 
     it('should return empty string from empty hostname', () => {
       expect(localFileToRegex('')).toEqual('');
+    });
+  });
+
+  describe('matchIPInExpression()', () => {
+    const ipv4Test = ipaddr.parse('1.1.1.1');
+    it('should return undefined if Expression is not an IP', () => {
+      expect(matchIPInExpression('test', ipv4Test)).toBeUndefined();
+    });
+    it('should return false if IP type is mismatched', () => {
+      expect(matchIPInExpression('fd12:3456:7890:1:5555::', ipv4Test)).toEqual(
+        false,
+      );
+    });
+    it('should return undefined if CIDR notation format is not as expected', () => {
+      expect(matchIPInExpression('1.1/1/1', ipv4Test)).toBeUndefined();
     });
   });
 
