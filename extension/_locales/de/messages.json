@@ -676,7 +676,7 @@
     "description": "Options"
   },
   "pluginDataCleanupText": {
-    "message": "Plugin-Daten-Bereinigung aktivieren (Firefox 78+, Chrome 74+)",
+    "message": "Plugin-Datenbereinigung aktivieren (Firefox 78+, Chrome 74+)",
     "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "pluginDataText": {
