@@ -168,7 +168,7 @@
     "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Unterstützung für Firefox' Container-Tabs",
+    "message": "Unterstützung für Tab-Umgebungen",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
   },
   "contributeText": {
@@ -200,7 +200,7 @@
     "description": "Create Default Expression Options.  Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
-    "message": "Aktueller Container ausgewählt: $ID$ ( $Name$ )",
+    "message": "Aktuelle Umgebung ausgewählt: $ID$ ( $Name$ )",
     "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
@@ -222,7 +222,7 @@
     "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultContainerText": {
-    "message": "Kein Container",
+    "message": "Keine Umgebung",
     "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
@@ -598,7 +598,7 @@
     "description": "minute(s)"
   },
   "missingContainerText": {
-    "message": "UNGÜLTIGER CONTAINER",
+    "message": "UNGÜLTIGE UMGEBUNG",
     "description": "INVALID CONTAINER.  Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
