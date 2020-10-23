@@ -116,7 +116,7 @@
     "description": "Click on the Console Tab.  Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
-    "message": "WARNUNG: Das Aktivieren von Container-Tabs mit einer der oben genannten zusätzlichen Bereinigungsoptionen kann aufgrund von API-Einschränkungen unerwünschte Nebeneffekte verursachen. Website-Daten, mit Ausnahme von Cookies, werden nach Hostnamen für ALLE Container gelöscht.",
+    "message": "WARNUNG: Das Aktivieren von Tab-Umgebungen mit einer der oben genannten zusätzlichen Bereinigungsoptionen kann aufgrund von API-Einschränkungen unerwünschte Nebeneffekte verursachen. Website-Daten, mit Ausnahme von Cookies, werden nach Hostnamen für ALLE Umgebungen gelöscht.",
     "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
   },
   "contextMenusParentClean": {
@@ -164,7 +164,7 @@
     }
   },
   "contextualIdentitiesAutoRemoveText": {
-    "message": "Automatisches Entfernen der Ausdrucksliste aktivieren, wenn der zugehörige Container entfernt wurde.",
+    "message": "Automatisches Entfernen der Ausdrucksliste aktivieren, wenn die zugehörige Umgebung entfernt wurde.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
   },
   "contextualIdentitiesEnabledText": {
@@ -610,7 +610,7 @@
     "description": "No expressions defined."
   },
   "noPrivateLogging": {
-    "message": "Aufräumprotokolle werden nicht für Tabs im Privaten Modus / Inkognito / InPrivate generiert.",
+    "message": "Aufräumprotokolle werden nicht für Tabs im Privaten Modus generiert.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
   "noRulesText": {
