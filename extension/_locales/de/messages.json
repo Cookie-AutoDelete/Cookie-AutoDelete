@@ -774,7 +774,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "Aufgrund von offenen Tabs auf *.$mainDomain$ behalten",
+    "message": "Aufgrund von offenen Tabs von *.$mainDomain$ behalten",
     "description": "Keep because of open tabs of *.$mainDomain$",
     "placeholders": {
       "mainDomain": {
