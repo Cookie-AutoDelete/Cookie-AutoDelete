@@ -609,10 +609,6 @@
     "message": "Keine Ausdrücke definiert.",
     "description": "No expressions defined."
   },
-  "noPrivateLogging": {
-    "message": "Aufräumprotokolle werden nicht für Tabs im Privaten Modus generiert.",
-    "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
-  },
   "noRulesText": {
     "message": "Zu dieser Domain passen keine Regeln.",
     "description": "No rules matched this domain"
