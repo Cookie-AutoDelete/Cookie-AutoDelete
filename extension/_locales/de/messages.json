@@ -613,6 +613,10 @@
     "message": "Aufräumprotokolle werden nicht für Tabs im Privaten Modus / im Inkognitomodus / beim InPrivate-Browsen generiert.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "Keine Ausdrücke aus obiger Suche gefunden.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "Zu dieser Domain passen keine Regeln.",
     "description": "No rules matched this domain"
@@ -790,6 +794,16 @@
   "reasonTabsWereNotIgnored": {
     "message": "oder in geöffneten Tabs",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+  },
+  "regexMissingEndSlash": {
+    "message": "HINWEIS: Ein kürzlich hinzugefügter Ausdruck hat einen Anfangs-, aber keinen Endschrägstrich. Beide sind für den RegEx-Abgleich erforderlich. Vermerkte Ausdrücke: $errDomains$",
+    "description": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$.  Only if entering a new expression that starts with a slash and does not end with one. Can be found in List of Expressions.",
+    "placeholders": {
+      "errDomains": {
+        "content": "$1",
+        "example": "/regex"
+      }
+    }
   },
   "regularExpressionEquivalentText": {
     "message": "Entsprechender regulärer Ausdruck",
