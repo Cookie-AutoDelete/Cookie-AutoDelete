@@ -83,10 +83,6 @@
     "message": "Alle abgelaufenen Cookies aufräumen",
     "description": "Clean All Expired Cookies.  Found in Settings."
   },
-  "cleanIgnoringOpenTabsText": {
-    "message": "Aufräumen inklusive offener Tabs",
-    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
-  },
   "cleanText": {
     "message": "Aufräumen",
     "description": "Clean"
@@ -288,6 +284,10 @@
   "exportTitleTimestamp": {
     "message": "Beim Export wird ein Zeitstempel an den Dateinamen angehängt.",
     "description": "A timestamp will be appended to the filename on export."
+  },
+  "extensionDescription": {
+    "message": "Kontrollieren Sie Ihre Cookies! Löschen Sie automatisch unerwünschte Cookies aus Ihren geschlossenen Tabs, während Sie die gewünschten behalten.",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "extensionName": {
     "message": "Cookie AutoDelete",
