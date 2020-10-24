@@ -60,11 +60,11 @@
     "description": "Auto-clean enabled"
   },
   "browsingDataWarning": {
-    "message": "ATTENZIONE: Prima di abilitare ognuna delle seguenti opzioni di polizia dei dati del sito, TUTTI i dati esistenti per quel tipo saranno eliminati.",
+    "message": "ATTENZIONE: Prima di attivare una delle seguenti opzioni di pulizia dei dati dei siti, TUTTI i dati esistenti per quel tipo saranno eliminati.",
     "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
   },
   "cacheCleanupText": {
-    "message": "Abilita Pulizia della Cache (Firefox 78+, Chrome 74+)",
+    "message": "Attiva la pulizia della cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "cacheText": {
@@ -76,7 +76,7 @@
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
   },
   "cleanDiscardedText": {
-    "message": "Abilita Pulizia per le Schede Scartate/Caricate",
+    "message": "Attiva la pulizia per le schede scartate/non in memoria",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
   },
   "cleanExpiredCookiesText": {
@@ -100,7 +100,7 @@
     "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
-    "message": "Registro delle puliture",
+    "message": "Registro delle pulizie",
     "description": "Cleanup Log"
   },
   "clearLogsText": {
@@ -116,7 +116,7 @@
     "description": "Click on the Console Tab.  Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
-    "message": "ATTENZIONE: Abilitare le Schede Contenitori con qualsiasi pulizia dei dati di navigazione aggiuntiva sopra potrebbe causare effetti collaterali indesiderati per le limitazioni delle API del browser. I tipi di dati del sito, con l'eccezione dei cookie, saranno eliminati dal nome del host per TUTTI i contenitori.",
+    "message": "ATTENZIONE: attivare le schede contenitore assieme a qualsiasi delle opzioni di pulizia dei dati di navigazione sopra, potrebbe causare effetti collaterali indesiderati a causa di limitazioni delle API del browser. I tipi di dati del sito, con l'eccezione dei cookie, saranno eliminati dal nome dell'host per TUTTI i contenitori.",
     "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
   },
   "contextMenusParentClean": {
@@ -192,11 +192,11 @@
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
   "createDefaultExpressionOptionsText": {
-    "message": "Crea Opzioni di Espressione Predefinite",
+    "message": "Crea opzioni predefinite di espressione",
     "description": "Create Default Expression Options.  Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
-    "message": "Contenitore Corrente Selezionato: $ID$ ( $Name$ )",
+    "message": "Attuale contenitore selezionato: $ID$ ( $Name$ )",
     "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
@@ -210,7 +210,7 @@
     }
   },
   "debugMode": {
-    "message": "Abilita modalità debug (output di console aggiuntivi)",
+    "message": "Attiva la modalità di debug (output di console aggiuntivi)",
     "description": "Enable Debug Mode (Additional Console Outputs)"
   },
   "defaultText": {
@@ -218,7 +218,7 @@
     "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultContainerText": {
-    "message": "Nessun Contenitore",
+    "message": "Nessun contenitore",
     "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
@@ -237,6 +237,10 @@
     "message": "Espressione del dominio",
     "description": "Domain Expression"
   },
+  "domainPlaceholderText": {
+    "message": "esempio.com, sottodominio.esempio.com, *.esempio.com, /(^|.)esempio\\.com/",
+    "description": "Domain Expression.  For this one we'll keep the string as is."
+  },
   "dropdownAdditionalCleaningOptions": {
     "message": "Attiva/disattiva tendina di azioni di pulizia aggiuntive",
     "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
@@ -250,19 +254,19 @@
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "enableCleanupLogText": {
-    "message": "Attiva il registro delle puliture e il contatore",
+    "message": "Attiva il registro delle pulizie e il contatore",
     "description": "Enable Cleanup Log and Counter"
   },
   "enableContextMenus": {
-    "message": "Abilita Menu del Contesto (Menu Click Destro)",
+    "message": "Attiva i menu contestuali (menu click destro)",
     "description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
   },
   "enableGlobalSubdomainText": {
-    "message": "Abilita il controllo dei sottodomini",
+    "message": "Attiva il controllo dei sottodomini",
     "description": "Enable Check for Subdomains"
   },
   "enableGreyListCleanup": {
-    "message": "Abilita la pulizia della lista grigia al riavvio del browser",
+    "message": "Attiva la pulizia della lista grigia al riavvio del browser",
     "description": "Enable Greylist Cleanup on Browser Restart"
   },
   "enableNewVersionPopup": {
@@ -314,7 +318,7 @@
     "description": "Greylist"
   },
   "groupExpressionDefaultNotice": {
-    "message": "Stai cercando di impostare le opzioni predefinite dell'espressione per le nuove espressioni? È stata migliorata per essere essa stessa un'opzione dell'espressione! Visita $listExpression$ per iniziare!",
+    "message": "Stai cercando di impostare le opzioni predefinite per le nuove espressioni? È stata migliorata per essere essa stessa un'opzione dell'espressione! Visita $listExpression$ per iniziare!",
     "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
     "placeholders": {
       "listExpression": {
@@ -348,7 +352,7 @@
     "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
-    "message": "Abilita IndexedDB Cleanup (Firefox 77+, Chrome 74+)",
+    "message": "Attiva la pulizia dell'IndexedDB (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
   },
   "indexedDBText": {
@@ -416,7 +420,7 @@
     "description": "List Type"
   },
   "localStorageCleanupText": {
-    "message": "Abilita Pulizia di LocalStorage (Firefox 58+, Chrome 74+)",
+    "message": "Attiva la pulizia del LocalStorage (Firefox 58+, Chrome 74+)",
     "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+).  Found in CAD Settings."
   },
   "localStorageText": {
@@ -578,7 +582,7 @@
     }
   },
   "manualNotificationsText": {
-    "message": "Mostra Notifica dalla Pulizia Manuale dei Dati del Sito",
+    "message": "Mostra una notifica dalla pulizia manuale dei dati del sito",
     "description": "Show Notification from Manual Site Data Cleanups.  Found in settings"
   },
   "matchedDomainExpressionText": {
@@ -598,7 +602,7 @@
     "description": "INVALID CONTAINER.  Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
-    "message": "Nessun registro delle puliture trovato",
+    "message": "Nessun registro delle pulizie trovato",
     "description": "No Cleanup Logs Found"
   },
   "noExpressionsText": {
@@ -616,20 +620,6 @@
   "noneText": {
     "message": "Nessuno",
     "description": "None"
-  },
-  "notificationContent": {
-    "message": "Alcuni dati del sito, inclusi $Num$ Cookie(s), rimossi da: $Websites$",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
   },
   "notificationDisabledText": {
     "message": "Notifica disattivata",
@@ -668,7 +658,7 @@
     "description": "Options"
   },
   "pluginDataCleanupText": {
-    "message": "Abilita Pulizia dei Dati dei Plugin (Firefox 78+, Chrome 74+)",
+    "message": "Attiva la pulizia dei dati dei plugin (Firefox 78+, Chrome 74+)",
     "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
   },
   "pluginDataText": {
@@ -722,7 +712,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Pulisci a causa dell'avvio pulitura e $matchedExpression$ è in lista grigia",
+    "message": "Pulisci a causa della pulizia all'avvio e $matchedExpression$ è in lista grigia",
     "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
     "placeholders": {
       "matchedExpression": {
@@ -742,7 +732,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Pulisci a causa dell'avvio pulitura e $hostname$ non è in lista bianca/grigia",
+    "message": "Pulisci a causa della pulizia all'avvio e $hostname$ non è in lista bianca o grigia",
     "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
@@ -874,7 +864,7 @@
     "description": "second(s)"
   },
   "serviceWorkersCleanupText": {
-    "message": "Abilita Pulizia dei Service Workers (Firefox 77+, Chrome 74+)",
+    "message": "Attiva la pulizia dei Service Workers (Firefox 77+, Chrome 74+)",
     "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
   },
   "serviceWorkersText": {
@@ -898,7 +888,7 @@
     "description": "Extension Options"
   },
   "settingGroupOtherBrowsing": {
-    "message": "Altre opzioni di pulizia dati di navigazione",
+    "message": "Altre opzioni di pulizia dei dati di navigazione",
     "description": "Other Browsing Data Cleanup Options"
   },
   "settingsText": {

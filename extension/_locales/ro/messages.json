@@ -247,20 +247,6 @@
     "message": "Nimic",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "Unele date ale site-ului, inclusiv $Num$ cookie(uri), eliminate de la: $Websites$",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Notificare dezactivată",
     "description": "Notification disabled"
