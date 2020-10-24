@@ -613,6 +613,10 @@
     "message": "Os registos de limpeza não serão gerados para separadores em navegação privada / incognito / InPrivada.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "Nenhuma expressão encontrada a partir da pesquisa acima.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "Nenhuma regra corresponde a este domínio.",
     "description": "No rules matched this domain"
