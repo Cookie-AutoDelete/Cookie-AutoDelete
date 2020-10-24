@@ -22,6 +22,7 @@ class EmptyState {
   public expressionInput = '';
   public editMode = false;
   public id: string | undefined = '';
+  public invalid = '';
 }
 
 interface OwnProps {
@@ -53,6 +54,7 @@ class ExpressionTable extends React.Component<
       editMode: true,
       expressionInput: expression.expression,
       id: expression.id,
+      invalid: '',
     });
   }
 
@@ -73,10 +75,19 @@ class ExpressionTable extends React.Component<
   }
 
   public clearEdit() {
+    if (this.editInput) {
+      if (this.editInput.parentElement) {
+        this.editInput.parentElement.classList.remove('was-validated');
+      }
+      this.editInput.setCustomValidity('');
+      this.editInput.checkValidity();
+      this.editInput = undefined;
+    }
     this.setState(new EmptyState());
   }
 
   public commitEdit() {
+    if (!this.validateEdit()) return;
     const original = (this.props.expressions || []).find(
       (expression) => expression.id === this.state.id,
     );
@@ -88,6 +99,45 @@ class ExpressionTable extends React.Component<
       });
     }
     this.setState(new EmptyState());
+    this.editInput = undefined;
+  }
+
+  public validateEdit(): boolean {
+    if (!this.state.editMode || !this.editInput || !this.state.id) return false;
+    const inputTrim = this.state.expressionInput.trim();
+    if (!inputTrim) {
+      return this.setInvalid(browser.i18n.getMessage('inputErrorEmpty'));
+    }
+    if (inputTrim.startsWith('/') && inputTrim.endsWith('/')) {
+      // Regular Expression
+      try {
+        new RegExp(inputTrim.slice(1, -1));
+      } catch (e) {
+        return this.setInvalid(
+          browser.i18n.getMessage('inputErrorComma', [`${e}`]),
+        );
+      }
+    } else if (inputTrim.startsWith('/')) {
+      // missing end slash.
+      return this.setInvalid(
+        browser.i18n.getMessage('inputErrorSlashStartMissingEnd'),
+      );
+    } else if (inputTrim.endsWith('/')) {
+      // missing beginning slash, or not regex
+      return this.setInvalid(
+        browser.i18n.getMessage('inputErrorSlashEndMissingStart'),
+      );
+    } else if (inputTrim.indexOf(',') !== -1) {
+      // no commas allowed in non-regex
+      return this.setInvalid(browser.i18n.getMessage('inputErrorComma'));
+    }
+    // Past this point, presume valid expression entry.
+    this.editInput.setCustomValidity('');
+    if (this.editInput.parentElement) {
+      this.editInput.parentElement.classList.remove('was-validated');
+    }
+    this.editInput.checkValidity();
+    return true;
   }
 
   public render() {
@@ -97,7 +147,7 @@ class ExpressionTable extends React.Component<
       expressionColumnTitle,
       emptyElement,
     } = this.props;
-    const { editMode, id, expressionInput } = this.state;
+    const { editMode, id, expressionInput, invalid } = this.state;
     const expressions =
       this.props.expressions === undefined ? [] : this.props.expressions;
 
@@ -146,22 +196,28 @@ class ExpressionTable extends React.Component<
                         expressionInput: e.target.value,
                       })
                     }
+                    onKeyUp={(e) => {
+                      if (e.key.toLowerCase().includes('enter')) {
+                        this.commitEdit();
+                      }
+                    }}
                     type="url"
                     autoFocus={true}
                     style={{
                       display: 'inline-block',
                       margin: 0,
                       verticalAlign: 'middle',
-                      width: 'calc(100% - 95px)',
                     }}
                   />
+                  <div className="invalid-feedback">{invalid}</div>
                   <IconButton
                     title={browser.i18n.getMessage('stopEditingText')}
                     className="btn-outline-danger"
                     iconName="ban"
                     styleReact={{
-                      float: 'right',
-                      marginLeft: '5px',
+                      float: 'left',
+                      marginTop: '8px',
+                      width: '45%',
                     }}
                     onClick={() => {
                       this.clearEdit();
@@ -173,7 +229,8 @@ class ExpressionTable extends React.Component<
                     iconName="save"
                     styleReact={{
                       float: 'right',
-                      marginLeft: '5px',
+                      marginTop: '8px',
+                      width: '45%',
                     }}
                     onClick={() => {
                       this.commitEdit();
@@ -254,6 +311,19 @@ class ExpressionTable extends React.Component<
         </tbody>
       </table>
     );
+  }
+  private setInvalid(s: string): boolean {
+    if (!this.editInput) return false;
+    this.setState({
+      invalid: s,
+    });
+    this.editInput.setCustomValidity(s);
+    if (this.editInput.parentElement) {
+      this.editInput.parentElement.classList.add('was-validated');
+    }
+    this.editInput.checkValidity();
+    // should always return false since we set error above.
+    return false;
   }
 }
 

@@ -363,6 +363,32 @@
     "message": "IndexedDB",
     "description": "IndexedDB.  Primarily used in notifications."
   },
+  "inputErrorComma": {
+    "message": "Commas are only allowed in Regular Expressions.",
+    "description": "Commas are only allowed in Regular Expressions.  Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "Revised expression cannot be empty!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Regular Expression is not valid.  $RegexError$",
+    "description": "Regular Expression is not valid.  <Error from new RegExp()>.  Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "End slash missing start slash for Regular Expression.  Remove end slash for domains.",
+    "description": "End slash missing start slash for Regular Expression.  Remove end slash for domains.  Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Start slash missing end slash for Regular Expression.",
+    "description": "Start slash missing end slash for Regular Expression.  Found in editing expression errors."
+  },
   "keepAllCookiesText": {
     "message": "Keep All Cookies",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
