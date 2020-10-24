@@ -163,6 +163,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Ativar Remoção automática de lista de expressões quando o respetivo Contentor for removido.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Ativar suporte para os separadores contentores do Firefox",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -625,6 +629,24 @@
     "message": "Nenhum",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Alguns dados de sites, incluindo $Num$ Cookie(s), apagado(s) de $total$ domínio(s), incluindo: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Notificação desativada",
     "description": "Notification disabled"
@@ -777,6 +799,16 @@
     "message": "ou em quaisquer separadores abertos",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
+  "regexMissingEndSlash": {
+    "message": "NOTA:  Uma expressão recentemente adicionada tem uma barra inicial mas não uma barra final.  Ambas são requeridas para correspondência regex.  Expressão(ões) observada(s):  $errDomains$",
+    "description": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$.  Only if entering a new expression that starts with a slash and does not end with one. Can be found in List of Expressions.",
+    "placeholders": {
+      "errDomains": {
+        "content": "$1",
+        "example": "/regex"
+      }
+    }
+  },
   "regularExpressionEquivalentText": {
     "message": "Equivalente de expressão regular",
     "description": "Regular Expression Equivalent"
@@ -908,6 +940,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Mostrar o número de cookies para esse domínio sobre o ícone",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataText": {
+    "message": "Dados de sites",
+    "description": "Site Data.  Found in Activity Log Summary and Notifications."
   },
   "sizePopupText": {
     "message": "Tamanho do popup (em px)",
