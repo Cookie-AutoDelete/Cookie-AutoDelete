@@ -3,12 +3,12 @@ name: CI
 on:
   push:
     branches-ignore:
-      - '_archived__**'
+      - "_archived__**"
   pull_request_target:
     branches-ignore:
-      - '_archived__**'
+      - "_archived__**"
     paths-ignore:
-      - '**/README.md'
+      - "**/README.md"
 
 jobs:
   pre_info:
@@ -64,10 +64,26 @@ jobs:
       - name: Checkout Commit
         uses: actions/checkout@v2
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v2.1.1
+        uses: actions/setup-node@v2.1.2
         with:
-          node-version: '14.x'
+          node-version: "14.x"
+      - name: Get Node Version
+        id: node
+        run: |
+          echo "Node Version:  $(node -v)"
+          echo "::set-output name=version::$(node -v)"
+      - name: Cache Node Modules
+        id: nodeCache
+        uses: actions/cache@v2
+        with:
+          # npm cache files stored in `~/.npm` on Linux
+          path: ~/.npm
+          key: ${{ runner.os }}-nodejs-${{ steps.node.outputs.version }}-npm-${{ hashFiles('**/package.json', '**/package-lock.json') }}
+      - name: Install dependencies from cache (npm --cache-min install)
+        if: steps.nodeCache.outputs.cache-hit == 'true'
+        run: npm --cache-min 9999999 install
       - name: Install dependencies (npm ci)
+        if: steps.nodeCache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run Tests
         run: npm run test -- --verbose
@@ -95,7 +111,7 @@ jobs:
           CC_TOKEN: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
         run: bash ./.github/codecov_alt.sh $GITHUB_EVENT_PATH
       - name: Coveralls.io Coverage Upload
-        uses: coverallsapp/github-action@v1.1.1
+        uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Extract zip builds for individual artifact upload
@@ -120,12 +136,12 @@ jobs:
           path: builds/${{ steps.extbuilds.outputs.crdir }}
       - name: Hide old PR Build Comments
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
-        uses: kanga333/comment-hider@v0.1.0
+        uses: kanga333/comment-hider@v0.1.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create PR Build Comment
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
-        uses: peter-evans/create-or-update-comment@v1.4.2
+        uses: peter-evans/create-or-update-comment@v1.4.3
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |

@@ -36,7 +36,10 @@ const createSummary = (cleanupObj: ActivityLog) => {
     });
   }
 
-  return Array.from(domainSet).join(', ');
+  return {
+    total: domainSet.size.toString(),
+    domains: Array.from(domainSet).slice(0, 5).join(', '),
+  };
 };
 
 const createDetailedSummary = (cleanReasonObjects: CleanReasonObject[]) => {
@@ -131,7 +134,7 @@ const restoreCookies = async (
   log: ActivityLog,
   onRemoveActivity: ActivityAction,
 ) => {
-  const debug = getSetting(state, 'debugMode') as boolean;
+  const debug = getSetting(state, SettingID.DEBUG_MODE) as boolean;
   const cleanReasonObjsArrays = Object.values(log.storeIds);
   const promiseArr = [];
   cadLog(
@@ -209,7 +212,7 @@ const restoreCookies = async (
     await Promise.all(promiseArr).catch((e) => {
       throwErrorNotification(
         e,
-        getSetting(state, 'notificationOnScreen') as number,
+        getSetting(state, SettingID.NOTIFY_DURATION) as number,
       );
       cadLog(
         {
@@ -256,7 +259,8 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
         const summary = createSummary(log);
         const message = browser.i18n.getMessage('notificationContent', [
           log.recentlyCleaned.toString(),
-          summary !== '' ? summary : '(Private)',
+          summary.total,
+          summary.domains !== '' ? summary.domains : '(Private)',
         ]);
         const browsingDataEntries = Object.entries(
           log.browsingDataCleanup || {},
@@ -293,7 +297,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                 >
                   {`${new Date(log.dateTime).toLocaleString([], {
                     timeZoneName: 'short',
-                  })} - ${message}`}
+                  })} - ${message} ...`}
                 </button>
               </h5>
               <IconButton
@@ -339,7 +343,7 @@ const ActivityTable: React.FunctionComponent<ActivityTableProps> = (props) => {
                   return (
                     <div key={`${storeId}-${log.dateTime}`}>
                       {(storeIdEntries.length > 1 ||
-                        getSetting(state, 'contextualIdentities')) && (
+                        getSetting(state, SettingID.CONTEXTUAL_IDENTITIES)) && (
                         <h6>
                           {cache[storeId] !== undefined
                             ? `${cache[storeId]} `

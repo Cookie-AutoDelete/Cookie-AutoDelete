@@ -149,7 +149,7 @@ export const updateExpression = (payload: Expression) => (
       if (
         !getSetting(
           getState(),
-          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+          `${payload.listType.toLowerCase()}CleanLocalstorage` as SettingID,
         )
       ) {
         // Enable Deprecated Option
@@ -165,7 +165,7 @@ export const updateExpression = (payload: Expression) => (
       if (
         getSetting(
           getState(),
-          `${payload.listType.toLowerCase()}CleanLocalstorage`,
+          `${payload.listType.toLowerCase()}CleanLocalstorage` as SettingID,
         )
       ) {
         // Disable Deprecated Option
@@ -285,32 +285,32 @@ export const validateSettings: ActionCreator<ThunkAction<
 
   // Disable unusable setting in Chrome
   if (isChrome(cache)) {
-    disableSettingIfTrue(settings.contextualIdentities);
+    disableSettingIfTrue(settings[SettingID.CONTEXTUAL_IDENTITIES]);
   }
   // Disable unusable setting in Firefox Android
   if (isFirefoxAndroid(cache)) {
-    disableSettingIfTrue(settings.showNumOfCookiesInIcon);
-    disableSettingIfTrue(settings.localstorageCleanup);
-    disableSettingIfTrue(settings.localStorageCleanup);
-    disableSettingIfTrue(settings.contextualIdentities);
-    disableSettingIfTrue(settings.contextMenus);
+    disableSettingIfTrue(settings[SettingID.NUM_COOKIES_ICON]);
+    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE_OLD]);
+    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE]);
+    disableSettingIfTrue(settings[SettingID.CONTEXTUAL_IDENTITIES]);
+    disableSettingIfTrue(settings[SettingID.CONTEXT_MENUS]);
   }
 
   // Minimum 1 second autoclean delay.
-  if (settings.delayBeforeClean.value < 1) {
+  if (settings[SettingID.CLEAN_DELAY].value < 1) {
     dispatch({
       payload: {
-        ...settings.delayBeforeClean,
+        name: SettingID.CLEAN_DELAY,
         value: 1,
       },
       type: ReduxConstants.UPDATE_SETTING,
     });
   }
   // Maximum 2147483 seconds due to signed 32-bit Integer (ms x 1000)
-  if (settings.delayBeforeClean.value > 2147483) {
+  if (settings[SettingID.CLEAN_DELAY].value > 2147483) {
     dispatch({
       payload: {
-        ...settings.delayBeforeClean,
+        name: SettingID.CLEAN_DELAY,
         value: 2147483,
       },
       type: ReduxConstants.UPDATE_SETTING,
@@ -319,10 +319,10 @@ export const validateSettings: ActionCreator<ThunkAction<
 
   // If show cookie count in badge is disabled, force change icon color instead
   if (
-    !settings.showNumOfCookiesInIcon.value &&
-    settings.keepDefaultIcon.value
+    !settings[SettingID.NUM_COOKIES_ICON].value &&
+    settings[SettingID.KEEP_DEFAULT_ICON].value
   ) {
-    disableSettingIfTrue(settings.keepDefaultIcon);
+    disableSettingIfTrue(settings[SettingID.KEEP_DEFAULT_ICON]);
   }
 };
 
@@ -352,88 +352,57 @@ export const cookieCleanup: ActionCreator<ThunkAction<
   } = cachedResults as ActivityLog;
 
   // Increment the count
-  if (recentlyCleaned !== 0 && getSetting(getState(), 'statLogging')) {
+  if (recentlyCleaned !== 0 && getSetting(getState(), SettingID.STAT_LOGGING)) {
     dispatch(incrementCookieDeletedCounter(recentlyCleaned));
   }
 
   if (
     (recentlyCleaned !== 0 || siteDataCleaned) &&
-    getSetting(getState(), 'statLogging')
+    getSetting(getState(), SettingID.STAT_LOGGING)
   ) {
     dispatch(addActivity(cachedResults));
   }
 
   // Show notifications after cleanup
-  if (getSetting(getState(), 'showNotificationAfterCleanup')) {
+  if (getSetting(getState(), SettingID.NOTIFY_AUTO)) {
+    const domainsAll = new Set<string>();
+    Object.values((cachedResults as ActivityLog).storeIds).forEach((v) => {
+      v.forEach((d) => domainsAll.add(d.cookie.hostname));
+    });
+    const bDomains = new Set<string>();
+    // Count for Summary Notification
+    if (browsingDataCleanup) {
+      for (const domains of Object.values(browsingDataCleanup)) {
+        if (!domains || domains.length === 0) continue;
+        domains.forEach((d) => bDomains.add(d));
+      }
+      bDomains.forEach((d) => domainsAll.add(d));
+    }
+
     if (setOfDeletedDomainCookies.length > 0) {
       // Cookie Notification
       const notifyMessage = browser.i18n.getMessage('notificationContent', [
         recentlyCleaned.toString(),
-        setOfDeletedDomainCookies.join(', '),
+        domainsAll.size.toString(),
+        (setOfDeletedDomainCookies as string[]).slice(0, 5).join(', '),
       ]);
       showNotification({
-        duration: getSetting(getState(), 'notificationOnScreen') as number,
-        msg: notifyMessage,
+        duration: getSetting(getState(), SettingID.NOTIFY_DURATION) as number,
+        msg: `${notifyMessage} ...`,
         title: browser.i18n.getMessage('notificationTitle'),
       });
       await sleep(750);
     }
     // Here we just show a generic 'Site Data' cleaned instead of the specifics, with all domains.
-    if (siteDataCleaned && browsingDataCleanup) {
-      const domainsAll: string[] = [];
-      for (const domains of Object.values(browsingDataCleanup)) {
-        if (!domains || domains.length === 0) continue;
-        domainsAll.push(...domains);
-      }
-      if (domainsAll.length > 0) {
-        await showNotification({
-          duration: getSetting(getState(), 'notificationOnScreen') as number,
-          msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
-            browser.i18n.getMessage('siteDataText'),
-            domainsAll.join(', '),
-          ]),
-          title: browser.i18n.getMessage('notificationTitleSiteData'),
-        });
-      }
+    if (siteDataCleaned && browsingDataCleanup && bDomains.size > 0) {
+      await showNotification({
+        duration: getSetting(getState(), SettingID.NOTIFY_DURATION) as number,
+        msg: browser.i18n.getMessage('activityLogSiteDataDomainsText', [
+          browser.i18n.getMessage('siteDataText'),
+          Array.from(bDomains).join(', '),
+        ]),
+        title: browser.i18n.getMessage('notificationTitleSiteData'),
+      });
     }
   }
-};
-
-// Map the cookieStoreId to their actual names and store in cache
-export const cacheCookieStoreIdNames = () => async (
-  dispatch: Dispatch<ReduxAction>,
-): Promise<void> => {
-  const contextualIdentitiesObjects = await browser.contextualIdentities.query(
-    {},
-  );
-  dispatch({
-    payload: {
-      key: 'default',
-      value: 'Default',
-    },
-    type: ReduxConstants.ADD_CACHE,
-  });
-  dispatch({
-    payload: {
-      key: 'firefox-default',
-      value: 'Default',
-    },
-    type: ReduxConstants.ADD_CACHE,
-  });
-  dispatch({
-    payload: {
-      key: 'firefox-private',
-      value: 'Private',
-    },
-    type: ReduxConstants.ADD_CACHE,
-  });
-  contextualIdentitiesObjects.forEach((object) =>
-    dispatch({
-      payload: {
-        key: object.cookieStoreId,
-        value: object.name,
-      },
-      type: ReduxConstants.ADD_CACHE,
-    }),
-  );
 };

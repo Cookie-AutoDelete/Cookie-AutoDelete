@@ -163,6 +163,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Enable Automatic Removal of Expression List when its Container is Removed.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Enable Support for Firefox's Container Tabs",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -613,6 +617,10 @@
     "message": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "No expressions found from search above.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "No rules matched this domain.",
     "description": "No rules matched this domain"
@@ -622,15 +630,19 @@
     "description": "None"
   },
   "notificationContent": {
-    "message": "Some site data, including $Num$ Cookie(s), removed from: $Websites$",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
+    "message": "Some site data, including $Num$ Cookie(s), removed from $total$ domain(s), including: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
     "placeholders": {
       "num": {
         "content": "$1",
         "example": "123"
       },
-      "websites": {
+      "total": {
         "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
         "example": "google.com, facebook.com"
       }
     }
@@ -786,6 +798,16 @@
   "reasonTabsWereNotIgnored": {
     "message": "or in any open tabs",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+  },
+  "regexMissingEndSlash": {
+    "message": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$",
+    "description": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$.  Only if entering a new expression that starts with a slash and does not end with one. Can be found in List of Expressions.",
+    "placeholders": {
+      "errDomains": {
+        "content": "$1",
+        "example": "/regex"
+      }
+    }
   },
   "regularExpressionEquivalentText": {
     "message": "Regular Expression Equivalent",

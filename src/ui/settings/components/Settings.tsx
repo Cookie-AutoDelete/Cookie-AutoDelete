@@ -67,7 +67,7 @@ class Settings extends React.Component<SettingProps> {
   // Import Settings
   public importCoreSettings(importFile: File) {
     const { settings } = this.props;
-    const debug = settings.debugMode.value as boolean;
+    const debug = settings[SettingID.DEBUG_MODE].value as boolean;
     cadLog(
       {
         msg: 'Import Core Settings received file for parsing.',
@@ -194,7 +194,7 @@ class Settings extends React.Component<SettingProps> {
         type: 'info',
         x: r,
       },
-      settings.debugMode.value as boolean,
+      settings[SettingID.DEBUG_MODE].value as boolean,
     );
     this.setState({
       error: '',
@@ -288,7 +288,7 @@ class Settings extends React.Component<SettingProps> {
             <CheckboxSetting
               text={browser.i18n.getMessage('activeModeText')}
               inline={true}
-              settingObject={settings.activeMode}
+              settingObject={settings[SettingID.ACTIVE_MODE]}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#enable-automatic-cleaning'} />
@@ -303,12 +303,12 @@ class Settings extends React.Component<SettingProps> {
                 const eValue = Number.parseInt(e.target.value, 10);
                 if (!Number.isNaN(eValue) && eValue >= 1 && eValue <= 2147483) {
                   onUpdateSetting({
-                    name: settings.delayBeforeClean.name,
+                    name: SettingID.CLEAN_DELAY,
                     value: eValue,
                   });
                 }
               }}
-              value={settings.delayBeforeClean.value as number}
+              value={settings[SettingID.CLEAN_DELAY].value as number}
               min="1"
               max="2147483"
               size={10}
@@ -322,16 +322,18 @@ class Settings extends React.Component<SettingProps> {
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('cleanDiscardedText')}
-              settingObject={settings.discardedCleanup}
+              settingObject={settings[SettingID.CLEAN_DISCARDED]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
-            <SettingsTooltip hrefURL={'#enable-cleanup-for-discardedunloaded-tabs'} />
+            <SettingsTooltip
+              hrefURL={'#enable-cleanup-for-discardedunloaded-tabs'}
+            />
           </div>
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('cleanupDomainChangeText')}
-              settingObject={settings.domainChangeCleanup}
+              settingObject={settings[SettingID.CLEAN_DOMAIN_CHANGE]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
@@ -339,8 +341,8 @@ class Settings extends React.Component<SettingProps> {
           </div>
           <div className="form-group">
             <CheckboxSetting
-              text={browser.i18n.getMessage('enableGreyListCleanup')}
-              settingObject={settings.enableGreyListCleanup}
+              text={browser.i18n.getMessage(SettingID.ENABLE_GREYLIST)}
+              settingObject={settings[SettingID.ENABLE_GREYLIST]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
@@ -351,7 +353,7 @@ class Settings extends React.Component<SettingProps> {
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('cookieCleanUpOnStartText')}
-              settingObject={settings.cleanCookiesFromOpenTabsOnStartup}
+              settingObject={settings[SettingID.CLEAN_OPEN_TABS_STARTUP]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
@@ -361,7 +363,7 @@ class Settings extends React.Component<SettingProps> {
           </div>
           <div className="form-group">
             <CheckboxSetting
-              settingObject={settings.cleanExpiredCookies}
+              settingObject={settings[SettingID.CLEAN_EXPIRED]}
               inline={true}
               text={browser.i18n.getMessage('cleanExpiredCookiesText')}
               updateSetting={(payload) => onUpdateSetting(payload)}
@@ -393,7 +395,7 @@ class Settings extends React.Component<SettingProps> {
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('cacheCleanupText')}
-                  settingObject={settings.cacheCleanup}
+                  settingObject={settings[SettingID.CLEANUP_CACHE]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
@@ -407,7 +409,7 @@ class Settings extends React.Component<SettingProps> {
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('indexedDBCleanupText')}
-                  settingObject={settings.indexedDBCleanup}
+                  settingObject={settings[SettingID.CLEANUP_INDEXEDDB]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
@@ -421,7 +423,7 @@ class Settings extends React.Component<SettingProps> {
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('localStorageCleanupText')}
-                  settingObject={settings.localStorageCleanup}
+                  settingObject={settings[SettingID.CLEANUP_LOCALSTORAGE]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
@@ -435,7 +437,7 @@ class Settings extends React.Component<SettingProps> {
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('pluginDataCleanupText')}
-                  settingObject={settings.pluginDataCleanup}
+                  settingObject={settings[SettingID.CLEANUP_PLUGIN_DATA]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
@@ -449,7 +451,7 @@ class Settings extends React.Component<SettingProps> {
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('serviceWorkersCleanupText')}
-                  settingObject={settings.serviceWorkersCleanup}
+                  settingObject={settings[SettingID.CLEANUP_SERVICE_WORKERS]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
@@ -472,26 +474,44 @@ class Settings extends React.Component<SettingProps> {
                 text={browser.i18n.getMessage(
                   'contextualIdentitiesEnabledText',
                 )}
-                settingObject={settings.contextualIdentities}
+                settingObject={settings[SettingID.CONTEXTUAL_IDENTITIES]}
                 inline={true}
                 updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip
-                hrefURL={
-                  '#enable-support-for-firefoxs-container-tabs-firefox-only'
-                }
+                hrefURL={'#enable-support-for-firefoxs-container-tabs'}
               />
             </div>
           )}
+          {isFirefoxNotAndroid(cache) &&
+            settings[SettingID.CONTEXTUAL_IDENTITIES].value && (
+              <div className="form-group">
+                <CheckboxSetting
+                  text={browser.i18n.getMessage(
+                    'contextualIdentitiesAutoRemoveText',
+                  )}
+                  settingObject={
+                    settings[SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE]
+                  }
+                  inline={true}
+                  updateSetting={(payload) => onUpdateSetting(payload)}
+                />
+                <SettingsTooltip
+                  hrefURL={
+                    '#enable-automatic-removal-of-expression-list-when-its-container-is-removed'
+                  }
+                />
+              </div>
+            )}
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('enableCleanupLogText')}
-              settingObject={settings.statLogging}
+              settingObject={settings[SettingID.STAT_LOGGING]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#enable-cleanup-log-and-counter'} />
-            {settings.statLogging.value && (
+            {settings[SettingID.STAT_LOGGING].value && (
               <div className="alert alert-warning">
                 {browser.i18n.getMessage('noPrivateLogging')}
               </div>
@@ -501,7 +521,7 @@ class Settings extends React.Component<SettingProps> {
             <div className="form-group">
               <CheckboxSetting
                 text={browser.i18n.getMessage('showNumberOfCookiesInIconText')}
-                settingObject={settings.showNumOfCookiesInIcon}
+                settingObject={settings[SettingID.NUM_COOKIES_ICON]}
                 inline={true}
                 updateSetting={(payload) => onUpdateSetting(payload)}
               />
@@ -511,11 +531,11 @@ class Settings extends React.Component<SettingProps> {
             </div>
           )}
           {(!isFirefox(cache) || isFirefoxNotAndroid(cache)) &&
-            settings.showNumOfCookiesInIcon.value === true && (
+            settings[SettingID.NUM_COOKIES_ICON].value === true && (
               <div className="form-group">
                 <CheckboxSetting
-                  text={browser.i18n.getMessage('keepDefaultIcon')}
-                  settingObject={settings.keepDefaultIcon}
+                  text={browser.i18n.getMessage(SettingID.KEEP_DEFAULT_ICON)}
+                  settingObject={settings[SettingID.KEEP_DEFAULT_ICON]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
@@ -527,7 +547,7 @@ class Settings extends React.Component<SettingProps> {
           <div className="form-group">
             <CheckboxSetting
               text={browser.i18n.getMessage('notifyCookieCleanUpText')}
-              settingObject={settings.showNotificationAfterCleanup}
+              settingObject={settings[SettingID.NOTIFY_AUTO]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
@@ -538,7 +558,7 @@ class Settings extends React.Component<SettingProps> {
           <div className="form-group">
             <CheckboxSetting
               inline={true}
-              settingObject={settings.manualNotifications}
+              settingObject={settings[SettingID.NOTIFY_MANUAL]}
               text={browser.i18n.getMessage('manualNotificationsText')}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
@@ -550,7 +570,7 @@ class Settings extends React.Component<SettingProps> {
             <SelectInput
               numSize={9}
               numStart={1}
-              settingObject={settings.notificationOnScreen}
+              settingObject={settings[SettingID.NOTIFY_DURATION]}
               text={`${browser.i18n.getMessage(
                 'secondsText',
               )} ${browser.i18n.getMessage('notifyCookieCleanupDelayText')}`}
@@ -562,8 +582,8 @@ class Settings extends React.Component<SettingProps> {
           </div>
           <div className="form-group">
             <CheckboxSetting
-              text={browser.i18n.getMessage('enableNewVersionPopup')}
-              settingObject={settings.enableNewVersionPopup}
+              text={browser.i18n.getMessage(SettingID.ENABLE_NEW_POPUP)}
+              settingObject={settings[SettingID.ENABLE_NEW_POPUP]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
@@ -575,11 +595,9 @@ class Settings extends React.Component<SettingProps> {
             <SelectInput
               numSize={14}
               numStart={10}
-              settingObject={settings.sizePopup}
+              settingObject={settings[SettingID.SIZE_POPUP]}
               text={browser.i18n.getMessage('sizePopupText')}
-              updateSetting={(payload) => {
-                onUpdateSetting(payload);
-              }}
+              updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#size-of-popup'} />
           </div>
@@ -587,7 +605,7 @@ class Settings extends React.Component<SettingProps> {
             <SelectInput
               numSize={14}
               numStart={10}
-              settingObject={settings.sizeSetting}
+              settingObject={settings[SettingID.SIZE_SETTING]}
               text={browser.i18n.getMessage('sizeSettingText')}
               updateSetting={(payload) => {
                 onUpdateSetting(payload);
@@ -599,7 +617,7 @@ class Settings extends React.Component<SettingProps> {
             <div className="form-group">
               <CheckboxSetting
                 text={browser.i18n.getMessage('enableContextMenus')}
-                settingObject={settings.contextMenus}
+                settingObject={settings[SettingID.CONTEXT_MENUS]}
                 inline={true}
                 updateSetting={(payload) => onUpdateSetting(payload)}
               />
@@ -609,13 +627,13 @@ class Settings extends React.Component<SettingProps> {
           {(isFirefoxNotAndroid(cache) || isChrome(cache)) && (
             <div className="form-group">
               <CheckboxSetting
-                text={browser.i18n.getMessage('debugMode')}
-                settingObject={settings.debugMode}
+                text={browser.i18n.getMessage(SettingID.DEBUG_MODE)}
+                settingObject={settings[SettingID.DEBUG_MODE]}
                 inline={true}
                 updateSetting={(payload) => onUpdateSetting(payload)}
               />
               <SettingsTooltip hrefURL={'#debug-mode'} />
-              {settings.debugMode.value && (
+              {settings[SettingID.DEBUG_MODE].value && (
                 <div className="alert alert-info">
                   <p>{browser.i18n.getMessage('openDebugMode')}</p>
                   <pre>

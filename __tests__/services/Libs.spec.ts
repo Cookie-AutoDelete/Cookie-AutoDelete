@@ -17,10 +17,13 @@ import {
   cadLog,
   convertVersionToNumber,
   createPartialTabInfo,
+  eventListenerActions,
   extractMainDomain,
   getAllCookiesForDomain,
   getContainerExpressionDefault,
   getHostname,
+  getMatchedExpressions,
+  getSearchResults,
   getSetting,
   getStoreId,
   globExpressionToRegExp,
@@ -32,6 +35,7 @@ import {
   isFirefoxNotAndroid,
   isFirstPartyIsolate,
   localFileToRegex,
+  matchIPInExpression,
   parseCookieStoreId,
   prepareCleanupDomains,
   prepareCookieDomain,
@@ -43,6 +47,8 @@ import {
   trimDot,
   undefinedIsTrue,
 } from '../../src/services/Libs';
+
+import ipaddr from 'ipaddr.js';
 
 const mockCookie: browser.cookies.Cookie = {
   domain: 'domain.com',
@@ -298,6 +304,78 @@ describe('Library Functions', () => {
         url: 'https://test.cad',
         windowId: 1,
       });
+    });
+  });
+
+  describe('eventListenerActions()', () => {
+    it('should do nothing if an event was not passed in', () => {
+      expect(() => {
+        eventListenerActions(
+          undefined as any,
+          Function,
+          EventListenerAction.ADD,
+        );
+      }).not.toThrowError();
+      // Unexpected error would be TypeError: "cannot read property 'hasListener' of undefined"
+    });
+
+    it('should do nothing if an "event" passed in is not an Event Listener', () => {
+      expect(() => {
+        eventListenerActions({} as any, Function, EventListenerAction.REMOVE);
+      }).not.toThrowError();
+    });
+
+    it('should add the event listener', () => {
+      eventListenerActions(
+        browser.cookies.onChanged,
+        Function,
+        EventListenerAction.ADD,
+      );
+      expect(
+        global.browser.cookies.onChanged.addListener,
+      ).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not add the event listener again if it already exists', () => {
+      when(global.browser.cookies.onChanged.hasListener)
+        .calledWith(expect.any(Function))
+        .mockReturnValue(true);
+      eventListenerActions(
+        browser.cookies.onChanged,
+        Function,
+        EventListenerAction.ADD,
+      );
+      expect(
+        global.browser.cookies.onChanged.addListener,
+      ).not.toHaveBeenCalled();
+    });
+
+    it('should remove the listener', () => {
+      when(global.browser.cookies.onChanged.hasListener)
+        .calledWith(expect.any(Function))
+        .mockReturnValue(true);
+      eventListenerActions(
+        browser.cookies.onChanged,
+        Function,
+        EventListenerAction.REMOVE,
+      );
+      expect(
+        global.browser.cookies.onChanged.removeListener,
+      ).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not remove a non-existent listener', () => {
+      when(global.browser.cookies.onChanged.hasListener)
+        .calledWith(expect.any(Function))
+        .mockReturnValue(false);
+      eventListenerActions(
+        browser.cookies.onChanged,
+        Function,
+        EventListenerAction.REMOVE,
+      );
+      expect(
+        global.browser.cookies.onChanged.removeListener,
+      ).not.toHaveBeenCalled();
     });
   });
 
@@ -621,8 +699,8 @@ describe('Library Functions', () => {
             ...initialState,
             settings: {
               ...initialState.settings,
-              contextualIdentities: {
-                name: 'contextualIdentities',
+              [SettingID.CONTEXTUAL_IDENTITIES]: {
+                name: SettingID.CONTEXTUAL_IDENTITIES,
                 value: true,
               },
             },
@@ -651,8 +729,8 @@ describe('Library Functions', () => {
             ...initialState,
             settings: {
               ...initialState.settings,
-              contextualIdentities: {
-                name: 'contextualIdentities',
+              [SettingID.CONTEXTUAL_IDENTITIES]: {
+                name: SettingID.CONTEXTUAL_IDENTITIES,
                 value: true,
               },
             },
@@ -706,9 +784,98 @@ describe('Library Functions', () => {
     });
   });
 
+  describe('getMatchedExpressions()', () => {
+    const defaultExpression: Expression = {
+      expression: '*.expression.com',
+      listType: ListType.WHITE,
+      storeId: 'default',
+    };
+    const lists: StoreIdToExpressionList = {
+      default: [
+        defaultExpression,
+        {
+          ...defaultExpression,
+          expression: '192.168.1.1',
+        },
+        {
+          ...defaultExpression,
+          expression: 'fd12:3456:789a:1::1',
+        },
+        {
+          ...defaultExpression,
+          expression: '192.168.10.0/24',
+        },
+        {
+          ...defaultExpression,
+          expression: 'fd12:3456:7890:1::/64',
+        },
+        {
+          ...defaultExpression,
+          expression: '192.168.10.256/22',
+        },
+      ],
+    };
+    it('should return empty array if lists have no storeId', () => {
+      expect(getMatchedExpressions(lists, 'test')).toEqual([]);
+    });
+    it('should return entire storeId list if no input was given.', () => {
+      expect(getMatchedExpressions(lists, 'default')).toEqual([
+        ...lists['default'],
+      ]);
+    });
+    it('should return entire storeId list if input was only whitespaces', () => {
+      expect(getMatchedExpressions(lists, 'default', '  ')).toEqual([
+        ...lists['default'],
+      ]);
+    });
+    it('should not match 192.168.1.1 with 0xc0.168.1.1 as not valid IPv4 Four-Part Decimal format', () => {
+      // 0xc0 = 192
+      expect(getMatchedExpressions(lists, 'default', '0xc0.168.1.1')).toEqual(
+        [],
+      );
+    });
+    it('should return expressions with matching IPv4 Address', () => {
+      expect(getMatchedExpressions(lists, 'default', '192.168.1.1')).toEqual([
+        lists['default'][1],
+      ]);
+    });
+    it('should return expressions with matching IPv6 Address', () => {
+      expect(
+        getMatchedExpressions(lists, 'default', 'fd12:3456:789a:1::1'),
+      ).toEqual([lists['default'][2]]);
+    });
+    it('should return expressions with matching IPv4 Address with CIDR', () => {
+      expect(getMatchedExpressions(lists, 'default', '192.168.10.5')).toEqual([
+        lists['default'][3],
+      ]);
+    });
+    it('should return expressions with matching IPv6 Address with CIDR', () => {
+      expect(
+        getMatchedExpressions(lists, 'default', 'fd12:3456:7890:1:5555::'),
+      ).toEqual([lists['default'][4]]);
+    });
+    it('should return partial matched expressions when searching', () => {
+      expect(getMatchedExpressions(lists, 'default', 'express', true)).toEqual([
+        lists['default'][0],
+      ]);
+    });
+  });
+
+  describe('getSearchResults()', () => {
+    it('should return false if string is not matched', () => {
+      expect(getSearchResults('*.expression.com', 'test')).toEqual(false);
+    });
+    it('should return true if string was partially matched', () => {
+      expect(getSearchResults('*.expression.com', 'express')).toEqual(true);
+    });
+    it('should return true if string was exactly matched', () => {
+      expect(getSearchResults('test', 'test')).toEqual(true);
+    });
+  });
+
   describe('getSetting()', () => {
     it('should return value of false for activeMode in default settings', () => {
-      expect(getSetting(initialState, 'activeMode')).toEqual(false);
+      expect(getSetting(initialState, SettingID.ACTIVE_MODE)).toEqual(false);
     });
   });
 
@@ -719,9 +886,9 @@ describe('Library Functions', () => {
         browserDetect: browserName.Chrome,
       },
       settings: {
-        contextualIdentities: {
+        [SettingID.CONTEXTUAL_IDENTITIES]: {
           id: 7,
-          name: 'contextualIdentities',
+          name: SettingID.CONTEXTUAL_IDENTITIES,
           value: false,
         },
       },
@@ -732,9 +899,9 @@ describe('Library Functions', () => {
         browserDetect: browserName.Firefox,
       },
       settings: {
-        contextualIdentities: {
+        [SettingID.CONTEXTUAL_IDENTITIES]: {
           id: 7,
-          name: 'contextualIdentities',
+          name: SettingID.CONTEXTUAL_IDENTITIES,
           value: false,
         },
       },
@@ -745,9 +912,9 @@ describe('Library Functions', () => {
         browserDetect: browserName.Firefox,
       },
       settings: {
-        contextualIdentities: {
+        [SettingID.CONTEXTUAL_IDENTITIES]: {
           id: 7,
-          name: 'contextualIdentities',
+          name: SettingID.CONTEXTUAL_IDENTITIES,
           value: true,
         },
       },
@@ -1064,6 +1231,21 @@ describe('Library Functions', () => {
 
     it('should return empty string from empty hostname', () => {
       expect(localFileToRegex('')).toEqual('');
+    });
+  });
+
+  describe('matchIPInExpression()', () => {
+    const ipv4Test = ipaddr.parse('1.1.1.1');
+    it('should return undefined if Expression is not an IP', () => {
+      expect(matchIPInExpression('test', ipv4Test)).toBeUndefined();
+    });
+    it('should return false if IP type is mismatched', () => {
+      expect(matchIPInExpression('fd12:3456:7890:1:5555::', ipv4Test)).toEqual(
+        false,
+      );
+    });
+    it('should return undefined if CIDR notation format is not as expected', () => {
+      expect(matchIPInExpression('1.1/1/1', ipv4Test)).toBeUndefined();
     });
   });
 

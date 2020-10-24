@@ -113,6 +113,9 @@ export const lists = (
         state[action.payload.storeId],
         action,
       );
+      if (newListObject[action.payload.storeId].length === 0) {
+        delete newListObject[action.payload.storeId];
+      }
       return newListObject;
     }
     case ReduxConstants.REMOVE_LIST: {

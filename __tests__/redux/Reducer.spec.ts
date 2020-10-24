@@ -227,6 +227,14 @@ describe('Reducer', () => {
           storeId: 'firefox-container-1',
         },
       ],
+      'firefox-container-2': [
+        {
+          expression: 'remove.me',
+          id: '222',
+          listType: ListType.WHITE,
+          storeId: 'firefox-container-2',
+        },
+      ],
     };
 
     it('should return youtube.com on default', () => {
@@ -367,6 +375,16 @@ describe('Reducer', () => {
       );
       expect(newState).toEqual({});
     });
+
+    it('should remove list if last expression entry was removed.', () => {
+      const newState = lists(state, {
+        payload: state['firefox-container-2'][0],
+        type: ReduxConstants.REMOVE_EXPRESSION,
+      });
+      expect(Object.keys(newState)).toEqual(
+        expect.not.arrayContaining(['firefox-container-2']),
+      );
+    });
   });
 
   describe('expression', () => {
@@ -487,21 +505,24 @@ describe('Reducer', () => {
     it('should update settings accordingly', () => {
       const newState = settings(initialState.settings, {
         payload: {
-          name: 'activeMode',
+          name: SettingID.ACTIVE_MODE,
           value: true,
         },
         type: ReduxConstants.UPDATE_SETTING,
       });
-      expect(newState['activeMode']).toEqual(
-        expect.objectContaining({ name: 'activeMode', value: true }),
+      expect(newState[SettingID.ACTIVE_MODE]).toEqual(
+        expect.objectContaining({
+          name: SettingID.ACTIVE_MODE,
+          value: true,
+        }),
       );
     });
     it('should reset settings to initial via RESET_ALL', () => {
       const newState = settings(
         {
           ...initialState.settings,
-          activeMode: {
-            name: 'activeMode',
+          [SettingID.ACTIVE_MODE]: {
+            name: SettingID.ACTIVE_MODE,
             value: true,
           },
         },
@@ -515,8 +536,8 @@ describe('Reducer', () => {
       const newState = settings(
         {
           ...initialState.settings,
-          activeMode: {
-            name: 'activeMode',
+          [SettingID.ACTIVE_MODE]: {
+            name: SettingID.ACTIVE_MODE,
             value: true,
           },
         },

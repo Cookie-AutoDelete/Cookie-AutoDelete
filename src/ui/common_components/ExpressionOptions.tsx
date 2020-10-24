@@ -10,6 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+import ipaddr from 'ipaddr.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -82,7 +83,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public async getAllCookies() {
     const { expression } = this.props;
     const exp = expression.expression;
-    let cookies: browser.cookies.CookieProperties[];
+    let cookies: browser.cookies.CookieProperties[] = [];
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
@@ -111,12 +112,37 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
         (cookie) => cookie.domain === '' && regExp.test(cookie.path),
       );
     } else {
-      cookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(this.props.state, {
-          domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
-          storeId: this.toPublicStoreId(expression.storeId),
-        }),
-      );
+      let cidrEXP: [ipaddr.IPv4 | ipaddr.IPv6, number];
+      let allCookies;
+      try {
+        // Check if expression was a CIDR Notation
+        cidrEXP = ipaddr.parseCIDR(exp);
+        allCookies = await browser.cookies.getAll(
+          returnOptionalCookieAPIAttributes(this.props.state, {
+            storeId: this.toPublicStoreId(expression.storeId),
+          }),
+        );
+      } catch {
+        // Not valid CIDR.  Proceed with default fetch.  Also applies to IP Addresses with no CIDR.
+        cookies = await browser.cookies.getAll(
+          returnOptionalCookieAPIAttributes(this.props.state, {
+            domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
+            storeId: this.toPublicStoreId(expression.storeId),
+          }),
+        );
+      }
+      if (allCookies) {
+        cookies = allCookies.filter((cookie) => {
+          try {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore Union types of IPv4 and IPv6 not compatible.
+            return ipaddr.parse(cookie.domain).match(cidrEXP);
+          } catch {
+            // Cookie domain is not an IP Address
+            return false;
+          }
+        });
+      }
     }
     this.setState({ cookies });
   }

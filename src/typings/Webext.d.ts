@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// This file is only a stub to make typescript happy.
+// Tests uses global.browser.*, actual usage is browser.*
 /**
  * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
@@ -49,6 +52,16 @@ declare namespace browser.contextMenus {
   const onClicked: typeof browser.menus.onClicked;
   const onHidden: typeof browser.menus.onHidden;
   const onShown: typeof browser.menus.onShown;
+}
+
+// Until web-ext-types land events into it.
+declare namespace browser.contextualIdentities {
+  type contextualIdentitiesChangeInfo = {
+    contextualIdentity: ContextualIdentity;
+  };
+  const onCreated: Listener<contextualIdentitiesChangeInfo>;
+  const onRemoved: Listener<contextualIdentitiesChangeInfo>;
+  const onUpdated: Listener<contextualIdentitiesChangeInfo>;
 }
 
 declare namespace browser.tabs {
