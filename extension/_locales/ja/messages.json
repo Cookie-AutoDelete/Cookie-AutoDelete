@@ -3,10 +3,6 @@
     "message": "このプログラムについて",
     "description": "About"
   },
-  "activeModeDelayText": {
-    "message": "自動クリーニングの前の遅延",
-    "description": "Delay Before Automatic Cleaning"
-  },
   "activeModeText": {
     "message": "自動クリーニングを有効にする",
     "description": "Enable Automatic Cleaning"
@@ -620,20 +616,6 @@
   "noneText": {
     "message": "なし",
     "description": "None"
-  },
-  "notificationContent": {
-    "message": "$Num$ 個のCookieを $Websites$ から削除",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
   },
   "notificationDisabledText": {
     "message": "通知無効",
