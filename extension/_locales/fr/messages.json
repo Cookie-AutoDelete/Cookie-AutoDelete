@@ -617,20 +617,6 @@
     "message": "Aucun",
     "description": "None"
   },
-  "notificationContent": {
-    "message": "Certaines données de site, dont $Num$ cookie(s), ont été retirées de $Websites$",
-    "description": "Some site data, including 123 Cookie(s), removed from: google.com, facebook.com",
-    "placeholders": {
-      "num": {
-        "content": "$1",
-        "example": "123"
-      },
-      "websites": {
-        "content": "$2",
-        "example": "google.com, facebook.com"
-      }
-    }
-  },
   "notificationDisabledText": {
     "message": "Notifications désactivées",
     "description": "Notification disabled"
