@@ -289,10 +289,6 @@
     "message": "Beim Export wird ein Zeitstempel an den Dateinamen angehängt.",
     "description": "A timestamp will be appended to the filename on export."
   },
-  "extensionDescription": {
-    "message": "Kontrollieren Sie Ihre Cookies! Löschen Sie unerwünschte Cookies aus Ihren geschlossenen Tabs automatisch, während Sie die gewünschten speichern.",
-    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
-  },
   "extensionName": {
     "message": "Cookie AutoDelete",
     "description": "Name of the extension."
