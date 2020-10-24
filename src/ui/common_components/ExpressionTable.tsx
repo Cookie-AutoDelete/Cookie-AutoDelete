@@ -114,7 +114,7 @@ class ExpressionTable extends React.Component<
         new RegExp(inputTrim.slice(1, -1));
       } catch (e) {
         return this.setInvalid(
-          browser.i18n.getMessage('inputErrorComma', [`${e}`]),
+          browser.i18n.getMessage('inputErrorRegExp', [`${e}`]),
         );
       }
     } else if (inputTrim.startsWith('/')) {
@@ -208,6 +208,7 @@ class ExpressionTable extends React.Component<
                       margin: 0,
                       verticalAlign: 'middle',
                     }}
+                    formNoValidate={true}
                   />
                   <div className="invalid-feedback">{invalid}</div>
                   <IconButton
