@@ -147,7 +147,7 @@ class ExpressionTable extends React.Component<
       expressionColumnTitle,
       emptyElement,
     } = this.props;
-    const { editMode, id, expressionInput, invalid } = this.state;
+    const { editMode, id, invalid } = this.state;
     const expressions =
       this.props.expressions === undefined ? [] : this.props.expressions;
 
@@ -182,86 +182,82 @@ class ExpressionTable extends React.Component<
                   }}
                 />
               </td>
-              {editMode && id === expression.id ? (
-                <td className="editableExpression">
-                  <input
-                    ref={(c) => {
-                      this.editInput = c;
-                    }}
-                    className="form-control"
-                    value={expressionInput}
-                    onFocus={this.moveCaretToEnd}
-                    onChange={(e) =>
-                      this.setState({
-                        expressionInput: e.target.value,
-                      })
-                    }
-                    onKeyUp={(e) => {
-                      if (e.key.toLowerCase().includes('enter')) {
-                        this.commitEdit();
-                      }
-                    }}
-                    type="url"
-                    autoFocus={true}
-                    style={{
-                      display: 'inline-block',
-                      margin: 0,
-                      verticalAlign: 'middle',
-                    }}
-                    formNoValidate={true}
-                  />
-                  <div className="invalid-feedback">{invalid}</div>
-                  <IconButton
-                    title={browser.i18n.getMessage('stopEditingText')}
-                    className="btn-outline-danger"
-                    iconName="ban"
-                    styleReact={{
-                      float: 'left',
-                      marginTop: '8px',
-                      width: '45%',
-                    }}
-                    onClick={() => {
-                      this.clearEdit();
-                    }}
-                  />
-                  <IconButton
-                    title={browser.i18n.getMessage('saveExpressionText')}
-                    className="btn-outline-success"
-                    iconName="save"
-                    styleReact={{
-                      float: 'right',
-                      marginTop: '8px',
-                      width: '45%',
-                    }}
-                    onClick={() => {
+              <td className="editableExpression">
+                <input
+                  ref={(c) => {
+                    this.editInput = c;
+                  }}
+                  className="form-control"
+                  value={expression.expression}
+                  onFocus={this.moveCaretToEnd}
+                  onChange={(e) =>
+                    this.setState({
+                      expressionInput: e.target.value,
+                    })
+                  }
+                  onKeyUp={(e) => {
+                    if (e.key.toLowerCase().includes('enter')) {
                       this.commitEdit();
-                    }}
-                  />
-                </td>
-              ) : (
-                <td>
-                  <div
-                    style={{
-                      display: 'inline-block',
-                      verticalAlign: 'middle',
-                    }}
-                  >
-                    {`${expression.expression}`}
+                    }
+                  }}
+                  type="url"
+                  autoFocus={!(editMode && id === expression.id)}
+                  style={{
+                    display: 'inline-block',
+                    margin: 0,
+                    verticalAlign: 'middle',
+                  }}
+                  formNoValidate={true}
+                  disabled={!(editMode && id === expression.id)}
+                  aria-disabled={!(editMode && id === expression.id)}
+                />
+                <div className="invalid-feedback">{invalid}</div>
+                {editMode && id === expression.id ? (
+                  <div>
+                    <IconButton
+                      title={browser.i18n.getMessage('stopEditingText')}
+                      className="btn-outline-danger"
+                      iconName="ban"
+                      styleReact={{
+                        float: 'left',
+                        marginTop: '8px',
+                        width: '45%',
+                      }}
+                      onClick={() => {
+                        this.clearEdit();
+                      }}
+                    />
+                    <IconButton
+                      title={browser.i18n.getMessage('saveExpressionText')}
+                      className="btn-outline-success"
+                      iconName="save"
+                      styleReact={{
+                        float: 'right',
+                        marginTop: '8px',
+                        width: '45%',
+                      }}
+                      onClick={() => {
+                        this.commitEdit();
+                      }}
+                    />
                   </div>
-                  <IconButton
-                    title={browser.i18n.getMessage('editExpressionText')}
-                    iconName="pen"
-                    className="btn-outline-info showOnRowHover"
-                    styleReact={{
-                      float: 'right',
-                      marginLeft: '5px',
-                    }}
-                    onClick={() => {
-                      this.startEditing(expression);
-                    }}
-                  />
-                </td>
-              )}
+                ) : (
+                  <div>
+                    <IconButton
+                      title={browser.i18n.getMessage('editExpressionText')}
+                      iconName="pen"
+                      className="btn-outline-info showOnRowHover"
+                      styleReact={{
+                        marginTop: '8px',
+                        width: '100%',
+                      }}
+                      onClick={() => {
+                        this.startEditing(expression);
+                      }}
+                    />
+                  </div>
+                )}
+              </td>
               <td>
                 <div
                   style={{
