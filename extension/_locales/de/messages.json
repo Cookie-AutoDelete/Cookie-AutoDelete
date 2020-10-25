@@ -941,14 +941,6 @@
     "message": "Website-Daten",
     "description": "Site Data.  Found in Activity Log Summary and Notifications."
   },
-  "sizePopupText": {
-    "message": "Pixel große Pop-ups",
-    "description": "Size of Popup (in px).  This sets the font size in the Popup."
-  },
-  "sizeSettingText": {
-    "message": "Pixel große Einstellungsseiten",
-    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
-  },
   "stopEditingText": {
     "message": "Bearbeitung beenden",
     "description": "Stop editing"
