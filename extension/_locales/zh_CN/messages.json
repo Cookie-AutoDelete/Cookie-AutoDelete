@@ -163,6 +163,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "当容器被删除时自动删除表达式列表。",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "启用对 Firefox 标签页容器功能的支持",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
@@ -616,6 +620,24 @@
   "noneText": {
     "message": "无",
     "description": "None"
+  },
+  "notificationContent": {
+    "message": "包含从 $total$ 个站点的 $Num$ 个 Cookie(s) 数据已被清除。这些站点有: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
   },
   "notificationDisabledText": {
     "message": "通知已停用",
