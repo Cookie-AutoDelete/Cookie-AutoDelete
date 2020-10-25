@@ -598,7 +598,7 @@
     "description": "INVALID CONTAINER.  Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
-    "message": "Keine Aufräumprotokolle gefunden",
+    "message": "Keine Aufräumprotokolle gefunden.",
     "description": "No Cleanup Logs Found"
   },
   "noExpressionsText": {
