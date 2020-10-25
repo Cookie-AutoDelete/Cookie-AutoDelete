@@ -163,6 +163,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Activer la suppression automatique de la liste des expressions lorsque son conteneur est retiré.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Activer la prise en charge des onglets contextuels de Firefox",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
