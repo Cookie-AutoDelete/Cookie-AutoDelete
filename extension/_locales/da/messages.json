@@ -163,6 +163,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Aktiver automatisk sletning af udtrykliste når dens container bliver fjernet.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed.  Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Aktiver understøttelse for Firefox' Kontekst-faneblade",
     "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
