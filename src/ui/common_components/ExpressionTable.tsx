@@ -156,13 +156,13 @@ class ExpressionTable extends React.Component<
     }
 
     return (
-      <table className={'table table-striped table-hover table-bordered'}>
+      <table className="table table-striped table-hover table-bordered">
         <thead>
           <tr>
-            <th />
-            <th>{expressionColumnTitle}</th>
-            <th>{browser.i18n.getMessage('optionsText')}</th>
-            <th>{browser.i18n.getMessage('listTypeText')}</th>
+            <th scope="col" />
+            <th scope="col">{expressionColumnTitle}</th>
+            <th scope="col">{browser.i18n.getMessage('optionsText')}</th>
+            <th scope="col">{browser.i18n.getMessage('listTypeText')}</th>
           </tr>
         </thead>
         <tbody className="expressionTable">
@@ -199,14 +199,14 @@ class ExpressionTable extends React.Component<
                     onKeyUp={(e) => {
                       if (e.key.toLowerCase().includes('enter')) {
                         this.commitEdit();
+                      } else if (e.key.toLowerCase().includes('escape')) {
+                        this.clearEdit();
                       }
                     }}
                     type="url"
                     autoFocus={true}
                     style={{
-                      display: 'inline-block',
                       margin: 0,
-                      verticalAlign: 'middle',
                     }}
                   />
                   <div className="invalid-feedback">{invalid}</div>
@@ -239,21 +239,29 @@ class ExpressionTable extends React.Component<
                 </td>
               ) : (
                 <td>
-                  <div
+                  <textarea
+                    className="form-control form-control-plaintext"
+                    readOnly={true}
+                    rows={1}
                     style={{
-                      display: 'inline-block',
-                      verticalAlign: 'middle',
+                      margin: 0,
+                      overflowX: 'scroll',
+                      paddingLeft: '5px',
+                      paddingRight: '5px',
+                      resize: 'none',
+                      whiteSpace: 'nowrap',
                     }}
                   >
-                    {`${expression.expression}`}
-                  </div>
+                    {expression.expression}
+                  </textarea>
+
                   <IconButton
                     title={browser.i18n.getMessage('editExpressionText')}
                     iconName="pen"
                     className="btn-outline-info showOnRowHover"
                     styleReact={{
-                      float: 'right',
-                      marginLeft: '5px',
+                      marginTop: '5px',
+                      width: '100%',
                     }}
                     onClick={() => {
                       this.startEditing(expression);
@@ -273,7 +281,7 @@ class ExpressionTable extends React.Component<
               <td>
                 <div
                   style={{
-                    display: 'inline-block',
+                    display: 'block',
                     verticalAlign: 'middle',
                   }}
                 >
@@ -292,8 +300,8 @@ class ExpressionTable extends React.Component<
                   iconName="exchange-alt"
                   className="btn-outline-dark showOnRowHover"
                   styleReact={{
-                    float: 'right',
-                    marginLeft: '5px',
+                    marginTop: '5px',
+                    width: '100%',
                   }}
                   onClick={() =>
                     onUpdateExpression({
