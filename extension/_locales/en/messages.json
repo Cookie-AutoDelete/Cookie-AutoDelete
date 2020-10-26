@@ -389,6 +389,10 @@
     "message": "Start slash missing end slash for Regular Expression.",
     "description": "Start slash missing end slash for Regular Expression.  Found in editing expression errors."
   },
+  "inputErrorSpace": {
+    "message": "Spaces are not allowed in hostnames.",
+    "description": "Spaces are not allowed in hostnames.  Found in editing expression errors."
+  },
   "keepAllCookiesText": {
     "message": "Keep All Cookies",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."

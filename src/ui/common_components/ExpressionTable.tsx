@@ -14,6 +14,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeExpressionUI, updateExpressionUI } from '../../redux/Actions';
+import { validateExpressionDomain } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 import ExpressionOptions from './ExpressionOptions';
 import IconButton from './IconButton';
@@ -104,32 +105,12 @@ class ExpressionTable extends React.Component<
 
   public validateEdit(): boolean {
     if (!this.state.editMode || !this.editInput || !this.state.id) return false;
-    const inputTrim = this.state.expressionInput.trim();
-    if (!inputTrim) {
-      return this.setInvalid(browser.i18n.getMessage('inputErrorEmpty'));
-    }
-    if (inputTrim.startsWith('/') && inputTrim.endsWith('/')) {
-      // Regular Expression
-      try {
-        new RegExp(inputTrim.slice(1, -1));
-      } catch (e) {
-        return this.setInvalid(
-          browser.i18n.getMessage('inputErrorRegExp', [`${e}`]),
-        );
-      }
-    } else if (inputTrim.startsWith('/')) {
-      // missing end slash.
-      return this.setInvalid(
-        browser.i18n.getMessage('inputErrorSlashStartMissingEnd'),
-      );
-    } else if (inputTrim.endsWith('/')) {
-      // missing beginning slash, or not regex
-      return this.setInvalid(
-        browser.i18n.getMessage('inputErrorSlashEndMissingStart'),
-      );
-    } else if (inputTrim.indexOf(',') !== -1) {
-      // no commas allowed in non-regex
-      return this.setInvalid(browser.i18n.getMessage('inputErrorComma'));
+    const result = validateExpressionDomain(
+      this.state.expressionInput.trim(),
+    ).trim();
+    if (result) {
+      // validation failed.
+      return this.setInvalid(result);
     }
     // Past this point, presume valid expression entry.
     this.editInput.setCustomValidity('');
@@ -208,6 +189,7 @@ class ExpressionTable extends React.Component<
                     style={{
                       margin: 0,
                     }}
+                    formNoValidate={true}
                   />
                   <div className="invalid-feedback">{invalid}</div>
                   <IconButton

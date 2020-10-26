@@ -865,3 +865,35 @@ export const undefinedIsTrue = (bool: boolean | undefined): boolean => {
   if (bool === undefined) return true;
   return bool;
 };
+
+/**
+ * Validate a single Expression.
+ * Returns undefined if valid.  Otherwise returns an error message.
+ * @param input The Domain Expression to validate.
+ */
+export const validateExpressionDomain = (input: string): string => {
+  const inputTrim = input.trim();
+  if (!inputTrim) return browser.i18n.getMessage('inputErrorEmpty');
+  if (inputTrim.startsWith('/') && inputTrim.endsWith('/')) {
+    // Regular Expression
+    try {
+      new RegExp(inputTrim.slice(1, -1));
+    } catch (e) {
+      return browser.i18n.getMessage('inputErrorRegExp', [`${e}`]);
+    }
+  } else if (inputTrim.startsWith('/')) {
+    // missing end slash.
+    return browser.i18n.getMessage('inputErrorSlashStartMissingEnd');
+  } else if (inputTrim.endsWith('/')) {
+    // missing beginning slash, or not regex
+    return browser.i18n.getMessage('inputErrorEndSlashMissingStart');
+  } else if (inputTrim.indexOf(',') !== -1) {
+    // no commas allowed in non-regex
+    return browser.i18n.getMessage('inputErrorComma');
+  }
+  if (inputTrim.indexOf(' ') !== -1) {
+    // no spaces allowed in hostnames or RegExp.
+    return browser.i18n.getMessage('inputErrorSpace');
+  }
+  return '';
+};
