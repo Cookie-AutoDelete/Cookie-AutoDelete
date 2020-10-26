@@ -338,8 +338,8 @@ class Expressions extends React.Component<ExpressionProps> {
               })
             }
             placeholder={browser.i18n.getMessage('domainPlaceholderText')}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
+            onKeyUp={(e) => {
+              if (e.key.toLowerCase() === 'enter') {
                 this.addExpressionByInput({
                   expression: this.state.expressionInput,
                   listType: e.shiftKey ? ListType.GREY : ListType.WHITE,
