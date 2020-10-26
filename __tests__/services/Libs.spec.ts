@@ -1699,7 +1699,7 @@ describe('Library Functions', () => {
     it('should return invalid message on end slash missing start slash', () => {
       validateExpressionDomain('abc/');
       expect(global.browser.i18n.getMessage).toHaveBeenCalledWith(
-        'inputErrorEndSlashMissingStart',
+        'inputErrorSlashEndMissingStart',
       );
     });
     it('should return invalid message on comma usage outside of RegExp', () => {

@@ -70,7 +70,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div className="alert alert-danger" role="alert">
+        <div className="alert alert-danger alertPreWrap" role="alert">
           <h4 className="alert-heading">
             {browser.i18n.getMessage('errorText')}
           </h4>

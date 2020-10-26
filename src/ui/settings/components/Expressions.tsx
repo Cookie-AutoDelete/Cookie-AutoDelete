@@ -22,6 +22,7 @@ import {
   cadLog,
   getMatchedExpressions,
   getSetting,
+  validateExpressionDomain
 } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
@@ -127,24 +128,34 @@ class Expressions extends React.Component<ExpressionProps> {
   public addExpressionByInput(payload: Expression) {
     const { onNewExpression } = this.props;
     const exps = this.parseRawExpression(payload);
-    const errExps: string[] = [];
+    const invalidInputs: string[] = [];
+    const inputReasons: string[] = [];
     exps.forEach((exp) => {
-      const e = exp.trim();
-      if (e.startsWith('/') && !e.endsWith('/')) {
-        errExps.push(e);
+      const expTrim = exp.trim();
+      if (!expTrim) return;
+      const result = validateExpressionDomain(expTrim).trim();
+      if (result) {
+        // invalid
+        invalidInputs.push(expTrim);
+        inputReasons.push(`${expTrim} -> ${result}`);
+      } else {
+        // valid
+        onNewExpression({
+          ...payload,
+          expression: expTrim,
+        });
       }
-      onNewExpression({
-        ...payload,
-        expression: e,
-      });
     });
     this.setState({
-      expressionInput: '',
-      success:
-        errExps.length > 0
-          ? browser.i18n.getMessage('regexMissingEndSlash', errExps.join(' '))
-          : '',
+      expressionInput: invalidInputs.join(', '),
     });
+    if (inputReasons.length > 0) {
+      this.setState({
+        error: `${browser.i18n.getMessage(
+          'invalidNewExpressions',
+        )}\n${inputReasons.join('\n')}`,
+      });
+    }
   }
 
   private parseRawExpression(exp: Expression): string[] {
@@ -349,7 +360,9 @@ class Expressions extends React.Component<ExpressionProps> {
             }}
             type="url"
             id="formText"
+            autoFocus={true}
             className="form-control"
+            formNoValidate={true}
           />
         </div>
         <div className="row">
@@ -498,7 +511,7 @@ class Expressions extends React.Component<ExpressionProps> {
         {error !== '' ? (
           <div
             onClick={() => this.setState({ error: '' })}
-            className="row alert alert-danger"
+            className="row alert alert-danger alertPreWrap"
           >
             {error}
           </div>
@@ -508,7 +521,7 @@ class Expressions extends React.Component<ExpressionProps> {
         {success !== '' ? (
           <div
             onClick={() => this.setState({ success: '' })}
-            className="row alert alert-success"
+            className="row alert alert-success alertPreWrap"
           >
             {browser.i18n.getMessage('successText')} {success}
           </div>

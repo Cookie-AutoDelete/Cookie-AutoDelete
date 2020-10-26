@@ -264,7 +264,7 @@ class Settings extends React.Component<SettingProps> {
         {error !== '' ? (
           <div
             onClick={() => this.setState({ error: '' })}
-            className="row alert alert-danger"
+            className="row alert alert-danger alertPreWrap"
           >
             {error}
           </div>
@@ -274,7 +274,7 @@ class Settings extends React.Component<SettingProps> {
         {success !== '' ? (
           <div
             onClick={() => this.setState({ success: '' })}
-            className="row alert alert-success"
+            className="row alert alert-success alertPreWrap"
           >
             {browser.i18n.getMessage('successText')} {success}
           </div>

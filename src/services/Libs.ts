@@ -881,15 +881,20 @@ export const validateExpressionDomain = (input: string): string => {
     } catch (e) {
       return browser.i18n.getMessage('inputErrorRegExp', [`${e}`]);
     }
-  } else if (inputTrim.startsWith('/')) {
-    // missing end slash.
-    return browser.i18n.getMessage('inputErrorSlashStartMissingEnd');
-  } else if (inputTrim.endsWith('/')) {
-    // missing beginning slash, or not regex
-    return browser.i18n.getMessage('inputErrorEndSlashMissingStart');
-  } else if (inputTrim.indexOf(',') !== -1) {
-    // no commas allowed in non-regex
-    return browser.i18n.getMessage('inputErrorComma');
+  } else {
+    // not Regex
+    if (inputTrim.startsWith('/')) {
+      // missing end slash.
+      return browser.i18n.getMessage('inputErrorSlashStartMissingEnd');
+    }
+    if (inputTrim.endsWith('/')) {
+      // missing beginning slash, or not regex
+      return browser.i18n.getMessage('inputErrorSlashEndMissingStart');
+    }
+    if (inputTrim.indexOf(',') !== -1) {
+      // no commas allowed in non-regex
+      return browser.i18n.getMessage('inputErrorComma');
+    }
   }
   if (inputTrim.indexOf(' ') !== -1) {
     // no spaces allowed in hostnames or RegExp.
