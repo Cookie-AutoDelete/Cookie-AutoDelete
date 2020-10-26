@@ -116,7 +116,7 @@
     "description": "Click on the Console Tab.  Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
-    "message": "ATTENTION: Activer des onglets conteneurisés avec l'une des options de nettoyage ci-dessus peut provoquer des effets indésirables en raison des limitations de l'API du navigateur. Les types de données du site, à l'exception des cookies, seront nettoyés par nom d'hôte pour TOUS les conteneurs.",
+    "message": "ATTENTION: Activer des onglets contextuels avec l'une des options de nettoyage ci-dessus peut provoquer des effets indésirables en raison des limitations de l'API du navigateur. Les types de données du site, à l'exception des cookies, seront nettoyés par nom d'hôte pour TOUS les conteneurs.",
     "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
   },
   "contextMenusParentClean": {
