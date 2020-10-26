@@ -617,6 +617,10 @@
     "message": "Los registros de limpieza no se generarán para pestañas en navegación privada / incógnito / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "No se han encontrado expresiones de la búsqueda anterior.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "No hay reglas que coincidan con este dominio.",
     "description": "No rules matched this domain"
@@ -794,6 +798,16 @@
   "reasonTabsWereNotIgnored": {
     "message": "o en cualquier pestaña abierta",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+  },
+  "regexMissingEndSlash": {
+    "message": "NOTA: Una expresión recientemente añadida tiene barra de inicio pero no de fin. Ambas son necesarias para la coincidencia regex. Expresiones señaladas: $errDomains$",
+    "description": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$.  Only if entering a new expression that starts with a slash and does not end with one. Can be found in List of Expressions.",
+    "placeholders": {
+      "errDomains": {
+        "content": "$1",
+        "example": "/regex"
+      }
+    }
   },
   "regularExpressionEquivalentText": {
     "message": "Expresión regular equivalente",
