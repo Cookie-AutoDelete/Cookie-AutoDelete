@@ -173,7 +173,7 @@ class Expressions extends React.Component<ExpressionProps> {
         inputReasons.push(`- ${expTrim} -> ${result}`);
       } else {
         // valid
-        validInputs.push(expTrim);
+        validInputs.push(`- ${expTrim}`);
         onNewExpression({
           ...payload,
           expression: expTrim,

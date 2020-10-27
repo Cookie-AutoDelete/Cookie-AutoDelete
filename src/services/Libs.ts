@@ -447,6 +447,9 @@ export const getSearchResults = (
   exp: Expression['expression'],
   input: string,
 ): boolean => {
+  if (input.endsWith('\\')) {
+    return false;
+  }
   const ixp1 = globExpressionToRegExp(input).slice(0, -1).toLowerCase();
   const exp1 = exp.toLowerCase();
   const exp2 = exp1.slice(exp1.startsWith('*.') ? 2 : 0);
@@ -460,7 +463,7 @@ export const getSearchResults = (
     exp2.startsWith(ixp1) ||
     exp1.endsWith(ixp1) ||
     exp1.endsWith(input) ||
-    exp1.includes(input)
+    exp1.includes(ixp1)
   );
 };
 
