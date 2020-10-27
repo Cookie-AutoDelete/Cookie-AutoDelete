@@ -339,6 +339,16 @@
     "message": "Import Core Settings",
     "description": "Import Core Settings"
   },
+  "importFileNotFound": {
+    "message": "File not found: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "File given is not a type we handle",
     "description": "File given is not a type we handle"
@@ -347,6 +357,20 @@
     "message": "File given failed validation",
     "description": "File given failed validation"
   },
+  "importInvalidExpressions": {
+    "message": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ is not formatted as an array list.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders":{
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
   "importMissingKey": {
     "message": "Missing identifier",
     "description": "Missing identifier"
@@ -354,6 +378,20 @@
   "importURLSText": {
     "message": "Import Expressions",
     "description": "Import Expressions"
+  },
+  "importValidExpressions": {
+    "message": "Successfully added $num$ expression(s) from imported file: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
   },
   "indexedDBCleanupText": {
     "message": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+)",
@@ -392,6 +430,20 @@
   "inputErrorSpace": {
     "message": "Spaces are not allowed in hostnames.",
     "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "Successfully added $num$ expression(s) with $listType$ Type in the currently active list.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
   },
   "invalidNewExpressions": {
     "message": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing.",
@@ -832,16 +884,6 @@
   "reasonTabsWereNotIgnored": {
     "message": "or in any open tabs",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
-  },
-  "regexMissingEndSlash": {
-    "message": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$",
-    "description": "NOTE:  A recently added expression has start slash but not end slash.  Both are required for regex matching.  Expression(s) noted:  $errDomains$.  Only if entering a new expression that starts with a slash and does not end with one. Can be found in List of Expressions.",
-    "placeholders": {
-      "errDomains": {
-        "content": "$1",
-        "example": "/regex"
-      }
-    }
   },
   "regularExpressionEquivalentText": {
     "message": "Regular Expression Equivalent",
