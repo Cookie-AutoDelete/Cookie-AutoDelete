@@ -459,7 +459,8 @@ export const getSearchResults = (
     exp2.startsWith(input) ||
     exp2.startsWith(ixp1) ||
     exp1.endsWith(ixp1) ||
-    exp1.endsWith(input)
+    exp1.endsWith(input) ||
+    exp1.includes(input)
   );
 };
 
