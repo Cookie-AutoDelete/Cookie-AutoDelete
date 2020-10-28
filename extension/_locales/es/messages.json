@@ -335,6 +335,16 @@
     "message": "Importar configuración principal",
     "description": "Import Core Settings"
   },
+  "importFileNotFound": {
+    "message": "Archivo no encontrado: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "El tipo de archivo proporcionado no es compatible",
     "description": "File given is not a type we handle"
@@ -342,6 +352,10 @@
   "importFileValidationFailed": {
     "message": "Error al validar el archivo proporcionado",
     "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "Se han detectado expresiones no válidas al importar el archivo. Se indican abajo con su razón. Verifica y corrige cualquier error en ese archivo e intenta importarlo de nuevo.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
   },
   "importMissingKey": {
     "message": "Identificador faltante",
@@ -358,6 +372,28 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorEmpty": {
+    "message": "¡La expresión revisada no puede estar vacía!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "La expresión regular no es válida. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSpace": {
+    "message": "No se permiten espacios en los nombres de dominio.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "invalidNewExpressions": {
+    "message": "Se han detectado nuevas expresiones inválidas. Se indican abajo con su razón y se han mantenido arriba para su edición.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Conservar todas las cookies",
