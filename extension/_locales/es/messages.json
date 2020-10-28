@@ -373,6 +373,10 @@
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
   },
+  "inputErrorComma": {
+    "message": "Las comas solo se permiten en expresiones regulares.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
   "inputErrorEmpty": {
     "message": "¡La expresión revisada no puede estar vacía!",
     "description": "Revised expression cannot be empty!  Found in editing expression errors."
@@ -386,6 +390,14 @@
         "example": "SyntaxError:  unterminated character class."
       }
     }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "La barra final no tiene barra inicial para la expresión regular. Borra la barra final de los dominios.",
+    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "La barra inicial no tiene barra final para la expresión regular.",
+    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "No se permiten espacios en los nombres de dominio.",
