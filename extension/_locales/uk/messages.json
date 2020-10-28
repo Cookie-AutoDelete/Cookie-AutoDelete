@@ -21,11 +21,11 @@
   },
   "chromeDebugMode": {
     "message": "Впевніться, що режим розробника ввімкнений, а потім натисніть на 'фонову сторінку' в режимі перегляду Inspect.",
-    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
   },
   "cleanIgnoringOpenTabsText": {
     "message": "Очистити, включаючи відкриті вкладки",
-    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+    "description": "Clean, include open tabs. Found in the additional cleanup options in the popup."
   },
   "cleanText": {
     "message": "Очистити",
@@ -53,11 +53,11 @@
   },
   "consoleDebugMode": {
     "message": "Натисніть на консоль",
-    "description": "Click on the Console Tab.  Found after enabling debug mode."
+    "description": "Click on the Console Tab. Found after enabling debug mode."
   },
   "contextualIdentitiesEnabledText": {
     "message": "Включити підтримку Container Tabs в Firefox",
-    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Допомога",
@@ -73,7 +73,7 @@
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Запустити очищення зараз, включаючи домени із відкритих вкладок",
-    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+    "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
     "message": "Запустити очищення зараз, виключені домени з відкритих вкладок",
@@ -157,7 +157,7 @@
   },
   "filterDebugMode": {
     "message": "Щоб побачити тільки результат налагодження від цього розширення, відфільтруйте вихідний код за наступним рядком:",
-    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+    "description": "To see only debug outputs by this extension, filter output by the following line. Found after enabling debug mode."
   },
   "filterText": {
     "message": "Фільтр",
@@ -201,7 +201,7 @@
   },
   "keepDefaultIcon": {
     "message": "Значки за замовчуванням у всіх типах списку",
-    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
   },
   "keepLocalstorageText": {
     "message": "Зберегти локальне сховище",
@@ -235,7 +235,7 @@
   },
   "menuText": {
     "message": "Меню",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+    "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   },
   "minutesText": {
     "message": "Хвилин(и)",
@@ -279,7 +279,7 @@
   },
   "notifyCookieCleanUpText": {
     "message": "Показувати сповіщення після автоматичного очищення",
-    "description": "Show Notification After Automatic Cleanup.  Found in settings."
+    "description": "Show Notification After Automatic Cleanup. Found in settings."
   },
   "oldReleasesText": {
     "message": "Примітки до старих релізів можуть бути переглянуті онлайн на",
@@ -307,7 +307,7 @@
   },
   "reasonCleanCookieName": {
     "message": "Парціальна чиста через те, що відповідали $matchedExpression$ у $listType$",
-    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$. Used in cleanup logs.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -395,7 +395,7 @@
   },
   "removeAllExpressionsConfirm": {
     "message": "Ви впевнені, що хочете видалити всі ($expressionCount$) збережені вирази з ($listCount$) списки(и)?\n\nЦЕ НЕ ЗАРАЗОВАНО!\n\nВведіть [ $expressionCount$ ] і натисніть ОК для видалення.",
-    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Expression is clicked.",
     "placeholders": {
       "expressionCount": {
         "content": "$1",
@@ -477,11 +477,11 @@
   },
   "sizePopupText": {
     "message": "Розмір спливаючого вікна (у пікселях)",
-    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+    "description": "Size of Popup (in px). This sets the font size in the Popup."
   },
   "sizeSettingText": {
     "message": "Розмір встановлених сторінок (у пікселях)",
-    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
   },
   "stopEditingText": {
     "message": "Скасувати редагування",
@@ -513,7 +513,7 @@
   },
   "versionNumberText": {
     "message": "Версія $CAD$",
-    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "description": "$CAD$ version 3.2.1. The actual number is formatted differently and will be right below this text.",
     "placeholders": {
       "CAD": {
         "content": "$1",
