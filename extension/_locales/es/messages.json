@@ -115,6 +115,10 @@
     "message": "Haz clic en la pestaña de la consola",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "ADVERTENCIA: Habilitar los contenedores de pestañas con cualquiera de las limpiezas de datos de navegación adicionales anteriores puede causar efectos secundarios no deseados debido a las limitaciones de la API del navegador. Los tipos de datos del sitio, con excepción de las cookies, se borrarán por nombre de host para TODOS los contenedores.",
+    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Menú de limpieza manual",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -357,6 +361,16 @@
     "message": "Se han detectado expresiones no válidas al importar el archivo. Se indican abajo con su razón. Verifica y corrige cualquier error en ese archivo e intenta importarlo de nuevo.",
     "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
   },
+  "importListNotArray": {
+    "message": "$identifier$ no tiene el formato de lista de matriz.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
   "importMissingKey": {
     "message": "Identificador faltante",
     "description": "Missing identifier"
@@ -364,6 +378,20 @@
   "importURLSText": {
     "message": "Importar expresiones",
     "description": "Import Expressions"
+  },
+  "importValidExpressions": {
+    "message": "Se añadieron correctamente $num$ expresiones del archivo importado: $filename$",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
   },
   "indexedDBCleanupText": {
     "message": "Habilitar limpieza de IndexedDB (Firefox 77+, Chrome 74+)",
@@ -402,6 +430,20 @@
   "inputErrorSpace": {
     "message": "No se permiten espacios en los nombres de dominio.",
     "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "Se añadieron correctamente $num$ expresiones de tipo $listType$ en la lista actualmente activa.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
   },
   "invalidNewExpressions": {
     "message": "Se han detectado nuevas expresiones inválidas. Se indican abajo con su razón y se han mantenido arriba para su edición.",
