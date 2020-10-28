@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.alertPreWrap {
+  white-space: pre-wrap;
+}
+
 label:hover {
   background-color: #d3d3d3;
   cursor: pointer;

@@ -83,9 +83,9 @@ class Settings extends React.Component<SettingProps> {
     if (importFile.type !== 'application/json') {
       this.setError(
         new Error(
-          `${browser.i18n.getMessage('errorText')} ${browser.i18n.getMessage(
-            'importFileTypeInvalid',
-          )}:  ${importFile.name} (${importFile.type})`,
+          `${browser.i18n.getMessage('importFileTypeInvalid')}:  ${
+            importFile.name
+          } (${importFile.type})`,
         ),
       );
       return;
@@ -96,7 +96,11 @@ class Settings extends React.Component<SettingProps> {
     reader.onload = (file) => {
       try {
         if (!file.target) {
-          this.setError(new Error('File Not Found!'));
+          this.setError(
+            new Error(
+              browser.i18n.getMessage('importFileNotFound', [importFile.name]),
+            ),
+          );
           return;
         }
         // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
@@ -264,7 +268,7 @@ class Settings extends React.Component<SettingProps> {
         {error !== '' ? (
           <div
             onClick={() => this.setState({ error: '' })}
-            className="row alert alert-danger"
+            className="row alert alert-danger alertPreWrap"
           >
             {error}
           </div>
@@ -274,7 +278,7 @@ class Settings extends React.Component<SettingProps> {
         {success !== '' ? (
           <div
             onClick={() => this.setState({ success: '' })}
-            className="row alert alert-success"
+            className="row alert alert-success alertPreWrap"
           >
             {browser.i18n.getMessage('successText')} {success}
           </div>

@@ -28,6 +28,10 @@ td {
   max-height: 10px;
 }
 
+.alertPreWrap {
+  white-space: pre-wrap;
+}
+
 .content {
   padding-left: 12em;
   width: 40em;
