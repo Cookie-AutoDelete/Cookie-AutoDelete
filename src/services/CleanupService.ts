@@ -332,7 +332,7 @@ export const clearCookiesForThisContainer = async (
     {
       msg: `CleanupService.clearCookiesForThisContainer:  storeId to clean:  ${storeId}`,
     },
-    getSetting(state, 'debugMode') as boolean,
+    getSetting(state, SettingID.DEBUG_MODE) as boolean,
   );
   const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
   const allContainerCookies = await browser.cookies.getAll(
@@ -358,7 +358,7 @@ export const clearCookiesForThisContainer = async (
   await Promise.all(promiseArr).catch((e) => {
     throwErrorNotification(
       e,
-      getSetting(state, 'notificationOnScreen') as number,
+      getSetting(state, SettingID.NOTIFY_DURATION) as number,
     );
     // TODO: let user know a cookie removal failed
     return false;
