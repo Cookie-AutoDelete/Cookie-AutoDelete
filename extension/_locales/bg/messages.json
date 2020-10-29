@@ -45,7 +45,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Предупреждение - Действия по-долу игнорирайте настройките!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Дневник на изчистванията",
@@ -54,10 +54,6 @@
   "clearLogsText": {
     "message": "Изчистване на дневниците",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Премахване на всички",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Кликнете върху раздела Конзола",
@@ -71,10 +67,6 @@
     "message": "Меню добавяне на домейн/израз",
     "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
   },
-  "contextualIdentitiesEnabledText": {
-    "message": "Поддръжка за изолирани раздели във Файърфокс",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
-  },
   "contributeText": {
     "message": "Допринасяне",
     "description": "Contribute"
@@ -87,10 +79,6 @@
     "message": "Бисквитки",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Изчистване на бисквитките от отворените подпрозорци при пускане",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Изчиства бисквитките, включително и от отворените раздели",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -101,7 +89,7 @@
   },
   "debugMode": {
     "message": "Активиране на режима за отстраняване на грешки (допълнителни изходи на конзолата)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Възстановяване на първоначалните настройки",
@@ -135,10 +123,6 @@
     "message": "Включване на дневника за изчистване и брояча",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Проверяване за поддомейни",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Активирайте почистването на Greylist при рестартиране на браузъра",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -150,14 +134,6 @@
   "errorText": {
     "message": "Грешка!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Експорт на основните настройки",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Изнасяне на изрази",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Към името на файла при експортиране ще се добави времева марка.",
@@ -183,10 +159,6 @@
     "message": "Филтриране",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Размаркиране на 'Запазване на местното хранилище' в новия сив списък с изрази",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Сив списък",
     "description": "Greylist"
@@ -194,10 +166,6 @@
   "importCoreSettingsFailed": {
     "message": "Импортиране на основни настройки не е успешно - намерена неизвестна настройка",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Импортиране на основните настройки",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Даденият файл не е тип, който обработваме",
@@ -210,10 +178,6 @@
   "importMissingKey": {
     "message": "Липсва идентификатор",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Внасяне на изрази",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Запазване на всички бисквитки",
@@ -355,10 +319,6 @@
     "message": "Опции",
     "description": "Options"
   },
-  "popupCookieCountText": {
-    "message": "Бисквитки",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Настройки",
     "description": "Settings"
@@ -443,10 +403,6 @@
     "message": "или в който и да е отворен раздел",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Еквивалент на регулярен израз",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Бележки по изданието",
     "description": "Release Notes"
@@ -491,7 +447,7 @@
   },
   "restoreText": {
     "message": "Възстановяване",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Благодарим ви, че пробвахте добавката $cadTitle$. Ако я харесвате, моля, напишете отзив.",
@@ -622,10 +578,6 @@
   "welcomeText": {
     "message": "Добре дошли",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Размаркиране на 'Запазване на местното хранилище' в новия бял списък с изрази",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Бял списък",
