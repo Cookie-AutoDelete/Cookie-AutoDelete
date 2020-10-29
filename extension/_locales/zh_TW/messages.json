@@ -45,7 +45,7 @@
   },
   "cleanupActionsBypass": {
     "message": "警告-以下操作將忽略設置！",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "清理記錄",
@@ -55,17 +55,9 @@
     "message": "清除記錄",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "全部移除",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "單擊控制台選項卡",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "啟用對 Firefox 背景身份功能的支援",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "貢獻",
@@ -74,10 +66,6 @@
   "contributorsText": {
     "message": "貢獻者",
     "description": "Contributors"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "啟動時清除已開分頁的 Cookie",
-    "description": "Clean Cookies from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "立即運行清理，從打開的選項卡中包含域",
@@ -89,7 +77,7 @@
   },
   "debugMode": {
     "message": "啟用調試模式（其他控制台輸出）",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "恢復預設設定",
@@ -123,10 +111,6 @@
     "message": "啟用清除記錄和計算器",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "檢查子域名",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "在瀏覽器重啟時啟用灰名單清除",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -138,14 +122,6 @@
   "errorText": {
     "message": "錯誤！",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "導出核心設置",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "匯出表示式",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "導出時，時間戳將附加到文件名中。",
@@ -171,10 +147,6 @@
     "message": "過濾器",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "在新的灰名單表達式上取消選中“保留LocalStorage”",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "灰名單",
     "description": "Greylist"
@@ -182,10 +154,6 @@
   "importCoreSettingsFailed": {
     "message": "導入核心設置失敗-找到未知設置",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "導入核心設置",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "給定的文件不是我們處理的類型",
@@ -198,10 +166,6 @@
   "importMissingKey": {
     "message": "缺少標識符",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "匯入表示式",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "保留所有 cookie",
@@ -319,10 +283,6 @@
     "message": "選項",
     "description": "Options"
   },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "設定",
     "description": "Settings"
@@ -407,10 +367,6 @@
     "message": "或任何打開的標籤頁中",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "正規表示式",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "版本資訊",
     "description": "Release Notes"
@@ -451,7 +407,7 @@
   },
   "restoreText": {
     "message": "還原",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "感謝您使用 $cadTitle$。如果您喜歡此擴充套件，請給我們寫一篇評論。",
@@ -578,10 +534,6 @@
   "welcomeText": {
     "message": "歡迎使用",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "在新的白名單表達式上取消選中“保留 LocalStorage”",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "白名單",
