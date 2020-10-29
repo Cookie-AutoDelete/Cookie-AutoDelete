@@ -37,7 +37,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Cảnh báo - Thao tác bên dưới bỏ qua cài đặt!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Nhật ký dọn dẹp",
@@ -47,17 +47,9 @@
     "message": "Xoá các nhật ký",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Xoá tất cả",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Nhấp vào tab Bảng điều khiển",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Bật hỗ trợ cho ứng dụng \"Firefox's Container Tabs\"",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Đóng góp",
@@ -66,10 +58,6 @@
   "contributorsText": {
     "message": "Những người tham gia đóng góp",
     "description": "Contributors"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Dọn các Cookie từ các trang mở lúc khởi động",
-    "description": "Clean Cookies from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Chạy dọn dẹp ngay bây giờ, bao gồm các tên miền từ các tab đang mở",
@@ -81,7 +69,7 @@
   },
   "debugMode": {
     "message": "Bật Chế độ gỡ lỗi (Đầu ra bảng điều khiển bổ sung)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Hoàn lại cài đặt ban đầu",
@@ -115,10 +103,6 @@
     "message": "Bật dọn dẹp nhật ký và ngược lại",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Bật kiểm tra các trang miền phụ",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Kích hoạt dọn dẹp Greylist khi khởi động lại trình duyệt",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -130,14 +114,6 @@
   "errorText": {
     "message": "Lỗi!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Xuất cài đặt lõi",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Xuất biểu thức",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Dấu thời gian sẽ được thêm vào tên tệp khi xuất.",
@@ -163,10 +139,6 @@
     "message": "Bộ lọc",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Bỏ chọn 'Giữ LocalStorage' trên Biểu thức Greylist mới",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Danh sách xám",
     "description": "Greylist"
@@ -174,10 +146,6 @@
   "importCoreSettingsFailed": {
     "message": "Nhập cài đặt lõi không thành công - Không tìm thấy cài đặt",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Nhập cài đặt lõi",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Tệp đã cho không phải là loại chúng tôi xử lý",
@@ -190,10 +158,6 @@
   "importMissingKey": {
     "message": "Thiếu định danh",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Nhập các biểu thức",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Lưu trữ tất cả các cookie",
@@ -274,10 +238,6 @@
   "optionsText": {
     "message": "Tùy chọn",
     "description": "Options"
-  },
-  "popupCookieCountText": {
-    "message": "Bánh",
-    "description": "Cookie(s)"
   },
   "preferencesText": {
     "message": "Cài đặt",
@@ -363,10 +323,6 @@
     "message": "hoặc trong bất kỳ các trang đang mở",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Biểu thức định kỳ tương đương",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Ghi chú Phát hành",
     "description": "Release Notes"
@@ -407,7 +363,7 @@
   },
   "restoreText": {
     "message": "Phục hồi",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Cảm ơn đã thử dùng $cadTitle$. Nếu bạn cảm thấy thích, xin vui lòng cho nhận xét.",
@@ -534,10 +490,6 @@
   "welcomeText": {
     "message": "Chào mừng",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Bỏ chọn 'Giữ LocalStorage' trên Biểu thức danh sách trắng mới",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Danh sách trắng",
