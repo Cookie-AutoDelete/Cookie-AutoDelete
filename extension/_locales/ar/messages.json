@@ -59,10 +59,6 @@
     "message": "تم تمكين التنظيف التلقائي",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "تحذير: عند تمكين أي من خيارات تنقية بيانات الموقع التالية، سيتم مسح جميع البيانات الموجودة من هذا النوع.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "تمكين تنظيف ذاكرة التخزين المؤقت (Firefox 78+، كروم 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "تحذير - الإجراءات أسفل تجاهل الإعدادات!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "مسح السجل",
@@ -106,10 +102,6 @@
   "clearLogsText": {
     "message": "مَسح السجلات",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "حذف الكل",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "انقر فوق علامة التبويب وحدة التحكم",
@@ -151,17 +143,13 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "لجميع المجالات الفرعية ذات النطاق من النص المحدد: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
         "example": "github.com"
       }
     }
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "تمكين الدعم لعلامات تبويب حاوية فايرفوكس",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "ساهم",
@@ -175,10 +163,6 @@
     "message": "الكعكات",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "تنظيف ملفات تعريف الارتباط من علامات التبويب المفتوحة عند بدء التشغيل",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "تشغيل التنظيف الآن، يشمل نطاقات من علامات التبويب المفتوحة",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -191,23 +175,9 @@
     "message": "إنشاء خيارات التعبير الافتراضية",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "الحاوية الحالية المختارة:  $ID$ ( $Name$)",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "تمكين وضع التصحيح (خروج وحدة التحكم الإضافية)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "الافتراضي",
@@ -253,10 +223,6 @@
     "message": "تمكين قوائم السياق (القائمة بالضغط الأيمن)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "تمكين التحقق من المجالات الفرعية",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "تمكين تنظيف القائمة الرمادية عند إعادة تشغيل المتصفح",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -268,14 +234,6 @@
   "errorText": {
     "message": "خطأ!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "تصدير الإعدادات الأساسية",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "تصدير التعبيرات",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "سيتم إلحاق طابع زمني باسم الملف عند التصدير.",
@@ -301,10 +259,6 @@
     "message": "فلتر",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "إلغاء تحديد 'الحفاظ على التخزين المحلي' على تعبيرات القائمة الرمادية الجديدة",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "القائمة الرمادية",
     "description": "Greylist"
@@ -323,10 +277,6 @@
     "message": "فشل استيراد إعدادات النواة - تم العثور على إعدادات غير معروفة",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "استيراد الإعدادات الأساسية",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "الملف المعطى ليس النوع الذي نتعامل معه",
     "description": "File given is not a type we handle"
@@ -338,10 +288,6 @@
   "importMissingKey": {
     "message": "معرف مفقود",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "استيراد التعبيرات",
-    "description": "Import Expressions"
   },
   "indexedDBText": {
     "message": "فهرس",
@@ -653,10 +599,6 @@
     "message": "بيانات الإضافات",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "الكعك",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "الإعدادات",
     "description": "Settings"
@@ -761,10 +703,6 @@
     "message": "أو في أي علامات تبويب مفتوحة",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "معادل التعبير العادي",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "ملاحظات الإصدار",
     "description": "Release Notes"
@@ -831,7 +769,7 @@
   },
   "restoreText": {
     "message": "إستعادة",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "شكرا لتجربة $cadTitle$. إذا أعجبته، فيرجى تقديم مراجعة.",
@@ -974,10 +912,6 @@
   "welcomeText": {
     "message": "مرحبا",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "إلغاء تحديد 'الحفاظ على التخزين المحلي' على تعبيرات القائمة البيضاء الجديدة",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "قائمة التعبيرات",
