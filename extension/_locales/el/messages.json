@@ -37,7 +37,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Προειδοποίηση - Οι παρακάτω ενέργειες αγνοούν τις ρυθμίσεις!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Μητρώο εκκαθάρισης",
@@ -47,17 +47,9 @@
     "message": "Εκκαθάριση αρχείου καταγραφής",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Αφαίρεση Όλων",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Κάντε κλικ στην καρτέλα Console",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Ενεργοποίηση υποστήριξης για καρτέλες κοντέινερ του Firefox",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Συνεισφορά",
@@ -66,10 +58,6 @@
   "contributorsText": {
     "message": "Συντελεστής",
     "description": "Contributors"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Καθαρίστε τα cookie από τις ανοιχτές καρτέλες κατά την εκκίνηση",
-    "description": "Clean Cookies from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Εκτελέστε εκκαθάριση τώρα, συμπεριλάβετε τομείς από ανοιχτές καρτέλες",
@@ -81,7 +69,7 @@
   },
   "debugMode": {
     "message": "Ενεργοποίηση λειτουργίας εντοπισμού σφαλμάτων (Πρόσθετες έξοδοι κονσόλας)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Επαναφορά προεπιλεγμένων ρυθμίσεων",
@@ -115,10 +103,6 @@
     "message": "Ενεργοποίηση καταγραφής και μετρητή καθαρισμού",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Ενεργοποίηση ελέγχου για υποτομείς",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Ενεργοποίηση Greylist Cleanup στην επανεκκίνηση του προγράμματος περιήγησης",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -130,14 +114,6 @@
   "errorText": {
     "message": "Σφάλμα! ",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Εξαγωγή βασικών ρυθμίσεων",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Εξαγωγή εκφράσεων",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Μια χρονική σήμανση θα προστεθεί στο όνομα αρχείου κατά την εξαγωγή.",
@@ -163,10 +139,6 @@
     "message": "Φίλτρο",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Καταργήστε την επιλογή \"Keep LocalStorage\" στις Νέες εκφράσεις Greylist",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Greylist",
     "description": "Greylist"
@@ -174,10 +146,6 @@
   "importCoreSettingsFailed": {
     "message": "Αποτυχία εισαγωγής βασικών ρυθμίσεων - Βρέθηκε άγνωστη ρύθμιση",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Εισαγωγή βασικών ρυθμίσεων",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Το αρχείο που δίνεται δεν είναι τύπος που χειριζόμαστε",
@@ -190,10 +158,6 @@
   "importMissingKey": {
     "message": "Λείπει αναγνωριστικό",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Εισαγωγή εκφράσεων",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Διατηρήστε όλα τα cookie",
@@ -274,10 +238,6 @@
   "optionsText": {
     "message": "Επιλογές",
     "description": "Options"
-  },
-  "popupCookieCountText": {
-    "message": "Cookies",
-    "description": "Cookie(s)"
   },
   "preferencesText": {
     "message": "Ρυθμίσεις",
@@ -363,10 +323,6 @@
     "message": "ή σε οποιεσδήποτε ανοιχτές καρτέλες",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Ισοδύναμη κανονικής έκφρασης",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Σημειώσεις Κυκλοφορίας",
     "description": "Release Notes"
@@ -407,7 +363,7 @@
   },
   "restoreText": {
     "message": "Επαναφορά",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Ευχαριστούμε που δοκιμάσατε το $cadTitle$. Εάν σας άρεσε, δώστε μια κριτική.",
@@ -534,10 +490,6 @@
   "welcomeText": {
     "message": "Καλώς ήρθατε",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Καταργήστε την επιλογή \"Διατήρηση τοπικής αποθήκευσης\" στις Νέες εκφράσεις της λίστας",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Λίστα επιτρεπόμενων",
