@@ -59,10 +59,6 @@
     "message": "Hapus otomatis aktif",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "PERINGATAN: Setelah mengaktifkan opsi penghapusan data situs tipe apapun, SEMUA data yang ada untuk tipe tersebut akan dihapus.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "Aktifkan Penghapusan Cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Peringatan - Tindakan di bawah mengabaikan pengaturan!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Catatan Penghapusan",
@@ -106,10 +102,6 @@
   "clearLogsText": {
     "message": "Hapus Catatan",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Buang Semua",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Klik pada Tab Console",
@@ -151,7 +143,7 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Untuk subdomain dengan domain dari teks yang dipilih: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -162,10 +154,6 @@
   "contextualIdentitiesAutoRemoveText": {
     "message": "Aktifkan Penghapusan Otomatis dari Daftar Ekspresi ketika Kontainernya Dihapus.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Aktifkan Dukungan untuk Tab Kontainer Firefox",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Kontribusi",
@@ -179,10 +167,6 @@
     "message": "Kuki",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Hapus Kuki dari Tab yang Terbuka saat Memulai",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Hapus sekarang, sertakan domain dari tab yang terbuka",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -195,23 +179,9 @@
     "message": "Buat Opsi Ekspresi Baku",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "Kontainer yang Dipilih Saat Ini:  $ID$ ( $Name$ )",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "Aktifkan Mode Debug (Keluaran Console Tambahan)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Bawaan",
@@ -257,10 +227,6 @@
     "message": "Aktifkan Menu Konteks (Menu Klik-Kanan)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Aktifkan Pengecekan Subdomain",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Aktifkan Penghapusan Daftar Abu-abu saat Peramban Dimulai Ulang",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -272,14 +238,6 @@
   "errorText": {
     "message": "Galat!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Ekspor Pengaturan Inti",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Ekspor Ekspresi",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Tanggal dan waktu akan ditambahkan ke nama berkas saat mengekspor.",
@@ -305,10 +263,6 @@
     "message": "Filter",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Abu-abu Baru",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Daftar Abu-abu",
     "description": "Greylist"
@@ -327,10 +281,6 @@
     "message": "Gagal Impor Pengaturan Inti - Ditemukan pengaturan yang tidak valid",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "Impor Pengaturan Inti",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "Berkas yang diproses bukan tipe yang valid",
     "description": "File given is not a type we handle"
@@ -342,10 +292,6 @@
   "importMissingKey": {
     "message": "Kehilangan Pengidentifikasi",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Impor Ekspresi",
-    "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
     "message": "Aktifkan Penghapusan IndexedDB (Firefox 77+, Chrome 74+)",
@@ -683,10 +629,6 @@
     "message": "Data Plugin",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Kuki",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Pengaturan",
     "description": "Settings"
@@ -791,10 +733,6 @@
     "message": "atau di dalam tab yang terbuka manapun",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Padanan Ekspresi Reguler",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Catatan Rilis",
     "description": "Release Notes"
@@ -861,7 +799,7 @@
   },
   "restoreText": {
     "message": "Pulihkan",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Terima kasih telah mencoba $cadTitle$. Jika anda menyukainya, silakan berikan tinjauan.",
@@ -1004,10 +942,6 @@
   "welcomeText": {
     "message": "Selamat Datang",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Nonaktifkan 'Simpan LocalStorage' pada Ekspresi Daftar Putih Baru",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Daftar Ekspresi",
