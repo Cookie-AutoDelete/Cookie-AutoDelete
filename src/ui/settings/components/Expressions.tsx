@@ -22,6 +22,7 @@ import {
   cadLog,
   getMatchedExpressions,
   getSetting,
+  validateExpressionDomain,
 } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import ExpressionTable from '../../common_components/ExpressionTable';
@@ -71,15 +72,28 @@ class Expressions extends React.Component<ExpressionProps> {
   public state = new InitialState();
 
   // Import the expressions into the list
-  public importExpressions(files: Blob[]) {
+  public importExpressions(importFile: File) {
     const { onNewExpression } = this.props;
+    // Do check for import first!
+    if (importFile.type !== 'application/json') {
+      this.setError(
+        new Error(
+          `${browser.i18n.getMessage('importFileTypeInvalid')}:  ${
+            importFile.name
+          } (${importFile.type})`,
+        ),
+      );
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (file) => {
       try {
         if (!file.target) {
-          this.setState({
-            error: `${(files[0] as File).name} - File Not Found.`,
-          });
+          this.setError(
+            new Error(
+              browser.i18n.getMessage('importFileNotFound', [importFile.name]),
+            ),
+          );
           return;
         }
         // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
@@ -88,61 +102,100 @@ class Expressions extends React.Component<ExpressionProps> {
         const newExpressions: StoreIdToExpressionList = JSON.parse(result);
         const storeIds = Object.keys(newExpressions);
         const errExps: string[] = [];
-        storeIds.forEach((storeId) =>
+        let validExps = 0;
+        storeIds.forEach((storeId) => {
+          if (!Array.isArray(newExpressions[storeId])) {
+            errExps.push(
+              `- ${browser.i18n.getMessage('importListNotArray', [storeId])}`,
+            );
+            return;
+          }
           newExpressions[storeId].forEach((expression) => {
             const exps = this.parseRawExpression(expression);
             exps.forEach((exp) => {
               const e = exp.trim();
-              if (e.startsWith('/') && !e.endsWith('/')) {
-                errExps.push(`${e} (${storeId})`);
+              if (!e) return;
+              const result = validateExpressionDomain(e).trim();
+              if (result) {
+                // invalid
+                errExps.push(`- ${e} (${storeId}) -> ${result}`);
+              } else {
+                // valid
+                validExps += 1;
+                onNewExpression({
+                  ...expression,
+                  expression: e,
+                });
               }
-              onNewExpression({
-                ...expression,
-                expression: e,
-              });
             });
-          }),
-        );
+          });
+        });
         this.setState({
-          error: '',
-          success:
+          error:
             errExps.length > 0
-              ? browser.i18n.getMessage(
-                  'regexMissingEndSlash',
-                  errExps.join(' '),
-                )
+              ? `${browser.i18n.getMessage(
+                  'importInvalidExpressions',
+                )}\n${errExps.join('\n')}`
+              : '',
+          success:
+            validExps > 0
+              ? `${browser.i18n.getMessage('importValidExpressions', [
+                  validExps.toString(),
+                  importFile.name,
+                ])}`
               : '',
         });
       } catch (error) {
         this.setState({
-          error: `${(files[0] as File).name} - ${error.toString()}.`,
+          error: `${importFile.name} - ${error.toString()}.`,
+          success: '',
         });
       }
     };
 
-    reader.readAsText(files[0]);
+    reader.readAsText(importFile);
   }
 
   // Add the expression using the + button or the Enter key
   public addExpressionByInput(payload: Expression) {
     const { onNewExpression } = this.props;
     const exps = this.parseRawExpression(payload);
-    const errExps: string[] = [];
+    const invalidInputs: string[] = [];
+    const inputReasons: string[] = [];
+    const validInputs: string[] = [];
     exps.forEach((exp) => {
-      const e = exp.trim();
-      if (e.startsWith('/') && !e.endsWith('/')) {
-        errExps.push(e);
+      const expTrim = exp.trim();
+      if (!expTrim) return;
+      const result = validateExpressionDomain(expTrim).trim();
+      if (result) {
+        // invalid
+        invalidInputs.push(expTrim);
+        inputReasons.push(`- ${expTrim} -> ${result}`);
+      } else {
+        // valid
+        validInputs.push(`- ${expTrim}`);
+        onNewExpression({
+          ...payload,
+          expression: expTrim,
+        });
       }
-      onNewExpression({
-        ...payload,
-        expression: e,
-      });
     });
     this.setState({
-      expressionInput: '',
+      expressionInput: invalidInputs.join(', '),
       success:
-        errExps.length > 0
-          ? browser.i18n.getMessage('regexMissingEndSlash', errExps.join(' '))
+        validInputs.length > 0
+          ? `${browser.i18n.getMessage('inputAddSuccess', [
+              validInputs.length.toString(),
+              browser.i18n.getMessage(
+                `${payload.listType.toLowerCase()}ListWordText`,
+              ),
+            ])}\n${validInputs.join(', ')}`
+          : '',
+      error:
+        inputReasons.length > 0
+          ? `${browser.i18n.getMessage(
+              'invalidNewExpressions',
+            )}\n${inputReasons.join('\n')}`
           : '',
     });
   }
@@ -338,8 +391,8 @@ class Expressions extends React.Component<ExpressionProps> {
               })
             }
             placeholder={browser.i18n.getMessage('domainPlaceholderText')}
-            onKeyPress={(e) => {
-              if (e.key === 'Enter') {
+            onKeyUp={(e) => {
+              if (e.key.toLowerCase() === 'enter') {
                 this.addExpressionByInput({
                   expression: this.state.expressionInput,
                   listType: e.shiftKey ? ListType.GREY : ListType.WHITE,
@@ -349,7 +402,9 @@ class Expressions extends React.Component<ExpressionProps> {
             }}
             type="url"
             id="formText"
+            autoFocus={true}
             className="form-control"
+            formNoValidate={true}
           />
         </div>
         <div className="row">
@@ -396,7 +451,7 @@ class Expressions extends React.Component<ExpressionProps> {
                 iconName="upload"
                 type="file"
                 accept="application/json"
-                onChange={(e) => this.importExpressions(e.target.files)}
+                onChange={(e) => this.importExpressions(e.target.files[0])}
                 text={browser.i18n.getMessage('importURLSText')}
                 title={browser.i18n.getMessage('importURLSText')}
                 styleReact={styles.buttonStyle}
@@ -498,7 +553,7 @@ class Expressions extends React.Component<ExpressionProps> {
         {error !== '' ? (
           <div
             onClick={() => this.setState({ error: '' })}
-            className="row alert alert-danger"
+            className="row alert alert-danger alertPreWrap"
           >
             {error}
           </div>
@@ -508,9 +563,9 @@ class Expressions extends React.Component<ExpressionProps> {
         {success !== '' ? (
           <div
             onClick={() => this.setState({ success: '' })}
-            className="row alert alert-success"
+            className="row alert alert-success alertPreWrap"
           >
-            {browser.i18n.getMessage('successText')} {success}
+            {success}
           </div>
         ) : (
           ''
@@ -592,12 +647,20 @@ class Expressions extends React.Component<ExpressionProps> {
       </div>
     );
   }
+
+  private setError(e: Error): void {
+    this.setState({
+      error: e.toString(),
+      success: '',
+    });
+  }
 }
 
 const mapStateToProps = (state: State) => {
   const { cache, lists } = state;
   return {
     bName: cache.browserDetect || (browserDetect() as browserName),
+    cache,
     contextualIdentities: getSetting(
       state,
       SettingID.CONTEXTUAL_IDENTITIES,

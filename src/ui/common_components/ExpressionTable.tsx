@@ -14,6 +14,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeExpressionUI, updateExpressionUI } from '../../redux/Actions';
+import { validateExpressionDomain } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 import ExpressionOptions from './ExpressionOptions';
 import IconButton from './IconButton';
@@ -22,6 +23,7 @@ class EmptyState {
   public expressionInput = '';
   public editMode = false;
   public id: string | undefined = '';
+  public invalid = '';
 }
 
 interface OwnProps {
@@ -53,6 +55,7 @@ class ExpressionTable extends React.Component<
       editMode: true,
       expressionInput: expression.expression,
       id: expression.id,
+      invalid: '',
     });
   }
 
@@ -73,10 +76,19 @@ class ExpressionTable extends React.Component<
   }
 
   public clearEdit() {
+    if (this.editInput) {
+      if (this.editInput.parentElement) {
+        this.editInput.parentElement.classList.remove('was-validated');
+      }
+      this.editInput.setCustomValidity('');
+      this.editInput.checkValidity();
+      this.editInput = undefined;
+    }
     this.setState(new EmptyState());
   }
 
   public commitEdit() {
+    if (!this.validateEdit()) return;
     const original = (this.props.expressions || []).find(
       (expression) => expression.id === this.state.id,
     );
@@ -88,6 +100,25 @@ class ExpressionTable extends React.Component<
       });
     }
     this.setState(new EmptyState());
+    this.editInput = undefined;
+  }
+
+  public validateEdit(): boolean {
+    if (!this.state.editMode || !this.editInput || !this.state.id) return false;
+    const result = validateExpressionDomain(
+      this.state.expressionInput.trim(),
+    ).trim();
+    if (result) {
+      // validation failed.
+      return this.setInvalid(result);
+    }
+    // Past this point, presume valid expression entry.
+    this.editInput.setCustomValidity('');
+    if (this.editInput.parentElement) {
+      this.editInput.parentElement.classList.remove('was-validated');
+    }
+    this.editInput.checkValidity();
+    return true;
   }
 
   public render() {
@@ -97,7 +128,7 @@ class ExpressionTable extends React.Component<
       expressionColumnTitle,
       emptyElement,
     } = this.props;
-    const { editMode, id, expressionInput } = this.state;
+    const { editMode, id, expressionInput, invalid } = this.state;
     const expressions =
       this.props.expressions === undefined ? [] : this.props.expressions;
 
@@ -106,13 +137,13 @@ class ExpressionTable extends React.Component<
     }
 
     return (
-      <table className={'table table-striped table-hover table-bordered'}>
+      <table className="table table-striped table-hover table-bordered">
         <thead>
           <tr>
-            <th />
-            <th>{expressionColumnTitle}</th>
-            <th>{browser.i18n.getMessage('optionsText')}</th>
-            <th>{browser.i18n.getMessage('listTypeText')}</th>
+            <th scope="col" />
+            <th scope="col">{expressionColumnTitle}</th>
+            <th scope="col">{browser.i18n.getMessage('optionsText')}</th>
+            <th scope="col">{browser.i18n.getMessage('listTypeText')}</th>
           </tr>
         </thead>
         <tbody className="expressionTable">
@@ -146,22 +177,29 @@ class ExpressionTable extends React.Component<
                         expressionInput: e.target.value,
                       })
                     }
+                    onKeyUp={(e) => {
+                      if (e.key.toLowerCase().includes('enter')) {
+                        this.commitEdit();
+                      } else if (e.key.toLowerCase().includes('escape')) {
+                        this.clearEdit();
+                      }
+                    }}
                     type="url"
                     autoFocus={true}
                     style={{
-                      display: 'inline-block',
                       margin: 0,
-                      verticalAlign: 'middle',
-                      width: 'calc(100% - 95px)',
                     }}
+                    formNoValidate={true}
                   />
+                  <div className="invalid-feedback">{invalid}</div>
                   <IconButton
                     title={browser.i18n.getMessage('stopEditingText')}
                     className="btn-outline-danger"
                     iconName="ban"
                     styleReact={{
-                      float: 'right',
-                      marginLeft: '5px',
+                      float: 'left',
+                      marginTop: '8px',
+                      width: '45%',
                     }}
                     onClick={() => {
                       this.clearEdit();
@@ -173,7 +211,8 @@ class ExpressionTable extends React.Component<
                     iconName="save"
                     styleReact={{
                       float: 'right',
-                      marginLeft: '5px',
+                      marginTop: '8px',
+                      width: '45%',
                     }}
                     onClick={() => {
                       this.commitEdit();
@@ -182,21 +221,29 @@ class ExpressionTable extends React.Component<
                 </td>
               ) : (
                 <td>
-                  <div
+                  <textarea
+                    className="form-control form-control-plaintext"
+                    readOnly={true}
+                    rows={1}
                     style={{
-                      display: 'inline-block',
-                      verticalAlign: 'middle',
+                      margin: 0,
+                      overflowX: 'scroll',
+                      paddingLeft: '5px',
+                      paddingRight: '5px',
+                      resize: 'none',
+                      whiteSpace: 'nowrap',
                     }}
                   >
-                    {`${expression.expression}`}
-                  </div>
+                    {expression.expression}
+                  </textarea>
+
                   <IconButton
                     title={browser.i18n.getMessage('editExpressionText')}
                     iconName="pen"
                     className="btn-outline-info showOnRowHover"
                     styleReact={{
-                      float: 'right',
-                      marginLeft: '5px',
+                      marginTop: '5px',
+                      width: '100%',
                     }}
                     onClick={() => {
                       this.startEditing(expression);
@@ -216,7 +263,7 @@ class ExpressionTable extends React.Component<
               <td>
                 <div
                   style={{
-                    display: 'inline-block',
+                    display: 'block',
                     verticalAlign: 'middle',
                   }}
                 >
@@ -235,8 +282,8 @@ class ExpressionTable extends React.Component<
                   iconName="exchange-alt"
                   className="btn-outline-dark showOnRowHover"
                   styleReact={{
-                    float: 'right',
-                    marginLeft: '5px',
+                    marginTop: '5px',
+                    width: '100%',
                   }}
                   onClick={() =>
                     onUpdateExpression({
@@ -254,6 +301,19 @@ class ExpressionTable extends React.Component<
         </tbody>
       </table>
     );
+  }
+  private setInvalid(s: string): boolean {
+    if (!this.editInput) return false;
+    this.setState({
+      invalid: s,
+    });
+    this.editInput.setCustomValidity(s);
+    if (this.editInput.parentElement) {
+      this.editInput.parentElement.classList.add('was-validated');
+    }
+    this.editInput.checkValidity();
+    // should always return false since we set error above.
+    return false;
   }
 }
 

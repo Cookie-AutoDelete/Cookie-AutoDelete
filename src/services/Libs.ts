@@ -447,20 +447,25 @@ export const getSearchResults = (
   exp: Expression['expression'],
   input: string,
 ): boolean => {
-  const ixp1 = globExpressionToRegExp(input).slice(0, -1).toLowerCase();
-  const exp1 = exp.toLowerCase();
-  const exp2 = exp1.slice(exp1.startsWith('*.') ? 2 : 0);
-  return (
-    new RegExp(globExpressionToRegExp(exp), 'i').test(input) ||
-    new RegExp(globExpressionToRegExp(input), 'i').test(exp) ||
-    new RegExp(ixp1, 'i').test(exp) ||
-    exp1.startsWith(ixp1) ||
-    exp1.startsWith(input) ||
-    exp2.startsWith(input) ||
-    exp2.startsWith(ixp1) ||
-    exp1.endsWith(ixp1) ||
-    exp1.endsWith(input)
-  );
+  try {
+    const ixp1 = globExpressionToRegExp(input).slice(0, -1).toLowerCase();
+    const exp1 = exp.toLowerCase();
+    const exp2 = exp1.slice(exp1.startsWith('*.') ? 2 : 0);
+    return (
+      new RegExp(globExpressionToRegExp(exp), 'i').test(input) ||
+      new RegExp(globExpressionToRegExp(input), 'i').test(exp) ||
+      new RegExp(ixp1, 'i').test(exp) ||
+      exp1.startsWith(ixp1) ||
+      exp1.startsWith(input) ||
+      exp2.startsWith(input) ||
+      exp2.startsWith(ixp1) ||
+      exp1.endsWith(ixp1) ||
+      exp1.endsWith(input) ||
+      exp1.includes(ixp1)
+    );
+  } catch (e) {
+    return false;
+  }
 };
 
 /**
@@ -864,4 +869,41 @@ export const trimDot = (str: string): string => str.replace(/^[.]+|[.]+$/g, '');
 export const undefinedIsTrue = (bool: boolean | undefined): boolean => {
   if (bool === undefined) return true;
   return bool;
+};
+
+/**
+ * Validate a single Expression.
+ * Returns undefined if valid.  Otherwise returns an error message.
+ * @param input The Domain Expression to validate.
+ */
+export const validateExpressionDomain = (input: string): string => {
+  const inputTrim = input.trim();
+  if (!inputTrim) return browser.i18n.getMessage('inputErrorEmpty');
+  if (inputTrim.startsWith('/') && inputTrim.endsWith('/')) {
+    // Regular Expression
+    try {
+      new RegExp(inputTrim.slice(1, -1));
+    } catch (e) {
+      return browser.i18n.getMessage('inputErrorRegExp', [`${e}`]);
+    }
+  } else {
+    // not Regex
+    if (inputTrim.startsWith('/')) {
+      // missing end slash.
+      return browser.i18n.getMessage('inputErrorSlashStartMissingEnd');
+    }
+    if (inputTrim.endsWith('/')) {
+      // missing beginning slash, or not regex
+      return browser.i18n.getMessage('inputErrorSlashEndMissingStart');
+    }
+    if (inputTrim.indexOf(',') !== -1) {
+      // no commas allowed in non-regex
+      return browser.i18n.getMessage('inputErrorComma');
+    }
+  }
+  if (inputTrim.indexOf(' ') !== -1) {
+    // no spaces allowed in hostnames or RegExp.
+    return browser.i18n.getMessage('inputErrorSpace');
+  }
+  return '';
 };

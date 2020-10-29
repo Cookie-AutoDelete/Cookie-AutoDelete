@@ -46,6 +46,7 @@ import {
   throwErrorNotification,
   trimDot,
   undefinedIsTrue,
+  validateExpressionDomain,
 } from '../../src/services/Libs';
 
 import ipaddr from 'ipaddr.js';
@@ -1667,6 +1668,61 @@ describe('Library Functions', () => {
     });
     it('should return false for false', () => {
       expect(undefinedIsTrue(false)).toEqual(false);
+    });
+  });
+
+  describe('validateExpressionDomain()', () => {
+    when(global.browser.i18n.getMessage)
+      .calledWith(expect.any(String))
+      .mockReturnValue('message');
+    when(global.browser.i18n.getMessage)
+      .calledWith(expect.any(String), expect.any(Array))
+      .mockReturnValue(`message with substitution array`);
+    it('should return invalid message on "" input', () => {
+      validateExpressionDomain('');
+      expect(global.browser.i18n.getMessage).toHaveBeenCalledWith(
+        'inputErrorEmpty',
+      );
+    });
+    it('should return invalid message on invalid RegExp', () => {
+      validateExpressionDomain('/abc(def]/');
+      expect(
+        global.browser.i18n.getMessage,
+      ).toHaveBeenCalledWith('inputErrorRegExp', [expect.any(String)]);
+    });
+    it('should return invalid message on start slash missing end slash', () => {
+      validateExpressionDomain('/abc');
+      expect(global.browser.i18n.getMessage).toHaveBeenCalledWith(
+        'inputErrorSlashStartMissingEnd',
+      );
+    });
+    it('should return invalid message on end slash missing start slash', () => {
+      validateExpressionDomain('abc/');
+      expect(global.browser.i18n.getMessage).toHaveBeenCalledWith(
+        'inputErrorSlashEndMissingStart',
+      );
+    });
+    it('should return invalid message on comma usage outside of RegExp', () => {
+      validateExpressionDomain('a,b');
+      expect(global.browser.i18n.getMessage).toHaveBeenCalledWith(
+        'inputErrorComma',
+      );
+    });
+    it('should return invalid message on spaces between words.', () => {
+      validateExpressionDomain('test expression');
+      expect(global.browser.i18n.getMessage).toHaveBeenCalledWith(
+        'inputErrorSpace',
+      );
+    });
+    it('should return empty string if valid domain expression', () => {
+      const r = validateExpressionDomain('test');
+      expect(global.browser.i18n.getMessage).not.toHaveBeenCalled();
+      expect(r).toEqual('');
+    });
+    it('should return empty string if valid RegExp', () => {
+      const r = validateExpressionDomain('/[Rr]eg[Ee]xp.com/');
+      expect(global.browser.i18n.getMessage).not.toHaveBeenCalled();
+      expect(r).toEqual('');
     });
   });
 });
