@@ -55,10 +55,6 @@
     "message": "自動削除有効",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "警告：以下のサイトデータクリーンアップオプションのいずれかを有効にすると、そのタイプの既存のデータはすべて消去されます。",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "キャッシュのクリーンアップを有効化（Firefox 78 以降、Chrome 74 以降）",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -93,7 +89,7 @@
   },
   "cleanupActionsBypass": {
     "message": "警告 - 以下のアクションは設定を無視します！",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "クリーンアップのログ",
@@ -102,10 +98,6 @@
   "clearLogsText": {
     "message": "ログを削除",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "すべて削除",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "コンソールタブをクリックします",
@@ -147,17 +139,13 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "選択したテキストのドメインを持つすべてのサブドメインの場合： $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
         "example": "github.com"
       }
     }
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Firefoxのコンテナタブのサポートを有効にする",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "開発・サポートへの支援金",
@@ -171,10 +159,6 @@
     "message": "クッキー",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "起動時に開いているタブからクッキーを消去する",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -187,23 +171,9 @@
     "message": "既定値の「式のオプション」を作成する",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "現在選択されているコンテナ：$ID$ ( $Name$ )",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "デバッグモードを有効にする（追加のコンソール出力）",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "既定値",
@@ -231,7 +201,7 @@
   },
   "domainPlaceholderText": {
     "message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
-    "description": "Domain Expression. For this one we'll keep the string as is."
+    "description": "Domain Expression Example. For this one we'll keep the string as is.  Kept for historical purposes."
   },
   "dropdownAdditionalCleaningOptions": {
     "message": "追加のクリーニングアクションのドロップダウンを切り替える",
@@ -253,10 +223,6 @@
     "message": "コンテキストメニュー（右クリックメニュー）を有効にする",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "サブドメインのチェックを有効にする",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "ブラウザの再起動時にグレイリストのクリーンアップを有効にする",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -268,14 +234,6 @@
   "errorText": {
     "message": "エラー",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "コア設定のエクスポート",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "式のエクスポート",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "エクスポート時にファイル名にタイムスタンプが付加されます。",
@@ -301,10 +259,6 @@
     "message": "フィルタ",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "新しいグレイリスト式の 'ローカルストレージを維持する' のチェックを外す",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "グレイリスト",
     "description": "Greylist"
@@ -323,10 +277,6 @@
     "message": "コア設定のインポートに失敗しました - 不明な設定が見つかりました",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "コア設定のインポート",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "与えられたファイルは、我々が扱うタイプではありません。",
     "description": "File given is not a type we handle"
@@ -338,10 +288,6 @@
   "importMissingKey": {
     "message": "識別子が欠落しています",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "式のインポート",
-    "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
     "message": "IndexedDB のクリーンアップを有効化（Firefox 77 以降、Chrome 74 以降）",
@@ -657,10 +603,6 @@
     "message": "プラグインデータ",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "クッキー",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "設定",
     "description": "Settings"
@@ -765,10 +707,6 @@
     "message": "もしくは開いているタブで",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "正規表現に相当",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "更新履歴",
     "description": "Release Notes"
@@ -835,7 +773,7 @@
   },
   "restoreText": {
     "message": "復元",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "$cadTitle$ を使用いただきありがとうございます。 お気に召しましたらレビューをお書きください。",
@@ -978,10 +916,6 @@
   "welcomeText": {
     "message": "ようこそ",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "新しいホワイトリスト式の 'ローカルストレージを保持する' のチェックを外す",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "式のリスト",
