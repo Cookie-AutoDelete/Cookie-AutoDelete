@@ -59,10 +59,6 @@
     "message": "Limpeza automática ativada",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "AVISO:  Ao ativar quaisquer das seguintes opções de limpeza de dados de sites, TODOS os dados existentes para esse tipo irão ser limpos.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "Ativar limpeza de cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Aviso - As ações abaixo ignoram as definições!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Registo de limpeza",
@@ -106,10 +102,6 @@
   "clearLogsText": {
     "message": "Limpar registo",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Remover todos",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Clique no separador da consola",
@@ -151,7 +143,7 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Para todos os subdomínios com domínio de texto selecionado: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -162,10 +154,6 @@
   "contextualIdentitiesAutoRemoveText": {
     "message": "Ativar Remoção automática de lista de expressões quando o respetivo Contentor for removido.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Ativar suporte para os separadores contentores do Firefox",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Contribuir",
@@ -179,10 +167,6 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Limpar cookies de separadores abertos no arranque",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Executar limpeza agora, incluir domínios de separadores abertos",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -195,23 +179,9 @@
     "message": "Criar opções de expressão predefinidas",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "Contentor atual selecionado:  $ID$ ( $Name$ )",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "Ativar modo de depuração (saídas da consola adicionais)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Predefinição",
@@ -239,7 +209,7 @@
   },
   "domainPlaceholderText": {
     "message": "exemplo.com, subdomínio.exemplo.com, *.exemplo.com, /(^|.)exemplo\\.com/",
-    "description": "Domain Expression. For this one we'll keep the string as is."
+    "description": "Domain Expression Example. For this one we'll keep the string as is.  Kept for historical purposes."
   },
   "dropdownAdditionalCleaningOptions": {
     "message": "Alternar menu de ações de limpeza adicionais",
@@ -261,10 +231,6 @@
     "message": "Ativar menus de contexto (menu de botão direito do rato)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Ativar verificação por subdomínios",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Ativar limpeza da lista cinza ao reiniciar o navegador",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -276,14 +242,6 @@
   "errorText": {
     "message": "Erro!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Definições nucleares de exportação",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Exportar expressões",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Uma marca temporal irá ser adicionada ao nome do ficheiro ao exportar.",
@@ -309,10 +267,6 @@
     "message": "Filtro",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Desmarcar 'Manter LocalStorage' em novas expressões da lista cinza",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Lista cinza",
     "description": "Greylist"
@@ -331,10 +285,6 @@
     "message": "Exportação das definições nucleares falhou - Definição desconhecida encontrada",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "Importar definições nucleares",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "Ficheiro fornecido não é de um tipo que manuseamos",
     "description": "File given is not a type we handle"
@@ -346,10 +296,6 @@
   "importMissingKey": {
     "message": "Identificador em falta",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Importar expressões",
-    "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
     "message": "Ativar limpeza de IndexedDB (Firefox 77+, Chrome 74+)",
@@ -687,10 +633,6 @@
     "message": "Dados de plugins",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Definições",
     "description": "Settings"
@@ -795,10 +737,6 @@
     "message": "ou em quaisquer separadores abertos",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Equivalente de expressão regular",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Notas de lançamento",
     "description": "Release Notes"
@@ -865,7 +803,7 @@
   },
   "restoreText": {
     "message": "Restaurar",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Obrigado por experimentar o $cadTitle$. Se gostou, então por favor deixe uma análise.",
@@ -1008,10 +946,6 @@
   "welcomeText": {
     "message": "Boas vindas",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Desmarcar 'Manter LocalStorage' em novas expressões da lista branca",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Lista de expressões",
