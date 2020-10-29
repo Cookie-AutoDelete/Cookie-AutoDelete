@@ -59,10 +59,6 @@
     "message": "Automatisches Aufräumen aktiviert",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "WARNUNG: Wenn Sie eine der folgenden Optionen zur Datenbereinigung aktivieren, werden ALLE existierenden Daten dieses Typs gelöscht.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "Cache-Bereinigung aktivieren (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "WARNUNG: Folgende Aktionen ignorieren die Einstellungen!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Aufräumprotokolle",
@@ -107,17 +103,9 @@
     "message": "Protokolle leeren",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Alle löschen",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Klicken Sie auf den Konsolen-Tab",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "containerSiteDataWarning": {
-    "message": "WARNUNG: Das Aktivieren von Tab-Umgebungen mit einer der oben genannten zusätzlichen Bereinigungsoptionen kann aufgrund von API-Einschränkungen unerwünschte Nebeneffekte verursachen. Website-Daten, mit Ausnahme von Cookies, werden nach Hostnamen für ALLE Umgebungen gelöscht.",
-    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Manuelles Aufräumen-Menü",
@@ -155,7 +143,7 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Für alle Subdomains mit der Domain des ausgewählten Textes: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -166,10 +154,6 @@
   "contextualIdentitiesAutoRemoveText": {
     "message": "Automatisches Entfernen der Ausdrucksliste aktivieren, wenn die zugehörige Umgebung entfernt wurde.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Unterstützung für Tab-Umgebungen",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Unterstützen",
@@ -183,10 +167,6 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Cookies von offenen Tabs beim Start aufräumen",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Jetzt aufräumen, Domains von offenen Tabs einschließen",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -199,23 +179,9 @@
     "message": "Standard-Ausdruckoptionen erstellen",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "Aktuelle Umgebung ausgewählt: $ID$ ( $Name$ )",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "Debug-Modus aktivieren (zusätzliche Konsolen-Ausgabe)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Standard",
@@ -261,10 +227,6 @@
     "message": "Kontextmenüs aktivieren (Rechtsklick-Menü)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Subdomain-Prüfung aktivieren",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Aufräumen der Greylist beim Browser-Neustart aktivieren",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -276,14 +238,6 @@
   "errorText": {
     "message": "Fehler!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Einstellungen exportieren...",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Ausdrücke exportieren...",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Beim Export wird ein Zeitstempel an den Dateinamen angehängt.",
@@ -309,10 +263,6 @@
     "message": "Filter",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "'Local Storage behalten' bei neuen Greylist-Ausdrücken abwählen",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Greylist",
     "description": "Greylist"
@@ -331,10 +281,6 @@
     "message": "Import der Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "Einstellungen importieren...",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "Die angegebene Datei ist kein Typ, den wir behandeln",
     "description": "File given is not a type we handle"
@@ -346,10 +292,6 @@
   "importMissingKey": {
     "message": "Fehlender Bezeichner",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Ausdrücke importieren...",
-    "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
     "message": "IndexedDB-Bereinigung aktivieren (Firefox 77+, Chrome 74+)",
@@ -687,10 +629,6 @@
     "message": "Plugin-Daten",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Cookies",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Einstellungen",
     "description": "Settings"
@@ -795,10 +733,6 @@
     "message": "oder in geöffneten Tabs",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Entsprechender regulärer Ausdruck",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Versionshinweise",
     "description": "Release Notes"
@@ -865,7 +799,7 @@
   },
   "restoreText": {
     "message": "Wiederherstellen",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Danke, dass Sie $cadTitle$ ausprobieren! Falls es Ihnen gefällt, geben Sie bitte eine Bewertung ab.",
@@ -1008,10 +942,6 @@
   "welcomeText": {
     "message": "Willkommen",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "'Local Storage behalten' bei neuen Whitelist-Ausdrücken abwählen",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Liste der Ausdrücke",
