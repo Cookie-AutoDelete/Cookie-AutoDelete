@@ -59,10 +59,6 @@
     "message": "Automatisk sletning aktiveret",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "ADVARSEL: Ved aktivering af enhver af følgende sletningsindstillinger for netstedsdata, vil ALLE eksisterende data for den type blive slettet.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "Aktiver mellemlagersletning (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Advarsel - Handlinger herunder ignorerer indstillinger!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Sletningslog",
@@ -106,10 +102,6 @@
   "clearLogsText": {
     "message": "Slet logger",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Fjern alle",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Klik på Konsol-fanen",
@@ -151,7 +143,7 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "For alle underdomæner med domæne af valgte tekst: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -162,10 +154,6 @@
   "contextualIdentitiesAutoRemoveText": {
     "message": "Aktiver automatisk sletning af udtrykliste når dens container bliver fjernet.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Aktiver understøttelse for Firefox' Kontekst-faneblade",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Bidrag",
@@ -179,10 +167,6 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Slet cookies fra åbne faner ved opstart",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Slet nu, inkluder domæner fra åbne faner",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -195,23 +179,9 @@
     "message": "Opret standard udtryksindstillinger",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "Nuværende container valgt: $ID$ ( $Name$ )",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "Aktiver aflusningstilstand (Yderligere konsoluddata)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Standard",
@@ -257,10 +227,6 @@
     "message": "Aktiver kontekstmenuer (højrekliksmenu)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Aktiver tjek for underdomæner",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Aktiver oprydning af gråliste ved start af browser",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -272,14 +238,6 @@
   "errorText": {
     "message": "Fejl!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Eksporter kerneindstillinger",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Eksporter udtryk",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Et tidsstempel vil blive tilføjet til filnavnet ved eksport.",
@@ -305,10 +263,6 @@
     "message": "Filter",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Fjern markeringen af 'Behold lokallager' på nye grålisteudtryk",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Gråliste",
     "description": "Greylist"
@@ -326,10 +280,6 @@
   "importCoreSettingsFailed": {
     "message": "Import af kerneindstillinger fejlede - Fandt ukendt indstilling",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Importer kerneindstillinger",
-    "description": "Import Core Settings"
   },
   "importFileNotFound": {
     "message": "Fil ikke fundet: $filename$",
@@ -366,10 +316,6 @@
   "importMissingKey": {
     "message": "Manglende id",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Importer udtryk",
-    "description": "Import Expressions"
   },
   "importValidExpressions": {
     "message": "Lykkedes at tilføje $num$ udtryk fra importeret fil: $filename$.",
@@ -410,14 +356,6 @@
         "example": "SyntaxError:  unterminated character class."
       }
     }
-  },
-  "inputErrorSlashEndMissingStart": {
-    "message": "Slutskråstreg mangler startskråstreg i regulært udtryk. Fjern slutskråstreg i domæner.",
-    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
-  },
-  "inputErrorSlashStartMissingEnd": {
-    "message": "Startskråstreg mangler slutskråstreg i regulært udtryk.",
-    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "Mellemrum ikke tilladt i værtsnavne.",
@@ -751,10 +689,6 @@
     "message": "Plugin-data",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Indstillinger",
     "description": "Settings"
@@ -859,10 +793,6 @@
     "message": "eller i nogle åbne faner",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Tilsvarende regulært udtryk",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Udgivelsesnoter",
     "description": "Release Notes"
@@ -929,7 +859,7 @@
   },
   "restoreText": {
     "message": "Gendan",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Tak for at prøve $cadTitle$. Hvis du kan lide den, så giv en anmeldelse.",
@@ -1072,10 +1002,6 @@
   "welcomeText": {
     "message": "Velkommen",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Fjern markeringen i 'Behold lokallager' på nye hvidlisteudtryk",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Liste af udtryk",
