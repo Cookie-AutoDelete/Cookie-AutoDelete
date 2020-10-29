@@ -331,6 +331,16 @@
     "message": "Importer kerneindstillinger",
     "description": "Import Core Settings"
   },
+  "importFileNotFound": {
+    "message": "Fil ikke fundet: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Angiven fil er ikke en type vi håndterer",
     "description": "File given is not a type we handle"
@@ -338,6 +348,20 @@
   "importFileValidationFailed": {
     "message": "Angiven fil fejlede gyldighedstjek",
     "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "Detekterede ugyldige udtryk fra filimport. De er noteret herunder med deres årsager. Check og ret fejl i filen og prøv at importere igen.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ er ikke formatteret som en tabelliste.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
   },
   "importMissingKey": {
     "message": "Manglende id",
@@ -347,6 +371,20 @@
     "message": "Importer udtryk",
     "description": "Import Expressions"
   },
+  "importValidExpressions": {
+    "message": "Lykkedes at tilføje $num$ udtryk fra importeret fil: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "Aktiver sletning af IndexedDB (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -354,6 +392,54 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Kommaer er kun tilladt i regulære udtryk.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "Revideret udtryk kan ikke være tomt!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Ugyldigt regulært udtryk. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Slutskråstreg mangler startskråstreg i regulært udtryk. Fjern slutskråstreg i domæner.",
+    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Startskråstreg mangler slutskråstreg i regulært udtryk.",
+    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Mellemrum ikke tilladt i værtsnavne.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "Lykkedes at tilføje $num$ udtryk med type $listType$ i den nuværende aktive liste.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Detekterede ugyldige nye udtryk. De er noteret herunder med deres årsager, og er blevet holdt foroven for redigering.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Behold alle cookies",
@@ -608,6 +694,10 @@
   "noPrivateLogging": {
     "message": "Oprydningslogfiler genereres ikke til faner i privat browsing / inkognito / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "Ingen udtryk fundet fra søgning herover.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
   },
   "noRulesText": {
     "message": "Ingen regler matchede dette domæne.",
