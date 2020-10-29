@@ -609,6 +609,10 @@
     "message": "私密浏览 / 隐身 / 非私密时不会生成清理日志。",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "在上面的搜索中没有找到表达式。",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "没有匹配此域的规则。",
     "description": "No rules matched this domain"
