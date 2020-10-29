@@ -335,6 +335,16 @@
     "message": "Importer les paramètres de base",
     "description": "Import Core Settings"
   },
+  "importFileNotFound": {
+    "message": "Fichier introuvable : $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Le fichier fourni n'est pas un type que nous gérons",
     "description": "File given is not a type we handle"
@@ -351,6 +361,20 @@
     "message": "Importer des expressions",
     "description": "Import Expressions"
   },
+  "importValidExpressions": {
+    "message": "$num$ expression(s) ajoutée(s) avec succès du fichier importé : $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "Activer le nettoyage de IndexedDB (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -358,6 +382,32 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Les virgules sont uniquement autorisées dans les expressions régulières.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "L'expression modifiée ne peut pas être vide !",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "L'expression régulière n'est pas valide. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "La barre oblique de début n'est pas accompagnée d'une barre oblique de fin pour l'expression régulière.",
+    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Les espaces ne sont pas autorisés dans les noms d'hôtes.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
   },
   "keepAllCookiesText": {
     "message": "Garder tous les cookies",
