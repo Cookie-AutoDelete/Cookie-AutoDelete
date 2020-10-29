@@ -59,10 +59,6 @@
     "message": "Automaattinen puhdistus käytössä",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "VAROITUS: Kun otat käyttöön jonkin seuraavan sivuston tietojen puhdistusvaihtoehdot, kaikki olemassa olevat tiedot kyseisen tyypin tyhjennetään.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "Ota Välimuistin Puhdistus Käyttöön (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Varoitus - alla olevat toimet ohittavat asetukset!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Siivousloki",
@@ -106,10 +102,6 @@
   "clearLogsText": {
     "message": "Tyhjennä loki",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Poista kaikki",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Napsauta Console-välilehteä",
@@ -151,17 +143,13 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Kaikille aliverkkotunnuksille, joilla on valitun tekstin verkkotunnus: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
         "example": "github.com"
       }
     }
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Ota Firefoxin säilövälilehteiden tuki käyttöön",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Osallistu",
@@ -175,10 +163,6 @@
     "message": "Evästeet",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Puhdista evästeet käynnistyksen avoimista välilehdistä",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Suorita siivous nyt, sisällytä verkkotunnukset avoimista välilehdistä",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -191,23 +175,9 @@
     "message": "Luo Lausekkeen Oletusasetukset",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "Nykyinen kontti valittu:  $ID$ ( $Name$)",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "Ota virheenkorjaustila käyttöön (lisäkonsolilähdöt)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Oletus",
@@ -253,10 +223,6 @@
     "message": "Ota Käyttöön Kontekstivalinnat (Oikea-Klikkaa Valikko)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Ota käyttöön aliverkkotunnusten tarkistus",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Ota Greylist Cleanup käyttöön selaimen uudelleenkäynnistyksessä",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -268,14 +234,6 @@
   "errorText": {
     "message": "Virhe!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Palauta asetukset",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Vie eväste säännöt",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Aikaleima lisätään tiedostonimeen vietäessä.",
@@ -301,10 +259,6 @@
     "message": "Filter",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Poista valinta kohdasta Pidä LocalStorage uusissa Greylist-lausekkeissa",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Harmaa lista",
     "description": "Greylist"
@@ -323,10 +277,6 @@
     "message": "Core-asetusten tuonti epäonnistui - Tuntematon asetus löytyi",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "Tuo ydinasetukset",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "Annettu tiedosto ei ole tyyppi, jota käsittelemme",
     "description": "File given is not a type we handle"
@@ -338,10 +288,6 @@
   "importMissingKey": {
     "message": "Puuttuu tunniste",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Tuo eväste säännöt",
-    "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
     "message": "Ota IndexedDb Siivoaminen Käyttöön (Firefox 77+, Chrome 74+)",
@@ -657,10 +603,6 @@
     "message": "Liitännäisen Tiedot",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Evästeet",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Asetukset",
     "description": "Settings"
@@ -765,10 +707,6 @@
     "message": "tai missä tahansa avoimessa välilehdessä",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Säännöllinen lauseke ekvivalentti",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Julkaisutiedot",
     "description": "Release Notes"
@@ -835,7 +773,7 @@
   },
   "restoreText": {
     "message": "Palauta",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Kiitos, että kokeilet $cadTitle$. Anna sitten arvostelu, jos pidit siitä.",
@@ -978,10 +916,6 @@
   "welcomeText": {
     "message": "Tervetuloa",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Poista valinta kohdasta Pidä LocalStorage uusissa sallittujen luetteloiden lausekkeissa",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Luettelo lausekkeista",
