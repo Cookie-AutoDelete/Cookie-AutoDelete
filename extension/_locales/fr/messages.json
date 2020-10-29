@@ -353,6 +353,20 @@
     "message": "La validation du fichier fourni a échoué",
     "description": "File given failed validation"
   },
+  "importInvalidExpressions": {
+    "message": "Expression(s) non valable(s) détectée(s) dans le fichier d'importation. Notée(s) ci-dessous avec leur(s) raison(s), vérifiez et corrigez les erreurs avant de tenter une nouvelle importation.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ n'est pas formaté comme une liste de tableaux.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
   "importMissingKey": {
     "message": "Identifiant manquant",
     "description": "Missing identifier"
@@ -401,6 +415,10 @@
       }
     }
   },
+  "inputErrorSlashEndMissingStart": {
+    "message": "La barre oblique de fin n'est pas accompagnée d'une barre oblique de début. Retirez la barre oblique de fin des noms de domaines.",
+    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
   "inputErrorSlashStartMissingEnd": {
     "message": "La barre oblique de début n'est pas accompagnée d'une barre oblique de fin pour l'expression régulière.",
     "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
@@ -408,6 +426,24 @@
   "inputErrorSpace": {
     "message": "Les espaces ne sont pas autorisés dans les noms d'hôtes.",
     "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "$num$ expression(s) de type $listType$ ajoutée(s) avec succès à la liste active.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Nouvelle(s) expression(s) non valable(s) détectée(s). Notée(s) ci-dessous avec leur(s) raison(s), conservée(s) ci-dessus pour modification.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Garder tous les cookies",
@@ -662,6 +698,10 @@
   "noPrivateLogging": {
     "message": "Les journaux de nettoyage ne seront pas générés pour les onglets dans la navigation privée / Incognito / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "La recherche d'expression ci-dessus n'a donné aucun résultat.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
   },
   "noRulesText": {
     "message": "Aucune règle ne correspond à ce domaine.",
