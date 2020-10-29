@@ -331,6 +331,16 @@
     "message": "Importuj ustawienia",
     "description": "Import Core Settings"
   },
+  "importFileNotFound": {
+    "message": "Nie znaleziono pliku: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Podany plik nie jest w obsługiwanym formacie",
     "description": "File given is not a type we handle"
@@ -338,6 +348,20 @@
   "importFileValidationFailed": {
     "message": "Weryfikacja pliku nie powiodła się",
     "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "Wykryto nieprawidłowe formuły w importowanym pliku. Są one odnotowane poniżej z jego powodem. Sprawdź i popraw błędy w tym pliku i spróbuj ponownie zaimportować.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ nie jest sformatowany jako lista tablic.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
   },
   "importMissingKey": {
     "message": "Brakujący identyfikator",
@@ -347,6 +371,20 @@
     "message": "Importuj formuły",
     "description": "Import Expressions"
   },
+  "importValidExpressions": {
+    "message": "Pomyślnie dodano $num$ formuł z importowanego pliku: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "Włącz czyszczenie IndexedDB (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -354,6 +392,54 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Przecinki są dozwolone tylko w wyrażeniach regularnych.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "Zmieniona formuła nie może być pusta!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Wyrażenie regularne jest nieprawidłowe. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Końcowy ukośnik nie ma odpowiednika na początku wyrażenia regularnego. Usuń końcowy ukośnik z nazw domen.",
+    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Początkowy ukośnik nie ma odpowiednika na końcu wyrażenia regularnego.",
+    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Spacje nie są dozwolone w nazwach hostów.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "Pomyślnie dodano $num$ formuł typu $listType$ do aktualnie aktywnej listy.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Wykryto nieprawidłowe nowe formuły. Zostały one odnotowane poniżej z jego powodem i zachowane powyżej do edycji.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Zachowaj wszystkie ciasteczka",
