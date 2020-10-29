@@ -37,7 +37,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Waarskuwing - aksies hieronder ignoreer instellings!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Opruim Log",
@@ -47,17 +47,9 @@
     "message": "Maak log skoon",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Verwyder almal",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Klik op die konsole-oortjie",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Aktiveer ondersteuning vir Firefox se houertabs",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Dra By",
@@ -66,10 +58,6 @@
   "contributorsText": {
     "message": "Bydraers",
     "description": "Contributors"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Maak koekies skoon van oop oortjies tydens opstart",
-    "description": "Clean Cookies from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Ruim nou op, sluit domeine van oop oortjies in",
@@ -81,7 +69,7 @@
   },
   "debugMode": {
     "message": "Aktiveer ontfoutmodus (bykomende konsole-uitsette)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Herstel oorspronklike instellings",
@@ -115,10 +103,6 @@
     "message": "Aktiveer skoonmaaklogboek en toonbank",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Aktiveer kontrole vir subdomeine",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Aktiveer Greylist-opruiming met die herblaai van die blaaier",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -130,14 +114,6 @@
   "errorText": {
     "message": "Fout!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Voer kerninstellings uit",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Voer uitdrukkings uit",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "'N Tydstempel word bygevoeg by die lêernaam wat uitgevoer word.",
@@ -163,10 +139,6 @@
     "message": "Filter",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Ontmerk die merk 'Keep LocalStorage' op nuwe Greylist-uitdrukkings",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Gryslys",
     "description": "Greylist"
@@ -174,10 +146,6 @@
   "importCoreSettingsFailed": {
     "message": "Invoer van kerninstellings misluk - Onbekende instelling gevind",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Voer kerninstellings in",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Die gegewe lêer is nie 'n tipe wat ons hanteer nie",
@@ -190,10 +158,6 @@
   "importMissingKey": {
     "message": "Ontbrekende identifiseerder",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Voer uitdrukkings in",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Hou alle koekies",
@@ -274,10 +238,6 @@
   "optionsText": {
     "message": "Opsies",
     "description": "Options"
-  },
-  "popupCookieCountText": {
-    "message": "Koekies",
-    "description": "Cookie(s)"
   },
   "preferencesText": {
     "message": "Instellings",
@@ -363,10 +323,6 @@
     "message": "of in enige oop oortjies",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Gereeldeuitdrukking Ekwivalent",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Vrystelling Notas",
     "description": "Release Notes"
@@ -407,7 +363,7 @@
   },
   "restoreText": {
     "message": "Laai terug",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Dankie dat u $cadTitle$ probeer het. As u daarvan hou, gee asseblief 'n resensie.",
@@ -534,10 +490,6 @@
   "welcomeText": {
     "message": "Welkom",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Ontmerk die 'Keep LocalStorage' op nuwe witlysuitdrukkings",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Witlys",
