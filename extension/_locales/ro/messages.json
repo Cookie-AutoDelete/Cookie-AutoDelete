@@ -37,7 +37,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Atenţie - Acţiuni de mai jos ignoră setările!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Jurnalul de curățare",
@@ -47,17 +47,9 @@
     "message": "Șterge jurnalele",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Șterge tot",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Faceți clic pe fila Console",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Activează suportul pentru filele container din Firefox",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Contribuie",
@@ -66,10 +58,6 @@
   "contributorsText": {
     "message": "Colaboratori",
     "description": "Contributors"
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Șterge cookie-urile din filele deschise la pornire",
-    "description": "Clean Cookies from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Rulează curățarea acum, include domenii din filele deschise",
@@ -81,7 +69,7 @@
   },
   "debugMode": {
     "message": "Activează Modul Depanare (Ieșiri Console Suplimentare)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Restabilește configurările predefinite",
@@ -115,10 +103,6 @@
     "message": "Activează jurnalul și contorul de ștergere",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Activează verificarea pentru subdomenii",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Activează curățarea Greylist pentru repornirea browser-ului",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -130,14 +114,6 @@
   "errorText": {
     "message": "Eroare!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Exportă setările nucleului",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Exportă expresiile",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Un marcaj de timp va fi adăugat la numele fișierului la export.",
@@ -163,10 +139,6 @@
     "message": "Filtru",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Debifați 'Păstrați stocarea locală' pe noi expresii Greylist",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Lista gri",
     "description": "Greylist"
@@ -174,10 +146,6 @@
   "importCoreSettingsFailed": {
     "message": "Importul setărilor nucleului a eșuat - s-a găsit o setare necunoscută",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Importă setările nucleului",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Fişierul dat nu este un tip de tip cu care ne ocupăm",
@@ -190,10 +158,6 @@
   "importMissingKey": {
     "message": "Identificator lipsă",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Importă expresiile",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Păstrează toate cookie-urile",
@@ -279,10 +243,6 @@
     "message": "Opțiuni",
     "description": "Options"
   },
-  "popupCookieCountText": {
-    "message": "Fursecuri",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Configurări",
     "description": "Settings"
@@ -367,10 +327,6 @@
     "message": "sau în orice filă deschisă",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Expresie regulată echivalentă",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Note de lansare",
     "description": "Release Notes"
@@ -411,7 +367,7 @@
   },
   "restoreText": {
     "message": "Restaurează",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Mulțumiri pentru că ai încercat $cadTitle$. Dacă ți-a plăcut, scrie te rog o recenzie.",
@@ -538,10 +494,6 @@
   "welcomeText": {
     "message": "Bun venit",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Debifați \"Păstrare LocalStorage\" în noi expresii albe",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Lista albă",
