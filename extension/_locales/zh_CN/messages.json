@@ -59,10 +59,6 @@
     "message": "自动清理已启用",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "警告：一旦启用以下任何一个站点数据清理选项，该类型的所有现有数据将会被清除。",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "启用缓存清理 (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "警告 - 忽略设置下面的操作！",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "清理日志",
@@ -106,10 +102,6 @@
   "clearLogsText": {
     "message": "清除日志",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "全部移除",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "点击控制台标签",
@@ -151,7 +143,7 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "用于所选文本的域名的全部子域名：$selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -162,10 +154,6 @@
   "contextualIdentitiesAutoRemoveText": {
     "message": "当容器被删除时自动删除表达式列表。",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "启用对 Firefox 标签页容器功能的支持",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "贡献",
@@ -179,10 +167,6 @@
     "message": "Cookie",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "启动时清理打开标签页的 Cookie",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "现在运行清理，包括打开标签页中的域",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -195,23 +179,9 @@
     "message": "创建默认表达式选项",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "当前选择的容器:  $ID$ ( $Name$)",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "启用调试模式 (额外控制台输出)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "默认​​​​​",
@@ -257,10 +227,6 @@
     "message": "启用上下文菜单(右键菜单)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "启用对子域的检查",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "在浏览器重启时启用 Greylist 清理",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -272,14 +238,6 @@
   "errorText": {
     "message": "错误！",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "导出核心设置",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "导出表达式",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "导出时的时间戳将被添加到文件名。",
@@ -305,10 +263,6 @@
     "message": "过滤",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "在新灰名单表达式中取消勾选 \"保留本地存储\"",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "灰名单",
     "description": "Greylist"
@@ -327,10 +281,6 @@
     "message": "导入核心设置失败 - 发现未知设置",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "导入核心设置",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "给出的文件不是我们处理的类型",
     "description": "File given is not a type we handle"
@@ -342,10 +292,6 @@
   "importMissingKey": {
     "message": "缺少标识符",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "导入表达式",
-    "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
     "message": "启用 IndexedDB 清理 (Firefox 77+, Chrome 74+)",
@@ -683,10 +629,6 @@
     "message": "插件数据",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "设置",
     "description": "Settings"
@@ -791,10 +733,6 @@
     "message": "或者在任何已打开的标签页中",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "正则表达式等效",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "发行日志",
     "description": "Release Notes"
@@ -861,7 +799,7 @@
   },
   "restoreText": {
     "message": "还原",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "感谢您尝试 $cadTitle$。如果您喜欢，请来评价吧。",
@@ -1004,10 +942,6 @@
   "welcomeText": {
     "message": "欢迎使用",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "在新白名单表达式中取消勾选 \"保留本地存储\"",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "表达式列表",
