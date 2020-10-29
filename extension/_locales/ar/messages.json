@@ -591,6 +591,24 @@
     "message": "لا شيء",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "بعض بيانات الموقع، بما في ذلك $Num$ ملف تعريف الارتباط، تمت إزالتها من نطاق $total$ ، بما في ذلك: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "الإشعارات معطلة",
     "description": "Notification disabled"
