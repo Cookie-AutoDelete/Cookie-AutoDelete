@@ -408,12 +408,12 @@
     }
   },
   "inputErrorSlashEndMissingStart": {
-    "message": "End slash missing start slash for Regular Expression. Remove end slash for domains.",
-    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+    "message": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
   },
   "inputErrorSlashStartMissingEnd": {
-    "message": "Start slash missing end slash for Regular Expression.",
-    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
+    "message": "Start slash detected, but missing end slash for Regular Expression.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "Spaces are not allowed in hostnames.",
