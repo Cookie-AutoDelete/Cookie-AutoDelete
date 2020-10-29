@@ -59,10 +59,6 @@
     "message": "Nettoyage automatique activé",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "ATTENTION: Activer l'une des options suivantes supprimera TOUTES les données de site existantes de ce type.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "Activer le nettoyage du cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Attention - Les actions ci-dessous ignorent les paramètres !",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Journal de nettoyage",
@@ -107,17 +103,9 @@
     "message": "Effacer les journaux",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Tout supprimer",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Cliquez sur l'onglet Console",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "containerSiteDataWarning": {
-    "message": "ATTENTION: Activer des onglets contextuels avec l'une des options de nettoyage ci-dessus peut provoquer des effets indésirables en raison des limitations de l'API du navigateur. Les types de données du site, à l'exception des cookies, seront nettoyés par nom d'hôte pour TOUS les conteneurs.",
-    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Menu de nettoyage manuel",
@@ -155,7 +143,7 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Pour tous les sous-domaines avec le domaine du texte sélectionné : $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -166,10 +154,6 @@
   "contextualIdentitiesAutoRemoveText": {
     "message": "Activer la suppression automatique de la liste des expressions lorsque son conteneur est retiré.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Activer la prise en charge des onglets contextuels de Firefox",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Contribuer",
@@ -183,10 +167,6 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Nettoyer les cookies des onglets ouverts lors du démarrage",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Effectuez le nettoyage maintenant, y compris les domaines des onglets ouverts",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -199,23 +179,9 @@
     "message": "Définir les options d'expression par défaut",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "Conteneur actuellement sélectionné: $ID$ ($Name$)",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "Activer le mode débogage (sorties dans la console supplémentaires)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Par défaut",
@@ -261,10 +227,6 @@
     "message": "Activer les menus contextuels (menu clic droit)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Activer la vérification des sous-domaines",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Activer le nettoyage des listes grises au redémarrage du navigateur",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -276,14 +238,6 @@
   "errorText": {
     "message": "Erreur !",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Exporter les paramètres de base",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Exporter les expressions",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Un horodatage sera ajouté au nom du fichier lors de l'exportation.",
@@ -309,10 +263,6 @@
     "message": "Filtre",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Décocher \"Garder la mémoire locale\" sur les nouvelles expressions de la liste grise",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Liste grise",
     "description": "Greylist"
@@ -330,10 +280,6 @@
   "importCoreSettingsFailed": {
     "message": "Échec de l'importation des paramètres de base - paramètre inconnu trouvé",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Importer les paramètres de base",
-    "description": "Import Core Settings"
   },
   "importFileNotFound": {
     "message": "Fichier introuvable : $filename$",
@@ -370,10 +316,6 @@
   "importMissingKey": {
     "message": "Identifiant manquant",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Importer des expressions",
-    "description": "Import Expressions"
   },
   "importValidExpressions": {
     "message": "$num$ expression(s) ajoutée(s) avec succès du fichier importé : $filename$.",
@@ -414,14 +356,6 @@
         "example": "SyntaxError:  unterminated character class."
       }
     }
-  },
-  "inputErrorSlashEndMissingStart": {
-    "message": "La barre oblique de fin n'est pas accompagnée d'une barre oblique de début. Retirez la barre oblique de fin des noms de domaines.",
-    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
-  },
-  "inputErrorSlashStartMissingEnd": {
-    "message": "La barre oblique de début n'est pas accompagnée d'une barre oblique de fin pour l'expression régulière.",
-    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "Les espaces ne sont pas autorisés dans les noms d'hôtes.",
@@ -755,10 +689,6 @@
     "message": "Données de plugin",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Paramètres",
     "description": "Settings"
@@ -863,10 +793,6 @@
     "message": "ni dans aucun onglet ouvert",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Équivalent d’expression rationnelle",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Notes de version",
     "description": "Release Notes"
@@ -933,7 +859,7 @@
   },
   "restoreText": {
     "message": "Restaurer",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Merci d'avoir essayé $cadTitle$. Si vous l'aimez, alors merci de donner un commentaire.",
@@ -1076,10 +1002,6 @@
   "welcomeText": {
     "message": "Bienvenue",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Décocher \"Garder la mémoire locale\" sur les nouvelles expressions de la liste blanche",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Liste d'expressions",
