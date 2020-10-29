@@ -37,7 +37,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Упозорење - Радње испод подешавања занемаривања!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Записник чишћења",
@@ -47,17 +47,9 @@
     "message": "Очисти записнике",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Уклони све",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Кликните на картицу Конзола",
     "description": "Click on the Console Tab. Found after enabling debug mode."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Омогући подршку за Firefox-ове контејнер језичке",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Допринесите",
@@ -71,10 +63,6 @@
     "message": "колачиће",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Очисти колачиће из отворених језичака при покретању",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Покрените чишћење сада, укључите домене са отворених картица",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -85,7 +73,7 @@
   },
   "debugMode": {
     "message": "Омогућите режим уклањања погрешака (додатни излази конзоле)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Врати подразумевана подешавања",
@@ -119,10 +107,6 @@
     "message": "Омогући записник чишћења и бројач",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Омогући проверу за поддомен",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Омогућите чишћење греилиста приликом поновног покретања прегледача",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -134,14 +118,6 @@
   "errorText": {
     "message": "Грешка!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Извоз основних поставки",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Извези изразе",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Временска ознака биће додата имену датотеке при извозу.",
@@ -167,10 +143,6 @@
     "message": "Филтер",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Дештиклирајте „Чувај LocalStorage“ на новом сивом списку израза",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Сиви списак",
     "description": "Greylist"
@@ -178,10 +150,6 @@
   "importCoreSettingsFailed": {
     "message": "Увоз основних поставки није успео - пронађено је непознато подешавање",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Увоз основних поставки",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Датотека није врста којом се бавимо",
@@ -194,10 +162,6 @@
   "importMissingKey": {
     "message": "Недостаје идентификатор",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Увези изразе",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Задржи колачиће",
@@ -278,10 +242,6 @@
   "optionsText": {
     "message": "Опције",
     "description": "Options"
-  },
-  "popupCookieCountText": {
-    "message": "Колачић(и)",
-    "description": "Cookie(s)"
   },
   "preferencesText": {
     "message": "Подешавања",
@@ -367,10 +327,6 @@
     "message": "или у било ком отвореном језичку",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Еквивалент општег израза",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Белешке о издању",
     "description": "Release Notes"
@@ -415,7 +371,7 @@
   },
   "restoreText": {
     "message": "Обнови",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Хвала вам што сте пробали $cadTitle$. Ако вам се свиђа, оставите рецензију.",
@@ -542,10 +498,6 @@
   "welcomeText": {
     "message": "Добродошли",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Дештиклирајте „Чувај LocalStorage“ на новом белом списку израза",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Бели списак",
