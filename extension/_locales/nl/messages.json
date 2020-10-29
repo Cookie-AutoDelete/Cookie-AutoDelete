@@ -59,10 +59,6 @@
     "message": "Automatisch opruimen ingeschakeld",
     "description": "Auto-clean enabled"
   },
-  "browsingDataWarning": {
-    "message": "WAARSCHUWING: Bij het inschakelen van een van de volgende opties voor opschonen van websites, zullen ALLE bestaande gegevens voor dat type worden gewist.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
-  },
   "cacheCleanupText": {
     "message": "Cache Cleanup inschakelen (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -97,7 +93,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Waarschuwing - Acties hieronder negeren de instellingen!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Opschonen logboek",
@@ -106,10 +102,6 @@
   "clearLogsText": {
     "message": "Logboek wissen",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Alles verwijderen",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Klik op het tabblad Console",
@@ -151,17 +143,13 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Voor alle subdomeinen met het domein van de geselecteerde tekst: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
         "example": "github.com"
       }
     }
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Ondersteuning voor Firefox Container tabbladen inschakelen",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Bijdragen",
@@ -175,10 +163,6 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Ruim cookies op van openstaande tabbladen bij het starten",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Ruim op, inclusief domeinen van open tabbladen",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -191,23 +175,9 @@
     "message": "Standaardexpressie opties maken",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
-  "currentContainerInfo": {
-    "message": "Huidige Container Geselecteerd:  $ID$ ( $Name$)",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
-    "placeholders": {
-      "ID": {
-        "content": "$1",
-        "example": "firefox-container-1"
-      },
-      "Name": {
-        "content": "$2",
-        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
-      }
-    }
-  },
   "debugMode": {
     "message": "Debug-modus inschakelen (extra console output)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Standaard",
@@ -253,10 +223,6 @@
     "message": "Context Menus inschakelen (Rechter muis klik menu)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Activeer check op subdomein",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Greylist opschonen inschakelen bij opnieuw opstarten browser",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -268,14 +234,6 @@
   "errorText": {
     "message": "Fout!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Exporteer Instellingen",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Exporteer expressies",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Er wordt een tijdstempel toegevoegd aan de bestandsnaam bij de export.",
@@ -301,10 +259,6 @@
     "message": "Filter",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Vink 'lokale opslag behouden' uit bij nieuwe Greylist Expressies",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Greylist",
     "description": "Greylist"
@@ -323,10 +277,6 @@
     "message": "Import Instellingen Mislukt - Onbekende instelling gevonden",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
-  "importCoreSettingsText": {
-    "message": "Importeer Instellingen",
-    "description": "Import Core Settings"
-  },
   "importFileTypeInvalid": {
     "message": "Het opgegeven bestand is niet compatibel",
     "description": "File given is not a type we handle"
@@ -338,10 +288,6 @@
   "importMissingKey": {
     "message": "Ontbrekende id",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Importeer expressies",
-    "description": "Import Expressions"
   },
   "indexedDBCleanupText": {
     "message": "IndexedDB Cleanup inschakelen (Firefox 77+, Chrome 74+)",
@@ -657,10 +603,6 @@
     "message": "Plugin Data",
     "description": "Plugin Data. Primarily used in notifications."
   },
-  "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Instellingen",
     "description": "Settings"
@@ -765,10 +707,6 @@
     "message": "of in enige open tabbladen",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Equivalent van de reguliere expressie",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Uitgave opmerkingen",
     "description": "Release Notes"
@@ -835,7 +773,7 @@
   },
   "restoreText": {
     "message": "Herstellen",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Bedankt voor het uitproberen van $cadTitle$. Indien u het leuk vindt dan beoordeel het alsublieft.",
@@ -978,10 +916,6 @@
   "welcomeText": {
     "message": "Welkom",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Vink 'lokale opslag behouden' uit bij nieuwe Whitelist Expressies",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Lijst met expressies",
