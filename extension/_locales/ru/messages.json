@@ -49,7 +49,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Предупреждение - Действия ниже игнорируют настройки!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Журнал очистки",
@@ -58,10 +58,6 @@
   "clearLogsText": {
     "message": "Очистить журнал",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Удалить все",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Нажмите на вкладку 'Консоль'",
@@ -103,17 +99,13 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Для всех поддоменов и домена из выделенного текста: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
         "example": "github.com"
       }
     }
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Включить поддержку Container Tabs в Firefox",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Внести свой вклад",
@@ -127,10 +119,6 @@
     "message": "Куки",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Очищать куки открытых вкладок при запуске",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Выполнить очистку сейчас, включить домены из открытых вкладок",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -141,7 +129,7 @@
   },
   "debugMode": {
     "message": "Включить режим отладки (дополнительные сообщения в консоли)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Восстановить первоначальные настройки",
@@ -179,10 +167,6 @@
     "message": "Включить контекстное меню (меню по правому клику)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Включить проверку для поддоменов",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Включить очистку серого списка при перезапуске браузера",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -194,14 +178,6 @@
   "errorText": {
     "message": "Ошибка!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Экспортировать настройки",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Экспортировать правила",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Временная метка будет добавлена к имени файла при экспорте.",
@@ -227,10 +203,6 @@
     "message": "Фильтр",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Снять флажок 'Сохранять локальное хранилище' для новых записей в сером списке",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Серый список",
     "description": "Greylist"
@@ -238,10 +210,6 @@
   "importCoreSettingsFailed": {
     "message": "Не удалось импортировать настройки - Найден неизвестный параметр",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Импортировать настройки",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Файл данного типа не поддерживается",
@@ -254,10 +222,6 @@
   "importMissingKey": {
     "message": "Отсутствует идентификатор",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Импортировать правила",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Сохранять все куки",
@@ -403,10 +367,6 @@
     "message": "Настройки",
     "description": "Options"
   },
-  "popupCookieCountText": {
-    "message": "Куки",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Настройки",
     "description": "Settings"
@@ -491,10 +451,6 @@
     "message": "или в какой-либо открытой вкладке",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Соответствующее регулярное выражение",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Примечания к выпуску",
     "description": "Release Notes"
@@ -553,7 +509,7 @@
   },
   "restoreText": {
     "message": "Восстановить",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Спасибо за использование $cadTitle$. Если вам понравилось, пожалуйста, оставьте отзыв.",
@@ -684,10 +640,6 @@
   "welcomeText": {
     "message": "Добро пожаловать",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Снять флажок 'Сохранять локальное хранилище' для новых записей в белом списке",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Белый список",
