@@ -67,7 +67,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Uyarı - Aşağıdaki işlemler ayarları yoksay!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Temizlenen kayıtları",
@@ -76,10 +76,6 @@
   "clearLogsText": {
     "message": "Kayıtları temizle",
     "description": "Clear Logs"
-  },
-  "clearURLText": {
-    "message": "Hepsini sil",
-    "description": "Remove All"
   },
   "consoleDebugMode": {
     "message": "Konsol Sekmesine tıklayın",
@@ -121,17 +117,13 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Sadece seçilmiş yazıdaki alt alan adları için: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
         "example": "github.com"
       }
     }
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
   },
   "contributeText": {
     "message": "Destek olabilirsiniz",
@@ -145,10 +137,6 @@
     "message": "Çerezler",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Tarayıcı başlatıldığında açık sekmelerdeki çerezleri temizle",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Temizlemeyi şimdi çalıştırın, açık sekmelerden alan adları ekleyin",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -159,7 +147,7 @@
   },
   "debugMode": {
     "message": "Hata Ayıklama Modunu Etkinleştir (Ek Konsol Çıkışları)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Varsayılan ayarları geri yükle",
@@ -193,10 +181,6 @@
     "message": "Temizleme kaydını ve sayacını etkinleştir",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Alt-siteleri kontrolü etkinleştir (Bkz. \"Subdomain\")",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Tarayıcı Yeniden Başlatıldığında Gri Liste Temizlemeyi Etkinleştir",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -208,14 +192,6 @@
   "errorText": {
     "message": "Hata oluştu!",
     "description": "Error!"
-  },
-  "exportSettingsText": {
-    "message": "Temel Ayarları Dışa Aktar",
-    "description": "Export Core Settings"
-  },
-  "exportURLSText": {
-    "message": "Kuralları yedekle",
-    "description": "Export Expressions"
   },
   "exportTitleTimestamp": {
     "message": "Dışa aktarma sırasında dosya adına bir zaman damgası eklenir.",
@@ -241,10 +217,6 @@
     "message": "Filtre",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Yeni Gri Liste Kurallarında \"Yerel Depolama bilgilerini koru\" işaretini kaldır",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Greylist (Gri-liste)",
     "description": "Greylist"
@@ -252,10 +224,6 @@
   "importCoreSettingsFailed": {
     "message": "Çekirdek Ayarları İçe Aktarma Başarısız - Bilinmeyen ayar bulundu",
     "description": "Import Core Settings Failed - Found unknown setting"
-  },
-  "importCoreSettingsText": {
-    "message": "Temel Ayarları İçe Aktar",
-    "description": "Import Core Settings"
   },
   "importFileTypeInvalid": {
     "message": "Verilen dosya işlediğimiz bir tür değil",
@@ -268,10 +236,6 @@
   "importMissingKey": {
     "message": "Eksik tanımlayıcı",
     "description": "Missing identifier"
-  },
-  "importURLSText": {
-    "message": "Kuralları yedekten geri yükle",
-    "description": "Import Expressions"
   },
   "keepAllCookiesText": {
     "message": "Çerez bilgilerini koru",
@@ -413,10 +377,6 @@
     "message": "Ayarlar",
     "description": "Options"
   },
-  "popupCookieCountText": {
-    "message": "Çerezler",
-    "description": "Cookie(s)"
-  },
   "preferencesText": {
     "message": "Ayarlar",
     "description": "Settings"
@@ -501,10 +461,6 @@
     "message": "veya diğer açık sekmelerde değildi",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Düzenlenmiş kural görünümü",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Sürüm Hakkında",
     "description": "Release Notes"
@@ -559,7 +515,7 @@
   },
   "restoreText": {
     "message": "Geri yükle",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "\"$cadTitle$\"yi denediğin için teşekkür ederiz. Beğendiysen yorum yazarak destek olabilirsin.",
@@ -690,10 +646,6 @@
   "welcomeText": {
     "message": "Hoşgeldiniz",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Yeni Beyaz Liste Kurallarında \"Yerel Depolama bilgilerini koru\" işaretini kaldır",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Whitelist (Güvenilir-liste)",
