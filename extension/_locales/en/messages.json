@@ -60,8 +60,8 @@
     "description": "Auto-clean enabled"
   },
   "browsingDataWarning": {
-    "message": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+    "message": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
   },
   "cacheCleanupText": {
     "message": "Enable Cache Cleanup (Firefox 78+, Chrome 74+)",
@@ -97,7 +97,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Warning - Actions below ignore settings!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Cleanup Log",
@@ -107,17 +107,13 @@
     "message": "Clear Logs",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Remove All",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Click on the Console Tab",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
-    "message": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.",
-    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+    "message": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Manual Cleaning Menu",
@@ -155,7 +151,7 @@
   },
   "contextMenusSelectedSubdomainText": {
     "message": "For all subdomains with domain of selected text: $selected$",
-    "description": "For all subdomains with domain of selected text. Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -168,8 +164,8 @@
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Enable Support for Firefox's Container Tabs",
-    "description": "Enable Support for Firefox's Container Tabs. Only in Firefox."
+    "message": "Enable Support for Container Tabs",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
   },
   "contributeText": {
     "message": "Contribute",
@@ -184,8 +180,8 @@
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
   "cookieCleanUpOnStartText": {
-    "message": "Clean Cookies from Open Tabs on Startup",
-    "description": "Clean Cookies from Open Tabs on Startup"
+    "message": "Clean Cookies and other Site Data from Open Tabs on Startup",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Run cleanup now, include domains from open tabs",
@@ -200,8 +196,8 @@
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
-    "message": "Current Container Selected:  $ID$ ( $Name$ )",
-    "description": "Current Container Selected:  $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "message": "Current Container Selected: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
         "content": "$1",
@@ -215,7 +211,7 @@
   },
   "debugMode": {
     "message": "Enable Debug Mode (Additional Console Outputs)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Default",
@@ -243,7 +239,7 @@
   },
   "domainPlaceholderText": {
     "message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
-    "description": "Domain Expression. For this one we'll keep the string as is."
+    "description": "Domain Expression Example. For this one we'll keep the string as is.  Kept for historical purposes."
   },
   "dropdownAdditionalCleaningOptions": {
     "message": "Toggle Additional Cleaning Actions Dropdown",
@@ -265,10 +261,6 @@
     "message": "Enable Context Menus (Right-Click Menu)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Enable Check for Subdomains",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Enable Greylist Cleanup on Browser Restart",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -282,12 +274,12 @@
     "description": "Error!"
   },
   "exportSettingsText": {
-    "message": "Export Core Settings",
-    "description": "Export Core Settings"
+    "message": "Export Core Settings...",
+    "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
-    "message": "Export Expressions",
-    "description": "Export Expressions"
+    "message": "Export Expressions...",
+    "description": "Export Expressions... Found in List of Expressions."
   },
   "exportTitleTimestamp": {
     "message": "A timestamp will be appended to the filename on export.",
@@ -313,10 +305,6 @@
     "message": "Filter",
     "description": "Filter"
   },
-  "greyCleanLocalstorage": {
-    "message": "Uncheck 'Keep LocalStorage' on New Greylist Expressions",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
-  },
   "greyListWordText": {
     "message": "Greylist",
     "description": "Greylist"
@@ -336,8 +324,8 @@
     "description": "Import Core Settings Failed - Found unknown setting"
   },
   "importCoreSettingsText": {
-    "message": "Import Core Settings",
-    "description": "Import Core Settings"
+    "message": "Import Core Settings...",
+    "description": "Import Core Settings... Found in CAD Settings."
   },
   "importFileNotFound": {
     "message": "File not found: $filename$",
@@ -376,8 +364,8 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "Import Expressions",
-    "description": "Import Expressions"
+    "message": "Import Expressions...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "importValidExpressions": {
     "message": "Successfully added $num$ expression(s) from imported file: $filename$.",
@@ -420,12 +408,12 @@
     }
   },
   "inputErrorSlashEndMissingStart": {
-    "message": "End slash missing start slash for Regular Expression. Remove end slash for domains.",
-    "description": "End slash missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+    "message": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
   },
   "inputErrorSlashStartMissingEnd": {
-    "message": "Start slash missing end slash for Regular Expression.",
-    "description": "Start slash missing end slash for Regular Expression. Found in editing expression errors."
+    "message": "Start slash detected, but missing end slash for Regular Expression.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "Spaces are not allowed in hostnames.",
@@ -778,8 +766,8 @@
     "description": "Plugin Data. Primarily used in notifications."
   },
   "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Settings",
@@ -885,10 +873,6 @@
     "message": "or in any open tabs",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Regular Expression Equivalent",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Release Notes",
     "description": "Release Notes"
@@ -955,7 +939,7 @@
   },
   "restoreText": {
     "message": "Restore",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Thanks for trying out $cadTitle$. If you liked it, then please give a review.",
@@ -1098,10 +1082,6 @@
   "welcomeText": {
     "message": "Welcome",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "List of Expressions",
