@@ -59,6 +59,10 @@
     "message": "Limpieza automática habilitada",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "ADVERTENCIA: Al habilitar cualquiera de las siguientes opciones de limpieza de datos del sitio, se borrarán TODOS los datos existentes de ese tipo.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Habilitar limpieza de caché (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -106,6 +110,10 @@
   "consoleDebugMode": {
     "message": "Haz clic en la pestaña de la consola",
     "description": "Click on the Console Tab. Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "ADVERTENCIA: Habilitar los contenedores de pestañas con cualquiera de las limpiezas de datos de navegación adicionales anteriores puede causar efectos secundarios no deseados debido a las limitaciones de la API del navegador. Los tipos de datos del sitio, con excepción de las cookies, se borrarán por nombre de host para TODOS los contenedores.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Menú de limpieza manual",
@@ -170,6 +178,10 @@
   "cookiesText": {
     "message": "cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "Limpiar cookies y otros datos del sitio de pestañas abiertas desde el inicio",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Ejecutar limpieza ahora, incluye los dominios de pestañas abiertas",
@@ -394,6 +406,14 @@
         "example": "SyntaxError:  unterminated character class."
       }
     }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Se ha detectado una barra final, pero falta la barra inicial para la expresión regular. Borra la barra final de los dominios.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Se ha detectado una barra inicial, pero falta la barra final para la expresión regular.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "No se permiten espacios en los nombres de dominio.",
