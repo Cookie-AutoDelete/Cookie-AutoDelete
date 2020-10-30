@@ -180,7 +180,7 @@
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
   "cookieCleanUpOnStartText": {
-    "message": "Limpiar cookies y otros datos del sitio de pestañas abiertas desde el inicio",
+    "message": "Limpiar cookies y otros datos del sitio en pestañas abiertas desde el inicio",
     "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
