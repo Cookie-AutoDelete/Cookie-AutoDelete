@@ -155,6 +155,10 @@
     "message": "Habilitar borrado automático de la lista de expresiones cuando se borre su contenedor.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Habilitar soporte para contenedores de pestañas",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Contribuir",
     "description": "Contribute"
@@ -178,6 +182,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Crear opciones de expresión predeterminadas",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Contenedor actual seleccionado: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Habilitar modo de depuración (salidas de consola adicionales)",
@@ -243,6 +261,14 @@
     "message": "¡Error!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Exportar configuración principal...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Exportar expresiones...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Se añadirá una marca de tiempo al nombre del archivo al exportar.",
     "description": "A timestamp will be appended to the filename on export."
@@ -285,6 +311,10 @@
     "message": "Error al importar la configuración principal - Se encontró una configuración desconocida",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importar configuración principal...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileNotFound": {
     "message": "Archivo no encontrado: $filename$",
     "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
@@ -320,6 +350,10 @@
   "importMissingKey": {
     "message": "Identificador faltante",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importar expresiones...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "importValidExpressions": {
     "message": "Se añadieron correctamente $num$ expresiones del archivo importado: $filename$",
@@ -710,6 +744,10 @@
   "pluginDataText": {
     "message": "Datos de complemento/s",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Configuración",
