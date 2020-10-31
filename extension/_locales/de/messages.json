@@ -239,6 +239,10 @@
     "message": "Fehler!",
     "description": "Error!"
   },
+  "exportURLSText": {
+    "message": "Ausdrücke exportieren...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Beim Export wird ein Zeitstempel an den Dateinamen angehängt.",
     "description": "A timestamp will be appended to the filename on export."
@@ -281,6 +285,20 @@
     "message": "Import der Einstellungen fehlgeschlagen - unbekannte Einstellung gefunden",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Einstellungen importieren...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
+  "importFileNotFound": {
+    "message": "Datei nicht gefunden: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Die angegebene Datei ist kein Typ, den wir behandeln",
     "description": "File given is not a type we handle"
@@ -293,6 +311,24 @@
     "message": "Fehlender Bezeichner",
     "description": "Missing identifier"
   },
+  "importURLSText": {
+    "message": "Ausdrücke importieren...",
+    "description": "Import Expressions... Found in List of Expressions."
+  },
+  "importValidExpressions": {
+    "message": "$num$ Ausdruck/Ausdrücke erfolgreich aus der importierten Datei $filename$ hinzugefügt.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "IndexedDB-Bereinigung aktivieren (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -300,6 +336,10 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Kommas sind nur in regulären Ausdrücken erlaubt.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
   },
   "keepAllCookiesText": {
     "message": "Alle Cookies behalten",
@@ -628,6 +668,10 @@
   "pluginDataText": {
     "message": "Plugin-Daten",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Einstellungen",
