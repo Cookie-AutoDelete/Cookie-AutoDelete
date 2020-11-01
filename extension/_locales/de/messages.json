@@ -59,6 +59,10 @@
     "message": "Automatisches Aufräumen aktiviert",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "WARNUNG: Wenn Sie eine der folgenden Optionen zur Datenbereinigung aktivieren, werden ALLE existierenden Daten dieses Typs gelöscht.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Cache-Bereinigung aktivieren (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -106,6 +110,10 @@
   "consoleDebugMode": {
     "message": "Klicken Sie auf den Konsolen-Tab",
     "description": "Click on the Console Tab. Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "WARNUNG: Das Aktivieren von Tab-Umgebungen mit einer der oben genannten zusätzlichen Bereinigungsoptionen kann aufgrund von API-Einschränkungen unerwünschte Nebeneffekte verursachen. Website-Daten, mit Ausnahme von Cookies, werden nach Hostnamen für ALLE Umgebungen gelöscht.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Manuelles Aufräumen-Menü",
@@ -155,6 +163,10 @@
     "message": "Automatisches Entfernen der Ausdrucksliste aktivieren, wenn die zugehörige Umgebung entfernt wurde.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Unterstützung für Tab-Umgebungen",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Unterstützen",
     "description": "Contribute"
@@ -167,6 +179,10 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Cookies von offenen Tabs beim Start aufräumen",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Jetzt aufräumen, Domains von offenen Tabs einschließen",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -178,6 +194,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Standard-Ausdruckoptionen erstellen",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Aktuelle Umgebung ausgewählt: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Debug-Modus aktivieren (zusätzliche Konsolen-Ausgabe)",
@@ -311,6 +341,20 @@
     "message": "Datei mit fehlgeschlagener Validierung",
     "description": "File given failed validation"
   },
+  "importInvalidExpressions": {
+    "message": "Ungültige Ausdrücke beim Dateiimport festgestellt. Sie sind unterhalb mitsamt Grund aufgeführt. Prüfen and beheben Sie sämtliche Fehler in der entsprechenden Datei und importieren Sie sie erneut.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ ist nicht als Array-Liste formatiert.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
   "importMissingKey": {
     "message": "Fehlender Bezeichner",
     "description": "Missing identifier"
@@ -336,10 +380,6 @@
   "indexedDBCleanupText": {
     "message": "IndexedDB-Bereinigung aktivieren (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
-  },
-  "indexedDBText": {
-    "message": "IndexedDB",
-    "description": "IndexedDB. Primarily used in notifications."
   },
   "inputErrorComma": {
     "message": "Kommas sind nur in regulären Ausdrücken erlaubt.",
@@ -956,14 +996,6 @@
   "siteDataText": {
     "message": "Website-Daten",
     "description": "Site Data. Found in Activity Log Summary and Notifications."
-  },
-  "sizePopupText": {
-    "message": "Pixel für Schriftgröße im Pop-up",
-    "description": "Size of Popup (in px). This sets the font size in the Popup."
-  },
-  "sizeSettingText": {
-    "message": "Pixel für Schriftgröße in den Einstellungsseiten",
-    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
   },
   "stopEditingText": {
     "message": "Bearbeitung beenden",
