@@ -239,6 +239,10 @@
     "message": "Fehler!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Einstellungen exportieren...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
   "exportURLSText": {
     "message": "Ausdrücke exportieren...",
     "description": "Export Expressions... Found in List of Expressions."
@@ -316,7 +320,7 @@
     "description": "Import Expressions... Found in List of Expressions."
   },
   "importValidExpressions": {
-    "message": "$num$ Ausdruck/Ausdrücke erfolgreich aus der importierten Datei $filename$ hinzugefügt.",
+    "message": "$num$ Ausdruck/Ausdrücke erfolgreich aus der importierten Datei '$filename$' hinzugefügt.",
     "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
     "placeholders": {
       "num": {
@@ -340,6 +344,50 @@
   "inputErrorComma": {
     "message": "Kommas sind nur in regulären Ausdrücken erlaubt.",
     "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "Der geänderte Ausdruck darf nicht leer sein!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Regulärer Ausdruck ist ungültig: $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "End-Schrägstrich erkannt, jedoch fehlt ein Start-Schrägstrich für den regulären Ausdruck. Entfernen Sie den End-Schrägstrich für Domains.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Start-Schrägstrich erkannt, jedoch fehlt ein End-Schrägstrich für den regulären Ausdruck.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Leerzeichen in Hostnamen sind nicht erlaubt.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "$num$ Ausdruck/Ausdrücke vom Typ '$listType$' erfolgreich zur gegenwärtig aktiven Liste hinzugefügt.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Ungültige neue Ausdrücke erkannt. Sie sind unterhalb mitsamt Grund vermerkt und wurden zum Bearbeiten oberhalb belassen.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Alle Cookies behalten",
