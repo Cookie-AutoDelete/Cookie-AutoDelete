@@ -256,7 +256,7 @@ jobs:
           echo "::set-env name=issue_close::true"
       - name: Body does not contain all required headings
         id: missingHeadings
-        if: (! (contains(github.event.issue.body, '**Please describe what you need support with.**') && contains(github.event.issue.body, '**Describe the solution you''d like**') ))
+        if: (! contains(github.event.issue.body, '**Please describe what you need support with.**'))
         run: |
           echo "::set-output name=msg::- Missing required section headings and details."
           echo "::warning ::Missing required section headings."
@@ -267,13 +267,6 @@ jobs:
         run: |
           echo "::set-output name=msg::- Missing support description."
           echo "::warning ::Missing Support Description."
-          echo "::set-env name=issue_close::true"
-      - name: Solution is missing
-        id: missingSolution
-        if: contains(github.event.issue.body, 'A clear and concise description of what you want to happen.')
-        run: |
-          echo "::set-output name=msg::- Missing support solution detail."
-          echo "::warning ::Missing Support Detail."
           echo "::set-env name=issue_close::true"
       - name: Add Incomplete Label
         if: env.issue_close == 'true'
@@ -297,8 +290,6 @@ jobs:
             ${{ steps.missingHeadings.outputs.msg }}
 
             ${{ steps.missingDescription.outputs.msg }}
-
-            ${{ steps.missingSolution.outputs.msg }}
 
             If you have modified the initial post or the required sections were already filled out, please comment and ping `@kennethtran93` to reopen it (or open a new support issue and follow the provided template).
   issue_unknown:
