@@ -1,4 +1,4 @@
-To prevent your bug/feature request/support issue from being automatically closed,
+To prevent your bug / feature request / support issue from being automatically closed,
 please use the new Issue Template Selection page linked below.
 
 https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/issues/new/choose
