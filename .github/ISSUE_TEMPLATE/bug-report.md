@@ -25,10 +25,11 @@ By removing this entire section (from <!-- to ->) you acknowledge that you have 
 
 **Describe the bug** <!-- REQUIRED HEADER AND SECTION -->
 
-A clear and concise description of what the bug is.
-<!-- Helpful to have console output if it's a bug -->
+<!-- A clear and concise description of what the bug is.  Helpful to have console output if it's a bug.  Please replace this entire line with your response. -->
 
 **To Reproduce** <!-- REQUIRED HEADER AND SECTION -->
+
+<!-- Replace this entire Reproduce example with your own steps.
 
 Steps to reproduce the behavior:
 
@@ -37,13 +38,15 @@ Steps to reproduce the behavior:
 3. Scroll down to '....'
 4. See error
 
+Reproduce Step Example End.  Remove this line as well.-->
+
 **Expected Behavior** <!-- REQUIRED HEADER AND SECTION -->
 
-A clear and concise description of what you expected to happen.
+<!-- A clear and concise description of what you expected to happen.  Please replace this entire line with your response. -->
 
 **Screenshots** <!-- Depending on the type of bug this is optional -->
 
-Add screenshots to help explain your problem, notably the settings and any related errors. For showing cookie counts, it would be helpful to also include a screenshot of the Storage Inspector that you can access through Development Tools (F12) WHILE on that tab/site.
+<!-- Add screenshots to help explain your problem, notably the settings and any related errors. For showing cookie counts, it would be helpful to also include a screenshot of the Storage Inspector that you can access through Development Tools (F12) WHILE on that tab/site. Please replace this entire line with your response, or remove it completely. -->
 
 **Your System Info** <!-- REQUIRED HEADER AND SECTION.  PLEASE COMPLETE THE FOLLOWING INFORMATION -->
 
@@ -53,4 +56,4 @@ Add screenshots to help explain your problem, notably the settings and any relat
 
 **Additional context** <!-- This is optional and can be removed -->
 
-Add any other context about the problem here.
+<!-- Add any other context about the problem here.  Please replace with your response or remove it completely with its header. -->
