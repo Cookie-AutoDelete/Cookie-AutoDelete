@@ -108,13 +108,13 @@ jobs:
           echo "::set-output name=runid::$GH_RUNID"
           echo "::set-output name=links::$MDR"
       - name: React to Slash Command Comment
-        uses: peter-evans/create-or-update-comment@v1.4.3
+        uses: peter-evans/create-or-update-comment@v1.4.4
         with:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reactions: hooray
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
-        uses: peter-evans/create-or-update-comment@v1.4.3
+        uses: peter-evans/create-or-update-comment@v1.4.4
         with:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
@@ -131,7 +131,7 @@ jobs:
       - name: Create comment in PR
         id: successPR
         if: steps.arts.outputs.result == 'SUCCESS'
-        uses: peter-evans/create-or-update-comment@v1.4.3
+        uses: peter-evans/create-or-update-comment@v1.4.4
         with:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
@@ -161,7 +161,7 @@ jobs:
           echo "Slash Comment should have been deleted now."
       - name: Replace Success PR Comment
         if: steps.arts.outputs.result == 'SUCCESS'
-        uses: peter-evans/create-or-update-comment@v1.4.3
+        uses: peter-evans/create-or-update-comment@v1.4.4
         with:
           comment-id: ${{ steps.successPR.outputs.comment-id }}
           edit-mode: replace
