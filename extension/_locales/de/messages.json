@@ -381,6 +381,10 @@
     "message": "IndexedDB-Bereinigung aktivieren (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
   },
+  "indexedDBText": {
+    "message": "IndexedDB",
+    "description": "IndexedDB. Primarily used in notifications."
+  },
   "inputErrorComma": {
     "message": "Kommas sind nur in regulären Ausdrücken erlaubt.",
     "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
@@ -996,6 +1000,14 @@
   "siteDataText": {
     "message": "Website-Daten",
     "description": "Site Data. Found in Activity Log Summary and Notifications."
+  },
+  "sizePopupText": {
+    "message": "Pixel für Schriftgröße im Pop-up",
+    "description": "Size of Popup (in px). This sets the font size in the Popup."
+  },
+  "sizeSettingText": {
+    "message": "Pixel für Schriftgröße in den Einstellungsseiten",
+    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
   },
   "stopEditingText": {
     "message": "Bearbeitung beenden",
