@@ -111,6 +111,10 @@
     "message": "انقر فوق علامة التبويب وحدة التحكم",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "تحذير: تمكين علامات تبويب الحاوية مع أي من عمليات تنظيف بيانات التصفح الإضافية أعلاه قد يسبب تأثيرات جانبية غير مرغوب فيها بسبب قيود API للمتصفح. سيتم مسح أنواع بيانات الموقع، باستثناء ملفات تعريف الارتباط، بواسطة اسم المضيف لجميع الحاويات.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "قائمة التنظيف اليدوي",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
