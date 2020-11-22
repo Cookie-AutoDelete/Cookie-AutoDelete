@@ -21,11 +21,11 @@
   },
   "chromeDebugMode": {
     "message": "Maak seker dat 'ontwikkelaarmodus' geaktiveer is, en klik dan op 'agtergrondbladsy' onder Inspekteer.",
-    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
   },
   "cleanIgnoringOpenTabsText": {
     "message": "Maak skoon, insluitend oop oortjies",
-    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+    "description": "Clean, include open tabs. Found in the additional cleanup options in the popup."
   },
   "cleanText": {
     "message": "Maak skoon",
@@ -37,7 +37,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Waarskuwing - aksies hieronder ignoreer instellings!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Opruim Log",
@@ -47,17 +47,13 @@
     "message": "Maak log skoon",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Verwyder almal",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Klik op die konsole-oortjie",
-    "description": "Click on the Console Tab.  Found after enabling debug mode."
+    "description": "Click on the Console Tab. Found after enabling debug mode."
   },
   "contextualIdentitiesEnabledText": {
     "message": "Aktiveer ondersteuning vir Firefox se houertabs",
-    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
   },
   "contributeText": {
     "message": "Dra By",
@@ -67,13 +63,9 @@
     "message": "Bydraers",
     "description": "Contributors"
   },
-  "cookieCleanUpOnStartText": {
-    "message": "Maak koekies skoon van oop oortjies tydens opstart",
-    "description": "Clean Cookies from Open Tabs on Startup"
-  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Ruim nou op, sluit domeine van oop oortjies in",
-    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+    "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
     "message": "Begin nou opruiming, sluit domeine uit van oop oortjies",
@@ -81,7 +73,7 @@
   },
   "debugMode": {
     "message": "Aktiveer ontfoutmodus (bykomende konsole-uitsette)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Herstel oorspronklike instellings",
@@ -115,10 +107,6 @@
     "message": "Aktiveer skoonmaaklogboek en toonbank",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Aktiveer kontrole vir subdomeine",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Aktiveer Greylist-opruiming met die herblaai van die blaaier",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -132,12 +120,12 @@
     "description": "Error!"
   },
   "exportSettingsText": {
-    "message": "Voer kerninstellings uit",
-    "description": "Export Core Settings"
+    "message": "Voer kerninstellings uit...",
+    "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
-    "message": "Voer uitdrukkings uit",
-    "description": "Export Expressions"
+    "message": "Voer uitdrukkings uit...",
+    "description": "Export Expressions... Found in List of Expressions."
   },
   "exportTitleTimestamp": {
     "message": "'N Tydstempel word bygevoeg by die lêernaam wat uitgevoer word.",
@@ -157,15 +145,11 @@
   },
   "filterDebugMode": {
     "message": "Filter slegs uitsette deur hierdie uitbreiding, filter die uitset volgens die volgende reël:",
-    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+    "description": "To see only debug outputs by this extension, filter output by the following line. Found after enabling debug mode."
   },
   "filterText": {
     "message": "Filter",
     "description": "Filter"
-  },
-  "greyCleanLocalstorage": {
-    "message": "Ontmerk die merk 'Keep LocalStorage' op nuwe Greylist-uitdrukkings",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
   },
   "greyListWordText": {
     "message": "Gryslys",
@@ -176,8 +160,8 @@
     "description": "Import Core Settings Failed - Found unknown setting"
   },
   "importCoreSettingsText": {
-    "message": "Voer kerninstellings in",
-    "description": "Import Core Settings"
+    "message": "Voer kerninstellings in...",
+    "description": "Import Core Settings... Found in CAD Settings."
   },
   "importFileTypeInvalid": {
     "message": "Die gegewe lêer is nie 'n tipe wat ons hanteer nie",
@@ -192,8 +176,8 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "Voer uitdrukkings in",
-    "description": "Import Expressions"
+    "message": "Voer uitdrukkings in...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "Hou alle koekies",
@@ -201,7 +185,7 @@
   },
   "keepDefaultIcon": {
     "message": "Hou standaardikone by alle lystipes",
-    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
   },
   "keepLocalstorageText": {
     "message": "Hou LocalStorage",
@@ -221,7 +205,7 @@
   },
   "menuText": {
     "message": "Kieslys",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+    "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   },
   "minutesText": {
     "message": "Minuut (e)",
@@ -277,7 +261,7 @@
   },
   "popupCookieCountText": {
     "message": "Koekies",
-    "description": "Cookie(s)"
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Instellings",
@@ -289,7 +273,7 @@
   },
   "reasonCleanCookieName": {
     "message": "Gedeeltelik skoon as gevolg van die gepaste $matchedExpression$ in die $listType$",
-    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$. Used in cleanup logs.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -363,10 +347,6 @@
     "message": "of in enige oop oortjies",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Gereeldeuitdrukking Ekwivalent",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Vrystelling Notas",
     "description": "Release Notes"
@@ -377,7 +357,7 @@
   },
   "removeAllExpressionsConfirm": {
     "message": "Is u seker dat u ALLE ($expressionCount$) gestoorde uitdrukking(s) van ($listCount$) lys(s) wil verwyder? \n\nDIT KAN NIE ONGEDAAN GEMAAK WORD NIE! \n\nTik [ $expressionCount$ ] en klik OK om te verwyder.",
-    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Expression is clicked.",
     "placeholders": {
       "expressionCount": {
         "content": "$1",
@@ -407,7 +387,7 @@
   },
   "restoreText": {
     "message": "Laai terug",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Dankie dat u $cadTitle$ probeer het. As u daarvan hou, gee asseblief 'n resensie.",
@@ -459,11 +439,11 @@
   },
   "sizePopupText": {
     "message": "Grootte van die opspringer (in px)",
-    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+    "description": "Size of Popup (in px). This sets the font size in the Popup."
   },
   "sizeSettingText": {
     "message": "Grootte van instellingsbladsye (in px)",
-    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
   },
   "stopEditingText": {
     "message": "Hou op wysig",
@@ -495,7 +475,7 @@
   },
   "versionNumberText": {
     "message": "$CAD$ weergawe",
-    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "description": "$CAD$ version 3.2.1. The actual number is formatted differently and will be right below this text.",
     "placeholders": {
       "CAD": {
         "content": "$1",
@@ -534,10 +514,6 @@
   "welcomeText": {
     "message": "Welkom",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Ontmerk die 'Keep LocalStorage' op nuwe witlysuitdrukkings",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Witlys",

@@ -21,11 +21,11 @@
   },
   "chromeDebugMode": {
     "message": "Уверите се да је „Развојни начин за програмере“ омогућен, а затим кликните на „позадинску страницу“ у делу „Преглед прегледа“.",
-    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
   },
   "cleanIgnoringOpenTabsText": {
     "message": "Очисти и отворене језичке",
-    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+    "description": "Clean, include open tabs. Found in the additional cleanup options in the popup."
   },
   "cleanText": {
     "message": "Очисти",
@@ -37,7 +37,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Упозорење - Радње испод подешавања занемаривања!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Записник чишћења",
@@ -47,17 +47,9 @@
     "message": "Очисти записнике",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Уклони све",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Кликните на картицу Конзола",
-    "description": "Click on the Console Tab.  Found after enabling debug mode."
-  },
-  "contextualIdentitiesEnabledText": {
-    "message": "Омогући подршку за Firefox-ове контејнер језичке",
-    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+    "description": "Click on the Console Tab. Found after enabling debug mode."
   },
   "contributeText": {
     "message": "Допринесите",
@@ -69,15 +61,11 @@
   },
   "cookiesText": {
     "message": "колачиће",
-    "description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
-  },
-  "cookieCleanUpOnStartText": {
-    "message": "Очисти колачиће из отворених језичака при покретању",
-    "description": "Clean Cookies from Open Tabs on Startup"
+    "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Покрените чишћење сада, укључите домене са отворених картица",
-    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+    "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
     "message": "Покрените чишћење сада, искључите домене из отворених картица",
@@ -85,7 +73,7 @@
   },
   "debugMode": {
     "message": "Омогућите режим уклањања погрешака (додатни излази конзоле)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultSettingsText": {
     "message": "Врати подразумевана подешавања",
@@ -119,10 +107,6 @@
     "message": "Омогући записник чишћења и бројач",
     "description": "Enable Cleanup Log and Counter"
   },
-  "enableGlobalSubdomainText": {
-    "message": "Омогући проверу за поддомен",
-    "description": "Enable Check for Subdomains"
-  },
   "enableGreyListCleanup": {
     "message": "Омогућите чишћење греилиста приликом поновног покретања прегледача",
     "description": "Enable Greylist Cleanup on Browser Restart"
@@ -136,12 +120,12 @@
     "description": "Error!"
   },
   "exportSettingsText": {
-    "message": "Извоз основних поставки",
-    "description": "Export Core Settings"
+    "message": "Извоз основних поставки...",
+    "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
-    "message": "Извези изразе",
-    "description": "Export Expressions"
+    "message": "Извези изразе...",
+    "description": "Export Expressions... Found in List of Expressions."
   },
   "exportTitleTimestamp": {
     "message": "Временска ознака биће додата имену датотеке при извозу.",
@@ -161,15 +145,11 @@
   },
   "filterDebugMode": {
     "message": "Да бисте видели само излаз за уклањање погрешака помоћу овог проширења, филтрирајте излаз сљедећим редом:",
-    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+    "description": "To see only debug outputs by this extension, filter output by the following line. Found after enabling debug mode."
   },
   "filterText": {
     "message": "Филтер",
     "description": "Filter"
-  },
-  "greyCleanLocalstorage": {
-    "message": "Дештиклирајте „Чувај LocalStorage“ на новом сивом списку израза",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
   },
   "greyListWordText": {
     "message": "Сиви списак",
@@ -180,8 +160,8 @@
     "description": "Import Core Settings Failed - Found unknown setting"
   },
   "importCoreSettingsText": {
-    "message": "Увоз основних поставки",
-    "description": "Import Core Settings"
+    "message": "Увоз основних поставки...",
+    "description": "Import Core Settings... Found in CAD Settings."
   },
   "importFileTypeInvalid": {
     "message": "Датотека није врста којом се бавимо",
@@ -196,8 +176,8 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "Увези изразе",
-    "description": "Import Expressions"
+    "message": "Увези изразе...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "Задржи колачиће",
@@ -205,7 +185,7 @@
   },
   "keepDefaultIcon": {
     "message": "Задржите подразумеване иконе на свим врстама листе",
-    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
   },
   "keepLocalstorageText": {
     "message": "Задржи локално складиште",
@@ -225,7 +205,7 @@
   },
   "menuText": {
     "message": "Мени",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+    "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   },
   "minutesText": {
     "message": "Минут(а)",
@@ -280,8 +260,8 @@
     "description": "Options"
   },
   "popupCookieCountText": {
-    "message": "Колачић(и)",
-    "description": "Cookie(s)"
+    "message": "Колачић",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Подешавања",
@@ -293,7 +273,7 @@
   },
   "reasonCleanCookieName": {
     "message": "Делимично очишћено због подударања у изразу $matchedExpression$ са списка $listType$",
-    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$. Used in cleanup logs.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -367,10 +347,6 @@
     "message": "или у било ком отвореном језичку",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Еквивалент општег израза",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Белешке о издању",
     "description": "Release Notes"
@@ -381,7 +357,7 @@
   },
   "removeAllExpressionsConfirm": {
     "message": "Јесте ли сигурни да желите уклонити СВЕ ($expressionCount$) сачуване изразе (е) са (е) листе ($listCount$)? \n\nОВО СЕ НЕ МОЖЕ ПОНИШТИТИ! \n\nОткуцајте [$expressionCount$] и кликните ОК да бисте избрисали.",
-    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Expression is clicked.",
     "placeholders": {
       "expressionCount": {
         "content": "$1",
@@ -407,7 +383,7 @@
   },
   "resetCookieCounterText": {
     "message": "Поново постави бројаче колачића",
-    "description": "Reset Cookie Counters.  Button in Welcome Page."
+    "description": "Reset Cookie Counters. Button in Welcome Page."
   },
   "resetExtensionDataText": {
     "message": "Поново постави податке о проширењу",
@@ -415,7 +391,7 @@
   },
   "restoreText": {
     "message": "Обнови",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Хвала вам што сте пробали $cadTitle$. Ако вам се свиђа, оставите рецензију.",
@@ -467,11 +443,11 @@
   },
   "sizePopupText": {
     "message": "Величина искачућег прозора (у пикселима)",
-    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+    "description": "Size of Popup (in px). This sets the font size in the Popup."
   },
   "sizeSettingText": {
     "message": "Величина странице за подешавања (у пикселима)",
-    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
   },
   "stopEditingText": {
     "message": "Престани са уређивањем",
@@ -503,7 +479,7 @@
   },
   "versionNumberText": {
     "message": "$CAD$ верзија",
-    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "description": "$CAD$ version 3.2.1. The actual number is formatted differently and will be right below this text.",
     "placeholders": {
       "CAD": {
         "content": "$1",
@@ -542,10 +518,6 @@
   "welcomeText": {
     "message": "Добродошли",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Дештиклирајте „Чувај LocalStorage“ на новом белом списку израза",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "whiteListWordText": {
     "message": "Бели списак",

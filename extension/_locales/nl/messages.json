@@ -13,7 +13,7 @@
   },
   "activityLogSiteDataDomainsText": {
     "message": "Schoonmaak van $siteData$ aangevraagd voor: $domains$",
-    "description": "Invoked cleanup of $siteData$ for: $domains$.  Found in Activity Log Detailed Entries.",
+    "description": "Invoked cleanup of $siteData$ for: $domains$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "siteData": {
         "content": "$1",
@@ -27,7 +27,7 @@
   },
   "addNewExpressionNotification": {
     "message": "Voeg $expression$ toe aan lijst type $listType$ in de cookie opslag $cookieStore$.",
-    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.  Used in notification when right-click action was performed.",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$. Used in notification when right-click action was performed.",
     "placeholders": {
       "expression": {
         "content": "$1",
@@ -49,7 +49,7 @@
   },
   "addNewExpressionNotificationIgnore": {
     "message": "Als de expressie al bestaat, zal deze genegeerd worden.",
-    "description": "If expression already exists, this will be ignored.  Used in notification when right-click action was performed."
+    "description": "If expression already exists, this will be ignored. Used in notification when right-click action was performed."
   },
   "autoDeleteDisabledText": {
     "message": "Automatisch opruimen uitgeschakeld",
@@ -61,31 +61,31 @@
   },
   "browsingDataWarning": {
     "message": "WAARSCHUWING: Bij het inschakelen van een van de volgende opties voor opschonen van websites, zullen ALLE bestaande gegevens voor dat type worden gewist.",
-    "description": "WARNING:  Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared.  Found in CAD Settings"
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
   },
   "cacheCleanupText": {
     "message": "Cache Cleanup inschakelen (Firefox 78+, Chrome 74+)",
-    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
   },
   "cacheText": {
     "message": "Cachegeheugen",
-    "description": "Cache.  Primarily used in notifications."
+    "description": "Cache. Primarily used in notifications."
   },
   "chromeDebugMode": {
     "message": "Zorg ervoor dat 'Ontwikkelaarsmodus' is ingeschakeld en klik vervolgens op 'achtergrond pagina' onder Inspect View.",
-    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View.  This is shown if debug mode is enabled."
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
   },
   "cleanDiscardedText": {
     "message": "Opschonen inschakelen voor verwijderde/niet-geladen tabbladen",
-    "description": "Enable Cleanup for Discarded/Unloaded Tabs.  Found in Settings."
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs. Found in Settings."
   },
   "cleanExpiredCookiesText": {
     "message": "Ruim alle verlopen koekjes op",
-    "description": "Clean All Expired Cookies.  Found in Settings."
+    "description": "Clean All Expired Cookies. Found in Settings."
   },
   "cleanIgnoringOpenTabsText": {
     "message": "Ruim op, inclusief open tabbladen",
-    "description": "Clean, include open tabs.  Found in the additional cleanup options in the popup."
+    "description": "Clean, include open tabs. Found in the additional cleanup options in the popup."
   },
   "cleanText": {
     "message": "Schoonmaken",
@@ -97,7 +97,7 @@
   },
   "cleanupActionsBypass": {
     "message": "Waarschuwing - Acties hieronder negeren de instellingen!",
-    "description": "Warning - Actions below ignore settings!    Found in the additional cleanup options in the popup."
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
   },
   "cleanupLogText": {
     "message": "Opschonen logboek",
@@ -107,37 +107,33 @@
     "message": "Logboek wissen",
     "description": "Clear Logs"
   },
-  "clearURLText": {
-    "message": "Alles verwijderen",
-    "description": "Remove All"
-  },
   "consoleDebugMode": {
     "message": "Klik op het tabblad Console",
-    "description": "Click on the Console Tab.  Found after enabling debug mode."
+    "description": "Click on the Console Tab. Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
     "message": "WAARSCHUWING: het inschakelen van Container tabbladen met een van de extra bovenstaande data opruimen, kan ongewenste neveneffecten veroorzaken door de API beperkingen van de browser. Site gegevens typen, met uitzondering van cookies, worden gewist met hostnaam voor alle containers.",
-    "description": "WARNING:  Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations.  Site data types, with the exception of cookies, will be cleared by hostname for ALL containers.  Found in CAD Settings."
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Handmatig schoonmaakmenu",
-    "description": "Manual Cleaning Menu.  Shown on right-clicks of Page/Browser Action."
+    "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
   },
   "contextMenusParentExpression": {
     "message": "Voeg Domein/Expressie toe menu",
-    "description": "Add Domain/Expression Menu.  Shown on right-clicks of Page/Link/Selection."
+    "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
   },
   "contextMenusSelectedDomainLink": {
     "message": "Alleen voor domein van geselecteerde link",
-    "description": "For domain only of selected link.  Shown in right-click menu."
+    "description": "For domain only of selected link. Shown in right-click menu."
   },
   "contextMenusSelectedDomainPage": {
     "message": "Voor domein alleen van geselecteerde pagina",
-    "description": "For domain only of selected page.  Shown in right-click menu."
+    "description": "For domain only of selected page. Shown in right-click menu."
   },
   "contextMenusSelectedDomainText": {
     "message": "Voor domein alleen van geselecteerde tekst: $selected$",
-    "description": "For domain only of selected text: $selected$.  Shown in right-click menu.",
+    "description": "For domain only of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -147,15 +143,15 @@
   },
   "contextMenusSelectedSubdomainLink": {
     "message": "Voor alle subdomeinen met het domein van de geselecteerde link",
-    "description": "For all subdomains with domain of selected link.  Shown in right-click menu."
+    "description": "For all subdomains with domain of selected link. Shown in right-click menu."
   },
   "contextMenusSelectedSubdomainPage": {
     "message": "Voor alle subdomeinen met het domein van de geselecteerde pagina",
-    "description": "For all subdomains with domain of selected page.  Shown in right-click menu."
+    "description": "For all subdomains with domain of selected page. Shown in right-click menu."
   },
   "contextMenusSelectedSubdomainText": {
     "message": "Voor alle subdomeinen met het domein van de geselecteerde tekst: $selected$",
-    "description": "For all subdomains with domain of selected text.  Shown in right-click menu.",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
         "content": "$1",
@@ -164,8 +160,8 @@
     }
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Ondersteuning voor Firefox Container tabbladen inschakelen",
-    "description": "Enable Support for Firefox's Container Tabs.  Only in Firefox."
+    "message": "Ondersteuning voor Container Tabbladen inschakelen",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
   },
   "contributeText": {
     "message": "Bijdragen",
@@ -177,15 +173,15 @@
   },
   "cookiesText": {
     "message": "Cookies",
-    "description": "Cookies.  Primarily used in popup via alternate clean action dropdown."
+    "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
   "cookieCleanUpOnStartText": {
-    "message": "Ruim cookies op van openstaande tabbladen bij het starten",
-    "description": "Clean Cookies from Open Tabs on Startup"
+    "message": "Schoon cookies en andere site-gegevens op van Open tabbladen bij het opstarten",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Ruim op, inclusief domeinen van open tabbladen",
-    "description": "Run cleanup now, include cookies from open tabs.  This is shown on mouseover from the available dropdown buttons."
+    "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
     "message": "Ruim op, sluit domeinen uit van open tabbladen",
@@ -193,11 +189,11 @@
   },
   "createDefaultExpressionOptionsText": {
     "message": "Standaardexpressie opties maken",
-    "description": "Create Default Expression Options.  Used in 'List of Expressions'"
+    "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
-    "message": "Huidige Container Geselecteerd:  $ID$ ( $Name$)",
-    "description": "Current Container Selected:  $ID$ ( $Name ).  Found in List of Expressions only if Firefox containers enabled.",
+    "message": "Huidige Container Geselecteerd: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
         "content": "$1",
@@ -211,15 +207,15 @@
   },
   "debugMode": {
     "message": "Debug-modus inschakelen (extra console output)",
-    "description": "Enable Debug Mode (Additional Console Outputs)"
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
   "defaultText": {
     "message": "Standaard",
-    "description": "Default.  Used in List of Expression in Firefox for Default / No Container."
+    "description": "Default. Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultContainerText": {
     "message": "Geen container",
-    "description": "No Container.  This will be in brackets.  Used in List of Expression in Firefox for Default / No Container"
+    "description": "No Container. This will be in brackets. Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
     "message": "Standaardinstellingen herstellen",
@@ -255,11 +251,7 @@
   },
   "enableContextMenus": {
     "message": "Context Menus inschakelen (Rechter muis klik menu)",
-    "description": "Enable Context Menus (Right-Click Menu).  Shown in CAD Settings"
-  },
-  "enableGlobalSubdomainText": {
-    "message": "Activeer check op subdomein",
-    "description": "Enable Check for Subdomains"
+    "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
   "enableGreyListCleanup": {
     "message": "Greylist opschonen inschakelen bij opnieuw opstarten browser",
@@ -274,12 +266,12 @@
     "description": "Error!"
   },
   "exportSettingsText": {
-    "message": "Exporteer Instellingen",
-    "description": "Export Core Settings"
+    "message": "Exporteer Instellingen...",
+    "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
-    "message": "Exporteer expressies",
-    "description": "Export Expressions"
+    "message": "Exporteer expressies...",
+    "description": "Export Expressions... Found in List of Expressions."
   },
   "exportTitleTimestamp": {
     "message": "Er wordt een tijdstempel toegevoegd aan de bestandsnaam bij de export.",
@@ -299,15 +291,11 @@
   },
   "filterDebugMode": {
     "message": "Om alleen debug output van deze extensie te zien, filter de uitvoer met de volgende regel:",
-    "description": "To see only debug outputs by this extension, filter output by the following line.  Found after enabling debug mode."
+    "description": "To see only debug outputs by this extension, filter output by the following line. Found after enabling debug mode."
   },
   "filterText": {
     "message": "Filter",
     "description": "Filter"
-  },
-  "greyCleanLocalstorage": {
-    "message": "Vink 'lokale opslag behouden' uit bij nieuwe Greylist Expressies",
-    "description": "Uncheck 'Keep LocalStorage' on New Greylist Expressions"
   },
   "greyListWordText": {
     "message": "Greylist",
@@ -328,8 +316,8 @@
     "description": "Import Core Settings Failed - Found unknown setting"
   },
   "importCoreSettingsText": {
-    "message": "Importeer Instellingen",
-    "description": "Import Core Settings"
+    "message": "Importeer Instellingen...",
+    "description": "Import Core Settings... Found in CAD Settings."
   },
   "importFileTypeInvalid": {
     "message": "Het opgegeven bestand is niet compatibel",
@@ -344,16 +332,16 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "Importeer expressies",
-    "description": "Import Expressions"
+    "message": "Importeer expressies...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "IndexedDB Cleanup inschakelen (Firefox 77+, Chrome 74+)",
-    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
   },
   "indexedDBText": {
     "message": "IndexedDB",
-    "description": "IndexedDB.  Primarily used in notifications."
+    "description": "IndexedDB. Primarily used in notifications."
   },
   "keepAllCookiesText": {
     "message": "Alle cookies behouden",
@@ -373,7 +361,7 @@
   },
   "keepDefaultIcon": {
     "message": "Behoud standaard iconen bij alle lijstypes",
-    "description": "Keep Default Icons on all list types.  Disabled: keep blue icon, grey for automatic cleaning disabled.  Enabled: red/yellow/blue depending on matching expressions in list."
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
   },
   "keepIndexedDBText": {
     "message": "Hou IndexedDB",
@@ -417,11 +405,11 @@
   },
   "localStorageCleanupText": {
     "message": "LocalStorage Cleanup inschakelen (Firefox 58+, Chrome 74+)",
-    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+).  Found in CAD Settings."
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+). Found in CAD Settings."
   },
   "localStorageText": {
     "message": "Lokale opslag",
-    "description": "LocalStorage.  Primarily used in notifications."
+    "description": "LocalStorage. Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "Handmatige actie notificatie",
@@ -429,7 +417,7 @@
   },
   "manualCleanError": {
     "message": "$siteData$ kan niet worden opgeruimd voor tabblad:",
-    "description": "$siteData$  cannot be cleaned for tab:.  Shown as notification if manual clean cookies cannot be done.",
+    "description": "$siteData$ cannot be cleaned for tab:. Shown as notification if manual clean cookies cannot be done.",
     "placeholders": {
       "siteData": {
         "content": "$1",
@@ -439,7 +427,7 @@
   },
   "manualCleanNothing": {
     "message": "Er werden geen $siteData$ gevonden om op te ruimen op $url$.",
-    "description": "No $siteData$ were found for cleaning on $url$.  Used in notification after manual clean.",
+    "description": "No $siteData$ were found for cleaning on $url$. Used in notification after manual clean.",
     "placeholders": {
       "siteData": {
         "content": "$1",
@@ -453,7 +441,7 @@
   },
   "manualCleanRemoved": {
     "message": "$deleted$ van $total$ verwijderd.",
-    "description": "Removed $deleted$ of $total$.  Used as part of success notification on manual clean.",
+    "description": "Removed $deleted$ of $total$. Used as part of success notification on manual clean.",
     "placeholders": {
       "deleted": {
         "content": "$1",
@@ -467,11 +455,11 @@
   },
   "manualCleanSiteDataAll": {
     "message": "Alles opschonen voor dit domein",
-    "description": "Clean All for this domain.  Found in Popup clean dropdown menu."
+    "description": "Clean All for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataAllDomain": {
     "message": "Wis alle site data voor $domain$",
-    "description": "Clear all site data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "description": "Clear all site data for $domain$. Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -481,11 +469,11 @@
   },
   "manualCleanSiteDataCache": {
     "message": "Opschonen cache voor dit domein",
-    "description": "Clean Cache for this domain.  Found in Popup clean dropdown menu."
+    "description": "Clean Cache for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataCacheDomain": {
     "message": "Wis alle cache voor $domain$",
-    "description": "Clear all Cache for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "description": "Clear all Cache for $domain$. Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -495,11 +483,11 @@
   },
   "manualCleanSiteDataCookies": {
     "message": "Cookies voor dit domein opschonen",
-    "description": "Clean Cookies for this domain.  Found in Popup clean dropdown menu."
+    "description": "Clean Cookies for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataCookiesDomain": {
     "message": "Wis alle cookies voor $domain$",
-    "description": "Clear all Cookies for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "description": "Clear all Cookies for $domain$. Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -509,11 +497,11 @@
   },
   "manualCleanSiteDataIndexedDB": {
     "message": "Opschonen IndexedDB voor dit domein",
-    "description": "Clean IndexedDB for this domain.  Found in Popup clean dropdown menu."
+    "description": "Clean IndexedDB for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataIndexedDBDomain": {
     "message": "Wis alle IndexedDB voor $domain$",
-    "description": "Clear all IndexedDB for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "description": "Clear all IndexedDB for $domain$. Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -523,11 +511,11 @@
   },
   "manualCleanSiteDataLocalStorage": {
     "message": "Lokalisatie opschonen voor dit domein",
-    "description": "Clean LocalStorage for this domain.  Found in Popup clean dropdown menu."
+    "description": "Clean LocalStorage for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataLocalStorageDomain": {
     "message": "Wis alle LocalStorage voor $domain$",
-    "description": "Clear all LocalStorage for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "description": "Clear all LocalStorage for $domain$. Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -537,11 +525,11 @@
   },
   "manualCleanSiteDataPluginData": {
     "message": "Schoon Plugin Data voor dit domein",
-    "description": "Clean Plugin Data for this domain.  Found in Popup clean dropdown menu."
+    "description": "Clean Plugin Data for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataPluginDataDomain": {
     "message": "Wis alle Plugin Data voor $domain$",
-    "description": "Clear all Plugin Data for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "description": "Clear all Plugin Data for $domain$. Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -551,11 +539,11 @@
   },
   "manualCleanSiteDataServiceWorkers": {
     "message": "Clean Service Workers voor dit domein",
-    "description": "Clean Service Workers for this domain.  Found in Popup clean dropdown menu."
+    "description": "Clean Service Workers for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataServiceWorkersDomain": {
     "message": "Wis alle Service Workers voor $domain$",
-    "description": "Clear all Service Workers for $domain$.  Found in Popup clean dropdown menu as mouseover.",
+    "description": "Clear all Service Workers for $domain$. Found in Popup clean dropdown menu as mouseover.",
     "placeholders": {
       "domain": {
         "content": "$1",
@@ -579,7 +567,7 @@
   },
   "manualNotificationsText": {
     "message": "Kennisgeving weergeven van handmatige gegevens opschonen van site",
-    "description": "Show Notification from Manual Site Data Cleanups.  Found in settings"
+    "description": "Show Notification from Manual Site Data Cleanups. Found in settings"
   },
   "matchedDomainExpressionText": {
     "message": "Overeenkomende domein expressie",
@@ -587,7 +575,7 @@
   },
   "menuText": {
     "message": "Menu",
-    "description": "Menu.  Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+    "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   },
   "minutesText": {
     "message": "Minu(u)t(en)",
@@ -595,7 +583,7 @@
   },
   "missingContainerText": {
     "message": "BEVAT UITSCHAKELEN",
-    "description": "INVALID CONTAINER.  Shown when a CAD list exists but cannot link id to available containers (Firefox)."
+    "description": "INVALID CONTAINER. Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
     "message": "Geen logboeken gevonden om op te schonen",
@@ -616,6 +604,24 @@
   "noneText": {
     "message": "Geen",
     "description": "None"
+  },
+  "notificationContent": {
+    "message": "Sommige site-gegevens, waaronder $Num$ Cookie(s), verwijderd uit $total$ domein(en), waaronder: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
   },
   "notificationDisabledText": {
     "message": "Meldingen uitgeschakeld",
@@ -639,7 +645,7 @@
   },
   "notifyCookieCleanUpText": {
     "message": "Melding weergeven na automatisch opruimen",
-    "description": "Show Notification After Automatic Cleanup.  Found in settings."
+    "description": "Show Notification After Automatic Cleanup. Found in settings."
   },
   "oldReleasesText": {
     "message": "Oudere uitgaveopmerkingen kunnen online worden bekeken op",
@@ -655,15 +661,15 @@
   },
   "pluginDataCleanupText": {
     "message": "Opschonen Plugin Data (Firefox 78+, Chrome 74+)",
-    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+).  Found in CAD Settings."
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
   },
   "pluginDataText": {
     "message": "Plugin Data",
-    "description": "Plugin Data.  Primarily used in notifications."
+    "description": "Plugin Data. Primarily used in notifications."
   },
   "popupCookieCountText": {
-    "message": "Cookie(s)",
-    "description": "Cookie(s)"
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Instellingen",
@@ -675,7 +681,7 @@
   },
   "reasonCADSiteDataCookie": {
     "message": "Opschonen om Site Data opschonen voor $hostname$.",
-    "description": "Clean to trigger Site Data cleaning for $hostname$.  Found in Activity Log Detailed Entries.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -695,7 +701,7 @@
   },
   "reasonCleanCookieName": {
     "message": "Gedeeltelijk verwijderen omdat $matchedExpression$ overeenkomt in de $listType$",
-    "description": "Partial clean because of matched $matchedExpression$ in the $listType$.  Used in cleanup logs.",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$. Used in cleanup logs.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -769,17 +775,13 @@
     "message": "of in enige open tabbladen",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
   },
-  "regularExpressionEquivalentText": {
-    "message": "Equivalent van de reguliere expressie",
-    "description": "Regular Expression Equivalent"
-  },
   "releaseNotesText": {
     "message": "Uitgave opmerkingen",
     "description": "Release Notes"
   },
   "removeActivityLogEntryText": {
     "message": "Logboek verwijderen",
-    "description": "Remove Log Entry.  Shown in summary activity log for individual log removal."
+    "description": "Remove Log Entry. Shown in summary activity log for individual log removal."
   },
   "removeAllExpressions": {
     "message": "Alle expressies verwijderen",
@@ -787,7 +789,7 @@
   },
   "removeAllExpressionsConfirm": {
     "message": "Weet u zeker dat u ALLE ($expressionCount$) opgeslagen uitdrukkingen van ($listCount$) lijst(en) wilt verwijderen?\n\nDIT KAN NIET ONGEDAAN WORDEN GEMAAKT!\n\nType [ $expressionCount$ ] en klik op OK om te verwijderen.",
-    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.  Popup prompt if Delete All Expression is clicked.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Expression is clicked.",
     "placeholders": {
       "expressionCount": {
         "content": "$1",
@@ -809,7 +811,7 @@
   },
   "removeListText": {
     "message": "Alle expressies van de geselecteerde lijst verwijderen",
-    "description": "Remove All Expressions from Selected List.  Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
+    "description": "Remove All Expressions from Selected List. Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
   },
   "removeStorageCount": {
     "message": "$count$ item(s) verwijderd uit $storageType$.",
@@ -831,7 +833,7 @@
   },
   "resetCookieCounterText": {
     "message": "Cookie tellers resetten",
-    "description": "Reset Cookie Counters.  Button in Welcome Page."
+    "description": "Reset Cookie Counters. Button in Welcome Page."
   },
   "resetExtensionDataText": {
     "message": "Extensiegegevens resetten",
@@ -839,7 +841,7 @@
   },
   "restoreText": {
     "message": "Herstellen",
-    "description": "Ex: Restore Cleanup"
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
     "message": "Bedankt voor het uitproberen van $cadTitle$. Indien u het leuk vindt dan beoordeel het alsublieft.",
@@ -861,15 +863,15 @@
   },
   "serviceWorkersCleanupText": {
     "message": "Service Workers Cleanup inschakelen (Firefox 77+, Chrome 74+)",
-    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+).  Found in CAD Settings."
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
   },
   "serviceWorkersText": {
     "message": "Service Workers",
-    "description": "Service Workers.  Primarily used in notifications."
+    "description": "Service Workers. Primarily used in notifications."
   },
   "sessionStorageText": {
     "message": "Sessie opslag",
-    "description": "SessionStorage.  Used in manual localstorage clean notification"
+    "description": "SessionStorage. Used in manual localstorage clean notification"
   },
   "settingGroupAutoClean": {
     "message": "Automatisch opruimen opties",
@@ -903,15 +905,15 @@
   },
   "siteDataText": {
     "message": "Site gegevens",
-    "description": "Site Data.  Found in Activity Log Summary and Notifications."
+    "description": "Site Data. Found in Activity Log Summary and Notifications."
   },
   "sizePopupText": {
     "message": "Grootte van popup (in px)",
-    "description": "Size of Popup (in px).  This sets the font size in the Popup."
+    "description": "Size of Popup (in px). This sets the font size in the Popup."
   },
   "sizeSettingText": {
     "message": "Grootte van instelingspagina's (in px)",
-    "description": "Size of Setting Pages (in px).  This sets the font size in the Setting Pages."
+    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
   },
   "stopEditingText": {
     "message": "Stoppen met bewerken",
@@ -943,7 +945,7 @@
   },
   "versionNumberText": {
     "message": "$CAD$ versie",
-    "description": "$CAD$ version 3.2.1.  The actual number is formatted differently and will be right below this text.",
+    "description": "$CAD$ version 3.2.1. The actual number is formatted differently and will be right below this text.",
     "placeholders": {
       "CAD": {
         "content": "$1",
@@ -982,10 +984,6 @@
   "welcomeText": {
     "message": "Welkom",
     "description": "Welcome"
-  },
-  "whiteCleanLocalstorage": {
-    "message": "Vink 'lokale opslag behouden' uit bij nieuwe Whitelist Expressies",
-    "description": "Uncheck 'Keep LocalStorage' on New Whitelist Expressions"
   },
   "expressionListText": {
     "message": "Lijst met expressies",
