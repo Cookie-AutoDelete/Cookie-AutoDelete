@@ -159,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Увімкнути підтримку вкладок контейнера",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Допомога",
     "description": "Contribute"
@@ -261,6 +265,14 @@
     "message": "Помилка!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Експортувати налаштування ядра...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Експортувати Вираз...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Мітка часу додається до назви файлу при експорті.",
     "description": "A timestamp will be appended to the filename on export."
@@ -303,6 +315,10 @@
     "message": "Помилка імпорту параметрів ядра - Знайдено невідомі налаштування",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Імпорт параметрів ядра...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Файл заданий не є типом, який ми обробляємо",
     "description": "File given is not a type we handle"
@@ -315,21 +331,69 @@
     "message": "Відсутній ідентифікатор",
     "description": "Missing identifier"
   },
+  "importURLSText": {
+    "message": "Імпортувати Експресії...",
+    "description": "Import Expressions... Found in List of Expressions."
+  },
   "indexedDBCleanupText": {
     "message": "Увімкнути очищення IndexedDB (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
+  },
+  "indexedDBText": {
+    "message": "ІндекседDB",
+    "description": "IndexedDB. Primarily used in notifications."
   },
   "keepAllCookiesText": {
     "message": "Зберегти всі куки",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
+  "keepAllCookiesGreyText": {
+    "message": "Не закривати всі куки до перезавантаження",
+    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepCacheText": {
+    "message": "Залишити кеш",
+    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+  },
+  "keepCacheGreyText": {
+    "message": "Залишити кеш до перезавантаження",
+    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
+  },
   "keepDefaultIcon": {
     "message": "Значки за замовчуванням у всіх типах списку",
     "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
   },
+  "keepIndexedDBText": {
+    "message": "Зберегти IndexedDB",
+    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+  },
+  "keepIndexedDBGreyText": {
+    "message": "Залишити IndexedDB до перезавантаження",
+    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+  },
   "keepLocalstorageText": {
     "message": "Зберегти локальне сховище",
     "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "Залишати локальне сховище до перезавантаження",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepPluginDataText": {
+    "message": "Зберегти дані плагінів",
+    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+  },
+  "keepPluginDataGreyText": {
+    "message": "Не змінювати дані плагінів до перезавантаження",
+    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepServiceWorkersText": {
+    "message": "Тримати сервісні Workers",
+    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+  },
+  "keepServiceWorkersGreyText": {
+    "message": "Тримати Service Workers до перезавантаження",
+    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
   },
   "keepText": {
     "message": "Залишити",
@@ -338,6 +402,154 @@
   "listTypeText": {
     "message": "Тип списку",
     "description": "List Type"
+  },
+  "localStorageCleanupText": {
+    "message": "Увімкнути очищення локального сховища (Firefox 58+, Chrome 74+)",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+). Found in CAD Settings."
+  },
+  "localStorageText": {
+    "message": "Локальне сховище",
+    "description": "LocalStorage. Primarily used in notifications."
+  },
+  "manualActionNotification": {
+    "message": "Ручне повідомлення про дію",
+    "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanError": {
+    "message": "$siteData$ неможливо очистити у вкладці:",
+    "description": "$siteData$ cannot be cleaned for tab:. Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "Жодного $siteData$ не знайдено для очищення $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$. Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanRemoved": {
+    "message": "Видалено $deleted$ із $total$.",
+    "description": "Removed $deleted$ of $total$. Used as part of success notification on manual clean.",
+    "placeholders": {
+      "deleted": {
+        "content": "$1",
+        "example": "5"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "manualCleanSiteDataAll": {
+    "message": "Очистити всі для цього домену",
+    "description": "Clean All for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataAllDomain": {
+    "message": "Очистити всі дані сайтів для $domain$",
+    "description": "Clear all site data for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCache": {
+    "message": "Очистити кеш для цього домену",
+    "description": "Clean Cache for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCacheDomain": {
+    "message": "Очистити весь кеш для $domain$",
+    "description": "Clear all Cache for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCookies": {
+    "message": "Очистити куки для цього домену",
+    "description": "Clean Cookies for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCookiesDomain": {
+    "message": "Очистити всі Куки для $domain$",
+    "description": "Clear all Cookies for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataIndexedDB": {
+    "message": "Очистити IndexedDB для цього домену",
+    "description": "Clean IndexedDB for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataIndexedDBDomain": {
+    "message": "Очистити всі IndexedDB для $domain$",
+    "description": "Clear all IndexedDB for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataLocalStorage": {
+    "message": "Очистити локальне сховище для цього домену",
+    "description": "Clean LocalStorage for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataLocalStorageDomain": {
+    "message": "Очистити все локальне сховище для $domain$",
+    "description": "Clear all LocalStorage for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataPluginData": {
+    "message": "Очистити плагіни для цього домену",
+    "description": "Clean Plugin Data for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataPluginDataDomain": {
+    "message": "Очистити всі дані плагінів для $domain$",
+    "description": "Clear all Plugin Data for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataServiceWorkers": {
+    "message": "Очистити Service Workers для цього домену",
+    "description": "Clean Service Workers for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataServiceWorkersDomain": {
+    "message": "Очистити всі сервісні Workers для $domain$",
+    "description": "Clear all Service Workers for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
   },
   "manualCleanSuccess": {
     "message": "Очищення для $siteData$ на $url$ результаті:",
@@ -353,6 +565,10 @@
       }
     }
   },
+  "manualNotificationsText": {
+    "message": "Показувати сповіщення від ручних даних сайту",
+    "description": "Show Notification from Manual Site Data Cleanups. Found in settings"
+  },
   "matchedDomainExpressionText": {
     "message": "Правило відповідне домену",
     "description": "Matched Domain Expression"
@@ -364,6 +580,10 @@
   "minutesText": {
     "message": "Хвилин(и)",
     "description": "minute(s)"
+  },
+  "missingContainerText": {
+    "message": "НЕВІРНИЙ КОНТЕЙНЕРА",
+    "description": "INVALID CONTAINER. Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
     "message": "Записи в журналі відсутні",
@@ -385,6 +605,24 @@
     "message": "Без фільтра",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Деякі дані сайту, включаючи $Num$ куки, вилучено з $total$ доменів), в тому числі: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Повідомлення відключені",
     "description": "Notification disabled"
@@ -396,6 +634,10 @@
   "notificationTitle": {
     "message": "Куки видалено!",
     "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "notificationTitleSiteData": {
+    "message": "Запущено дані сайта!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
   },
   "notifyCookieCleanupDelayText": {
     "message": "Тривалість сповіщень",
@@ -417,6 +659,18 @@
     "message": "Параметри",
     "description": "Options"
   },
+  "pluginDataCleanupText": {
+    "message": "Увімкнути очищення даних плагінів (Firefox 78+, Chrome 74+)",
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
+  },
+  "pluginDataText": {
+    "message": "Дані плагіна",
+    "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Файли Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
+  },
   "preferencesText": {
     "message": "Налаштування",
     "description": "Settings"
@@ -424,6 +678,26 @@
   "questionExpression": {
     "message": "Як працюють вирази в наявності?",
     "description": "How do Expressions work?"
+  },
+  "reasonCADSiteDataCookie": {
+    "message": "Очистити Очистити дані сайту для $hostname$.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Очищення частки, через те, що прострочені файли cookie від $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
   },
   "reasonCleanCookieName": {
     "message": "Парціальна чиста через те, що відповідали $matchedExpression$ у $listType$",
@@ -505,6 +779,10 @@
     "message": "Нотатки до випуску",
     "description": "Release Notes"
   },
+  "removeActivityLogEntryText": {
+    "message": "Видалити запис журналу",
+    "description": "Remove Log Entry. Shown in summary activity log for individual log removal."
+  },
   "removeAllExpressions": {
     "message": "Вилучити всі вирази",
     "description": "Remove All Expressions"
@@ -531,9 +809,31 @@
     "message": "Видалити правило",
     "description": "Remove expression"
   },
+  "removeListText": {
+    "message": "Вилучити всі вирази з вибраного списку",
+    "description": "Remove All Expressions from Selected List. Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
+  },
+  "removeStorageCount": {
+    "message": "Видалено $count$ (ів) з $storageType$.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
   "reportIssuesText": {
     "message": "Повідомити про помилку чи запропонувати ідею",
     "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "Скинути лічильники Cookie",
+    "description": "Reset Cookie Counters. Button in Welcome Page."
   },
   "resetExtensionDataText": {
     "message": "Скинути дані розширення",
@@ -560,6 +860,18 @@
   "secondsText": {
     "message": "Секунд",
     "description": "second(s)"
+  },
+  "serviceWorkersCleanupText": {
+    "message": "Включити очищення Service Workers (Firefox 77+, Chrome 74+)",
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
+  },
+  "serviceWorkersText": {
+    "message": "Службові працівники",
+    "description": "Service Workers. Primarily used in notifications."
+  },
+  "sessionStorageText": {
+    "message": "Склад заняття",
+    "description": "SessionStorage. Used in manual localstorage clean notification"
   },
   "settingGroupAutoClean": {
     "message": "Налаштування автоматичного очищення",
@@ -590,6 +902,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Показувати кількість кук для цього домену на іконку",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataText": {
+    "message": "Дані сайту",
+    "description": "Site Data. Found in Activity Log Summary and Notifications."
   },
   "sizePopupText": {
     "message": "Розмір спливаючого вікна (у пікселях)",
@@ -668,6 +984,10 @@
   "welcomeText": {
     "message": "Ласкаво просимо",
     "description": "Welcome"
+  },
+  "expressionListText": {
+    "message": "Список виразів",
+    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "Білий список",
