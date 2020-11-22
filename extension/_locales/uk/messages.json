@@ -11,6 +11,46 @@
     "message": "Увімкнути автоматичне очищення",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "Викликане очищення $siteData$ для: $domains$",
+    "description": "Invoked cleanup of $siteData$ for: $domains$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
+  "addNewExpressionNotification": {
+    "message": "Додавання $expression$ до списку списку списку $listType$ у магазині cookie $cookieStore$.",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$. Used in notification when right-click action was performed.",
+    "placeholders": {
+      "expression": {
+        "content": "$1",
+        "example": "example.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "WHITE"
+      },
+      "cookieStore": {
+        "content": "$3",
+        "example": "'default' -or- 'firefox-container-1 (Personal)'"
+      }
+    }
+  },
+  "addNewExpressionNotificationFailed": {
+    "message": "Не вдалося отримати домен для додавання з правого кліку.",
+    "description": "Could not fetch domain to add from where right-click was issued."
+  },
+  "addNewExpressionNotificationIgnore": {
+    "message": "Якщо вираз вже існує, це буде проігноровано.",
+    "description": "If expression already exists, this will be ignored. Used in notification when right-click action was performed."
+  },
   "autoDeleteDisabledText": {
     "message": "Авто-очищення вимкнена",
     "description": "Auto-clean disabled"
@@ -19,9 +59,29 @@
     "message": "Авто-очищення ввімкнене",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "УВАГА: При увімкненні будь-якої опції очищення даних сайту, всі наявні дані для цього типу будуть очищені.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
+  "cacheCleanupText": {
+    "message": "Включити очищення кешу (Firefox 78+, Chrome 74+)",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
+  },
+  "cacheText": {
+    "message": "Кеш",
+    "description": "Cache. Primarily used in notifications."
+  },
   "chromeDebugMode": {
     "message": "Впевніться, що режим розробника ввімкнений, а потім натисніть на 'фонову сторінку' в режимі перегляду Inspect.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
+  },
+  "cleanDiscardedText": {
+    "message": "Включити очищення для скасованів/незавантажених вкладок",
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs. Found in Settings."
+  },
+  "cleanExpiredCookiesText": {
+    "message": "Очистити всі прострочені файли cookie",
+    "description": "Clean All Expired Cookies. Found in Settings."
   },
   "cleanIgnoringOpenTabsText": {
     "message": "Очистити, включаючи відкриті вкладки",
@@ -51,6 +111,54 @@
     "message": "Натисніть на консоль",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "УВАГА: Увімкнення вкладок контейнерів з будь-яким з додаткових очищень даних веб-перегляду вище може призвести до небажаних побічних ефектів через обмеження API в браузері. Типи даних сайту, за винятком куків, будуть видалені з імені хоста для ВСІХ контейнерів.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
+  "contextMenusParentClean": {
+    "message": "Ручне очищення меню",
+    "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
+  },
+  "contextMenusParentExpression": {
+    "message": "Додати меню доменів/виразів",
+    "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
+  },
+  "contextMenusSelectedDomainLink": {
+    "message": "Домен лише для вибраного посилання",
+    "description": "For domain only of selected link. Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainPage": {
+    "message": "Домен лише для обраної сторінки",
+    "description": "For domain only of selected page. Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainText": {
+    "message": "Для домену тільки виділеного тексту: $selected$",
+    "description": "For domain only of selected text: $selected$. Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextMenusSelectedSubdomainLink": {
+    "message": "Для всіх піддоменів з виділеним доменом",
+    "description": "For all subdomains with domain of selected link. Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainPage": {
+    "message": "Для всіх піддоменів з обраним доменом сторінки",
+    "description": "For all subdomains with domain of selected page. Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainText": {
+    "message": "Для всіх піддоменів з виділеним текстом: $selected$",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
   "contributeText": {
     "message": "Допомога",
     "description": "Contribute"
@@ -58,6 +166,14 @@
   "contributorsText": {
     "message": "Учасники проекту",
     "description": "Contributors"
+  },
+  "cookiesText": {
+    "message": "Файли Cookies",
+    "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "Очищати куки відкритих вкладок під час запуску",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Запустити очищення зараз, включаючи домени із відкритих вкладок",
@@ -67,9 +183,35 @@
     "message": "Запустити очищення зараз, виключені домени з відкритих вкладок",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "createDefaultExpressionOptionsText": {
+    "message": "Створити типові параметри виразу",
+    "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Вибрано поточний контейнер: $ID$ ( $Name$)",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
+  },
   "debugMode": {
     "message": "Увімкнути режим налагодження (Додаткові консольні виходи)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "defaultText": {
+    "message": "Типово",
+    "description": "Default. Used in List of Expression in Firefox for Default / No Container."
+  },
+  "defaultContainerText": {
+    "message": "Немає контейнерів",
+    "description": "No Container. This will be in brackets. Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
     "message": "Відновити початкові налаштування",
@@ -102,6 +244,10 @@
   "enableCleanupLogText": {
     "message": "Включити журнал подій і лічильник",
     "description": "Enable Cleanup Log and Counter"
+  },
+  "enableContextMenus": {
+    "message": "Увімкнути контекстне меню (натисніть праворуч)",
+    "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
   "enableGreyListCleanup": {
     "message": "Включити очищення у сірому списку при перезапуску браузера",
@@ -143,6 +289,16 @@
     "message": "Сірий список",
     "description": "Greylist"
   },
+  "groupExpressionDefaultNotice": {
+    "message": "Ви намагаєтеся встановити типові параметри для нових виразів? Для цього розширено розширено режим виразів! Відвідайте $listExpression$ , щоб почати!",
+    "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
+    "placeholders": {
+      "listExpression": {
+        "content": "$1",
+        "example": "List of Expressions <- the translated version"
+      }
+    }
+  },
   "importCoreSettingsFailed": {
     "message": "Помилка імпорту параметрів ядра - Знайдено невідомі налаштування",
     "description": "Import Core Settings Failed - Found unknown setting"
@@ -158,6 +314,10 @@
   "importMissingKey": {
     "message": "Відсутній ідентифікатор",
     "description": "Missing identifier"
+  },
+  "indexedDBCleanupText": {
+    "message": "Увімкнути очищення IndexedDB (Firefox 77+, Chrome 74+)",
+    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
   },
   "keepAllCookiesText": {
     "message": "Зберегти всі куки",
