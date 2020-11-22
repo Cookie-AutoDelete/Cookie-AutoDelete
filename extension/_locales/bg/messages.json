@@ -67,6 +67,10 @@
     "message": "Меню добавяне на домейн/израз",
     "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Поддръжка за изолирани раздели във Файърфокс",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Допринасяне",
     "description": "Contribute"
@@ -135,6 +139,14 @@
     "message": "Грешка!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Експорт на основните настройки...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Изнасяне на изрази...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Към името на файла при експортиране ще се добави времева марка.",
     "description": "A timestamp will be appended to the filename on export."
@@ -167,6 +179,10 @@
     "message": "Импортиране на основни настройки не е успешно - намерена неизвестна настройка",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Импортиране на основните настройки...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Даденият файл не е тип, който обработваме",
     "description": "File given is not a type we handle"
@@ -178,6 +194,10 @@
   "importMissingKey": {
     "message": "Липсва идентификатор",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Внасяне на изрази...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "Запазване на всички бисквитки",
@@ -318,6 +338,10 @@
   "optionsText": {
     "message": "Опции",
     "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Бисквитки",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Настройки",
