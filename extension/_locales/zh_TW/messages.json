@@ -123,6 +123,14 @@
     "message": "錯誤！",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "導出核心設置...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "匯出表示式...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "導出時，時間戳將附加到文件名中。",
     "description": "A timestamp will be appended to the filename on export."
@@ -155,6 +163,10 @@
     "message": "導入核心設置失敗-找到未知設置",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "導入核心設置...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "給定的文件不是我們處理的類型",
     "description": "File given is not a type we handle"
@@ -166,6 +178,10 @@
   "importMissingKey": {
     "message": "缺少標識符",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "匯入表示式...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "保留所有 cookie",
@@ -282,6 +298,10 @@
   "optionsText": {
     "message": "選項",
     "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "設定",
