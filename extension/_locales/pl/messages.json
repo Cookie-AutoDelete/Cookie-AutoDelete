@@ -633,6 +633,10 @@
     "message": "Logi czyszczenia nie będą generowane dla kart w trybie prywatnym",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "Nie znaleziono formuł z wyszukiwania powyżej.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "Brak reguł pasujących do tej domeny.",
     "description": "No rules matched this domain"
