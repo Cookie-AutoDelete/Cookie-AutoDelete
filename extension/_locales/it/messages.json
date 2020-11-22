@@ -59,6 +59,10 @@
     "message": "Pulizia automatica attivata",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "ATTENZIONE: Prima di attivare una delle seguenti opzioni di pulizia dei dati dei siti, TUTTI i dati esistenti per quel tipo saranno eliminati.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Attiva la pulizia della cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -107,6 +111,10 @@
     "message": "Clicca sulla scheda della Console",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "ATTENZIONE: attivare le schede contenitore assieme a qualsiasi delle opzioni di pulizia dei dati di navigazione sopra, potrebbe causare effetti collaterali indesiderati a causa di limitazioni delle API del browser. I tipi di dati del sito, con l'eccezione dei cookie, saranno eliminati dal nome dell'host per TUTTI i contenitori.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Menu Pulizia Manuale",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -151,6 +159,14 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Attiva la rimozione automatica dell'elenco di espressioni quando il suo contenitore viene rimosso.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "Abilita il supporto per le schede del contenitore",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Contribuisci",
     "description": "Contribute"
@@ -163,6 +179,10 @@
     "message": "Cookie",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Pulire i cookie e altri dati del sito da schede aperte all'avvio",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Esegui la pulizia ora, include i domini dalle schede aperte",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -174,6 +194,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Crea opzioni predefinite di espressione",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Attuale contenitore selezionato: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Attiva la modalità di debug (output di console aggiuntivi)",
@@ -239,6 +273,14 @@
     "message": "Errore!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Esporta impostazioni principali...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Esporta espressioni...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Verrà aggiunto un timestamp al nome del file durante l'esportazione.",
     "description": "A timestamp will be appended to the filename on export."
@@ -281,6 +323,10 @@
     "message": "Importazione delle impostazioni principali fallita - Trovata impostazione sconosciuta",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importa impostazioni principali...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Il file fornito non è un tipo che gestiamo",
     "description": "File given is not a type we handle"
@@ -292,6 +338,10 @@
   "importMissingKey": {
     "message": "Identificatore mancante",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importa espressioni...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "Attiva la pulizia dell'IndexedDB (Firefox 77+, Chrome 74+)",
@@ -555,6 +605,10 @@
     "message": "I registri di pulizia non verranno generati per le schede in Navigazione anonima",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
+  "noSearchExpressionsFound": {
+    "message": "Nessuna espressione trovata dalla ricerca sopra.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
   "noRulesText": {
     "message": "Nessuna regola corrispondente a questo dominio.",
     "description": "No rules matched this domain"
@@ -562,6 +616,24 @@
   "noneText": {
     "message": "Nessuno",
     "description": "None"
+  },
+  "notificationContent": {
+    "message": "Alcuni dati del sito, inclusi $Num$ cookie, rimossi da $total$ domini, inclusi: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
   },
   "notificationDisabledText": {
     "message": "Notifica disattivata",
@@ -606,6 +678,10 @@
   "pluginDataText": {
     "message": "Dati dei Plugin",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookie",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Impostazioni",
