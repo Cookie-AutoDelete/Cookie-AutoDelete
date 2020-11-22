@@ -59,6 +59,10 @@
     "message": "Automatisk rengjøring aktivert",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "ADVARSEL: Ved å aktivere noen av følgende alternativer for opprydding av nettstedet, vil ALLE eksisterende data for den typen bli slettet.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Aktiver hurtigopprydding (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -107,6 +111,10 @@
     "message": "Klikk på konsoll-fanen",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "ADVARSEL: Aktivering av containerfaner med noen av de ekstra surfeoppsamlingene ovenfor kan forårsake uønskede bivirkninger på grunn av nettleserens API-begrensninger. Datatyper på nettstedet, med unntak av informasjonskapsler, vil bli fjernet av vertsnavn for ALLE beholdere.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Manuell rengjøringsmeny",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -151,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktiver støtte for container og faner",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Bidra",
     "description": "Contribute"
@@ -163,6 +175,10 @@
     "message": "Informasjonskapsler",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Rengjør informasjonskapsler og andre nettstedsdata fra åpne faner ved oppstart",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Kjør opprydding nå, inkludert domener fra åpne faner",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -174,6 +190,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Opprette standard uttrykk alternativer",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Gjeldende beholder valgt: $ID$ ( $Name$)",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Aktiver feilsøkingsmodus (tilleggsutdata)",
@@ -235,6 +265,14 @@
     "message": "Feil!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Eksporter kjerneinnstillinger...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Eksporter uttrykk...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "En tidsstempel legges til filnavnet ved eksport.",
     "description": "A timestamp will be appended to the filename on export."
@@ -277,6 +315,10 @@
     "message": "Import av kjerne innstillinger feilet - Fant ukjent innstilling",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importer kjerne innstillinger...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Filen er ikke en type vi håndterer",
     "description": "File given is not a type we handle"
@@ -288,6 +330,10 @@
   "importMissingKey": {
     "message": "Mangler identifikator",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importer uttrykk...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "Aktiver IndekseredDB Opprydding (Firefox 77+, Chrome 74+)",
@@ -559,6 +605,24 @@
     "message": "Ingen",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Noen nettstedsdata, inkludert $Num$ informasjonskapsler, fjernet fra $total$ domen(er), inkludert: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Varsling er deaktivert",
     "description": "Notification disabled"
@@ -602,6 +666,10 @@
   "pluginDataText": {
     "message": "Plugin data",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Informasjonskapsler",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Innstillinger",
