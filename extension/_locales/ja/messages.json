@@ -3,6 +3,10 @@
     "message": "このプログラムについて",
     "description": "About"
   },
+  "activeModeDelayText": {
+    "message": "自動クリーニング開始の遅延（秒数）",
+    "description": "Delay Before Automatic Cleaning"
+  },
   "activeModeText": {
     "message": "自動クリーニングを有効にする",
     "description": "Enable Automatic Cleaning"
@@ -158,6 +162,10 @@
   "cookiesText": {
     "message": "クッキー",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "起動時に開いているタブからCookieを消去する",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
