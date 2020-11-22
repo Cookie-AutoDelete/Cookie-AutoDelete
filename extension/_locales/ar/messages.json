@@ -59,6 +59,10 @@
     "message": "تم تمكين التنظيف التلقائي",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "تحذير: عند تمكين أي من خيارات تنقية بيانات الموقع التالية، سيتم مسح جميع البيانات الموجودة من هذا النوع.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "تمكين تنظيف ذاكرة التخزين المؤقت (Firefox 78+، كروم 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
