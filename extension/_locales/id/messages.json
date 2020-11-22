@@ -59,6 +59,10 @@
     "message": "Hapus otomatis aktif",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "PERINGATAN: Setelah mengaktifkan opsi penghapusan data situs tipe apapun, SEMUA data yang ada untuk tipe tersebut akan dihapus.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Aktifkan Penghapusan Cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -159,6 +163,10 @@
     "message": "Aktifkan Penghapusan Otomatis dari Daftar Ekspresi ketika Kontainernya Dihapus.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktifkan Dukungan untuk Tab Kontainer",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Kontribusi",
     "description": "Contribute"
@@ -182,6 +190,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Buat Opsi Ekspresi Baku",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Kontainer yang Dipilih Saat Ini: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Aktifkan Mode Debug (Keluaran Console Tambahan)",
@@ -243,6 +265,14 @@
     "message": "Galat!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Ekspor Pengaturan Inti...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Ekspor Ekspresi...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Tanggal dan waktu akan ditambahkan ke nama berkas saat mengekspor.",
     "description": "A timestamp will be appended to the filename on export."
@@ -285,6 +315,20 @@
     "message": "Gagal Impor Pengaturan Inti - Ditemukan pengaturan yang tidak valid",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Impor Pengaturan Inti...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
+  "importFileNotFound": {
+    "message": "Berkas tidak ditemukan: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Berkas yang diproses bukan tipe yang valid",
     "description": "File given is not a type we handle"
@@ -293,9 +337,37 @@
     "message": "Berkas yang diproses gagal divalidasi",
     "description": "File given failed validation"
   },
+  "importListNotArray": {
+    "message": "$identifier$ tidak diformat sebagai daftar array.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
   "importMissingKey": {
     "message": "Kehilangan Pengidentifikasi",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Impor Ekspresi...",
+    "description": "Import Expressions... Found in List of Expressions."
+  },
+  "importValidExpressions": {
+    "message": "Berhasil menambahkan $num$ ekspresi dari berkas yang diimpor: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
   },
   "indexedDBCleanupText": {
     "message": "Aktifkan Penghapusan IndexedDB (Firefox 77+, Chrome 74+)",
@@ -304,6 +376,24 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Koma hanya diizinkan di dalam Ekspresi Reguler.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Ekspresi Reguler tidak valid: $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSpace": {
+    "message": "Spasi tidak diizinkan di dalam nama hos.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
   },
   "inputAddSuccess": {
     "message": "Berhasil menambahkan $num$ ekspresi dengan Tipe $listType$ dalam daftar yang saat ini sedang aktif.",
@@ -646,6 +736,10 @@
   "pluginDataText": {
     "message": "Data Plugin",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Kuki",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Pengaturan",
