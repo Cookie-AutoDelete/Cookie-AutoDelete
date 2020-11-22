@@ -107,6 +107,10 @@
     "message": "Klik pada Tab Console",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "PERINGATAN: Mengaktifkan Tab Kontainer dengan penghapusan data peramban apapun di atas mungkin akan menyebabkan efek samping yang tidak diinginkan karena keterbatasan API peramban. Tipe data situs, kecuali kuki, akan dihapus berdasarkan nama hos untuk SEMUA kontainer.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Menu Hapus Manual",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -300,6 +304,20 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputAddSuccess": {
+    "message": "Berhasil menambahkan $num$ ekspresi dengan Tipe $listType$ dalam daftar yang saat ini sedang aktif.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
   },
   "keepAllCookiesText": {
     "message": "Simpan Semua Kuki",
