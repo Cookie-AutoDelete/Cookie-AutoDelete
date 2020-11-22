@@ -159,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "تمكين الدعم لعلامات تبويب الحاويات",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "ساهم",
     "description": "Contribute"
@@ -171,6 +175,10 @@
     "message": "الكعكات",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "تنظيف ملفات تعريف الارتباط وبيانات الموقع الأخرى من علامات التبويب المفتوحة عند بدء التشغيل",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "تشغيل التنظيف الآن، يشمل نطاقات من علامات التبويب المفتوحة",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -182,6 +190,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "إنشاء خيارات التعبير الافتراضية",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "الحاوية الحالية المختارة:  $ID$ ( $Name$)",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "تمكين وضع التصحيح (خروج وحدة التحكم الإضافية)",
@@ -243,6 +265,14 @@
     "message": "خطأ!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "تصدير إعدادات الأساسية...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "تصدير التعبيرات...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "سيتم إلحاق طابع زمني باسم الملف عند التصدير.",
     "description": "A timestamp will be appended to the filename on export."
@@ -285,6 +315,10 @@
     "message": "فشل استيراد إعدادات النواة - تم العثور على إعدادات غير معروفة",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "استيراد الإعدادات الأساسية...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "الملف المعطى ليس النوع الذي نتعامل معه",
     "description": "File given is not a type we handle"
@@ -296,6 +330,10 @@
   "importMissingKey": {
     "message": "معرف مفقود",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "استيراد التعبيرات...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBText": {
     "message": "فهرس",
@@ -606,6 +644,10 @@
   "pluginDataText": {
     "message": "بيانات الإضافات",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "الكعكات",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "الإعدادات",
