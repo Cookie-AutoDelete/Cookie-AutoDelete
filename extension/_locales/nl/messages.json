@@ -59,6 +59,10 @@
     "message": "Automatisch opruimen ingeschakeld",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "WAARSCHUWING: Bij het inschakelen van een van de volgende opties voor opschonen van websites, zullen ALLE bestaande gegevens voor dat type worden gewist.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Cache Cleanup inschakelen (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -107,6 +111,10 @@
     "message": "Klik op het tabblad Console",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "WAARSCHUWING: het inschakelen van Container tabbladen met een van de extra bovenstaande data opruimen, kan ongewenste neveneffecten veroorzaken door de API beperkingen van de browser. Site gegevens typen, met uitzondering van cookies, worden gewist met hostnaam voor alle containers.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Handmatig schoonmaakmenu",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -151,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Ondersteuning voor Container Tabbladen inschakelen",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Bijdragen",
     "description": "Contribute"
@@ -163,6 +175,10 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Schoon cookies en andere site-gegevens op van Open tabbladen bij het opstarten",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Ruim op, inclusief domeinen van open tabbladen",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -174,6 +190,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Standaardexpressie opties maken",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Huidige Container Geselecteerd: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Debug-modus inschakelen (extra console output)",
@@ -235,6 +265,14 @@
     "message": "Fout!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Exporteer Instellingen...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Exporteer expressies...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Er wordt een tijdstempel toegevoegd aan de bestandsnaam bij de export.",
     "description": "A timestamp will be appended to the filename on export."
@@ -277,6 +315,10 @@
     "message": "Import Instellingen Mislukt - Onbekende instelling gevonden",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importeer Instellingen...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Het opgegeven bestand is niet compatibel",
     "description": "File given is not a type we handle"
@@ -288,6 +330,10 @@
   "importMissingKey": {
     "message": "Ontbrekende id",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importeer expressies...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "IndexedDB Cleanup inschakelen (Firefox 77+, Chrome 74+)",
@@ -559,6 +605,24 @@
     "message": "Geen",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Sommige site-gegevens, waaronder $Num$ Cookie(s), verwijderd uit $total$ domein(en), waaronder: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Meldingen uitgeschakeld",
     "description": "Notification disabled"
@@ -602,6 +666,10 @@
   "pluginDataText": {
     "message": "Plugin Data",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Instellingen",
