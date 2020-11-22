@@ -119,6 +119,14 @@
     "message": "Грешка!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Извоз основних поставки...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Извези изразе...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Временска ознака биће додата имену датотеке при извозу.",
     "description": "A timestamp will be appended to the filename on export."
@@ -151,6 +159,10 @@
     "message": "Увоз основних поставки није успео - пронађено је непознато подешавање",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Увоз основних поставки...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Датотека није врста којом се бавимо",
     "description": "File given is not a type we handle"
@@ -162,6 +174,10 @@
   "importMissingKey": {
     "message": "Недостаје идентификатор",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Увези изразе...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "Задржи колачиће",
@@ -242,6 +258,10 @@
   "optionsText": {
     "message": "Опције",
     "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Колачић",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Подешавања",
