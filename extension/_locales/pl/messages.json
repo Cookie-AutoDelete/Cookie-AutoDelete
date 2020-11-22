@@ -59,6 +59,10 @@
     "message": "Auto-czyszczenie włączone",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "OSTRZEŻENIE: Po włączeniu którejkolwiek z następujących opcji oczyszczania danych o lokalizacji wszystkie istniejące dane dla tego typu zostaną wyczyszczone.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Włącz czyszczenie pamięci podręcznej (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -106,6 +110,10 @@
   "consoleDebugMode": {
     "message": "Kliknij na kartę \"Konsola\"",
     "description": "Click on the Console Tab. Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "OSTRZEŻENIE: Włączenie kart kontenerów z którymkolwiek z dodatkowych oczyszczania danych przeglądania może powodować niepożądane działania niepożądane ze względu na ograniczenia API przeglądarki. Typy danych witryny, z wyjątkiem plików cookie, zostaną wyczyszczone przez nazwę hosta dla WSZYSTKICH kontenerów.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Wyczyść ręcznie",
@@ -155,6 +163,10 @@
     "message": "Włącz automatyczne usuwanie listy formuł po usunięciu kontenera.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Włącz obsługę kart kontenerów",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Wspomóż",
     "description": "Contribute"
@@ -167,6 +179,10 @@
     "message": "ciasteczka",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Wyczyść ciasteczka i inne dane witryny z otwartych kart podczas uruchamiania",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Uruchom czyszczenie teraz, dołącz domeny z otwartych kart",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -178,6 +194,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Utwórz formuły z domyślnymi opcjami",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Wybrano bieżący kontener: $ID$ ( $Name$)",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Włącz tryb debugowania (dodatkowe komunikaty w konsoli)",
@@ -239,6 +269,14 @@
     "message": "Błąd!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Eksportuj ustawienia rdzenia...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Eksportuj wyrażenia...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Znacznik czasu zostanie dołączony do nazwy pliku przy eksporcie.",
     "description": "A timestamp will be appended to the filename on export."
@@ -281,6 +319,10 @@
     "message": "Zaimportowanie ustawień nie powiodło się - znaleziono nieznane ustawienia",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importuj ustawienia rdzenia...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileNotFound": {
     "message": "Nie znaleziono pliku: $filename$",
     "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
@@ -316,6 +358,10 @@
   "importMissingKey": {
     "message": "Brakujący identyfikator",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importuj wyrażenia...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "importValidExpressions": {
     "message": "Pomyślnie dodano $num$ formuł z importowanego pliku: $filename$.",
@@ -356,6 +402,14 @@
         "example": "SyntaxError:  unterminated character class."
       }
     }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Wykryto ukośnik zakończenia, ale brakuje ukośnika startu dla wyrażenia regularnego. Usuń koniec ukośnika dla domen.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Wykryto ukośnik, ale brakuje końca dla wyrażenia regularnego.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "Spacje nie są dozwolone w nazwach hostów.",
@@ -645,6 +699,24 @@
     "message": "Brak",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Niektóre dane strony, w tym $Num$ Cookie(s), usunięte z $total$ domen(y), w tym: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Powiadomienia wyłączone",
     "description": "Notification disabled"
@@ -688,6 +760,10 @@
   "pluginDataText": {
     "message": "dane wtyczek",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Ciasteczka",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Ustawienia",
