@@ -59,6 +59,10 @@
     "message": "Automaattinen puhdistus käytössä",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "VAROITUS: Kun otat käyttöön jonkin seuraavan sivuston tietojen puhdistusvaihtoehdot, kaikki olemassa olevat tiedot kyseisen tyypin tyhjennetään.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Ota Välimuistin Puhdistus Käyttöön (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -107,6 +111,10 @@
     "message": "Napsauta Console-välilehteä",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "VAROITUS: Sallimalla konttivälilehdet millä tahansa yllä olevalla selausdatan puhdistuksella voi aiheuttaa ei-toivottuja sivuvaikutuksia selaimen API-rajoituksista. Sivuston tietotyypit, lukuun ottamatta evästeitä, tyhjennetään isäntänimellä KAIKKin konttien osalta.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Manuaalinen Puhdistusvalikko",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -151,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Ota tuki käyttöön säilytysvälilehdet",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Osallistu",
     "description": "Contribute"
@@ -163,6 +175,10 @@
     "message": "Evästeet",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Puhdista Evästeet ja muut sivuston tiedot Open Tabs -välilehdiltä käynnistettäessä",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Suorita siivous nyt, sisällytä verkkotunnukset avoimista välilehdistä",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -174,6 +190,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Luo Lausekkeen Oletusasetukset",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Nykyinen kontti valittu: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Ota virheenkorjaustila käyttöön (lisäkonsolilähdöt)",
@@ -235,6 +265,14 @@
     "message": "Virhe!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Vie Ydinasetukset...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Vie Lausekkeet...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Aikaleima lisätään tiedostonimeen vietäessä.",
     "description": "A timestamp will be appended to the filename on export."
@@ -277,6 +315,10 @@
     "message": "Core-asetusten tuonti epäonnistui - Tuntematon asetus löytyi",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Tuo Ydinasetukset...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Annettu tiedosto ei ole tyyppi, jota käsittelemme",
     "description": "File given is not a type we handle"
@@ -288,6 +330,10 @@
   "importMissingKey": {
     "message": "Puuttuu tunniste",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Tuo Lausekkeita...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "Ota IndexedDb Siivoaminen Käyttöön (Firefox 77+, Chrome 74+)",
@@ -559,6 +605,24 @@
     "message": "Ei mitään",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Jotkin sivustotiedot, mukaan lukien $Num$ Cookie(t), poistettu $total$ verkkotunnukselta, mukaan lukien: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Ilmoitus poistettu käytöstä",
     "description": "Notification disabled"
@@ -602,6 +666,10 @@
   "pluginDataText": {
     "message": "Liitännäisen Tiedot",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Evästeet",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Asetukset",
