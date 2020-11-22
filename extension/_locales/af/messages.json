@@ -51,6 +51,10 @@
     "message": "Klik op die konsole-oortjie",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktiveer ondersteuning vir Firefox se houertabs",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Dra By",
     "description": "Contribute"
@@ -115,6 +119,14 @@
     "message": "Fout!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Voer kerninstellings uit...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Voer uitdrukkings uit...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "'N Tydstempel word bygevoeg by die lêernaam wat uitgevoer word.",
     "description": "A timestamp will be appended to the filename on export."
@@ -147,6 +159,10 @@
     "message": "Invoer van kerninstellings misluk - Onbekende instelling gevind",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Voer kerninstellings in...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Die gegewe lêer is nie 'n tipe wat ons hanteer nie",
     "description": "File given is not a type we handle"
@@ -158,6 +174,10 @@
   "importMissingKey": {
     "message": "Ontbrekende identifiseerder",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Voer uitdrukkings in...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "Hou alle koekies",
@@ -238,6 +258,10 @@
   "optionsText": {
     "message": "Opsies",
     "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Koekies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Instellings",
