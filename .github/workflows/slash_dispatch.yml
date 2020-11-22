@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slash Command Dispatch
-        uses: peter-evans/slash-command-dispatch@v2.1.2
+        uses: peter-evans/slash-command-dispatch@v2.1.3
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_WORKFLOW }}
           config: >
