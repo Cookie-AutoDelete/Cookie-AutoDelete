@@ -115,6 +115,14 @@
     "message": "Σφάλμα! ",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Εξαγωγή βασικών ρυθμίσεων...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Εξαγωγή εκφράσεων...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Μια χρονική σήμανση θα προστεθεί στο όνομα αρχείου κατά την εξαγωγή.",
     "description": "A timestamp will be appended to the filename on export."
@@ -147,6 +155,10 @@
     "message": "Αποτυχία εισαγωγής βασικών ρυθμίσεων - Βρέθηκε άγνωστη ρύθμιση",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Εισαγωγή βασικών ρυθμίσεων...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Το αρχείο που δίνεται δεν είναι τύπος που χειριζόμαστε",
     "description": "File given is not a type we handle"
@@ -158,6 +170,10 @@
   "importMissingKey": {
     "message": "Λείπει αναγνωριστικό",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Εισαγωγή εκφράσεων...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "Διατηρήστε όλα τα cookie",
@@ -238,6 +254,10 @@
   "optionsText": {
     "message": "Επιλογές",
     "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Ρυθμίσεις",
