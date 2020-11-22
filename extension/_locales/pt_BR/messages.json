@@ -59,6 +59,10 @@
     "message": "Limpeza automática ligada",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "AVISO: Ao habilitar qualquer uma das opções de limpeza de dados do site a seguir, TODOS os dados existentes para esse tipo serão apagados.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Ativar limpeza de cache (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -107,6 +111,10 @@
     "message": "Clique na aba Console",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "AVISO: Habilitar Abas de Container com qualquer uma das limpezas de dados adicionais acima pode causar efeitos colaterais indesejados devido a limitações da API do navegador. Tipos de dados do site, com exceção de cookies, serão limpos pelo nome de host para TODOS os contêineres.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Menu de limpeza manual",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -151,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Habilitar Suporte para Abas de Contêiner",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Contribua",
     "description": "Contribute"
@@ -163,6 +175,10 @@
     "message": "Biscoitos",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Limpar cookies e outros dados de site de abas abertas na inicialização",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Executar limpeza agora, incluir domínios de abas abertas",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -174,6 +190,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Criar opções de expressão padrão",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Recipiente atual selecionado:  $ID$ ( $Name$)",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Ativar Modo de Depuração (Console Outputs Adicionais)",
@@ -235,6 +265,14 @@
     "message": "Erro!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Exportar configurações do núcleo...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Exportar Expressões...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Um timestamp será adicionado ao nome do arquivo na exportação.",
     "description": "A timestamp will be appended to the filename on export."
@@ -277,6 +315,10 @@
     "message": "Importação Core Configurações falhou - Configuração desconhecida encontrada",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importar configurações de núcleo...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "O arquivo fornecido não é um tipo que manipulamos",
     "description": "File given is not a type we handle"
@@ -288,6 +330,10 @@
   "importMissingKey": {
     "message": "Identificador ausente",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importar Expressões...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "Ativar IndexedDB Cleanup (Firefox 77+, Chrome 74+)",
@@ -620,6 +666,10 @@
   "pluginDataText": {
     "message": "Dados do Plugin",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Configurações",
