@@ -125,6 +125,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Firefox Sekme Kapsayıcıları İçin Desteği Etkinleştir",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Destek olabilirsiniz",
     "description": "Contribute"
@@ -193,6 +197,14 @@
     "message": "Hata oluştu!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Temel Ayarları Dışa Aktar...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Kuralları yedekle...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Dışa aktarma sırasında dosya adına bir zaman damgası eklenir.",
     "description": "A timestamp will be appended to the filename on export."
@@ -225,6 +237,10 @@
     "message": "Çekirdek Ayarları İçe Aktarma Başarısız - Bilinmeyen ayar bulundu",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Temel Ayarları İçe Aktar...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Verilen dosya işlediğimiz bir tür değil",
     "description": "File given is not a type we handle"
@@ -236,6 +252,10 @@
   "importMissingKey": {
     "message": "Eksik tanımlayıcı",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Kuralları yedekten geri yükle...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "keepAllCookiesText": {
     "message": "Çerez bilgilerini koru",
@@ -376,6 +396,10 @@
   "optionsText": {
     "message": "Ayarlar",
     "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "Çerezler",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Ayarlar",
