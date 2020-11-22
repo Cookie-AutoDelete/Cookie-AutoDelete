@@ -59,6 +59,10 @@
     "message": "Automatické čištění povoleno",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "VAROVÁNÍ: Po povolení některé z následujících možností čištění dat o webu budou vymazány VŠECHNY existující údaje pro tento typ.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Povolit čištění mezipaměti (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -107,6 +111,10 @@
     "message": "Klikněte na záložku konzole",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "UPOZORNĚNÍ: Povolení kontejnerových karet s kterýmkoli dodatečným čištěním dat výše může způsobit nežádoucí vedlejší efekty kvůli omezením API prohlížeče. Typy dat webu s výjimkou souborů cookie budou vymazány pomocí názvu hostitele pro VŠECHNY kontejnery.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "Manuální čištění menu",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -151,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Povolit podporu pro karty kontejneru",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Přispějte",
     "description": "Contribute"
@@ -163,6 +175,10 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Vyčistit soubory cookie a další data webu z otevřených panelů při spuštění",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Spustit čištění, zahrnout domény z otevřených panelů",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -174,6 +190,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Vytvořit výchozí možnosti výrazu",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Aktuální kontejner vybrán: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Povolit režim ladění (další výstupy konzoly)",
@@ -235,6 +265,14 @@
     "message": "Chyba!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Exportovat nastavení jádra...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Exportovat výrazy...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Časové razítko bude připojeno k názvu souboru při vývozu.",
     "description": "A timestamp will be appended to the filename on export."
@@ -277,6 +315,10 @@
     "message": "Nastavení importu jádra selhalo - Nalezeno neznámé nastavení",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importovat nastavení jádra...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "Uvedený soubor není typ, kterým se zabýváme",
     "description": "File given is not a type we handle"
@@ -288,6 +330,10 @@
   "importMissingKey": {
     "message": "Chybějící identifikátor",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importovat výrazy...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "Povolit IndexedDB Cleanup (Firefox 77+, Chrome 74+)",
@@ -559,6 +605,24 @@
     "message": "Nic",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Některá data stránky, včetně $Num$ cookie, odstraněna z $total$ domén (domény), včetně: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Oznámení zakázáno",
     "description": "Notification disabled"
@@ -602,6 +666,10 @@
   "pluginDataText": {
     "message": "Data pluginu",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Nastavení",
