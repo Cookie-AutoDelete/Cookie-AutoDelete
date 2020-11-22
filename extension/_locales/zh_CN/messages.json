@@ -59,6 +59,10 @@
     "message": "自动清理已启用",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "警告：一旦启用以下任何一个站点数据清理选项，该类型的所有现有数据将会被清除。",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "启用缓存清理 (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -106,6 +110,10 @@
   "consoleDebugMode": {
     "message": "点击控制台标签",
     "description": "Click on the Console Tab. Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "警告：由于浏览器 API 的限制，在启用容器标签页的同时，启用以上任何一项额外浏览数据清理，都可能会导致意想不到的副作用。除 cookie 以外的、所有类型的网站数据，都会被按照主机名，跨越所有容器，一同被清除。",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "手动清理菜单",
@@ -155,6 +163,10 @@
     "message": "当容器被删除时自动删除表达式列表。",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "启用容器标签支持",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "贡献",
     "description": "Contribute"
@@ -167,6 +179,10 @@
     "message": "Cookie",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "启动时清理打开标签页的 Cookie 和其他站点数据",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "现在运行清理，包括打开标签页中的域",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -178,6 +194,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "创建默认表达式选项",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "当前选择的容器: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "启用调试模式 (额外控制台输出)",
@@ -239,6 +269,14 @@
     "message": "错误！",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "导出核心设置...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "导出表达式...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "导出时的时间戳将被添加到文件名。",
     "description": "A timestamp will be appended to the filename on export."
@@ -281,6 +319,20 @@
     "message": "导入核心设置失败 - 发现未知设置",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "导入核心设置...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
+  "importFileNotFound": {
+    "message": "找不到文件：$filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "给出的文件不是我们处理的类型",
     "description": "File given is not a type we handle"
@@ -289,9 +341,41 @@
     "message": "给定的文件验证失败",
     "description": "File given failed validation"
   },
+  "importInvalidExpressions": {
+    "message": "从文件导入中检测到无效的新表达式。下面说明了它们的错误原因，请修复导入文件中的错误并重新导入。",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ 未被格式化为数组。",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
   "importMissingKey": {
     "message": "缺少标识符",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "导入表达式...",
+    "description": "Import Expressions... Found in List of Expressions."
+  },
+  "importValidExpressions": {
+    "message": "成功从以下导入文件中导入 $num$ 条表达式：$filename$。",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
   },
   "indexedDBCleanupText": {
     "message": "启用 IndexedDB 清理 (Firefox 77+, Chrome 74+)",
@@ -300,6 +384,40 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "逗号仅允许在正则表达式中出现。",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "修改后的表达式不能为空！",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "正则表达式无效。$RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "检测到结束斜杠，但缺少正则表达式的开始斜杠。请删除域名的结束斜杠。",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "检测到开始斜杠，但缺少正则表达式的结束斜杠。",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "主机名中不允许出现空格。",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "invalidNewExpressions": {
+    "message": "检测到无效的新表达式。下面说明了它们的错误原因，可以对其进行编辑以修复错误。",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "保存所有 Cookies",
@@ -628,6 +746,10 @@
   "pluginDataText": {
     "message": "插件数据",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "设置",
