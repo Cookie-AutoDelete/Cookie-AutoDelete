@@ -59,6 +59,10 @@
     "message": "自動削除有効",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "警告：以下のサイトデータクリーンアップオプションのいずれかを有効にすると、そのタイプの既存のデータはすべて消去されます。",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "キャッシュのクリーンアップを有効化（Firefox 78 以降、Chrome 74 以降）",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -107,6 +111,10 @@
     "message": "コンソールタブをクリックします",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
+  "containerSiteDataWarning": {
+    "message": "警告：「コンテナ」タブを有効化したまま、上記のいずれかの閲覧データのクリーンアップをすると、ブラウザー API の制限により、望ましくない副作用が発生する可能性があります。 クッキーを除くサイトデータタイプは、すべてのコンテナのホスト名によって消去されます。",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "手動でのクリーニングメニュー",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
@@ -151,6 +159,14 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "コンテナが削除されたときに「式のリスト」の自動削除を有効にします。",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "コンテナタブのサポートを有効にする",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "開発・サポートへの支援金",
     "description": "Contribute"
@@ -178,6 +194,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "既定値の「式のオプション」を作成する",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "現在選択されているコンテナ：$ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "デバッグモードを有効にする（追加のコンソール出力）",
@@ -243,6 +273,14 @@
     "message": "エラー",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "コア設定のエクスポート...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "式のエクスポート...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "エクスポート時にファイル名にタイムスタンプが付加されます。",
     "description": "A timestamp will be appended to the filename on export."
@@ -285,6 +323,10 @@
     "message": "コア設定のインポートに失敗しました - 不明な設定が見つかりました",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "コア設定のインポート...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileTypeInvalid": {
     "message": "与えられたファイルは、我々が扱うタイプではありません。",
     "description": "File given is not a type we handle"
@@ -296,6 +338,10 @@
   "importMissingKey": {
     "message": "識別子が欠落しています",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "式のインポート...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
     "message": "IndexedDB のクリーンアップを有効化（Firefox 77 以降、Chrome 74 以降）",
@@ -628,6 +674,10 @@
   "pluginDataText": {
     "message": "プラグインデータ",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookie",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "設定",
