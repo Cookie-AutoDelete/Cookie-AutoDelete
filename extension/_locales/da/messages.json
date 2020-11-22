@@ -59,6 +59,10 @@
     "message": "Automatisk sletning aktiveret",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "ADVARSEL: Ved aktivering af enhver af følgende sletningsindstillinger for netstedsdata, vil ALLE eksisterende data for den type blive slettet.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
   "cacheCleanupText": {
     "message": "Aktiver mellemlagersletning (Firefox 78+, Chrome 74+)",
     "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
@@ -106,6 +110,10 @@
   "consoleDebugMode": {
     "message": "Klik på Konsol-fanen",
     "description": "Click on the Console Tab. Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "ADVARSEL: Aktivering af containerfaner med enhver af ovenstående ekstra browsingdatasletning, kan føre til uønskede sideeffekter pga. begrænsninger i browser-API. Netstedsdatatyper, bortset fra cookies, vil blive slettet ud fra værtsnavn for ALLE containere.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
     "message": "Manuel sletningsmenu",
@@ -155,6 +163,10 @@
     "message": "Aktiver automatisk sletning af udtrykliste når dens container bliver fjernet.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
+  "contextualIdentitiesEnabledText": {
+    "message": "Aktiver understøttelse af Container faneblade",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
   "contributeText": {
     "message": "Bidrag",
     "description": "Contribute"
@@ -167,6 +179,10 @@
     "message": "Cookies",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Rens cookies og andre webstedsdata fra åbne faner ved opstart",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Slet nu, inkluder domæner fra åbne faner",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -178,6 +194,20 @@
   "createDefaultExpressionOptionsText": {
     "message": "Opret standard udtryksindstillinger",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Nuværende container valgt: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
   },
   "debugMode": {
     "message": "Aktiver aflusningstilstand (Yderligere konsoluddata)",
@@ -239,6 +269,14 @@
     "message": "Fejl!",
     "description": "Error!"
   },
+  "exportSettingsText": {
+    "message": "Eksporter kerneindstillinger...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Eksporter udtryk...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
   "exportTitleTimestamp": {
     "message": "Et tidsstempel vil blive tilføjet til filnavnet ved eksport.",
     "description": "A timestamp will be appended to the filename on export."
@@ -281,6 +319,10 @@
     "message": "Import af kerneindstillinger fejlede - Fandt ukendt indstilling",
     "description": "Import Core Settings Failed - Found unknown setting"
   },
+  "importCoreSettingsText": {
+    "message": "Importer kerneindstillinger...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
   "importFileNotFound": {
     "message": "Fil ikke fundet: $filename$",
     "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
@@ -316,6 +358,10 @@
   "importMissingKey": {
     "message": "Manglende id",
     "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importer udtryk...",
+    "description": "Import Expressions... Found in List of Expressions."
   },
   "importValidExpressions": {
     "message": "Lykkedes at tilføje $num$ udtryk fra importeret fil: $filename$.",
@@ -356,6 +402,14 @@
         "example": "SyntaxError:  unterminated character class."
       }
     }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Slutskråstreg mangler startskråstreg i regulært udtryk. Fjern slutskråstreg i domæner.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Startskråstreg mangler slutskråstreg i regulært udtryk.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "Mellemrum ikke tilladt i værtsnavne.",
@@ -645,6 +699,24 @@
     "message": "Intet",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "Nogle webstedsdata, herunder $Num$ Cookie(r), fjernet fra $total$ domæner, herunder: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "Meddelelser deaktiveret",
     "description": "Notification disabled"
@@ -688,6 +760,10 @@
   "pluginDataText": {
     "message": "Plugin-data",
     "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Cookies",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
   },
   "preferencesText": {
     "message": "Indstillinger",
