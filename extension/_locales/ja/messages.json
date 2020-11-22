@@ -567,6 +567,24 @@
     "message": "なし",
     "description": "None"
   },
+  "notificationContent": {
+    "message": "$Websites$ が含まれる $total$ ドメインから、サイトデータに含まれる $Num$ のクッキーを削除しました。",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
   "notificationDisabledText": {
     "message": "通知無効",
     "description": "Notification disabled"
