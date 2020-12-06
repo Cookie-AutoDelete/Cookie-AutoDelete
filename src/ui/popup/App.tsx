@@ -26,6 +26,7 @@ import {
 } from '../../services/CleanupService';
 import {
   CADCOOKIENAME,
+  convertFromPunycode,
   extractMainDomain,
   getAllCookiesForDomain,
   getHostname,
@@ -442,11 +443,18 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             />
           )}
           <div className="col">
-            <span
+            <textarea
+              className="form-control form-control-plaintext"
+              readOnly={true}
+              rows={1}
               style={{
                 fontSize: '1.25em',
-                marginRight: '8px',
-                verticalAlign: 'middle',
+                margin: 0,
+                overflowX: 'scroll',
+                paddingLeft: '5px',
+                paddingRight: '5px',
+                resize: 'none',
+                whiteSpace: 'nowrap',
               }}
             >
               {`${hostname}${
@@ -454,7 +462,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                   ? ` (${cache[storeId]})`
                   : ''
               }`}
-            </span>
+            </textarea>
           </div>
           <div
             className="col-3"
@@ -493,7 +501,22 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 flex: 1,
               }}
             >
-              {addableHostname}
+              <textarea
+                className="form-control form-control-plaintext"
+                readOnly={true}
+                rows={1}
+                style={{
+                  fontSize: '1.25em',
+                  margin: 0,
+                  overflowX: 'scroll',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
+                  resize: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {addableHostname}
+              </textarea>
             </div>
             <div
               className="btn-group"

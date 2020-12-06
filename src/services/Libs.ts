@@ -12,6 +12,7 @@
  */
 
 import ipaddr from 'ipaddr.js';
+import punycode from 'punycode';
 import shortid from 'shortid';
 
 /* --- CONSTANTS --- */
@@ -78,6 +79,12 @@ export const cadLog = (x: CADLogItem, output: boolean): void => {
   // Output to console.
   cOut[cTypes.indexOf(type)](`${h} - ${type} - ${x.msg}\n${data}`);
 };
+
+export const convertFromPunycode = (
+  domain: string,
+): string => {
+  return punycode.toUnicode(domain);
+}
 
 /**
  * Create Partial Cookie info for debug
