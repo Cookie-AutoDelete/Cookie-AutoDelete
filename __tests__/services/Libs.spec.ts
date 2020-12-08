@@ -15,6 +15,7 @@ import { when } from 'jest-when';
 import { initialState } from '../../src/redux/State';
 import {
   cadLog,
+  convertFromPunycode,
   convertVersionToNumber,
   createPartialTabInfo,
   eventListenerActions,
@@ -247,6 +248,16 @@ describe('Library Functions', () => {
       expect.assertions(1);
       cadLog({}, true);
       expect(consoleOutput.length).toEqual(0);
+    });
+  });
+
+  describe('convertFromPunycode()', () => {
+    it('should return same string if no punycode format detected', () => {
+      const input = 'example.com';
+      expect(convertFromPunycode(input)).toEqual(input);
+    });
+    it('should return the unicode display from punycode', () => {
+      expect(convertFromPunycode('xn----dqo34k.com')).toEqual('☃-⌘.com');
     });
   });
 
@@ -871,6 +882,9 @@ describe('Library Functions', () => {
     });
     it('should return true if string was exactly matched', () => {
       expect(getSearchResults('test', 'test')).toEqual(true);
+    });
+    it('should return false if an error occurred', () => {
+      expect(getSearchResults('abc(def)', 'abc(')).toEqual(false);
     });
   });
 
