@@ -415,6 +415,20 @@
     "message": "主机名中不允许出现空格。",
     "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
   },
+  "inputAddSuccess": {
+    "message": "成功添加了 $num$ 个表达式和 $listType$ 个类型到当前活动列表中 。",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
   "invalidNewExpressions": {
     "message": "检测到无效的新表达式。下面说明了它们的错误原因，可以对其进行编辑以修复错误。",
     "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
