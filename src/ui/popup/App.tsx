@@ -443,26 +443,31 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             />
           )}
           <div className="col">
-            <textarea
-              className="form-control form-control-plaintext"
-              readOnly={true}
-              rows={1}
-              style={{
-                fontSize: '1.25em',
-                margin: 0,
-                overflowX: 'scroll',
-                paddingLeft: '5px',
-                paddingRight: '5px',
-                resize: 'none',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {`${hostname}${
-                contextualIdentities && cache[storeId] !== undefined
-                  ? ` (${cache[storeId]})`
-                  : ''
-              }`}
-            </textarea>
+            <div className="input-group">
+              <textarea
+                className="form-control form-control-plaintext border"
+                readOnly={true}
+                rows={1}
+                style={{
+                  fontSize: '1.25em',
+                  margin: 0,
+                  overflowX: 'auto',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
+                  resize: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {hostname}
+              </textarea>
+              {contextualIdentities && cache[storeId] !== undefined && (
+                <div className="input-group-append">
+                  <span className="input-group-text" id="idnLabel">
+                    {cache[storeId]}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
           <div
             className="col-3"
@@ -508,7 +513,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 style={{
                   fontSize: '1.25em',
                   margin: 0,
-                  overflowX: 'scroll',
+                  overflowX: 'auto',
                   paddingLeft: '5px',
                   paddingRight: '5px',
                   resize: 'none',
