@@ -14,7 +14,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeExpressionUI, updateExpressionUI } from '../../redux/Actions';
-import { validateExpressionDomain } from '../../services/Libs';
+import {
+  convertFromPunycode,
+  convertToPunycode,
+  validateExpressionDomain,
+} from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 import ExpressionOptions from './ExpressionOptions';
 import IconButton from './IconButton';
@@ -95,7 +99,7 @@ class ExpressionTable extends React.Component<
     if (original) {
       this.props.onUpdateExpression({
         ...original,
-        expression: this.state.expressionInput,
+        expression: convertToPunycode(this.state.expressionInput.trim()),
         storeId: this.props.storeId,
       });
     }
@@ -105,9 +109,8 @@ class ExpressionTable extends React.Component<
 
   public validateEdit(): boolean {
     if (!this.state.editMode || !this.editInput || !this.state.id) return false;
-    const result = validateExpressionDomain(
-      this.state.expressionInput.trim(),
-    ).trim();
+    const pc = convertToPunycode(this.state.expressionInput.trim());
+    const result = validateExpressionDomain(pc).trim();
     if (result) {
       // validation failed.
       return this.setInvalid(result);
@@ -136,6 +139,12 @@ class ExpressionTable extends React.Component<
       return emptyElement;
     }
 
+    const punycodes: { [key: string]: string } = {};
+    expressions.forEach((e) => {
+      if (!e.id) return;
+      punycodes[`${e.id}`] = convertFromPunycode(e.expression);
+    });
+
     return (
       <table className="table table-striped table-hover table-bordered">
         <thead>
@@ -163,94 +172,122 @@ class ExpressionTable extends React.Component<
                   }}
                 />
               </td>
-              {editMode && id === expression.id ? (
-                <td className="editableExpression">
-                  <input
-                    ref={(c) => {
-                      this.editInput = c;
-                    }}
-                    className="form-control"
-                    value={expressionInput}
-                    onFocus={this.moveCaretToEnd}
-                    onChange={(e) =>
-                      this.setState({
-                        expressionInput: e.target.value,
-                      })
-                    }
-                    onKeyUp={(e) => {
-                      if (e.key.toLowerCase().includes('enter')) {
-                        this.commitEdit();
-                      } else if (e.key.toLowerCase().includes('escape')) {
-                        this.clearEdit();
+              <td>
+                {expression.id &&
+                  expression.expression !== punycodes[`${expression.id}`] && (
+                    <div className="input-group mb-2">
+                      <div className="input-group-prepend">
+                        <div className="input-group-text" id="idnLabel">
+                          IDN
+                        </div>
+                      </div>
+                      <textarea
+                        id="prettyPunycode"
+                        className="form-control form-control-plaintext border rounded-right"
+                        readOnly={true}
+                        rows={1}
+                        style={{
+                          margin: 0,
+                          overflowX: 'scroll',
+                          paddingLeft: '5px',
+                          paddingRight: '5px',
+                          resize: 'none',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {punycodes[`${expression.id}`]}
+                      </textarea>
+                    </div>
+                  )}
+                {editMode && id === expression.id ? (
+                  <div className="editableExpression">
+                    <input
+                      ref={(c) => {
+                        this.editInput = c;
+                      }}
+                      className="form-control"
+                      value={expressionInput}
+                      onFocus={this.moveCaretToEnd}
+                      onChange={(e) =>
+                        this.setState({
+                          expressionInput: e.target.value,
+                        })
                       }
-                    }}
-                    type="url"
-                    autoFocus={true}
-                    style={{
-                      margin: 0,
-                    }}
-                    formNoValidate={true}
-                  />
-                  <div className="invalid-feedback">{invalid}</div>
-                  <IconButton
-                    title={browser.i18n.getMessage('stopEditingText')}
-                    className="btn-outline-danger"
-                    iconName="ban"
-                    styleReact={{
-                      float: 'left',
-                      marginTop: '8px',
-                      width: '45%',
-                    }}
-                    onClick={() => {
-                      this.clearEdit();
-                    }}
-                  />
-                  <IconButton
-                    title={browser.i18n.getMessage('saveExpressionText')}
-                    className="btn-outline-success"
-                    iconName="save"
-                    styleReact={{
-                      float: 'right',
-                      marginTop: '8px',
-                      width: '45%',
-                    }}
-                    onClick={() => {
-                      this.commitEdit();
-                    }}
-                  />
-                </td>
-              ) : (
-                <td>
-                  <textarea
-                    className="form-control form-control-plaintext"
-                    readOnly={true}
-                    rows={1}
-                    style={{
-                      margin: 0,
-                      overflowX: 'scroll',
-                      paddingLeft: '5px',
-                      paddingRight: '5px',
-                      resize: 'none',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    {expression.expression}
-                  </textarea>
+                      onKeyUp={(e) => {
+                        if (e.key.toLowerCase().includes('enter')) {
+                          this.commitEdit();
+                        } else if (e.key.toLowerCase().includes('escape')) {
+                          this.clearEdit();
+                        }
+                      }}
+                      type="url"
+                      autoFocus={true}
+                      style={{
+                        margin: 0,
+                      }}
+                      formNoValidate={true}
+                    />
+                    <div className="invalid-feedback">{invalid}</div>
+                    <IconButton
+                      title={browser.i18n.getMessage('stopEditingText')}
+                      className="btn-outline-danger"
+                      iconName="ban"
+                      styleReact={{
+                        float: 'left',
+                        marginTop: '8px',
+                        width: '45%',
+                      }}
+                      onClick={() => {
+                        this.clearEdit();
+                      }}
+                    />
+                    <IconButton
+                      title={browser.i18n.getMessage('saveExpressionText')}
+                      className="btn-outline-success"
+                      iconName="save"
+                      styleReact={{
+                        float: 'right',
+                        marginTop: '8px',
+                        width: '45%',
+                      }}
+                      onClick={() => {
+                        this.commitEdit();
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <textarea
+                      className="form-control form-control-plaintext"
+                      readOnly={true}
+                      rows={1}
+                      style={{
+                        margin: 0,
+                        overflowX: 'scroll',
+                        paddingLeft: '5px',
+                        paddingRight: '5px',
+                        resize: 'none',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {expression.expression}
+                    </textarea>
 
-                  <IconButton
-                    title={browser.i18n.getMessage('editExpressionText')}
-                    iconName="pen"
-                    className="btn-outline-info showOnRowHover"
-                    styleReact={{
-                      marginTop: '5px',
-                      width: '100%',
-                    }}
-                    onClick={() => {
-                      this.startEditing(expression);
-                    }}
-                  />
-                </td>
-              )}
+                    <IconButton
+                      title={browser.i18n.getMessage('editExpressionText')}
+                      iconName="pen"
+                      className="btn-outline-info showOnRowHover"
+                      styleReact={{
+                        marginTop: '5px',
+                        width: '100%',
+                      }}
+                      onClick={() => {
+                        this.startEditing(expression);
+                      }}
+                    />
+                  </div>
+                )}
+              </td>
               <td>
                 <div
                   style={{

@@ -20,6 +20,7 @@ import {
 } from '../../../redux/Actions';
 import {
   cadLog,
+  convertToPunycode,
   getMatchedExpressions,
   getSetting,
   validateExpressionDomain,
@@ -115,16 +116,26 @@ class Expressions extends React.Component<ExpressionProps> {
             exps.forEach((exp) => {
               const e = exp.trim();
               if (!e) return;
-              const result = validateExpressionDomain(e).trim();
+              const pc = convertToPunycode(e);
+              const result = validateExpressionDomain(pc).trim();
               if (result) {
                 // invalid
-                errExps.push(`- ${e} (${storeId}) -> ${result}`);
+                errExps.push(
+                  `- ${
+                    e !== pc
+                      ? browser.i18n.getMessage('convertedToPunycodeText', [
+                          e,
+                          pc,
+                        ])
+                      : e
+                  } (${storeId}) -> ${result}`,
+                );
               } else {
                 // valid
                 validExps += 1;
                 onNewExpression({
                   ...expression,
-                  expression: e,
+                  expression: pc,
                 });
               }
             });
@@ -166,17 +177,27 @@ class Expressions extends React.Component<ExpressionProps> {
     exps.forEach((exp) => {
       const expTrim = exp.trim();
       if (!expTrim) return;
-      const result = validateExpressionDomain(expTrim).trim();
+      const pc = convertToPunycode(expTrim);
+      const result = validateExpressionDomain(pc).trim();
       if (result) {
         // invalid
         invalidInputs.push(expTrim);
         inputReasons.push(`- ${expTrim} -> ${result}`);
       } else {
         // valid
-        validInputs.push(`- ${expTrim}`);
+        validInputs.push(
+          `- ${
+            expTrim !== pc
+              ? browser.i18n.getMessage('convertedToPunycodeText', [
+                  expTrim,
+                  pc,
+                ])
+              : expTrim
+          }`,
+        );
         onNewExpression({
           ...payload,
-          expression: expTrim,
+          expression: pc,
         });
       }
     });

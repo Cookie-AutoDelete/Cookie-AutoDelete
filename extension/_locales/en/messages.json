@@ -191,6 +191,20 @@
     "message": "Run cleanup now, exclude domains from open tabs",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "convertedToPunycodeText": {
+    "message": "$pretty$ (converted to $punycode$)",
+    "description": "$pretty$ (converted to $punycode$).  Used for successful add/import of domain/expression.",
+    "placeholders": {
+      "pretty": {
+        "content": "$1",
+        "example": "☃-⌘.com"
+      },
+      "punycode": {
+        "content": "$2",
+        "example": "xn----dqo34k.com"
+      }
+    }
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Create Default Expression Options",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -314,7 +328,7 @@
     "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
     "placeholders": {
       "listExpression": {
-        "content":"$1",
+        "content": "$1",
         "example": "List of Expressions <- the translated version"
       }
     }
@@ -352,7 +366,7 @@
   "importListNotArray": {
     "message": "$identifier$ is not formatted as an array list.",
     "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
-    "placeholders":{
+    "placeholders": {
       "identifier": {
         "content": "$1",
         "example": "jsonObjectKey"

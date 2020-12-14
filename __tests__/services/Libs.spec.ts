@@ -16,6 +16,7 @@ import { initialState } from '../../src/redux/State';
 import {
   cadLog,
   convertFromPunycode,
+  convertToPunycode,
   convertVersionToNumber,
   createPartialTabInfo,
   eventListenerActions,
@@ -260,6 +261,16 @@ describe('Library Functions', () => {
       expect(convertFromPunycode('xn----dqo34k.com')).toEqual('☃-⌘.com');
     });
   });
+
+  describe('convertToPunycode()', () => {
+    it('should return same string if string is all ASCII', () => {
+      const input = 'example.com';
+      expect(convertToPunycode(input)).toEqual(input);
+    });
+    it('should return the Punycode format given unicode characters', () => {
+      expect(convertToPunycode('☃-⌘.com')).toEqual('xn----dqo34k.com');
+    });
+  })
 
   describe('convertVersionToNumber()', () => {
     it('should return 123 from 1.2.3', () => {

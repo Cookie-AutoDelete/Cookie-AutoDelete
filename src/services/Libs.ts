@@ -86,6 +86,12 @@ export const convertFromPunycode = (
   return punycode.toUnicode(domain);
 }
 
+export const convertToPunycode = (
+  domain: string,
+): string => {
+  return punycode.toASCII(domain);
+}
+
 /**
  * Create Partial Cookie info for debug
  */
