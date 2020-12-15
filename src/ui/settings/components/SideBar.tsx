@@ -11,7 +11,7 @@
  * SOFTWARE.
  */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as React from 'react';
+import React from 'react';
 const styles = {
   hamburger: {
     color: 'white',

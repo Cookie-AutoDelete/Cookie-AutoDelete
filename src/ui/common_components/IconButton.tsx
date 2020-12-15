@@ -15,7 +15,7 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
-import * as React from 'react';
+import React from 'react';
 
 interface IconButtonProps {
   accept?: string;
