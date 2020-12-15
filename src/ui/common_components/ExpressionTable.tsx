@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeExpressionUI, updateExpressionUI } from '../../redux/Actions';
@@ -40,10 +40,7 @@ interface DispatchProps {
 
 type ExpressionTableProps = DispatchProps & OwnProps;
 
-class ExpressionTable extends React.Component<
-  ExpressionTableProps,
-  EmptyState
-> {
+class ExpressionTable extends Component<ExpressionTableProps, EmptyState> {
   private editInput: HTMLInputElement | undefined | null;
   constructor(props: ExpressionTableProps) {
     super(props);

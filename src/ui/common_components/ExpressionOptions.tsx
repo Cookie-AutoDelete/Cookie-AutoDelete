@@ -12,7 +12,7 @@
  */
 import ipaddr from 'ipaddr.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { updateExpressionUI } from '../../redux/Actions';

@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import React from 'react';
+import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
