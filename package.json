@@ -28,8 +28,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "redux-webext": "^1.1.2",
-    "shortid": "^2.2.15",
-    "webextension-polyfill": "^0.6.0"
+    "shortid": "^2.2.16",
+    "webextension-polyfill": "^0.7.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
