@@ -41,6 +41,7 @@ jspm_packages
 report.html
 *Bundle.js
 *bundle.js
+bundles/
 builds/
 
 .directory

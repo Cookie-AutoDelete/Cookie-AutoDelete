@@ -55,31 +55,27 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          flatten: true,
           force: true,
           from: 'bootstrap/dist/css/bootstrap.min.css*',
-          to: '../../extension/global_files/',
+          to: '../../extension/global_files/[name].[ext]',
           context: `${__dirname}/node_modules`,
         },
         {
-          flatten: true,
           force: true,
           from: 'bootstrap/dist/js/bootstrap.bundle.min.js*',
-          to: '../../extension/global_files/',
+          to: '../../extension/global_files/[name].[ext]',
           context: `${__dirname}/node_modules`,
         },
         {
-          flatten: true,
           force: true,
           from: 'jquery/dist/jquery.slim.min*',
-          to: '../../extension/global_files/',
+          to: '../../extension/global_files/[name].[ext]',
           context: `${__dirname}/node_modules`,
         },
         {
-          flatten: true,
           force: true,
           from: 'webextension-polyfill/dist/browser-polyfill.min.js*',
-          to: '../../extension/global_files/',
+          to: '../../extension/global_files/[name].[ext]',
           context: `${__dirname}/node_modules`,
         },
       ],
@@ -98,6 +94,20 @@ module.exports = {
         },
         common: {
           chunks: 'initial',
+          // cacheGroupKey here is `common` as key of cacheGroup
+          name: (module, chunks, cacheGroupKey) => {
+            return [cacheGroupKey, chunks.map((c) => c.runtime).join('-')].join(
+              '-',
+            );
+          },
+          // Alternate version of above results, only if output.filename stays as [name].bundle.js
+          // filename: (pathData) => {
+          //   return `common-${
+          //     pathData.runtime.size > 1
+          //       ? Array.from(pathData.runtime).join('-')
+          //       : pathData.runtime
+          //   }.bundle.js`;
+          // },
           priority: -15,
         },
         default: {
