@@ -102,7 +102,7 @@ describe('SettingService', () => {
       .calledWith({ windowType: 'normal' })
       .mockResolvedValue([] as never);
     when(global.browser.contextMenus.update)
-      .calledWith(expect.anything())
+      .calledWith(expect.anything(), expect.anything())
       .mockResolvedValue(null as never);
   });
 
