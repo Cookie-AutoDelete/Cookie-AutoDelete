@@ -1,10 +1,6 @@
 {
   "releases": [
     {
-      "version": "unreleased",
-      "notes": ["Fixed:  Partial Regex Domain Replacements in backend."]
-    },
-    {
       "version": "3.6.0",
       "notes": [
         "Added:  Implementation of FireFox Containers/Contextual Identities.  This allows CAD to monitor when changes to containers info have been made, and remove the CAD list matching that removed container ID.",
@@ -14,7 +10,8 @@
         "Chore:  Backend Code Optimizations.",
         "Chore:  Dependency Updates.",
         "Fixed:  Duplication of domains in siteData Notifications.",
-        "Fixed:  Usage of commas within Regular Expressions.  Closes #865."
+        "Fixed:  Usage of commas within Regular Expressions.  Closes #865.",
+        "Fixed:  Partial Regex Domain Replacements in backend."
       ]
     },
     {
