@@ -1054,6 +1054,16 @@ describe('Library Functions', () => {
       const regExp = new RegExp(globExpressionToRegExp('/^git[hub]{3}.com$/'));
       expect(regExp.test('github.com')).toEqual(true);
     });
+    it('should escape all backslash properly. (should only fail on pre-3.6.0)', () => {
+      expect(globExpressionToRegExp('test\\abc')).toEqual('^test\\\\abc$');
+    });
+    it('should parse *. only in the beginning as (^|.).  Otherwise as wildcard before dot.', () => {
+      const regExp = new RegExp(globExpressionToRegExp('*.test*.com'));
+      expect(regExp.test('sub.testcom.com')).toEqual(true);
+      expect(regExp.test('tests.com')).toEqual(true);
+      expect(regExp.test('test.com')).toEqual(true);
+      expect(regExp.test('a.test.com')).toEqual(true);
+    });
   });
 
   describe('isAnIP()', () => {
