@@ -65,8 +65,8 @@
   },
   "scripts": {
     "build": "npm run compile && node ./tools/buildFilesDev.js",
-    "compile": "webpack --config webpack.config.js",
-    "dev": "webpack --config webpack.config.js --progress --colors --watch",
+    "compile": "webpack --config webpack.config.js --color",
+    "dev": "webpack --config webpack.config.js --progress --color --watch",
     "lint": "eslint src/",
     "test": "jest --coverage",
     "test-all": "npm run test && npm run lint"
