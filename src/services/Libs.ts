@@ -506,20 +506,13 @@ export const globExpressionToRegExp = (glob: string): string => {
     // Treat /str/ as regular expression str
     return normalizedGlob.slice(1, -1);
   }
+  const wildStart = normalizedGlob.startsWith('*.');
 
-  if (normalizedGlob.startsWith('*.')) {
-    return `${normalizedGlob
-      .replace('*.', '(^|.)')
-      .replace(/\./g, '\\.')
-      .replace(/\*/g, '.*')}$`;
-  }
-  return `^${normalizedGlob
-    .replace(/\//g, '\\/')
-    .replace(/\./g, '\\.')
-    .replace(/\*/g, '.*')
-    .replace(/\[/g, '\\[')
-    .replace(/]/g, '\\]')
-    .replace(/\\/g, '\\')}$`;
+  return `${`${wildStart ? '(^|.)' : '^'}${normalizedGlob.slice(
+    wildStart ? 2 : 0,
+  )}`
+    .replace(/[[\]\\/.]/g, '\\$&')
+    .replace(/\*/g, '.*')}$`;
 };
 
 /**
