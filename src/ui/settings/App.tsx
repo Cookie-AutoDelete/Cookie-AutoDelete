@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import * as React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import ErrorBoundary from '../common_components/ErrorBoundary';
 import About from './components/About';
@@ -24,7 +24,7 @@ interface OwnProps {
   sizeSetting: number;
 }
 
-class App extends React.Component<OwnProps> {
+class App extends Component<OwnProps> {
   public state = {
     activeTab: 'tabWelcome',
     settingsURL: '',
