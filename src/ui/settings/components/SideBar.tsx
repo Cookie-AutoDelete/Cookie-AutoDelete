@@ -115,7 +115,7 @@ class SideBar extends React.Component<OwnProps> {
             <br />
             <a
               className={`pure-menu-item`}
-              href="https://www.paypal.me/mrkennyd/5"
+              href="https://liberapay.com/CAD_Developers/"
               target="_blank"
               rel="noreferrer"
             >
