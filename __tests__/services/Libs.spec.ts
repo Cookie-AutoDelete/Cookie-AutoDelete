@@ -872,6 +872,9 @@ describe('Library Functions', () => {
     it('should return true if string was exactly matched', () => {
       expect(getSearchResults('test', 'test')).toEqual(true);
     });
+    it('should return false if string is invalid regex', () => {
+      expect(getSearchResults('abc(x', 'abc')).toEqual(false);
+    });
   });
 
   describe('getSetting()', () => {
