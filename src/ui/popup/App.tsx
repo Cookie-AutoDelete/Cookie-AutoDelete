@@ -128,7 +128,11 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   ): Partial<HTMLButtonElement> {
     return (
       <button
-        className="dropdown-item px-2"
+        aria-controls="cleanCollapse"
+        aria-expanded="false"
+        className="px-2 btn btn-outline-dark btn-block"
+        data-target="#cleanCollapse"
+        data-toggle="collapse"
         onClick={async () => {
           const success = await this.cleanSiteDataUI(siteData, hostname);
           this.animateFlash(this.cleanButtonContainerRef, success);
@@ -323,12 +327,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             />
 
             <button
-              aria-haspopup="true"
+              aria-controls="cleanCollapse"
               aria-expanded="false"
               className="btn btn-warning dropdown-toggle dropdown-toggle-split"
-              data-toggle="dropdown"
               data-disabled="true"
-              role="menu"
+              data-target="#cleanCollapse"
+              data-toggle="collapse"
+              role="button"
               style={{
                 borderLeftColor: 'rgb(176, 132, 0)',
                 transform: 'translate3d(-3px, 0px, 0px)',
@@ -338,65 +343,6 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 {browser.i18n.getMessage('dropdownAdditionalCleaningOptions')}
               </span>
             </button>
-            <div className="dropdown-menu dropdown-menu-right">
-              <button
-                className="dropdown-item px-2"
-                onClick={() => {
-                  onCookieCleanup({
-                    greyCleanup: false,
-                    ignoreOpenTabs: true,
-                  });
-                  this.animateFlash(this.cleanButtonContainerRef, true);
-                }}
-                title={browser.i18n.getMessage(
-                  'cookieCleanupIgnoreOpenTabsText',
-                )}
-                type="button"
-              >
-                {browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
-              </button>
-              <h6 className="dropdown-header px-2">
-                {browser.i18n.getMessage('cleanupActionsBypass')}
-              </h6>
-              {this.createSiteDataButton('All', hostname)}
-              {this.createSiteDataButton(SiteDataType.CACHE, hostname)}
-              <button
-                className="dropdown-item px-2"
-                onClick={async () => {
-                  const success = await clearCookiesForThisDomain(state, tab);
-                  this.animateFlash(this.cleanButtonContainerRef, success);
-                }}
-                title={browser.i18n.getMessage(
-                  'manualCleanSiteDataCookiesDomain',
-                  [hostname],
-                )}
-                type="button"
-              >
-                {browser.i18n.getMessage('manualCleanSiteDataCookies')}
-              </button>
-              {this.createSiteDataButton(SiteDataType.INDEXEDDB, hostname)}
-              <button
-                className="dropdown-item px-2"
-                onClick={async () => {
-                  const success = await clearLocalStorageForThisDomain(
-                    state,
-                    tab,
-                  );
-                  this.animateFlash(this.cleanButtonContainerRef, success);
-                }}
-                title={browser.i18n.getMessage(
-                  `manualCleanSiteData${SiteDataType.LOCALSTORAGE}Domain`,
-                  [hostname],
-                )}
-                type="button"
-              >
-                {browser.i18n.getMessage(
-                  `manualCleanSiteData${SiteDataType.LOCALSTORAGE}`,
-                )}
-              </button>
-              {this.createSiteDataButton(SiteDataType.PLUGINDATA, hostname)}
-              {this.createSiteDataButton(SiteDataType.SERVICEWORKERS, hostname)}
-            </div>
           </div>
           <div className="w-100 py-1 d-sm-none"></div>
           <IconButton
@@ -420,6 +366,92 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             title={browser.i18n.getMessage('preferencesText')}
             text={browser.i18n.getMessage('preferencesText')}
           />
+        </div>
+        <div
+          className="row justify-content-center collapse"
+          id="cleanCollapse"
+          role="group"
+          style={{
+            alignItems: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+            padding: '4px 4px 8px 4px',
+          }}
+        >
+          <div className="btn-group-vertical">
+            <button
+              aria-controls="cleanCollapse"
+              aria-expanded="false"
+              className="px-2 btn btn-outline-dark btn-block"
+              data-target="#cleanCollapse"
+              data-toggle="collapse"
+              onClick={() => {
+                onCookieCleanup({
+                  greyCleanup: false,
+                  ignoreOpenTabs: true,
+                });
+                this.animateFlash(this.cleanButtonContainerRef, true);
+              }}
+              title={browser.i18n.getMessage('cookieCleanupIgnoreOpenTabsText')}
+              type="button"
+            >
+              {browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
+            </button>
+            <button
+              aria-disabled={true}
+              className="px-2 btn btn-dark btn-block"
+              disabled={true}
+              type="button"
+            >
+              {browser.i18n.getMessage('cleanupActionsBypass')}
+            </button>
+            {this.createSiteDataButton('All', hostname)}
+            {this.createSiteDataButton(SiteDataType.CACHE, hostname)}
+            <button
+              aria-controls="cleanCollapse"
+              aria-expanded="false"
+              className="px-2 btn btn-outline-dark btn-block"
+              data-target="#cleanCollapse"
+              data-toggle="collapse"
+              onClick={async () => {
+                const success = await clearCookiesForThisDomain(state, tab);
+                this.animateFlash(this.cleanButtonContainerRef, success);
+              }}
+              title={browser.i18n.getMessage(
+                'manualCleanSiteDataCookiesDomain',
+                [hostname],
+              )}
+              type="button"
+            >
+              {browser.i18n.getMessage('manualCleanSiteDataCookies')}
+            </button>
+            {this.createSiteDataButton(SiteDataType.INDEXEDDB, hostname)}
+            <button
+              aria-controls="cleanCollapse"
+              aria-expanded="false"
+              className="px-2 btn btn-outline-dark btn-block"
+              data-target="#cleanCollapse"
+              data-toggle="collapse"
+              onClick={async () => {
+                const success = await clearLocalStorageForThisDomain(
+                  state,
+                  tab,
+                );
+                this.animateFlash(this.cleanButtonContainerRef, success);
+              }}
+              title={browser.i18n.getMessage(
+                `manualCleanSiteData${SiteDataType.LOCALSTORAGE}Domain`,
+                [hostname],
+              )}
+              type="button"
+            >
+              {browser.i18n.getMessage(
+                `manualCleanSiteData${SiteDataType.LOCALSTORAGE}`,
+              )}
+            </button>
+            {this.createSiteDataButton(SiteDataType.PLUGINDATA, hostname)}
+            {this.createSiteDataButton(SiteDataType.SERVICEWORKERS, hostname)}
+          </div>
         </div>
 
         <div
