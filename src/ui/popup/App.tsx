@@ -128,7 +128,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
   ): Partial<HTMLButtonElement> {
     return (
       <button
-        className="dropdown-item"
+        className="dropdown-item px-2"
         onClick={async () => {
           const success = await this.cleanSiteDataUI(siteData, hostname);
           this.animateFlash(this.cleanButtonContainerRef, success);
@@ -243,12 +243,11 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
           </span>
         </div>
         <div
-          className="row"
+          className="row justify-content-center"
           style={{
             alignItems: 'center',
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-            justifyContent: 'center',
             padding: '4px 4px 8px 4px',
           }}
         >
@@ -276,7 +275,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 : browser.i18n.getMessage('autoDeleteDisabledText')
             }
           />
-
+          <div className="w-100 py-1 d-sm-none"></div>
           <IconButton
             iconName={
               settings[SettingID.NOTIFY_AUTO].value ? 'bell' : 'bell-slash'
@@ -299,7 +298,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
                 : browser.i18n.getMessage('notificationDisabledText')
             }
           />
-
+          <div className="w-100 py-1 d-sm-none"></div>
           <div
             className="btn-group"
             ref={(e) => {
@@ -341,7 +340,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             </button>
             <div className="dropdown-menu dropdown-menu-right">
               <button
-                className="dropdown-item"
+                className="dropdown-item px-2"
                 onClick={() => {
                   onCookieCleanup({
                     greyCleanup: false,
@@ -356,13 +355,13 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
               >
                 {browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
               </button>
-              <h6 className="dropdown-header">
+              <h6 className="dropdown-header px-2">
                 {browser.i18n.getMessage('cleanupActionsBypass')}
               </h6>
               {this.createSiteDataButton('All', hostname)}
               {this.createSiteDataButton(SiteDataType.CACHE, hostname)}
               <button
-                className="dropdown-item"
+                className="dropdown-item px-2"
                 onClick={async () => {
                   const success = await clearCookiesForThisDomain(state, tab);
                   this.animateFlash(this.cleanButtonContainerRef, success);
@@ -377,7 +376,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
               </button>
               {this.createSiteDataButton(SiteDataType.INDEXEDDB, hostname)}
               <button
-                className="dropdown-item"
+                className="dropdown-item px-2"
                 onClick={async () => {
                   const success = await clearLocalStorageForThisDomain(
                     state,
@@ -399,6 +398,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
               {this.createSiteDataButton(SiteDataType.SERVICEWORKERS, hostname)}
             </div>
           </div>
+          <div className="w-100 py-1 d-sm-none"></div>
           <IconButton
             iconName="cog"
             className="btn-info"
