@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import {
@@ -18,10 +18,6 @@ import {
   cookieCleanupUI,
   updateSetting,
 } from '../../redux/Actions';
-import {
-  clearCookiesForThisDomain,
-  clearLocalStorageForThisDomain,
-} from '../../services/CleanupService';
 import {
   CADCOOKIENAME,
   extractMainDomain,
@@ -38,7 +34,7 @@ import { FilterOptions } from '../../typings/Enums';
 import { ReduxAction } from '../../typings/ReduxConstants';
 import ActivityTable from '../common_components/ActivityTable';
 import IconButton from '../common_components/IconButton';
-import CleanDataButton from './components/CleanDataButton';
+import CleanCollapseGroup from './components/CleanCollapseGroup';
 import FilteredExpression from './components/FilteredExpression';
 import { animateFlash } from './popupLib';
 
@@ -305,77 +301,7 @@ class App extends React.Component<PopupAppComponentProps, InitialState> {
             text={browser.i18n.getMessage('preferencesText')}
           />
         </div>
-        <div
-          className="row justify-content-center collapse"
-          id="cleanCollapse"
-          role="group"
-          style={{
-            alignItems: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.05)',
-            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-            padding: '4px 4px 8px 4px',
-          }}
-        >
-          <div className="btn-group-vertical">
-            <CleanDataButton
-              btnColor="btn-warning"
-              onClick={async () => {
-                onCookieCleanup({
-                  greyCleanup: false,
-                  ignoreOpenTabs: true,
-                });
-                return true;
-              }}
-              title={browser.i18n.getMessage('cookieCleanupIgnoreOpenTabsText')}
-              text={browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
-            />
-            <button
-              aria-disabled={true}
-              className="px-2 btn btn-light btn-block text-danger font-weight-bold"
-              disabled={true}
-              type="button"
-            >
-              {browser.i18n.getMessage('cleanupActionsBypass')}
-            </button>
-            <CleanDataButton siteData="All" hostname={hostname} tab={tab} />
-            <CleanDataButton
-              altColor
-              siteData={SiteDataType.CACHE}
-              hostname={hostname}
-            />
-            <CleanDataButton
-              onClick={async () => {
-                return await clearCookiesForThisDomain(state, tab);
-              }}
-              title={browser.i18n.getMessage(
-                'manualCleanSiteDataCookiesDomain',
-                [hostname],
-              )}
-              text={browser.i18n.getMessage('manualCleanSiteDataCookies')}
-            />
-            <CleanDataButton
-              altColor
-              siteData={SiteDataType.INDEXEDDB}
-              hostname={hostname}
-            />
-            <CleanDataButton
-              onClick={async () => {
-                return await clearLocalStorageForThisDomain(state, tab);
-              }}
-              siteData={SiteDataType.LOCALSTORAGE}
-              hostname={hostname}
-            />
-            <CleanDataButton
-              altColor
-              siteData={SiteDataType.PLUGINDATA}
-              hostname={hostname}
-            />
-            <CleanDataButton
-              siteData={SiteDataType.SERVICEWORKERS}
-              hostname={hostname}
-            />
-          </div>
-        </div>
+        <CleanCollapseGroup hostname={hostname || ''} tab={tab} />
 
         <div
           className="row no-gutters"
