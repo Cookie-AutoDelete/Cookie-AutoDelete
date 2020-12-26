@@ -11,7 +11,7 @@
  * SOFTWARE.
  */
 
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { cookieCleanupUI } from '../../../redux/Actions';

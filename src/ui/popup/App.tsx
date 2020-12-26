@@ -10,7 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import {
@@ -57,7 +57,7 @@ class InitialState {
 
 type PopupAppComponentProps = DispatchProps & StateProps;
 
-class App extends React.Component<PopupAppComponentProps, InitialState> {
+class App extends Component<PopupAppComponentProps, InitialState> {
   public state = new InitialState();
   public port: browser.runtime.Port | null = null;
 
