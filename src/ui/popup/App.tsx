@@ -163,6 +163,15 @@ class App extends Component<PopupAppComponentProps, InitialState> {
         style={{
           overflow: 'auto',
         }}
+        onClick={(e) => {
+          const _t = e.target as HTMLElement;
+          const _ccg = document.getElementById('cleanCollapse');
+          if (!_ccg || !_ccg.classList.contains('show')) return;
+          const _dt = _t.attributes.getNamedItem('data-target');
+          if (!_dt || _dt.value !== '#cleanCollapse') {
+            _ccg.classList.remove('show');
+          }
+        }}
       >
         <div
           className="row"
@@ -239,6 +248,8 @@ class App extends Component<PopupAppComponentProps, InitialState> {
           <div
             id="cleanButtonContainer"
             className="btn-group"
+            role="group"
+            aria-label="Clean Actions Group"
             style={{
               margin: '0 4px',
             }}
@@ -246,6 +257,7 @@ class App extends Component<PopupAppComponentProps, InitialState> {
             <IconButton
               iconName="eraser"
               className="btn-warning"
+              type="button"
               onClick={() => {
                 onCookieCleanup({
                   greyCleanup: false,
