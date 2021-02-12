@@ -159,8 +159,12 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Ota käyttöön automaattinen lausekeluettelon poisto, kun siihen liittyvä säiliö poistetaan.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
-    "message": "Ota tuki käyttöön säilytysvälilehdet",
+    "message": "Ota käyttöön tuki säiliövälilehdille (Container Tabs)",
     "description": "Enable Support for Container Tabs. Currently only in Firefox."
   },
   "contributeText": {
