@@ -580,7 +580,7 @@
     "description": "Other Browsing Data Cleanup Options"
   },
   "settingsText": {
-    "message": "$CAD$ Ayarlar",
+    "message": "$CAD$ Ayarları",
     "description": "$CAD$ Settings",
     "placeholders": {
       "CAD": {
