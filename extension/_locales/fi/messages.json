@@ -196,7 +196,7 @@
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
-    "message": "Nykyinen kontti valittu: $ID$ ( $Name$ )",
+    "message": "Valittuna oleva säiliö: $ID$ ( $Name$ )",
     "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
@@ -218,7 +218,7 @@
     "description": "Default. Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultContainerText": {
-    "message": "Ei Sisältöä",
+    "message": "Ei säiliötä",
     "description": "No Container. This will be in brackets. Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
@@ -586,7 +586,7 @@
     "description": "minute(s)"
   },
   "missingContainerText": {
-    "message": "VIRHE SISÄLLÄ",
+    "message": "VIRHEELLINEN SÄILIÖ",
     "description": "INVALID CONTAINER. Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
