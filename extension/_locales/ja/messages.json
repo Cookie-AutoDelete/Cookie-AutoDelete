@@ -327,6 +327,16 @@
     "message": "コア設定のインポート...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "$filename$ が見つかりません。",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "与えられたファイルは、我々が扱うタイプではありません。",
     "description": "File given is not a type we handle"
@@ -350,6 +360,10 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorSpace": {
+    "message": "ホストネームに空白を含めることはできません。",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
   },
   "keepAllCookiesText": {
     "message": "すべてのクッキーを維持する",
