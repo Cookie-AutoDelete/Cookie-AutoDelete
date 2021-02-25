@@ -22,7 +22,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
-          echo "ASSOC:   $GH_ASSOC
+          echo "ASSOC:   $GH_ASSOC"
           echo "ID:      $ISSUE_ID"
           echo "NUMBER:  $ISSUE_NUMBER"
           echo "TITLE:   $ISSUE_TITLE"
