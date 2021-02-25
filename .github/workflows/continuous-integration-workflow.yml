@@ -74,7 +74,7 @@ jobs:
           echo "::set-output name=version::$(node -v)"
       - name: Cache Node Modules
         id: nodeCache
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           # npm cache files stored in `~/.npm` on Linux
           path: ~/.npm
