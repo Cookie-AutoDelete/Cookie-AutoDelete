@@ -15,12 +15,14 @@ jobs:
         id: parseIssue
         env:
           GH_ISSUE: ${{ toJson(github.event.issue) }}
+          GH_ASSOC: ${{ github.event.issue.author_association }}
           # ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_ID: ${{ github.event.issue.id }}
           ISSUE_LABELS: ${{ toJson(github.event.issue.labels.*.name) }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
+          echo "ASSOC:   $GH_ASSOC
           echo "ID:      $ISSUE_ID"
           echo "NUMBER:  $ISSUE_NUMBER"
           echo "TITLE:   $ISSUE_TITLE"
@@ -49,49 +51,49 @@ jobs:
         run: |
           echo "::set-output name=msg::- Title does not start with [BUG]."
           echo "::warning ::Title does not start with [BUG]."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[BUG]  ???') || endsWith(github.event.issue.title, '[BUG]')
         run: |
           echo "::set-output name=msg::- Title is missing."
           echo "::warning ::Title is missing."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Hidden Acknowledgement not removed
         id: unremovedHidden
         if: contains(github.event.issue.body, 'Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!') || contains(github.event.issue.body, 'By removing this entire section (from <!-- to ->) you acknowledge that you have read both the Documentation and FAQ, and that the solution was not found.')
         run: |
           echo "::set-output name=msg::- Missing User Acknowledgement. Please search existing (open and closed) issues, as well as read the Documentation and FAQ first!"
           echo "::warning ::Hidden Acknowledgement not removed."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Body does not contain all required headings
         id: missingHeadings
         if: ( ! (contains(github.event.issue.body, '**Describe the bug**') && contains(github.event.issue.body, '**To Reproduce**') && contains(github.event.issue.body, '**Expected Behavior**') && contains(github.event.issue.body, 'Your System Info') && contains(github.event.issue.body, 'OS:') && contains(github.event.issue.body, 'Browser Info:') && contains(github.event.issue.body, 'CookieAutoDelete Version:') ))
         run: |
           echo "::set-output name=msg::- Missing required section headings and details."
           echo "::warning ::Missing Requires section headers."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Description of Bug is missing
         id: missingDescription
         if: contains(github.event.issue.body, 'A clear and concise description of what the bug is.')
         run: |
           echo "::set-output name=msg::- Missing bug description."
           echo "::warning ::Missing Bug Description."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Steps to Reproduce is missing
         id: missingSteps
         if: contains(github.event.issue.body, '1. Go to ''...''')
         run: |
           echo "::set-output name=msg::- Missing steps to reproduce bug."
           echo "::warning ::Missing Steps to Reproduce Bug."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Expected Behaviour is missing
         id: missingExpected
         if: contains(github.event.issue.body, 'A clear and concise description of what you expected to happen.')
         run: |
           echo "::set-output name=msg::- Missing expected behavior."
           echo "::warning ::Missing Expected Behavior."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Checking (via Bash) for System Info
         id: sysInfoBash
         env:
@@ -113,14 +115,14 @@ jobs:
         run: |
           echo "::set-output name=msg::- Missing system info details."
           echo "::warning ::Missing System Info Details."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: CAD Version set to latest
         id: latestCAD
         if: steps.sysInfoBash.outputs.latest == 'true'
         run: |
           echo "::set-output name=msg::- CAD Version set to **latest**.  Please change this to reflect version that the bug is found in."
           echo "::warning ::CAD Version set to 'latest'."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
         if: env.issue_close == 'true'
         uses: andymckay/labeler@1.0.2
@@ -165,42 +167,42 @@ jobs:
         run: |
           echo "::set-output name=msg::- Title does not start with [FEATURE REQUEST]."
           echo "::warning ::Title does not start with [FEATURE REQUEST]."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[FEATURE REQUEST]  ???') || endsWith(github.event.issue.title, '[FEATURE REQUEST]')
         run: |
           echo "::set-output name=msg::- Title is missing."
           echo "::warning ::Title is missing."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Hidden Acknowledgement not removed
         id: unremovedHidden
         if: contains(github.event.issue.body, 'Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!') || contains(github.event.issue.body, 'By removing this entire section (from <!-- to ->) you acknowledge that you have searched all the existing open and closed issues/requests and that your feature was not previously requested.')
         run: |
           echo "::set-output name=msg::- Missing User Acknowledgement. Please search existing (open and closed) issues/feature requests first!"
           echo "::warning ::Hidden Acknowledgement is not removed."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Body does not contain all required headings
         id: missingHeadings
         if: (! (contains(github.event.issue.body, '**Is your feature request related to a problem? Please describe.**') && contains(github.event.issue.body, '**Describe the solution you''d like**') ))
         run: |
           echo "::set-output name=msg::- Missing required section headings and details."
           echo "::warning ::Missing required headers."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Description of Feature Request is missing
         id: missingDescription
         if: contains(github.event.issue.body, 'A clear and concise description of what the problem is. Ex. I''m always frustrated when [...]')
         run: |
           echo "::set-output name=msg::- Missing feature request description."
           echo "::warning ::Missing Feature Request Description."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Solution is missing
         id: missingSolution
         if: contains(github.event.issue.body, 'A clear and concise description of what you want to happen.')
         run: |
           echo "::set-output name=msg::- Missing solution for feature request."
           echo "::warning ::Missing Solution to Feature Request."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
         if: env.issue_close == 'true'
         uses: andymckay/labeler@1.0.2
@@ -239,35 +241,35 @@ jobs:
         run: |
           echo "::set-output name=msg::- Title does not start with [SUPPORT]."
           echo "::warning ::Title does not start with [SUPPORT]."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[SUPPORT]  ???') || endsWith(github.event.issue.title, '[SUPPORT]')
         run: |
           echo "::set-output name=msg::- Title is missing."
           echo "::warning ::Title is missing."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Hidden Acknowledgement not removed
         id: unremovedHidden
         if: contains(github.event.issue.body, 'Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!') || contains(github.event.issue.body, 'By removing this entire section (from <!-- to ->) you acknowledge that you have searched all the existing open and closed issues and that your support question was not previously answered.')
         run: |
           echo "::set-output name=msg::- Missing User Acknowledgement. Please search existing (open and closed) question/support issues first!"
           echo "::warning ::Hidden Acknowledgement not removed."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Body does not contain all required headings
         id: missingHeadings
         if: (! contains(github.event.issue.body, '**Please describe what you need support with.**'))
         run: |
           echo "::set-output name=msg::- Missing required section headings and details."
           echo "::warning ::Missing required section headings."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Description of Support is missing
         id: missingDescription
         if: contains(github.event.issue.body, 'A clear and concise description of what you need support with.')
         run: |
           echo "::set-output name=msg::- Missing support description."
           echo "::warning ::Missing Support Description."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
         if: env.issue_close == 'true'
         uses: andymckay/labeler@1.0.2
