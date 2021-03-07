@@ -3,12 +3,12 @@ name: CI
 on:
   push:
     branches-ignore:
-      - "_archived__**"
+      - '_archived__**'
   pull_request_target:
     branches-ignore:
-      - "_archived__**"
+      - '_archived__**'
     paths-ignore:
-      - "**/README.md"
+      - '**/README.md'
 
 jobs:
   pre_info:
@@ -63,10 +63,12 @@ jobs:
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: "14.x"
+          node-version: '14.x'
       - name: Get Node Version
         id: node
         run: |
@@ -99,11 +101,21 @@ jobs:
           name: coverage
           path: coverage
       - name: Codecov.io Coverage upload
+        id: codecov_bash
         uses: codecov/codecov-action@v1
         with:
-          fail_ci_if_error: false
+          fail_ci_if_error: true
           file: ./coverage/*
           token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
+      - name: Codecov.io Coverage Upload for pull_request_target
+        uses: codecov/codecov-action@v1
+        if: steps.codecov_bash.outcome == 'failure' && github.event_name == 'pull_request_target'
+        with:
+          fail_ci_if_error: true
+          file: ./coverage/*
+          token: ${{ secrets.CODECOV_TOKEN }}
+          override_pr: ${{ github.event.number }}
+          override_sha: ${{ github.event.pull_request.head.sha }}
       - name: Codecov.io Alternative Coverage Upload
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         env:
