@@ -108,6 +108,7 @@ jobs:
           file: ./coverage/*
           token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
       - name: Codecov.io Coverage Upload for pull_request_target
+        id: codecov_prt
         uses: codecov/codecov-action@v1
         if: steps.codecov_bash.outcome == 'failure' && github.event_name == 'pull_request_target'
         with:
@@ -117,7 +118,7 @@ jobs:
           override_pr: ${{ github.event.number }}
           override_sha: ${{ github.event.pull_request.head.sha }}
       - name: Codecov.io Alternative Coverage Upload
-        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
+        if: steps.codecov_prt.outcome == 'failure && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
         env:
           PR_NUM: ${{ github.event.pull_request.number }}
           CC_TOKEN: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
