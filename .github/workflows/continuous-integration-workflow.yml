@@ -104,7 +104,7 @@ jobs:
         id: codecov_bash
         uses: codecov/codecov-action@v1
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           file: ./coverage/*
           token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
       - name: Codecov.io Coverage Upload for pull_request_target
@@ -112,7 +112,7 @@ jobs:
         uses: codecov/codecov-action@v1
         if: steps.codecov_bash.outcome == 'failure' && github.event_name == 'pull_request_target'
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           file: ./coverage/*
           token: ${{ secrets.CODECOV_TOKEN }}
           override_pr: ${{ github.event.number }}
