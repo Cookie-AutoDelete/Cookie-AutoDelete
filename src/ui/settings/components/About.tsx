@@ -86,7 +86,7 @@ class About extends React.Component<AboutProps> {
           <br />
           <b>{browser.runtime.getManifest().version}</b>
         </h5>
-        <a href="https://github.com/mrdokenny/Cookie-AutoDelete/issues">
+        <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/issues">
           {browser.i18n.getMessage('reportIssuesText')}
         </a>{' '}
         <br />
