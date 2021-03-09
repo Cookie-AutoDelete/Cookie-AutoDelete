@@ -81,6 +81,13 @@ const onStartUp = async () => {
       },
       type: ReduxConstants.ADD_CACHE,
     });
+    store.dispatch({
+      payload: {
+        key: 'browserInfo',
+        value: browserInfo,
+      },
+      type: ReduxConstants.ADD_CACHE,
+    });
   }
   // Store which browser environment in cache
   store.dispatch({
@@ -93,6 +100,13 @@ const onStartUp = async () => {
 
   // Store platform in cache
   const platformInfo = await browser.runtime.getPlatformInfo();
+  store.dispatch({
+    payload: {
+      key: 'platformInfo',
+      value: platformInfo,
+    },
+    type: ReduxConstants.ADD_CACHE,
+  });
   store.dispatch({
     payload: {
       key: 'platformOs',
