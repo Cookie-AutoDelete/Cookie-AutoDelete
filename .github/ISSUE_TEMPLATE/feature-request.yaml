@@ -11,7 +11,7 @@ body:
 
         - Please check both open and closed issues to ensure that it was not previously requested.  Duplicates will be closed.
 
-        - Please ensure that the feature request title starts with '[FEATURE REQUEST] '.
+        - Please ensure that the feature request title starts with `[FEATURE REQUEST] `.
   - type: checkboxes
     attributes:
       label: Acknowledgements

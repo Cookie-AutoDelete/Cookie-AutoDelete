@@ -15,7 +15,7 @@ body:
 
         - Please check both open and closed issues to ensure that your support question has not been answered yet!  Duplicate issues will be closed and pointed to its duplicated/relevant issue.
 
-        - Please ensure that the support title starts with '[SUPPORT] '.
+        - Please ensure that the support title starts with `[SUPPORT] `.
   - type: checkboxes
     attributes:
       label: Acknowledgements

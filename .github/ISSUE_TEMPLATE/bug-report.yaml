@@ -15,7 +15,7 @@ body:
           - https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues
         - Issues that have an answer in the Documentation and/or FAQ WILL get closed and be pointed into the right direction
 
-        - Please ensure that the bug report title starts with '[BUG] '.
+        - Please ensure that the bug report title starts with `[BUG] `.
 
         Stale issues without any relevant activity WILL get closed after a reasonable amount of time.
   - type: checkboxes
@@ -28,7 +28,7 @@ body:
   - type: textarea
     attributes:
       label: Describe the bug
-      description: ' clear and concise description of what the bug is.  A console output may be helpful to determine where the bug is.'
+      description: 'A clear and concise description of what the bug is.  A console output may be helpful to determine where the bug is.'
     validations:
       required: true
   - type: textarea
@@ -72,7 +72,7 @@ body:
   - type: input
     attributes:
       label: System Info - CookieAutoDelete Version
-      description: 'Do NOT put "LATEST"'
+      description: 'DO NOT PUT "LATEST"'
       placeholder: e.g. 3.6.0
     validations:
       required: true
