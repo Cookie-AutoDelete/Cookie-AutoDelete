@@ -4,11 +4,11 @@ about: Create a bug report to help us improve.  Please check the Documentation a
 title: '[BUG]  ???'
 labels: 'untested bug/issue'
 assignees: ''
-
 ---
+
 <!-- Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!
 
-- Please check both open and close issues to ensure that it is not previously reported!  Duplicate issues will be closed.
+- Please check both open and closed issues to ensure that it is not previously reported!  Duplicate issues will be closed.
 
 - PLEASE READ THE FAQ AND DOCUMENTATION BEFORE POSTING:
   - https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation
