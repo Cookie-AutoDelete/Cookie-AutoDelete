@@ -1,5 +1,5 @@
 ---
-name: Feature Request
+name: Feature Request (DEPRECATED)
 about: Suggest an idea for enhancement for this project.
 title: '[FEATURE REQUEST]  ???'
 labels: 'Feature Request'

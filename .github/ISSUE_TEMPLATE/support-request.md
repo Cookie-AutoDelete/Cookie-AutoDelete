@@ -1,5 +1,5 @@
 ---
-name: Support Request
+name: Support Request (DEPRECATED)
 about:
   It's not a bug, but you still need help.  Check the FAQ and Documentation first
   before proceeding.  New Support requests can also be made in the new discussions area.

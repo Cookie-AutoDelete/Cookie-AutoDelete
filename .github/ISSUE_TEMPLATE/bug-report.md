@@ -1,5 +1,5 @@
 ---
-name: Bug Report
+name: Bug Report (DEPRECATED)
 about: Create a bug report to help us improve.  Please check the Documentation and FAQ first!
 title: '[BUG]  ???'
 labels: 'untested bug/issue'
