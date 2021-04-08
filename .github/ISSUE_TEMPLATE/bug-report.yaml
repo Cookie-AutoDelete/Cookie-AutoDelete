@@ -3,7 +3,6 @@ name: Bug Report
 description: Create a bug report to help us improve. Please check the Documentation and FAQ first!
 title: '[Bug]  ???'
 labels: 'untested bug/issue'
----
 body:
   - type: markdown
     attributes:
