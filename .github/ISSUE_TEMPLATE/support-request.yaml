@@ -5,7 +5,6 @@ title: '[SUPPORT]  ???'
 labels: support
 assignees:
   - kennethtran93
-issue_body: false
 ---
 body:
   - type: markdown
@@ -31,3 +30,4 @@ body:
       description: A clear and concise description of what you need support with.
     validations:
       required: true
+issue_body: false
