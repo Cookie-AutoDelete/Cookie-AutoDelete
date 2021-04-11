@@ -174,12 +174,11 @@ class App extends Component<PopupAppComponentProps, InitialState> {
         }}
       >
         <div
-          className="row"
+          className="row pt-2"
           style={{
             alignItems: 'center',
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             justifyContent: 'center',
-            paddingTop: '8px',
           }}
         >
           <span id="CADTitle">{browser.i18n.getMessage('extensionName')}</span>
@@ -189,21 +188,18 @@ class App extends Component<PopupAppComponentProps, InitialState> {
           </span>
         </div>
         <div
-          className="row justify-content-center"
+          className="row justify-content-center p-1"
           style={{
             alignItems: 'center',
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
             borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-            padding: '4px 4px 8px 4px',
           }}
         >
           <IconButton
             iconName="power-off"
-            className={
-              settings[SettingID.ACTIVE_MODE].value
-                ? 'btn-success'
-                : 'btn-danger'
-            }
+            className={`btn-${
+              settings[SettingID.ACTIVE_MODE].value ? 'success' : 'danger'
+            } m-1`}
             onClick={() =>
               onUpdateSetting({
                 ...settings[SettingID.ACTIVE_MODE],
@@ -221,16 +217,13 @@ class App extends Component<PopupAppComponentProps, InitialState> {
                 : browser.i18n.getMessage('autoDeleteDisabledText')
             }
           />
-          <div className="w-100 py-1 d-sm-none"></div>
           <IconButton
             iconName={
               settings[SettingID.NOTIFY_AUTO].value ? 'bell' : 'bell-slash'
             }
-            className={
-              settings[SettingID.NOTIFY_AUTO].value
-                ? 'btn-success'
-                : 'btn-danger'
-            }
+            className={`btn-${
+              settings[SettingID.NOTIFY_AUTO].value ? 'success' : 'danger'
+            } m-1`}
             onClick={() =>
               onUpdateSetting({
                 ...settings[SettingID.NOTIFY_AUTO],
@@ -244,15 +237,11 @@ class App extends Component<PopupAppComponentProps, InitialState> {
                 : browser.i18n.getMessage('notificationDisabledText')
             }
           />
-          <div className="w-100 py-1 d-sm-none"></div>
           <div
             id="cleanButtonContainer"
-            className="btn-group"
+            className="btn-group m-1"
             role="group"
             aria-label="Clean Actions Group"
-            style={{
-              margin: '0 4px',
-            }}
           >
             <IconButton
               iconName="eraser"
@@ -290,10 +279,9 @@ class App extends Component<PopupAppComponentProps, InitialState> {
               </span>
             </button>
           </div>
-          <div className="w-100 py-1 d-sm-none"></div>
           <IconButton
             iconName="cog"
-            className="btn-info"
+            className="btn-info m-1"
             onClick={() => {
               if (isFirefoxNotAndroid(cache)) {
                 browser.tabs.create({

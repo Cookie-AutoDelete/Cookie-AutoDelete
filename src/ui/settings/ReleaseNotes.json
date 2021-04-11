@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "unreleased",
+      "notes": [
+        "Enhanced:  Additional Clean options now have small amount of spacing between them.",
+        "Fixed:  Popup UI Buttons stacking when font size is small even though there is enough room for more than one button per row.  Now it should only stack when width is too small.  Fixes #1034."
+      ]
+    },
+    {
       "version": "3.6.0",
       "notes": [
         "Added:  Implementation of FireFox Containers/Contextual Identities.  This allows CAD to monitor when changes to containers info have been made, and remove the CAD list matching that removed container ID.",
