@@ -798,7 +798,7 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Limpar porque $hostname$ não está nas listas Branca ou Cinza",
+    "message": "Limpar porque $hostname$ não está nas listas branca ou cinza",
     "description": "Clean because $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
@@ -842,7 +842,7 @@
     }
   },
   "reasonTabsWereIgnored": {
-    "message": "e também separadores abertos foram ignorados",
+    "message": "e os separadores abertos também foram ignorados",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
   },
   "reasonTabsWereNotIgnored": {
@@ -918,7 +918,7 @@
     "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
   },
   "reviewLinkMessage": {
-    "message": "Obrigado por experimentar o $cadTitle$. Se gostou, então por favor deixe uma análise.",
+    "message": "Obrigado por experimentar $cadTitle$. Se gostou, então por favor deixe uma crítica.",
     "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
     "placeholders": {
       "cadTitle": {
@@ -1038,7 +1038,7 @@
     }
   },
   "welcomeMessage": {
-    "message": "Olá! Durante esta sessão, o $cadTitle$ apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
+    "message": "Olá! Durante esta sessão, $cadTitle$ apagou $sessionDeleted$ cookies de um total de $totalDeleted$ cookies.",
     "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
     "placeholders": {
       "cadTitle": {
