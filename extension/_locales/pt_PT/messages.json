@@ -72,7 +72,7 @@
     "description": "Cache. Primarily used in notifications."
   },
   "chromeDebugMode": {
-    "message": "Certifique-se de que o 'Modo de programador' está ativado, depois clique em 'página em segundo plano' debaixo de Inspeção de Visualização.",
+    "message": "Certifique-se de que o 'Modo de programador' está ativado, depois clique em 'página em segundo plano' em Inspecionar visualização.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
   },
   "cleanDiscardedText": {
@@ -164,7 +164,7 @@
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
   "contextualIdentitiesEnabledText": {
-    "message": "Habilitar Suporte para Abas de Contêiner",
+    "message": "Ativar suporte a separadores contentores",
     "description": "Enable Support for Container Tabs. Currently only in Firefox."
   },
   "contributeText": {
@@ -180,7 +180,7 @@
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
   "cookieCleanUpOnStartText": {
-    "message": "Limpar cookies e outros dados de site de abas abertas na inicialização",
+    "message": "Limpar cookies e outros dados de sites para os separadores abertos ao iniciar",
     "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
@@ -212,7 +212,7 @@
     "description": "Copy to Clipboard.  Shown in a button to take action upon click."
   },
   "createDefaultExpressionOptionsText": {
-    "message": "Criar opções de expressão predefinidas",
+    "message": "Opções de criação de expressão predefinida",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
@@ -282,7 +282,7 @@
     "description": "Enable Cleanup Log and Counter"
   },
   "enableContextMenus": {
-    "message": "Ativar menus de contexto (menu de botão direito do rato)",
+    "message": "Ativar menus de contexto (botão direito do rato)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
   "enableGreyListCleanup": {
@@ -290,7 +290,7 @@
     "description": "Enable Greylist Cleanup on Browser Restart"
   },
   "enableNewVersionPopup": {
-    "message": "Ativar popup quando a nova versão é lançada",
+    "message": "Ativar popup quando uma nova versão é lançada",
     "description": "Enable Popup when New Version is Released"
   },
   "errorText": {
@@ -298,7 +298,7 @@
     "description": "Error!"
   },
   "exportSettingsText": {
-    "message": "Definições nucleares de exportação...",
+    "message": "Exportar definições nucleares...",
     "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
@@ -362,12 +362,22 @@
     }
   },
   "importFileTypeInvalid": {
-    "message": "Ficheiro fornecido não é de um tipo que manuseamos",
+    "message": "O ficheiro indicado não é de um tipo que possamos trabalhar",
     "description": "File given is not a type we handle"
   },
   "importFileValidationFailed": {
     "message": "Ficheiro fornecido falhou validação",
     "description": "File given failed validation"
+  },
+  "importListNotArray": {
+    "message": "$identifier$ não está formatado como uma lista de matriz.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
   },
   "importMissingKey": {
     "message": "Identificador em falta",
@@ -384,6 +394,10 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "As vírgulas apenas são permitidas em expressões regulares.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
   },
   "inputErrorEmpty": {
     "message": "A expressão revista não pode estar vazia!",
@@ -472,7 +486,7 @@
     "description": "Manual Action Notification - used as Notification Title."
   },
   "manualCleanError": {
-    "message": "$siteData$ não pode(m) ser limpo(s) para o separador:",
+    "message": "$siteData$ não podem ser limpos para o separador:",
     "description": "$siteData$ cannot be cleaned for tab:. Shown as notification if manual clean cookies cannot be done.",
     "placeholders": {
       "siteData": {
@@ -608,7 +622,7 @@
     }
   },
   "manualCleanSuccess": {
-    "message": "Limpeza para $siteData$ em $url$ resultado:",
+    "message": "Resultado da limpeza para $siteData$ em $url$:",
     "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
     "placeholders": {
       "siteData": {
@@ -794,7 +808,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Limpar por causa da limpeza de arranque e $hostname$ não está nas listas branca/cinza",
+    "message": "Limpar por causa da limpeza de arranque e $hostname$ não está nas listas branca ou cinza",
     "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
@@ -918,7 +932,7 @@
     "description": "Save expression"
   },
   "secondsText": {
-    "message": "Segundo(s)",
+    "message": "segundo(s)",
     "description": "second(s)"
   },
   "serviceWorkersCleanupText": {
@@ -960,7 +974,7 @@
     }
   },
   "showNumberOfCookiesInIconText": {
-    "message": "Mostrar o número de cookies para esse domínio sobre o ícone",
+    "message": "Mostrar número de cookies para o domínio sobre o ícone",
     "description": "Show Number of Cookies for that Domain over the Icon"
   },
   "siteDataText": {
@@ -984,7 +998,7 @@
     "description": "Success!"
   },
   "toGreyListText": {
-    "message": "Adicionar à lista cinza (limpar no reinício do navegador)",
+    "message": "Adicionar à lista cinza (limpar ao reiniciar o navegador)",
     "description": "Add to Greylist (Clean on Browser Restart)"
   },
   "toWhiteListText": {
