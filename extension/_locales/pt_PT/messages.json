@@ -92,7 +92,7 @@
     "description": "Clean"
   },
   "cleanupDomainChangeText": {
-    "message": "Ativar limpeza na mudança de domínio",
+    "message": "Ativar limpeza ao mudar de domínio",
     "description": "Enable Cleanup on Domain Change"
   },
   "cleanupActionsBypass": {
@@ -108,11 +108,11 @@
     "description": "Clear Logs"
   },
   "consoleDebugMode": {
-    "message": "Clique no separador da consola",
+    "message": "Clique no separador Consola",
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
-    "message": "AVISO:  Ativar separadores contentores com quaisquer das limpezas de dados de navegação adicionais pode causes efeitos secundários colaterais devido a limitações de API dos navegadores.  Tipos de dados de sites, com a exceção de cookies, irão ser limpos por nome de anfitrião para TODOS os contentores.",
+    "message": "AVISO: Ativar separadores contentores com quaisquer limpezas de dados de navegação pode causar efeitos secundários devido a limitações das API dos navegadores. Os tipos de dados dos sites, com a exceção dos cookies, irão ser limpos por nome de anfitrião para TODOS os contentores.",
     "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
