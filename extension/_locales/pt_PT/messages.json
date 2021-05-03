@@ -120,11 +120,11 @@
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
   },
   "contextMenusParentExpression": {
-    "message": "Adicionar menu de domínio/expressão",
+    "message": "Menu para adicionar domínio/expressão",
     "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
   },
   "contextMenusSelectedDomainLink": {
-    "message": "Para domínio somente de texto selecionado",
+    "message": "Apenas para o domínio da ligação selecionada",
     "description": "For domain only of selected link. Shown in right-click menu."
   },
   "contextMenusSelectedDomainPage": {
@@ -132,7 +132,7 @@
     "description": "For domain only of selected page. Shown in right-click menu."
   },
   "contextMenusSelectedDomainText": {
-    "message": "Para domínio somente de texto selecionado: $selected$",
+    "message": "Apenas para o domínio do texto selecionado: $selected$",
     "description": "For domain only of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
@@ -142,15 +142,15 @@
     }
   },
   "contextMenusSelectedSubdomainLink": {
-    "message": "Para todos os subdomínios com domínio de ligação selecionado",
+    "message": "Para todos os subdomínios com o domínio da ligação selecionada",
     "description": "For all subdomains with domain of selected link. Shown in right-click menu."
   },
   "contextMenusSelectedSubdomainPage": {
-    "message": "Para todos os subdomínios com domínio de página selecionada",
+    "message": "Para todos os subdomínios com o domínio da página selecionada",
     "description": "For all subdomains with domain of selected page. Shown in right-click menu."
   },
   "contextMenusSelectedSubdomainText": {
-    "message": "Para todos os subdomínios com domínio de texto selecionado: $selected$",
+    "message": "Para todos os subdomínios com o domínio do texto selecionado: $selected$",
     "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
     "placeholders": {
       "selected": {
@@ -160,7 +160,7 @@
     }
   },
   "contextualIdentitiesAutoRemoveText": {
-    "message": "Ativar Remoção automática de lista de expressões quando o respetivo Contentor for removido.",
+    "message": "Ativar remoção automática de lista de expressões se o respetivo contentor for removido.",
     "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
   },
   "contextualIdentitiesEnabledText": {
@@ -191,6 +191,26 @@
     "message": "Executar limpeza agora, excluir domínios de separadores abertos",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "As suas definições atuais.  Se necessário, copie e cole esta informação no GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "A sua informação de sistema.  Copie e cole na secção relevante do GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Falha ao copiar.  Tente selecionar e copiar manualmente o texto.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Copiado com sucesso!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Copiar para a área de transferência",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Criar opções de expressão predefinidas",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -210,8 +230,12 @@
     }
   },
   "debugMode": {
-    "message": "Ativar modo de depuração (saídas da consola adicionais)",
+    "message": "Ativar modo de depuração (saídas adicionais de consola)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Informação de depuração",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Predefinição",
@@ -278,7 +302,7 @@
     "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
-    "message": "Exportar Expressões...",
+    "message": "Exportar expressões...",
     "description": "Export Expressions... Found in List of Expressions."
   },
   "exportTitleTimestamp": {
@@ -327,6 +351,16 @@
     "message": "Importar definições nucleares...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "Ficheiro não encontrado: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Ficheiro fornecido não é de um tipo que manuseamos",
     "description": "File given is not a type we handle"
@@ -340,7 +374,7 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "Importar Expressões...",
+    "message": "Importar expressões...",
     "description": "Import Expressions... Found in List of Expressions."
   },
   "indexedDBCleanupText": {
@@ -350,6 +384,20 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorEmpty": {
+    "message": "A expressão revista não pode estar vazia!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "A expressão regular não é válida. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
   },
   "keepAllCookiesText": {
     "message": "Manter todos os cookies",
@@ -586,7 +634,7 @@
     "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
   },
   "minutesText": {
-    "message": "Minuto(s)",
+    "message": "minuto(s)",
     "description": "minute(s)"
   },
   "missingContainerText": {
@@ -602,7 +650,7 @@
     "description": "No expressions defined."
   },
   "noPrivateLogging": {
-    "message": "Os registos de limpeza não serão gerados para separadores em navegação privada / incognito / InPrivada.",
+    "message": "Os registos de limpeza não serão gerados para separadores em Navegação Privada / Incógnito / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
   "noSearchExpressionsFound": {
@@ -726,7 +774,7 @@
     }
   },
   "reasonCleanGreyList": {
-    "message": "Limpar por causa da limpeza de arranque e $matchedExpression$ está lista cinza",
+    "message": "Limpar porque limpeza de arranque e $matchedExpression$ está na lista cinza",
     "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
     "placeholders": {
       "matchedExpression": {
