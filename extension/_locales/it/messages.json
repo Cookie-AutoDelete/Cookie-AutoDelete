@@ -191,6 +191,18 @@
     "message": "Esegui la pulizia ora, esclude i domini dalle schede aperte",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Le impostazioni attuali. Se necessario, copiale e incollale nella segnalazione su GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Le informazioni di sistema. Copiale e incollale nella sezione pertinente della segnalazione su GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Copia fallita. Prova a selezionare e copiare manualmente il testo.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
   "copySuccessText": {
     "message": "Copiato con successo!",
     "description": "Copied successfully!  Shows after a successful text copy to clipboard."
