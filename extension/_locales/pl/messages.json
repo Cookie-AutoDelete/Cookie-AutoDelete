@@ -191,6 +191,26 @@
     "message": "Uruchom czyszczenie teraz, wyklucz domeny z otwartych kart",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Twoje bieżące ustawienia. W razie potrzeby, skopiuj i wklej do zgłoszenia błędu na GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Twoje informacje systemowe. Skopiuj i wklej do odpowiedniej sekcji zgłoszenia błędu na GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Kopiowanie nie powiodło się. Spróbuj ręcznie zaznaczyć i skopiować tekst.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Skopiowano pomyślnie!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Skopiuj do schowka",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Utwórz formuły z domyślnymi opcjami",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -212,6 +232,10 @@
   "debugMode": {
     "message": "Włącz tryb debugowania (dodatkowe komunikaty w konsoli)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Informacje debugowania",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Domyślnie",
