@@ -4,7 +4,7 @@
     "description": "About"
   },
   "activeModeDelayText": {
-    "message": "Atraso antes da limpeza automática",
+    "message": "Atraso Antes da Limpeza Automática",
     "description": "Delay Before Automatic Cleaning"
   },
   "activeModeText": {
@@ -191,6 +191,26 @@
     "message": "Executar limpeza agora, excluir domínios de abas abertas",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Suas configurações atuais. Se necessário, copie e cole isto no problema do GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Sua Informação do Sistema. Copie e cole na seção relevante do Problema GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Falha ao copiar. Tente manualmente selecionar e copiar o texto.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Copiado com sucesso!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Copiar para Área de Transferência",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Criar opções de expressão padrão",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -212,6 +232,10 @@
   "debugMode": {
     "message": "Ativar Modo de Depuração (Console Outputs Adicionais)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Informações de depuração",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Padrão",
