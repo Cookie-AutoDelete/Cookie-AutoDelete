@@ -179,6 +179,10 @@
     "message": "Temizlemeyi şimdi çalıştırın, alanları açık sekmelerden hariç tutun",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copySuccessText": {
+    "message": "Başarıyla Kopyalandı!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
   "copyToClipboardText": {
     "message": "Panoya Kopyala",
     "description": "Copy to Clipboard.  Shown in a button to take action upon click."
