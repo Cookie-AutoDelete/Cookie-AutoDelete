@@ -361,6 +361,10 @@
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
   },
+  "inputErrorComma": {
+    "message": "コンマは正規表現でのみ使用できます。",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
   "inputErrorSpace": {
     "message": "ホストネームに空白を含めることはできません。",
     "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
