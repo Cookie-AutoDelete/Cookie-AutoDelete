@@ -191,6 +191,26 @@
     "message": "Exécuter le nettoyage maintenant, exclure les domaines des onglets ouverts",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Vos paramètres actuels. À joindre sur GitHub si nécessaire.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Vos informations système. À poster dans la section appropriée sur GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Échec de la copie. Essayez de sélectionner et copier manuellement le texte.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Copié avec succès !",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Copier dans le presse-papiers",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Définir les options d'expression par défaut",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -212,6 +232,10 @@
   "debugMode": {
     "message": "Activer le mode débogage (sorties dans la console supplémentaires)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Informations de débogage",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Par défaut",
