@@ -8,7 +8,7 @@
     "description": "Delay Before Automatic Cleaning"
   },
   "activeModeText": {
-    "message": "自動クリーニングを有効にする",
+    "message": "自動消去を有効にする",
     "description": "Enable Automatic Cleaning"
   },
   "activityLogSiteDataDomainsText": {
@@ -92,7 +92,7 @@
     "description": "Clean"
   },
   "cleanupDomainChangeText": {
-    "message": "ドメイン変更のクリーンアップを有効にします。",
+    "message": "ドメインが変更されたときに消去します。",
     "description": "Enable Cleanup on Domain Change"
   },
   "cleanupActionsBypass": {
@@ -184,7 +184,7 @@
     "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
+    "message": "開いているタブのCookieも含め今すぐ消去する",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
@@ -238,7 +238,7 @@
     "description": "Restore Default Settings"
   },
   "disableAutoDeleteText": {
-    "message": "自動削除無効に切り替え(手動モード)",
+    "message": "自動消去を無効にする（手動モード）",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "documentationText": {
@@ -266,7 +266,7 @@
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "enableCleanupLogText": {
-    "message": "クリーンアップのログとカウンターを有効にします。",
+    "message": "消去履歴とカウンターを有効にします。",
     "description": "Enable Cleanup Log and Counter"
   },
   "enableContextMenus": {
@@ -382,7 +382,7 @@
     "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
   },
   "keepAllCookiesText": {
-    "message": "すべてのクッキーを維持する",
+    "message": "すべてのCookieを維持する",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepAllCookiesGreyText": {
@@ -670,7 +670,7 @@
     "description": "Notification enabled"
   },
   "notificationTitle": {
-    "message": "クッキーが削除された!",
+    "message": "Cookie は削除されました!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationTitleSiteData": {
