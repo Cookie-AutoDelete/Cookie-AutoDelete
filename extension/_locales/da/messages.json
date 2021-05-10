@@ -8,7 +8,7 @@
     "description": "Delay Before Automatic Cleaning"
   },
   "activeModeText": {
-    "message": "Aktivér automatisk rengøring",
+    "message": "Aktivér automatisk sletning",
     "description": "Enable Automatic Cleaning"
   },
   "activityLogSiteDataDomainsText": {
@@ -262,7 +262,7 @@
     "description": "Domain Expression"
   },
   "dropdownAdditionalCleaningOptions": {
-    "message": "Skift dropdown for yderligere rengøringshandlinger",
+    "message": "Skift dropdown for yderligere sletningshandlinger",
     "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
   },
   "editExpressionText": {
