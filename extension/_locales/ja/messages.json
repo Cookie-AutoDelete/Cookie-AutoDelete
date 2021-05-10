@@ -191,6 +191,14 @@
     "message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copySuccessText": {
+    "message": "正常にコピーしました!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "クリップボードにコピー",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "既定値の「式のオプション」を作成する",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -212,6 +220,10 @@
   "debugMode": {
     "message": "デバッグモードを有効にする（追加のコンソール出力）",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "デバッグ情報",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "既定値",
