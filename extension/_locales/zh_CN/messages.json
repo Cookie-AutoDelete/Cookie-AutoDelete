@@ -199,6 +199,14 @@
     "message": "您的系统信息。复制并粘贴到 GitHub Issue 的相关位置。",
     "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
   },
+  "copyFailedText": {
+    "message": "复制失败。请尝试手动选中后复制文本。",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "复制成功!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
   "copyToClipboardText": {
     "message": "复制到剪贴板",
     "description": "Copy to Clipboard.  Shown in a button to take action upon click."
