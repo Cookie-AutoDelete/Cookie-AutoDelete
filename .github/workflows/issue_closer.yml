@@ -10,17 +10,20 @@ jobs:
       isBug: ${{ steps.issueBug.outputs.isBug }}
       isFeature: ${{ steps.issueFeature.outputs.isFeature }}
       isSupport: ${{ steps.issueSupport.outputs.isSupport }}
+      isDevAssoc: ${{ steps.issueDevAssoc.outputs.isDevAssoc }}
     steps:
       - name: Issue Parser
         id: parseIssue
         env:
           GH_ISSUE: ${{ toJson(github.event.issue) }}
+          GH_ASSOC: ${{ github.event.issue.author_association }}
           # ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_ID: ${{ github.event.issue.id }}
           ISSUE_LABELS: ${{ toJson(github.event.issue.labels.*.name) }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
+          echo "ASSOC:   $GH_ASSOC"
           echo "ID:      $ISSUE_ID"
           echo "NUMBER:  $ISSUE_NUMBER"
           echo "TITLE:   $ISSUE_TITLE"
@@ -37,11 +40,15 @@ jobs:
         id: issueSupport
         if: startsWith(github.event.issue.title, '[SUPPORT]') || contains(github.event.issue.labels.*.name, 'support')
         run: echo "::set-output name=isSupport::true"
+      - name: Issue created from owner or members
+        id: issueDevAssoc
+        if: github.event.issue.author_association == 'MEMBER' || github.event.issue.author_association == 'OWNER'
+        run: echo "::set-output name=isDevAssoc::true"
   issue_bug:
     name: Issue Check for Bug Report
     runs-on: ubuntu-latest
     needs: pre_info
-    if: needs.pre_info.outputs.isBug == 'true'
+    if: needs.pre_info.outputs.isDevAssoc != 'true' && needs.pre_info.outputs.isBug == 'true'
     steps:
       - name: Title does not start with [BUG]
         id: missingTitlePrefix
@@ -49,49 +56,14 @@ jobs:
         run: |
           echo "::set-output name=msg::- Title does not start with [BUG]."
           echo "::warning ::Title does not start with [BUG]."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[BUG]  ???') || endsWith(github.event.issue.title, '[BUG]')
         run: |
           echo "::set-output name=msg::- Title is missing."
           echo "::warning ::Title is missing."
-          echo "::set-env name=issue_close::true"
-      - name: Hidden Acknowledgement not removed
-        id: unremovedHidden
-        if: contains(github.event.issue.body, 'Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!') || contains(github.event.issue.body, 'By removing this entire section (from <!-- to ->) you acknowledge that you have read both the Documentation and FAQ, and that the solution was not found.')
-        run: |
-          echo "::set-output name=msg::- Missing User Acknowledgement. Please search existing (open and closed) issues, as well as read the Documentation and FAQ first!"
-          echo "::warning ::Hidden Acknowledgement not removed."
-          echo "::set-env name=issue_close::true"
-      - name: Body does not contain all required headings
-        id: missingHeadings
-        if: ( ! (contains(github.event.issue.body, '**Describe the bug**') && contains(github.event.issue.body, '**To Reproduce**') && contains(github.event.issue.body, '**Expected Behavior**') && contains(github.event.issue.body, 'Your System Info') && contains(github.event.issue.body, 'OS:') && contains(github.event.issue.body, 'Browser Info:') && contains(github.event.issue.body, 'CookieAutoDelete Version:') ))
-        run: |
-          echo "::set-output name=msg::- Missing required section headings and details."
-          echo "::warning ::Missing Requires section headers."
-          echo "::set-env name=issue_close::true"
-      - name: Description of Bug is missing
-        id: missingDescription
-        if: contains(github.event.issue.body, 'A clear and concise description of what the bug is.')
-        run: |
-          echo "::set-output name=msg::- Missing bug description."
-          echo "::warning ::Missing Bug Description."
-          echo "::set-env name=issue_close::true"
-      - name: Steps to Reproduce is missing
-        id: missingSteps
-        if: contains(github.event.issue.body, '1. Go to ''...''')
-        run: |
-          echo "::set-output name=msg::- Missing steps to reproduce bug."
-          echo "::warning ::Missing Steps to Reproduce Bug."
-          echo "::set-env name=issue_close::true"
-      - name: Expected Behaviour is missing
-        id: missingExpected
-        if: contains(github.event.issue.body, 'A clear and concise description of what you expected to happen.')
-        run: |
-          echo "::set-output name=msg::- Missing expected behavior."
-          echo "::warning ::Missing Expected Behavior."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Checking (via Bash) for System Info
         id: sysInfoBash
         env:
@@ -113,20 +85,20 @@ jobs:
         run: |
           echo "::set-output name=msg::- Missing system info details."
           echo "::warning ::Missing System Info Details."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: CAD Version set to latest
         id: latestCAD
         if: steps.sysInfoBash.outputs.latest == 'true'
         run: |
           echo "::set-output name=msg::- CAD Version set to **latest**.  Please change this to reflect version that the bug is found in."
           echo "::warning ::CAD Version set to 'latest'."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
         if: env.issue_close == 'true'
         uses: andymckay/labeler@1.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          add-labels: "incomplete"
+          add-labels: 'incomplete'
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
         uses: peter-evans/close-issue@v1
@@ -138,16 +110,6 @@ jobs:
 
             ${{ steps.missingTitle.outputs.msg }}
 
-            ${{ steps.unremovedHidden.outputs.msg }}
-
-            ${{ steps.missingHeadings.outputs.msg }}
-
-            ${{ steps.missingDescription.outputs.msg }}
-
-            ${{ steps.missingSteps.outputs.msg }}
-
-            ${{ steps.missingExpected.outputs.msg }}
-
             ${{ steps.missingSysInfo.outputs.msg }}
 
             ${{ steps.latestCAD.outputs.msg }}
@@ -157,7 +119,7 @@ jobs:
     name: Issue Check for Feature Request
     runs-on: ubuntu-latest
     needs: pre_info
-    if: needs.pre_info.outputs.isFeature == 'true'
+    if: needs.pre_info.outputs.isDevAssoc != 'true' && needs.pre_info.outputs.isFeature == 'true'
     steps:
       - name: Title does not start with [FEATURE REQUEST]
         id: missingTitlePrefix
@@ -165,48 +127,20 @@ jobs:
         run: |
           echo "::set-output name=msg::- Title does not start with [FEATURE REQUEST]."
           echo "::warning ::Title does not start with [FEATURE REQUEST]."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[FEATURE REQUEST]  ???') || endsWith(github.event.issue.title, '[FEATURE REQUEST]')
         run: |
           echo "::set-output name=msg::- Title is missing."
           echo "::warning ::Title is missing."
-          echo "::set-env name=issue_close::true"
-      - name: Hidden Acknowledgement not removed
-        id: unremovedHidden
-        if: contains(github.event.issue.body, 'Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!') || contains(github.event.issue.body, 'By removing this entire section (from <!-- to ->) you acknowledge that you have searched all the existing open and closed issues/requests and that your feature was not previously requested.')
-        run: |
-          echo "::set-output name=msg::- Missing User Acknowledgement. Please search existing (open and closed) issues/feature requests first!"
-          echo "::warning ::Hidden Acknowledgement is not removed."
-          echo "::set-env name=issue_close::true"
-      - name: Body does not contain all required headings
-        id: missingHeadings
-        if: (! (contains(github.event.issue.body, '**Is your feature request related to a problem? Please describe.**') && contains(github.event.issue.body, '**Describe the solution you''d like**') ))
-        run: |
-          echo "::set-output name=msg::- Missing required section headings and details."
-          echo "::warning ::Missing required headers."
-          echo "::set-env name=issue_close::true"
-      - name: Description of Feature Request is missing
-        id: missingDescription
-        if: contains(github.event.issue.body, 'A clear and concise description of what the problem is. Ex. I''m always frustrated when [...]')
-        run: |
-          echo "::set-output name=msg::- Missing feature request description."
-          echo "::warning ::Missing Feature Request Description."
-          echo "::set-env name=issue_close::true"
-      - name: Solution is missing
-        id: missingSolution
-        if: contains(github.event.issue.body, 'A clear and concise description of what you want to happen.')
-        run: |
-          echo "::set-output name=msg::- Missing solution for feature request."
-          echo "::warning ::Missing Solution to Feature Request."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
         if: env.issue_close == 'true'
         uses: andymckay/labeler@1.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          add-labels: "incomplete"
+          add-labels: 'incomplete'
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
         uses: peter-evans/close-issue@v1
@@ -218,20 +152,12 @@ jobs:
 
             ${{ steps.missingTitle.outputs.msg }}
 
-            ${{ steps.unremovedHidden.outputs.msg }}
-
-            ${{ steps.missingHeadings.outputs.msg }}
-
-            ${{ steps.missingDescription.outputs.msg }}
-
-            ${{ steps.missingSolution.outputs.msg }}
-
             If you have modified the initial post or the required sections were already filled out, please comment and ping `@kennethtran93` to reopen it (or open a new feature request issue and follow the provided template).
   issue_support:
     name: Issue Check for Support
     runs-on: ubuntu-latest
     needs: pre_info
-    if: needs.pre_info.outputs.isSupport == 'true'
+    if: needs.pre_info.outputs.isDevAssoc != 'true' && needs.pre_info.outputs.isSupport == 'true'
     steps:
       - name: Title does not start with [SUPPORT]
         id: missingTitlePrefix
@@ -239,41 +165,20 @@ jobs:
         run: |
           echo "::set-output name=msg::- Title does not start with [SUPPORT]."
           echo "::warning ::Title does not start with [SUPPORT]."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[SUPPORT]  ???') || endsWith(github.event.issue.title, '[SUPPORT]')
         run: |
           echo "::set-output name=msg::- Title is missing."
           echo "::warning ::Title is missing."
-          echo "::set-env name=issue_close::true"
-      - name: Hidden Acknowledgement not removed
-        id: unremovedHidden
-        if: contains(github.event.issue.body, 'Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!') || contains(github.event.issue.body, 'By removing this entire section (from <!-- to ->) you acknowledge that you have searched all the existing open and closed issues and that your support question was not previously answered.')
-        run: |
-          echo "::set-output name=msg::- Missing User Acknowledgement. Please search existing (open and closed) question/support issues first!"
-          echo "::warning ::Hidden Acknowledgement not removed."
-          echo "::set-env name=issue_close::true"
-      - name: Body does not contain all required headings
-        id: missingHeadings
-        if: (! contains(github.event.issue.body, '**Please describe what you need support with.**'))
-        run: |
-          echo "::set-output name=msg::- Missing required section headings and details."
-          echo "::warning ::Missing required section headings."
-          echo "::set-env name=issue_close::true"
-      - name: Description of Support is missing
-        id: missingDescription
-        if: contains(github.event.issue.body, 'A clear and concise description of what you need support with.')
-        run: |
-          echo "::set-output name=msg::- Missing support description."
-          echo "::warning ::Missing Support Description."
-          echo "::set-env name=issue_close::true"
+          echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
         if: env.issue_close == 'true'
         uses: andymckay/labeler@1.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          add-labels: "incomplete"
+          add-labels: 'incomplete'
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
         uses: peter-evans/close-issue@v1
@@ -285,31 +190,25 @@ jobs:
 
             ${{ steps.missingTitle.outputs.msg }}
 
-            ${{ steps.unremovedHidden.outputs.msg }}
-
-            ${{ steps.missingHeadings.outputs.msg }}
-
-            ${{ steps.missingDescription.outputs.msg }}
-
             If you have modified the initial post or the required sections were already filled out, please comment and ping `@kennethtran93` to reopen it (or open a new support issue and follow the provided template).
   issue_unknown:
     name: Unknown Issue
     runs-on: ubuntu-latest
     needs: pre_info
-    if: needs.pre_info.outputs.isBug != 'true' && needs.pre_info.outputs.isFeature != 'true' && needs.pre_info.outputs.isSupport != 'true'
+    if: needs.pre_info.outputs.isDevAssoc != 'true' && needs.pre_info.outputs.isBug != 'true' && needs.pre_info.outputs.isFeature != 'true' && needs.pre_info.outputs.isSupport != 'true'
     steps:
       - name: Add Incomplete Label
         uses: andymckay/labeler@1.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          add-labels: "incomplete"
+          add-labels: 'incomplete'
       - name: Comment and Close Issue
         uses: peter-evans/close-issue@v1
         with:
           comment: |
-            @${{ github.actor }} This issue has been automatically closed for not using any of the provided issue templates.
+            @${{ github.actor }} This issue has been automatically closed for not using any of the provided issue forms/templates.
             As such, responses to this specific issue may not be given at all.
 
             Please use the provided templates at https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/issues/new/choose.
 
-            Select the relevant issue type, then read and follow the instructions given in the issue body.
+            Select the relevant issue type, then read and follow the instructions given in the issue form/body.

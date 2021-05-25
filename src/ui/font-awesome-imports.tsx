@@ -10,6 +10,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 import { faBellSlash } from '@fortawesome/free-solid-svg-icons/faBellSlash';
 import { faCog } from '@fortawesome/free-solid-svg-icons/faCog';
+import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy';
 import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
 import { faEraser } from '@fortawesome/free-solid-svg-icons/faEraser';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons/faExchangeAlt';
@@ -33,6 +34,7 @@ export default (): void => {
     faBell,
     faBellSlash,
     faCog,
+    faCopy,
     faDownload,
     faEraser,
     faExchangeAlt,

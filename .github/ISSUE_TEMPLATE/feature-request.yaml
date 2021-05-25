@@ -1,0 +1,42 @@
+---
+name: Feature Request
+description: Suggest an idea for enhancing/improving this project
+title: '[FEATURE REQUEST]  ???'
+labels: 'Feature Request'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read carefully.  Issues that do not follow the format WILL be closed and may not be answered/resolved!
+
+        - Please check both open and closed issues to ensure that it was not previously requested.  Duplicates will be closed.
+
+        - Please ensure that the feature request title starts with `[FEATURE REQUEST] `.
+  - type: checkboxes
+    attributes:
+      label: Acknowledgements
+      description: Please check the box below to acknowledge that you have searched all existing open and closed requests and that your feature was not previously requested.
+      options:
+        - label: I acknowledge that I have read the above items
+          required: true
+  - type: textarea
+    attributes:
+      label: Is your feature request related to a problem? Please describe.
+      description: A clear and concise description of what the problem is.
+      placeholder: e.g. I'm always frustrated when [...].
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the solution that you'd like
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Add any other context or screenshots about the feature request here.

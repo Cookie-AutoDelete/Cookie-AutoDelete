@@ -1,0 +1,82 @@
+---
+name: Bug Report
+description: Create a bug report to help us improve. Please check the Documentation and FAQ first!
+title: '[Bug]  ???'
+labels: 'untested bug/issue'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read carefully.  Issues that do not follow the format WILL be closed and may not be answered/resolved!
+        - Please check both open and closed issues to ensure that it is not previously reported!  Duplicate issues will be closed.
+
+        - PLEASE READ THE FAQ AND DOCUMENTATION BEFORE POSTING:
+          - https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation
+          - https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues
+        - Issues that have an answer in the Documentation and/or FAQ WILL get closed and be pointed into the right direction
+
+        - Please ensure that the bug report title starts with `[BUG] `.
+
+        Stale issues without any relevant activity WILL get closed after a reasonable amount of time.
+  - type: checkboxes
+    attributes:
+      label: Acknowledgements
+      description: Please check the box below to acknowledge that you have read the above items and that the solution was not found.
+      options:
+        - label: I acknowledge that I have read the above items
+          required: true
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: 'A clear and concise description of what the bug is.  A console output may be helpful to determine where the bug is.'
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: 'How did you trigger this bug?  Please walk us through it step by step.'
+      placeholder: |
+        Steps to reproduce the behavior:
+
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: 'A clear and concise description of what you expected to happen.'
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: |
+        Add screenshots to help explain the bug, notably the settings and any related errors.
+        For showing cookie counts or other storage data, it would be helpful to also include a partially sanitized screenshot of the Storage Inspector that you can access through Development Tools (`F12`) WHILE on that tab/site.
+  - type: input
+    attributes:
+      label: System Info - Operating System (OS)
+      placeholder: e.g. iOS, Windows 10 Pro, Android/Samsung
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: System Info - Browser Info
+      description: '** If you are using a browser edition that is not standard/public release, please include the edition alongside the version number (e.g. Chrome Dev, Chrome Canary, Firefox Dev, Firefox Nightly)'
+      placeholder: e.g. Chrome 88.9.1234.567, Firefox 88.0.1
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: System Info - CookieAutoDelete Version
+      description: 'DO NOT PUT "LATEST"'
+      placeholder: e.g. 3.6.0
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: 'Add any other context about the bug below.'

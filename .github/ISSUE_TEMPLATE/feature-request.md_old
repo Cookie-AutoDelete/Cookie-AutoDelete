@@ -1,5 +1,5 @@
 ---
-name: Feature Request
+name: Feature Request (DEPRECATED)
 about: Suggest an idea for enhancement for this project.
 title: '[FEATURE REQUEST]  ???'
 labels: 'Feature Request'
@@ -8,12 +8,12 @@ assignees: ''
 
 <!-- Please read carefully!  Issues that do not follow the format WILL be closed without it being resolved!
 
-- Please check both open and close issues to ensure that it is not previously reported!  Duplicate issues will be closed.
+- Please check both open and closed issues to ensure that it is not previously reported!  Duplicate issues will be closed.
 
 - Please ensure that the feature request title starts with '[FEATURE REQUEST] '.
 - Please ensure that the feature request body contains the required section is filled in, keeping the headers intact.
 
-By removing this entire section (from <!-- to ->) you acknowledge that you have searched all the existing open and closed issues/requests and that your feature was not previously requested.
+By removing this entire section (from <!-- to ->) you acknowledge that you have searched all the existing open and closed requests and that your feature was not previously requested.
  -->
 
 **Is your feature request related to a problem? Please describe.** <!-- REQUIRED SECTION -->

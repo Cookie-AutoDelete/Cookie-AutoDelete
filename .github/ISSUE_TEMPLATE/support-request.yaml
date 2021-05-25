@@ -1,0 +1,31 @@
+---
+name: Support Request
+description: It's not a bug, but you still need help.  Check the FAQ and Documentation first before proceeding.  New Support Requests can also be made in the discussions area.
+title: '[SUPPORT]  ???'
+labels: support
+assignees:
+  - kennethtran93
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read carefully!  Support requests that do not follow the format WILL be closed without it being resolved!
+
+        This support form is an alternate to support issues.  Support Q&A can now be created in the new Discussions area https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/discussions/new.  This allows marking a discussion post as answered to assist others.  Feel free to create support questions here or through the discussions area.  Support questions created here can be moved to discussions by a member of CAD Team.
+
+        - Please check both open and closed issues to ensure that your support question has not been answered yet!  Duplicate issues will be closed and pointed to its duplicated/relevant issue.
+
+        - Please ensure that the support title starts with `[SUPPORT] `.
+  - type: checkboxes
+    attributes:
+      label: Acknowledgements
+      description: Please check the box below to acknowledge that you have searched all existing open and closed issues and that your support request was not previously answered.
+      options:
+        - label: I acknowledge that I have read the above items
+          required: true
+  - type: textarea
+    attributes:
+      label: Please describe what you need support with
+      description: A clear and concise description of what you need support with.
+    validations:
+      required: true
