@@ -37,7 +37,7 @@ module.exports = {
   },
   plugins: [
     new webpack.BannerPlugin(`
-      Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+      Copyright (c) 2017-2021 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
       Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
 
       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -57,25 +57,25 @@ module.exports = {
         {
           force: true,
           from: 'bootstrap/dist/css/bootstrap.min.css*',
-          to: '../../extension/global_files/[name].[ext]',
+          to: '../../extension/global_files/[name][ext]',
           context: `${__dirname}/node_modules`,
         },
         {
           force: true,
           from: 'bootstrap/dist/js/bootstrap.bundle.min.js*',
-          to: '../../extension/global_files/[name].[ext]',
+          to: '../../extension/global_files/[name][ext]',
           context: `${__dirname}/node_modules`,
         },
         {
           force: true,
           from: 'jquery/dist/jquery.slim.min*',
-          to: '../../extension/global_files/[name].[ext]',
+          to: '../../extension/global_files/[name][ext]',
           context: `${__dirname}/node_modules`,
         },
         {
           force: true,
           from: 'webextension-polyfill/dist/browser-polyfill.min.js*',
-          to: '../../extension/global_files/[name].[ext]',
+          to: '../../extension/global_files/[name][ext]',
           context: `${__dirname}/node_modules`,
         },
       ],
