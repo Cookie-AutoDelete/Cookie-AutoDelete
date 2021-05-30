@@ -112,7 +112,7 @@
     "description": "Click on the Console Tab. Found after enabling debug mode."
   },
   "containerSiteDataWarning": {
-    "message": "VAROITUS: Sallimalla konttivälilehdet millä tahansa yllä olevalla selausdatan puhdistuksella voi aiheuttaa ei-toivottuja sivuvaikutuksia selaimen API-rajoituksista. Sivuston tietotyypit, lukuun ottamatta evästeitä, tyhjennetään isäntänimellä KAIKKin konttien osalta.",
+    "message": "VAROITUS: Säiliövälilehtien salliminen yhdessä minkä tahansa ylläolevan selausdatan puhdistuksen kanssa voi aiheuttaa selaimen API-rajoituksista johtuvia ei-toivottuja sivuvaikutuksia. Evästeitä lukuun ottamatta kaikki sivuston tietotyypit tyhjennetään isäntänimen mukaan KAIKKIEN säiliöiden osalta.",
     "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
   },
   "contextMenusParentClean": {
@@ -159,8 +159,12 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Ota käyttöön automaattinen lausekeluettelon poisto, kun siihen liittyvä säiliö poistetaan.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
-    "message": "Ota tuki käyttöön säilytysvälilehdet",
+    "message": "Ota käyttöön tuki säiliövälilehdille (Container Tabs)",
     "description": "Enable Support for Container Tabs. Currently only in Firefox."
   },
   "contributeText": {
@@ -192,7 +196,7 @@
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
   },
   "currentContainerInfo": {
-    "message": "Nykyinen kontti valittu: $ID$ ( $Name$ )",
+    "message": "Valittuna oleva säiliö: $ID$ ( $Name$ )",
     "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
@@ -214,7 +218,7 @@
     "description": "Default. Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultContainerText": {
-    "message": "Ei Sisältöä",
+    "message": "Ei säiliötä",
     "description": "No Container. This will be in brackets. Used in List of Expression in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
@@ -582,7 +586,7 @@
     "description": "minute(s)"
   },
   "missingContainerText": {
-    "message": "VIRHE SISÄLLÄ",
+    "message": "VIRHEELLINEN SÄILIÖ",
     "description": "INVALID CONTAINER. Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {

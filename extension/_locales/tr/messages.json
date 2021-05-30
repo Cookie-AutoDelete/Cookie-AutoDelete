@@ -11,6 +11,20 @@
     "message": "Otomatik Temizlemeyi Etkinleştir",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "$domains$ için $siteData$ temizlemesi çalıştırıldı",
+    "description": "Invoked cleanup of $siteData$ for: $domains$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
   "addNewExpressionNotification": {
     "message": "$cookieStore$ çerez deposundaki $listType$ liste türü için $expression$ ekleniyor.",
     "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$. Used in notification when right-click action was performed.",
@@ -45,6 +59,18 @@
     "message": "Otomatik Temizleme Açık",
     "description": "Auto-clean enabled"
   },
+  "browsingDataWarning": {
+    "message": "DİKKAT: Aşağıdaki site verilerinin herhangi birinin temizlenme seçeneği etkinleştirilirse, o tür için TÜM mevcut veriler temizlenecektir.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
+  "cacheCleanupText": {
+    "message": "Çerez Temizlemeyi Etkinleştir (Firefox 78+, Chrome 74+)",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
+  },
+  "cacheText": {
+    "message": "Çerez",
+    "description": "Cache. Primarily used in notifications."
+  },
   "chromeDebugMode": {
     "message": "'Geliştirici Modu'nun etkinleştirildiğinden emin olun, ardından Görünümü Denetle altında' arka plan sayfasını 'tıklayın.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
@@ -52,6 +78,10 @@
   "cleanDiscardedText": {
     "message": "Ayrılmış/Boş Sekmeler için Temizliği Etkinleştir",
     "description": "Enable Cleanup for Discarded/Unloaded Tabs. Found in Settings."
+  },
+  "cleanExpiredCookiesText": {
+    "message": "Tüm Süresi Dolmuş Çerezleri Temizle",
+    "description": "Clean All Expired Cookies. Found in Settings."
   },
   "cleanIgnoringOpenTabsText": {
     "message": "Temizle, açık sekmeleri de temizle",
@@ -149,9 +179,21 @@
     "message": "Temizlemeyi şimdi çalıştırın, alanları açık sekmelerden hariç tutun",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copySuccessText": {
+    "message": "Başarıyla Kopyalandı!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Panoya Kopyala",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "debugMode": {
     "message": "Hata Ayıklama Modunu Etkinleştir (Ek Konsol Çıkışları)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "defaultText": {
+    "message": "Varsayılan",
+    "description": "Default. Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultSettingsText": {
     "message": "Varsayılan ayarları geri yükle",
@@ -241,6 +283,16 @@
     "message": "Temel Ayarları İçe Aktar...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "Dosya bulunamadı: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Verilen dosya işlediğimiz bir tür değil",
     "description": "File given is not a type we handle"
@@ -322,6 +374,10 @@
         "example": "5"
       }
     }
+  },
+  "manualCleanSiteDataCookies": {
+    "message": "Bu Alanadı İçin Çerezleri Temizle",
+    "description": "Clean Cookies for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSuccess": {
     "message": "$url$ içeriğindeki $siteData$ için temizlik sonucu:",
@@ -580,7 +636,7 @@
     "description": "Other Browsing Data Cleanup Options"
   },
   "settingsText": {
-    "message": "$CAD$ Ayarlar",
+    "message": "$CAD$ Ayarları",
     "description": "$CAD$ Settings",
     "placeholders": {
       "CAD": {

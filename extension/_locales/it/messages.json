@@ -191,6 +191,26 @@
     "message": "Esegui la pulizia ora, esclude i domini dalle schede aperte",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Le impostazioni attuali. Se necessario, copiale e incollale nella segnalazione su GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Le informazioni di sistema. Copiale e incollale nella sezione pertinente della segnalazione su GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Copia fallita. Prova a selezionare e copiare manualmente il testo.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Copiato con successo!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Copia negli appunti",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Crea opzioni predefinite di espressione",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -212,6 +232,10 @@
   "debugMode": {
     "message": "Attiva la modalità di debug (output di console aggiuntivi)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Informazioni sul Debug",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Predefinito",
@@ -327,6 +351,16 @@
     "message": "Importa impostazioni principali...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "File non trovato: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Il file fornito non è un tipo che gestiamo",
     "description": "File given is not a type we handle"
@@ -334,6 +368,20 @@
   "importFileValidationFailed": {
     "message": "Il file fornito ha fallito la verifica",
     "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "Rilevata/e espressione/i non valida/e dall'importazione. Sono annotate di seguito con il relativo motivo. Controlla e correggi eventuali errori in quel file e riprova.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ non è formattato come un elenco di array.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
   },
   "importMissingKey": {
     "message": "Identificatore mancante",
@@ -343,6 +391,20 @@
     "message": "Importa espressioni...",
     "description": "Import Expressions... Found in List of Expressions."
   },
+  "importValidExpressions": {
+    "message": "Hai aggiunto con successo $num$ espressione/i dal file importato: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "Attiva la pulizia dell'IndexedDB (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -350,6 +412,54 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Le virgole sono consentite solo nelle espressioni regolari.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "L'espressione riveduta non può essere vuota!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Espressione regolare non valida. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Rilevato lo slash finale, ma manca lo slash iniziale per l'espressione regolare. Rimuovi lo slash finale per i domini.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Rilevato lo slash iniziale, ma manca lo slash finale per l'espressione regolare.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Gli spazi non sono ammessi nei nomi host.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "Hai aggiunto con successo $num$ espressione/i con tipo $listType$ nella lista attualmente attiva.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Rilevate nuove espressioni non valide. Sono state annotate di seguito con il relativo motivo e mantenute sopra per la modifica.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Mantieni tutti i cookie",

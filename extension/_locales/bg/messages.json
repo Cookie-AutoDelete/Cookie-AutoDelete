@@ -91,9 +91,21 @@
     "message": "Изчиства бисквитките с изключение на тези от отворените раздели",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyFailedText": {
+    "message": "Грешка при копиране. Ръчно изберете и копирайте текста.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Копиране в системния буфер",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "debugMode": {
     "message": "Активиране на режима за отстраняване на грешки (допълнителни изходи на конзолата)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Информация за отстраняване на дефекти",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultSettingsText": {
     "message": "Възстановяване на първоначалните настройки",

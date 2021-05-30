@@ -179,6 +179,10 @@
     "message": "Kuki",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "Bersihkan Cookies dan Data Situs lainnya dari Tab Terbuka pada Startup",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
   "cookieCleanupIgnoreOpenTabsText": {
     "message": "Hapus sekarang, sertakan domain dari tab yang terbuka",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
@@ -186,6 +190,26 @@
   "cookieCleanupText": {
     "message": "Hapus sekarang, kecualikan domain dari tab yang terbuka",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "copyDebugSettingText": {
+    "message": "Pengaturan Anda saat ini. Jika perlu, salin dan tempel ini ke dalam masalah github.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Info sistem Anda. Salin dan tempel ke bagian yang relevan dari masalah GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Salinan gagal. Coba pilih dan salin teks secara manual.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Berhasil disalin!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Menyalin ke clipboard",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
   },
   "createDefaultExpressionOptionsText": {
     "message": "Buat Opsi Ekspresi Baku",
@@ -208,6 +232,10 @@
   "debugMode": {
     "message": "Aktifkan Mode Debug (Keluaran Console Tambahan)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Debug informasi",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Bawaan",
@@ -337,6 +365,10 @@
     "message": "Berkas yang diproses gagal divalidasi",
     "description": "File given failed validation"
   },
+  "importInvalidExpressions": {
+    "message": "Ekspresi tidak valid terdeteksi dari impor file. Mereka dicatat di bawah ini beserta alasannya. Periksa dan perbaiki kesalahan apa pun dalam file itu dan coba impor lagi.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
   "importListNotArray": {
     "message": "$identifier$ tidak diformat sebagai daftar array.",
     "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
@@ -381,6 +413,10 @@
     "message": "Koma hanya diizinkan di dalam Ekspresi Reguler.",
     "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
   },
+  "inputErrorEmpty": {
+    "message": "Ekspresi yang direvisi tidak boleh kosong!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
   "inputErrorRegExp": {
     "message": "Ekspresi Reguler tidak valid: $RegexError$",
     "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
@@ -390,6 +426,14 @@
         "example": "SyntaxError:  unterminated character class."
       }
     }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Garis miring akhir terdeteksi, tetapi garis miring awal untuk Ekspresi Reguler tidak ada. Hapus garis miring akhir untuk domain.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Garis miring mulai terdeteksi, tetapi garis miring akhir untuk Ekspresi Reguler tidak ada.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
   },
   "inputErrorSpace": {
     "message": "Spasi tidak diizinkan di dalam nama hos.",
@@ -408,6 +452,10 @@
         "example": "GreyList"
       }
     }
+  },
+  "invalidNewExpressions": {
+    "message": "Mendeteksi ekspresi baru yang tidak valid. Mereka dicatat di bawah ini beserta alasannya dan disimpan di atas untuk diedit.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Simpan Semua Kuki",

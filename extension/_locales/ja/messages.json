@@ -8,7 +8,7 @@
     "description": "Delay Before Automatic Cleaning"
   },
   "activeModeText": {
-    "message": "自動クリーニングを有効にする",
+    "message": "自動消去を有効にする",
     "description": "Enable Automatic Cleaning"
   },
   "activityLogSiteDataDomainsText": {
@@ -92,7 +92,7 @@
     "description": "Clean"
   },
   "cleanupDomainChangeText": {
-    "message": "ドメイン変更のクリーンアップを有効にします。",
+    "message": "ドメインが変更されたときに消去します。",
     "description": "Enable Cleanup on Domain Change"
   },
   "cleanupActionsBypass": {
@@ -184,12 +184,20 @@
     "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "今すぐクリーンアップを実行し、開いているタブからドメインを含めます",
+    "message": "開いているタブのCookieも含め今すぐ消去する",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
     "message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "copySuccessText": {
+    "message": "正常にコピーしました!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "クリップボードにコピー",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
   },
   "createDefaultExpressionOptionsText": {
     "message": "既定値の「式のオプション」を作成する",
@@ -213,6 +221,10 @@
     "message": "デバッグモードを有効にする（追加のコンソール出力）",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
   },
+  "debugTitle": {
+    "message": "デバッグ情報",
+    "description": "Debug Information.  Header shown on About page."
+  },
   "defaultText": {
     "message": "既定値",
     "description": "Default. Used in List of Expression in Firefox for Default / No Container."
@@ -226,7 +238,7 @@
     "description": "Restore Default Settings"
   },
   "disableAutoDeleteText": {
-    "message": "自動削除無効に切り替え(手動モード)",
+    "message": "自動消去を無効にする（手動モード）",
     "description": "Toggle to disable automatic cleanup (manual mode)"
   },
   "documentationText": {
@@ -254,7 +266,7 @@
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "enableCleanupLogText": {
-    "message": "クリーンアップのログとカウンターを有効にします。",
+    "message": "消去履歴とカウンターを有効にします。",
     "description": "Enable Cleanup Log and Counter"
   },
   "enableContextMenus": {
@@ -327,6 +339,16 @@
     "message": "コア設定のインポート...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "$filename$ が見つかりません。",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "与えられたファイルは、我々が扱うタイプではありません。",
     "description": "File given is not a type we handle"
@@ -351,8 +373,16 @@
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
   },
+  "inputErrorComma": {
+    "message": "コンマは正規表現でのみ使用できます。",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "ホストネームに空白を含めることはできません。",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
   "keepAllCookiesText": {
-    "message": "すべてのクッキーを維持する",
+    "message": "すべてのCookieを維持する",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
   },
   "keepAllCookiesGreyText": {
@@ -640,7 +670,7 @@
     "description": "Notification enabled"
   },
   "notificationTitle": {
-    "message": "クッキーが削除された!",
+    "message": "Cookie は削除されました!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
   "notificationTitleSiteData": {

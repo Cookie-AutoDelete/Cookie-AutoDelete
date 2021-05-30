@@ -4,7 +4,7 @@
     "description": "About"
   },
   "activeModeDelayText": {
-    "message": "Atraso antes da limpeza automática",
+    "message": "Atraso Antes da Limpeza Automática",
     "description": "Delay Before Automatic Cleaning"
   },
   "activeModeText": {
@@ -159,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Ativar a Remoção Automática da Lista de Expressão quando seu Container for removido.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Habilitar Suporte para Abas de Contêiner",
     "description": "Enable Support for Container Tabs. Currently only in Firefox."
@@ -187,6 +191,26 @@
     "message": "Executar limpeza agora, excluir domínios de abas abertas",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Suas configurações atuais. Se necessário, copie e cole isto no problema do GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Sua Informação do Sistema. Copie e cole na seção relevante do Problema GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Falha ao copiar. Tente manualmente selecionar e copiar o texto.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Copiado com sucesso!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Copiar para Área de Transferência",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Criar opções de expressão padrão",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -208,6 +232,10 @@
   "debugMode": {
     "message": "Ativar Modo de Depuração (Console Outputs Adicionais)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Informações de depuração",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Padrão",
@@ -319,6 +347,16 @@
     "message": "Importar configurações de núcleo...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "Arquivo não encontrado: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "O arquivo fornecido não é um tipo que manipulamos",
     "description": "File given is not a type we handle"
@@ -326,6 +364,20 @@
   "importFileValidationFailed": {
     "message": "Arquivo fornecido falhou na validação",
     "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "Detectada expressão(ões) inválida(s) da importação de arquivo. Eles são observados abaixo por seu motivo. Verifique e corrija quaisquer erros nesse arquivo e tente importar novamente.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ não está formatado como uma lista de matriz.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
   },
   "importMissingKey": {
     "message": "Identificador ausente",
@@ -335,6 +387,20 @@
     "message": "Importar Expressões...",
     "description": "Import Expressions... Found in List of Expressions."
   },
+  "importValidExpressions": {
+    "message": "$num$ expressão(ões) adicionada(s) com sucesso do arquivo importado: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "Ativar IndexedDB Cleanup (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -342,6 +408,54 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Vírgulas só são permitidas em expressões regulares.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "A expressão revista não pode estar vazia!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Expressão regular não é válida. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Barra de fim detectada, mas a barra de início está faltando para Expressão Regular. Remover barra de fim para domínios.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Barra de início detectada, mas falta a barra de fim para Expressão Regular.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Espaços não são permitidos em nomes de host.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "$num$ expressão(ões) adicionada com sucesso com $listType$ Tipo na lista ativa atual.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Detectada nova expressão inválida. As expressões são anotadas abaixo com seu motivo e foram mantidas acima para edição.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Manter todos os cookies",
@@ -596,6 +710,10 @@
   "noPrivateLogging": {
     "message": "Os Logs de Limpeza não serão gerados para abas em Navegação Privada / Incognito / InPrivada.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "Nenhuma expressão foi encontrada na pesquisa acima.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
   },
   "noRulesText": {
     "message": "Nenhuma regra afeta este domínio.",

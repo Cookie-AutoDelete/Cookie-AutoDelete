@@ -8,7 +8,7 @@
     "description": "Delay Before Automatic Cleaning"
   },
   "activeModeText": {
-    "message": "Aktivér automatisk rengøring",
+    "message": "Aktivér automatisk sletning",
     "description": "Enable Automatic Cleaning"
   },
   "activityLogSiteDataDomainsText": {
@@ -191,6 +191,26 @@
     "message": "Slet nu, ekskluder domæner fra åbne faner",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Dine nuværende indstillinger. Hvis nødigt, kopier og indsæt i GitHub-sagen.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Dine systeminformationer. Kopier og indsæt i den relevante sektion af GitHub-sagen.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Kopi mislykkedes. Prøv manuelt at vælge og kopiere teksten.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Kopierede successfuldt!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Kopier til klippebord",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Opret standard udtryksindstillinger",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -212,6 +232,10 @@
   "debugMode": {
     "message": "Aktiver aflusningstilstand (Yderligere konsoluddata)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Fejlsøgningsinformation",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Standard",
@@ -238,7 +262,7 @@
     "description": "Domain Expression"
   },
   "dropdownAdditionalCleaningOptions": {
-    "message": "Skift dropdown for yderligere rengøringshandlinger",
+    "message": "Skift dropdown for yderligere sletningshandlinger",
     "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
   },
   "editExpressionText": {
