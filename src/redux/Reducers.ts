@@ -37,7 +37,7 @@ const newExpressionObject = (
 });
 
 // Sorting algorithm for the expression list.
-// Order is WHITE -> GREY -> Alphanumeric
+// Order is Allow -> RESTART -> Alphanumeric
 const sortExpressionAlgorithm = (a: Expression, b: Expression) => {
   if (a.listType === ListType.WHITE && b.listType === ListType.GREY) {
     return -1;

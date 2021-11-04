@@ -297,7 +297,7 @@ browser.runtime.onInstalled.addListener(async (details) => {
             }
           });
         });
-        // Migrate Settings [uncheck 'Keep LocalStorage' on New [GREY/WHITE] Expressions]
+        // Migrate Settings [uncheck 'Keep LocalStorage' on New [RESTART/KEEP] Expressions]
         // Only does this if either was checked.
         for (const lt of [ListType.GREY, ListType.WHITE]) {
           if (
