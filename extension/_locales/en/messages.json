@@ -26,16 +26,16 @@
     }
   },
   "addNewExpressionNotification": {
-    "message": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$.",
-    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$. Used in notification when right-click action was performed.",
+    "message": "Adding $exception$ to list type $listType$ under cookie store $cookieStore$.",
+    "description": "Adding $exception$ to list type $listType$ under cookie store $cookieStore$. Used in notification when right-click action was performed.",
     "placeholders": {
-      "expression": {
+      "exception": {
         "content": "$1",
         "example": "example.com"
       },
       "listType": {
         "content": "$2",
-        "example": "WHITE"
+        "example": "Keep"
       },
       "cookieStore": {
         "content": "$3",
@@ -48,8 +48,8 @@
     "description": "Could not fetch domain to add from where right-click was issued."
   },
   "addNewExpressionNotificationIgnore": {
-    "message": "If expression already exists, this will be ignored.",
-    "description": "If expression already exists, this will be ignored. Used in notification when right-click action was performed."
+    "message": "If exception already exists, this will be ignored.",
+    "description": "If exception already exists, this will be ignored. Used in notification when right-click action was performed."
   },
   "autoDeleteDisabledText": {
     "message": "Auto-clean disabled",
@@ -120,8 +120,8 @@
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
   },
   "contextMenusParentExpression": {
-    "message": "Add Domain/Expression Menu",
-    "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
+    "message": "Add Domain/Exception Menu",
+    "description": "Add Domain/Exception Menu. Shown on right-clicks of Page/Link/Selection."
   },
   "contextMenusSelectedDomainLink": {
     "message": "For domain only of selected link",
@@ -160,8 +160,8 @@
     }
   },
   "contextualIdentitiesAutoRemoveText": {
-    "message": "Enable Automatic Removal of Expression List when its Container is Removed.",
-    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+    "message": "Enable Automatic Removal of Exception List when its Container is Removed.",
+    "description": "Enable Automatic Removal of Exception List when its Container is Removed. Only in Firefox."
   },
   "contextualIdentitiesEnabledText": {
     "message": "Enable Support for Container Tabs",
@@ -212,12 +212,12 @@
     "description": "Copy to Clipboard.  Shown in a button to take action upon click."
   },
   "createDefaultExpressionOptionsText": {
-    "message": "Create Default Expression Options",
-    "description": "Create Default Expression Options. Used in 'List of Expressions'"
+    "message": "Create Default Exception Options",
+    "description": "Create Default Exception Options. Used in 'List of Exceptions'"
   },
   "currentContainerInfo": {
     "message": "Current Container Selected: $ID$ ( $Name$ )",
-    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Exceptions only if Firefox containers enabled.",
     "placeholders": {
       "ID": {
         "content": "$1",
@@ -239,11 +239,11 @@
   },
   "defaultText": {
     "message": "Default",
-    "description": "Default. Used in List of Expression in Firefox for Default / No Container."
+    "description": "Default. Used in List of Exception in Firefox for Default / No Container."
   },
   "defaultContainerText": {
     "message": "No Container",
-    "description": "No Container. This will be in brackets. Used in List of Expression in Firefox for Default / No Container"
+    "description": "No Container. This will be in brackets. Used in List of Exception in Firefox for Default / No Container"
   },
   "defaultSettingsText": {
     "message": "Restore Default Settings",
@@ -258,20 +258,20 @@
     "description": "Documentation"
   },
   "domainExpressionsText": {
-    "message": "Domain Expression",
-    "description": "Domain Expression"
+    "message": "Domain Exception",
+    "description": "Domain Exception"
   },
   "domainPlaceholderText": {
     "message": "example.com, subdomain.example.com, *.example.com, /(^|.)example\\.com/",
-    "description": "Domain Expression Example. For this one we'll keep the string as is.  Kept for historical purposes."
+    "description": "Domain Exception Example. For this one we'll keep the string as is.  Kept for historical purposes."
   },
   "dropdownAdditionalCleaningOptions": {
     "message": "Toggle Additional Cleaning Actions Dropdown",
     "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
   },
   "editExpressionText": {
-    "message": "Edit expression",
-    "description": "Edit expression"
+    "message": "Edit exception",
+    "description": "Edit exception"
   },
   "enableAutoDeleteText": {
     "message": "Toggle to enable automatic cleanup (automatic mode)",
@@ -286,8 +286,8 @@
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
   "enableGreyListCleanup": {
-    "message": "Enable Greylist Cleanup on Browser Restart",
-    "description": "Enable Greylist Cleanup on Browser Restart"
+    "message": "Enable RestartList Cleanup on Browser Restart",
+    "description": "Enable RestartList Cleanup on Browser Restart"
   },
   "enableNewVersionPopup": {
     "message": "Enable Popup when New Version is Released",
@@ -302,8 +302,8 @@
     "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
-    "message": "Export Expressions...",
-    "description": "Export Expressions... Found in List of Expressions."
+    "message": "Export Exceptions...",
+    "description": "Export Exceptions... Found in List of Exceptions."
   },
   "exportTitleTimestamp": {
     "message": "A timestamp will be appended to the filename on export.",
@@ -330,18 +330,8 @@
     "description": "Filter"
   },
   "greyListWordText": {
-    "message": "Greylist",
-    "description": "Greylist"
-  },
-  "groupExpressionDefaultNotice": {
-    "message": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!",
-    "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
-    "placeholders": {
-      "listExpression": {
-        "content": "$1",
-        "example": "List of Expressions <- the translated version"
-      }
-    }
+    "message": "RestartList",
+    "description": "RestartList"
   },
   "importCoreSettingsFailed": {
     "message": "Import Core Settings Failed - Found unknown setting",
@@ -353,7 +343,7 @@
   },
   "importFileNotFound": {
     "message": "File not found: $filename$",
-    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "description": "File not found: $filename$.  Found in List of Exceptions and CAD Settings.",
     "placeholders": {
       "filename": {
         "content": "$1",
@@ -370,12 +360,12 @@
     "description": "File given failed validation"
   },
   "importInvalidExpressions": {
-    "message": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again.",
-    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+    "message": "Detected invalid exception(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again.",
+    "description": "Detected invalid exception(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Exceptions when imported file as Exceptions that aren't valid."
   },
   "importListNotArray": {
     "message": "$identifier$ is not formatted as an array list.",
-    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Exceptions during import validation.",
     "placeholders": {
       "identifier": {
         "content": "$1",
@@ -388,12 +378,12 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "Import Expressions...",
-    "description": "Import Expressions... Found in List of Expressions."
+    "message": "Import Exceptions...",
+    "description": "Import Exceptions... Found in List of Exceptions."
   },
   "importValidExpressions": {
-    "message": "Successfully added $num$ expression(s) from imported file: $filename$.",
-    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "message": "Successfully added $num$ exception(s) from imported file: $filename$.",
+    "description": "Successfully added $num$ exception(s) from imported file: $filename$.  Found in List of Exceptions after successful valid Exceptions from import.",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -415,15 +405,15 @@
   },
   "inputErrorComma": {
     "message": "Commas are only allowed in Regular Expressions.",
-    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+    "description": "Commas are only allowed in Regular Expressions. Found in editing exception errors."
   },
   "inputErrorEmpty": {
-    "message": "Revised expression cannot be empty!",
-    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+    "message": "Revised exception cannot be empty!",
+    "description": "Revised exception cannot be empty!  Found in editing exception errors."
   },
   "inputErrorRegExp": {
     "message": "Regular Expression is not valid. $RegexError$",
-    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing exception errors.",
     "placeholders": {
       "RegexError": {
         "content": "$1",
@@ -433,19 +423,19 @@
   },
   "inputErrorSlashEndMissingStart": {
     "message": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains.",
-    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing exception errors."
   },
   "inputErrorSlashStartMissingEnd": {
     "message": "Start slash detected, but missing end slash for Regular Expression.",
-    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing exception errors."
   },
   "inputErrorSpace": {
     "message": "Spaces are not allowed in hostnames.",
-    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+    "description": "Spaces are not allowed in hostnames. Found in editing exception errors."
   },
   "inputAddSuccess": {
-    "message": "Successfully added $num$ expression(s) with $listType$ Type in the currently active list.",
-    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "message": "Successfully added $num$ exception(s) with $listType$ Type in the currently active list.",
+    "description": "Successfully added $num$ exception(s) to $listType$ Type in the currently active list.  Found in List of Exceptions after successful inputs.",
     "placeholders": {
       "num": {
         "content": "$1",
@@ -453,65 +443,65 @@
       },
       "listType": {
         "content": "$2",
-        "example": "GreyList"
+        "example": "RestartList"
       }
     }
   },
   "invalidNewExpressions": {
-    "message": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing.",
-    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
+    "message": "Detected invalid new exception(s). They are noted below with its reason and have been kept above for editing.",
+    "description": "Detected invalid new exception(s). They are noted below with its reason and have been kept above for editing. Found in List of Exceptions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Keep All Cookies",
-    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+    "description": "Keep All Cookies. Found in Exception Options. For AllowList entries."
   },
   "keepAllCookiesGreyText": {
     "message": "Keep All Cookies until restart",
-    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+    "description": "Keep All Cookies until restart. Found in Exception Options. For RestartList entries."
   },
   "keepCacheText": {
     "message": "Keep Cache",
-    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+    "description": "Keep Cache. Found in Exception Options. For AllowList entries."
   },
   "keepCacheGreyText": {
     "message": "Keep Cache until restart",
-    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
+    "description": "Keep Cache until restart. Found in Exception Options. For restartlist entries."
   },
   "keepDefaultIcon": {
     "message": "Keep Default Icons on all list types",
-    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching Exceptions in list."
   },
   "keepIndexedDBText": {
     "message": "Keep IndexedDB",
-    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+    "description": "Keep IndexedDB. Found in Exception Options. For AllowList entries."
   },
   "keepIndexedDBGreyText": {
     "message": "Keep IndexedDB until restart",
-    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+    "description": "Keep IndexedDB until restart. Found in Exception Options. For RestartList entries."
   },
   "keepLocalstorageText": {
     "message": "Keep LocalStorage",
-    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+    "description": "Keep LocalStorage. Found in Exception Options. For AllowList entries."
   },
   "keepLocalstorageGreyText": {
     "message": "Keep LocalStorage until restart",
-    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+    "description": "Keep LocalStorage until restart. Found in Exception Options. For RestartList entries."
   },
   "keepPluginDataText": {
     "message": "Keep Plugin Data",
-    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+    "description": "Keep Plugin Data. Found in Exception Options. For AllowList entries."
   },
   "keepPluginDataGreyText": {
     "message": "Keep Plugin Data until restart",
-    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+    "description": "Keep Plugin Data until restart. Found in Exception Options. For RestartList entries."
   },
   "keepServiceWorkersText": {
     "message": "Keep Service Workers",
-    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+    "description": "Keep Service Workers. Found in Exception Options. For AllowList entries."
   },
   "keepServiceWorkersGreyText": {
     "message": "Keep Service Workers until restart",
-    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
+    "description": "Keep Service Workers until restart. Found in Exception Options. For RestartList entries."
   },
   "keepText": {
     "message": "Keep",
@@ -688,8 +678,8 @@
     "description": "Show Notification from Manual Site Data Cleanups. Found in settings"
   },
   "matchedDomainExpressionText": {
-    "message": "Matched Domain Expression",
-    "description": "Matched Domain Expression"
+    "message": "Matched Domain Exception",
+    "description": "Matched Domain Exception"
   },
   "menuText": {
     "message": "Menu",
@@ -717,7 +707,7 @@
   },
   "noSearchExpressionsFound": {
     "message": "No expressions found from search above.",
-    "description": "No expressions found from search above.  Found in List of Expressions."
+    "description": "No expressions found from search above.  Found in List of Exceptions."
   },
   "noRulesText": {
     "message": "No rules matched this domain.",
@@ -798,8 +788,8 @@
     "description": "Settings"
   },
   "questionExpression": {
-    "message": "How do Expressions work?",
-    "description": "How do Expressions work?"
+    "message": "How do Exceptions work?",
+    "description": "How do Exceptions work?"
   },
   "reasonCADSiteDataCookie": {
     "message": "Clean to trigger Site Data cleaning for $hostname$.",
@@ -831,13 +821,13 @@
       },
       "listType": {
         "content": "$2",
-        "example": "Whitelist"
+        "example": "AllowList"
       }
     }
   },
   "reasonCleanGreyList": {
-    "message": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist",
-    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
+    "message": "Clean because of startup cleanup and $matchedExpression$ is in the RestartList",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the RestartList. Used in cleanup log.",
     "placeholders": {
       "matchedExpression": {
         "content": "$1",
@@ -846,8 +836,8 @@
     }
   },
   "reasonCleanNoList": {
-    "message": "Clean because $hostname$ is not in the White or Grey lists",
-    "description": "Clean because $hostname$ is not in the White or Grey lists",
+    "message": "Clean because $hostname$ is not in the Keep or Restart lists",
+    "description": "Clean because $hostname$ is not in the Keep or Restart lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -856,8 +846,8 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
-    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
+    "message": "Clean because of startup cleanup and $hostname$ is not in the Keep or Restart lists",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the Keep or Restart lists",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -875,7 +865,7 @@
       },
       "listType": {
         "content": "$2",
-        "example": "Whitelist"
+        "example": "AllowList"
       }
     }
   },
@@ -891,11 +881,11 @@
   },
   "reasonTabsWereIgnored": {
     "message": "and also open tabs were ignored",
-    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
+    "description": "[Clean because of sub.google.com is not in the Keep or Restart lists] and also open tabs were ignored"
   },
   "reasonTabsWereNotIgnored": {
     "message": "or in any open tabs",
-    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+    "description": "[Clean because of sub.google.com is not in the Keep or Restart lists] or in any open tabs"
   },
   "releaseNotesText": {
     "message": "Release Notes",
@@ -906,12 +896,12 @@
     "description": "Remove Log Entry. Shown in summary activity log for individual log removal."
   },
   "removeAllExpressions": {
-    "message": "Remove All Expressions",
-    "description": "Remove All Expressions"
+    "message": "Remove All Exceptions",
+    "description": "Remove All Exceptions"
   },
   "removeAllExpressionsConfirm": {
-    "message": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.",
-    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Expression is clicked.",
+    "message": "Are you sure you want to remove ALL ($expressionCount$) saved exception(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved exception(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Exception is clicked.",
     "placeholders": {
       "expressionCount": {
         "content": "$1",
@@ -928,12 +918,12 @@
     "description": "No expressions to remove!"
   },
   "removeExpressionText": {
-    "message": "Remove expression",
-    "description": "Remove expression"
+    "message": "Remove exception",
+    "description": "Remove exception"
   },
   "removeListText": {
-    "message": "Remove All Expressions from Selected List",
-    "description": "Remove All Expressions from Selected List. Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
+    "message": "Remove All Exceptions from Selected List",
+    "description": "Remove All Exceptions from Selected List. Shown in List of Exceptions, only on Firefox and if containers/contextual identities is enabled."
   },
   "removeStorageCount": {
     "message": "Removed $count$ item(s) from $storageType$.",
@@ -976,8 +966,8 @@
     }
   },
   "saveExpressionText": {
-    "message": "Save expression",
-    "description": "Save expression"
+    "message": "Save exception",
+    "description": "Save exception"
   },
   "secondsText": {
     "message": "second(s)",
@@ -1000,8 +990,8 @@
     "description": "Automatic Cleaning Options"
   },
   "settingGroupExpression": {
-    "message": "Expression Options",
-    "description": "Expression Options"
+    "message": "Exception Options",
+    "description": "Exception Options"
   },
   "settingGroupExtension": {
     "message": "Extension Options",
@@ -1046,24 +1036,24 @@
     "description": "Success!"
   },
   "toGreyListText": {
-    "message": "Add to Greylist (Clean on Browser Restart)",
-    "description": "Add to Greylist (Clean on Browser Restart)"
+    "message": "Add to RestartList (Clean on Browser Restart)",
+    "description": "Add to RestartList (Clean on Browser Restart)"
   },
   "toWhiteListText": {
-    "message": "Add to Whitelist (Never Clean)",
-    "description": "Add to Whitelist (Never Clean)"
+    "message": "Add to AllowList (Never Clean)",
+    "description": "Add to AllowList (Never Clean)"
   },
   "toggleNotificationText": {
     "message": "Toggle to enable or disable notifications",
     "description": "Toggle to enable or disable notifications"
   },
   "toggleToGreyListWordText": {
-    "message": "Toggle to greylist",
-    "description": "Toggle to greylist"
+    "message": "Toggle to RestartList",
+    "description": "Toggle to RestartList"
   },
   "toggleToWhiteListWordText": {
-    "message": "Toggle to whitelist",
-    "description": "Toggle to whitelist"
+    "message": "Toggle to AllowList",
+    "description": "Toggle to AllowList"
   },
   "versionNumberText": {
     "message": "$CAD$ version",
@@ -1108,11 +1098,11 @@
     "description": "Welcome"
   },
   "expressionListText": {
-    "message": "List of Expressions",
-    "description": "List of Expressions"
+    "message": "List of Exceptions",
+    "description": "List of Exceptions"
   },
   "whiteListWordText": {
-    "message": "Whitelist",
-    "description": "Whitelist"
+    "message": "AllowList",
+    "description": "AllowList"
   }
 }

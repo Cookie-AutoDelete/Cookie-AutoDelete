@@ -369,16 +369,6 @@ class Settings extends React.Component<SettingProps> {
           </div>
         </fieldset>
         <hr />
-        <fieldset>
-          <legend>{browser.i18n.getMessage('settingGroupExpression')}</legend>
-          <div className="alert alert-info">
-            {browser.i18n.getMessage('groupExpressionDefaultNotice', [
-              browser.i18n.getMessage('expressionListText'),
-            ])}{' '}
-            <SettingsTooltip hrefURL={'#default-expression-options'} />
-          </div>
-        </fieldset>
-        <hr />
         {(isFirefoxNotAndroid(cache) || isChrome(cache)) && (
           <fieldset>
             <legend>
