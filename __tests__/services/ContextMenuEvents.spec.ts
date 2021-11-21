@@ -374,11 +374,11 @@ describe('ContextMenuEvents', () => {
       ).not.toHaveBeenCalled();
     });
     // Add Expression via link
-    it('Trigger LINK_ADD_GREY_DOMAIN', () => {
+    it('Trigger LINK_ADD_RESTART_DOMAIN', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickLink,
-          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_GREY_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_RESTART_DOMAIN,
         },
         sampleTab,
       );
@@ -388,11 +388,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger LINK_ADD_WHITE_DOMAIN', () => {
+    it('Trigger LINK_ADD_KEEP_DOMAIN', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickLink,
-          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_WHITE_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_KEEP_DOMAIN,
         },
         sampleTab,
       );
@@ -402,11 +402,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger LINK_ADD_GREY_SUBS', () => {
+    it('Trigger LINK_ADD_RESTART_SUBS', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickLink,
-          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_GREY_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_RESTART_SUBS,
         },
         sampleTab,
       );
@@ -416,11 +416,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger LINK_ADD_WHITE_SUBS', () => {
+    it('Trigger LINK_ADD_KEEP_SUBS', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickLink,
-          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_WHITE_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.LINK_ADD_KEEP_SUBS,
         },
         sampleTab,
       );
@@ -431,11 +431,11 @@ describe('ContextMenuEvents', () => {
       );
     });
     // Add Expression via Page
-    it('Trigger PAGE_ADD_GREY_DOMAIN', () => {
+    it('Trigger PAGE_ADD_RESTART_DOMAIN', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickPage,
-          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_GREY_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_RESTART_DOMAIN,
         },
         sampleTab,
       );
@@ -445,11 +445,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger PAGE_ADD_WHITE_DOMAIN', () => {
+    it('Trigger PAGE_ADD_KEEP_DOMAIN', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickPage,
-          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_WHITE_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_KEEP_DOMAIN,
         },
         sampleTab,
       );
@@ -459,11 +459,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger PAGE_ADD_GREY_SUBS', () => {
+    it('Trigger PAGE_ADD_RESTART_SUBS', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickPage,
-          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_GREY_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_RESTART_SUBS,
         },
         sampleTab,
       );
@@ -473,11 +473,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger PAGE_ADD_WHITE_SUBS', () => {
+    it('Trigger PAGE_ADD_KEEP_SUBS', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickPage,
-          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_WHITE_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.PAGE_ADD_KEEP_SUBS,
         },
         sampleTab,
       );
@@ -488,11 +488,11 @@ describe('ContextMenuEvents', () => {
       );
     });
     // Add Expression via Selected Text
-    it('Trigger SELECT_ADD_GREY_DOMAIN', () => {
+    it('Trigger SELECT_ADD_RESTART_DOMAIN', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_GREY_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_RESTART_DOMAIN,
         },
         sampleTab,
       );
@@ -502,7 +502,7 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger SELECT_ADD_GREY_DOMAIN and contextualIdentities was enabled', () => {
+    it('Trigger SELECT_ADD_RESTART_DOMAIN and contextualIdentities was enabled', () => {
       TestStore.changeSetting(SettingID.CONTEXTUAL_IDENTITIES, true);
       TestStore.addCache({
         key: 'firefox-container-1',
@@ -511,7 +511,7 @@ describe('ContextMenuEvents', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_GREY_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_RESTART_DOMAIN,
         },
         { ...sampleTab, cookieStoreId: 'firefox-container-1' },
       );
@@ -521,12 +521,12 @@ describe('ContextMenuEvents', () => {
         'firefox-container-1',
       );
     });
-    it('Trigger SELECT_ADD_GREY_DOMAIN and contextualIdentities was enabled with no matching container', () => {
+    it('Trigger SELECT_ADD_RESTART_DOMAIN and contextualIdentities was enabled with no matching container', () => {
       TestStore.changeSetting(SettingID.CONTEXTUAL_IDENTITIES, true);
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_GREY_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_RESTART_DOMAIN,
         },
         { ...sampleTab, cookieStoreId: 'firefox-container-2' },
       );
@@ -536,11 +536,11 @@ describe('ContextMenuEvents', () => {
         'firefox-container-2',
       );
     });
-    it('Trigger SELECT_ADD_WHITE_DOMAIN', () => {
+    it('Trigger SELECT_ADD_KEEP_DOMAIN', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_WHITE_DOMAIN,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_DOMAIN,
         },
         sampleTab,
       );
@@ -550,11 +550,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger SELECT_ADD_GREY_SUBS', () => {
+    it('Trigger SELECT_ADD_RESTART_SUBS', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_GREY_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_RESTART_SUBS,
         },
         sampleTab,
       );
@@ -564,11 +564,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger SELECT_ADD_WHITE_SUBS', () => {
+    it('Trigger SELECT_ADD_KEEP_SUBS', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_WHITE_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_SUBS,
         },
         sampleTab,
       );
@@ -578,11 +578,11 @@ describe('ContextMenuEvents', () => {
         'firefox-default',
       );
     });
-    it('Trigger SELECT_ADD_WHITE_SUBS with multiple comma-separated values', () => {
+    it('Trigger SELECT_ADD_KEEP_SUBS with multiple comma-separated values', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickTextMultiple,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_WHITE_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_SUBS,
         },
         sampleTab,
       );
@@ -590,11 +590,11 @@ describe('ContextMenuEvents', () => {
         3,
       );
     });
-    it('Trigger SELECT_ADD_WHITE_SUBS with whitespaces only', () => {
+    it('Trigger SELECT_ADD_KEEP_SUBS with whitespaces only', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...defaultOnClickData,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_WHITE_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_SUBS,
           selectionText: '  ',
         },
         sampleTab,
@@ -604,11 +604,11 @@ describe('ContextMenuEvents', () => {
       );
       expect(spyActions.addExpressionUI).not.toHaveBeenCalled();
     });
-    it('Trigger SELECT_ADD_WHITE_SUBS with undefined cookieStoreId (Chrome)', () => {
+    it('Trigger SELECT_ADD_KEEP_SUBS with undefined cookieStoreId (Chrome)', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...sampleClickText,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_WHITE_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_SUBS,
         },
         { ...sampleTab, cookieStoreId: undefined },
       );
@@ -618,12 +618,12 @@ describe('ContextMenuEvents', () => {
         '',
       );
     });
-    it('Trigger SELECT_ADD_WHITE_SUBS with undefined inputs to addNewExpression', () => {
+    it('Trigger SELECT_ADD_KEEP_SUBS with undefined inputs to addNewExpression', () => {
       ContextMenuEvents.onContextMenuClicked(
         {
           ...defaultOnClickData,
           selectionText: undefined,
-          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_WHITE_SUBS,
+          menuItemId: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_SUBS,
         },
         { ...sampleTab, cookieStoreId: undefined },
       );

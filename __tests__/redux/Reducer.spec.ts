@@ -194,7 +194,7 @@ describe('Reducer', () => {
       expect(firstExpression).toHaveProperty('id');
     });
 
-    it('should return google.com with a default listType of WHITE', () => {
+    it('should return google.com with a default listType of KEEP', () => {
       const newState = lists(state, {
         payload: {
           ...mockExpression,
@@ -300,7 +300,7 @@ describe('Reducer', () => {
       );
     });
 
-    it('should return github.com and GREY for updated expression on default', () => {
+    it('should return github.com and RESTART for updated expression on default', () => {
       const newState = lists(
         { ...state },
         {
@@ -320,7 +320,7 @@ describe('Reducer', () => {
       expect(newExpression).toHaveProperty('id');
     });
 
-    it('should return google.com and WHITE for updated expression on firefox-container-1', () => {
+    it('should return google.com and KEEP for updated expression on firefox-container-1', () => {
       const newState = lists(
         { ...state },
         {

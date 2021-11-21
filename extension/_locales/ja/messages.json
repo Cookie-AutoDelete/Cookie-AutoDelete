@@ -35,7 +35,7 @@
       },
       "listType": {
         "content": "$2",
-        "example": "WHITE"
+        "example": "KEEP"
       },
       "cookieStore": {
         "content": "$3",

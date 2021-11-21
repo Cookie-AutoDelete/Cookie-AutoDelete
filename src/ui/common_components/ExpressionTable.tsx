@@ -265,14 +265,14 @@ class ExpressionTable extends Component<ExpressionTableProps, EmptyState> {
                   }}
                 >
                   {`${
-                    expression.listType === 'WHITE'
+                    expression.listType === ListType.KEEP
                       ? browser.i18n.getMessage('keepListWordText')
                       : browser.i18n.getMessage('restartListWordText')
                   }`}
                 </div>
                 <IconButton
                   title={`${
-                    expression.listType === 'WHITE'
+                    expression.listType === ListType.KEEP
                       ? browser.i18n.getMessage('toggleToRestartListWordText')
                       : browser.i18n.getMessage('toggleToKeepListWordText')
                   }`}
