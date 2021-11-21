@@ -222,14 +222,14 @@ onStartUp().then(() => {
 browser.runtime.onStartup.addListener(async () => {
   await awaitStore();
   if (getSetting(store.getState(), SettingID.ACTIVE_MODE) === true) {
-    if (getSetting(store.getState(), SettingID.ENABLE_GREYLIST) === true) {
+    if (getSetting(store.getState(), SettingID.ENABLE_RESTARTLIST) === true) {
       let isFFSessionRestore = false;
       const startupTabs = await browser.tabs.query({ windowType: 'normal' });
       startupTabs.forEach((tab) => {
         if (tab.url === 'about:sessionrestore') isFFSessionRestore = true;
       });
       if (!isFFSessionRestore) {
-        greyCleanup();
+        restartCleanup();
       } else {
         cadLog(
           {
@@ -269,6 +269,11 @@ browser.runtime.onInstalled.addListener(async (details) => {
     case 'update':
       // Validate Settings to get new settings (if any).
       store.dispatch<any>(validateSettings());
+      if (convertVersionToNumber(details.previousVersion) < 300) {
+        store.dispatch({
+          type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
+        });
+      }
       if (convertVersionToNumber(details.previousVersion) < 350) {
         // Migrate State Setting Name localstorageCleanup to localStorageCleanup
         if (store.getState().settings[SettingID.CLEANUP_LOCALSTORAGE_OLD]) {
@@ -331,10 +336,45 @@ browser.runtime.onInstalled.addListener(async (details) => {
           }
         }
       }
-      if (convertVersionToNumber(details.previousVersion) < 300) {
-        store.dispatch({
-          type: ReduxConstants.RESET_COOKIE_DELETED_COUNTER,
-        });
+      // Language Migration 3.7.0+
+      if (convertVersionToNumber(details.previousVersion) < 370) {
+        // Migrate greylist to restartlist setting
+        if (store.getState().settings[SettingID.OLD_ENABLE_GREYLIST]) {
+          store.dispatch({
+            payload: {
+              name: SettingID.ENABLE_RESTARTLIST,
+              value: store.getState().settings[SettingID.OLD_ENABLE_GREYLIST]
+                .value as boolean,
+            },
+            type: ReduxConstants.UPDATE_SETTING,
+          });
+        }
+
+        // Update all list types from WHITE => KEEP and GREY => RESTART
+        const lists = Object.values(store.getState().lists);
+        for (const list of lists) {
+          for (const e of list) {
+            if (e.listType === ListType.KEEP || e.listType === ListType.RESTART)
+              continue;
+            store.dispatch({
+              payload: {
+                ...e,
+                expression: e.expression.startsWith('_Default:')
+                  ? `_Default:${
+                      e.listType === ListType.GREY
+                        ? ListType.RESTART
+                        : ListType.KEEP
+                    }`
+                  : e.expression,
+                listType:
+                  e.listType === ListType.GREY
+                    ? ListType.RESTART
+                    : ListType.KEEP,
+              },
+              type: ReduxConstants.UPDATE_EXPRESSION,
+            });
+          }
+        }
       }
       if (getSetting(store.getState(), SettingID.ENABLE_NEW_POPUP)) {
         await browser.runtime.openOptionsPage();
@@ -351,17 +391,17 @@ const awaitStore = async () => {
   }
 };
 
-const greyCleanup = () => {
+const restartCleanup = () => {
   if (getSetting(store.getState(), SettingID.ACTIVE_MODE)) {
     cadLog(
       {
-        msg: `background.greyCleanup:  dispatching browser restart greyCleanup.`,
+        msg: `background.restartCleanup:  dispatching browser restart restartCleanup.`,
       },
       getSetting(store.getState(), SettingID.DEBUG_MODE) as boolean,
     );
     store.dispatch<any>(
       cookieCleanup({
-        greyCleanup: true,
+        restartCleanup: true,
         ignoreOpenTabs: getSetting(
           store.getState(),
           SettingID.CLEAN_OPEN_TABS_STARTUP,

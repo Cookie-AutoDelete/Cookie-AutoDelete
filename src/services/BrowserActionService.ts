@@ -170,14 +170,14 @@ export const checkIfProtected = async (
 
     if (matchedExpression) {
       switch (matchedExpression.listType) {
-        case ListType.WHITE:
+        case ListType.KEEP:
           if (active) {
             setIconColor(aTab);
           } else {
             setBadgeColor(aTab);
           }
           break;
-        case ListType.GREY:
+        case ListType.RESTART:
           if (active) {
             setIconColor(
               aTab,

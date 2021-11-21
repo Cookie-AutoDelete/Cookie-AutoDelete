@@ -132,13 +132,13 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['link'],
       id: ContextMenuEvents.MenuID.LINK_ADD_RESTART_DOMAIN,
       parentId: ContextMenuEvents.MenuID.PARENT_LINK_DOMAIN,
-      title: browser.i18n.getMessage('toGreyListText'),
+      title: browser.i18n.getMessage('toRestartListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['link'],
       id: ContextMenuEvents.MenuID.LINK_ADD_KEEP_DOMAIN,
       parentId: ContextMenuEvents.MenuID.PARENT_LINK_DOMAIN,
-      title: browser.i18n.getMessage('toWhiteListText'),
+      title: browser.i18n.getMessage('toKeepListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['link'],
@@ -150,13 +150,13 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['link'],
       id: ContextMenuEvents.MenuID.LINK_ADD_RESTART_SUBS,
       parentId: ContextMenuEvents.MenuID.PARENT_LINK_SUBS,
-      title: browser.i18n.getMessage('toGreyListText'),
+      title: browser.i18n.getMessage('toRestartListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['link'],
       id: ContextMenuEvents.MenuID.LINK_ADD_KEEP_SUBS,
       parentId: ContextMenuEvents.MenuID.PARENT_LINK_SUBS,
-      title: browser.i18n.getMessage('toWhiteListText'),
+      title: browser.i18n.getMessage('toKeepListText'),
     });
     // Page Group
     ContextMenuEvents.menuCreate({
@@ -169,13 +169,13 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['page'],
       id: ContextMenuEvents.MenuID.PAGE_ADD_RESTART_DOMAIN,
       parentId: ContextMenuEvents.MenuID.PARENT_PAGE_DOMAIN,
-      title: browser.i18n.getMessage('toGreyListText'),
+      title: browser.i18n.getMessage('toRestartListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['page'],
       id: ContextMenuEvents.MenuID.PAGE_ADD_KEEP_DOMAIN,
       parentId: ContextMenuEvents.MenuID.PARENT_PAGE_DOMAIN,
-      title: browser.i18n.getMessage('toWhiteListText'),
+      title: browser.i18n.getMessage('toKeepListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['page'],
@@ -187,13 +187,13 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['page'],
       id: ContextMenuEvents.MenuID.PAGE_ADD_RESTART_SUBS,
       parentId: ContextMenuEvents.MenuID.PARENT_PAGE_SUBS,
-      title: browser.i18n.getMessage('toGreyListText'),
+      title: browser.i18n.getMessage('toRestartListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['page'],
       id: ContextMenuEvents.MenuID.PAGE_ADD_KEEP_SUBS,
       parentId: ContextMenuEvents.MenuID.PARENT_PAGE_SUBS,
-      title: browser.i18n.getMessage('toWhiteListText'),
+      title: browser.i18n.getMessage('toKeepListText'),
     });
     // Selection Group
     ContextMenuEvents.menuCreate({
@@ -206,13 +206,13 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MenuID.SELECT_ADD_RESTART_DOMAIN,
       parentId: ContextMenuEvents.MenuID.PARENT_SELECT_DOMAIN,
-      title: browser.i18n.getMessage('toGreyListText'),
+      title: browser.i18n.getMessage('toRestartListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['selection'],
       id: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_DOMAIN,
       parentId: ContextMenuEvents.MenuID.PARENT_SELECT_DOMAIN,
-      title: browser.i18n.getMessage('toWhiteListText'),
+      title: browser.i18n.getMessage('toKeepListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['selection'],
@@ -226,13 +226,13 @@ export default class ContextMenuEvents extends StoreUser {
       contexts: ['selection'],
       id: ContextMenuEvents.MenuID.SELECT_ADD_RESTART_SUBS,
       parentId: ContextMenuEvents.MenuID.PARENT_SELECT_SUBS,
-      title: browser.i18n.getMessage('toGreyListText'),
+      title: browser.i18n.getMessage('toRestartListText'),
     });
     ContextMenuEvents.menuCreate({
       contexts: ['selection'],
       id: ContextMenuEvents.MenuID.SELECT_ADD_KEEP_SUBS,
       parentId: ContextMenuEvents.MenuID.PARENT_SELECT_SUBS,
-      title: browser.i18n.getMessage('toWhiteListText'),
+      title: browser.i18n.getMessage('toKeepListText'),
     });
     // Separator
     ContextMenuEvents.menuCreate({
@@ -433,7 +433,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         StoreUser.store.dispatch<any>(
           cookieCleanup({
-            greyCleanup: false,
+            restartCleanup: false,
             ignoreOpenTabs: false,
           }),
         );
@@ -447,7 +447,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         StoreUser.store.dispatch<any>(
           cookieCleanup({
-            greyCleanup: false,
+            restartCleanup: false,
             ignoreOpenTabs: true,
           }),
         );
@@ -466,7 +466,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           getHostname(info.linkUrl),
-          ListType.GREY,
+          ListType.RESTART,
           cookieStoreId,
         );
         break;
@@ -484,7 +484,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           getHostname(info.linkUrl),
-          ListType.WHITE,
+          ListType.KEEP,
           cookieStoreId,
         );
         break;
@@ -502,7 +502,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           `*.${getHostname(info.linkUrl)}`,
-          ListType.GREY,
+          ListType.RESTART,
           cookieStoreId,
         );
         break;
@@ -520,7 +520,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           `*.${getHostname(info.linkUrl)}`,
-          ListType.WHITE,
+          ListType.KEEP,
           cookieStoreId,
         );
         break;
@@ -542,7 +542,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           getHostname(info.pageUrl),
-          ListType.GREY,
+          ListType.RESTART,
           cookieStoreId,
         );
         break;
@@ -564,7 +564,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           getHostname(info.pageUrl),
-          ListType.WHITE,
+          ListType.KEEP,
           cookieStoreId,
         );
         break;
@@ -586,7 +586,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           `*.${getHostname(info.pageUrl)}`,
-          ListType.GREY,
+          ListType.RESTART,
           cookieStoreId,
         );
         break;
@@ -608,7 +608,7 @@ export default class ContextMenuEvents extends StoreUser {
         );
         ContextMenuEvents.addNewExpression(
           `*.${getHostname(info.pageUrl)}`,
-          ListType.WHITE,
+          ListType.KEEP,
           cookieStoreId,
         );
         break;
@@ -643,7 +643,7 @@ export default class ContextMenuEvents extends StoreUser {
             );
             ContextMenuEvents.addNewExpression(
               encodeURI(text.trim()),
-              ListType.GREY,
+              ListType.RESTART,
               cookieStoreId,
             );
           });
@@ -680,7 +680,7 @@ export default class ContextMenuEvents extends StoreUser {
             );
             ContextMenuEvents.addNewExpression(
               encodeURI(text.trim()),
-              ListType.WHITE,
+              ListType.KEEP,
               cookieStoreId,
             );
           });
@@ -717,7 +717,7 @@ export default class ContextMenuEvents extends StoreUser {
             );
             ContextMenuEvents.addNewExpression(
               `*.${encodeURI(text.trim())}`,
-              ListType.GREY,
+              ListType.RESTART,
               cookieStoreId,
             );
           });
@@ -754,7 +754,7 @@ export default class ContextMenuEvents extends StoreUser {
             );
             ContextMenuEvents.addNewExpression(
               `*.${encodeURI(text.trim())}`,
-              ListType.WHITE,
+              ListType.KEEP,
               cookieStoreId,
             );
           });

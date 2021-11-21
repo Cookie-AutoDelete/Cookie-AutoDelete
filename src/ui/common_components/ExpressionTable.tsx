@@ -266,15 +266,15 @@ class ExpressionTable extends Component<ExpressionTableProps, EmptyState> {
                 >
                   {`${
                     expression.listType === 'WHITE'
-                      ? browser.i18n.getMessage('whiteListWordText')
-                      : browser.i18n.getMessage('greyListWordText')
+                      ? browser.i18n.getMessage('keepListWordText')
+                      : browser.i18n.getMessage('restartListWordText')
                   }`}
                 </div>
                 <IconButton
                   title={`${
                     expression.listType === 'WHITE'
-                      ? browser.i18n.getMessage('toggleToGreyListWordText')
-                      : browser.i18n.getMessage('toggleToWhiteListWordText')
+                      ? browser.i18n.getMessage('toggleToRestartListWordText')
+                      : browser.i18n.getMessage('toggleToKeepListWordText')
                   }`}
                   iconName="exchange-alt"
                   className="btn-outline-dark showOnRowHover"
@@ -286,9 +286,9 @@ class ExpressionTable extends Component<ExpressionTableProps, EmptyState> {
                     onUpdateExpression({
                       ...expression,
                       listType:
-                        expression.listType === ListType.GREY
-                          ? ListType.WHITE
-                          : ListType.GREY,
+                        expression.listType === ListType.KEEP
+                          ? ListType.RESTART
+                          : ListType.KEEP,
                     })
                   }
                 />

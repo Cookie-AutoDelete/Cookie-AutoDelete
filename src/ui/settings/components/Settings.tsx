@@ -338,13 +338,13 @@ class Settings extends React.Component<SettingProps> {
           </div>
           <div className="form-group">
             <CheckboxSetting
-              text={browser.i18n.getMessage(SettingID.ENABLE_GREYLIST)}
-              settingObject={settings[SettingID.ENABLE_GREYLIST]}
+              text={browser.i18n.getMessage(SettingID.ENABLE_RESTARTLIST)}
+              settingObject={settings[SettingID.ENABLE_RESTARTLIST]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
-              hrefURL={'#enable-greylist-cleanup-on-browser-restart'}
+              hrefURL={'#enable-restartlist-cleanup-on-browser-restart'}
             />
           </div>
           <div className="form-group">

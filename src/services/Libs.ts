@@ -210,8 +210,7 @@ export const getAllCookiesForDomain = async (
     const regExp = new RegExp(hostname.slice(7)); // take out 'file://'
     cadLog(
       {
-        msg:
-          'Libs.getAllCookiesForDomain:  Local File Regex to rest on cookie.path',
+        msg: 'Libs.getAllCookiesForDomain:  Local File Regex to rest on cookie.path',
         x: { partialTabInfo, hostname, regExp: regExp.toString() },
       },
       debug,
@@ -223,8 +222,7 @@ export const getAllCookiesForDomain = async (
     // Firefox Only - FirstPartyIsolation - original method
     cadLog(
       {
-        msg:
-          'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (firstPartyIsolation).',
+        msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (firstPartyIsolation).',
         x: {
           partialTabInfo,
           domain: hostname,
@@ -248,8 +246,7 @@ export const getAllCookiesForDomain = async (
     // firstPartyDomain = (https,domain.com)
     cadLog(
       {
-        msg:
-          'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (FirstPartyIsolation - use_site).',
+        msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (FirstPartyIsolation - use_site).',
         x: {
           partialTabInfo,
           domain: hostname,
@@ -271,8 +268,7 @@ export const getAllCookiesForDomain = async (
     if (siteURL.port) {
       cadLog(
         {
-          msg:
-            'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (FirstPartyIsolation - use_site + port).',
+          msg: 'Libs.getAllCookiesForDomain:  browser.cookies.getAll for domain (FirstPartyIsolation - use_site + port).',
           x: {
             partialTabInfo,
             domain: hostname,
@@ -352,7 +348,7 @@ export const getContainerExpressionDefault = (
   };
   const exp: Expression = {
     expression: '',
-    listType: ListType.WHITE,
+    listType: ListType.KEEP,
     storeId: '',
   };
   const expDefault =

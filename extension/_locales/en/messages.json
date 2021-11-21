@@ -285,7 +285,7 @@
     "message": "Enable Context Menus (Right-Click Menu)",
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
-  "enableGreyListCleanup": {
+  "enableRestartListCleanup": {
     "message": "Enable RestartList Cleanup on Browser Restart",
     "description": "Enable RestartList Cleanup on Browser Restart"
   },
@@ -328,10 +328,6 @@
   "filterText": {
     "message": "Filter",
     "description": "Filter"
-  },
-  "greyListWordText": {
-    "message": "RestartList",
-    "description": "RestartList"
   },
   "importCoreSettingsFailed": {
     "message": "Import Core Settings Failed - Found unknown setting",
@@ -453,17 +449,17 @@
   },
   "keepAllCookiesText": {
     "message": "Keep All Cookies",
-    "description": "Keep All Cookies. Found in Exception Options. For AllowList entries."
+    "description": "Keep All Cookies. Found in Exception Options. For KeepList entries."
   },
-  "keepAllCookiesGreyText": {
+  "keepAllCookiesRestartText": {
     "message": "Keep All Cookies until restart",
     "description": "Keep All Cookies until restart. Found in Exception Options. For RestartList entries."
   },
   "keepCacheText": {
     "message": "Keep Cache",
-    "description": "Keep Cache. Found in Exception Options. For AllowList entries."
+    "description": "Keep Cache. Found in Exception Options. For KeepList entries."
   },
-  "keepCacheGreyText": {
+  "keepCacheRestartText": {
     "message": "Keep Cache until restart",
     "description": "Keep Cache until restart. Found in Exception Options. For restartlist entries."
   },
@@ -473,33 +469,37 @@
   },
   "keepIndexedDBText": {
     "message": "Keep IndexedDB",
-    "description": "Keep IndexedDB. Found in Exception Options. For AllowList entries."
+    "description": "Keep IndexedDB. Found in Exception Options. For KeepList entries."
   },
-  "keepIndexedDBGreyText": {
+  "keepIndexedDBRestartText": {
     "message": "Keep IndexedDB until restart",
     "description": "Keep IndexedDB until restart. Found in Exception Options. For RestartList entries."
   },
+  "keepListWordText": {
+    "message": "KeepList",
+    "description": "KeepList"
+  },
   "keepLocalstorageText": {
     "message": "Keep LocalStorage",
-    "description": "Keep LocalStorage. Found in Exception Options. For AllowList entries."
+    "description": "Keep LocalStorage. Found in Exception Options. For KeepList entries."
   },
-  "keepLocalstorageGreyText": {
+  "keepLocalstorageRestartText": {
     "message": "Keep LocalStorage until restart",
     "description": "Keep LocalStorage until restart. Found in Exception Options. For RestartList entries."
   },
   "keepPluginDataText": {
     "message": "Keep Plugin Data",
-    "description": "Keep Plugin Data. Found in Exception Options. For AllowList entries."
+    "description": "Keep Plugin Data. Found in Exception Options. For KeepList entries."
   },
-  "keepPluginDataGreyText": {
+  "keepPluginDataRestartText": {
     "message": "Keep Plugin Data until restart",
     "description": "Keep Plugin Data until restart. Found in Exception Options. For RestartList entries."
   },
   "keepServiceWorkersText": {
     "message": "Keep Service Workers",
-    "description": "Keep Service Workers. Found in Exception Options. For AllowList entries."
+    "description": "Keep Service Workers. Found in Exception Options. For KeepList entries."
   },
-  "keepServiceWorkersGreyText": {
+  "keepServiceWorkersRestartText": {
     "message": "Keep Service Workers until restart",
     "description": "Keep Service Workers until restart. Found in Exception Options. For RestartList entries."
   },
@@ -821,11 +821,11 @@
       },
       "listType": {
         "content": "$2",
-        "example": "AllowList"
+        "example": "KeepList"
       }
     }
   },
-  "reasonCleanGreyList": {
+  "reasonCleanRestartList": {
     "message": "Clean because of startup cleanup and $matchedExpression$ is in the RestartList",
     "description": "Clean because of startup cleanup and $matchedExpression$ is in the RestartList. Used in cleanup log.",
     "placeholders": {
@@ -865,7 +865,7 @@
       },
       "listType": {
         "content": "$2",
-        "example": "AllowList"
+        "example": "KeepList"
       }
     }
   },
@@ -951,6 +951,10 @@
     "message": "Reset Extension Data",
     "description": "Reset Extension Data"
   },
+  "restartListWordText": {
+    "message": "RestartList",
+    "description": "RestartList"
+  },
   "restoreText": {
     "message": "Restore",
     "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
@@ -1035,25 +1039,25 @@
     "message": "Success!",
     "description": "Success!"
   },
-  "toGreyListText": {
+  "toKeepListText": {
+    "message": "Add to KeepList (Never Clean)",
+    "description": "Add to KeepList (Never Clean)"
+  },
+  "toRestartListText": {
     "message": "Add to RestartList (Clean on Browser Restart)",
     "description": "Add to RestartList (Clean on Browser Restart)"
-  },
-  "toWhiteListText": {
-    "message": "Add to AllowList (Never Clean)",
-    "description": "Add to AllowList (Never Clean)"
   },
   "toggleNotificationText": {
     "message": "Toggle to enable or disable notifications",
     "description": "Toggle to enable or disable notifications"
   },
-  "toggleToGreyListWordText": {
+  "toggleToKeepListWordText": {
+    "message": "Toggle to KeepList",
+    "description": "Toggle to KeepList"
+  },
+  "toggleToRestartListWordText": {
     "message": "Toggle to RestartList",
     "description": "Toggle to RestartList"
-  },
-  "toggleToWhiteListWordText": {
-    "message": "Toggle to AllowList",
-    "description": "Toggle to AllowList"
   },
   "versionNumberText": {
     "message": "$CAD$ version",
@@ -1100,9 +1104,5 @@
   "expressionListText": {
     "message": "List of Exceptions",
     "description": "List of Exceptions"
-  },
-  "whiteListWordText": {
-    "message": "AllowList",
-    "description": "AllowList"
   }
 }

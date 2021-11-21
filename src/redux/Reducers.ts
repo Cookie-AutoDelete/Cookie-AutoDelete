@@ -33,16 +33,16 @@ const newExpressionObject = (
     ? []
     : action.payload.cleanSiteData,
   id: shortid.generate(),
-  listType: !action.payload.listType ? ListType.WHITE : action.payload.listType,
+  listType: !action.payload.listType ? ListType.KEEP : action.payload.listType,
 });
 
 // Sorting algorithm for the expression list.
 // Order is Allow -> RESTART -> Alphanumeric
 const sortExpressionAlgorithm = (a: Expression, b: Expression) => {
-  if (a.listType === ListType.WHITE && b.listType === ListType.GREY) {
+  if (a.listType === ListType.KEEP && b.listType === ListType.RESTART) {
     return -1;
   }
-  if (b.listType === ListType.WHITE && a.listType === ListType.GREY) {
+  if (b.listType === ListType.KEEP && a.listType === ListType.RESTART) {
     return 1;
   }
   return a.expression.localeCompare(b.expression);
@@ -53,7 +53,7 @@ export const expression = (
     cookieNames: [],
     expression: '',
     id: '1',
-    listType: ListType.WHITE,
+    listType: ListType.KEEP,
     storeId: 'default',
   },
   action: ReduxAction,

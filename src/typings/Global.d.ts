@@ -96,13 +96,14 @@ declare const enum SettingID {
   CONTEXTUAL_IDENTITIES = 'contextualIdentities',
   CONTEXTUAL_IDENTITIES_AUTOREMOVE = 'contextualIdentitiesAutoRemove',
   DEBUG_MODE = 'debugMode',
-  ENABLE_GREYLIST = 'enableGreyListCleanup',
   ENABLE_NEW_POPUP = 'enableNewVersionPopup',
+  ENABLE_RESTARTLIST = 'enableRestartListCleanup',
   KEEP_DEFAULT_ICON = 'keepDefaultIcon',
   NOTIFY_AUTO = 'showNotificationAfterCleanup',
   NOTIFY_MANUAL = 'manualNotifications',
   NOTIFY_DURATION = 'notificationOnScreen',
   NUM_COOKIES_ICON = 'showNumOfCookiesInIcon',
+  OLD_ENABLE_GREYLIST = 'enableGreyListCleanup',
   OLD_GREY_CLEAN_LOCALSTORAGE = 'greyCleanLocalstorage',
   OLD_WHITE_CLEAN_LOCALSTORAGE = 'whiteCleanLocalstorage',
   SIZE_POPUP = 'sizePopup',
@@ -113,6 +114,8 @@ declare const enum SettingID {
 declare const enum ListType {
   WHITE = 'WHITE',
   GREY = 'GREY',
+  KEEP = 'KEEP',
+  RESTART = 'RESTART',
 }
 
 interface ReleaseNote {

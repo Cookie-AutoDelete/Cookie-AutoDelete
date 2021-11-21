@@ -77,20 +77,18 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
   const matchedExpression = cleanReasonObject.expression;
   switch (reason) {
     case ReasonClean.CADSiteDataCookie:
-    case ReasonClean.ExpiredCookie: {
+    case ReasonClean.ExpiredCookie:
+    case ReasonClean.NoMatchedExpression:
+    case ReasonClean.StartupNoMatchedExpression: {
       return browser.i18n.getMessage(reason, [hostname]);
     }
     case ReasonKeep.OpenTabs: {
       return browser.i18n.getMessage(reason, [mainDomain]);
     }
 
-    case ReasonClean.NoMatchedExpression:
-    case ReasonClean.StartupNoMatchedExpression: {
-      return browser.i18n.getMessage(reason, [hostname]);
-    }
-
-    case ReasonClean.StartupCleanupAndGreyList: {
-      return browser.i18n.getMessage(reason, [
+    case ReasonClean.StartupCleanupAndGreyList:
+    case ReasonClean.StartupCleanupAndRestartList: {
+      return browser.i18n.getMessage(ReasonClean.StartupCleanupAndRestartList, [
         matchedExpression ? matchedExpression.expression : '',
       ]);
     }
@@ -99,9 +97,9 @@ const returnReasonMessages = (cleanReasonObject: CleanReasonObject) => {
     case ReasonKeep.MatchedExpression: {
       return browser.i18n.getMessage(reason, [
         matchedExpression ? matchedExpression.expression : '',
-        matchedExpression && matchedExpression.listType === ListType.GREY
-          ? browser.i18n.getMessage('greyListWordText')
-          : browser.i18n.getMessage('whiteListWordText'),
+        matchedExpression && matchedExpression.listType === ListType.RESTART
+          ? browser.i18n.getMessage('restartListWordText')
+          : browser.i18n.getMessage('keepListWordText'),
       ]);
     }
 
@@ -150,8 +148,7 @@ const restoreCookies = async (
       if (obj.cookie.preparedCookieDomain.startsWith('file:')) {
         cadLog(
           {
-            msg:
-              'Cookie appears to come from a local file.  Cannot be restored normally.',
+            msg: 'Cookie appears to come from a local file.  Cannot be restored normally.',
             type: 'warn',
             x: obj.cookie,
           },
@@ -216,8 +213,7 @@ const restoreCookies = async (
       );
       cadLog(
         {
-          msg:
-            'An Error occurred while trying to restore cookie(s).  The rest of the cookies to restore are not processed.',
+          msg: 'An Error occurred while trying to restore cookie(s).  The rest of the cookies to restore are not processed.',
           type: 'error',
           x: e,
         },

@@ -4,7 +4,7 @@
       "version": "unreleased",
       "notes": [
         "Enhanced:  Additional Clean options now have small amount of spacing between them.",
-        "Enhanced:  Language Clarification",
+        "Enhanced:  Language Clarification on Lists.",
         "Chore:  Dependency Updates and code optimizations, including a patch for replacing deprecated functions by CommanderRoot in PR#1319",
         "Fixed:  Version number comparison in Firefox is now by number instead of string, as it should have been in the beginning. This resolves most of the issues from Firefox 100+",
         "Fixed:  Popup UI Buttons stacking when font size is small even though there is enough room for more than one button per row.  Now it should only stack when width is too small.  Fixes #1034.",

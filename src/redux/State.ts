@@ -62,8 +62,13 @@ export const initialState: State = {
       name: SettingID.CLEAN_DOMAIN_CHANGE,
       value: false,
     },
-    [SettingID.ENABLE_GREYLIST]: {
-      name: SettingID.ENABLE_GREYLIST,
+    [SettingID.ENABLE_RESTARTLIST]: {
+      name: SettingID.ENABLE_RESTARTLIST,
+      value: true,
+    },
+    [SettingID.OLD_ENABLE_GREYLIST]: {
+      id: 'DEPRECATED - Renamed to RESTARTLIST',
+      name: SettingID.OLD_ENABLE_GREYLIST,
       value: true,
     },
     [SettingID.ENABLE_NEW_POPUP]: {
