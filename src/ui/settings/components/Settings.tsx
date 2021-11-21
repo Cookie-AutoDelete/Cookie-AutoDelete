@@ -148,6 +148,16 @@ class Settings extends React.Component<SettingProps> {
           );
           return;
         }
+        // Migrate greylist to restartlist setting if found
+        if (
+          !settingKeys.includes(SettingID.ENABLE_RESTARTLIST) &&
+          settingKeys.includes(SettingID.OLD_ENABLE_GREYLIST)
+        ) {
+          onUpdateSetting({
+            name: SettingID.ENABLE_RESTARTLIST,
+            value: newSettings[SettingID.OLD_ENABLE_GREYLIST].value,
+          });
+        }
         settingKeys.forEach((setting) => {
           if (settings[setting].value !== newSettings[setting].value) {
             cadLog(
