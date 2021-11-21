@@ -63,10 +63,10 @@ class TestStore extends StoreUser {
   }
 }
 
-const wildCardWhiteListGoogle: Expression = {
+const wildCardKeepListGoogle: Expression = {
   expression: '*.google.com',
   id: '1',
-  listType: ListType.GREY,
+  listType: ListType.RESTART,
   storeId: 'remove-container-1',
 };
 
@@ -192,10 +192,7 @@ describe('ContextualIdentitiesEvents', () => {
         SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE,
         false,
       );
-      TestStore.dispatch(
-        wildCardWhiteListGoogle,
-        ReduxConstants.ADD_EXPRESSION,
-      );
+      TestStore.dispatch(wildCardKeepListGoogle, ReduxConstants.ADD_EXPRESSION);
       ContextualIdentitiesEvents.onContainerRemoved({
         contextualIdentity: {
           ...defaultContextualIdentity,
@@ -206,10 +203,7 @@ describe('ContextualIdentitiesEvents', () => {
     });
     it('should remove expression list if related setting is enabled', () => {
       TestStore.changeSetting(SettingID.CONTEXTUAL_IDENTITIES_AUTOREMOVE, true);
-      TestStore.dispatch(
-        wildCardWhiteListGoogle,
-        ReduxConstants.ADD_EXPRESSION,
-      );
+      TestStore.dispatch(wildCardKeepListGoogle, ReduxConstants.ADD_EXPRESSION);
       ContextualIdentitiesEvents.onContainerRemoved({
         contextualIdentity: {
           ...defaultContextualIdentity,

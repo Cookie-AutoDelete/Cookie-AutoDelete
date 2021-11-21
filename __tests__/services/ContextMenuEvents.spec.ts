@@ -236,7 +236,7 @@ describe('ContextMenuEvents', () => {
       expect(spyCleanupService.cleanCookiesOperation).toHaveBeenCalledWith(
         expect.any(Object),
         {
-          greyCleanup: false,
+          restartCleanup: false,
           ignoreOpenTabs: false,
         },
       );
@@ -252,7 +252,7 @@ describe('ContextMenuEvents', () => {
       expect(spyCleanupService.cleanCookiesOperation).toHaveBeenCalledWith(
         expect.any(Object),
         {
-          greyCleanup: false,
+          restartCleanup: false,
           ignoreOpenTabs: true,
         },
       );
@@ -384,7 +384,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'link.cad',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-default',
       );
     });
@@ -398,7 +398,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'link.cad',
-        ListType.WHITE,
+        ListType.KEEP,
         'firefox-default',
       );
     });
@@ -412,7 +412,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.link.cad',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-default',
       );
     });
@@ -426,7 +426,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.link.cad',
-        ListType.WHITE,
+        ListType.KEEP,
         'firefox-default',
       );
     });
@@ -441,7 +441,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'page.cad',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-default',
       );
     });
@@ -455,7 +455,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'page.cad',
-        ListType.WHITE,
+        ListType.KEEP,
         'firefox-default',
       );
     });
@@ -469,7 +469,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.page.cad',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-default',
       );
     });
@@ -483,7 +483,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.page.cad',
-        ListType.WHITE,
+        ListType.KEEP,
         'firefox-default',
       );
     });
@@ -498,7 +498,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'selectedText',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-default',
       );
     });
@@ -517,7 +517,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'selectedText',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-container-1',
       );
     });
@@ -532,7 +532,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'selectedText',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-container-2',
       );
     });
@@ -546,7 +546,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         'selectedText',
-        ListType.WHITE,
+        ListType.KEEP,
         'firefox-default',
       );
     });
@@ -560,7 +560,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.selectedText',
-        ListType.GREY,
+        ListType.RESTART,
         'firefox-default',
       );
     });
@@ -574,7 +574,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.selectedText',
-        ListType.WHITE,
+        ListType.KEEP,
         'firefox-default',
       );
     });
@@ -614,7 +614,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.selectedText',
-        ListType.WHITE,
+        ListType.KEEP,
         '',
       );
     });
@@ -629,7 +629,7 @@ describe('ContextMenuEvents', () => {
       );
       expect(TestContextMenuEvents.spyAddNewExpression).toHaveBeenCalledWith(
         '*.',
-        ListType.WHITE,
+        ListType.KEEP,
         '',
       );
     });
