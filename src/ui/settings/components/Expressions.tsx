@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2017-2022 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -61,7 +61,8 @@ interface DispatchProps {
 type ExpressionProps = OwnProps & StateProps & DispatchProps;
 
 class InitialState {
-  public contextualIdentitiesObjects: browser.contextualIdentities.ContextualIdentity[] = [];
+  public contextualIdentitiesObjects: browser.contextualIdentities.ContextualIdentity[] =
+    [];
   public error = '';
   public expressionInput = '';
   public storeId = 'default';
@@ -346,9 +347,8 @@ class Expressions extends React.Component<ExpressionProps> {
 
   public async componentDidMount() {
     if (this.props.contextualIdentities) {
-      const contextualIdentitiesObjects = await browser.contextualIdentities.query(
-        {},
-      );
+      const contextualIdentitiesObjects =
+        await browser.contextualIdentities.query({});
       this.setState({
         contextualIdentitiesObjects,
       });

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2017-2022 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -238,8 +238,7 @@ class About extends React.Component<AboutProps> {
               cadLog(
                 {
                   type: 'error',
-                  msg:
-                    'Could not find either textarea or span for debugSettings',
+                  msg: 'Could not find either textarea or span for debugSettings',
                 },
                 true,
               );
@@ -249,8 +248,7 @@ class About extends React.Component<AboutProps> {
               cadLog(
                 {
                   type: 'error',
-                  msg:
-                    'Could not get textContent from textarea for debugSettings',
+                  msg: 'Could not get textContent from textarea for debugSettings',
                 },
                 true,
               );

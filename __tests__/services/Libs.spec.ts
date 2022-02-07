@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2020-2022 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -168,8 +168,7 @@ describe('Library Functions', () => {
       expect(consoleOutput).toEqual([
         {
           type: 'error',
-          msg:
-            'CAD_0.12.34 - Invalid Console Output Type given [ invalid ].  Using [debug] instead.',
+          msg: 'CAD_0.12.34 - Invalid Console Output Type given [ invalid ].  Using [debug] instead.',
         },
         { type: 'debug', msg: 'CAD_0.12.34 - debug - invalidType\n' },
       ]);
@@ -189,13 +188,11 @@ describe('Library Functions', () => {
       expect(consoleOutput).toEqual([
         {
           type: 'warn',
-          msg:
-            'CAD_0.12.34 - Received unexpected typeof [ function ].  Attempting to display it...',
+          msg: 'CAD_0.12.34 - Received unexpected typeof [ function ].  Attempting to display it...',
         },
         {
           type: 'debug',
-          msg:
-            'CAD_0.12.34 - debug - objectFunction\nfunction toString() { [native code] }',
+          msg: 'CAD_0.12.34 - debug - objectFunction\nfunction toString() { [native code] }',
         },
       ]);
     });
@@ -1310,14 +1307,9 @@ describe('Library Functions', () => {
     });
 
     it('should return cleanup domains from example.com', () => {
-      expect(
-        prepareCleanupDomains('example.com', browserName.Firefox),
-      ).toEqual([
-        'example.com',
-        '.example.com',
-        'www.example.com',
-        '.www.example.com',
-      ]);
+      expect(prepareCleanupDomains('example.com', browserName.Firefox)).toEqual(
+        ['example.com', '.example.com', 'www.example.com', '.www.example.com'],
+      );
     });
 
     it('should return cleanup domains from example.com for Chrome', () => {
@@ -1699,9 +1691,10 @@ describe('Library Functions', () => {
     });
     it('should return invalid message on invalid RegExp', () => {
       validateExpressionDomain('/abc(def]/');
-      expect(
-        global.browser.i18n.getMessage,
-      ).toHaveBeenCalledWith('inputErrorRegExp', [expect.any(String)]);
+      expect(global.browser.i18n.getMessage).toHaveBeenCalledWith(
+        'inputErrorRegExp',
+        [expect.any(String)],
+      );
     });
     it('should return invalid message on start slash missing end slash', () => {
       validateExpressionDomain('/abc');

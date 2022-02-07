@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Kenneth Tran and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2020-2022 Kenneth Tran and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -162,9 +162,8 @@ export default class ContextualIdentitiesEvents extends StoreUser {
 
   // Map the cookieStoreId to their actual names and store in cache
   public static async cacheCookieStoreIdNames(): Promise<void> {
-    const contextualIdentitiesObjects = await browser.contextualIdentities.query(
-      {},
-    );
+    const contextualIdentitiesObjects =
+      await browser.contextualIdentities.query({});
     StoreUser.store.dispatch({
       payload: {
         key: 'default',

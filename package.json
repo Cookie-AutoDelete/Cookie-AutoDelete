@@ -53,7 +53,7 @@
     "jest": "^26.6.3",
     "jest-date-mock": "^1.0.8",
     "jest-when": "^3.3.1",
-    "prettier": "^2.3.0",
+    "prettier": "^2.5.1",
     "source-map-loader": "^3.0.0",
     "ts-jest": "^26.5.6",
     "ts-loader": "^9.2.2",
