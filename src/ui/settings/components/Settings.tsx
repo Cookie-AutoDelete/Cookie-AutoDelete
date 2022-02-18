@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2017-2022 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -106,14 +106,12 @@ class Settings extends React.Component<SettingProps> {
         // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
         const target: FileReader = file.target;
         const result: string = target.result as string;
-        const jsonImport: { [k: string]: Record<string, unknown> } = JSON.parse(
-          result,
-        );
+        const jsonImport: { [k: string]: Record<string, unknown> } =
+          JSON.parse(result);
         if (!jsonImport.settings) {
           cadLog(
             {
-              msg:
-                'importCoreSettings:  Imported JSON does not have "settings" array',
+              msg: 'importCoreSettings:  Imported JSON does not have "settings" array',
               x: jsonImport,
             },
             debug,
@@ -130,13 +128,12 @@ class Settings extends React.Component<SettingProps> {
           return;
         }
         // from { name, value } to name:{ name, value }
-        const newSettings: MapToSettingObject = ((jsonImport.settings as unknown) as Setting[]).reduce(
-          (a: { [k: string]: Setting }, c: Setting) => {
-            a[c.name] = c;
-            return a;
-          },
-          {},
-        );
+        const newSettings: MapToSettingObject = (
+          jsonImport.settings as unknown as Setting[]
+        ).reduce((a: { [k: string]: Setting }, c: Setting) => {
+          a[c.name] = c;
+          return a;
+        }, {});
         const settingKeys = Object.keys(newSettings);
         const unknownKeys = settingKeys.filter(
           (key) => !initialSettingKeys.includes(key),
@@ -209,13 +206,8 @@ class Settings extends React.Component<SettingProps> {
   }
 
   public render() {
-    const {
-      cache,
-      onResetButtonClick,
-      onUpdateSetting,
-      settings,
-      style,
-    } = this.props;
+    const { cache, onResetButtonClick, onUpdateSetting, settings, style } =
+      this.props;
     const { error, success } = this.state;
     return (
       <div style={style}>

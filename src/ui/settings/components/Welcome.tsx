@@ -1,5 +1,5 @@
-/**welcomeMessage
- * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+/**
+ * Copyright (c) 2017-2022 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -135,11 +135,8 @@ const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
 });
 
 const mapStateToProps = (state: State) => {
-  const {
-    cookieDeletedCounterTotal,
-    cookieDeletedCounterSession,
-    cache,
-  } = state;
+  const { cookieDeletedCounterTotal, cookieDeletedCounterSession, cache } =
+    state;
   return {
     bName: cache.browserDetect || (browserDetect() as browserName),
     cookieDeletedCounterSession,

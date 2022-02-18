@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 Kenneth Tran and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2020-2022 Kenneth Tran and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -79,12 +79,13 @@ class TestContextualIdentitiesEvents extends ContextualIdentitiesEvents {
   }
 }
 
-const defaultContextualIdentity: browser.contextualIdentities.ContextualIdentity = {
-  cookieStoreId: 'firefox-container-0',
-  color: 'blue',
-  icon: 'fingerprint',
-  name: 'Testing Container',
-};
+const defaultContextualIdentity: browser.contextualIdentities.ContextualIdentity =
+  {
+    cookieStoreId: 'firefox-container-0',
+    color: 'blue',
+    icon: 'fingerprint',
+    name: 'Testing Container',
+  };
 
 describe('ContextualIdentitiesEvents', () => {
   beforeAll(() => {

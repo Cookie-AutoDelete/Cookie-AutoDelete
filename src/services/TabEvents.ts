@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2017-2022 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -50,8 +50,7 @@ export default class TabEvents extends StoreUser {
       if (changeInfo.discarded || tab.discarded) {
         cadLog(
           {
-            msg:
-              'TabEvents.onTabDiscarded: Tab was discarded.  Executing cleanFromTabEvents',
+            msg: 'TabEvents.onTabDiscarded: Tab was discarded.  Executing cleanFromTabEvents',
             x: { tabId, changeInfo, partialTabInfo },
           },
           debug,
@@ -87,8 +86,7 @@ export default class TabEvents extends StoreUser {
         TabEvents.onTabUpdateDelay = true;
         cadLog(
           {
-            msg:
-              'TabEvents.onTabUpdate: action delay has been set for ~750 ms.',
+            msg: 'TabEvents.onTabUpdate: action delay has been set for ~750 ms.',
             x: { tabId, changeInfo, partialTabInfo },
           },
           debug,
@@ -105,8 +103,7 @@ export default class TabEvents extends StoreUser {
           TabEvents.onTabUpdateDelay = false;
           cadLog(
             {
-              msg:
-                'TabEvents.onTabUpdate: actions have been processed and flag cleared.',
+              msg: 'TabEvents.onTabUpdate: actions have been processed and flag cleared.',
             },
             debug,
           );
@@ -164,8 +161,7 @@ export default class TabEvents extends StoreUser {
           if (oldMainDomain === '') {
             cadLog(
               {
-                msg:
-                  'TabEvents.onDomainChange: mainDomain has changed, but previous domain may have been a blank or new tab.  Not executing domainChangeCleanup',
+                msg: 'TabEvents.onDomainChange: mainDomain has changed, but previous domain may have been a blank or new tab.  Not executing domainChangeCleanup',
                 x: { tabId, changeInfo, partialTabInfo },
               },
               debug,
@@ -174,8 +170,7 @@ export default class TabEvents extends StoreUser {
           }
           cadLog(
             {
-              msg:
-                'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
+              msg: 'TabEvents.onDomainChange: mainDomain has changed.  Executing domainChangeCleanup',
               x: {
                 tabId,
                 changeInfo,
@@ -190,8 +185,7 @@ export default class TabEvents extends StoreUser {
         } else {
           cadLog(
             {
-              msg:
-                'TabEvents.onDomainChange: mainDomain has changed, but cleanOnDomainChange is not enabled.  Not cleaning.',
+              msg: 'TabEvents.onDomainChange: mainDomain has changed, but cleanOnDomainChange is not enabled.  Not cleaning.',
               x: {
                 tabId,
                 changeInfo,
@@ -224,8 +218,7 @@ export default class TabEvents extends StoreUser {
   ): void {
     cadLog(
       {
-        msg:
-          'TabEvents.onDomainChangeRemove: Tab was closed.  Removing old tabToDomain info.',
+        msg: 'TabEvents.onDomainChangeRemove: Tab was closed.  Removing old tabToDomain info.',
         x: { tabId, mainDomain: TabEvents.tabToDomain[tabId], removeInfo },
       },
       getSetting(StoreUser.store.getState(), SettingID.DEBUG_MODE) as boolean,
@@ -243,8 +236,7 @@ export default class TabEvents extends StoreUser {
       if (!alarm || (alarm.name && alarm.name !== 'activeModeAlarm')) {
         cadLog(
           {
-            msg:
-              'TabEvents.cleanFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
+            msg: 'TabEvents.cleanFromTabEvents:  No Alarms detected.  Creating alarm for cleaning...',
           },
           debug,
         );
@@ -252,8 +244,7 @@ export default class TabEvents extends StoreUser {
       } else {
         cadLog(
           {
-            msg:
-              'TabEvents.cleanFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
+            msg: 'TabEvents.cleanFromTabEvents:  An alarm for cleaning was created already.  Cleaning will commence soon.',
             x: alarm,
           },
           debug,
@@ -280,8 +271,7 @@ export default class TabEvents extends StoreUser {
     if (!cookies) {
       cadLog(
         {
-          msg:
-            'TabEvents.getAllCookieActions: Libs.getAllCookiesForDomain returned undefined.  Skipping Cookie Actions.',
+          msg: 'TabEvents.getAllCookieActions: Libs.getAllCookiesForDomain returned undefined.  Skipping Cookie Actions.',
           x: { partialTabInfo },
         },
         debug,
@@ -326,8 +316,7 @@ export default class TabEvents extends StoreUser {
       await browser.cookies.set({ ...cookiesAttributes, url: tab.url });
       cadLog(
         {
-          msg:
-            'TabEvents.getAllCookieActions:  A temporary cookie has been set for future BrowsingData cleaning as the site did not set any cookies yet.',
+          msg: 'TabEvents.getAllCookieActions:  A temporary cookie has been set for future BrowsingData cleaning as the site did not set any cookies yet.',
           x: { partialTabInfo, cadLSCookie: cookiesAttributes },
         },
         debug,
@@ -338,8 +327,7 @@ export default class TabEvents extends StoreUser {
     if (cookies.length !== cookieLength) {
       cadLog(
         {
-          msg:
-            'TabEvents.getAllCookieActions:  New Cookie Count after filtering out cookie set by extension',
+          msg: 'TabEvents.getAllCookieActions:  New Cookie Count after filtering out cookie set by extension',
           x: { preFilterCount: cookies.length, newCookieCount: cookieLength },
         },
         debug,
@@ -347,8 +335,7 @@ export default class TabEvents extends StoreUser {
     }
     cadLog(
       {
-        msg:
-          'TabEvents.getAllCookieActions: executing checkIfProtected to update Icons and Title.',
+        msg: 'TabEvents.getAllCookieActions: executing checkIfProtected to update Icons and Title.',
       },
       debug,
     );
@@ -361,8 +348,7 @@ export default class TabEvents extends StoreUser {
     ) {
       cadLog(
         {
-          msg:
-            'TabEvents.getAllCookieActions: executing showNumberOfCookiesInIcon.',
+          msg: 'TabEvents.getAllCookieActions: executing showNumberOfCookiesInIcon.',
         },
         debug,
       );

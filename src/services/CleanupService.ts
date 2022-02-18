@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-2020 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
+ * Copyright (c) 2017-2022 Kenny Do and CAD Team (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors)
  * Licensed under MIT (https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/blob/3.X.X-Branch/LICENSE)
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -161,8 +161,7 @@ export const isSafeToClean = (
   ) {
     cadLog(
       {
-        msg:
-          'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups.',
+        msg: 'CleanupService.isSafeToClean:  Internal CAD Cookie.  Removing Cookie to trigger browsingData cleanups.',
         x: {
           partialCookieInfo,
           cleanSiteData: matchedExpression.cleanSiteData,
@@ -184,8 +183,7 @@ export const isSafeToClean = (
   if (greyCleanup && !matchedExpression) {
     cadLog(
       {
-        msg:
-          'CleanupService.isSafeToClean:  unmatched and greyCleanup.  Safe to Clean',
+        msg: 'CleanupService.isSafeToClean:  unmatched and greyCleanup.  Safe to Clean',
         x: partialCookieInfo,
       },
       debug,
@@ -210,8 +208,7 @@ export const isSafeToClean = (
   ) {
     cadLog(
       {
-        msg:
-          'CleanupService.isSafeToClean:  greyCleanup - matching Expression and cookie name was unchecked.  Safe to Clean.',
+        msg: 'CleanupService.isSafeToClean:  greyCleanup - matching Expression and cookie name was unchecked.  Safe to Clean.',
         x: { partialCookieInfo, matchedExpression },
       },
       debug,
@@ -230,8 +227,7 @@ export const isSafeToClean = (
   if (!matchedExpression) {
     cadLog(
       {
-        msg:
-          'CleanupService.isSafeToClean:  unmatched Expression.  Safe to Clean.',
+        msg: 'CleanupService.isSafeToClean:  unmatched Expression.  Safe to Clean.',
         x: partialCookieInfo,
       },
       debug,
@@ -252,8 +248,7 @@ export const isSafeToClean = (
   ) {
     cadLog(
       {
-        msg:
-          'CleanupService.isSafeToClean:  matched Expression but unchecked cookie name.  Safe to Clean.',
+        msg: 'CleanupService.isSafeToClean:  matched Expression but unchecked cookie name.  Safe to Clean.',
         x: { partialCookieInfo, matchedExpression },
       },
       debug,
@@ -269,8 +264,7 @@ export const isSafeToClean = (
   }
   cadLog(
     {
-      msg:
-        'CleanupService.isSafeToClean:  Matched Expression and cookie name.  Cookie stays!',
+      msg: 'CleanupService.isSafeToClean:  Matched Expression and cookie name.  Cookie stays!',
       x: { partialCookieInfo, matchedExpression },
     },
     debug,
@@ -305,8 +299,7 @@ export const cleanCookies = async (
     // url: "http://domain.com" + cookies[i].path
     cadLog(
       {
-        msg:
-          'CleanupService.cleanCookies: Cookie being removed through browser.cookies.remove via Promises:',
+        msg: 'CleanupService.cleanCookies: Cookie being removed through browser.cookies.remove via Promises:',
         x: cookieRemove,
       },
       getSetting(state, SettingID.DEBUG_MODE) as boolean,
@@ -814,9 +807,8 @@ export const cleanCookiesOperation = async (
 
   // Store cookieStoreIds from the contextualIdentities API
   if (getSetting(state, SettingID.CONTEXTUAL_IDENTITIES)) {
-    const contextualIdentitiesObjects = await browser.contextualIdentities.query(
-      {},
-    );
+    const contextualIdentitiesObjects =
+      await browser.contextualIdentities.query({});
 
     for (const cio of contextualIdentitiesObjects) {
       cookieStoreIds.add(cio.cookieStoreId);
@@ -878,8 +870,7 @@ export const cleanCookiesOperation = async (
       });
       cadLog(
         {
-          msg:
-            'CleanupService.cleanCookiesOperation:  isSafeToCleanObjects Result',
+          msg: 'CleanupService.cleanCookiesOperation:  isSafeToCleanObjects Result',
           x: sanitized,
         },
         debug,
@@ -910,8 +901,7 @@ export const cleanCookiesOperation = async (
       });
       cadLog(
         {
-          msg:
-            'CleanupService.cleanCookiesOperation:  Cookies markedForDeletion Result',
+          msg: 'CleanupService.cleanCookiesOperation:  Cookies markedForDeletion Result',
           x: sanitized,
         },
         debug,
