@@ -54,7 +54,7 @@ if (!versionTag) {
   );
 }
 
-const sha = process.env.GITSHA ? `_${process.env.GITSHA.substr(0, 7)}` : '';
+const sha = process.env.GITSHA ? `_${process.env.GITSHA.slice(0, 7)}` : '';
 
 const TAG =
   (versionTag ||
