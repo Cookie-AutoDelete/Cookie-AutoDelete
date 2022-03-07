@@ -377,7 +377,7 @@ export const getHostname = (urlToGetHostName: string | undefined): string => {
   if (urlToGetHostName.startsWith('file:')) {
     // This assumes the browser supplied us with a valid local file url.
     // E.g. file:///C:/test.html or file:///home/user/test.html
-    return urlToGetHostName.substring(0, urlToGetHostName.lastIndexOf('/'));
+    return urlToGetHostName.slice(0, urlToGetHostName.lastIndexOf('/'));
   }
   try {
     // Strip "www." if the URL starts with it.
