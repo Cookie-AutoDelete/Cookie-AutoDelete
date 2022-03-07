@@ -41,7 +41,7 @@ class App extends Component<OwnProps> {
     this.setState({
       activeTab:
         tabURL.hash !== '' || undefined
-          ? tabURL.hash.substring(1)
+          ? tabURL.hash.slice(1)
           : 'tabWelcome',
       settingsURL: tab.url,
       tabId: tab.id,
