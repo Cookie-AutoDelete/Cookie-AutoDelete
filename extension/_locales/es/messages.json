@@ -458,7 +458,7 @@
     }
   },
   "invalidNewExpressions": {
-    "message": "Se han detectado nuevas expresiones inválidas. Se indican abajo con su razón y se han mantenido arriba para su edición.",
+    "message": "Se han detectado nuevas expresiones no válidas. Se indican abajo con su razón y se han mantenido arriba para su edición.",
     "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {

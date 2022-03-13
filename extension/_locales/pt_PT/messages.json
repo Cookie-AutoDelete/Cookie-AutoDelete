@@ -60,7 +60,7 @@
     "description": "Auto-clean enabled"
   },
   "browsingDataWarning": {
-    "message": "AVISO:  Ao ativar quaisquer das seguintes opções de limpeza de dados de sites, TODOS os dados existentes para esse tipo irão ser limpos.",
+    "message": "AVISO: Ao ativar quaisquer das seguintes opções de limpeza de dados de sites, TODOS os dados existentes para esse tipo irão ser limpos.",
     "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
   },
   "cacheCleanupText": {
