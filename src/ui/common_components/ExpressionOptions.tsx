@@ -279,27 +279,27 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       <div>
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= '78') ||
+            state.cache.browserVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.CACHE)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= '77') ||
+            state.cache.browserVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.INDEXEDDB)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= '58') ||
+            state.cache.browserVersion >= 58) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.LOCALSTORAGE)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= '78') ||
+            state.cache.browserVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.PLUGINDATA)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= '77') ||
+            state.cache.browserVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.SERVICEWORKERS)}
         <div className={'checkbox'}>

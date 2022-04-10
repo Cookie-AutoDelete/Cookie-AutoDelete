@@ -386,7 +386,7 @@ class Settings extends React.Component<SettingProps> {
             <div className="alert alert-warning">
               {browser.i18n.getMessage('browsingDataWarning')}
             </div>
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '78') ||
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= 78) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -400,7 +400,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '77') ||
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= 77) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -414,7 +414,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '58') ||
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= 58) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -428,7 +428,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '78') ||
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= 78) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -442,7 +442,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '77') ||
+            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= 77) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
