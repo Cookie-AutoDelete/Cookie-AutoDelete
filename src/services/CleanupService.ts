@@ -553,9 +553,10 @@ export const otherBrowsingDataCleanup = async (
   const chrome = isChrome(state.cache);
   const debug = getSetting(state, SettingID.DEBUG_MODE) as boolean;
   const browsingDataResult: ActivityLog['browsingDataCleanup'] = {};
+  const ffVersion = Number.parseInt(state.cache.browserVersion);
   if (
     getSetting(state, SettingID.CLEANUP_CACHE) &&
-    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= 78) ||
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
       chrome)
   ) {
     browsingDataResult[SiteDataType.CACHE] = await cleanSiteData(
@@ -568,7 +569,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_INDEXEDDB) &&
-    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= 77) ||
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
       chrome)
   ) {
     browsingDataResult[SiteDataType.INDEXEDDB] = await cleanSiteData(
@@ -581,7 +582,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_LOCALSTORAGE) &&
-    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= 58) ||
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 58) ||
       chrome)
   ) {
     browsingDataResult[SiteDataType.LOCALSTORAGE] = await cleanSiteData(
@@ -594,7 +595,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_PLUGIN_DATA) &&
-    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= 78) ||
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
       chrome)
   ) {
     browsingDataResult[SiteDataType.PLUGINDATA] = await cleanSiteData(
@@ -607,7 +608,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_SERVICE_WORKERS) &&
-    ((isFirefoxNotAndroid(state.cache) && state.cache.browserVersion >= 77) ||
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
       chrome)
   ) {
     browsingDataResult[SiteDataType.SERVICEWORKERS] = await cleanSiteData(

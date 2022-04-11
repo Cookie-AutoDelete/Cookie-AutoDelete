@@ -172,8 +172,8 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                 ...expression,
                 cookieNames: checked
                   ? originalCookieNames.filter(
-                      (cookieName) => cookieName !== name,
-                    )
+                    (cookieName) => cookieName !== name,
+                  )
                   : [...originalCookieNames, name],
               });
             }}
@@ -273,33 +273,34 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const { cookies } = this.state;
     const { expression, state } = this.props;
     const keyCleanAllCookies = `${expression.id}-cleanAllCookies`;
+    const ffVersion = Number.parseInt(state.cache.browserVersion);
 
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
       <div>
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= 78) ||
+            ffVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.CACHE)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= 77) ||
+            ffVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.INDEXEDDB)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= 58) ||
+            ffVersion >= 58) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.LOCALSTORAGE)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= 78) ||
+            ffVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.PLUGINDATA)}
         {!expression.expression.startsWith('file:') &&
           ((isFirefoxNotAndroid(state.cache) &&
-            state.cache.browserVersion >= 77) ||
+            ffVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.SERVICEWORKERS)}
         <div className={'checkbox'}>
@@ -321,7 +322,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               icon={[
                 'far',
                 expression.cleanAllCookies === undefined ||
-                expression.cleanAllCookies
+                  expression.cleanAllCookies
                   ? 'check-square'
                   : 'square',
               ]}
@@ -336,8 +337,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               aria-labelledby={keyCleanAllCookies}
             >
               {browser.i18n.getMessage(
-                `keepAllCookies${
-                  expression.listType === ListType.GREY ? 'Grey' : ''
+                `keepAllCookies${expression.listType === ListType.GREY ? 'Grey' : ''
                 }Text`,
               )}
             </label>
