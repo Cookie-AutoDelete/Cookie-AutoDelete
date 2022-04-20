@@ -209,6 +209,7 @@ class Settings extends React.Component<SettingProps> {
     const { cache, onResetButtonClick, onUpdateSetting, settings, style } =
       this.props;
     const { error, success } = this.state;
+    const ffVersion = Number.parseInt(cache.browserVersion);
     return (
       <div style={style}>
         <h1>{browser.i18n.getMessage('settingsText')}</h1>
@@ -386,7 +387,7 @@ class Settings extends React.Component<SettingProps> {
             <div className="alert alert-warning">
               {browser.i18n.getMessage('browsingDataWarning')}
             </div>
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '78') ||
+            {((isFirefoxNotAndroid(cache) && ffVersion >= 78) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -400,7 +401,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '77') ||
+            {((isFirefoxNotAndroid(cache) && ffVersion >= 77) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -414,7 +415,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '58') ||
+            {((isFirefoxNotAndroid(cache) && ffVersion >= 58) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -428,7 +429,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '78') ||
+            {((isFirefoxNotAndroid(cache) && ffVersion >= 78) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting
@@ -442,7 +443,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && cache.browserVersion >= '77') ||
+            {((isFirefoxNotAndroid(cache) && ffVersion >= 77) ||
               isChrome(cache)) && (
               <div className="form-group">
                 <CheckboxSetting

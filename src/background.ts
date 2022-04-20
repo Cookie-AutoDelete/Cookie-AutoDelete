@@ -73,7 +73,7 @@ const onStartUp = async () => {
   // Store the FF version in cache
   if (browserDetect() === browserName.Firefox) {
     const browserInfo = await browser.runtime.getBrowserInfo();
-    const browserVersion = browserInfo.version.split('.')[0];
+    const browserVersion = Number.parseInt(browserInfo.version);
     store.dispatch({
       payload: {
         key: 'browserVersion',
