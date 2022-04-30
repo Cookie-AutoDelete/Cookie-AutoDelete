@@ -94,7 +94,7 @@ jobs:
         env:
           GITSHA: ${{ needs.pre_info.outputs.gitSHA }}
       - name: Archive Code Coverage Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage
@@ -137,13 +137,13 @@ jobs:
         working-directory: ./builds
       - name: Upload Artifact for Mozilla Firefox Build
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.extbuilds.outputs.ffdir }}
           path: builds/${{ steps.extbuilds.outputs.ffdir }}
       - name: Upload Artifact for Google Chrome Build
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
