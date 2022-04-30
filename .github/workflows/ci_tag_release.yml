@@ -31,12 +31,12 @@ jobs:
           echo "::set-output name=ffxpi::$(ls builds/*Firefox.xpi)"
       - name: Archive Production Build Artifacts
         if: success()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: builds
           path: builds
       - name: Archive Code Coverage Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage
