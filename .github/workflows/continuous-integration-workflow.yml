@@ -104,7 +104,7 @@ jobs:
         continue-on-error: true
         with:
           fail_ci_if_error: true
-          directory: ./coverage/*
+          directory: ./coverage/
           token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
       - name: Codecov.io Coverage Upload for pull_request_target
         id: codecov_prt
@@ -113,7 +113,7 @@ jobs:
         if: steps.codecov_action.outcome == 'failure' && github.event_name == 'pull_request_target'
         with:
           fail_ci_if_error: true
-          directory: ./coverage/*
+          directory: ./coverage/
           token: ${{ secrets.CODECOV_TOKEN }}
           override_pr: ${{ github.event.number }}
           override_commit: ${{ github.event.pull_request.head.sha }}
