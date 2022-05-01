@@ -233,11 +233,7 @@ browser.runtime.onStartup.addListener(async () => {
       } else {
         cadLog(
           {
-<<<<<<< HEAD
-            msg: 'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Grey startup cleanup this time.',
-=======
             msg: 'Found a tab with [ about:sessionrestore ] in Firefox. Skipping Restart cleanup this time.',
->>>>>>> b5a8495 (Clarifying Language Usage.)
             type: 'info',
           },
           getSetting(store.getState(), SettingID.DEBUG_MODE) === true,
@@ -246,11 +242,7 @@ browser.runtime.onStartup.addListener(async () => {
     } else {
       cadLog(
         {
-<<<<<<< HEAD
-          msg: 'GreyList Cleanup setting is disabled.  Not cleaning cookies on startup.',
-=======
           msg: 'RestartList Cleanup setting is disabled.  Not cleaning cookies on startup.',
->>>>>>> b5a8495 (Clarifying Language Usage.)
           type: 'info',
         },
         getSetting(store.getState(), SettingID.DEBUG_MODE) === true,
