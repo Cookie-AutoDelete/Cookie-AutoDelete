@@ -10,8 +10,8 @@
     "extension"
   ],
   "engines": {
-    "node": ">=16.15.0",
-    "npm": ">=8.8.0"
+    "node": ">=16.14.0",
+    "npm": ">=8.5.0"
   },
   "private": true,
   "dependencies": {
