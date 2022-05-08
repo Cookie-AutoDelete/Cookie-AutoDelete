@@ -18,5 +18,10 @@ jobs:
                 "command": "get-build",
                 "permission": "read",
                 "issue_type": "pull-request"
+              },
+              {
+                "command": "get-build-beta",
+                "permission": "read",
+                "issue_type": "pull-request"
               }
             ]
