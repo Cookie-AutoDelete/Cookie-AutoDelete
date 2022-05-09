@@ -122,6 +122,13 @@ const exampleWithCookieNameGrey: Expression = {
   storeId: 'firefox-container-1',
 };
 
+const restartListCleanTest: Expression = {
+  expression: 'restart.clean',
+  id: '10',
+  listType: ListType.GREY,
+  storeId: 'default'
+}
+
 const sampleState: State = {
   ...initialState,
   lists: {
@@ -208,6 +215,12 @@ const personalGoogleCookie: CookiePropertiesCleanup = {
   secure: true,
   storeId: 'firefox-container-1',
 };
+
+const restartCleanCookie: CookiePropertiesCleanup = {
+  ...mockCookie,
+  domain: 'restart.clean',
+  name: 'cleanOnRestart',
+}
 
 describe('CleanupService', () => {
   beforeEach(() => {
@@ -631,8 +644,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [SettingID.CLEANUP_PLUGIN_DATA]: {
-                name: SettingID.CLEANUP_PLUGIN_DATA,
+              [SettingID.CLEANUP_PLUGINDATA]: {
+                name: SettingID.CLEANUP_PLUGINDATA,
                 value: true,
               },
             },
@@ -653,8 +666,8 @@ describe('CleanupService', () => {
             ...firefoxState,
             settings: {
               ...firefoxState.settings,
-              [SettingID.CLEANUP_SERVICE_WORKERS]: {
-                name: SettingID.CLEANUP_SERVICE_WORKERS,
+              [SettingID.CLEANUP_SERVICEWORKERS]: {
+                name: SettingID.CLEANUP_SERVICEWORKERS,
                 value: true,
               },
             },
@@ -1050,6 +1063,56 @@ describe('CleanupService', () => {
         spyLib.cadLog.mock.calls[0][0].x.CleanReasonObject.cookie.value,
       ).toEqual('***');
     });
+    it('should return false because of greyList expression for localstorage', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...restartCleanCookie
+        },
+        expression: {
+          ...restartListCleanTest
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonKeep.MatchedExpression,
+      }
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(false);
+    });
+    it('should return true because of greyList expression for localstorage and is restart cleanup mode', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...restartCleanCookie
+        },
+        expression: {
+          ...restartListCleanTest
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.StartupCleanupAndGreyList,
+      }
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(true);
+    });
+    it('should return true because of greyList expression for localstorage, unchecked localstorage and is not restart cleanup.', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...restartCleanCookie
+        },
+        expression: {
+          ...restartListCleanTest,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE]
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonKeep.MatchedExpression,
+      }
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(true);
+    });
+
   });
 
   describe('isSafeToClean()', () => {
@@ -1407,7 +1470,7 @@ describe('CleanupService', () => {
         ...cleanupProperties,
         greyCleanup: true,
       });
-      expect(result.reason).toBe(ReasonClean.CADSiteDataCookie);
+      expect(result.reason).toBe(ReasonClean.CADSiteDataCookieRestart);
       expect(result.cleanCookie).toBe(true);
     });
   });
@@ -1455,8 +1518,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        [SettingID.CLEANUP_PLUGIN_DATA]: {
-          name: SettingID.CLEANUP_PLUGIN_DATA,
+        [SettingID.CLEANUP_PLUGINDATA]: {
+          name: SettingID.CLEANUP_PLUGINDATA,
           value: true,
         },
       },
@@ -1465,8 +1528,8 @@ describe('CleanupService', () => {
       ...ffState,
       settings: {
         ...initialState.settings,
-        [SettingID.CLEANUP_SERVICE_WORKERS]: {
-          name: SettingID.CLEANUP_SERVICE_WORKERS,
+        [SettingID.CLEANUP_SERVICEWORKERS]: {
+          name: SettingID.CLEANUP_SERVICEWORKERS,
           value: true,
         },
       },

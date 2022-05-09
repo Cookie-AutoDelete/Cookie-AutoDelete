@@ -157,7 +157,8 @@ export const isSafeToClean = (
     matchedExpression &&
     cookieProperties.name === CADCOOKIENAME &&
     (matchedExpression.listType === ListType.WHITE ||
-      (greyCleanup && matchedExpression.listType === ListType.GREY))
+      (matchedExpression.listType === ListType.GREY &&
+        (greyCleanup || matchedExpression?.cleanSiteData?.length !== 0)))
   ) {
     cadLog(
       {
@@ -175,7 +176,9 @@ export const isSafeToClean = (
       cookie: cookieProperties,
       expression: matchedExpression,
       openTabStatus,
-      reason: ReasonClean.CADSiteDataCookie,
+      reason: greyCleanup
+        ? ReasonClean.CADSiteDataCookieRestart
+        : ReasonClean.CADSiteDataCookie,
     };
   }
 
@@ -412,11 +415,13 @@ export const clearLocalStorageForThisDomain = async (
       getSetting(state, SettingID.NOTIFY_MANUAL) as boolean,
     );
     return true;
-  } catch (e) {
-    throwErrorNotification(
-      e,
-      getSetting(state, SettingID.NOTIFY_DURATION) as number,
-    );
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      throwErrorNotification(
+        e,
+        getSetting(state, SettingID.NOTIFY_DURATION) as number,
+      );
+    }
     await sleep(750);
     showNotification({
       duration: getSetting(state, SettingID.NOTIFY_DURATION) as number,
@@ -528,7 +533,7 @@ export const removeSiteData = async (
       manual && (getSetting(state, SettingID.NOTIFY_MANUAL) as boolean),
     );
     return true;
-  } catch (e) {
+  } catch (e: unknown) {
     cadLog(
       {
         msg: `CleanupService.removeSiteData:  browser.browsingData.remove of ${listName} for ${sd} returned an error:`,
@@ -537,10 +542,13 @@ export const removeSiteData = async (
       },
       debug,
     );
-    throwErrorNotification(
-      e,
-      getSetting(state, SettingID.NOTIFY_DURATION) as number,
-    );
+    if (e instanceof Error) {
+      throwErrorNotification(
+        e,
+        getSetting(state, SettingID.NOTIFY_DURATION) as number,
+      );
+    }
+
     return false;
   }
 };
@@ -556,8 +564,7 @@ export const otherBrowsingDataCleanup = async (
   const ffVersion = Number.parseInt(state.cache.browserVersion);
   if (
     getSetting(state, SettingID.CLEANUP_CACHE) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
-      chrome)
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) || chrome)
   ) {
     browsingDataResult[SiteDataType.CACHE] = await cleanSiteData(
       state,
@@ -569,8 +576,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_INDEXEDDB) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
-      chrome)
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) || chrome)
   ) {
     browsingDataResult[SiteDataType.INDEXEDDB] = await cleanSiteData(
       state,
@@ -582,8 +588,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_LOCALSTORAGE) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 58) ||
-      chrome)
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 58) || chrome)
   ) {
     browsingDataResult[SiteDataType.LOCALSTORAGE] = await cleanSiteData(
       state,
@@ -594,9 +599,8 @@ export const otherBrowsingDataCleanup = async (
     );
   }
   if (
-    getSetting(state, SettingID.CLEANUP_PLUGIN_DATA) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
-      chrome)
+    getSetting(state, SettingID.CLEANUP_PLUGINDATA) &&
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) || chrome)
   ) {
     browsingDataResult[SiteDataType.PLUGINDATA] = await cleanSiteData(
       state,
@@ -607,9 +611,8 @@ export const otherBrowsingDataCleanup = async (
     );
   }
   if (
-    getSetting(state, SettingID.CLEANUP_SERVICE_WORKERS) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
-      chrome)
+    getSetting(state, SettingID.CLEANUP_SERVICEWORKERS) &&
+    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) || chrome)
   ) {
     browsingDataResult[SiteDataType.SERVICEWORKERS] = await cleanSiteData(
       state,
@@ -680,13 +683,13 @@ export const filterSiteData = (
     obj.reason === ReasonClean.NoMatchedExpression ||
     obj.reason === ReasonClean.StartupNoMatchedExpression;
   const nonBlankCookieHostName = obj.cookie.hostname.trim() !== '';
-  const canCleanSiteData = parseCleanSiteData(
-    obj.expression
-      ? obj.expression.cleanSiteData
-        ? obj.expression.cleanSiteData.includes(siteData)
-        : undefined
-      : undefined,
+  const cleanSiteDataInExpression = parseCleanSiteData(
+    obj.expression?.cleanSiteData?.includes(siteData),
   );
+  const isRestartCleanup =
+    obj.reason === ReasonClean.CADSiteDataCookieRestart ||
+    obj.reason === ReasonClean.StartupCleanupAndGreyList;
+  const canCleanSiteData = cleanSiteDataInExpression || isRestartCleanup;
   const cro: CleanReasonObject = {
     ...obj,
     cookie: {
@@ -701,6 +704,8 @@ export const filterSiteData = (
         notProtectedByOpenTab,
         notInAnyLists,
         siteData,
+        cleanSiteDataInExpression,
+        isRestartCleanup,
         canCleanSiteData,
         nonBlankCookieHostName,
         notOpenTabAndCanClean: notProtectedByOpenTab && canCleanSiteData,
@@ -836,15 +841,17 @@ export const cleanCookiesOperation = async (
           storeId: id,
         }),
       );
-    } catch (e) {
-      cadLog(
-        {
-          msg: `CleanupService.cleanCookiesOperation:  browser.cookies.getAll for id: ${id} threw an error.`,
-          type: 'error',
-          x: e.message,
-        },
-        true,
-      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        cadLog(
+          {
+            msg: `CleanupService.cleanCookiesOperation:  browser.cookies.getAll for id: ${id} threw an error.`,
+            type: 'error',
+            x: e.message,
+          },
+          true,
+        );
+      }
     }
 
     // No cookies from specified container.  Skip rest of cleanup.
@@ -911,7 +918,7 @@ export const cleanCookiesOperation = async (
 
     try {
       await cleanCookies(state, markedForDeletion);
-    } catch (e) {
+    } catch (e: unknown) {
       cadLog(
         {
           type: 'error',
@@ -919,10 +926,12 @@ export const cleanCookiesOperation = async (
         },
         true,
       );
-      throwErrorNotification(
-        e,
-        getSetting(state, SettingID.NOTIFY_DURATION) as number,
-      );
+      if (e instanceof Error) {
+        throwErrorNotification(
+          e,
+          getSetting(state, SettingID.NOTIFY_DURATION) as number,
+        );
+      }
     }
 
     // Extract away the CAD Internal Cookie from Clean Entries.
