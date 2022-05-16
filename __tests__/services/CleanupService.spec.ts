@@ -126,8 +126,24 @@ const restartListCleanTest: Expression = {
   expression: 'restart.clean',
   id: '10',
   listType: ListType.GREY,
-  storeId: 'default'
-}
+  storeId: 'default',
+  cleanSiteData: [SiteDataType.INDEXEDDB],
+};
+
+const restartListCleanTestAll: Expression = {
+  expression: 'restart.clean.all',
+  id: '11',
+  listType: ListType.GREY,
+  storeId: 'default',
+};
+
+const restartListCleanTestAll2: Expression = {
+  expression: 'another.restart.clean.all',
+  id: '12',
+  listType: ListType.GREY,
+  storeId: 'default',
+  cleanSiteData: [],
+};
 
 const sampleState: State = {
   ...initialState,
@@ -138,6 +154,9 @@ const sampleState: State = {
       whiteListYoutube,
       exampleWithCookieName,
       exampleWithCookieNameCleanAllCookiesTrue,
+      restartListCleanTest,
+      restartListCleanTestAll,
+      restartListCleanTestAll2,
     ],
     'firefox-container-1': [
       wildCardGreyFacebook,
@@ -220,7 +239,7 @@ const restartCleanCookie: CookiePropertiesCleanup = {
   ...mockCookie,
   domain: 'restart.clean',
   name: 'cleanOnRestart',
-}
+};
 
 describe('CleanupService', () => {
   beforeEach(() => {
@@ -333,6 +352,21 @@ describe('CleanupService', () => {
       await cleanCookiesOperation(sampleState, cleanupProperties);
       expect(spyBrowserDetect).toHaveBeenCalledTimes(1);
       expect(global.browser.cookies.remove).not.toHaveBeenCalled();
+    });
+
+    it('should not show the error notification if the error thrown during fetching cookies is not an error type', async () => {
+      when(global.browser.cookies.getAll)
+        .calledWith(expect.any(Object))
+        .mockRejectedValueOnce('test' as never);
+      await cleanCookiesOperation(sampleState, cleanupProperties);
+      expect(spyLib.cadLog).not.toHaveBeenCalled();
+    });
+    it('should not show the error notification if the error thrown during cleaning of cookies is not an error type', async () => {
+      when(global.browser.cookies.remove)
+        .calledWith(expect.any(Object))
+        .mockRejectedValueOnce('test' as never);
+      await cleanCookiesOperation(sampleState, cleanupProperties);
+      expect(spyLib.throwErrorNotification).not.toHaveBeenCalled();
     });
 
     describe('via Firefox Browser / Common Functions', () => {
@@ -920,7 +954,7 @@ describe('CleanupService', () => {
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(global.browser.notifications.create).toBeCalledTimes(1);
     });
-    it('should show error notification if browser.tabs.executeScript threw and error', async () => {
+    it('should show error notification if browser.tabs.executeScript threw an error', async () => {
       when(global.browser.tabs.executeScript)
         .calledWith(undefined, expect.any(Object))
         .mockRejectedValue(new Error('test') as never);
@@ -929,6 +963,17 @@ describe('CleanupService', () => {
       ).toBe(false);
       expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
       expect(spyLib.throwErrorNotification).toBeCalledTimes(1);
+      expect(spyLib.showNotification).toBeCalledTimes(1);
+    });
+    it('should only show the no cleanup done notification if browser.tabs.executeScript threw a non-error type', async () => {
+      when(global.browser.tabs.executeScript)
+        .calledWith(undefined, expect.any(Object))
+        .mockRejectedValue('error' as never);
+      expect(
+        await clearLocalStorageForThisDomain(initialState, sampleTab),
+      ).toBe(false);
+      expect(global.browser.tabs.executeScript).toBeCalledTimes(1);
+      expect(spyLib.throwErrorNotification).not.toHaveBeenCalled();
       expect(spyLib.showNotification).toBeCalledTimes(1);
     });
   });
@@ -1068,14 +1113,14 @@ describe('CleanupService', () => {
         cached: false,
         cleanCookie: true,
         cookie: {
-          ...restartCleanCookie
+          ...restartCleanCookie,
         },
         expression: {
-          ...restartListCleanTest
+          ...restartListCleanTest,
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.MatchedExpression,
-      }
+      };
       const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(false);
     });
@@ -1084,14 +1129,14 @@ describe('CleanupService', () => {
         cached: false,
         cleanCookie: true,
         cookie: {
-          ...restartCleanCookie
+          ...restartCleanCookie,
         },
         expression: {
-          ...restartListCleanTest
+          ...restartListCleanTest,
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.StartupCleanupAndGreyList,
-      }
+      };
       const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(true);
     });
@@ -1100,19 +1145,18 @@ describe('CleanupService', () => {
         cached: false,
         cleanCookie: true,
         cookie: {
-          ...restartCleanCookie
+          ...restartCleanCookie,
         },
         expression: {
           ...restartListCleanTest,
-          cleanSiteData: [SiteDataType.LOCALSTORAGE]
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonKeep.MatchedExpression,
-      }
+      };
       const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(true);
     });
-
   });
 
   describe('isSafeToClean()', () => {
@@ -1458,7 +1502,7 @@ describe('CleanupService', () => {
       expect(result.cleanCookie).toBe(true);
     });
 
-    it('should return true if cookie was created through CAD with matching GREY expression and at least one browsingData type for cleanup', () => {
+    it('should return true if cookie was created through CAD with matching GREY expression and at least one browsingData type for cleanup and is browser restart', () => {
       const cookieProperty = {
         ...mockCookie,
         name: CADCOOKIENAME,
@@ -1472,6 +1516,49 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonClean.CADSiteDataCookieRestart);
       expect(result.cleanCookie).toBe(true);
+    });
+
+    it('should return true if cookie was created through CAD with matching GREY expression and at least one browsingData type for instant cleanup (unchecked) but not during browser restart', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        name: CADCOOKIENAME,
+        hostname: 'restart.clean',
+        mainDomain: 'restart.clean',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.CADSiteDataCookie);
+      expect(result.cleanCookie).toBe(true);
+    });
+    it('should return false if cookie was created through CAD with matching GREY expression and none of the browsing data types are unchecked and is not browser restart', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        name: CADCOOKIENAME,
+        hostname: 'restart.clean.all',
+        mainDomain: 'restart.clean.all',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
+    });
+    it('should return false if cookie was created through CAD with matching GREY expression and an empty "cleanSiteData" array and is not browser restart', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        name: CADCOOKIENAME,
+        hostname: 'another.restart.clean.all',
+        mainDomain: 'another.restart.clean.all',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonKeep.MatchedExpression);
+      expect(result.cleanCookie).toBe(false);
     });
   });
 
@@ -1845,6 +1932,21 @@ describe('CleanupService', () => {
           false,
         ),
       ).toBe(false);
+    });
+    it('should return false if an error occurred, but not show the error notification if a non-error type is thrown (edge-case)', async () => {
+      when(global.browser.browsingData.remove)
+        .calledWith(expect.any(Object), expect.any(Object))
+        .mockRejectedValue('error' as never);
+      expect(
+        await removeSiteData(
+          sampleState,
+          SiteDataType.CACHE,
+          browserName.Firefox,
+          ['test'],
+          false,
+        ),
+      ).toBe(false);
+      expect(spyLib.throwErrorNotification).not.toHaveBeenCalled();
     });
 
     it('should call browserDetect if one in cache is undefined', async () => {

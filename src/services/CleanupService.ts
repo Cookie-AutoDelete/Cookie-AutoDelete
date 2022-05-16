@@ -158,7 +158,9 @@ export const isSafeToClean = (
     cookieProperties.name === CADCOOKIENAME &&
     (matchedExpression.listType === ListType.WHITE ||
       (matchedExpression.listType === ListType.GREY &&
-        (greyCleanup || matchedExpression?.cleanSiteData?.length !== 0)))
+        (greyCleanup ||
+          (matchedExpression.cleanSiteData &&
+            matchedExpression.cleanSiteData.length !== 0))))
   ) {
     cadLog(
       {
