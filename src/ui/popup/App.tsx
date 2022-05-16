@@ -249,7 +249,7 @@ class App extends Component<PopupAppComponentProps, InitialState> {
               type="button"
               onClick={() => {
                 onCookieCleanup({
-                  greyCleanup: false,
+                  restartCleanup: false,
                   ignoreOpenTabs: false,
                 });
                 animateFlash(
@@ -387,13 +387,13 @@ class App extends Component<PopupAppComponentProps, InitialState> {
                 onClick={() => {
                   onNewExpression({
                     expression: localFileToRegex(addableHostname),
-                    listType: ListType.GREY,
+                    listType: ListType.RESTART,
                     storeId,
                   });
                 }}
                 iconName="plus"
-                title={browser.i18n.getMessage('toGreyListText')}
-                text={browser.i18n.getMessage('greyListWordText')}
+                title={browser.i18n.getMessage('toRestartListText')}
+                text={browser.i18n.getMessage('restartListWordText')}
               />
 
               <IconButton
@@ -401,13 +401,13 @@ class App extends Component<PopupAppComponentProps, InitialState> {
                 onClick={() => {
                   onNewExpression({
                     expression: localFileToRegex(addableHostname),
-                    listType: ListType.WHITE,
+                    listType: ListType.KEEP,
                     storeId,
                   });
                 }}
                 iconName="plus"
-                title={browser.i18n.getMessage('toWhiteListText')}
-                text={browser.i18n.getMessage('whiteListWordText')}
+                title={browser.i18n.getMessage('toKeepListText')}
+                text={browser.i18n.getMessage('keepListWordText')}
               />
             </div>
           </div>

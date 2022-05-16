@@ -148,6 +148,16 @@ class Settings extends React.Component<SettingProps> {
           );
           return;
         }
+        // Migrate greylist to restartlist setting if found
+        if (
+          !settingKeys.includes(SettingID.ENABLE_RESTARTLIST) &&
+          settingKeys.includes(SettingID.OLD_ENABLE_GREYLIST)
+        ) {
+          onUpdateSetting({
+            name: SettingID.ENABLE_RESTARTLIST,
+            value: newSettings[SettingID.OLD_ENABLE_GREYLIST].value,
+          });
+        }
         settingKeys.forEach((setting) => {
           if (settings[setting].value !== newSettings[setting].value) {
             cadLog(
@@ -338,13 +348,13 @@ class Settings extends React.Component<SettingProps> {
           </div>
           <div className="form-group">
             <CheckboxSetting
-              text={browser.i18n.getMessage(SettingID.ENABLE_GREYLIST)}
-              settingObject={settings[SettingID.ENABLE_GREYLIST]}
+              text={browser.i18n.getMessage(SettingID.ENABLE_RESTARTLIST)}
+              settingObject={settings[SettingID.ENABLE_RESTARTLIST]}
               inline={true}
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip
-              hrefURL={'#enable-greylist-cleanup-on-browser-restart'}
+              hrefURL={'#enable-restartlist-cleanup-on-browser-restart'}
             />
           </div>
           <div className="form-group">
@@ -366,16 +376,6 @@ class Settings extends React.Component<SettingProps> {
               updateSetting={(payload) => onUpdateSetting(payload)}
             />
             <SettingsTooltip hrefURL={'#clean-all-expired-cookies'} />
-          </div>
-        </fieldset>
-        <hr />
-        <fieldset>
-          <legend>{browser.i18n.getMessage('settingGroupExpression')}</legend>
-          <div className="alert alert-info">
-            {browser.i18n.getMessage('groupExpressionDefaultNotice', [
-              browser.i18n.getMessage('expressionListText'),
-            ])}{' '}
-            <SettingsTooltip hrefURL={'#default-expression-options'} />
           </div>
         </fieldset>
         <hr />

@@ -237,10 +237,10 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       : false;
     const localeText = ((lt: ListType) => {
       switch (lt) {
-        case ListType.WHITE:
+        case ListType.KEEP:
           return `keep${cleanData}Text`;
-        case ListType.GREY:
-          return `keep${cleanData}GreyText`;
+        case ListType.RESTART:
+          return `keep${cleanData}RestartText`;
         default:
           return '';
       }
@@ -337,7 +337,8 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               aria-labelledby={keyCleanAllCookies}
             >
               {browser.i18n.getMessage(
-                `keepAllCookies${expression.listType === ListType.GREY ? 'Grey' : ''
+                `keepAllCookies${
+                  expression.listType === ListType.RESTART ? 'Restart' : ''
                 }Text`,
               )}
             </label>

@@ -30,7 +30,7 @@ export default class AlarmEvents extends StoreUser {
     if (getSetting(StoreUser.store.getState(), SettingID.ACTIVE_MODE)) {
       StoreUser.store.dispatch<any>(
         cookieCleanup({
-          greyCleanup: false,
+          restartCleanup: false,
           ignoreOpenTabs: false,
         }),
       );

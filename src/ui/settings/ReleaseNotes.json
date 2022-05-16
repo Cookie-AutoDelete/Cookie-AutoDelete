@@ -4,6 +4,7 @@
       "version": "unreleased",
       "notes": [
         "Enhanced:  Additional Clean options now have small amount of spacing between them.",
+        "Enhanced:  Language Clarification on Lists.",
         "Chore:  Dependency Updates and code optimizations, including a patch for replacing deprecated functions by CommanderRoot in PR#1319",
         "Fixed:  Version number comparison in Firefox is now by number instead of string, as it should have been in the beginning. This resolves most of the issues from Firefox 100+",
         "Fixed:  Popup UI Buttons stacking when font size is small even though there is enough room for more than one button per row.  Now it should only stack when width is too small.  Fixes #1034.",
@@ -14,7 +15,7 @@
       "version": "3.6.0",
       "notes": [
         "Added:  Implementation of FireFox Containers/Contextual Identities.  This allows CAD to monitor when changes to containers info have been made, and remove the CAD list matching that removed container ID.",
-        "Added:  Manually entering expressions and using Shift+Enter will add the expression into the GreyList.",
+        "Added:  Manually entering expressions and using Shift+Enter will add the expression into the RestartList.",
         "Added:  Search Expressions while typing.  It's not perfect but it is a start.  Closes #120.",
         "Added:  IP CIDR Notation in Expressions.  Closes #814.",
         "Chore:  Backend Code Optimizations.",
@@ -95,14 +96,14 @@
         "Added:  Debug Logging  (excludes Firefox Android).  This goes to the browser extension console and is for advanced users.",
         "Added:  Core Settings Import/Export.  This will stay as a seprate file from Expressions for now. Closes #429",
         "Added:  Settings Validation again after each setting change.",
-        "Added:  Cleanup on Browser Restart (GreyList) can be disabled.  Closes #463.",
-        "Added:  If the browser crashed / a tab `about:sessionrestore` (Firefox) is part of the opened tabs, then greylist cleanup will not run. Closes #463.",
+        "Added:  Cleanup on Browser Restart (RestartList) can be disabled.  Closes #463.",
+        "Added:  If the browser crashed / a tab `about:sessionrestore` (Firefox) is part of the opened tabs, then restartlist cleanup will not run. Closes #463.",
         "Added:  Delete All Expressions Button in Settings->Expressions.  This action cannot be undone so make sure you have exported a backup first! Closes #712.",
         "Added:  Cookies (not localstorage) created by local html files can now be cleared through expressions.  Make sure to include 'file://' for local files.",
         "Added:  A note about cleanup logs not generated for tabs in Private Browsing.",
         "Added:  BrowserAction Title now includes the list type if the domain matches an expression",
         "Added:  Keep Default Icon option (i.e. no red or yellow icons). If cookie count in icon is disabled, this is also disabled. Closes #76.",
-        "Added:  Greyscale Icon if autoclean is disabled.  BrowserAction Title will show 'DISABLED' instead of matching WHITE/GREY list.  Closes #454.",
+        "Added:  Greyscale Icon if autoclean is disabled.  BrowserAction Title will show 'DISABLED' instead of matching KEEP/RESTART list.  Closes #454.",
         "Added:  Small Accessibility enhancements in regards to the checkboxes.  Using role='checkbox' and aria-checked as well as linking labels to their inputs.  Closes #610 for now.",
         "Added:  Small warning in popup's additional cleanup options for the last two cleanup items.",
         "Changed:  CSS Buttons in Expression Table to be more colorful.",
@@ -201,7 +202,7 @@
       "notes": [
         "Added: A Fallback error message and actions for when the extension data is corrupted in the settings or popup",
         "Fixed: Cookie/Localstorage Cleanup relating to blank hostnames",
-        "Fixed: White/Grey listing IPv6 sites",
+        "Fixed: Keep/Restart listing IPv6 sites",
         "Disabled: Localstorage cleanup on Firefox Android"
       ]
     },
@@ -258,9 +259,9 @@
     {
       "version": "1.4.0",
       "notes": [
-        "New Feature: GreyList Support (Set a site's cookies to clear on browser restart)",
+        "New Feature: RestartList Support (Set a site's cookies to clear on browser restart)",
         "Added: Global Subdomain Checkbox",
-        "Changed: WhiteList and GreyList are now Sorted",
+        "Changed: KeepList and RestartList are now Sorted",
         "Fixed (1.4.1): Edited txt files would break import under different EOL",
         "New Language (1.4.1): sv",
         "New Language (1.4.2): sr",
@@ -273,7 +274,7 @@
       "version": "1.3.0",
       "notes": [
         "New Feature: Option to do a Cookie Cleanup on Startup",
-        "New Feature: Whitelist Subdomain Support (The icon will tell you if a site is protected or not)",
+        "New Feature: Keeplist Subdomain Support (The icon will tell you if a site is protected or not)",
         "Fixed delay timer in settings not saving for certain locales with different decimals",
         "New Languages: bg, de, fr, zh_CN"
       ]
@@ -281,7 +282,7 @@
     {
       "version": "1.2.0",
       "notes": [
-        "New Feature: Cookie Cleanup (Ignore Open Tabs) in popup menu. This lets you clear cookies based on the WhiteList alone.",
+        "New Feature: Cookie Cleanup (Ignore Open Tabs) in popup menu. This lets you clear cookies based on the KeepList alone.",
         "Added Localization Support. Instructions to translate Cookie AutoDelete are on GitHub Page",
         "New Languages: pt_PT, es"
       ]
@@ -290,15 +291,15 @@
       "version": "1.1.0",
       "notes": [
         "Can now access the popup in pages that are not webpages",
-        "New Feature: Background of the icon color changes whether a site is in the whitelist"
+        "New Feature: Background of the icon color changes whether a site is in the keeplist"
       ]
     },
     {
       "version": "1.0.0",
       "notes": [
         "Auto Deletes Cookies from Closed Tabs",
-        "WhiteList Support for Sites you want to keep Cookies",
-        "Easily Export/Import your Whitelist",
+        "KeepList Support for Sites you want to keep Cookies",
+        "Easily Export/Import your Keeplist",
         "Clear All Cookies for a Domain",
         "(1.0.2) Fixed Cookie Cleanup not activating from Background Services",
         "(1.0.2) Added link to Firefox and Chrome extension pages",

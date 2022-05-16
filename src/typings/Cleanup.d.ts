@@ -12,7 +12,7 @@
  */
 
 interface CleanupProperties {
-  greyCleanup: boolean;
+  restartCleanup: boolean;
   ignoreOpenTabs: boolean;
 }
 
@@ -40,6 +40,7 @@ declare const enum ReasonKeep {
 declare const enum ReasonClean {
   StartupNoMatchedExpression = 'reasonCleanStartupNoList',
   StartupCleanupAndGreyList = 'reasonCleanGreyList',
+  StartupCleanupAndRestartList = 'reasonCleanRestartList',
   NoMatchedExpression = 'reasonCleanNoList',
   MatchedExpressionButNoCookieName = 'reasonCleanCookieName',
   ExpiredCookie = 'reasonCleanCookieExpired',

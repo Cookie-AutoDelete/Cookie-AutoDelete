@@ -94,7 +94,7 @@ export const isSafeToClean = (
     firstPartyDomain,
     session,
   };
-  const { greyCleanup, openTabDomains, ignoreOpenTabs } = cleanupProperties;
+  const { restartCleanup, openTabDomains, ignoreOpenTabs } = cleanupProperties;
   const openTabStatus = ignoreOpenTabs
     ? OpenTabStatus.TabsWereIgnored
     : OpenTabStatus.TabsWasNotIgnored;
@@ -156,8 +156,8 @@ export const isSafeToClean = (
   if (
     matchedExpression &&
     cookieProperties.name === CADCOOKIENAME &&
-    (matchedExpression.listType === ListType.WHITE ||
-      (greyCleanup && matchedExpression.listType === ListType.GREY))
+    (matchedExpression.listType === ListType.KEEP ||
+      (restartCleanup && matchedExpression.listType === ListType.RESTART))
   ) {
     cadLog(
       {
@@ -180,10 +180,10 @@ export const isSafeToClean = (
   }
 
   // Startup cleanup checks
-  if (greyCleanup && !matchedExpression) {
+  if (restartCleanup && !matchedExpression) {
     cadLog(
       {
-        msg: 'CleanupService.isSafeToClean:  unmatched and greyCleanup.  Safe to Clean',
+        msg: 'CleanupService.isSafeToClean:  unmatched and restartCleanup.  Safe to Clean',
         x: partialCookieInfo,
       },
       debug,
@@ -198,9 +198,9 @@ export const isSafeToClean = (
   }
 
   if (
-    greyCleanup &&
+    restartCleanup &&
     matchedExpression &&
-    matchedExpression.listType === ListType.GREY &&
+    matchedExpression.listType === ListType.RESTART &&
     // Tests the cleanAllCookies flag and if it doesn't include that name or if there is no cookieNames
     (undefinedIsTrue(matchedExpression.cleanAllCookies) ||
       (matchedExpression.cookieNames &&
@@ -208,7 +208,7 @@ export const isSafeToClean = (
   ) {
     cadLog(
       {
-        msg: 'CleanupService.isSafeToClean:  greyCleanup - matching Expression and cookie name was unchecked.  Safe to Clean.',
+        msg: 'CleanupService.isSafeToClean:  restartCleanup - matching Expression and cookie name was unchecked.  Safe to Clean.',
         x: { partialCookieInfo, matchedExpression },
       },
       debug,
@@ -219,7 +219,7 @@ export const isSafeToClean = (
       cookie: cookieProperties,
       expression: matchedExpression,
       openTabStatus,
-      reason: ReasonClean.StartupCleanupAndGreyList,
+      reason: ReasonClean.StartupCleanupAndRestartList,
     };
   }
 
@@ -758,7 +758,7 @@ export const returnContainersOfOpenTabDomains = async (
 export const cleanCookiesOperation = async (
   state: State,
   cleanupProperties: CleanupProperties = {
-    greyCleanup: false,
+    restartCleanup: false,
     ignoreOpenTabs: false,
   },
 ): Promise<Record<string, any>> => {

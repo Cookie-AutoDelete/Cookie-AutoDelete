@@ -57,7 +57,7 @@ const CleanCollapseGroup: React.FunctionComponent<CleanCollapseComponentProps> =
             btnColor="btn-warning"
             onClick={async () => {
               onCookieCleanup({
-                greyCleanup: false,
+                restartCleanup: false,
                 ignoreOpenTabs: true,
               });
               return true;

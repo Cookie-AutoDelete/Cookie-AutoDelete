@@ -650,12 +650,12 @@ describe('Library Functions', () => {
   describe('getContainerExpressionDefault()', () => {
     const mockExpression: Expression = {
       expression: '',
-      listType: ListType.WHITE,
+      listType: ListType.KEEP,
       storeId: '',
     };
     it('should return default expression if list does not contain storeId given', () => {
       expect(
-        getContainerExpressionDefault(initialState, 'default', ListType.WHITE),
+        getContainerExpressionDefault(initialState, 'default', ListType.KEEP),
       ).toEqual(mockExpression);
     });
     it('should return default expression if existing list does not contain default expression key', () => {
@@ -663,7 +663,7 @@ describe('Library Functions', () => {
         getContainerExpressionDefault(
           { ...initialState, lists: { default: [mockExpression] } },
           'default',
-          ListType.WHITE,
+          ListType.KEEP,
         ),
       ).toEqual(mockExpression);
     });
@@ -675,16 +675,16 @@ describe('Library Functions', () => {
             lists: {
               default: [
                 {
-                  expression: `_Default:${ListType.WHITE}`,
+                  expression: `_Default:${ListType.KEEP}`,
                   cleanSiteData: [SiteDataType.PLUGINDATA],
-                  listType: ListType.WHITE,
+                  listType: ListType.KEEP,
                   storeId: 'default',
                 },
               ],
             },
           },
           'default',
-          ListType.WHITE,
+          ListType.KEEP,
         ),
       ).toEqual(
         expect.objectContaining({ cleanSiteData: [SiteDataType.PLUGINDATA] }),
@@ -705,16 +705,16 @@ describe('Library Functions', () => {
             lists: {
               default: [
                 {
-                  expression: `_Default:${ListType.WHITE}`,
+                  expression: `_Default:${ListType.KEEP}`,
                   cleanSiteData: [SiteDataType.PLUGINDATA],
-                  listType: ListType.WHITE,
+                  listType: ListType.KEEP,
                   storeId: 'default',
                 },
               ],
             },
           },
           'firefox-container-1',
-          ListType.WHITE,
+          ListType.KEEP,
         ),
       ).toEqual(
         expect.objectContaining({ cleanSiteData: [SiteDataType.PLUGINDATA] }),
@@ -734,7 +734,7 @@ describe('Library Functions', () => {
             },
           },
           'firefox-container-1',
-          ListType.WHITE,
+          ListType.KEEP,
         ),
       ).toEqual(mockExpression);
     });
@@ -785,7 +785,7 @@ describe('Library Functions', () => {
   describe('getMatchedExpressions()', () => {
     const defaultExpression: Expression = {
       expression: '*.expression.com',
-      listType: ListType.WHITE,
+      listType: ListType.KEEP,
       storeId: 'default',
     };
     const lists: StoreIdToExpressionList = {
@@ -1384,7 +1384,7 @@ describe('Library Functions', () => {
         default: [
           {
             expression: '*.expression.com',
-            listType: ListType.WHITE,
+            listType: ListType.KEEP,
             storeId: 'default',
           },
         ],

@@ -25,7 +25,7 @@ import { initialState } from '../../src/redux/State';
 
 const mockExpression: Expression = {
   expression: '',
-  listType: ListType.WHITE,
+  listType: ListType.KEEP,
   storeId: 'default',
 };
 
@@ -169,13 +169,13 @@ describe('Reducer', () => {
         payload: {
           ...mockExpression,
           expression: 'google.com',
-          listType: ListType.GREY,
+          listType: ListType.RESTART,
         },
         type: ReduxConstants.ADD_EXPRESSION,
       });
       const firstExpression = newState.default[0];
       expect(firstExpression).toHaveProperty('expression', 'google.com');
-      expect(firstExpression).toHaveProperty('listType', ListType.GREY);
+      expect(firstExpression).toHaveProperty('listType', ListType.RESTART);
       expect(firstExpression).toHaveProperty('id');
     });
 
@@ -183,18 +183,18 @@ describe('Reducer', () => {
       const newState = lists(state, {
         payload: {
           expression: 'youtube.com',
-          listType: ListType.GREY,
+          listType: ListType.RESTART,
           storeId: 'firefox_container_2',
         },
         type: ReduxConstants.ADD_EXPRESSION,
       });
       const firstExpression = newState.firefox_container_2[0];
       expect(firstExpression).toHaveProperty('expression', 'youtube.com');
-      expect(firstExpression).toHaveProperty('listType', ListType.GREY);
+      expect(firstExpression).toHaveProperty('listType', ListType.RESTART);
       expect(firstExpression).toHaveProperty('id');
     });
 
-    it('should return google.com with a default listType of WHITE', () => {
+    it('should return google.com with a default listType of KEEP', () => {
       const newState = lists(state, {
         payload: {
           ...mockExpression,
@@ -204,7 +204,7 @@ describe('Reducer', () => {
       });
       const firstExpression = newState.default[0];
       expect(firstExpression).toHaveProperty('expression', 'google.com');
-      expect(firstExpression).toHaveProperty('listType', ListType.WHITE);
+      expect(firstExpression).toHaveProperty('listType', ListType.KEEP);
       expect(firstExpression).toHaveProperty('id');
     });
   });
@@ -215,13 +215,13 @@ describe('Reducer', () => {
         {
           expression: 'messenger.com*',
           id: 'SyZbDbC1dW',
-          listType: ListType.WHITE,
+          listType: ListType.KEEP,
           storeId: 'default',
         },
         {
           expression: 'facebook.com*',
           id: 'B1eWwWRJOb',
-          listType: ListType.GREY,
+          listType: ListType.RESTART,
           storeId: 'default',
         },
       ],
@@ -229,13 +229,13 @@ describe('Reducer', () => {
         {
           expression: 'messenger.com*',
           id: '456',
-          listType: ListType.WHITE,
+          listType: ListType.KEEP,
           storeId: 'firefox-container-1',
         },
         {
           expression: 'facebook.com*',
           id: '123',
-          listType: ListType.GREY,
+          listType: ListType.RESTART,
           storeId: 'firefox-container-1',
         },
       ],
@@ -243,7 +243,7 @@ describe('Reducer', () => {
         {
           expression: 'remove.me',
           id: '222',
-          listType: ListType.WHITE,
+          listType: ListType.KEEP,
           storeId: 'firefox-container-2',
         },
       ],
@@ -256,14 +256,14 @@ describe('Reducer', () => {
           payload: {
             ...mockExpression,
             expression: 'youtube.com',
-            listType: ListType.WHITE,
+            listType: ListType.KEEP,
           },
           type: ReduxConstants.ADD_EXPRESSION,
         },
       );
       const newExpression = newState.default[1];
       expect(newExpression).toHaveProperty('expression', 'youtube.com');
-      expect(newExpression).toHaveProperty('listType', ListType.WHITE);
+      expect(newExpression).toHaveProperty('listType', ListType.KEEP);
       expect(newExpression).toHaveProperty('id');
     });
 
@@ -273,7 +273,7 @@ describe('Reducer', () => {
         {
           payload: {
             expression: 'github.com',
-            listType: ListType.GREY,
+            listType: ListType.RESTART,
             storeId: 'firefox-container-1',
           },
           type: ReduxConstants.ADD_EXPRESSION,
@@ -281,7 +281,7 @@ describe('Reducer', () => {
       );
       const newExpression = newState['firefox-container-1'][2];
       expect(newExpression).toHaveProperty('expression', 'github.com');
-      expect(newExpression).toHaveProperty('listType', ListType.GREY);
+      expect(newExpression).toHaveProperty('listType', ListType.RESTART);
       expect(newExpression).toHaveProperty('id');
     });
     it('should return not return messenger.com on default', () => {
@@ -300,7 +300,7 @@ describe('Reducer', () => {
       );
     });
 
-    it('should return github.com and GREY for updated expression on default', () => {
+    it('should return github.com and RESTART for updated expression on default', () => {
       const newState = lists(
         { ...state },
         {
@@ -308,7 +308,7 @@ describe('Reducer', () => {
             ...mockExpression,
             expression: 'github.com',
             id: 'SyZbDbC1dW',
-            listType: ListType.GREY,
+            listType: ListType.RESTART,
           },
           type: ReduxConstants.UPDATE_EXPRESSION,
         },
@@ -316,18 +316,18 @@ describe('Reducer', () => {
 
       const newExpression = newState.default[1];
       expect(newExpression).toHaveProperty('expression', 'github.com');
-      expect(newExpression).toHaveProperty('listType', ListType.GREY);
+      expect(newExpression).toHaveProperty('listType', ListType.RESTART);
       expect(newExpression).toHaveProperty('id');
     });
 
-    it('should return google.com and WHITE for updated expression on firefox-container-1', () => {
+    it('should return google.com and KEEP for updated expression on firefox-container-1', () => {
       const newState = lists(
         { ...state },
         {
           payload: {
             expression: 'google.com',
             id: '123',
-            listType: ListType.WHITE,
+            listType: ListType.KEEP,
             storeId: 'firefox-container-1',
           },
           type: ReduxConstants.UPDATE_EXPRESSION,
@@ -336,7 +336,7 @@ describe('Reducer', () => {
 
       const newExpression = newState['firefox-container-1'][0];
       expect(newExpression).toHaveProperty('expression', 'google.com');
-      expect(newExpression).toHaveProperty('listType', ListType.WHITE);
+      expect(newExpression).toHaveProperty('listType', ListType.KEEP);
       expect(newExpression).toHaveProperty('id');
     });
 
@@ -451,7 +451,7 @@ describe('Reducer', () => {
         },
       );
       expect(newState).toEqual(
-        expect.objectContaining({ listType: ListType.WHITE }),
+        expect.objectContaining({ listType: ListType.KEEP }),
       );
     });
   });
