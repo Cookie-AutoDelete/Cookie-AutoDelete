@@ -56,7 +56,6 @@ jobs:
       - name: Google Chrome WebStore Upload
         uses: Passiverecords/chrome-extension-upload-action@1.4.1
         if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
-
         with:
           app-id: 'fhcgjolkccmbidfldomjliifgaodjagh'
           file-name: 'builds/Cookie-AutoDelete_*_Chrome.zip'
