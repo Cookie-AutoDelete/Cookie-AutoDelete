@@ -100,12 +100,12 @@ export const initialState: State = {
       name: SettingID.NOTIFY_DURATION,
       value: 3,
     },
-    [SettingID.CLEANUP_PLUGIN_DATA]: {
-      name: SettingID.CLEANUP_PLUGIN_DATA,
+    [SettingID.CLEANUP_PLUGINDATA]: {
+      name: SettingID.CLEANUP_PLUGINDATA,
       value: false,
     },
-    [SettingID.CLEANUP_SERVICE_WORKERS]: {
-      name: SettingID.CLEANUP_SERVICE_WORKERS,
+    [SettingID.CLEANUP_SERVICEWORKERS]: {
+      name: SettingID.CLEANUP_SERVICEWORKERS,
       value: false,
     },
     [SettingID.NOTIFY_AUTO]: {

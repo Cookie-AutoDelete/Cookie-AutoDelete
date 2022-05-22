@@ -210,7 +210,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting(SettingID.CLEANUP_PLUGIN_DATA, true);
+      TestStore.changeSetting(SettingID.CLEANUP_PLUGINDATA, true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',
@@ -222,7 +222,7 @@ describe('TabEvents', () => {
       when(global.browser.cookies.getAll)
         .calledWith({ domain: 'cookie.net', storeId: 'firefox-default' })
         .mockResolvedValue([] as never);
-      TestStore.changeSetting(SettingID.CLEANUP_SERVICE_WORKERS, true);
+      TestStore.changeSetting(SettingID.CLEANUP_SERVICEWORKERS, true);
       await TabEvents.getAllCookieActions({
         ...sampleTab,
         url: 'http://cookie.net',

@@ -44,6 +44,7 @@ declare const enum ReasonClean {
   MatchedExpressionButNoCookieName = 'reasonCleanCookieName',
   ExpiredCookie = 'reasonCleanCookieExpired',
   CADSiteDataCookie = 'reasonCADSiteDataCookie',
+  CADSiteDataCookieRestart = 'reasonCADSiteDataCookieRestart'
 }
 
 declare const enum OpenTabStatus {

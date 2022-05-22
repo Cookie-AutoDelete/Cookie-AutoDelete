@@ -434,7 +434,7 @@ class Settings extends React.Component<SettingProps> {
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('pluginDataCleanupText')}
-                  settingObject={settings[SettingID.CLEANUP_PLUGIN_DATA]}
+                  settingObject={settings[SettingID.CLEANUP_PLUGINDATA]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
@@ -448,7 +448,7 @@ class Settings extends React.Component<SettingProps> {
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('serviceWorkersCleanupText')}
-                  settingObject={settings[SettingID.CLEANUP_SERVICE_WORKERS]}
+                  settingObject={settings[SettingID.CLEANUP_SERVICEWORKERS]}
                   inline={true}
                   updateSetting={(payload) => onUpdateSetting(payload)}
                 />
