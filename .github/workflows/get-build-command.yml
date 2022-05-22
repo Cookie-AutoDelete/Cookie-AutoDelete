@@ -8,19 +8,19 @@ jobs:
     name: Get Build for PR
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
       - name: Prep and get Artifact Links
         id: arts
         env:
-          GH_API: ${{ github.event.client_payload.github.payload.repository.url }}
           GH_RUNID: ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
           GH_BRANCH: ${{ github.event.client_payload.pull_request.head.ref }}
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          API_RUNS="$GH_API/actions/runs"
           # Fetch All successful Pull Request workflow runs from branch.
-          echo "curl -s $API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH"
-          curl -s "$API_RUNS?event=pull_request&status=success&branch=$GH_BRANCH" > curl_latest.json
-          RUNS=($(cat curl_latest.json | jq -r '.workflow_runs[].id'))
+          echo "gh run list -b $GH_BRANCH ..."
+          gh run list -b "$GH_BRANCH" -w "CI" --json 'databaseId,event,status,headSha' -q '[.[]|select(.event|startswith("pull_request"))|select(.status == "completed")]' > gh_run_list.json
+          RUNS=($(cat gh_run_list.json | jq -r '.[].databaseId'))
           # Check if RunID, if given, is in the list above.
           echo "Run ID from Arg1:  $GH_RUNID"
           if [[ -n $GH_RUNID && (! " ${RUNS[@]} " =~ " ${GH_RUNID} ") ]]; then
@@ -33,15 +33,7 @@ jobs:
           # Use latest RunID from list above if none was given.
           if [[ -z $GH_RUNID ]]; then
             echo "No Run ID Given.  Attempting to grab latest run from this PR Branch $GH_BRANCH"
-            MSG=$(cat curl_latest.json | jq -r '.message // empty');
-            if [[ -n "$MSG" ]]; then
-              echo "Github returned Error from above query:  $MSG"
-              cat curl_latest.json
-              echo "::set-output name=result::FAILED"
-              echo "::set-output name=message::Error when trying to fetch latest successful runs from branch $GH_BRANCH:  *$MSG*"
-              exit 0
-            fi
-            if [[ $(cat curl_latest.json | jq -r '.total_count') -eq 0 ]]; then
+            if [[ ${#RUNS[@]} -eq 0 ]]; then
               echo "No successful PR runs were made from branch $GH_BRANCH yet."
               echo "::set-output name=result::FAILED"
               echo "::set-output name=message::No Successful PR Runs were made from branch $GH_BRANCH yet."
@@ -50,9 +42,9 @@ jobs:
             # Filter out no artifacts from successful runs (ci-skip'd branches and commits).
             for i in "${RUNS[@]}"; do
               echo "Checking if $i has any artifacts..."
-              echo "curl -s $API_RUNS/$i/artifacts"
-              curl -s "$API_RUNS/$i/artifacts" > curl_arts.json
-              ARTS_COUNT=$(cat curl_arts.json | jq -r '.total_count')
+              echo "gh api repos/{owner}/{repo}/actions/runs/$i/artifacts"
+              gh api -H "Accept: application/vnd.github.v3+json" repos/{owner}/{repo}/actions/runs/$i/artifacts > curl_artifacts.json
+              ARTS_COUNT=$(cat curl_artifacts.json | jq -r '.total_count')
               echo "Run ID [$i] has $ARTS_COUNT artifacts."
               if [[ $ARTS_COUNT -gt 2 ]]; then
                 echo "Using it as latest."
@@ -66,18 +58,20 @@ jobs:
               echo "::set-output name=message::Could not find any runs that have build artifacts for download."
               exit 0
             fi
-            echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH runs"
+            echo "Using RunID of $GH_RUNID parsed from branch $GH_BRANCH CI Workflows"
           fi
-          # Fetch artifacts for workflow RunID given.
-          echo "curl -s $API_RUNS/$GH_RUNID/artifacts"
-          curl -s "$API_RUNS/$GH_RUNID/artifacts" > curl_artifacts.json
-          MSG=$(cat curl_artifacts.json | jq -r '.message // empty');
-          if [[ -n "$MSG" ]]; then
-            echo "Github returned Error from above query:  $MSG"
-            cat curl_artifacts.json
-            echo "::set-output name=result::FAILED"
-            echo "::set-output name=message::Error when trying to fetch artifacts from build $GH_RUNID:  *$MSG*"
-            exit 0
+          # Fetch artifacts for workflow RunID given, only if not checked above first.
+          if [ ! -f curl_artifacts.json ]; then
+            echo "gh api repos/{owner}/{repo}/actions/runs/$GH_RUNID/artifacts"
+            gh api -H "Accept: application/vnd.github.v3+json" repos/{owner}/{repo}/actions/runs/$GH_RUNID/artifacts > curl_artifacts.json
+            MSG=$(cat curl_artifacts.json | jq -r '.message // empty');
+            if [[ -n "$MSG" ]]; then
+              echo "Github returned Error from above query:  $MSG"
+              cat curl_artifacts.json
+              echo "::set-output name=result::FAILED"
+              echo "::set-output name=message::Error when trying to fetch artifacts from build $GH_RUNID:  *$MSG*"
+              exit 0
+            fi
           fi
           # Parse artifacts
           ARTS=($(cat curl_artifacts.json | jq -r '[.artifacts[] | select(.name|startswith("Coo")) | select(.expired == false) | {name, archive_download_url}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item) + " ")'))
@@ -87,10 +81,9 @@ jobs:
             echo "::set-output name=message::Could not find any builds for this run -or- downloadable builds have already expired."
             exit 0
           fi
-          curl -s "$API_RUNS/$GH_RUNID" > curl_run.json
-          HEADSHA=$(cat curl_run.json | jq -r '.head_sha')
+          HEADSHA=$(cat gh_run_list.json | jq -r ".[] | select(.databaseId == $GH_RUNID) | .headSha")
           echo "::set-output name=runsha::$HEADSHA"
-          echo ${ARTS[1]}
+          echo $HEADSHA
           # Chrome:  echo "${ARTS[0]}"
           # Firefox: echo "${ARTS[1]}"
           MDR="> "
@@ -99,7 +92,7 @@ jobs:
           for i in "${ARTS[@]}"; do
             ADL=$(echo $i | jq -r '.archive_download_url')
             ADN=$(jq -r '.name' <<< $i)
-            DL=$(curl -LIs -o /dev/null -w %{url_effective} -u octocat:$GH_TOKEN $ADL)
+            DL=$(curl -LIs -o /dev/null -w %{url_effective} -u octocat:$GITHUB_TOKEN $ADL)
             [[ $DL =~ $REGEX_EXP ]]
             EXP=$(urldecode ${BASH_REMATCH[1]})
             MDR+="[$ADN]($DL)  *<- will expire on or after ${EXP/T/' @ '} UTC* <br/>"
@@ -108,13 +101,13 @@ jobs:
           echo "::set-output name=runid::$GH_RUNID"
           echo "::set-output name=links::$MDR"
       - name: React to Slash Command Comment
-        uses: peter-evans/create-or-update-comment@v1.4.5
+        uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reactions: hooray
       - name: Reply Error in PR
         if: steps.arts.outputs.result == 'FAILED'
-        uses: peter-evans/create-or-update-comment@v1.4.5
+        uses: peter-evans/create-or-update-comment@v2
         with:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
@@ -131,7 +124,7 @@ jobs:
       - name: Create comment in PR
         id: successPR
         if: steps.arts.outputs.result == 'SUCCESS'
-        uses: peter-evans/create-or-update-comment@v1.4.5
+        uses: peter-evans/create-or-update-comment@v2
         with:
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
@@ -151,7 +144,7 @@ jobs:
         env:
           GH_API: ${{ github.event.client_payload.github.payload.repository.url }}
           GH_TOKEN: ${{ github.token }}
-          SLASHID: ${{ github.event.client_payload.github.payload.comment.id }}
+          SLASHID: ${{ steps.successPR.outputs.comment-id }}
         run: |
           echo "After a minute, will delete Slash Comment ID: $SLASHID"
           sleep 1m
@@ -161,10 +154,10 @@ jobs:
           echo "Slash Comment should have been deleted now."
       - name: Replace Success PR Comment
         if: steps.arts.outputs.result == 'SUCCESS'
-        uses: peter-evans/create-or-update-comment@v1.4.5
+        uses: peter-evans/create-or-update-comment@v2
         with:
-          comment-id: ${{ steps.successPR.outputs.comment-id }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           edit-mode: replace
           body: |
-            *@${{ github.event.client_payload.github.actor }} had previously requested download links for Build ${{ steps.arts.outputs.runid }} that have since expired.*
+            *This user had previously requested download links for build ${{ steps.arts.outputs.runid }} that have since expired.*
           reactions: ''

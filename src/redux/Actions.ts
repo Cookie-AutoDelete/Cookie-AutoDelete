@@ -86,7 +86,7 @@ export const addExpression = (payload: Expression) => (
   dispatch({
     payload: {
       ...payload,
-      cleanAllCookies: payload.cleanAllCookies
+      cleanAllCookies: payload.cleanAllCookies !== undefined
         ? payload.cleanAllCookies
         : defaultOptions.cleanAllCookies,
       cleanSiteData: payload.cleanSiteData

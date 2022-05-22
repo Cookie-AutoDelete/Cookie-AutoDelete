@@ -291,10 +291,10 @@ export default class TabEvents extends StoreUser {
           StoreUser.store.getState(),
           SettingID.CLEANUP_LOCALSTORAGE,
         ) ||
-        getSetting(StoreUser.store.getState(), SettingID.CLEANUP_PLUGIN_DATA) ||
+        getSetting(StoreUser.store.getState(), SettingID.CLEANUP_PLUGINDATA) ||
         getSetting(
           StoreUser.store.getState(),
-          SettingID.CLEANUP_SERVICE_WORKERS,
+          SettingID.CLEANUP_SERVICEWORKERS,
         )) &&
       isAWebpage(tab.url) &&
       !tab.url.startsWith('file:')

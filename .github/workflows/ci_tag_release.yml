@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v3
-      - name: Use Node.js 14.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
+          node-version: '16.x'
       - name: Install Dependencies (npm ci)
         run: npm ci
       - name: Run Tests
@@ -31,12 +31,12 @@ jobs:
           echo "::set-output name=ffxpi::$(ls builds/*Firefox.xpi)"
       - name: Archive Production Build Artifacts
         if: success()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: builds
           path: builds
       - name: Archive Code Coverage Results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage
