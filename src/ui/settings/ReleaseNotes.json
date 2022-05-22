@@ -1,7 +1,7 @@
 {
   "releases": [
     {
-      "version": "unreleased",
+      "version": "3.7.0",
       "notes": [
         "Enhanced:  Additional Clean options now have small amount of spacing between them.",
         "Chore:  Dependency Updates and code optimizations, including a patch for replacing deprecated functions by CommanderRoot in PR#1319",
