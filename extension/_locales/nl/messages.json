@@ -343,6 +343,10 @@
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
   },
+  "invalidNewExpressions": {
+    "message": "Ongeldige nieuwe expressie(s) gevonden. Ze zijn hieronder (inclusief verklaring) te zien en kunnen bovenaan worden aangepast.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
+  },
   "keepAllCookiesText": {
     "message": "Alle cookies behouden",
     "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
