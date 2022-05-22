@@ -52,6 +52,7 @@ jobs:
             builds/Cookie-AutoDelete_*_Firefox.xpi
           body: This is an auto-generated tagged release - Change log will be manually inserted soon!  Latest versions have been submitted to the relevant browser extension store for review.
           prerelease: ${{ endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta') }}
+          draft: true
       - name: Google Chrome WebStore Upload
         uses: Passiverecords/chrome-extension-upload-action@1.4.1
         if: startsWith(github.ref, 'refs/tags/') && !(endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta'))
