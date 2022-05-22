@@ -807,6 +807,16 @@
       }
     }
   },
+  "reasonCADSiteDataCookieRestart": {
+    "message": "Löschen, um Datenbereinigung für $hostname$ beim Neustart auszulösen.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$ on restart. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
   "reasonCleanCookieExpired": {
     "message": "Teilbereinigung aufgrund von abgelaufenen Cookies von $hostname$.",
     "description": "Partial clean because of expired cookies from $hostname$.",
