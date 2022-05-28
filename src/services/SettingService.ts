@@ -57,6 +57,16 @@ export default class SettingService extends StoreUser {
         ) {
           continue;
         }
+        if (SettingService.getCurrent(SettingID.SITEDATA_EMPTY_ON_ENABLE) === false) {
+          cadLog(
+            {
+              msg: `${siteData} setting activated, but Empty Site Data on Enable is false. Existing site data kept.`,
+              type: 'info',
+            },
+            SettingService.getCurrent(SettingID.DEBUG_MODE) as boolean,
+          )
+          continue;
+        }
         await browser.browsingData.remove(
           { since: 0 },
           { [siteDataToBrowser(siteData)]: true },

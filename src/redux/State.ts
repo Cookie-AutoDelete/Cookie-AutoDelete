@@ -116,6 +116,10 @@ export const initialState: State = {
       name: SettingID.NUM_COOKIES_ICON,
       value: true,
     },
+    [SettingID.SITEDATA_EMPTY_ON_ENABLE]: {
+      name: SettingID.SITEDATA_EMPTY_ON_ENABLE,
+      value: true,
+    },
     [SettingID.SIZE_POPUP]: {
       name: SettingID.SIZE_POPUP,
       value: 16,
