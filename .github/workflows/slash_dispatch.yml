@@ -16,12 +16,12 @@ jobs:
             [
               {
                 "command": "get-build",
-                "permission": "read",
+                "permission": "none",
                 "issue_type": "pull-request"
               },
               {
                 "command": "get-build-beta",
-                "permission": "read",
+                "permission": "none",
                 "issue_type": "pull-request"
               }
             ]
