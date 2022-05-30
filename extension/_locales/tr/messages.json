@@ -84,7 +84,7 @@
     "description": "Clean All Expired Cookies. Found in Settings."
   },
   "cleanIgnoringOpenTabsText": {
-    "message": "Temizle, açık sekmeleri de temizle",
+    "message": "Temizle, açık sekmeleri de dahil et",
     "description": "Clean, include open tabs. Found in the additional cleanup options in the popup."
   },
   "cleanText": {
@@ -375,9 +375,43 @@
       }
     }
   },
+  "manualCleanSiteDataAllDomain": {
+    "message": "Tüm site verisini $domain$ alan adı için temizle",
+    "description": "Clear all site data for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCache": {
+    "message": "Önbelleği bu alan adı için temizle",
+    "description": "Clean Cache for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCacheDomain": {
+    "message": "Tüm önbelleği $domain$ alan adı için temizle",
+    "description": "Clear all Cache for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
   "manualCleanSiteDataCookies": {
     "message": "Bu Alanadı İçin Çerezleri Temizle",
     "description": "Clean Cookies for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCookiesDomain": {
+    "message": "Tüm çerezleri $domain$ alan adı için temizle",
+    "description": "Clear all Cookies for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
   },
   "manualCleanSuccess": {
     "message": "$url$ içeriğindeki $siteData$ için temizlik sonucu:",
@@ -500,7 +534,7 @@
     }
   },
   "reasonCleanStartupNoList": {
-    "message": "Temizlendi, çünkü 'Başlangıç Temizliği' yapıldı ve $matchedExpression$ alan adı Greylist içinde değildi.",
+    "message": "Başlangıç Temizleme sebebiyle ve $hostname$ alan adı Beyaz veya Gri listelerde olmadığından temizlendi",
     "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
     "placeholders": {
       "hostname": {
