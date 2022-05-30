@@ -23,6 +23,10 @@
     "message": "Автоматичното изчистване е включено",
     "description": "Auto-clean enabled"
   },
+  "cacheText": {
+    "message": "Буфер",
+    "description": "Cache. Primarily used in notifications."
+  },
   "chromeDebugMode": {
     "message": "Уверете се, че „Режимът за разработчици“ е активиран, след което щракнете върху „фонова страница“ в Разгледайте изгледа.",
     "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
@@ -91,9 +95,21 @@
     "message": "Изчиства бисквитките с изключение на тези от отворените раздели",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Текущи настройки. При необходимост копирайте и поставете в съответната секция при създаване на доклад за дефект в GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Информация за системата. Копирайте и поставете в съответната секция при създаване на доклад за дефект в GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
   "copyFailedText": {
     "message": "Грешка при копиране. Ръчно изберете и копирайте текста.",
     "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Копирано!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
   },
   "copyToClipboardText": {
     "message": "Копиране в системния буфер",
@@ -106,6 +122,10 @@
   "debugTitle": {
     "message": "Информация за отстраняване на дефекти",
     "description": "Debug Information.  Header shown on About page."
+  },
+  "defaultText": {
+    "message": "По подразбиране",
+    "description": "Default. Used in List of Expression in Firefox for Default / No Container."
   },
   "defaultSettingsText": {
     "message": "Възстановяване на първоначалните настройки",
@@ -302,6 +322,10 @@
   "minutesText": {
     "message": "минута(и)",
     "description": "minute(s)"
+  },
+  "missingContainerText": {
+    "message": "НЕДЕЙСТВИТЕЛЕН ИЗОЛАТОР",
+    "description": "INVALID CONTAINER. Shown when a CAD list exists but cannot link id to available containers (Firefox)."
   },
   "noCleanupLogText": {
     "message": "Не са намерени дневници за изчистване",
