@@ -61,8 +61,14 @@ jobs:
     needs: pre_info
     if: needs.pre_info.outputs.skipCI == 'false'
     steps:
-      - name: Checkout Commit
+      - name: Checkout Default Commit
+        if: github.event_name != 'pull_request_target'
         uses: actions/checkout@v3
+      - name: Checkout Specific REF Commit
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v3
+        with:
+          ref: needs.pre_info.outputs.gitSHA
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
