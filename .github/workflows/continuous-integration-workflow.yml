@@ -124,9 +124,19 @@ jobs:
           override_pr: ${{ github.event.number }}
           override_commit: ${{ github.event.pull_request.head.sha }}
       - name: Coveralls.io Coverage Upload
+        id: coveralls_action
         uses: coverallsapp/github-action@1.1.3
+        continue-on-error: true
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Coveralls.io Coverage Upload for pull_request_target
+        id: coveralls_prt
+        uses: coverallsapp/github-action@1.1.3
+        continue-on-error: true
+        if: steps.coveralls_action.outcome == 'failure' && github.event_name == 'pull_request_target'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-commit: ${{ github.event.pull_request.head.sha }}
       - name: Extract zip builds for individual artifact upload
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         id: extbuilds
