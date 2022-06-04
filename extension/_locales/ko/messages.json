@@ -1,6 +1,338 @@
 {
+  "aboutText": {
+    "message": "알아보기",
+    "description": "About"
+  },
+  "activeModeDelayText": {
+    "message": "자동 청소 전 딜레이",
+    "description": "Delay Before Automatic Cleaning"
+  },
+  "activeModeText": {
+    "message": "자동 청소 활성화",
+    "description": "Enable Automatic Cleaning"
+  },
+  "autoDeleteDisabledText": {
+    "message": "자동 청소 꺼짐",
+    "description": "Auto-clean disabled"
+  },
+  "autoDeleteEnabledText": {
+    "message": "자동 청소 켜짐",
+    "description": "Auto-clean enabled"
+  },
+  "cacheText": {
+    "message": "캐시",
+    "description": "Cache. Primarily used in notifications."
+  },
+  "cleanExpiredCookiesText": {
+    "message": "모든 만료된 쿠키 청소",
+    "description": "Clean All Expired Cookies. Found in Settings."
+  },
+  "cleanIgnoringOpenTabsText": {
+    "message": "열린 탭 포함 청소",
+    "description": "Clean, include open tabs. Found in the additional cleanup options in the popup."
+  },
+  "cleanText": {
+    "message": "청소",
+    "description": "Clean"
+  },
+  "cleanupDomainChangeText": {
+    "message": "도메인 바뀔 때 청소 활성화",
+    "description": "Enable Cleanup on Domain Change"
+  },
+  "cleanupLogText": {
+    "message": "청소 기록",
+    "description": "Cleanup Log"
+  },
+  "clearLogsText": {
+    "message": "로그 지우기",
+    "description": "Clear Logs"
+  },
+  "contextMenusParentClean": {
+    "message": "수동 청소 메뉴",
+    "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
+  },
+  "contributeText": {
+    "message": "기여",
+    "description": "Contribute"
+  },
+  "contributorsText": {
+    "message": "기여자",
+    "description": "Contributors"
+  },
+  "cookiesText": {
+    "message": "쿠키",
+    "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
+  },
+  "copySuccessText": {
+    "message": "성공적으로 복사됨",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "클립보드에 복사",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
+  "defaultText": {
+    "message": "기본",
+    "description": "Default. Used in List of Expression in Firefox for Default / No Container."
+  },
+  "defaultContainerText": {
+    "message": "컨테이너 없음",
+    "description": "No Container. This will be in brackets. Used in List of Expression in Firefox for Default / No Container"
+  },
+  "defaultSettingsText": {
+    "message": "기본 설정 복원",
+    "description": "Restore Default Settings"
+  },
+  "disableAutoDeleteText": {
+    "message": "토글해서 자동 청소를 끄세요 (매뉴얼 모드)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "documentationText": {
+    "message": "문서",
+    "description": "Documentation"
+  },
+  "errorText": {
+    "message": "오류!",
+    "description": "Error!"
+  },
+  "extensionDescription": {
+    "message": "당신의 쿠키를 관리하세요! 닫힌 탭의 원하지 않는 쿠키는 자동으로 지우고 원하는 탭의 것은 놔둘 수 있습니다.",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
   "extensionName": {
     "message": "Cookie AutoDelete",
     "description": "Name of the extension."
+  },
+  "faqText": {
+    "message": "자주 묻는 질문, 일반적인 문제와 해결책",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "filterText": {
+    "message": "필터",
+    "description": "Filter"
+  },
+  "greyListWordText": {
+    "message": "그레이리스트",
+    "description": "Greylist"
+  },
+  "importFileNotFound": {
+    "message": "파일 발견되지 않음: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
+  "indexedDBText": {
+    "message": "IndexedDB",
+    "description": "IndexedDB. Primarily used in notifications."
+  },
+  "keepAllCookiesText": {
+    "message": "모든 쿠키 남기기",
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+  },
+  "keepAllCookiesGreyText": {
+    "message": "재시작까지 모든 쿠키 남기기",
+    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepCacheText": {
+    "message": "캐시 남기기",
+    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+  },
+  "keepCacheGreyText": {
+    "message": "재시작까지 캐시 남기기",
+    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepIndexedDBText": {
+    "message": "IndexedDB 남기기",
+    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+  },
+  "keepIndexedDBGreyText": {
+    "message": "재시작까지 IndexedDB 남기기",
+    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepLocalstorageText": {
+    "message": "LocalStorage 남기기",
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "재시작까지 Localstorage 남기기",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepPluginDataText": {
+    "message": "Plugin Data 남기기",
+    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+  },
+  "keepPluginDataGreyText": {
+    "message": "재시작까지 Plugin Data 남기기",
+    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepServiceWorkersText": {
+    "message": "Service Workers 남기기",
+    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+  },
+  "keepServiceWorkersGreyText": {
+    "message": "재시작까지 Serivce Workers 남기기",
+    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepText": {
+    "message": "남기기",
+    "description": "Keep"
+  },
+  "localStorageText": {
+    "message": "LocalStorage",
+    "description": "LocalStorage. Primarily used in notifications."
+  },
+  "manualActionNotification": {
+    "message": "수동 행동 알림",
+    "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanSiteDataAll": {
+    "message": "이 도메인에서 모두 청소",
+    "description": "Clean All for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataAllDomain": {
+    "message": "$domain$ 의 모든 사이트 정보 지우기",
+    "description": "Clear all site data for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCache": {
+    "message": "이 도메인의 캐시 지우기",
+    "description": "Clean Cache for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCacheDomain": {
+    "message": "$domain$의 모든 쿠키 청소",
+    "description": "Clear all Cache for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCookies": {
+    "message": "이 도메인의 쿠키 청소",
+    "description": "Clean Cookies for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCookiesDomain": {
+    "message": "$domain$의 쿠키 청소",
+    "description": "Clear all Cookies for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataIndexedDB": {
+    "message": "이 도메인의 IndexedDB 청소",
+    "description": "Clean IndexedDB for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataIndexedDBDomain": {
+    "message": "$domain$의 IndexDB 청소",
+    "description": "Clear all IndexedDB for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataLocalStorage": {
+    "message": "이 도메인의 LocalStorage 청소",
+    "description": "Clean LocalStorage for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataLocalStorageDomain": {
+    "message": "$domain$의 LocalStorage 청소",
+    "description": "Clear all LocalStorage for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataPluginData": {
+    "message": "이 도메인의 플러그인 데이터 청소",
+    "description": "Clean Plugin Data for this domain. Found in Popup clean dropdown menu."
+  },
+  "menuText": {
+    "message": "메뉴",
+    "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "notificationEnabledText": {
+    "message": "알림 켜짐",
+    "description": "Notification enabled"
+  },
+  "notificationTitle": {
+    "message": "쿠키가 삭제되었습니다!",
+    "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "optionsText": {
+    "message": "옵션",
+    "description": "Options"
+  },
+  "popupCookieCountText": {
+    "message": "쿠키",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
+  },
+  "preferencesText": {
+    "message": "설정",
+    "description": "Settings"
+  },
+  "releaseNotesText": {
+    "message": "릴리즈 정보",
+    "description": "Release Notes"
+  },
+  "settingsText": {
+    "message": "$CAD$ 설정",
+    "description": "$CAD$ Settings",
+    "placeholders": {
+      "CAD": {
+        "content": "CAD",
+        "example": "CAD - Short form of Cookie AutoDelete"
+      }
+    }
+  },
+  "toGreyListText": {
+    "message": "그레이리스트로 추가 (브라우저 재시작에 청소)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "toWhiteListText": {
+    "message": "화이트리스트에 추가 (절대 청소하지 않음)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toggleToGreyListWordText": {
+    "message": "토글해서 그레이리스트",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "토글해서 화이트리스트",
+    "description": "Toggle to whitelist"
+  },
+  "versionNumberText": {
+    "message": "$CAD$ 버전",
+    "description": "$CAD$ version 3.2.1. The actual number is formatted differently and will be right below this text.",
+    "placeholders": {
+      "CAD": {
+        "content": "$1",
+        "example": "CAD or Cookie AutoDelete"
+      }
+    }
+  },
+  "welcomeText": {
+    "message": "환영합니다",
+    "description": "Welcome"
+  },
+  "whiteListWordText": {
+    "message": "화이트리스트",
+    "description": "Whitelist"
   }
 }

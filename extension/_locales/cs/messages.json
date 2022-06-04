@@ -159,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Zapnout automatické odebírání seznamu výrazů při odebrání kontejneru.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Povolit podporu pro karty kontejneru",
     "description": "Enable Support for Container Tabs. Currently only in Firefox."
@@ -187,6 +191,26 @@
     "message": "Spustit čištění nyní, vyloučit domény z otevřených panelů",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Vaše aktuální nastavení. Pokud bude potřeba, zkopírujte jej do \"Issue\" na GitHubu.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Vaše systémové informace. Zkopírujte a vložte do příslušné části problému GitHub.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Automatické kopírování selhalo. Zkuste text označit a zkopírovat ručně.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Úspěšně zkopírováno do schránky!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Kopírovat do schránky",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Vytvořit výchozí možnosti výrazu",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -208,6 +232,10 @@
   "debugMode": {
     "message": "Povolit režim ladění (další výstupy konzoly)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Informace pro ladění",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Výchozí",
@@ -319,6 +347,16 @@
     "message": "Importovat nastavení jádra...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "Soubor nenalezen: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Uvedený soubor není typ, kterým se zabýváme",
     "description": "File given is not a type we handle"
@@ -326,6 +364,20 @@
   "importFileValidationFailed": {
     "message": "Zadaný soubor se nepodařilo ověřit",
     "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "V importovaném souboru byly nalezeny neplatné výrazy. Jejich seznam s odůvodněním najdete níže. Zkontrolujte a opravte případné chyby v souboru a zkuste jej importovat znovu.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ není formátován jako \"array list\".",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
   },
   "importMissingKey": {
     "message": "Chybějící identifikátor",
@@ -335,6 +387,20 @@
     "message": "Importovat výrazy...",
     "description": "Import Expressions... Found in List of Expressions."
   },
+  "importValidExpressions": {
+    "message": "Úspěšně přidáno $num$ výraz(ů) z importovaného souboru: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "Povolit IndexedDB Cleanup (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -342,6 +408,54 @@
   "indexedDBText": {
     "message": "Index edDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Čárky jsou povoleny pouze v regulárních výrazech.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "Opravený výraz nesmí být prázdny!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Neplatný regulární výraz. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Nalezeno osamocené uzavírací lomítko regulárního výrazu. Pokud se jedná o doménu, odstraňte lomítko.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Nalezeno osamocené počáteční lomítko regulárního výrazu.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "V názech hostitelů (hostname) nejsou povoleny mezery.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "Do aktivního seznamu bylo úspěšně přidáno $num$ výrazů typu $listType$.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Byly nalezeny nové neplatné výrazy. Jsou uvedeny níže s odůvodněním a byly ponechány nahoře pro potřeby úpravy.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "Zachovat všechny cookies",
@@ -596,6 +710,10 @@
   "noPrivateLogging": {
     "message": "Vyčistit logy nebudou generovány pro karty v anonymním prohlížení / anonymním / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "Na základě hlednání výše nebyly nalezeny žádné výrazy.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
   },
   "noRulesText": {
     "message": "Žádná pravidla neodpovídají této doméně.",

@@ -191,6 +191,18 @@
     "message": "今すぐクリーンアップを実行し、開いているタブからドメインを除外します",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "現在の設定です。必要に応じて、GitHub Issueにコピー&ペーストしてください。",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "お使いのシステム情報です。必要に応じて、GitHub Issueにコピー&ペーストしてください。",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "コピーに失敗しました。テキストを手動で選択してコピーしてみてください。",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
   "copySuccessText": {
     "message": "正常にコピーしました!",
     "description": "Copied successfully!  Shows after a successful text copy to clipboard."
@@ -357,6 +369,20 @@
     "message": "指定されたファイルは検証に失敗しました。",
     "description": "File given failed validation"
   },
+  "importInvalidExpressions": {
+    "message": "ファイルインポートから無効な式が検出されました。以下にその理由を記載しています。ファイル内のエラーを確認して修正し、再度インポートしてください。",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ は配列リストとしてフォーマットされていません。",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
   "importMissingKey": {
     "message": "識別子が欠落しています",
     "description": "Missing identifier"
@@ -364,6 +390,20 @@
   "importURLSText": {
     "message": "式のインポート...",
     "description": "Import Expressions... Found in List of Expressions."
+  },
+  "importValidExpressions": {
+    "message": "インポートされたファイル $filename$ から $num$ の式を正常に追加しました。",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
   },
   "indexedDBCleanupText": {
     "message": "IndexedDB のクリーンアップを有効化（Firefox 77 以降、Chrome 74 以降）",
@@ -377,9 +417,49 @@
     "message": "コンマは正規表現でのみ使用できます。",
     "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
   },
+  "inputErrorEmpty": {
+    "message": "修正された式は空にできません。",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "正規表現が無効です。 $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "正規表現の終了スラッシュが検出されましたが、開始スラッシュがありません。ドメインの終了スラッシュを削除します。",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "正規表現の開始スラッシュが検出されましたが、終了スラッシュがありません。",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
   "inputErrorSpace": {
     "message": "ホストネームに空白を含めることはできません。",
     "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "$listType$ タイプの $num$ 式が現在アクティブなリストに正常に追加されました。",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "無効な新しい式が検出されました。それらはその理由とともに以下に記載されており、編集のために上に保持されています。",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "すべてのCookieを維持する",
@@ -634,6 +714,10 @@
   "noPrivateLogging": {
     "message": "プライベートブラウジングでタブのクリーンアップログは生成されません",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "上記の検索に式が見つかりません。",
+    "description": "No expressions found from search above.  Found in List of Expressions."
   },
   "noRulesText": {
     "message": "このドメインのルールはありません。",

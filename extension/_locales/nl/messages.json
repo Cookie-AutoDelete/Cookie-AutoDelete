@@ -159,6 +159,10 @@
       }
     }
   },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Schakel automatische verwijdering van de expressielijst in wanneer de container wordt verwijderd.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
   "contextualIdentitiesEnabledText": {
     "message": "Ondersteuning voor Container Tabbladen inschakelen",
     "description": "Enable Support for Container Tabs. Currently only in Firefox."
@@ -187,6 +191,26 @@
     "message": "Ruim op, sluit domeinen uit van open tabbladen",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyDebugSettingText": {
+    "message": "Uw huidige instellingen. Indien nodig, kopieer en plak deze in de GitHub Issue.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "Uw Systeem-info. Kopieer en plak deze naar de relevante sectie van de GitHub Issue.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Kopiëren mislukt. Probeer de tekst handmatig te selecteren en te kopiëren.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Succesvol gekopieerd!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Kopieer naar klembord",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Standaardexpressie opties maken",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -208,6 +232,10 @@
   "debugMode": {
     "message": "Debug-modus inschakelen (extra console output)",
     "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Debug-informatie",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "Standaard",
@@ -319,6 +347,16 @@
     "message": "Importeer Instellingen...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "Bestand niet gevonden: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Het opgegeven bestand is niet compatibel",
     "description": "File given is not a type we handle"
@@ -326,6 +364,20 @@
   "importFileValidationFailed": {
     "message": "Validatie van bestand is mislukt",
     "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "Ongeldige expressie(s) gevonden in importbestand. Ze zijn hieronder te zien, inclusief verklaring. Controleer en verbeter de fouten in dat bestand en importeer het dan opnieuw.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ is niet geformatteerd als een array-lijst.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
   },
   "importMissingKey": {
     "message": "Ontbrekende id",
@@ -335,6 +387,20 @@
     "message": "Importeer expressies...",
     "description": "Import Expressions... Found in List of Expressions."
   },
+  "importValidExpressions": {
+    "message": "$num$ expressie(s) succesvol toegevoegd uit geïmporteerd bestand: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
   "indexedDBCleanupText": {
     "message": "IndexedDB Cleanup inschakelen (Firefox 77+, Chrome 74+)",
     "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
@@ -342,6 +408,50 @@
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Komma's zijn alleen toegestaan in reguliere expressies.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "Veranderde expressie mag niet leeg zijn!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Reguliere expressie is niet geldig. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Eind-slash gedetecteerd, maar begin-slash ontbreekt voor reguliere expressie. Verwijder eind-slash voor domeinen.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Eind-slash gedetecteerd, maar begin-slash ontbreekt voor reguliere expressie.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Spaties zijn niet toegestaan in hostnamen.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "$num$ expressie(s) succesvol toegevoegd aan de momenteel actieve $listType$.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
   },
   "invalidNewExpressions": {
     "message": "Ongeldige nieuwe expressie(s) gevonden. Ze zijn hieronder (inclusief verklaring) te zien en kunnen bovenaan worden aangepast.",
@@ -600,6 +710,10 @@
   "noPrivateLogging": {
     "message": "Opschonen logs worden niet gegenereerd voor tabbladen in privé modus / Incognito / InPrivate.",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "Geen expressies gevonden uit bovenstaande zoekopdracht.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
   },
   "noRulesText": {
     "message": "Geen regels komen overeen met dit domein.",
