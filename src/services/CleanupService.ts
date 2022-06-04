@@ -684,14 +684,20 @@ export const filterSiteData = (
   const notInAnyLists =
     obj.reason === ReasonClean.NoMatchedExpression ||
     obj.reason === ReasonClean.StartupNoMatchedExpression;
+  const isCADCookieNoExpression =
+    (obj.reason === ReasonClean.CADSiteDataCookie ||
+      ReasonClean.CADSiteDataCookieRestart) &&
+    obj.expression === undefined;
   const nonBlankCookieHostName = obj.cookie.hostname.trim() !== '';
   const cleanSiteDataInExpression = parseCleanSiteData(
     obj.expression?.cleanSiteData?.includes(siteData),
   );
   const isRestartCleanup =
-    obj.reason === ReasonClean.CADSiteDataCookieRestart ||
+    (obj.reason === ReasonClean.CADSiteDataCookieRestart &&
+      obj.expression?.listType === ListType.GREY) ||
     obj.reason === ReasonClean.StartupCleanupAndGreyList;
-  const canCleanSiteData = cleanSiteDataInExpression || isRestartCleanup;
+  const canCleanSiteData =
+    isCADCookieNoExpression || cleanSiteDataInExpression || isRestartCleanup;
   const cro: CleanReasonObject = {
     ...obj,
     cookie: {
@@ -706,6 +712,7 @@ export const filterSiteData = (
         notProtectedByOpenTab,
         notInAnyLists,
         siteData,
+        isCADCookieNoExpression,
         cleanSiteDataInExpression,
         isRestartCleanup,
         canCleanSiteData,
