@@ -105,6 +105,7 @@ declare const enum SettingID {
   NUM_COOKIES_ICON = 'showNumOfCookiesInIcon',
   OLD_GREY_CLEAN_LOCALSTORAGE = 'greyCleanLocalstorage',
   OLD_WHITE_CLEAN_LOCALSTORAGE = 'whiteCleanLocalstorage',
+  SITEDATA_EMPTY_ON_ENABLE = 'siteDataEmptyOnEnable',
   SIZE_POPUP = 'sizePopup',
   SIZE_SETTING = 'sizeSetting',
   STAT_LOGGING = 'statLogging',

@@ -156,6 +156,13 @@ describe('SettingService', () => {
       await SettingService.onSettingsChange();
       expect(global.browser.browsingData.remove).toHaveBeenCalledTimes(1);
     });
+    it('should NOT clean that site data if it was recently enabled and clean site data on enable is false', async () => {
+      TestStore.changeSetting(SettingID.SITEDATA_EMPTY_ON_ENABLE, false);
+      await SettingService.onSettingsChange();
+      TestStore.changeSetting(SettingID.CLEANUP_CACHE, true);
+      await SettingService.onSettingsChange();
+      expect(global.browser.browsingData.remove).not.toHaveBeenCalled();
+    });
     it('should enable global icon if active mode was recently enabled', async () => {
       TestStore.changeSetting(SettingID.ACTIVE_MODE, true);
       await SettingService.onSettingsChange();

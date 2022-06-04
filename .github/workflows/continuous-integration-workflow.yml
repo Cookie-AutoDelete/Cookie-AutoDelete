@@ -61,8 +61,14 @@ jobs:
     needs: pre_info
     if: needs.pre_info.outputs.skipCI == 'false'
     steps:
-      - name: Checkout Commit
+      - name: Checkout Default Commit
+        if: github.event_name != 'pull_request_target'
         uses: actions/checkout@v3
+      - name: Checkout Specific REF Commit
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.pre_info.outputs.gitSHA }}
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
@@ -118,9 +124,20 @@ jobs:
           override_pr: ${{ github.event.number }}
           override_commit: ${{ github.event.pull_request.head.sha }}
       - name: Coveralls.io Coverage Upload
+        id: coveralls_action
         uses: coverallsapp/github-action@1.1.3
+        if: github.event_name != 'pull_request_target'
+        continue-on-error: true
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Coveralls.io Coverage Upload for pull_request_target
+        id: coveralls_prt
+        uses: coverallsapp/github-action@1.1.3
+        continue-on-error: true
+        if: github.event_name == 'pull_request_target'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-commit: ${{ github.event.pull_request.head.sha }}
       - name: Extract zip builds for individual artifact upload
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
         id: extbuilds

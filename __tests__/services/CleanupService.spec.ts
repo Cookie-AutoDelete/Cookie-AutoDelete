@@ -55,7 +55,7 @@ const sampleTab: browser.tabs.Tab = {
   windowId: 1,
 };
 
-const wildCardWhiteListGoogle: Expression = {
+const wildCardGreyListGoogle: Expression = {
   expression: '*.google.com',
   id: '1',
   listType: ListType.GREY,
@@ -150,7 +150,7 @@ const sampleState: State = {
   lists: {
     default: [
       wildCardGreyGit,
-      wildCardWhiteListGoogle,
+      wildCardGreyListGoogle,
       whiteListYoutube,
       exampleWithCookieName,
       exampleWithCookieNameCleanAllCookiesTrue,
@@ -1024,6 +1024,48 @@ describe('CleanupService', () => {
       const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
       expect(result).toBe(true);
     });
+    it('should return true because of no matched expression on a CAD Cookie', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.CADSiteDataCookie,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
+      expect(result).toBe(true);
+    });
+    it('should return true because of no matched expression on a CAD Cookie on restart', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.CADSiteDataCookieRestart,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
+      expect(result).toBe(true);
+    });
+    it('should return true because of matched expression on a CAD Cookie on restart', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        expression: {
+          ...restartListCleanTest,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.CADSiteDataCookieRestart,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.CACHE);
+      expect(result).toBe(true);
+    });
 
     it('should return false because of a matched expression but cleanLocalStorage was undefined', () => {
       const cleanReasonObj: CleanReasonObject = {
@@ -1136,6 +1178,39 @@ describe('CleanupService', () => {
         },
         openTabStatus: OpenTabStatus.TabsWasNotIgnored,
         reason: ReasonClean.StartupCleanupAndGreyList,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(true);
+    });
+    it('should return false because of whiteList expression with localstorage checked and is restart cleanup mode', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        expression: {
+          ...whiteListAllExceptTwitter,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.CADSiteDataCookieRestart,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(false);
+    });
+    it('should return true because of whiteList expression with localstorage unchecked and is restart cleanup mode', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        expression: {
+          ...whiteListAllExceptTwitter,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.CADSiteDataCookieRestart,
       };
       const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(true);

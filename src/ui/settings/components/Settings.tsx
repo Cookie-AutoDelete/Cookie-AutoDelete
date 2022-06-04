@@ -170,11 +170,13 @@ class Settings extends React.Component<SettingProps> {
           error: '',
           success: browser.i18n.getMessage('importCoreSettingsText'),
         });
-      } catch (error) {
-        this.setState({
-          error: error.toString(),
-          success: '',
-        });
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          this.setState({
+            error: error.toString(),
+            success: '',
+          });
+        }
       }
     };
 
@@ -384,8 +386,33 @@ class Settings extends React.Component<SettingProps> {
             <legend>
               {browser.i18n.getMessage('settingGroupOtherBrowsing')}
             </legend>
-            <div className="alert alert-warning">
-              {browser.i18n.getMessage('browsingDataWarning')}
+            <div className="form-group">
+              <CheckboxSetting
+                text={browser.i18n.getMessage('siteDataEmptyOnEnable')}
+                settingObject={settings[SettingID.SITEDATA_EMPTY_ON_ENABLE]}
+                inline={true}
+                updateSetting={(payload) => onUpdateSetting(payload)}
+              />
+              <SettingsTooltip
+                hrefURL={
+                  '#clean-existing-data-for-newly-enabled-browsing-data-types'
+                }
+              />
+            </div>
+            <div
+              className={`alert alert-${
+                settings[SettingID.SITEDATA_EMPTY_ON_ENABLE].value === true
+                  ? 'warning'
+                  : 'danger'
+              }`}
+            >
+              {browser.i18n.getMessage(
+                `browsingData${
+                  settings[SettingID.SITEDATA_EMPTY_ON_ENABLE].value === true
+                    ? ''
+                    : 'NoEmpty'
+                }Warning`,
+              )}
             </div>
             {((isFirefoxNotAndroid(cache) && ffVersion >= 78) ||
               isChrome(cache)) && (
