@@ -1031,6 +1031,10 @@
     "message": "Anzahl der Cookies für diese Domain über dem Symbol anzeigen",
     "description": "Show Number of Cookies for that Domain over the Icon"
   },
+  "siteDataEmptyOnEnable": {
+    "message": "Vorhandene Daten für neu aktivierte Browsing-Datentypen bereinigen",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
+  },
   "siteDataText": {
     "message": "Website-Daten",
     "description": "Site Data. Found in Activity Log Summary and Notifications."
