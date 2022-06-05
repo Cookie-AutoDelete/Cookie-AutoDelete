@@ -14,6 +14,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import {
   clearCookiesForThisDomain,
+  clearLocalStorageForThisDomain,
   clearSiteDataForThisDomain,
 } from '../../../services/CleanupService';
 import { animateFlash } from '../popupLib';
@@ -43,8 +44,12 @@ const cleanSiteDataUI = async (
   let result = await clearSiteDataForThisDomain(state, siteData, hostname);
   if (siteData === 'All') {
     if (!tab) return false;
-    const success = await clearCookiesForThisDomain(state, tab);
-    result = result || success;
+    const cookieSuccess = await clearCookiesForThisDomain(state, tab);
+    const localStorageSuccess = await clearLocalStorageForThisDomain(
+      state,
+      tab,
+    );
+    result = result || cookieSuccess || localStorageSuccess;
   }
   return result;
 };
