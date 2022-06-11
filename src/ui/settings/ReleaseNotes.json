@@ -4,7 +4,8 @@
       "version": "3.8.0 - alpha",
       "notes": [
         "Added:  Option to keep or clean existing site data on new enables.",
-        "Fixed:  Site Data being cleaned up despite a whitelist entry on restart. Closes #1395 via PR #1397"
+        "Fixed:  Site Data being cleaned up despite a whitelist entry on restart. Closes #1395 via PR #1397",
+        "Fixed:  SessionStorage data in Firefox wasn't being cleaned when manual clean 'All' was triggered.  Closes #1402 via PR#1404"
       ]
     },
     {
