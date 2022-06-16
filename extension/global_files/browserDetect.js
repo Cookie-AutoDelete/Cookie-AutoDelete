@@ -19,8 +19,8 @@ var browserDetect = function () {
     !!window.opera ||
     navigator.userAgent.indexOf(' OPR/') >= 0;
 
-  // Firefox 1.0+
-  var isFirefox = typeof InstallTrigger !== 'undefined';
+  // Firefox 1.0+ (InstallTrigger only available up to FF102.  Webextension API browser.contextualIdentities still only available in Firefox/Firefox Android so use that for now.)
+  var isFirefox = typeof InstallTrigger !== 'undefined' || typeof browser.contextualIdentities !== 'undefined';
 
   // Safari 3.0+ "[object HTMLElementConstructor]"
   var isSafari =
