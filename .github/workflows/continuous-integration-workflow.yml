@@ -55,6 +55,7 @@ jobs:
           RES=$([[ $SKIP_A == true || $SKIP_B == true ]] && echo true || echo false)
           echo "Skip CI:  $RES"
           echo "::set-output name=result::$RES"
+          ls -ahl
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
