@@ -163,8 +163,35 @@ jobs:
         uses: kanga333/comment-hider@v0.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create PR Build Comment
+      - name: Get Workflow and Artifact Variables
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
+        id: gwa
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          CSI=$(curl -s "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" | jq -r '.check_suite_id')
+          echo "::set-output name=csi::$CSI"
+          ARTS=($(gh api -H "Accept: application/vnd.github.v3+json" repos/{owner}/{repo}/actions/runs/$GITHUB_RUN_ID/artifacts | jq -r '[.artifacts[] | select(.name != "coverage") | select(.expired == false) | {id,name,created_at,expires_at}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item) + " ")'))
+          if [[ ${#ARTS[@]} -eq 0 ]]; then
+            echo "No artifacts found.  Check action logs for details."
+            echo "::set-output name=result::FAILED"
+            exit 0
+          fi
+          echo "Number of artifacts: ${#ARTS[@]}"
+          MDT="| Filename | Time Created | Expiry Time (available up to max $GITHUB_RETENTION_DAYS days from creation time) |<br />| --- | --- | --- |<br />"
+          for i in "${ARTS[@]}"; do
+            read AID ANAME ACREATED AEXPIRY < <(echo $i | jq -r '.id, .name, .created_at, .expires_at')
+            ANAME=$(echo $i | jq -r '.name')
+            AID=$(echo $i | jq -r '.id')
+            ACREATED=$(echo $i | jq -r '.created_at')
+            AEXPIRY=$(echo $i | jq -r '.expires_at')
+            echo $ANAME $AID $ACREATED $AEXPIRY
+            MDT+="[$ANAME]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/suites/$CSI/artifacts/$AID) | ${ACREATED/T/' @ '} UTC | ${AEXPIRY/T/' @ '} UTC | <br />"
+          done
+          echo "::set-output name=result::SUCCESS"
+          echo "::set-output name=links::$MDT"
+            - name: Create PR Build Comment
+        if: steps.gwa.outputs.result != 'SUCCESS' && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -178,6 +205,40 @@ jobs:
             It is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.
 
             ### Generating Download Links
+
+            - `/get-build` for the latest commit build.
+            - `/get-build ${{ github.run_id }}` for this specific commit ${{ github.event.after }} build.
+
+            ---
+
+            *When new command comment is posted, please allow a few seconds for the command to be received and processed.*
+            - :eyes: indicates that command has been received.
+            - :rocket: indicates that command has been sent for further processing.
+            - :tada: indicates that command has been executed.  Expect a new comment with the result shortly.
+
+            *Due to API limitations, generated links will only be valid for one minute!*
+          reactions: heart
+      - name: Create PR Build Comment
+        if: steps.gwa.outputs.result == 'SUCCESS' && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## Pull Request Build: ${{ github.run_id }}
+
+            - based on latest commit: ${{ needs.pre_info.outputs.gitSHA }}
+
+            Unsigned webextension builds for testing is ready for download!
+            These test builds are only kept for *up to 90 days* from the date of this post.
+            It is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.
+
+            ### Clickable Download Links
+
+            ${{ steps.gwa.output.links }}
+
+            If the links above do not work, try commenting with the command below.
+
+            ### Generating Download Links (Backup)
 
             - `/get-build` for the latest commit build.
             - `/get-build ${{ github.run_id }}` for this specific commit ${{ github.event.after }} build.
