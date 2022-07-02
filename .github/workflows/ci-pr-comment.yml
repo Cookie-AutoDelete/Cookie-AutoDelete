@@ -1,0 +1,35 @@
+name: CI PR Build Download Comment
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types:
+      - completed
+
+jobs:
+  download_comment:
+    name: Generate PR Build Download Comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Echo available stuff'
+        env:
+          GH_GH: ${{ toJson(github) }}
+        run: |
+          echo $GH_GH
+      - name: 'Generate PR Run Info from previous workflow'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id,
+            });
+            if (allArtifacts.data.total_count < 2) {
+              console.log(`Artifact count is ${allArtifacts.data.total_count}. Not generating comment.`);
+              return;
+            }
+            let buildArtifacts = allArtifacts.data.artifacts.filter((a) => {
+              return a.name.indexOf('Cookie-AutoDelete') !== -1
+            });
+            console.log(buildArtifacts);
