@@ -190,7 +190,7 @@ jobs:
           done
           echo "::set-output name=result::SUCCESS"
           echo "::set-output name=links::$MDT"
-            - name: Create PR Build Comment
+      - name: Create PR Build Comment
         if: steps.gwa.outputs.result != 'SUCCESS' && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
         uses: peter-evans/create-or-update-comment@v2
         with:
