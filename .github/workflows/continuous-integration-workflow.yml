@@ -171,7 +171,11 @@ jobs:
         run: |
           CSI=$(curl -s "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" | jq -r '.check_suite_id')
           echo "::set-output name=csi::$CSI"
-          ARTS=($(gh api -H "Accept: application/vnd.github.v3+json" repos/{owner}/{repo}/actions/runs/$GITHUB_RUN_ID/artifacts | jq -r '[.artifacts[] | select(.name != "coverage") | select(.expired == false) | {id,name,created_at,expires_at}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item) + " ")'))
+          echo "CSI: $CSI"
+          echo "GITHUB RUN ID: $GITHUB_RUN_ID"
+          echo "gh api repos/{owner}/{repo}/actions/runs/$GITHUB_RUN_ID/artifacts"
+          ARTS=($(gh api repos/{owner}/{repo}/actions/runs/$GITHUB_RUN_ID/artifacts -H "Accept: application/vnd.github.v3+json" | jq -r '[.artifacts[] | select(.name != "coverage") | select(.expired == false) | {id,name,created_at,expires_at}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item) + " ")'))
+          echo ${ARTS[@]}
           if [[ ${#ARTS[@]} -eq 0 ]]; then
             echo "No artifacts found.  Check action logs for details."
             echo "::set-output name=result::FAILED"
@@ -204,7 +208,7 @@ jobs:
             These test builds are only kept for *up to 90 days* from the date of this post.
             It is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.
 
-            ### Generating Download Links
+            ### To Generate Download Links
 
             - `/get-build` for the latest commit build.
             - `/get-build ${{ github.run_id }}` for this specific commit ${{ github.event.after }} build.
@@ -218,7 +222,7 @@ jobs:
 
             *Due to API limitations, generated links will only be valid for one minute!*
           reactions: heart
-      - name: Create PR Build Comment
+      - name: Create PR Build Comment (static click links)
         if: steps.gwa.outputs.result == 'SUCCESS' && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
         uses: peter-evans/create-or-update-comment@v2
         with:
