@@ -5,17 +5,26 @@ on:
     workflows: [CI]
     types:
       - completed
+    branches-ignore:
+      - '_archived__**'
+    paths-ignore:
+      - '**/README.md'
+
+permissions:
+  actions: read
+  pull-requests: write
 
 jobs:
   download_comment:
     name: Generate PR Build Download Comment
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 'Echo available stuff'
         env:
           GH_GH: ${{ toJson(github) }}
         run: |
-          echo $GH_GH
+          echo "Check env log above for details"
       - name: 'Generate PR Run Info from previous workflow'
         uses: actions/github-script@v6
         with:
@@ -30,6 +39,14 @@ jobs:
               return;
             }
             let buildArtifacts = allArtifacts.data.artifacts.filter((a) => {
-              return a.name.indexOf('Cookie-AutoDelete') !== -1
+              return a.name.indexOf('Cookie-AutoDelete') !== -1 && !a.expired
+            }).map((a) => {
+              return {
+                id: a.id,
+                name: a.name,
+                created_at: a.created_at,
+                expires_at: a.expires_at,
+                artifact_url: `${context.payload.workflow_run.head_repository.html_url}/suites/${context.payload.workflow_run.check_suite_id}/artifacts/${a.id}`,
+              }
             });
             console.log(buildArtifacts);
