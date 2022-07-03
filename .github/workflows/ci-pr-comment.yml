@@ -19,7 +19,7 @@ jobs:
     name: Check if workflow needs to execute
     runs-on: ubuntu-latest
     outputs:
-      runWorkflow: ${{ steps.checkci.outputs.result }}
+      runWorkflow: ${{ steps.checkci.outputs.result == 'true' }}
     if: github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.event == 'pull_request' || github.event.workflow_run.event == 'pull_request_target'
     steps:
       - name: Check Result
@@ -42,7 +42,8 @@ jobs:
           echo "PR Head Commit SHA               : $PR_HEADSHA"
           SKIP_A=$([[ "$PR_HEADBRANCH" == l10n_* ]] && echo true || echo false)
           echo "Skip if branch starts with l10n_ : $SKIP_A"
-          echo "Commit Message:\n$PR_HEADMSG"
+          echo "Commit Message:"
+          echo "$PR_HEADMSG"
           EXP_SKIP="\[ci skip]"
           SKIP_B=$([[ "$PR_HEADMSG" =~ $EXP_SKIP ]] && echo true || echo false)
           echo "Skip via Commit Msg              : $SKIP_B"
@@ -53,12 +54,30 @@ jobs:
     name: Coverage Uploads
     runs-on: ubuntu-latest
     needs: precheck
-    if: needs.precheck.outputs.runWorkflow
+    if: needs.precheck.outputs.runWorkflow == true
     steps:
       - name: Download coverage artifact
-        uses: actions/download-artifact@v3
+        uses: actions/github-script@v6
         with:
-          name: coverage
+          script: |
+            let runArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id,
+            });
+            let covArtifact = runArtifacts.data.artifacts.filter((a) => {
+              return a.name === 'coverage'
+            })[0];
+            let download = await github.actions.downloadArtifact({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              artifact_id: covArtifact.id,
+              archive_format: 'zip',
+            });
+            var fs = require('fs');
+            fs.writeFileSync('${{github.workspace}}/coverage.zip', Buffer.from(download.data));
+      - name: Unzip coverage artifact
+        run: unzip coverage.zip
       - name: List files
         run: |
           ls -anl
@@ -66,7 +85,7 @@ jobs:
     name: Generate PR Build Download Comment
     runs-on: ubuntu-latest
     needs: precheck
-    if: needs.precheck.outputs.runWorkflow
+    if: needs.precheck.outputs.runWorkflow == true
     steps:
       - name: 'Echo available stuff'
         env:
