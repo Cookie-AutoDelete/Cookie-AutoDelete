@@ -19,11 +19,11 @@ jobs:
     name: Check if workflow needs to execute
     runs-on: ubuntu-latest
     outputs:
-      runWorkflow: ${{ steps.checkci.outputs.result == 'true' }}
+      runWorkflow: ${{ steps.checkciskip.outputs.result == false }}
     if: github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.event == 'pull_request' || github.event.workflow_run.event == 'pull_request_target'
     steps:
       - name: Check Result
-        id: checkci
+        id: checkciskip
         env:
           COMMIT_API: ${{ github.event.repository.commits_url }}
           GH_GH: ${{ toJson(github) }}
