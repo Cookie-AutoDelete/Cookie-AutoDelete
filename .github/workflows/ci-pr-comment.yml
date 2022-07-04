@@ -57,6 +57,7 @@ jobs:
     if: needs.precheck.outputs.skipCI == 'false'
     steps:
       - name: Download coverage artifact
+        id: artCov
         uses: actions/github-script@v6
         with:
           script: |
@@ -68,6 +69,10 @@ jobs:
             let covArtifact = runArtifacts.data.artifacts.filter((a) => {
               return a.name === 'coverage'
             })[0];
+            if (!covArtifact) {
+              console.log(`No coverage artifact found in workflow run ${context.payload.workflow_run.id}`);
+              return;
+            }
             let download = await github.rest.actions.downloadArtifact({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -76,9 +81,12 @@ jobs:
             });
             var fs = require('fs');
             fs.writeFileSync('${{github.workspace}}/coverage.zip', Buffer.from(download.data));
+            return true;
       - name: Unzip coverage artifact
-        run: unzip coverage.zip
+        if: steps.artCov.outputs.result == 'true'
+        run: unzip coverage.zip -d coverage
       - name: List files
+        if: steps.artCov.outputs.result == 'true'
         run: |
           ls -anl
   download_comment:
