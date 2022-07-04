@@ -68,7 +68,7 @@ jobs:
             let covArtifact = runArtifacts.data.artifacts.filter((a) => {
               return a.name === 'coverage'
             })[0];
-            let download = await github.actions.downloadArtifact({
+            let download = await github.rest.actions.downloadArtifact({
               owner: context.repo.owner,
               repo: context.repo.repo,
               artifact_id: covArtifact.id,
