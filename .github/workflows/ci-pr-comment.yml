@@ -82,13 +82,29 @@ jobs:
             var fs = require('fs');
             fs.writeFileSync('${{github.workspace}}/coverage.zip', Buffer.from(download.data));
             return true;
-      - name: Unzip coverage artifact
-        if: steps.artCov.outputs.result == 'true'
-        run: unzip coverage.zip -d coverage
-      - name: List files
+      - name: Unzip coverage artifact and List files
         if: steps.artCov.outputs.result == 'true'
         run: |
-          ls -anl
+          unzip coverage.zip -d coverage
+          ls -ranl
+      - name: Codecov.io Coverage Upload
+        id: codecov_action
+        uses: codecov/codecov-action@v3
+        if: steps.artCov.outputs.result == 'true'
+        with:
+          fail_ci_if_error: true
+          directory: ./coverage/
+          token: ${{ secrets.CODECOV_TOKEN }}
+          override_branch: ${{ github.event.workflow_run.head_branch }}
+          override_pr: ${{ github.event.workflow_run.pull_requests[0].number }}
+          override_commit: ${{ github.event.workflow_run.head_sha }}
+      - name: Coveralls.io Coverage Upload
+        id: coveralls_action
+        uses: coverallsapp/github-action@1.1.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-branch: ${{ github.event.workflow_run.head_branch }}
+          git-commit: ${{ github.event.workflow_run.head_sha }}
   download_comment:
     name: Generate PR Build Download Comment
     runs-on: ubuntu-latest
@@ -98,8 +114,7 @@ jobs:
       - name: 'Echo available stuff'
         env:
           GH_GH: ${{ toJson(github) }}
-        run: |
-          echo "Check env log above for details"
+        run: env
       - name: 'Generate PR Run Info from previous workflow'
         id: workflowArtifacts
         uses: actions/github-script@v6
@@ -126,5 +141,18 @@ jobs:
               }
             });
             console.log(buildArtifacts);
+            let pr_body = `## Pull Request Build: ${github.event.workflow_run.id}\n\n- based on latest commit: ${github.event.workflow_run.head_sha}\n\n`;
+            pr_body += "Unsigned webextension builds for testing is ready for download!\nThese test builds are only kept for *up to 90 days* from the date of this post.\nIt is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.\n\n";
+            pr_body += "### Clickable Download Links (BETA)\n\n";
+            pr_body += `| Filename | Time Created | Expiry Time (available up to max ${process.env.GITHUB_RETENTION_DAYS} days from creation time) |\n| --- | --- | --- |\n`;
+            for (const a of buildArtifacts) {
+              pr_body += `| [${a.name}](${a.artifact_url}) | ${a.created_at.replace('T', ' @ ')} UTC | ${a.expires_at.replace('T', ' @ ')} UTC |\n`
+            }
+            pr_body += "\n\n### To Generate Download Links (Alternate Method if above links do not work for some reason)\n\n- `/get-build` for the latest commit build.\n";
+            pr_body += `- \`get-build ${github.event.workflow_run.id}\` for this specific commit ${{ github.event.workflow_run.head_sha }} build.\n\n`;
+            pr_body += "---\n\n*When new command comment is posted, please allow a few seconds for the command to be received and processed.*\n- :eyes: indicates that command has been received.\n- :rocket: indicates that command has been sent for further processing.\n- :tada: indicates that command has been executed.  Expect a new comment with the result shortly.\n\n";
+            pr_body += "*Due to API limitations, generated links from the alternate method will only be valid for one minute!*"
+            console.log(pr_body);
+
             return buildArtifacts;
         
