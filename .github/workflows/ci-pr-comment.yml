@@ -19,7 +19,7 @@ jobs:
     name: Check if workflow needs to execute
     runs-on: ubuntu-latest
     outputs:
-      runWorkflow: ${{ steps.checkciskip.outputs.result == 'false' }}
+      skipCI: ${{ steps.checkciskip.outputs.result }}
     if: github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.event == 'pull_request' || github.event.workflow_run.event == 'pull_request_target'
     steps:
       - name: Check Result
@@ -54,7 +54,7 @@ jobs:
     name: Coverage Uploads
     runs-on: ubuntu-latest
     needs: precheck
-    if: needs.precheck.outputs.runWorkflow == true
+    if: needs.precheck.outputs.skipCI == 'false'
     steps:
       - name: Download coverage artifact
         uses: actions/github-script@v6
@@ -85,7 +85,7 @@ jobs:
     name: Generate PR Build Download Comment
     runs-on: ubuntu-latest
     needs: precheck
-    if: needs.precheck.outputs.runWorkflow == true
+    if: needs.precheck.outputs.skipCI == 'false'
     steps:
       - name: 'Echo available stuff'
         env:
