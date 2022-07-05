@@ -59,6 +59,10 @@
     "message": "Limpieza automática habilitada",
     "description": "Auto-clean enabled"
   },
+  "browsingDataNoEmptyWarning": {
+    "message": "ADVERTENCIA: Los tipos de datos de sitios existentes NO se limpiarán cuando se habiliten nuevamente. NO podremos limpiar ninguno de los datos existentes hasta que su dominio haya sido visitado al menos una vez, incluso desde dominios no deseados.",
+    "description": "WARNING:  Existing site data types will NOT be cleaned when newly enabled. We will NOT be able to clean any of the existing data until its domain has been visited at least once, including from unwanted domains. Found in CAD Settings"
+  },
   "browsingDataWarning": {
     "message": "ADVERTENCIA: Al habilitar cualquiera de las siguientes opciones de limpieza de datos del sitio, se borrarán TODOS los datos existentes de ese tipo.",
     "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
@@ -1034,6 +1038,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Mostrar el número de cookies de ese dominio en el icono",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataEmptyOnEnable": {
+    "message": "Limpiar datos existentes para tipos de datos de navegación recién habilitados",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
   },
   "siteDataText": {
     "message": "Datos del sitio",
