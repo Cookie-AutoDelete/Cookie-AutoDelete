@@ -1,6 +1,12 @@
 {
   "releases": [
     {
+      "version": "3.8.1 - unreleased",
+      "notes": [
+        "Fixed:  Browser detection in Firefox 103+ as the previous browser feature has been deprecated and removed. Fixes #1409 via PR #1410."
+      ]
+    },
+    {
       "version": "3.8.0",
       "notes": [
         "Added:  Option to keep or clean existing site data on new enables.",
