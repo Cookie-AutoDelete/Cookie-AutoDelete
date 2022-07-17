@@ -32,12 +32,14 @@ jobs:
           PR_HEADSHA: ${{ github.event.workflow_run.head_sha }}
           PR_HEADMSG: ${{ github.event.workflow_run.head_commit.message }}
           PR_NUM: ${{ github.event.workflow_run.pull_requests[0].number }}
+          PR_URL: ${{ github.event.workflow_run.pull_requests[0].url }}
           PR_RUNID: ${{ github.event.workflow_run.id }}
           PR_CHECKID: ${{ github.event.workflow_run.check_suite_id }}
         run: |
           echo "PR Run ID                        : $PR_RUNID"
           echo "From CI Event                    : $FROM_CI_EVENT"
           echo "PR Number                        : $PR_NUM"
+          echo "PR URL                           : $PR_URL"
           echo "Head Branch Ref                  : $PR_HEADBRANCH"
           echo "PR Head Commit SHA               : $PR_HEADSHA"
           SKIP_A=$([[ "$PR_HEADBRANCH" == l10n_* ]] && echo true || echo false)
@@ -47,7 +49,10 @@ jobs:
           EXP_SKIP="\[ci skip]"
           SKIP_B=$([[ "$PR_HEADMSG" =~ $EXP_SKIP ]] && echo true || echo false)
           echo "Skip via Commit Msg              : $SKIP_B"
-          RES=$([[ $SKIP_A == true || $SKIP_B == true ]] && echo true || echo false)
+          REPO_SKIP="/repos/Cookie-AutoDelete/Cookie-AutoDelete"
+          SKIP_C=$([[ "$PR_URL" =~ $REPO_SKIP ]] && echo false || echo true)
+          echo "Skip as PR not in main Repo      : $SKIP_C"
+          RES=$([[ $SKIP_A == true || $SKIP_B == true || $SKIP_C = true ]] && echo true || echo false)
           echo "Skip CI                          : $RES"
           echo "::set-output name=result::$RES"
   upload_coverage:
@@ -56,6 +61,10 @@ jobs:
     needs: precheck
     if: needs.precheck.outputs.skipCI == 'false'
     steps:
+      - name: Checkout Specific REF Commit
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
       - name: Download coverage artifact
         id: artCov
         uses: actions/github-script@v6
@@ -141,15 +150,16 @@ jobs:
               }
             });
             console.log(buildArtifacts);
-            let pr_body = `## Pull Request Build: ${github.event.workflow_run.id}\n\n- based on latest commit: ${github.event.workflow_run.head_sha}\n\n`;
+            let pr_body = `## Pull Request Build: ${context.payload.workflow_run.id}\n\n- based on latest commit: ${context.payload.workflow_run.head_sha}\n\n`;
             pr_body += "Unsigned webextension builds for testing is ready for download!\nThese test builds are only kept for *up to 90 days* from the date of this post.\nIt is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.\n\n";
             pr_body += "### Clickable Download Links (BETA)\n\n";
-            pr_body += `| Filename | Time Created | Expiry Time (available up to max ${process.env.GITHUB_RETENTION_DAYS} days from creation time) |\n| --- | --- | --- |\n`;
+            pr_body += `| Filename | Created Timestamp | Expiry Timestamp |\n| --- | --- | --- |\n`;
             for (const a of buildArtifacts) {
               pr_body += `| [${a.name}](${a.artifact_url}) | ${a.created_at.replace('T', ' @ ')} UTC | ${a.expires_at.replace('T', ' @ ')} UTC |\n`
             }
+            pr_body += "\nPlease note that if the link(s) above returns a 404 Not Found, it may have expired and/or manually removed before expiry date (This post does not get updated if artifacts are removed).  Try the alternate method below if the link(s) above do not work."
             pr_body += "\n\n### To Generate Download Links (Alternate Method if above links do not work for some reason)\n\n- `/get-build` for the latest commit build.\n";
-            pr_body += `- \`get-build ${github.event.workflow_run.id}\` for this specific commit ${{ github.event.workflow_run.head_sha }} build.\n\n`;
+            pr_body += `- \`get-build ${context.payload.workflow_run.id}\` for this specific commit ${ context.payload.workflow_run.head_sha } build.\n\n`;
             pr_body += "---\n\n*When new command comment is posted, please allow a few seconds for the command to be received and processed.*\n- :eyes: indicates that command has been received.\n- :rocket: indicates that command has been sent for further processing.\n- :tada: indicates that command has been executed.  Expect a new comment with the result shortly.\n\n";
             pr_body += "*Due to API limitations, generated links from the alternate method will only be valid for one minute!*"
             console.log(pr_body);

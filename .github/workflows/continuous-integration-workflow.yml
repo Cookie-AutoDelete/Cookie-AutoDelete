@@ -12,7 +12,7 @@ on:
 
 permissions:
   actions: write
-  pull-requests: write
+  pull-requests: read
 
 jobs:
   pre_info:
@@ -108,29 +108,10 @@ jobs:
         with:
           name: coverage
           path: coverage
-      - name: Codecov.io Coverage upload
-        id: codecov_action
-        uses: codecov/codecov-action@v3
-        continue-on-error: true
-        with:
-          fail_ci_if_error: true
-          directory: ./coverage/
-          token: ${{ secrets.CODECOV_TOKEN }} # Optional as it is open source repo
-      - name: Codecov.io Coverage Upload for pull_request_target
-        id: codecov_prt
-        uses: codecov/codecov-action@v3
-        continue-on-error: true
-        if: steps.codecov_action.outcome == 'failure' && github.event_name == 'pull_request_target'
-        with:
-          fail_ci_if_error: true
-          directory: ./coverage/
-          token: ${{ secrets.CODECOV_TOKEN }}
-          override_pr: ${{ github.event.number }}
-          override_commit: ${{ github.event.pull_request.head.sha }}
       - name: Coveralls.io Coverage Upload
         id: coveralls_action
         uses: coverallsapp/github-action@1.1.3
-        if: github.event_name != 'pull_request_target'
+        if: false && github.event_name != 'pull_request_target'
         continue-on-error: true
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -138,7 +119,7 @@ jobs:
         id: coveralls_prt
         uses: coverallsapp/github-action@1.1.3
         continue-on-error: true
-        if: github.event_name == 'pull_request_target'
+        if: false && github.event_name == 'pull_request_target'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           git-commit: ${{ github.event.pull_request.head.sha }}
@@ -162,42 +143,6 @@ jobs:
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
-      - name: Hide old PR Build Comments
-        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
-        uses: kanga333/comment-hider@v0.3.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get Workflow and Artifact Variables
-        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
-        id: gwa
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          CSI=$(curl -s "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" | jq -r '.check_suite_id')
-          echo "::set-output name=csi::$CSI"
-          echo "CSI: $CSI"
-          echo "GITHUB RUN ID: $GITHUB_RUN_ID"
-          echo "gh api repos/{owner}/{repo}/actions/runs/$GITHUB_RUN_ID/artifacts"
-          ARTS=($(gh api repos/{owner}/{repo}/actions/runs/$GITHUB_RUN_ID/artifacts -H "Accept: application/vnd.github.v3+json" | jq -r '[.artifacts[] | select(.name != "coverage") | select(.expired == false) | {id,name,created_at,expires_at}] | to_entries | map("\(.value)") | reduce .[] as $item(" "; . + ($item) + " ")'))
-          echo ${ARTS[@]}
-          if [[ ${#ARTS[@]} -eq 0 ]]; then
-            echo "No artifacts found.  Check action logs for details."
-            echo "::set-output name=result::FAILED"
-            exit 0
-          fi
-          echo "Number of artifacts: ${#ARTS[@]}"
-          MDT="| Filename | Time Created | Expiry Time (available up to max $GITHUB_RETENTION_DAYS days from creation time) |<br />| --- | --- | --- |<br />"
-          for i in "${ARTS[@]}"; do
-            read AID ANAME ACREATED AEXPIRY < <(echo $i | jq -r '.id, .name, .created_at, .expires_at')
-            ANAME=$(echo $i | jq -r '.name')
-            AID=$(echo $i | jq -r '.id')
-            ACREATED=$(echo $i | jq -r '.created_at')
-            AEXPIRY=$(echo $i | jq -r '.expires_at')
-            echo $ANAME $AID $ACREATED $AEXPIRY
-            MDT+="[$ANAME]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/suites/$CSI/artifacts/$AID) | ${ACREATED/T/' @ '} UTC | ${AEXPIRY/T/' @ '} UTC | <br />"
-          done
-          echo "::set-output name=result::SUCCESS"
-          echo "::set-output name=links::$MDT"
       - name: Create PR Build Comment
         if: steps.gwa.outputs.result != 'SUCCESS' && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
         uses: peter-evans/create-or-update-comment@v2
