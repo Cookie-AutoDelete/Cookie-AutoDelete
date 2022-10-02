@@ -43,6 +43,7 @@ declare const enum ReasonClean {
   NoMatchedExpression = 'reasonCleanNoList',
   MatchedExpressionButNoCookieName = 'reasonCleanCookieName',
   ExpiredCookie = 'reasonCleanCookieExpired',
+  ExpiredCookieRestart = 'reasonCleanCookieExpiredRestart',
   CADSiteDataCookie = 'reasonCADSiteDataCookie',
   CADSiteDataCookieRestart = 'reasonCADSiteDataCookieRestart'
 }

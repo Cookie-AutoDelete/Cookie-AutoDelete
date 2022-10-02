@@ -1232,6 +1232,83 @@ describe('CleanupService', () => {
       const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
       expect(result).toBe(true);
     });
+    it('should return true because of greyList expression for localstorage, checked localstorage and is restart cleanup with expired cookie.', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...restartCleanCookie,
+        },
+        expression: {
+          ...restartListCleanTest,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.ExpiredCookieRestart,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(true);
+    });
+    it('should return true because of greyList expression for localstorage, checked localstorage (always clean) and is expired cookie but not restart cleanup.', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...restartCleanCookie,
+        },
+        expression: {
+          ...restartListCleanTest,
+          cleanSiteData: [SiteDataType.LOCALSTORAGE],
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.ExpiredCookie,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(true);
+    });
+    it('should return false because of greyList expression and is not restart cleanup but has expired cookie.', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...restartCleanCookie,
+        },
+        expression: {
+          ...restartListCleanTest,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.ExpiredCookie,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(false);
+    });
+    it('should return true because of restart cleanup and is expired cookie on restart.  Edge case => usually notInAnyList takes precidence already.', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...restartCleanCookie,
+        },
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.ExpiredCookieRestart,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(true);
+    });
+    it('should return false because of whitelist expression and is expired cookie.', () => {
+      const cleanReasonObj: CleanReasonObject = {
+        cached: false,
+        cleanCookie: true,
+        cookie: {
+          ...mockCookie,
+        },
+        expression: whiteListAllExceptTwitter,
+        openTabStatus: OpenTabStatus.TabsWasNotIgnored,
+        reason: ReasonClean.ExpiredCookie,
+      };
+      const result = filterSiteData(cleanReasonObj, SiteDataType.LOCALSTORAGE);
+      expect(result).toBe(false);
+    });
   });
 
   describe('isSafeToClean()', () => {
@@ -1560,6 +1637,39 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonKeep.MatchedExpression);
       expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should include cleanSiteData if expired cookie matched an expression', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'youtube.com',
+        mainDomain: 'youtube.com',
+        expirationDate: 12345,
+        session: false,
+      };
+      const result = isSafeToClean(
+        expiredState,
+        cookieProperty,
+        cleanupProperties,
+      );
+      expect(result.reason).toBe(ReasonClean.ExpiredCookie);
+      expect(result.expression?.cleanSiteData).not.toBeUndefined();
+    });
+
+    it('should include cleanSiteData if expired cookie matched an expression on restart cleanup', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'youtube.com',
+        mainDomain: 'youtube.com',
+        expirationDate: 12345,
+        session: false,
+      };
+      const result = isSafeToClean(expiredState, cookieProperty, {
+        ...cleanupProperties,
+        greyCleanup: true,
+      });
+      expect(result.reason).toBe(ReasonClean.ExpiredCookieRestart);
+      expect(result.expression?.cleanSiteData).not.toBeUndefined();
     });
 
     it('should return true if cookie was created through CAD with matching WHITE expression and at least one browsingData type for cleanup', () => {
