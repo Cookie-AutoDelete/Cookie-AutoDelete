@@ -44,7 +44,7 @@ jobs:
           echo "GH_REF    : $GH_REF"
           echo "Branch    : $REF"
           GH_SHA=$([[ $GH_SHA ]] && echo $GH_SHA || echo $PR_FIRSTSHA)
-          echo "::set-output name=gitSHA::$GH_SHA"
+          echo "gitSHA=$GH_SHA" >> $GITHUB_OUTPUT
           echo "Commit SHA: $GH_SHA"
           echo "PR Head SHA: $PR_FIRSTSHA"
           SKIP_A=$([[ "$REF" == l10n_* ]] && echo true || echo false)
@@ -58,7 +58,7 @@ jobs:
           echo "Skip via Commit: $SKIP_B"
           RES=$([[ $SKIP_A == true || $SKIP_B == true ]] && echo true || echo false)
           echo "Skip CI:  $RES"
-          echo "::set-output name=result::$RES"
+          echo "result=$RES" >> $GITHUB_OUTPUT
   all_jobs:
     name: Tests, Builds, Coverage
     runs-on: ubuntu-latest
@@ -81,7 +81,7 @@ jobs:
         id: node
         run: |
           echo "Node Version:  $(node -v)"
-          echo "::set-output name=version::$(node -v)"
+          echo "version=$(node -v)" >> $GITHUB_OUTPUT
       - name: Cache Node Modules
         id: nodeCache
         uses: actions/cache@v3
@@ -128,8 +128,8 @@ jobs:
         id: extbuilds
         run: |
           for i in *.zip; do echo "${i%.zip}"; done | xargs -I fn unzip fn.zip -d fn
-          echo "::set-output name=ffdir::$(ls -d *Firefox)"
-          echo "::set-output name=crdir::$(ls -d *Chrome)"
+          echo "ffdir=$(ls -d *Firefox)" >> $GITHUB_OUTPUT
+          echo "crdir=$(ls -d *Chrome)" >> $GITHUB_OUTPUT
         working-directory: ./builds
       - name: Upload Artifact for Mozilla Firefox Build
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
@@ -143,65 +143,3 @@ jobs:
         with:
           name: ${{ steps.extbuilds.outputs.crdir }}
           path: builds/${{ steps.extbuilds.outputs.crdir }}
-      - name: Create PR Build Comment
-        if: steps.gwa.outputs.result != 'SUCCESS' && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## Pull Request Build: ${{ github.run_id }}
-
-            - based on latest commit: ${{ needs.pre_info.outputs.gitSHA }}
-
-            Unsigned webextension builds for testing is ready for download!
-            These test builds are only kept for *up to 90 days* from the date of this post.
-            It is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.
-
-            ### To Generate Download Links
-
-            - `/get-build` for the latest commit build.
-            - `/get-build ${{ github.run_id }}` for this specific commit ${{ github.event.after }} build.
-
-            ---
-
-            *When new command comment is posted, please allow a few seconds for the command to be received and processed.*
-            - :eyes: indicates that command has been received.
-            - :rocket: indicates that command has been sent for further processing.
-            - :tada: indicates that command has been executed.  Expect a new comment with the result shortly.
-
-            *Due to API limitations, generated links will only be valid for one minute!*
-          reactions: heart
-      - name: Create PR Build Comment (static click links)
-        if: steps.gwa.outputs.result == 'SUCCESS' && (github.event_name == 'pull_request' || github.event_name == 'pull_request_target')
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## Pull Request Build: ${{ github.run_id }}
-
-            - based on latest commit: ${{ needs.pre_info.outputs.gitSHA }}
-
-            Unsigned webextension builds for testing is ready for download!
-            These test builds are only kept for *up to 90 days* from the date of this post.
-            It is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.
-
-            ### Clickable Download Links
-
-            ${{ steps.gwa.output.links }}
-
-            If the links above do not work, try commenting with the command below.
-
-            ### Generating Download Links (Backup)
-
-            - `/get-build` for the latest commit build.
-            - `/get-build ${{ github.run_id }}` for this specific commit ${{ github.event.after }} build.
-
-            ---
-
-            *When new command comment is posted, please allow a few seconds for the command to be received and processed.*
-            - :eyes: indicates that command has been received.
-            - :rocket: indicates that command has been sent for further processing.
-            - :tada: indicates that command has been executed.  Expect a new comment with the result shortly.
-
-            *Due to API limitations, generated links will only be valid for one minute!*
-          reactions: heart

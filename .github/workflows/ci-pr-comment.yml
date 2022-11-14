@@ -54,7 +54,7 @@ jobs:
           echo "Skip as PR not in main Repo      : $SKIP_C"
           RES=$([[ $SKIP_A == true || $SKIP_B == true || $SKIP_C = true ]] && echo true || echo false)
           echo "Skip CI                          : $RES"
-          echo "::set-output name=result::$RES"
+          echo "result=$RES" >> $GITHUB_OUTPUT
   upload_coverage:
     name: Coverage Uploads
     runs-on: ubuntu-latest
@@ -120,14 +120,11 @@ jobs:
     needs: precheck
     if: needs.precheck.outputs.skipCI == 'false'
     steps:
-      - name: 'Echo available stuff'
-        env:
-          GH_GH: ${{ toJson(github) }}
-        run: env
       - name: 'Generate PR Run Info from previous workflow'
         id: workflowArtifacts
         uses: actions/github-script@v6
         with:
+          result-encoding: string
           script: |
             let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
               owner: context.repo.owner,
@@ -162,7 +159,18 @@ jobs:
             pr_body += `- \`get-build ${context.payload.workflow_run.id}\` for this specific commit ${ context.payload.workflow_run.head_sha } build.\n\n`;
             pr_body += "---\n\n*When new command comment is posted, please allow a few seconds for the command to be received and processed.*\n- :eyes: indicates that command has been received.\n- :rocket: indicates that command has been sent for further processing.\n- :tada: indicates that command has been executed.  Expect a new comment with the result shortly.\n\n";
             pr_body += "*Due to API limitations, generated links from the alternate method will only be valid for one minute!*"
-            console.log(pr_body);
+            return pr_body;
+      - name: Hide now-outdaded PR Build Comment
+        if: steps.workflowArtifacts.outputs.result != null && steps.workflowArtifacts.outputs.result != '' && steps.workflowArtifacts.outputs.result != 'undefined'
+        uses: kanga333/comment-hider@v0.4.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_number: ${{ github.event.workflow_run.pull_requests[0].number }}
+      - name: Create PR Build Comment
+        if: steps.workflowArtifacts.outputs.result != null && steps.workflowArtifacts.outputs.result != '' && steps.workflowArtifacts.outputs.result != 'undefined'
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          body: ${{ steps.workflowArtifacts.outputs.result }}
+          reactions: heart
 
-            return buildArtifacts;
-        
