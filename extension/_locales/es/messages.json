@@ -827,7 +827,7 @@
   },
   "reasonCleanCookieExpired": {
     "message": "Limpieza parcial de $hostname$ debido a las cookies expiradas.",
-    "description": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
