@@ -106,27 +106,6 @@ export const isSafeToClean = (
     debug,
   );
 
-  // Check if cookie is expired.
-  if (getSetting(state, SettingID.CLEAN_EXPIRED) as boolean) {
-    const now = Math.ceil(Date.now() / 1000);
-    if (expirationDate && expirationDate < now) {
-      cadLog(
-        {
-          msg: `CleanupService.isSafeToClean:  Cookie Expired since ${expirationDate}.  Date.now is ${now}`,
-          x: partialCookieInfo,
-        },
-        debug,
-      );
-      return {
-        cached: false,
-        cleanCookie: true,
-        cookie: cookieProperties,
-        openTabStatus,
-        reason: ReasonClean.ExpiredCookie,
-      };
-    }
-  }
-
   // Tests if the main domain is open on that specific storeId/container
   if (openTabDomains[storeId] && openTabDomains[storeId].includes(mainDomain)) {
     cadLog(
@@ -182,6 +161,33 @@ export const isSafeToClean = (
         ? ReasonClean.CADSiteDataCookieRestart
         : ReasonClean.CADSiteDataCookie,
     };
+  }
+
+  // Check if cookie is expired.
+  if (getSetting(state, SettingID.CLEAN_EXPIRED) as boolean) {
+    const now = Math.ceil(Date.now() / 1000);
+    if (expirationDate && expirationDate < now) {
+      cadLog(
+        {
+          msg: `CleanupService.isSafeToClean:  Cookie Expired since ${expirationDate}.  Date.now is ${now}`,
+          x: {
+            partialCookieInfo,
+            cleanSiteData: matchedExpression?.cleanSiteData,
+          },
+        },
+        debug,
+      );
+      return {
+        cached: false,
+        cleanCookie: true,
+        cookie: cookieProperties,
+        expression: matchedExpression,
+        openTabStatus,
+        reason: greyCleanup
+          ? ReasonClean.ExpiredCookieRestart
+          : ReasonClean.ExpiredCookie,
+      };
+    }
   }
 
   // Startup cleanup checks
@@ -684,6 +690,8 @@ export const filterSiteData = (
   const notInAnyLists =
     obj.reason === ReasonClean.NoMatchedExpression ||
     obj.reason === ReasonClean.StartupNoMatchedExpression;
+  const isExpiredNotRestart = obj.reason === ReasonClean.ExpiredCookie;
+  const isExpiredRestart = obj.reason === ReasonClean.ExpiredCookieRestart;
   const isCADCookieNoExpression =
     (obj.reason === ReasonClean.CADSiteDataCookie ||
       ReasonClean.CADSiteDataCookieRestart) &&
@@ -693,6 +701,7 @@ export const filterSiteData = (
     obj.expression?.cleanSiteData?.includes(siteData),
   );
   const isRestartCleanup =
+    (isExpiredRestart && obj.expression?.listType === ListType.GREY) ||
     (obj.reason === ReasonClean.CADSiteDataCookieRestart &&
       obj.expression?.listType === ListType.GREY) ||
     obj.reason === ReasonClean.StartupCleanupAndGreyList;
@@ -712,6 +721,8 @@ export const filterSiteData = (
         notProtectedByOpenTab,
         notInAnyLists,
         siteData,
+        isExpiredNotRestart,
+        isExpiredRestart,
         isCADCookieNoExpression,
         cleanSiteDataInExpression,
         isRestartCleanup,
