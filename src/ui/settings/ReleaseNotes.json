@@ -1,6 +1,12 @@
 {
   "releases": [
     {
+      "version": "unreleased",
+      "notes": [
+        "Nothing new yet."
+      ]
+    },
+    {
       "version": "3.8.1",
       "notes": [
         "Fixed:  Browser detection in Firefox 103+ as the previous browser feature has been deprecated and removed. Fixes #1409 via PR #1410."
