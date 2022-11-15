@@ -809,7 +809,7 @@
   },
   "reasonCleanCookieExpired": {
     "message": "由于 $hostname$ 中的cookie过期，因此进行部分清理。",
-    "description": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
