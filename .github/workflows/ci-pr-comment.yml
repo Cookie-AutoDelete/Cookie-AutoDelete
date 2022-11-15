@@ -150,11 +150,12 @@ jobs:
             let pr_body = `## Pull Request Build: ${context.payload.workflow_run.id}\n\n- based on latest commit: ${context.payload.workflow_run.head_sha}\n\n`;
             pr_body += "Unsigned webextension builds for testing is ready for download!\nThese test builds are only kept for *up to 90 days* from the date of this post.\nIt is strongly recommended to use a fresh profile for testing these builds to prevent any kind of modifications to existing data.\n\n";
             pr_body += "### Clickable Download Links (BETA)\n\n";
+            pr_body += "**NOTE:  Ensure you are already signed into GitHub before clicking on the links below.**\n";
             pr_body += `| Filename | Created Timestamp | Expiry Timestamp |\n| --- | --- | --- |\n`;
             for (const a of buildArtifacts) {
               pr_body += `| [${a.name}](${a.artifact_url}) | ${a.created_at.replace('T', ' @ ')} UTC | ${a.expires_at.replace('T', ' @ ')} UTC |\n`
             }
-            pr_body += "\nPlease note that if the link(s) above returns a 404 Not Found, it may have expired and/or manually removed before expiry date (This post does not get updated if artifacts are removed).  Try the alternate method below if the link(s) above do not work."
+            pr_body += "\nPlease note that if the link(s) above returns a 404 Not Found, you may not be signed into GitHub, or it may have expired and/or manually removed before expiry date.  This post does not get updated if artifacts are removed.  Try the alternate method below if the link(s) above do not work."
             pr_body += "\n\n### To Generate Download Links (Alternate Method if above links do not work for some reason)\n\n- `/get-build` for the latest commit build.\n";
             pr_body += `- \`get-build ${context.payload.workflow_run.id}\` for this specific commit ${ context.payload.workflow_run.head_sha } build.\n\n`;
             pr_body += "---\n\n*When new command comment is posted, please allow a few seconds for the command to be received and processed.*\n- :eyes: indicates that command has been received.\n- :rocket: indicates that command has been sent for further processing.\n- :tada: indicates that command has been executed.  Expect a new comment with the result shortly.\n\n";
