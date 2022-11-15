@@ -809,7 +809,7 @@
   },
   "reasonCleanCookieExpired": {
     "message": "Hapus parsial karena kuki kedaluwarsa dari $hostname$.",
-    "description": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
