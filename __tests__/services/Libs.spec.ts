@@ -1324,6 +1324,30 @@ describe('Library Functions', () => {
         'https://.www.example.com',
       ]);
     });
+
+    it('should return proper IPv4 address', () => {
+      expect(prepareCleanupDomains('127.0.0.1', browserName.Firefox)).toEqual([
+        '127.0.0.1',
+      ]);
+    });
+
+    it('should return proper IPv4 address for Chrome', () => {
+      expect(prepareCleanupDomains('127.0.0.1', browserName.Chrome)).toEqual([
+        'http://127.0.0.1',
+        'https://127.0.0.1',
+      ]);
+    });
+    it('should return proper IPv6 address', () => {
+      expect(prepareCleanupDomains('::1', browserName.Firefox)).toEqual([
+        '[::1]',
+      ]);
+    });
+    it('should return proper IPv6 address for Chrome', () => {
+      expect(prepareCleanupDomains('::1', browserName.Chrome)).toEqual([
+        'http://[::1]',
+        'https://[::1]',
+      ]);
+    });
   });
 
   describe('prepareCookieDomain()', () => {
@@ -1336,6 +1360,17 @@ describe('Library Functions', () => {
           secure: true,
         }),
       ).toEqual('https://google.com/');
+    });
+
+    it('should return an IPv4 Address if domain was an IPv4 address', () => {
+      expect(
+        prepareCookieDomain({
+          ...mockCookie,
+          domain: '127.0.0.1',
+          path: '/',
+          secure: true,
+        }),
+      ).toEqual('https://127.0.0.1/');
     });
 
     it('should return a wrapped ivp6 ip cookie domain in brackets', () => {

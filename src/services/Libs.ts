@@ -519,7 +519,10 @@ export const isAnIP = (url: string | undefined): boolean => {
     return false;
   }
   const hostname = getHostname(url);
-  return ipaddr.isValid(hostname);
+  return (
+    ipaddr.IPv4.isValidFourPartDecimal(hostname) ||
+    ipaddr.IPv6.isValid(hostname)
+  );
 };
 
 /**
@@ -680,21 +683,28 @@ export const prepareCleanupDomains = (
   bName: browserName = browserDetect() as browserName,
 ): string[] => {
   if (domain.trim() === '') return [];
-  const www = new RegExp(/^www[0-9a-z]?\./i);
-  const sDot = new RegExp(/^\./);
   let d: string = domain.trim();
   const domains = new Set<string>();
-  if (sDot.test(d)) {
-    // dot at beginning.  .sub.doma.in(.)
-    d = d.slice(1);
-  }
-  // at this point it should be all unison - sub.doma.in(.)
-  domains.add(d); // sub.doma.in
-  domains.add(`.${d}`); // .sub.doma.in
+  if (ipaddr.IPv4.isValidFourPartDecimal(d)) {
+    domains.add(d);
+  } else if (ipaddr.IPv6.isValid(d)) {
+    domains.add(`[${d}]`);
+  } else {
+    const www = new RegExp(/^www[0-9a-z]?\./i);
+    const sDot = new RegExp(/^\./);
+    // Most likely not an IPv4 or IPv6 address. Presuming domain.
+    if (sDot.test(d)) {
+      // dot at beginning.  .sub.doma.in(.)
+      d = d.slice(1);
+    }
+    // at this point it should be all unison - sub.doma.in(.)
+    domains.add(d); // sub.doma.in
+    domains.add(`.${d}`); // .sub.doma.in
 
-  if (!www.test(d)) {
-    domains.add(`www.${d}`); // www.sub.doma.in
-    domains.add(`.www.${d}`); // .www.sub.doma.in
+    if (!www.test(d)) {
+      domains.add(`www.${d}`); // www.sub.doma.in
+      domains.add(`.www.${d}`); // .www.sub.doma.in
+    }
   }
 
   if (bName === browserName.Chrome || bName === browserName.Opera) {
@@ -718,8 +728,8 @@ export const prepareCookieDomain = (cookie: browser.cookies.Cookie): string => {
     // No Domain - presuming local file (file:// protocol)
     return `file://${cookie.path}`;
   }
-  // Looks like a v6 IP
-  if (/^[0-9a-f]*:[0-9a-f:]+$/i.test(cookieDomain)) {
+
+  if (ipaddr.IPv6.isValid(cookieDomain)) {
     cookieDomain = `[${cookieDomain}]`;
   }
 
