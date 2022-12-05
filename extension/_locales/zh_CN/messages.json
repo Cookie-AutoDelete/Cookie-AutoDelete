@@ -59,6 +59,10 @@
     "message": "自动清理已启用",
     "description": "Auto-clean enabled"
   },
+  "browsingDataNoEmptyWarning": {
+    "message": "警告：新启用但现有的站点数据类型不会被清理。在再次访问其域前，无法清除现有数据。",
+    "description": "WARNING:  Existing site data types will NOT be cleaned when newly enabled. We will NOT be able to clean any of the existing data until its domain has been visited at least once, including from unwanted domains. Found in CAD Settings"
+  },
   "browsingDataWarning": {
     "message": "警告：一旦启用以下任何一个站点数据清理选项，该类型的所有现有数据将会被清除。",
     "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
@@ -807,6 +811,16 @@
       }
     }
   },
+  "reasonCADSiteDataCookieRestart": {
+    "message": "清理以在下次启动 $hostname$ 时触发站点数据清理。",
+    "description": "Clean to trigger Site Data cleaning for $hostname$ on restart. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
   "reasonCleanCookieExpired": {
     "message": "由于 $hostname$ 中的cookie过期，因此进行部分清理。",
     "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
@@ -1020,6 +1034,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "在图标上显示该域的 Cookie 数量",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataEmptyOnEnable": {
+    "message": "清理新启用的浏览数据类型的现有数据",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
   },
   "siteDataText": {
     "message": "站点数据",
