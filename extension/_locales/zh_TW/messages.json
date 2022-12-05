@@ -8,7 +8,7 @@
     "description": "Delay Before Automatic Cleaning"
   },
   "activeModeText": {
-    "message": "啟用自動清潔",
+    "message": "開啟自動清理",
     "description": "Enable Automatic Cleaning"
   },
   "addNewExpressionNotificationFailed": {
@@ -24,7 +24,7 @@
     "description": "Auto-clean disabled"
   },
   "autoDeleteEnabledText": {
-    "message": "已啟用自動清除",
+    "message": "已開啟自動清理",
     "description": "Auto-clean enabled"
   },
   "browsingDataNoEmptyWarning": {
@@ -64,7 +64,7 @@
     "description": "Clean"
   },
   "cleanupDomainChangeText": {
-    "message": "啟用域名變更時清理",
+    "message": "啟用網址變更時清理",
     "description": "Enable Cleanup on Domain Change"
   },
   "cleanupActionsBypass": {
@@ -144,11 +144,11 @@
     "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
   },
   "cookieCleanupIgnoreOpenTabsText": {
-    "message": "立即運行清理，從打開的選項卡中包含域",
+    "message": "立即清理已開啟分頁中包含的網址",
     "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
   },
   "cookieCleanupText": {
-    "message": "立即運行清理，從打開的選項卡中排除域",
+    "message": "立即清理，排除已開啟分頁中的網址",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
   "copyDebugSettingText": {
@@ -200,23 +200,23 @@
     "description": "Documentation"
   },
   "domainExpressionsText": {
-    "message": "域名表示式",
+    "message": "網址表示式",
     "description": "Domain Expression"
   },
   "dropdownAdditionalCleaningOptions": {
-    "message": "切換其他清潔動作下拉菜單",
+    "message": "切換其他清除動作下拉選單",
     "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
   },
   "editExpressionText": {
-    "message": "編輯表示式",
+    "message": "編輯表達式",
     "description": "Edit expression"
   },
   "enableAutoDeleteText": {
-    "message": "切換至自動模式（自動清除）",
+    "message": "切換至自動模式（自動清理）",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "enableCleanupLogText": {
-    "message": "啟用清除記錄和計算器",
+    "message": "開啟清除記錄和計數器",
     "description": "Enable Cleanup Log and Counter"
   },
   "enableContextMenus": {
@@ -224,11 +224,11 @@
     "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
   },
   "enableGreyListCleanup": {
-    "message": "在瀏覽器重啟時啟用灰名單清除",
+    "message": "在瀏覽器重新啟動時清除灰名單",
     "description": "Enable Greylist Cleanup on Browser Restart"
   },
   "enableNewVersionPopup": {
-    "message": "發布新版本時啟用彈出窗口",
+    "message": "發布新版本時開啟彈出窗口",
     "description": "Enable Popup when New Version is Released"
   },
   "errorText": {
@@ -240,7 +240,7 @@
     "description": "Export Core Settings... Found in CAD Settings."
   },
   "exportURLSText": {
-    "message": "匯出表示式...",
+    "message": "匯出表達式...",
     "description": "Export Expressions... Found in List of Expressions."
   },
   "exportTitleTimestamp": {
@@ -248,7 +248,7 @@
     "description": "A timestamp will be appended to the filename on export."
   },
   "extensionDescription": {
-    "message": "掌控您的 cookie！關閉分頁後自動清除沒用的 cookie，同時保留有用的 cookie。",
+    "message": "控制您的 cookie！關閉分頁後自動清除沒用的 cookie，同時保留有用的 cookie。",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
   "extensionName": {
@@ -316,7 +316,7 @@
     "description": "Missing identifier"
   },
   "importURLSText": {
-    "message": "匯入表示式...",
+    "message": "匯入表達式...",
     "description": "Import Expressions... Found in List of Expressions."
   },
   "importValidExpressions": {
@@ -394,10 +394,6 @@
   "keepCacheGreyText": {
     "message": "保留快取直到重新啟動",
     "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
-  },
-  "keepDefaultIcon": {
-    "message": "在所有列表類型上保留默認圖標",
-    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
   },
   "keepIndexedDBText": {
     "message": "保留IndexedDB",
@@ -478,7 +474,7 @@
     }
   },
   "manualCleanSiteDataAll": {
-    "message": "清除所有這個域名的Cookies",
+    "message": "清除這個網址所有的Cookies",
     "description": "Clean All for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataAllDomain": {
@@ -506,7 +502,7 @@
     }
   },
   "manualCleanSiteDataCookies": {
-    "message": "清除這個域名的Cookies",
+    "message": "清除這個網址的Cookies",
     "description": "Clean Cookies for this domain. Found in Popup clean dropdown menu."
   },
   "manualCleanSiteDataCookiesDomain": {
@@ -580,7 +576,7 @@
     "description": "Show Notification from Manual Site Data Cleanups. Found in settings"
   },
   "matchedDomainExpressionText": {
-    "message": "吻合的域名表示式",
+    "message": "符合的網址表達式",
     "description": "Matched Domain Expression"
   },
   "menuText": {
@@ -600,7 +596,7 @@
     "description": "No expressions defined."
   },
   "noPrivateLogging": {
-    "message": "私人瀏覽 / 隱身 / InPrivate 中的選項卡將不會生成清除日誌。",
+    "message": "無痕模式 / 隱身 / InPrivate 中的分頁將不會產生清除紀錄。",
     "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
   },
   "noSearchExpressionsFound": {
@@ -608,7 +604,7 @@
     "description": "No expressions found from search above.  Found in List of Expressions."
   },
   "noRulesText": {
-    "message": "沒有符合此域名的規則。",
+    "message": "沒有符合此網址的規則。",
     "description": "No rules matched this domain"
   },
   "noneText": {
@@ -638,7 +634,7 @@
     "description": "Notification disabled"
   },
   "notificationEnabledText": {
-    "message": "已啟用通知",
+    "message": "已開啟通知",
     "description": "Notification enabled"
   },
   "notificationTitle": {
@@ -778,7 +774,7 @@
     }
   },
   "reasonKeepOpenTab": {
-    "message": "保留，因為 *.$mainDomain$ 在打開的標籤頁中",
+    "message": "因為 *.$mainDomain$ 在打開的分頁中，所以保留",
     "description": "Keep because of open tabs of *.$mainDomain$",
     "placeholders": {
       "mainDomain": {
@@ -788,7 +784,7 @@
     }
   },
   "reasonTabsWereIgnored": {
-    "message": "同時打開的標籤頁也會被忽略",
+    "message": "同時開啟的分頁也會被忽略",
     "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
   },
   "reasonTabsWereNotIgnored": {
@@ -826,7 +822,7 @@
     "description": "No expressions to remove!"
   },
   "removeExpressionText": {
-    "message": "移除表示式",
+    "message": "移除表達式",
     "description": "Remove expression"
   },
   "removeListText": {
@@ -916,7 +912,7 @@
     }
   },
   "showNumberOfCookiesInIconText": {
-    "message": "在圖標上顯示該域的Cookie數",
+    "message": "在擴充功能圖標上顯示該網站的Cookie數量",
     "description": "Show Number of Cookies for that Domain over the Icon"
   },
   "siteDataText": {
@@ -948,7 +944,7 @@
     "description": "Add to Whitelist (Never Clean)"
   },
   "toggleNotificationText": {
-    "message": "切換以啟用或禁用通知",
+    "message": "點擊以開啟或關閉通知",
     "description": "Toggle to enable or disable notifications"
   },
   "toggleToGreyListWordText": {
