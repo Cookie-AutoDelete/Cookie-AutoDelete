@@ -695,7 +695,7 @@
   },
   "reasonCleanCookieExpired": {
     "message": "Puhdista osittain vanhentuneiden evästeiden takia käyttäjältä $hostname$.",
-    "description": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",

@@ -59,6 +59,10 @@
     "message": "Auto-czyszczenie włączone",
     "description": "Auto-clean enabled"
   },
+  "browsingDataNoEmptyWarning": {
+    "message": "OSTRZEŻENIE: Typy danych istniejących stron NIE zostaną wyczyszczone, gdy nowo włączone. NIE będziemy w stanie oczyścić żadnego z istniejących danych, dopóki nie zostanie przynajmniej raz odwiedzona jego domena, w tym z niepożądanych domen.",
+    "description": "WARNING:  Existing site data types will NOT be cleaned when newly enabled. We will NOT be able to clean any of the existing data until its domain has been visited at least once, including from unwanted domains. Found in CAD Settings"
+  },
   "browsingDataWarning": {
     "message": "OSTRZEŻENIE: Po włączeniu którejkolwiek z następujących opcji oczyszczania danych o lokalizacji wszystkie istniejące dane dla tego typu zostaną wyczyszczone.",
     "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
@@ -819,7 +823,7 @@
   },
   "reasonCleanCookieExpired": {
     "message": "Częściowo oczyszczone z powodu wygasłych ciasteczek z $hostname$.",
-    "description": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -1030,6 +1034,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Pokaż liczbę ciasteczek dla tej domeny nad ikoną",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataEmptyOnEnable": {
+    "message": "Wyczyść istniejące dane dla nowych typów danych przeglądania",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
   },
   "siteDataText": {
     "message": "Dane witryny",

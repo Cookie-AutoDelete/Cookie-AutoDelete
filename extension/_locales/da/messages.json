@@ -59,6 +59,10 @@
     "message": "Automatisk sletning aktiveret",
     "description": "Auto-clean enabled"
   },
+  "browsingDataNoEmptyWarning": {
+    "message": "ADVARSEL: Eksisterende webstedsdatatyper vil IKKE blive renset når nyaktiveret. Vi vil IKKE være i stand til at rense nogle af de eksisterende data før deres domæne er blevet besøgt mindst en gang, inklusiv fra uønskede domæner.",
+    "description": "WARNING:  Existing site data types will NOT be cleaned when newly enabled. We will NOT be able to clean any of the existing data until its domain has been visited at least once, including from unwanted domains. Found in CAD Settings"
+  },
   "browsingDataWarning": {
     "message": "ADVARSEL: Ved aktivering af enhver af følgende sletningsindstillinger for netstedsdata, vil ALLE eksisterende data for den type blive slettet.",
     "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
@@ -809,7 +813,17 @@
   },
   "reasonCleanCookieExpired": {
     "message": "Delvis slet pga. udløbne cookies fra $hostname$.",
-    "description": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
+  "reasonCleanCookieExpiredRestart": {
+    "message": "Delvis rensning pga. udløbne cookies fra $hostname$ ved genstart.",
+    "description": "Partial clean because of expired cookies from $hostname$ on restart. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -1020,6 +1034,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Vis antal cookies for det domæne over ikonet",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataEmptyOnEnable": {
+    "message": "Rens eksisterende data for nyaktiverede browsningsdatatyper",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
   },
   "siteDataText": {
     "message": "Netstedsdata",

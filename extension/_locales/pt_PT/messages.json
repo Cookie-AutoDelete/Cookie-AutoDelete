@@ -274,7 +274,7 @@
     "description": "Edit expression"
   },
   "enableAutoDeleteText": {
-    "message": "Alternar para ativar limpeza automática (modo automático)",
+    "message": "Clique para ativar a limpeza automática (modo automático)",
     "description": "Toggle to enable automatic cleanup (automatic mode)"
   },
   "enableCleanupLogText": {
@@ -813,7 +813,7 @@
   },
   "reasonCleanCookieExpired": {
     "message": "Limpeza parcial devido a cookies expirados de $hostname$.",
-    "description": "Partial clean because of expired cookies from $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -1012,7 +1012,7 @@
     "description": "Other Browsing Data Cleanup Options"
   },
   "settingsText": {
-    "message": "Configurações de $CAD$",
+    "message": "$CAD$ - Definições",
     "description": "$CAD$ Settings",
     "placeholders": {
       "CAD": {
@@ -1054,7 +1054,7 @@
     "description": "Add to Whitelist (Never Clean)"
   },
   "toggleNotificationText": {
-    "message": "Alternar para ativar ou desativar notificações",
+    "message": "Clique para ativar ou desativar as notificações",
     "description": "Toggle to enable or disable notifications"
   },
   "toggleToGreyListWordText": {
