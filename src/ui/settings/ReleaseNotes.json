@@ -5,7 +5,8 @@
       "notes": [
         "Fixed:  Passing IP Addresses to browsingData / site data cleanups. Fixes #983 via PR#1451, with thanks to Rob W.",
         "Fixed:  Removing expired cookies now respect configured domain cleanup rules. Fixes #1427 via PR#1450.",
-        "Updated:  Translations from Crowdin."
+        "Updated:  Translations from Crowdin.",
+        "Updated:  Dependency Updates."
       ]
     },
     {
