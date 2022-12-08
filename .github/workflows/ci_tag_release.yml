@@ -28,7 +28,7 @@ jobs:
         id: runbuild
         run: |
           npm run build
-          echo "::set-output name=ffxpi::$(ls builds/*Firefox.xpi)"
+          echo "ffxpi=$(ls builds/*Firefox.xpi)" >> $GITHUB_OUTPUT
       - name: Archive Production Build Artifacts
         if: success()
         uses: actions/upload-artifact@v3

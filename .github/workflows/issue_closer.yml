@@ -31,19 +31,19 @@ jobs:
       - name: Issue is BUG
         id: issueBug
         if: startsWith(github.event.issue.title, '[BUG]') || contains(github.event.issue.labels.*.name, 'untested bug/issue')
-        run: echo "::set-output name=isBug::true"
+        run: echo "isBug=true" >> $GITHUB_OUTPUT
       - name: Issue is Feature Request
         id: issueFeature
         if: startsWith(github.event.issue.title, '[FEATURE REQUEST]') || contains(github.event.issue.labels.*.name, 'Feature Request')
-        run: echo "::set-output name=isFeature::true"
+        run: echo "isFeature=true" >> $GITHUB_OUTPUT
       - name: Issue is Support
         id: issueSupport
         if: startsWith(github.event.issue.title, '[SUPPORT]') || contains(github.event.issue.labels.*.name, 'support')
-        run: echo "::set-output name=isSupport::true"
+        run: echo "isSupport=true" >> $GITHUB_OUTPUT
       - name: Issue created from owner or members
         id: issueDevAssoc
         if: github.event.issue.author_association == 'MEMBER' || github.event.issue.author_association == 'OWNER'
-        run: echo "::set-output name=isDevAssoc::true"
+        run: echo "isDevAssoc=true" >> $GITHUB_OUTPUT
   issue_bug:
     name: Issue Check for Bug Report
     runs-on: ubuntu-latest
@@ -54,14 +54,14 @@ jobs:
         id: missingTitlePrefix
         if: ( ! startsWith(github.event.issue.title, '[BUG]') )
         run: |
-          echo "::set-output name=msg::- Title does not start with [BUG]."
+          echo "msg=- Title does not start with [BUG]." >> $GITHUB_OUTPUT
           echo "::warning ::Title does not start with [BUG]."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[BUG]  ???') || endsWith(github.event.issue.title, '[BUG]')
         run: |
-          echo "::set-output name=msg::- Title is missing."
+          echo "msg=- Title is missing." >> $GITHUB_OUTPUT
           echo "::warning ::Title is missing."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: Checking (via Bash) for System Info
@@ -74,23 +74,23 @@ jobs:
           EXP_CAD="CookieAutoDelete Version: \?+"
           EXP_CADLATEST="CookieAutoDelete Version: [Ll]atest"
           if [[ $ISSUE_BODY =~ $EXP_OS ]] || [[ $ISSUE_BODY =~ $EXP_BROWSER ]] || [[ $ISSUE_BODY =~ $EXP_CAD ]]; then
-            echo "::set-output name=missing::true"
+            echo "missing=true" >> $GITHUB_OUTPUT
           fi
           if [[ $ISSUE_BODY =~ $EXP_CADLATEST ]]; then
-            echo "::set-output name=latest::true"
+            echo "latest=true" >> $GITHUB_OUTPUT
           fi
       - name: System Info is not complete
         id: missingSysInfo
         if: steps.sysInfoBash.outputs.missing == 'true'
         run: |
-          echo "::set-output name=msg::- Missing system info details."
+          echo "msg=- Missing system info details." >> $GITHUB_OUTPUT
           echo "::warning ::Missing System Info Details."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: CAD Version set to latest
         id: latestCAD
         if: steps.sysInfoBash.outputs.latest == 'true'
         run: |
-          echo "::set-output name=msg::- CAD Version set to **latest**.  Please change this to reflect version that the bug is found in."
+          echo "msg=- CAD Version set to **latest**.  Please change this to reflect version that the bug is found in." >> $GITHUB_OUTPUT
           echo "::warning ::CAD Version set to 'latest'."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
@@ -125,14 +125,14 @@ jobs:
         id: missingTitlePrefix
         if: ( ! startsWith(github.event.issue.title, '[FEATURE REQUEST]') )
         run: |
-          echo "::set-output name=msg::- Title does not start with [FEATURE REQUEST]."
+          echo "msg=- Title does not start with [FEATURE REQUEST]." >> $GITHUB_OUTPUT
           echo "::warning ::Title does not start with [FEATURE REQUEST]."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[FEATURE REQUEST]  ???') || endsWith(github.event.issue.title, '[FEATURE REQUEST]')
         run: |
-          echo "::set-output name=msg::- Title is missing."
+          echo "msg=- Title is missing." >> $GITHUB_OUTPUT
           echo "::warning ::Title is missing."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
@@ -163,14 +163,14 @@ jobs:
         id: missingTitlePrefix
         if: ( ! startsWith(github.event.issue.title, '[SUPPORT]') )
         run: |
-          echo "::set-output name=msg::- Title does not start with [SUPPORT]."
+          echo "msg=- Title does not start with [SUPPORT]." >> $GITHUB_OUTPUT
           echo "::warning ::Title does not start with [SUPPORT]."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: Title not provided
         id: missingTitle
         if: github.event.issue.title == '' || contains(github.event.issue.title, '[SUPPORT]  ???') || endsWith(github.event.issue.title, '[SUPPORT]')
         run: |
-          echo "::set-output name=msg::- Title is missing."
+          echo "msg=- Title is missing." >> $GITHUB_OUTPUT
           echo "::warning ::Title is missing."
           echo "issue_close=true" >> $GITHUB_ENV
       - name: Add Incomplete Label
