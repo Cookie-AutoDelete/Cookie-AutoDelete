@@ -97,9 +97,8 @@ class Expressions extends React.Component<ExpressionProps> {
           );
           return;
         }
-        // https://stackoverflow.com/questions/35789498/new-typescript-1-8-4-build-error-build-property-result-does-not-exist-on-t
-        const target: any = file.target;
-        const result: string = target.result;
+        // FileReader.result is always string as we used readAsText()
+        const result = file.target.result as string;
         const newExpressions: StoreIdToExpressionList = JSON.parse(result);
         const storeIds = Object.keys(newExpressions);
         const errExps: string[] = [];
@@ -147,10 +146,12 @@ class Expressions extends React.Component<ExpressionProps> {
               : '',
         });
       } catch (error) {
-        this.setState({
-          error: `${importFile.name} - ${error.toString()}.`,
-          success: '',
-        });
+        if (error instanceof Error) {
+          this.setState({
+            error: `${importFile.name} - ${error.toString()}.`,
+            success: '',
+          });
+        }
       }
     };
 
