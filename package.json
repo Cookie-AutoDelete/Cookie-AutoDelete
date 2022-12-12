@@ -29,7 +29,7 @@
     "redux-thunk": "^2.4.2",
     "redux-webext": "^1.1.2",
     "shortid": "^2.2.16",
-    "webextension-polyfill": "^0.8.0"
+    "webextension-polyfill": "^0.10.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
