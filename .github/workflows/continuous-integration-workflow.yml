@@ -74,27 +74,23 @@ jobs:
         with:
           ref: ${{ needs.pre_info.outputs.gitSHA }}
       - name: Use Node.js 18.x
+        id: node
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - name: Get Node Version
-        id: node
-        run: |
-          echo "Node Version:  $(node -v)"
-          echo "version=$(node -v)" >> $GITHUB_OUTPUT
       - name: Cache Node Modules
         id: nodeCache
         uses: actions/cache@v3
         with:
           # npm cache files stored in `~/.npm` on Linux
           path: ~/.npm
-          key: ${{ runner.os }}-nodejs-${{ steps.node.outputs.version }}-npm-${{ hashFiles('**/package.json', '**/package-lock.json') }}
-      - name: Install dependencies from cache (npm --cache-min install)
+          key: ${{ runner.os }}-nodejs-${{ steps.node.outputs.node-version }}-npm-${{ hashFiles('**/package.json', '**/package-lock.json') }}
+      - name: Install dependencies from cache (npm install --prefer-offline)
         if: steps.nodeCache.outputs.cache-hit == 'true'
-        run: npm --cache-min 9999999 install
+        run: npm install --prefer-offline --no-fund
       - name: Install dependencies (npm ci)
         if: steps.nodeCache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm ci --no-fund
       - name: Run Tests
         run: npm run test -- --verbose
       - name: Run Lint
