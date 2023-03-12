@@ -138,7 +138,7 @@ export const eventListenerActions = (
 export const extractMainDomain = (domain: string): string => {
   if (domain === '') return '';
   // return itself if it is a local html file or IP Address.
-  if (domain.startsWith('file://') || ipaddr.isValid(domain)) return domain;
+  if (domain.startsWith('file://') || isAnIP(domain)) return domain;
 
   // https://en.wikipedia.org/wiki/Second-level_domain
   const secondLvlDomains = [
@@ -381,10 +381,6 @@ export const getHostname = (urlToGetHostName: string | undefined): string => {
       /^www[a-z0-9]?\./,
       '',
     );
-    // Remove enclosing [ ] from IPv6 for ipaddr parsing
-    if (hostname.startsWith('[') && hostname.endsWith(']')) {
-      return hostname.slice(1, -1);
-    }
     return hostname;
   } catch (e) {
     return '';
@@ -412,16 +408,9 @@ export const getMatchedExpressions = (
     return expressions;
   // Check if input is a valid IP Address (IPv4 or IPv6) (non-CIDR)
   // This takes care of IPv4-mapped IPv6 address (converts to IPv4 counterpart)
-  let iip = ipaddr.isValid(input) ? ipaddr.process(input) : undefined;
-  // If initial test passes, do further checks.
-  // This makes sure the IP Address is a full four part decimal.
-  if (
-    iip &&
-    iip.kind() == 'ipv4' &&
-    !ipaddr.IPv4.isValidFourPartDecimal(input)
-  ) {
-    iip = undefined;
-  }
+  const iip = isAnIP(input)
+    ? ipaddr.process(ipv6Prep(input) || input)
+    : undefined;
   return expressions.filter((expression) => {
     const exp = expression.expression;
     if (iip) {
@@ -512,17 +501,29 @@ export const globExpressionToRegExp = (glob: string): string => {
 };
 
 /**
+ * Primarily for removing the IPv6 Square Brackets for ipaddr.js IPv6 Parsing.
+ * @param url string domain, IPv4, IPv6
+ * @returns ipaddr.js parsable IPv6 string or undefined.
+ */
+export const ipv6Prep = (url: string): string | undefined => {
+  return url
+    .match(/^\[(.+)](\/\d+)?$/)
+    ?.slice(1)
+    .join('');
+};
+
+/**
  * Returns true if it is an IP (v4 or v6)
  */
 export const isAnIP = (url: string | undefined): boolean => {
-  if (!url) {
+  if (!url || url.startsWith('file')) {
     return false;
   }
-  const hostname = getHostname(url);
-  return (
-    ipaddr.IPv4.isValidFourPartDecimal(hostname) ||
-    ipaddr.IPv6.isValid(hostname)
-  );
+  const hostname = url.startsWith('http') ? getHostname(url) : url;
+  const ipv6test = ipv6Prep(hostname);
+  return ipv6test
+    ? ipaddr.IPv6.isValid(ipv6test)
+    : ipaddr.IPv4.isValidFourPartDecimal(hostname);
 };
 
 /**
@@ -623,9 +624,10 @@ export const matchIPInExpression = (
   iip: ipaddr.IPv4 | ipaddr.IPv6,
 ): boolean | undefined => {
   // Check if expression is a single IP Address (IPv4 or IPv6), non CIDR
-  if (ipaddr.isValid(exp)) {
+  const ip46Prepped = ipv6Prep(exp) || exp;
+  if (ipaddr.isValid(ip46Prepped)) {
     // This takes care of IPv4-mapped IPv6 address (converts to IPv4 counterpart)
-    const eip = ipaddr.process(exp);
+    const eip = ipaddr.process(ip46Prepped);
     // Returns false if trying to match IPv4 and IPv6 together.
     // Putting this through the match function below will throw error.
     if (iip.kind() !== eip.kind()) return false;
@@ -644,21 +646,19 @@ export const matchIPInExpression = (
     return eip.match(iip, bits);
   } // Not a single IP Address in Expression.
   // Check for CIDR notation '10.0.0.0/8' or '::/48'
-  const cidrNotation = exp.split('/');
+  const cidrNotation = ip46Prepped.split('/');
   // [0] should be IP, [1] should be CIDR range number
-  if (cidrNotation.length === 2) {
-    if (ipaddr.isValid(cidrNotation[0])) {
-      try {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore Needed otherwise TS complains about no compatibility in union signatures.
-        return iip.match(ipaddr.parseCIDR(exp));
-      } catch (e) {
-        // Most likely an attempt to match IPv4 and IPv6 together,
-        // or CIDR is invalid.
-        return false;
-      }
-    } // First part is not a valid IP.  Fallback to Regexp.
-  } // Expression Slash Array length not 2.  Fallback to Regexp.
+  if (cidrNotation.length === 2 && ipaddr.isValid(cidrNotation[0])) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore Needed otherwise TS complains about no compatibility in union signatures.
+      return iip.match(ipaddr.parseCIDR(ip46Prepped));
+    } catch (e) {
+      // Most likely an attempt to match IPv4 and IPv6 together,
+      // or CIDR is invalid.
+      return false;
+    }
+  } // First part is not a valid IP, or Expression Slash Array length not 2.  Fallback to Regexp.
   return undefined;
 };
 
@@ -685,10 +685,11 @@ export const prepareCleanupDomains = (
   if (domain.trim() === '') return [];
   let d: string = domain.trim();
   const domains = new Set<string>();
-  if (ipaddr.IPv4.isValidFourPartDecimal(d)) {
-    domains.add(d);
-  } else if (ipaddr.IPv6.isValid(d)) {
-    domains.add(`[${d}]`);
+  if (
+    ipaddr.IPv4.isValidFourPartDecimal(d) ||
+    ipaddr.IPv6.isValid(ipv6Prep(d) || d)
+  ) {
+    domains.add(`${d}`);
   } else {
     const www = new RegExp(/^www[0-9a-z]?\./i);
     const sDot = new RegExp(/^\./);
@@ -723,14 +724,10 @@ export const prepareCleanupDomains = (
  * Puts the domain in the right format for browser.cookies.remove()
  */
 export const prepareCookieDomain = (cookie: browser.cookies.Cookie): string => {
-  let cookieDomain = cookie.domain.trim();
+  const cookieDomain = cookie.domain.trim();
   if (cookieDomain.length === 0 && cookie.path.trim().length !== 0) {
     // No Domain - presuming local file (file:// protocol)
     return `file://${cookie.path}`;
-  }
-
-  if (ipaddr.IPv6.isValid(cookieDomain)) {
-    cookieDomain = `[${cookieDomain}]`;
   }
 
   const sDot = cookieDomain.startsWith('.') ? 1 : 0;
