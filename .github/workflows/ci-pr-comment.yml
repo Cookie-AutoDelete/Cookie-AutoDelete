@@ -169,7 +169,7 @@ jobs:
           issue_number: ${{ github.event.workflow_run.pull_requests[0].number }}
       - name: Create PR Build Comment
         if: steps.workflowArtifacts.outputs.result != null && steps.workflowArtifacts.outputs.result != '' && steps.workflowArtifacts.outputs.result != 'undefined'
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
           body: ${{ steps.workflowArtifacts.outputs.result }}
