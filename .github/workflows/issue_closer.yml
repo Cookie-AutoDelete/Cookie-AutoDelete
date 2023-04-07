@@ -101,7 +101,7 @@ jobs:
           add-labels: 'incomplete'
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
-        uses: peter-evans/close-issue@v2
+        uses: peter-evans/close-issue@v3
         with:
           comment: |
             @${{ github.actor }} This issue has been automatically closed for not following the bug report template.  More specifically:
@@ -143,7 +143,7 @@ jobs:
           add-labels: 'incomplete'
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
-        uses: peter-evans/close-issue@v2
+        uses: peter-evans/close-issue@v3
         with:
           comment: |
             @${{ github.actor }} This issue has been automatically closed for not following the feature request template.  More specifically:
@@ -181,7 +181,7 @@ jobs:
           add-labels: 'incomplete'
       - name: Comment and Close Issue
         if: env.issue_close == 'true'
-        uses: peter-evans/close-issue@v2
+        uses: peter-evans/close-issue@v3
         with:
           comment: |
             @${{ github.actor }} This issue has been automatically closed for not following the support template.  More specifically:
@@ -203,7 +203,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           add-labels: 'incomplete'
       - name: Comment and Close Issue
-        uses: peter-evans/close-issue@v2
+        uses: peter-evans/close-issue@v3
         with:
           comment: |
             @${{ github.actor }} This issue has been automatically closed for not using any of the provided issue forms/templates.
