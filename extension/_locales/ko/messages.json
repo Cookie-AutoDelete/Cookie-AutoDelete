@@ -11,6 +11,42 @@
     "message": "자동 청소 활성화",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "$siteData$ 정리 호출됨: $domains$",
+    "description": "Invoked cleanup of $siteData$ for: $domains$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
+  "addNewExpressionNotification": {
+    "message": "쿠키 저장소 $cookieStore$ 아래 목록 유형 $listType$에 $expression$을(를) 추가합니다.",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$. Used in notification when right-click action was performed.",
+    "placeholders": {
+      "expression": {
+        "content": "$1",
+        "example": "example.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "WHITE"
+      },
+      "cookieStore": {
+        "content": "$3",
+        "example": "'default' -or- 'firefox-container-1 (Personal)'"
+      }
+    }
+  },
+  "addNewExpressionNotificationIgnore": {
+    "message": "표현식이 이미 존재하는 경우 이 작업은 무시됩니다.",
+    "description": "If expression already exists, this will be ignored. Used in notification when right-click action was performed."
+  },
   "autoDeleteDisabledText": {
     "message": "자동 청소 꺼짐",
     "description": "Auto-clean disabled"
@@ -18,6 +54,18 @@
   "autoDeleteEnabledText": {
     "message": "자동 청소 켜짐",
     "description": "Auto-clean enabled"
+  },
+  "browsingDataNoEmptyWarning": {
+    "message": "알림: 새로 활성화했을 때 기존 사이트 데이터 유형은 삭제되지 않습니다. 원치 않는 도메인을 포함하여 도메인을 한 번 이상 방문할 때까지는 모든 기존 데이터는 삭제되지 않습니다.",
+    "description": "WARNING:  Existing site data types will NOT be cleaned when newly enabled. We will NOT be able to clean any of the existing data until its domain has been visited at least once, including from unwanted domains. Found in CAD Settings"
+  },
+  "browsingDataWarning": {
+    "message": "경고: 다음 사이트 데이터 정리 옵션의 어떤 항목을 활성화하면 해당 유형의 모든 기존 데이터가 지워집니다.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
+  "cacheCleanupText": {
+    "message": "캐시 정리 활성화 (Firefox 78+, Chrome 74+)",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
   },
   "cacheText": {
     "message": "캐시",
@@ -47,9 +95,65 @@
     "message": "로그 지우기",
     "description": "Clear Logs"
   },
+  "consoleDebugMode": {
+    "message": "콘솔 탭 클릭",
+    "description": "Click on the Console Tab. Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "경고: 위의 추가 브라우징 데이터 정리로 컨테이너 탭을 활성화하면 브라우저 API 제한으로 인해 원치 않는 부작용이 발생할 수 있습니다. 쿠키를 제외한 사이트 데이터 유형은 모든 컨테이너의 호스트 이름을 기준으로 지워집니다.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
   "contextMenusParentClean": {
     "message": "수동 청소 메뉴",
     "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
+  },
+  "contextMenusParentExpression": {
+    "message": "도메인/표현식 추가 메뉴",
+    "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
+  },
+  "contextMenusSelectedDomainLink": {
+    "message": "선택한 링크의 도메인만",
+    "description": "For domain only of selected link. Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainPage": {
+    "message": "선택한 페이지의 도메인만",
+    "description": "For domain only of selected page. Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainText": {
+    "message": "선택한 텍스트의 도메인만: $selected$",
+    "description": "For domain only of selected text: $selected$. Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextMenusSelectedSubdomainLink": {
+    "message": "선택한 링크 도메인의 모든 하위 도메인",
+    "description": "For all subdomains with domain of selected link. Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainPage": {
+    "message": "선택한 페이지 도메인의 모든 하위 도메인",
+    "description": "For all subdomains with domain of selected page. Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainText": {
+    "message": "선택한 텍스트 도메인의 모든 하위 도메인: $selected$",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "해당 컨테이너가 제거되면 표현식 목록의 자동 제거를 활성화합니다.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "컨테이너 탭에 대한 지원 활성화",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
   },
   "contributeText": {
     "message": "기여",
@@ -63,6 +167,30 @@
     "message": "쿠키",
     "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
   },
+  "cookieCleanUpOnStartText": {
+    "message": "시작 시 열린 탭에서 쿠키 및 기타 사이트 데이터 삭제",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "지금 정리 실행, 열린 탭의 도메인 포함",
+    "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
+  },
+  "cookieCleanupText": {
+    "message": "지금 정리 실행, 열린 탭의 도메인 제외",
+    "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "copyDebugSettingText": {
+    "message": "귀하의 현재 설정. 필요한 경우 복사하여 GitHub 이슈에 붙여넣습니다.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "귀하의 시스템 정보. GitHub 이슈의 관련 섹션에 복사하여 붙여넣습니다.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "복사 실패. 텍스트를 직접 선택하여 복사하세요.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
   "copySuccessText": {
     "message": "성공적으로 복사됨",
     "description": "Copied successfully!  Shows after a successful text copy to clipboard."
@@ -70,6 +198,32 @@
   "copyToClipboardText": {
     "message": "클립보드에 복사",
     "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
+  "createDefaultExpressionOptionsText": {
+    "message": "기본 표현식 옵션 만들기",
+    "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "현재 선택된 컨테이너: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
+  },
+  "debugMode": {
+    "message": "디버그 모드 활성화 (추가 콘솔 출력)",
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "디버그 정보",
+    "description": "Debug Information.  Header shown on About page."
   },
   "defaultText": {
     "message": "기본",
@@ -91,9 +245,53 @@
     "message": "문서",
     "description": "Documentation"
   },
+  "domainExpressionsText": {
+    "message": "도메인 표현식",
+    "description": "Domain Expression"
+  },
+  "dropdownAdditionalCleaningOptions": {
+    "message": "추가 삭제 작업 드롭다운 전환",
+    "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+  },
+  "editExpressionText": {
+    "message": "표현식 편집",
+    "description": "Edit expression"
+  },
+  "enableAutoDeleteText": {
+    "message": "자동 정리 활성화로 전환",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "enableCleanupLogText": {
+    "message": "정리 로그 및 카운터 활성화",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "enableContextMenus": {
+    "message": "상황에 맞는 메뉴 활성화 (마우스 우-클릭 메뉴)",
+    "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
+  },
+  "enableGreyListCleanup": {
+    "message": "브라우저 재시작 시 그레이리스트 정리 활성화",
+    "description": "Enable Greylist Cleanup on Browser Restart"
+  },
+  "enableNewVersionPopup": {
+    "message": "새 버전이 출시되면 팝업창으로 알려주기",
+    "description": "Enable Popup when New Version is Released"
+  },
   "errorText": {
     "message": "오류!",
     "description": "Error!"
+  },
+  "exportSettingsText": {
+    "message": "코어 설정 내보내기...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "표현식 내보내기...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
+  "exportTitleTimestamp": {
+    "message": "내보낼 때 파일 이름에 타임스탬프가 추가됩니다.",
+    "description": "A timestamp will be appended to the filename on export."
   },
   "extensionDescription": {
     "message": "당신의 쿠키를 관리하세요! 닫힌 탭의 원하지 않는 쿠키는 자동으로 지우고 원하는 탭의 것은 놔둘 수 있습니다.",
@@ -107,6 +305,10 @@
     "message": "자주 묻는 질문, 일반적인 문제와 해결책",
     "description": "Frequently Asked Questions, Common issues and solutions"
   },
+  "filterDebugMode": {
+    "message": "이 확장 프로그램의 디버그 출력만 보려면 다음 줄로 출력을 필터링하합니다.",
+    "description": "To see only debug outputs by this extension, filter output by the following line. Found after enabling debug mode."
+  },
   "filterText": {
     "message": "필터",
     "description": "Filter"
@@ -114,6 +316,24 @@
   "greyListWordText": {
     "message": "그레이리스트",
     "description": "Greylist"
+  },
+  "groupExpressionDefaultNotice": {
+    "message": "새 표현식에 대한 기본 표현식 옵션을 설정하려고 하세요? 표현식 옵션 자체가 강화되었습니다! 시작하려면 $listExpression$을(를) 방문하세요!",
+    "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
+    "placeholders": {
+      "listExpression": {
+        "content": "$1",
+        "example": "List of Expressions <- the translated version"
+      }
+    }
+  },
+  "importCoreSettingsFailed": {
+    "message": "핵심 설정 가져오기 실패 - 알 수 없는 설정이 발견되었습니다.",
+    "description": "Import Core Settings Failed - Found unknown setting"
+  },
+  "importCoreSettingsText": {
+    "message": "코어 설정 가져오기...",
+    "description": "Import Core Settings... Found in CAD Settings."
   },
   "importFileNotFound": {
     "message": "파일 발견되지 않음: $filename$",
@@ -125,9 +345,105 @@
       }
     }
   },
+  "importFileTypeInvalid": {
+    "message": "제공된 파일은 저희가 처리하는 유형이 아닙니다.",
+    "description": "File given is not a type we handle"
+  },
+  "importFileValidationFailed": {
+    "message": "제공된 파일을 검증하지 못했습니다.",
+    "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "파일 가져오기에서 잘못된 표현식이 감지되었습니다. 그 이유와 함께 아래에 설명되어 있습니다. 해당 파일의 오류를 확인 및 수정하고 가져오기를 다시 시도하세요.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$가(이) 배열 목록 형식이 아닙니다.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
+  "importMissingKey": {
+    "message": "식별자 누락",
+    "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "표현식 가져오기...",
+    "description": "Import Expressions... Found in List of Expressions."
+  },
+  "importValidExpressions": {
+    "message": "가져온 파일에서 $num$개의 표현식 추가 성공: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
+  "indexedDBCleanupText": {
+    "message": "IndexedDB 정리 활성화 (Firefox 77+, Chrome 74+)",
+    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
+  },
   "indexedDBText": {
     "message": "IndexedDB",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "쉼표는 정규식에서만 사용할 수 있습니다.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "수정된 표현식을 비워둘 수 없습니다!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "정규식이 잘못되었습니다. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "종료 슬래시가 감지되었지만 정규식에 대한 시작 슬래시가 누락되었습니다. 도메인의 종료 슬래시를 제거하세요.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "시작 슬래시가 감지되었지만 정규식의 종료 슬래시가 누락되었습니다.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "호스트 이름에는 공백을 사용할 수 없습니다.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "현재 활성 목록에 $listType$ 유형의 $num$개 표현식을 성공적으로 추가했습니다.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "잘못된 새 표현식이 감지되었습니다. 그 이유는 아래에 언급되어 있으며 편집을 위해 위에 보관되었습니다.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
   },
   "keepAllCookiesText": {
     "message": "모든 쿠키 남기기",
@@ -144,6 +460,10 @@
   "keepCacheGreyText": {
     "message": "재시작까지 캐시 남기기",
     "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepDefaultIcon": {
+    "message": "모든 목록 유형에 기본 아이콘 유지",
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
   },
   "keepIndexedDBText": {
     "message": "IndexedDB 남기기",
@@ -181,6 +501,14 @@
     "message": "남기기",
     "description": "Keep"
   },
+  "listTypeText": {
+    "message": "목록 유형",
+    "description": "List Type"
+  },
+  "localStorageCleanupText": {
+    "message": "LocalStorage 정리 활성화 (Firefox 58+, Chrome 74+)",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+). Found in CAD Settings."
+  },
   "localStorageText": {
     "message": "LocalStorage",
     "description": "LocalStorage. Primarily used in notifications."
@@ -188,6 +516,44 @@
   "manualActionNotification": {
     "message": "수동 행동 알림",
     "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanError": {
+    "message": "다음 탭에 대한 $siteData$ 삭제 불가:",
+    "description": "$siteData$ cannot be cleaned for tab:. Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "$siteData$에서 삭제할 $url$을(를) 찾을 수 없습니다.",
+    "description": "No $siteData$ were found for cleaning on $url$. Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanRemoved": {
+    "message": "$total$개 중 $deleted$개 제거됨.",
+    "description": "Removed $deleted$ of $total$. Used as part of success notification on manual clean.",
+    "placeholders": {
+      "deleted": {
+        "content": "$1",
+        "example": "5"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
   },
   "manualCleanSiteDataAll": {
     "message": "이 도메인에서 모두 청소",
@@ -263,9 +629,109 @@
     "message": "이 도메인의 플러그인 데이터 청소",
     "description": "Clean Plugin Data for this domain. Found in Popup clean dropdown menu."
   },
+  "manualCleanSiteDataPluginDataDomain": {
+    "message": "$domain$의 모든 플러그인 데이터 지우기",
+    "description": "Clear all Plugin Data for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataServiceWorkers": {
+    "message": "이 도메인의 서비스 작업자 지우기",
+    "description": "Clean Service Workers for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataServiceWorkersDomain": {
+    "message": "$domain$의 모든 서비스 작업자 지우기",
+    "description": "Clear all Service Workers for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "$url$의 $siteData$ 정리 결과:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualNotificationsText": {
+    "message": "수동 사이트 데이터 정리의 알림 표시",
+    "description": "Show Notification from Manual Site Data Cleanups. Found in settings"
+  },
+  "matchedDomainExpressionText": {
+    "message": "일치하는 도메인 표현식",
+    "description": "Matched Domain Expression"
+  },
   "menuText": {
     "message": "메뉴",
     "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "minutesText": {
+    "message": "분",
+    "description": "minute(s)"
+  },
+  "missingContainerText": {
+    "message": "무효한 컨테이너",
+    "description": "INVALID CONTAINER. Shown when a CAD list exists but cannot link id to available containers (Firefox)."
+  },
+  "noCleanupLogText": {
+    "message": "정리 로그를 찾을 수 없습니다.",
+    "description": "No Cleanup Logs Found"
+  },
+  "noExpressionsText": {
+    "message": "정의된 표현식이 없습니다.",
+    "description": "No expressions defined."
+  },
+  "noPrivateLogging": {
+    "message": "비공개 브라우징 / 시크릿 / InPrivate의 탭에 대해서는 정리 로그가 생성되지 않습니다.",
+    "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "위의 검색에서 표현식을 찾을 수 없습니다.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
+  "noRulesText": {
+    "message": "이 도메인과 일치하는 규칙이 없습니다.",
+    "description": "No rules matched this domain"
+  },
+  "noneText": {
+    "message": "없음",
+    "description": "None"
+  },
+  "notificationContent": {
+    "message": "$Num$개의 쿠키를 포함한 일부 사이트 데이터가 $Websites$을(를) 포함하여 $total$개 도메인에서 제거되었습니다.",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "notificationDisabledText": {
+    "message": "알림 비활성화됨",
+    "description": "Notification disabled"
   },
   "notificationEnabledText": {
     "message": "알림 켜짐",
@@ -275,9 +741,37 @@
     "message": "쿠키가 삭제되었습니다!",
     "description": "Cookies were deleted!  Used in Notification Title."
   },
+  "notificationTitleSiteData": {
+    "message": "사이트 데이터 제거가 시작되었습니다!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
+  },
+  "notifyCookieCleanupDelayText": {
+    "message": "동안 알림 표시",
+    "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "자동 정리 후 알림 표시",
+    "description": "Show Notification After Automatic Cleanup. Found in settings."
+  },
+  "oldReleasesText": {
+    "message": "이전 릴리스 정보는 다음에서 온라인으로 볼 수 있음:",
+    "description": "Older release notes can be viewed online at"
+  },
+  "openDebugMode": {
+    "message": "디버그 출력을 보려면 새 탭을 열고 다음을 방문하세요:",
+    "description": "To view the debug outputs, open a new tab and visit"
+  },
   "optionsText": {
     "message": "옵션",
     "description": "Options"
+  },
+  "pluginDataCleanupText": {
+    "message": "플러그인 데이터 정리 활성화 (Firefox 78+, Chrome 74+)",
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
+  },
+  "pluginDataText": {
+    "message": "플러그인 데이터",
+    "description": "Plugin Data. Primarily used in notifications."
   },
   "popupCookieCountText": {
     "message": "쿠키",
@@ -287,9 +781,139 @@
     "message": "설정",
     "description": "Settings"
   },
+  "questionExpression": {
+    "message": "표현식은 어떻게 작동합니까?",
+    "description": "How do Expressions work?"
+  },
+  "reasonKeep": {
+    "message": "$matchedExpression$가(이) $listType$에 있으므로 유지",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonKeepOpenTab": {
+    "message": "*.$mainDomain$의 탭이 열려 있으므로 유지",
+    "description": "Keep because of open tabs of *.$mainDomain$",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonTabsWereIgnored": {
+    "message": "그리고 열려 있는 탭도 무시되었습니다.",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
+  },
   "releaseNotesText": {
     "message": "릴리즈 정보",
     "description": "Release Notes"
+  },
+  "removeActivityLogEntryText": {
+    "message": "로그 항목 제거",
+    "description": "Remove Log Entry. Shown in summary activity log for individual log removal."
+  },
+  "removeAllExpressions": {
+    "message": "모든 표현식 제거",
+    "description": "Remove All Expressions"
+  },
+  "removeAllExpressionsConfirm": {
+    "message": "($listCount$)개의 목록에서 저장된 ($expressionCount$)개의 모든 표현식을 제거하시겠습니까?\n\n이 작업은 취소할 수 없습니다!\n\n삭제하려면 [ $expressionCount$ ]을 입력하고 확인을 누르세요.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Expression is clicked.",
+    "placeholders": {
+      "expressionCount": {
+        "content": "$1",
+        "example": "75"
+      },
+      "listCount": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "removeAllExpressionsNoneFound": {
+    "message": "제거할 표현식이 없습니다!",
+    "description": "No expressions to remove!"
+  },
+  "removeExpressionText": {
+    "message": "표현식 제거",
+    "description": "Remove expression"
+  },
+  "removeListText": {
+    "message": "선택한 목록에서 모든 표현식 제거",
+    "description": "Remove All Expressions from Selected List. Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
+  },
+  "removeStorageCount": {
+    "message": "$storageType$에서 $count$개 항목 제거됨.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
+  "restoreText": {
+    "message": "복원",
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
+  },
+  "reviewLinkMessage": {
+    "message": "$cadTitle$를 사용해 주셔서 감사합니다. 맘에 드신다면 리뷰를 부탁드립니다.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
+  },
+  "saveExpressionText": {
+    "message": "표현식 저장",
+    "description": "Save expression"
+  },
+  "secondsText": {
+    "message": "초",
+    "description": "second(s)"
+  },
+  "serviceWorkersCleanupText": {
+    "message": "서비스 작업자 정리 활성화 (Firefox 77+, Chrome 74+)",
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
+  },
+  "serviceWorkersText": {
+    "message": "서비스 작업자",
+    "description": "Service Workers. Primarily used in notifications."
+  },
+  "sessionStorageText": {
+    "message": "SessionStorage",
+    "description": "SessionStorage. Used in manual localstorage clean notification"
+  },
+  "settingGroupAutoClean": {
+    "message": "자동 정리 옵션",
+    "description": "Automatic Cleaning Options"
+  },
+  "settingGroupExpression": {
+    "message": "표현식 옵션",
+    "description": "Expression Options"
+  },
+  "settingGroupExtension": {
+    "message": "표현식 옵션",
+    "description": "Extension Options"
+  },
+  "settingGroupOtherBrowsing": {
+    "message": "기타 브라우징 데이터 정리 옵션",
+    "description": "Other Browsing Data Cleanup Options"
   },
   "settingsText": {
     "message": "$CAD$ 설정",
@@ -301,6 +925,34 @@
       }
     }
   },
+  "showNumberOfCookiesInIconText": {
+    "message": "아이콘 위에 해당 도메인의 쿠키 개수 표시",
+    "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataEmptyOnEnable": {
+    "message": "새로 활성화된 브라우징 데이터 유형에 대해 기존 데이터 정리",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
+  },
+  "siteDataText": {
+    "message": "사이트 데이터",
+    "description": "Site Data. Found in Activity Log Summary and Notifications."
+  },
+  "sizePopupText": {
+    "message": "픽셀, 팝업창 크기",
+    "description": "Size of Popup (in px). This sets the font size in the Popup."
+  },
+  "sizeSettingText": {
+    "message": "픽셀, 설정 페이지 크기",
+    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
+  },
+  "stopEditingText": {
+    "message": "편집 중지",
+    "description": "Stop editing"
+  },
+  "successText": {
+    "message": "성공!",
+    "description": "Success!"
+  },
   "toGreyListText": {
     "message": "그레이리스트로 추가 (브라우저 재시작에 청소)",
     "description": "Add to Greylist (Clean on Browser Restart)"
@@ -308,6 +960,10 @@
   "toWhiteListText": {
     "message": "화이트리스트에 추가 (절대 청소하지 않음)",
     "description": "Add to Whitelist (Never Clean)"
+  },
+  "toggleNotificationText": {
+    "message": "알림 활성화 또는 비활성화 전환",
+    "description": "Toggle to enable or disable notifications"
   },
   "toggleToGreyListWordText": {
     "message": "토글해서 그레이리스트",
@@ -327,9 +983,41 @@
       }
     }
   },
+  "versionText": {
+    "message": "$browser$ 버전",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "welcomeMessage": {
+    "message": "안녕하세요! 이 세션 동안 $cadTitle$가(이) $sessionDeleted$개의 쿠키와 총 $totalDeleted$개의 쿠키를 삭제했습니다.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
   "welcomeText": {
     "message": "환영합니다",
     "description": "Welcome"
+  },
+  "expressionListText": {
+    "message": "표현식 목록",
+    "description": "List of Expressions"
   },
   "whiteListWordText": {
     "message": "화이트리스트",
