@@ -865,6 +865,18 @@
       }
     }
   },
+  "reportIssuesText": {
+    "message": "문제 보고 및 기능 제안하기",
+    "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "쿠키 카운터 재설정",
+    "description": "Reset Cookie Counters. Button in Welcome Page."
+  },
+  "resetExtensionDataText": {
+    "message": "확장 프로그램 데이터 재설정",
+    "description": "Reset Extension Data"
+  },
   "restoreText": {
     "message": "복원",
     "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
