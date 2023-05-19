@@ -1,1 +1,1142 @@
-{}
+{
+  "aboutText": {
+    "message": "Pri",
+    "description": "About"
+  },
+  "activeModeDelayText": {
+    "message": "Prokrasto antaŭ aŭtomata purigo",
+    "description": "Delay Before Automatic Cleaning"
+  },
+  "activeModeText": {
+    "message": "Ebligi aŭtomatan purigon",
+    "description": "Enable Automatic Cleaning"
+  },
+  "activityLogSiteDataDomainsText": {
+    "message": "Purigo de $siteData$ alvokita por: $domains$",
+    "description": "Invoked cleanup of $siteData$ for: $domains$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
+  "addNewExpressionNotification": {
+    "message": "Aldonante $expression$ al la listo de speco $listType$ sub kuketa konservejo $cookieStore$.",
+    "description": "Adding $expression$ to list type $listType$ under cookie store $cookieStore$. Used in notification when right-click action was performed.",
+    "placeholders": {
+      "expression": {
+        "content": "$1",
+        "example": "example.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "WHITE"
+      },
+      "cookieStore": {
+        "content": "$3",
+        "example": "'default' -or- 'firefox-container-1 (Personal)'"
+      }
+    }
+  },
+  "addNewExpressionNotificationFailed": {
+    "message": "Ne eblis venigi domajnon por aldoni ĝin, el kie la desktra alklako estis farita.",
+    "description": "Could not fetch domain to add from where right-click was issued."
+  },
+  "addNewExpressionNotificationIgnore": {
+    "message": "Se la esprimo jam ekzistas, ĉi tio estos ignorita.",
+    "description": "If expression already exists, this will be ignored. Used in notification when right-click action was performed."
+  },
+  "autoDeleteDisabledText": {
+    "message": "Aŭtomata purigo malebligita",
+    "description": "Auto-clean disabled"
+  },
+  "autoDeleteEnabledText": {
+    "message": "Aŭtomata purigo ebligita",
+    "description": "Auto-clean enabled"
+  },
+  "browsingDataNoEmptyWarning": {
+    "message": "Averto: Ekzistantaj tipoj de retejaj datenoj NE estos purigitaj, kiam ebligitaj denove. Ni NE povos purigi neniun el la ekzistantaj datenoj ĝis ĝia domajno estu vizitita almenaŭ unufoje, inkludante nedeziratajn domajnojn.",
+    "description": "WARNING:  Existing site data types will NOT be cleaned when newly enabled. We will NOT be able to clean any of the existing data until its domain has been visited at least once, including from unwanted domains. Found in CAD Settings"
+  },
+  "browsingDataWarning": {
+    "message": "AVERTO: kiam vi ebligas iun el la sekvaj opcioj de purigado de retejaj datenoj, ĈIUJ ekzistantaj datenoj por tiu tipo estos purigitaj.",
+    "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
+  },
+  "cacheCleanupText": {
+    "message": "Ebligi staplan purigadon (Firefox 78+, Chrome 74+)",
+    "description": "Enable Cache Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
+  },
+  "cacheText": {
+    "message": "Staplo",
+    "description": "Cache. Primarily used in notifications."
+  },
+  "chromeDebugMode": {
+    "message": "Certigu, ke la 'programista reĝimo' estu ebligita, poste alklaku 'fonan paĝon' en Inspekta Vido.",
+    "description": "Ensure 'Developer Mode' is enabled, then click on 'background page' under Inspect View. This is shown if debug mode is enabled."
+  },
+  "cleanDiscardedText": {
+    "message": "Ebligi purigadon por forĵetitaj/neŝarĝitaj langetoj",
+    "description": "Enable Cleanup for Discarded/Unloaded Tabs. Found in Settings."
+  },
+  "cleanExpiredCookiesText": {
+    "message": "Forigi ĉiujn senvalidiĝitajn kuketojn",
+    "description": "Clean All Expired Cookies. Found in Settings."
+  },
+  "cleanIgnoringOpenTabsText": {
+    "message": "Purigi, inkludi malfermitajn langetojn",
+    "description": "Clean, include open tabs. Found in the additional cleanup options in the popup."
+  },
+  "cleanText": {
+    "message": "Purigi",
+    "description": "Clean"
+  },
+  "cleanupDomainChangeText": {
+    "message": "Ebligi purigadon laŭ ŝanĝo de domajno",
+    "description": "Enable Cleanup on Domain Change"
+  },
+  "cleanupActionsBypass": {
+    "message": "Averto - agoj malsupre ignoros agordojn!",
+    "description": "Warning - Actions below ignore settings! Found in the additional cleanup options in the popup."
+  },
+  "cleanupLogText": {
+    "message": "Protokolo de purigado",
+    "description": "Cleanup Log"
+  },
+  "clearLogsText": {
+    "message": "Purigi protokolojn",
+    "description": "Clear Logs"
+  },
+  "consoleDebugMode": {
+    "message": "Alklaku la konzolan langeton",
+    "description": "Click on the Console Tab. Found after enabling debug mode."
+  },
+  "containerSiteDataWarning": {
+    "message": "AVERTO: Ebligi Entenilajn Langetojn per iu el la antaŭaj kromaj purigoj de retumilaj datenoj povas kaŭzi nedeziratajn kromefikojn pro la limigoj de la retumila aplikprograma interfaco. Retejaj datentipoj, escepte de kuketoj, estos purigitaj laŭ gastiga nomo en ĈIUJ enteniloj.",
+    "description": "WARNING: Enabling Container Tabs with any of the additional browsing data cleanups above may cause unwanted side effects due to browser API limitations. Site data types, with the exception of cookies, will be cleared by hostname for ALL containers. Found in CAD Settings."
+  },
+  "contextMenusParentClean": {
+    "message": "Permana puriga menuo",
+    "description": "Manual Cleaning Menu. Shown on right-clicks of Page/Browser Action."
+  },
+  "contextMenusParentExpression": {
+    "message": "Menuo por aldoni domajnon/esprimon",
+    "description": "Add Domain/Expression Menu. Shown on right-clicks of Page/Link/Selection."
+  },
+  "contextMenusSelectedDomainLink": {
+    "message": "Nur por la domajno de la elektita menuo",
+    "description": "For domain only of selected link. Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainPage": {
+    "message": "Nur por la domajno de la elektita paĝo",
+    "description": "For domain only of selected page. Shown in right-click menu."
+  },
+  "contextMenusSelectedDomainText": {
+    "message": "Nur por la domajno de la elektita teksto: $selected$",
+    "description": "For domain only of selected text: $selected$. Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextMenusSelectedSubdomainLink": {
+    "message": "Por ĉiuj subdomajnoj kun domajno de la elektita ligilo",
+    "description": "For all subdomains with domain of selected link. Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainPage": {
+    "message": "Por ĉiuj subdomajnoj kun domajno de la elektita paĝo",
+    "description": "For all subdomains with domain of selected page. Shown in right-click menu."
+  },
+  "contextMenusSelectedSubdomainText": {
+    "message": "Por ĉiuj subdomajnoj kun domajno de la elektita teksto: $selected$",
+    "description": "For all subdomains with domain of selected text: $selected$. Shown in right-click menu.",
+    "placeholders": {
+      "selected": {
+        "content": "$1",
+        "example": "github.com"
+      }
+    }
+  },
+  "contextualIdentitiesAutoRemoveText": {
+    "message": "Ebligi aŭtomatan renovigon de la listo de esprimoj, kiam ĝia entenilo estu forigita.",
+    "description": "Enable Automatic Removal of Expression List when its Container is Removed. Only in Firefox."
+  },
+  "contextualIdentitiesEnabledText": {
+    "message": "Ebligi subtenon por entenilaj langetoj",
+    "description": "Enable Support for Container Tabs. Currently only in Firefox."
+  },
+  "contributeText": {
+    "message": "Kontribui",
+    "description": "Contribute"
+  },
+  "contributorsText": {
+    "message": "Kontribuintoj",
+    "description": "Contributors"
+  },
+  "cookiesText": {
+    "message": "kuketojn",
+    "description": "Cookies. Primarily used in popup via alternate clean action dropdown."
+  },
+  "cookieCleanUpOnStartText": {
+    "message": "Purigi kuketojn kaj aliajn retejajn datenojn el malfermitaj langetoj dum starto",
+    "description": "Clean Cookies and other Site Data from Open Tabs on Startup"
+  },
+  "cookieCleanupIgnoreOpenTabsText": {
+    "message": "Plenumi purigadon nun, inkludi domajnojn de malfermitaj langetoj",
+    "description": "Run cleanup now, include cookies from open tabs. This is shown on mouseover from the available dropdown buttons."
+  },
+  "cookieCleanupText": {
+    "message": "Plenumi purigadon nun, ekskludi domajnojn de malfermitaj langetoj",
+    "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
+  },
+  "copyDebugSettingText": {
+    "message": "Viaj nuntempaj agordoj. Se necesas, kopiu kaj algluu ĉi tion al la problemejo de GitHub.",
+    "description": "Your current settings.  If necessary, copy and paste this into the GitHub Issue."
+  },
+  "copyDebugSystemText": {
+    "message": "La informo de via sistemo. Kopiu kaj algluu ĉi tion al la rilata sekcio de la GitHub-problemo.",
+    "description": "Your System Info.  Copy and paste into the relevant section of the GitHub Issue."
+  },
+  "copyFailedText": {
+    "message": "Kopio fiaskis. Klopodu permane elekti kaj kopii la tekston.",
+    "description": "Copy failed.  Try manually selecting and copying the text.  Shown after a failed attempt to write text to clipboard."
+  },
+  "copySuccessText": {
+    "message": "Sukcese kopiita!",
+    "description": "Copied successfully!  Shows after a successful text copy to clipboard."
+  },
+  "copyToClipboardText": {
+    "message": "Kopii al la tondujo",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
+  "createDefaultExpressionOptionsText": {
+    "message": "Krei implicitajn opciojn de esprimoj",
+    "description": "Create Default Expression Options. Used in 'List of Expressions'"
+  },
+  "currentContainerInfo": {
+    "message": "Nuna entenilo elektita: $ID$ ( $Name$ )",
+    "description": "Current Container Selected: $ID$ ( $Name ). Found in List of Expressions only if Firefox containers enabled.",
+    "placeholders": {
+      "ID": {
+        "content": "$1",
+        "example": "firefox-container-1"
+      },
+      "Name": {
+        "content": "$2",
+        "example": "Personal (whatever the user has named the container) - or - translated version of 'Invalid Container'"
+      }
+    }
+  },
+  "debugMode": {
+    "message": "Ebligi sencimigan reĝimon (kroma konzolaj eligaĵoj)",
+    "description": "Enable Debug Mode (Additional Console Outputs). Found in CAD Settings."
+  },
+  "debugTitle": {
+    "message": "Sencimiga informo",
+    "description": "Debug Information.  Header shown on About page."
+  },
+  "defaultText": {
+    "message": "Implicita",
+    "description": "Default. Used in List of Expression in Firefox for Default / No Container."
+  },
+  "defaultContainerText": {
+    "message": "Neniu entenilo",
+    "description": "No Container. This will be in brackets. Used in List of Expression in Firefox for Default / No Container"
+  },
+  "defaultSettingsText": {
+    "message": "Restarigi implicitajn agordojn",
+    "description": "Restore Default Settings"
+  },
+  "disableAutoDeleteText": {
+    "message": "Ŝanĝi al malebligi aŭtomatan purigadon (permana reĝimo)",
+    "description": "Toggle to disable automatic cleanup (manual mode)"
+  },
+  "documentationText": {
+    "message": "Dokumentaro",
+    "description": "Documentation"
+  },
+  "domainExpressionsText": {
+    "message": "Domajna esprimo",
+    "description": "Domain Expression"
+  },
+  "dropdownAdditionalCleaningOptions": {
+    "message": "Baskuligi falmenuon de kromaj purigadaj agoj",
+    "description": "(Screen-readers only) - Toggle Additional Cleaning Actions Dropdown"
+  },
+  "editExpressionText": {
+    "message": "Redakti esprimon",
+    "description": "Edit expression"
+  },
+  "enableAutoDeleteText": {
+    "message": "Ŝanĝi al ebligi aŭtomatan purigadon (aŭtomata reĝimo)",
+    "description": "Toggle to enable automatic cleanup (automatic mode)"
+  },
+  "enableCleanupLogText": {
+    "message": "Ebligi purigadan protokolon kaj nombrilon",
+    "description": "Enable Cleanup Log and Counter"
+  },
+  "enableContextMenus": {
+    "message": "Ebligi kuntekstajn menuojn (dekstre-alklaka menuo)",
+    "description": "Enable Context Menus (Right-Click Menu). Shown in CAD Settings"
+  },
+  "enableGreyListCleanup": {
+    "message": "Ebligi grizlistan purigadon dum retumila restarto",
+    "description": "Enable Greylist Cleanup on Browser Restart"
+  },
+  "enableNewVersionPopup": {
+    "message": "Ebligi ŝprucfenestron, kiam nova versio estu eldonita",
+    "description": "Enable Popup when New Version is Released"
+  },
+  "errorText": {
+    "message": "Eraro!",
+    "description": "Error!"
+  },
+  "exportSettingsText": {
+    "message": "Eksporti kernajn agordojn...",
+    "description": "Export Core Settings... Found in CAD Settings."
+  },
+  "exportURLSText": {
+    "message": "Eksporti esprimojn...",
+    "description": "Export Expressions... Found in List of Expressions."
+  },
+  "exportTitleTimestamp": {
+    "message": "Tempindiko estos aldonita al la dosiernomo dum la eksporto.",
+    "description": "A timestamp will be appended to the filename on export."
+  },
+  "extensionDescription": {
+    "message": "Kontrolu viajn kuketojn! Aŭtomate forigi nedeziratajn kuketojn de viaj malfermitaj langetoj dum vi konservas tiujn, kiujn vi volas.",
+    "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
+  },
+  "extensionName": {
+    "message": "Cookie AutoDelete",
+    "description": "Name of the extension."
+  },
+  "faqText": {
+    "message": "Oftaj demandoj, kutimaj problemoj kaj solvoj",
+    "description": "Frequently Asked Questions, Common issues and solutions"
+  },
+  "filterDebugMode": {
+    "message": "Por vidi nur la protokolajn eligaĵojn de ĉi tiu kromprogramo, filtru eligaĵon per la jena linio:",
+    "description": "To see only debug outputs by this extension, filter output by the following line. Found after enabling debug mode."
+  },
+  "filterText": {
+    "message": "Filtrilo",
+    "description": "Filter"
+  },
+  "greyListWordText": {
+    "message": "Griza listo",
+    "description": "Greylist"
+  },
+  "groupExpressionDefaultNotice": {
+    "message": "Ĉu vi volas agordi opciojn de implicitaj esprimoj por novaj esprimoj? Ĝi estis plibonigita por esti esprima opcio mem! Vizitu $listExpression$ por komenciĝi!",
+    "description": "Looking to set default expression options for new expressions?  It has been enhanced to be an expression option itself!  Visit $listExpression$ to get started!  Shown in Settings",
+    "placeholders": {
+      "listExpression": {
+        "content": "$1",
+        "example": "List of Expressions <- the translated version"
+      }
+    }
+  },
+  "importCoreSettingsFailed": {
+    "message": "Fiaskis importadon de kernan agordaron - nekonata agordo trovita",
+    "description": "Import Core Settings Failed - Found unknown setting"
+  },
+  "importCoreSettingsText": {
+    "message": "Importi kernajn agordojn...",
+    "description": "Import Core Settings... Found in CAD Settings."
+  },
+  "importFileNotFound": {
+    "message": "Dosiero ne trovita: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
+  "importFileTypeInvalid": {
+    "message": "Dosiero donita ne estas tipo, kiun ni subtenas",
+    "description": "File given is not a type we handle"
+  },
+  "importFileValidationFailed": {
+    "message": "Validigo de donita dosiero fiaskis",
+    "description": "File given failed validation"
+  },
+  "importInvalidExpressions": {
+    "message": "Oni detektis nevalida(j)n esprimo(j)n en importado de dosiero. Ili estas notitaj malsupre kun siaj kialoj. Kontrolu kaj korektu ajnajn erarojn en tiu dosiero kaj klopodu importi denove.",
+    "description": "Detected invalid expression(s) from file import. They are noted below with its reason. Check and fix any errors in that file and try importing again. Found in List of Expressions when imported file as expressions that aren't valid."
+  },
+  "importListNotArray": {
+    "message": "$identifier$ ne estas aranĝita kiel tabela listo.",
+    "description": "$identifier$ is not formatted as an array list.  Found in List of Expressions during import validation.",
+    "placeholders": {
+      "identifier": {
+        "content": "$1",
+        "example": "jsonObjectKey"
+      }
+    }
+  },
+  "importMissingKey": {
+    "message": "Mankas identigilo",
+    "description": "Missing identifier"
+  },
+  "importURLSText": {
+    "message": "Importi esprimojn...",
+    "description": "Import Expressions... Found in List of Expressions."
+  },
+  "importValidExpressions": {
+    "message": "Sukcese aldonita(j) $num$ esprimo(j) el importita dosiero: $filename$.",
+    "description": "Successfully added $num$ expression(s) from imported file: $filename$.  Found in List of Expressions after successful valid expressions from import.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "filename": {
+        "content": "$2",
+        "example": "filename.json"
+      }
+    }
+  },
+  "indexedDBCleanupText": {
+    "message": "Ebligi IndexedDB-purigadon (Firefox 77+, Chrome 74+)",
+    "description": "Enable IndexedDB Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
+  },
+  "indexedDBText": {
+    "message": "IndexedDB",
+    "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorComma": {
+    "message": "Oni nur permesas komojn en regulaj esprimoj.",
+    "description": "Commas are only allowed in Regular Expressions. Found in editing expression errors."
+  },
+  "inputErrorEmpty": {
+    "message": "Kontrolita esprimo ne povas esti malplena!",
+    "description": "Revised expression cannot be empty!  Found in editing expression errors."
+  },
+  "inputErrorRegExp": {
+    "message": "Regula esprimo estas nevalida. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSlashEndMissingStart": {
+    "message": "Fina suprenstreko detektita, sed mankas komenca suprenstreko por regula esprimo. Forigi finan suprenstrekon por domajnoj.",
+    "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
+  },
+  "inputErrorSlashStartMissingEnd": {
+    "message": "Komenca suprenstreko detektita, sed mankas fina suprenstreko por regula esprimo.",
+    "description": "Start slash detected, but missing end slash for Regular Expression. Found in editing expression errors."
+  },
+  "inputErrorSpace": {
+    "message": "Spacetoj ne estas permesataj en servilonomoj.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
+  },
+  "inputAddSuccess": {
+    "message": "Sukcese aldonita(j) $num$ esprimo(j) kun $listType$-speco en la nune aktiva listo.",
+    "description": "Successfully added $num$ expression(s) to $listType$ Type in the currently active list.  Found in List of Expressions after successful inputs.",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "5"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "GreyList"
+      }
+    }
+  },
+  "invalidNewExpressions": {
+    "message": "Detektita nevalida nova(j) esprimo(j). Ili estas notitaj malsupre kun sia kialo kaj estis konservitaj supre por redaktado.",
+    "description": "Detected invalid new expression(s). They are noted below with its reason and have been kept above for editing. Found in List of Expressions Settings Page."
+  },
+  "keepAllCookiesText": {
+    "message": "Konservi ĉiujn kuketojn",
+    "description": "Keep All Cookies. Found in Expression Options. For Whitelist entries."
+  },
+  "keepAllCookiesGreyText": {
+    "message": "Konservi kuketojn ĝis restarto",
+    "description": "Keep All Cookies until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepCacheText": {
+    "message": "Konservi kaŝmemoron",
+    "description": "Keep Cache. Found in Expression Options. For Whitelist entries."
+  },
+  "keepCacheGreyText": {
+    "message": "Konservi kaŝmemoron ĝis restarto",
+    "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepDefaultIcon": {
+    "message": "Konservi implicitajn bildsimbolojn en ĉiaj listoj",
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
+  },
+  "keepIndexedDBText": {
+    "message": "Konservi IndexedDB",
+    "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
+  },
+  "keepIndexedDBGreyText": {
+    "message": "Konservi IndexedDB ĝis restarto",
+    "description": "Keep IndexedDB until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepLocalstorageText": {
+    "message": "Konservi LocalStorage",
+    "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "Konservi LocalStorage ĝis restarto",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepPluginDataText": {
+    "message": "Konservi kromprogramajn datenojn",
+    "description": "Keep Plugin Data. Found in Expression Options. For Whitelist entries."
+  },
+  "keepPluginDataGreyText": {
+    "message": "Konservi kromprogramajn datenarojn ĝis restarto",
+    "description": "Keep Plugin Data until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepServiceWorkersText": {
+    "message": "Konservi Service Workers",
+    "description": "Keep Service Workers. Found in Expression Options. For Whitelist entries."
+  },
+  "keepServiceWorkersGreyText": {
+    "message": "Konservi Service Workers ĝis restarto",
+    "description": "Keep Service Workers until restart. Found in Expression Options. For Greylist entries."
+  },
+  "keepText": {
+    "message": "Konservi",
+    "description": "Keep"
+  },
+  "listTypeText": {
+    "message": "Speco de listo",
+    "description": "List Type"
+  },
+  "localStorageCleanupText": {
+    "message": "Ebligi LocalStorage-purigadon (Firefox 58+, Chrome 74+)",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+). Found in CAD Settings."
+  },
+  "localStorageText": {
+    "message": "LocalStorage",
+    "description": "LocalStorage. Primarily used in notifications."
+  },
+  "manualActionNotification": {
+    "message": "Sciigo de permana ago",
+    "description": "Manual Action Notification - used as Notification Title."
+  },
+  "manualCleanError": {
+    "message": "$siteData$ ne povas esti purigita por langeto:",
+    "description": "$siteData$ cannot be cleaned for tab:. Shown as notification if manual clean cookies cannot be done.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      }
+    }
+  },
+  "manualCleanNothing": {
+    "message": "Neniuj purigotaj $siteData$ estis trovitaj en $url$.",
+    "description": "No $siteData$ were found for cleaning on $url$. Used in notification after manual clean.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanRemoved": {
+    "message": "Forigis $deleted$ de $total$.",
+    "description": "Removed $deleted$ of $total$. Used as part of success notification on manual clean.",
+    "placeholders": {
+      "deleted": {
+        "content": "$1",
+        "example": "5"
+      },
+      "total": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "manualCleanSiteDataAll": {
+    "message": "Purigi ĉion por ĉi tiu domajno",
+    "description": "Clean All for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataAllDomain": {
+    "message": "Purigi ĉiujn retejajn datenojn por $domain$",
+    "description": "Clear all site data for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCache": {
+    "message": "Purigi kaŝmemoron por ĉi tiu domajno",
+    "description": "Clean Cache for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCacheDomain": {
+    "message": "Purigi ĉiun kaŝmemoron por $domain$",
+    "description": "Clear all Cache for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataCookies": {
+    "message": "Purigi kuketojn por ĉi tiu domajno",
+    "description": "Clean Cookies for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataCookiesDomain": {
+    "message": "Purigi ĉiujn kuketojn por $domain$",
+    "description": "Clear all Cookies for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataIndexedDB": {
+    "message": "Purigi IndexedDB por ĉi tiu domajno",
+    "description": "Clean IndexedDB for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataIndexedDBDomain": {
+    "message": "Purigi la tutan IndexedDB por $domain$",
+    "description": "Clear all IndexedDB for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataLocalStorage": {
+    "message": "Purigi LocalStorage por ĉi tiu domajno",
+    "description": "Clean LocalStorage for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataLocalStorageDomain": {
+    "message": "Purigi la tutan LocalStorage por $domain$",
+    "description": "Clear all LocalStorage for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataPluginData": {
+    "message": "Purigi kromprogramajn datenojn por ĉi tiu domajno",
+    "description": "Clean Plugin Data for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataPluginDataDomain": {
+    "message": "Purigi ĉiujn kromprogramajn datenojn por $domain$",
+    "description": "Clear all Plugin Data for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSiteDataServiceWorkers": {
+    "message": "Purigi Service Workers por ĉi tiu domajno",
+    "description": "Clean Service Workers for this domain. Found in Popup clean dropdown menu."
+  },
+  "manualCleanSiteDataServiceWorkersDomain": {
+    "message": "Purigi ĉiujn Service Workers por $domain$",
+    "description": "Clear all Service Workers for $domain$. Found in Popup clean dropdown menu as mouseover.",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualCleanSuccess": {
+    "message": "Rezulto de purigado por $siteData$ en $url$:",
+    "description": "Cleanup for $siteData$ on $url$ result:  Shown as notification after successful manual cleaning.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cookies"
+      },
+      "url": {
+        "content": "$2",
+        "example": "example.com"
+      }
+    }
+  },
+  "manualNotificationsText": {
+    "message": "Montri sciigojn de permanaj purigadoj de retejaj datenoj",
+    "description": "Show Notification from Manual Site Data Cleanups. Found in settings"
+  },
+  "matchedDomainExpressionText": {
+    "message": "Kongruantaj domajnaj esprimoj",
+    "description": "Matched Domain Expression"
+  },
+  "menuText": {
+    "message": "Menuo",
+    "description": "Menu. Only shown when the settings screen is small / when the hamburger icon shows / when the menu is collapsed."
+  },
+  "minutesText": {
+    "message": "minuto(j)",
+    "description": "minute(s)"
+  },
+  "missingContainerText": {
+    "message": "NEVALIDA ENTENILO",
+    "description": "INVALID CONTAINER. Shown when a CAD list exists but cannot link id to available containers (Firefox)."
+  },
+  "noCleanupLogText": {
+    "message": "Neniu protokolo de purigado trovita",
+    "description": "No Cleanup Logs Found"
+  },
+  "noExpressionsText": {
+    "message": "Neniu esprimo difinita.",
+    "description": "No expressions defined."
+  },
+  "noPrivateLogging": {
+    "message": "Protokoloj de purigado ne estos estigitaj por langetoj en privata retumo / Incognito / InPrivate.",
+    "description": "Cleanup Logs will not be generated for tabs in Private Browsing / Incognito / InPrivate."
+  },
+  "noSearchExpressionsFound": {
+    "message": "Neniu esprimo trovita per la antaŭa serĉo.",
+    "description": "No expressions found from search above.  Found in List of Expressions."
+  },
+  "noRulesText": {
+    "message": "Neniu regulo kongruis kun ĉi tiu domajno.",
+    "description": "No rules matched this domain"
+  },
+  "noneText": {
+    "message": "Neniu",
+    "description": "None"
+  },
+  "notificationContent": {
+    "message": "Iuj retejaj datenoj, inkludante $Num$ kuketo(j)n, estis forigita(j) de $total$ domajno(j), inkludante: $Websites$",
+    "description": "Some site data, including 123 Cookie(s), removed from 8 domain(s), including: google.com, facebook.com",
+    "placeholders": {
+      "num": {
+        "content": "$1",
+        "example": "123"
+      },
+      "total": {
+        "content": "$2",
+        "example": "8"
+      },
+      "websites": {
+        "content": "$3",
+        "example": "google.com, facebook.com"
+      }
+    }
+  },
+  "notificationDisabledText": {
+    "message": "Sciigo malebligita",
+    "description": "Notification disabled"
+  },
+  "notificationEnabledText": {
+    "message": "Sciigo ebligita",
+    "description": "Notification enabled"
+  },
+  "notificationTitle": {
+    "message": "Kuketoj estis forigitaj!",
+    "description": "Cookies were deleted!  Used in Notification Title."
+  },
+  "notificationTitleSiteData": {
+    "message": "Forigado de retejaj datenoj lanĉita!",
+    "description": "Site Data Removal Triggered!  Used in Notification Title."
+  },
+  "notifyCookieCleanupDelayText": {
+    "message": "Daŭro de sciigoj",
+    "description": "Duration for Notifications"
+  },
+  "notifyCookieCleanUpText": {
+    "message": "Montri sciigojn post aŭtomata purigado",
+    "description": "Show Notification After Automatic Cleanup. Found in settings."
+  },
+  "oldReleasesText": {
+    "message": "Oni povas vidi pli malnovajn eldonajn notojn enrete en",
+    "description": "Older release notes can be viewed online at"
+  },
+  "openDebugMode": {
+    "message": "Por vidi la sencimigajn opciojn, malfermu novan langeton kaj vizitu",
+    "description": "To view the debug outputs, open a new tab and visit"
+  },
+  "optionsText": {
+    "message": "Opcioj",
+    "description": "Options"
+  },
+  "pluginDataCleanupText": {
+    "message": "Ebligi purigadon de kromprogramaj datenoj (Firefox 78+, Chrome 74+)",
+    "description": "Enable Plugin Data Cleanup (Firefox 78+, Chrome 74+). Found in CAD Settings."
+  },
+  "pluginDataText": {
+    "message": "Datenoj de la kromprogramo",
+    "description": "Plugin Data. Primarily used in notifications."
+  },
+  "popupCookieCountText": {
+    "message": "Kuketoj",
+    "description": "Cookies. Due to visual formatting, Cookie Count will always be located on the right side after the colon. Found in Popup near top-right."
+  },
+  "preferencesText": {
+    "message": "Agordoj",
+    "description": "Settings"
+  },
+  "questionExpression": {
+    "message": "Kiel esprimoj funkcias?",
+    "description": "How do Expressions work?"
+  },
+  "reasonCADSiteDataCookie": {
+    "message": "Purigi por lanĉi purigadon de retejaj datenoj por $hostname$.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
+  "reasonCADSiteDataCookieRestart": {
+    "message": "Purigi por lanĉi purigadon de retejaj datenoj por $hostname$ en restarto.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$ on restart. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
+  "reasonCleanCookieExpired": {
+    "message": "Parta purigado pro senvalidiĝitaj kuketoj de $hostname$.",
+    "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
+  "reasonCleanCookieExpiredRestart": {
+    "message": "Parta purigado pro senvalidiĝitaj kuketoj de $hostname$ en restarto.",
+    "description": "Partial clean because of expired cookies from $hostname$ on restart. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
+  "reasonCleanCookieName": {
+    "message": "Parta purigado pro kongruanta $matchedExpression$ en la $listType$",
+    "description": "Partial clean because of matched $matchedExpression$ in the $listType$. Used in cleanup logs.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonCleanGreyList": {
+    "message": "Purigi pro starta purigado kaj $matchedExpression$ estas en la griza listo",
+    "description": "Clean because of startup cleanup and $matchedExpression$ is in the Greylist. Used in cleanup log.",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      }
+    }
+  },
+  "reasonCleanNoList": {
+    "message": "Purigi pro tio, ke $hostname$ ne estas en la blanka aŭ griza listoj",
+    "description": "Clean because $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonCleanStartupNoList": {
+    "message": "Purigi pro starta purigado kaj pro tio, ke $hostname$ ne estas en la blanka aŭ griza listoj",
+    "description": "Clean because of startup cleanup and $hostname$ is not in the White or Grey lists",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "sub.google.com"
+      }
+    }
+  },
+  "reasonKeep": {
+    "message": "Konservi pro kongruantaj $matchedExpression$ en la $listType$",
+    "description": "Keep because of matched $matchedExpression$ in the $listType$",
+    "placeholders": {
+      "matchedExpression": {
+        "content": "$1",
+        "example": "*.google.com"
+      },
+      "listType": {
+        "content": "$2",
+        "example": "Whitelist"
+      }
+    }
+  },
+  "reasonKeepOpenTab": {
+    "message": "Konservi pro malfermitaj langetoj de *.$mainDomain$",
+    "description": "Keep because of open tabs of *.$mainDomain$",
+    "placeholders": {
+      "mainDomain": {
+        "content": "$1",
+        "example": "google.com"
+      }
+    }
+  },
+  "reasonTabsWereIgnored": {
+    "message": "kaj ankaŭ malfermitaj langetoj estis ignoritaj",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] and also open tabs were ignored"
+  },
+  "reasonTabsWereNotIgnored": {
+    "message": "aŭ en iu ajn malfermitaj langetoj",
+    "description": "[Clean because of sub.google.com is not in the White or Grey lists] or in any open tabs"
+  },
+  "releaseNotesText": {
+    "message": "Eldonaj notoj",
+    "description": "Release Notes"
+  },
+  "removeActivityLogEntryText": {
+    "message": "Forigi protokoleron",
+    "description": "Remove Log Entry. Shown in summary activity log for individual log removal."
+  },
+  "removeAllExpressions": {
+    "message": "Forigi ĉiujn esprimojn",
+    "description": "Remove All Expressions"
+  },
+  "removeAllExpressionsConfirm": {
+    "message": "Ĉu vi certas, ke vi volas forigi ĈIUJN ($expressionCount$) konservitajn esprimojn de ($listCount$) listo(j)?\n\nNE EBLAS MALFARI ĈI TION\n\nTajpu [ $expressionCount$ ] kaj alklaku AKCEPTI por forigi.",
+    "description": "Are you sure you want to remove ALL ($expressionCount$) saved expression(s) from ($listCount$) list(s)?\n\nTHIS CANNOT BE UNDONE!\n\nType [ $expressionCount$ ] and click OK to delete. Popup prompt if Delete All Expression is clicked.",
+    "placeholders": {
+      "expressionCount": {
+        "content": "$1",
+        "example": "75"
+      },
+      "listCount": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "removeAllExpressionsNoneFound": {
+    "message": "Neniu forigebla esprimo!",
+    "description": "No expressions to remove!"
+  },
+  "removeExpressionText": {
+    "message": "Forigi esprimon",
+    "description": "Remove expression"
+  },
+  "removeListText": {
+    "message": "Forigi ĉiujn esprimojn de la elektita listo",
+    "description": "Remove All Expressions from Selected List. Shown in List of Expressions, only on Firefox and if containers/contextual identities is enabled."
+  },
+  "removeStorageCount": {
+    "message": "Forigis $count$ ero(j)n de $storageType$.",
+    "description": "Removed $count$ item(s) from $storageType$. Used in manual localstorage clean notification.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      },
+      "storageType": {
+        "content": "$2",
+        "example": "LocalStorage"
+      }
+    }
+  },
+  "reportIssuesText": {
+    "message": "Raporti problemojn kaj sugesti funkciojn",
+    "description": "Report issues and suggest features"
+  },
+  "resetCookieCounterText": {
+    "message": "Restarigi kuketan nombrilon",
+    "description": "Reset Cookie Counters. Button in Welcome Page."
+  },
+  "resetExtensionDataText": {
+    "message": "Restartigi kromprogramajn datenojn",
+    "description": "Reset Extension Data"
+  },
+  "restoreText": {
+    "message": "Restarigi",
+    "description": "Restore. Restores cookies that was cleaned up by this extension. Found in Activity Log entries."
+  },
+  "reviewLinkMessage": {
+    "message": "Dankon pro provi $cadTitle$. Se vi ŝatis ĝin, bonvolu recenzi ĝin.",
+    "description": "Thanks for trying out Cookie AutoDelete. If you liked it, then please give a review.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      }
+    }
+  },
+  "saveExpressionText": {
+    "message": "Konservi esprimon",
+    "description": "Save expression"
+  },
+  "secondsText": {
+    "message": "sekundo(j)",
+    "description": "second(s)"
+  },
+  "serviceWorkersCleanupText": {
+    "message": "Ebligi purigadon de Service Workers (Firefox 77+, Chrome 74+)",
+    "description": "Enable Service Workers Cleanup (Firefox 77+, Chrome 74+). Found in CAD Settings."
+  },
+  "serviceWorkersText": {
+    "message": "Service Workers",
+    "description": "Service Workers. Primarily used in notifications."
+  },
+  "sessionStorageText": {
+    "message": "SessionStorage (seanca konserveĵo)",
+    "description": "SessionStorage. Used in manual localstorage clean notification"
+  },
+  "settingGroupAutoClean": {
+    "message": "Opcioj de aŭtomata purigado",
+    "description": "Automatic Cleaning Options"
+  },
+  "settingGroupExpression": {
+    "message": "Opcioj de esprimoj",
+    "description": "Expression Options"
+  },
+  "settingGroupExtension": {
+    "message": "Opcioj de la kromprogramo",
+    "description": "Extension Options"
+  },
+  "settingGroupOtherBrowsing": {
+    "message": "Aliaj opcioj de retumila purigado de datenoj",
+    "description": "Other Browsing Data Cleanup Options"
+  },
+  "settingsText": {
+    "message": "Agordoj de kuketoj",
+    "description": "$CAD$ Settings",
+    "placeholders": {
+      "CAD": {
+        "content": "CAD",
+        "example": "CAD - Short form of Cookie AutoDelete"
+      }
+    }
+  },
+  "showNumberOfCookiesInIconText": {
+    "message": "Montri nombron de kuketoj por la domajno super la bildsimbolo",
+    "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataEmptyOnEnable": {
+    "message": "Purigi ekzistantajn datenojn por nove ebligitaj tipoj de retumilaj datenoj",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
+  },
+  "siteDataText": {
+    "message": "Datenoj de la retejo",
+    "description": "Site Data. Found in Activity Log Summary and Notifications."
+  },
+  "sizePopupText": {
+    "message": "Grandeco de ŝprucfenestro (en bilderoj)",
+    "description": "Size of Popup (in px). This sets the font size in the Popup."
+  },
+  "sizeSettingText": {
+    "message": "Grandeco de agordaj paĝoj (en bilderoj)",
+    "description": "Size of Setting Pages (in px). This sets the font size in the Setting Pages."
+  },
+  "stopEditingText": {
+    "message": "Ĉesigi redaktadon",
+    "description": "Stop editing"
+  },
+  "successText": {
+    "message": "Sukcese!",
+    "description": "Success!"
+  },
+  "toGreyListText": {
+    "message": "Aldoni al la griza listo (Purigu dum retumila restartigo)",
+    "description": "Add to Greylist (Clean on Browser Restart)"
+  },
+  "toWhiteListText": {
+    "message": "Aldoni al la blanka listo (Neniam purigu)",
+    "description": "Add to Whitelist (Never Clean)"
+  },
+  "toggleNotificationText": {
+    "message": "Baskuligi por ebligi aŭ malebligi sciigojn",
+    "description": "Toggle to enable or disable notifications"
+  },
+  "toggleToGreyListWordText": {
+    "message": "Ŝanĝi al la griza listo",
+    "description": "Toggle to greylist"
+  },
+  "toggleToWhiteListWordText": {
+    "message": "Ŝanĝi al la blanka listo",
+    "description": "Toggle to whitelist"
+  },
+  "versionNumberText": {
+    "message": "Versio de $CAD$",
+    "description": "$CAD$ version 3.2.1. The actual number is formatted differently and will be right below this text.",
+    "placeholders": {
+      "CAD": {
+        "content": "$1",
+        "example": "CAD or Cookie AutoDelete"
+      }
+    }
+  },
+  "versionText": {
+    "message": "Versio de $browser$",
+    "description": "Firefox version",
+    "placeholders": {
+      "browser": {
+        "content": "$1",
+        "example": "Firefox"
+      }
+    }
+  },
+  "welcomeMessage": {
+    "message": "Saluton! Dum ĉi tiu seanco $cadTitle$ forigis $sessionDeleted$ kuketojn kaj entute $totalDeleted$ kuketojn.",
+    "description": "Hi there! During this session, Cookie AutoDelete has deleted 123 cookies and in total 456 cookies.",
+    "placeholders": {
+      "cadTitle": {
+        "content": "$1",
+        "example": "Cookie AutoDelete"
+      },
+      "sessionDeleted": {
+        "content": "$2",
+        "example": "123"
+      },
+      "totalDeleted": {
+        "content": "$3",
+        "example": "456"
+      }
+    }
+  },
+  "welcomeText": {
+    "message": "Bonvenon",
+    "description": "Welcome"
+  },
+  "expressionListText": {
+    "message": "Listo de esprimoj",
+    "description": "List of Expressions"
+  },
+  "whiteListWordText": {
+    "message": "Blanka listo",
+    "description": "Whitelist"
+  }
+}
