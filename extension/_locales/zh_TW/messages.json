@@ -11,6 +11,20 @@
     "message": "開啟自動清理",
     "description": "Enable Automatic Cleaning"
   },
+  "activityLogSiteDataDomainsText": {
+    "message": "調用清理 $siteData$ for: $domains$",
+    "description": "Invoked cleanup of $siteData$ for: $domains$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "siteData": {
+        "content": "$1",
+        "example": "Cache (translated version)"
+      },
+      "domains": {
+        "content": "$2",
+        "example": "example.com, github.com"
+      }
+    }
+  },
   "addNewExpressionNotificationFailed": {
     "message": "無法從右鍵點擊的位置取得網址。",
     "description": "Could not fetch domain to add from where right-click was issued."
@@ -349,6 +363,16 @@
     "message": "請填入表達式!",
     "description": "Revised expression cannot be empty!  Found in editing expression errors."
   },
+  "inputErrorRegExp": {
+    "message": "正規表達式無效。 $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
   "inputErrorSlashEndMissingStart": {
     "message": "偵測到結束的斜線，但少了正規表達式的起始斜線。請刪除網址中結束的斜線",
     "description": "End slash detected, but missing start slash for Regular Expression. Remove end slash for domains. Found in editing expression errors."
@@ -395,6 +419,10 @@
     "message": "保留快取直到重新啟動",
     "description": "Keep Cache until restart. Found in Expression Options. For Greylist entries."
   },
+  "keepDefaultIcon": {
+    "message": "在所有列表類型上保留預設圖標",
+    "description": "Keep Default Icons on all list types. Disabled: keep blue icon, grey for automatic cleaning disabled. Enabled: red/yellow/blue depending on matching expressions in list."
+  },
   "keepIndexedDBText": {
     "message": "保留IndexedDB",
     "description": "Keep IndexedDB. Found in Expression Options. For Whitelist entries."
@@ -406,6 +434,10 @@
   "keepLocalstorageText": {
     "message": "保持本機存放區",
     "description": "Keep LocalStorage. Found in Expression Options. For Whitelist entries."
+  },
+  "keepLocalstorageGreyText": {
+    "message": "保留本機儲存直到重新啟動",
+    "description": "Keep LocalStorage until restart. Found in Expression Options. For Greylist entries."
   },
   "keepPluginDataText": {
     "message": "保留擴充功能資料",
@@ -430,6 +462,14 @@
   "listTypeText": {
     "message": "名單",
     "description": "List Type"
+  },
+  "localStorageCleanupText": {
+    "message": "開啟本機儲存清理 (Firefox 58+, Chrome 74+)",
+    "description": "Enable LocalStorage Cleanup (Firefox 58+, Chrome 74+). Found in CAD Settings."
+  },
+  "localStorageText": {
+    "message": "本機儲存",
+    "description": "LocalStorage. Primarily used in notifications."
   },
   "manualActionNotification": {
     "message": "手動操作通知",
