@@ -187,6 +187,10 @@
     "message": "Запустить очистку сейчас, исключить домены из открытых вкладок",
     "description": "Run cleanup now, exclude domains from open tabs. This is shown on mouseover on the button."
   },
+  "copyToClipboardText": {
+    "message": "Скопировать в буфер обмена",
+    "description": "Copy to Clipboard.  Shown in a button to take action upon click."
+  },
   "createDefaultExpressionOptionsText": {
     "message": "Создать параметры выражения по умолчанию",
     "description": "Create Default Expression Options. Used in 'List of Expressions'"
@@ -319,6 +323,16 @@
     "message": "Импортировать настройки...",
     "description": "Import Core Settings... Found in CAD Settings."
   },
+  "importFileNotFound": {
+    "message": "Файл не найден: $filename$",
+    "description": "File not found: $filename$.  Found in List of Expressions and CAD Settings.",
+    "placeholders": {
+      "filename": {
+        "content": "$1",
+        "example": "filename.json"
+      }
+    }
+  },
   "importFileTypeInvalid": {
     "message": "Файл данного типа не поддерживается",
     "description": "File given is not a type we handle"
@@ -342,6 +356,20 @@
   "indexedDBText": {
     "message": "ИндексБД",
     "description": "IndexedDB. Primarily used in notifications."
+  },
+  "inputErrorRegExp": {
+    "message": "Ошибка в регулярном выражении. $RegexError$",
+    "description": "Regular Expression is not valid. <Error from new RegExp()>. Found in editing expression errors.",
+    "placeholders": {
+      "RegexError": {
+        "content": "$1",
+        "example": "SyntaxError:  unterminated character class."
+      }
+    }
+  },
+  "inputErrorSpace": {
+    "message": "Пробелы в адресе недопустимы.",
+    "description": "Spaces are not allowed in hostnames. Found in editing expression errors."
   },
   "keepAllCookiesText": {
     "message": "Сохранять все куки",
