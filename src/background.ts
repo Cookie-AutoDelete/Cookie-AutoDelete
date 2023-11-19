@@ -49,21 +49,35 @@ const saveToStorage = () => {
   }
 };
 
+const mergeStorage = (managedStorage: any, localStorage: any): any => {
+  const result = localStorage;
+
+  if (managedStorage.settings)
+    result.settings = { ...managedStorage.settings, ...localStorage.settings };
+  if (managedStorage.lists)
+    result.lists = { ...managedStorage.lists, ...localStorage.lists };
+
+  return result;
+};
+
 const onStartUp = async () => {
   const mf = browser.runtime.getManifest();
   browser.browserAction.setTitle({
     title: `${mf.name} ${mf.version} [STARTING UP...] (0)`,
   });
   const storage = await browser.storage.local.get();
-  let stateFromStorage;
+  const managedStorage = await (browser.storage as any).managed.get();
+
+  let stateFromStorage = managedStorage;
   try {
     if (storage.state) {
-      stateFromStorage = JSON.parse(storage.state as string);
-    } else {
-      stateFromStorage = {};
+      stateFromStorage = mergeStorage(
+        stateFromStorage,
+        JSON.parse(storage.state as string),
+      );
     }
   } catch (err) {
-    stateFromStorage = {};
+    // let's ignore the local storage
   }
   store = createStore(stateFromStorage);
 
