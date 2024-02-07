@@ -34,7 +34,7 @@ interface OwnProps {
 }
 
 class InitialState {
-  public cookies: browser.cookies.CookieProperties[] = [];
+  public cookies: browser.cookies.Cookie[] = [];
 }
 
 type ExpressionOptionsProps = OwnProps & DispatchProps & StateProps;
@@ -83,7 +83,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   public async getAllCookies() {
     const { expression } = this.props;
     const exp = expression.expression;
-    let cookies: browser.cookies.CookieProperties[] = [];
+    let cookies: browser.cookies.Cookie[] = [];
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
@@ -148,7 +148,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   }
 
   public createCookieList(
-    cookies: browser.cookies.CookieProperties[],
+    cookies: browser.cookies.Cookie[],
     expression: Expression,
   ) {
     const { onUpdateExpression } = this.props;

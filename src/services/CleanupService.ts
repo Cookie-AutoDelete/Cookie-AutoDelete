@@ -295,7 +295,7 @@ export const cleanCookies = async (
   state: State,
   markedForDeletion: CleanReasonObject[],
 ): Promise<void> => {
-  const promiseArr: Promise<browser.cookies.Cookie | null>[] = [];
+  const promiseArr: Promise<browser.cookies._RemoveReturnDetails | null>[] = [];
   markedForDeletion.forEach((obj) => {
     const cookieProperties = obj.cookie;
     const cookieAPIProperties = returnOptionalCookieAPIAttributes(state, {
@@ -399,7 +399,7 @@ export const clearLocalStorageForThisDomain = async (
   try {
     let local = 0;
     let session = 0;
-    const result = await browser.tabs.executeScript(undefined, {
+    const result = await browser.tabs.executeScript({
       code: `var cad_r = {local: window.localStorage.length, session: window.sessionStorage.length};window.localStorage.clear();window.sessionStorage.clear();cad_r;`,
     });
     result.forEach((frame: { [key: string]: any }) => {
