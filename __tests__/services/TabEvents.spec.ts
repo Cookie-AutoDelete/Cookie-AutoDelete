@@ -90,7 +90,6 @@ const sampleTab: browser.tabs.Tab = {
   isInReaderMode: false,
   lastAccessed: 12345678,
   pinned: false,
-  selected: true,
   url: 'https://www.example.com',
   windowId: 1,
 };
@@ -127,6 +126,7 @@ describe('TabEvents', () => {
 
     const testCookie: browser.cookies.Cookie = {
       domain: 'domain.com',
+      firstPartyDomain: '',
       hostOnly: true,
       httpOnly: true,
       name: 'blah',

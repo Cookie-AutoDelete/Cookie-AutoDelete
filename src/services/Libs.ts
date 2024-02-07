@@ -111,7 +111,7 @@ export const convertVersionToNumber = (version?: string): number => {
  * @param action The EventListenerAction (add/remove).
  */
 export const eventListenerActions = (
-  event: EvListener<any>,
+  event: WebExtEvent<any>,
   listener: (...args: any[]) => void,
   action: EventListenerAction,
 ): void => {

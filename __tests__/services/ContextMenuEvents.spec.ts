@@ -81,7 +81,6 @@ const sampleTab: browser.tabs.Tab = {
   isInReaderMode: false,
   lastAccessed: 12345678,
   pinned: false,
-  selected: true,
   url: 'https://www.example.com',
   windowId: 1,
 };
