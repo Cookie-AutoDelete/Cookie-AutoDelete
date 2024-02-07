@@ -37,6 +37,7 @@ class App extends Component<OwnProps> {
       (this.props.sizeSetting as number) || 16
     }px`;
     const tab = await browser.tabs.getCurrent();
+    if (tab === undefined) return;
     const tabURL = new URL(tab.url || '');
     this.setState({
       activeTab:

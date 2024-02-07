@@ -53,6 +53,7 @@ import ipaddr from 'ipaddr.js';
 
 const mockCookie: browser.cookies.Cookie = {
   domain: 'domain.com',
+  firstPartyDomain: '',
   hostOnly: true,
   httpOnly: true,
   name: 'blah',
@@ -488,6 +489,7 @@ describe('Library Functions', () => {
 
     const testCookie: browser.cookies.Cookie = {
       domain: 'domain.com',
+      firstPartyDomain: '',
       hostOnly: true,
       httpOnly: true,
       name: 'blah',
@@ -511,7 +513,6 @@ describe('Library Functions', () => {
       isInReaderMode: false,
       lastAccessed: 12345678,
       pinned: false,
-      selected: true,
       url: 'https://www.example.com',
       windowId: 1,
     };
@@ -1446,7 +1447,7 @@ describe('Library Functions', () => {
   });
 
   describe('returnOptionalCookieAPIAttributes()', () => {
-    it('should return an object with an undefined firstPartyDomain if browser was Firefox and firstPartyDomain was not already defined.', () => {
+    it('should return an object with an empty firstPartyDomain if browser was Firefox and firstPartyDomain was not already defined.', () => {
       const state = {
         ...initialState,
         cache: {
@@ -1464,7 +1465,7 @@ describe('Library Functions', () => {
       expect(results).toEqual(
         expect.objectContaining({
           domain: 'example.com',
-          firstPartyDomain: undefined,
+          firstPartyDomain: '',
         }),
       );
     });
