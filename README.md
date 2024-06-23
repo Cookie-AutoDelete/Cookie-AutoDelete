@@ -1,4 +1,4 @@
-[link-amo]: https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/
+[link-amo]: https://addons.mozilla.org/firefox/addon/cookie-autodelete/
 [link-cws]: https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh
 [link-edge]: https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo
 
@@ -8,7 +8,7 @@
 
 # Cookie AutoDelete
 
-Control your cookies! This extension is inspired by [Self-Destructing Cookies](https://addons.mozilla.org/en-US/firefox/addon/self-destructing-cookies/). When a tab closes, any cookies not being used are automatically deleted. Prevent tracking by other cookies and add only the ones you trust. Easily import and export your cookie whitelist.
+Control your cookies! This extension is inspired by [Self-Destructing Cookies](https://addons.mozilla.org/firefox/addon/self-destructing-cookies/). When a tab closes, any cookies not being used are automatically deleted. Prevent tracking by other cookies and add only the ones you trust. Easily import and export your cookie whitelist.
 
 ## Main features
 
@@ -83,7 +83,7 @@ If there are any bugs that only a certain browser has, and you have the fix for 
 
 - Firefox
 
-  - Easiest way would be to run the tool [web-ext](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext#Testing_out_an_extension)
+  - Easiest way would be to run the tool [web-ext](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/#Testing_out_an_extension)
   - Another way is go into `about:debugging` and load `/extension/manifest.json`
 
 - Chrome
