@@ -98,3 +98,6 @@ If there are any bugs that only a certain browser has, and you have the fix for 
 ## Documentation
 
 Full documentation can be found in the [wiki](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation).
+
+ 
+
