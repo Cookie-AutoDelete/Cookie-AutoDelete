@@ -110,7 +110,7 @@ jobs:
           override_commit: ${{ github.event.workflow_run.head_sha }}
       - name: Coveralls.io Coverage Upload
         id: coveralls_action
-        uses: coverallsapp/github-action@v2
+        uses: coverallsapp/github-action@v2.3.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           git-branch: ${{ github.event.workflow_run.head_branch }}

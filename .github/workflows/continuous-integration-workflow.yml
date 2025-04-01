@@ -107,14 +107,14 @@ jobs:
           path: coverage
       - name: Coveralls.io Coverage Upload
         id: coveralls_action
-        uses: coverallsapp/github-action@v2
+        uses: coverallsapp/github-action@v2.3.6
         if: false && github.event_name != 'pull_request_target'
         continue-on-error: true
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Coveralls.io Coverage Upload for pull_request_target
         id: coveralls_prt
-        uses: coverallsapp/github-action@v2
+        uses: coverallsapp/github-action@v2.3.6
         continue-on-error: true
         if: false && github.event_name == 'pull_request_target'
         with:
