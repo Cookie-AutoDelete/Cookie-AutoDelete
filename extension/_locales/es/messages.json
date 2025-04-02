@@ -835,6 +835,16 @@
       }
     }
   },
+  "reasonCleanCookieExpiredRestart": {
+    "message": "Limpieza parcial de $hostname$ debido a las cookies expiradas, al reiniciar.",
+    "description": "Partial clean because of expired cookies from $hostname$ on restart. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
   "reasonCleanCookieName": {
     "message": "Limpieza parcial de $matchedExpression$ debido a la coincidencia en la $listType$",
     "description": "Partial clean because of matched $matchedExpression$ in the $listType$. Used in cleanup logs.",

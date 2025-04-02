@@ -59,6 +59,10 @@
     "message": "Pulizia automatica attivata",
     "description": "Auto-clean enabled"
   },
+  "browsingDataNoEmptyWarning": {
+    "message": "ATTENZIONE: I tipi di dati esistenti del sito NON verranno puliti quando abilitati di recente. NON saremo in grado di pulire alcun dato esistente fino a quando il suo dominio non sarà stato visitato almeno una volta, includendo anche i domini indesiderati.",
+    "description": "WARNING:  Existing site data types will NOT be cleaned when newly enabled. We will NOT be able to clean any of the existing data until its domain has been visited at least once, including from unwanted domains. Found in CAD Settings"
+  },
   "browsingDataWarning": {
     "message": "ATTENZIONE: Prima di attivare una delle seguenti opzioni di pulizia dei dati dei siti, TUTTI i dati esistenti per quel tipo saranno eliminati.",
     "description": "WARNING: Upon enabling any of the following site data cleanup options, ALL existing data for that type will be cleared. Found in CAD Settings"
@@ -811,9 +815,29 @@
       }
     }
   },
+  "reasonCADSiteDataCookieRestart": {
+    "message": "Pulisci per attivare la pulizia dei dati del sito $hostname$ al riavvio.",
+    "description": "Clean to trigger Site Data cleaning for $hostname$ on restart. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "example.com"
+      }
+    }
+  },
   "reasonCleanCookieExpired": {
     "message": "Pulizia parziale a causa dei cookie scaduti da $hostname$.",
     "description": "Partial clean because of expired cookies from $hostname$. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
+  "reasonCleanCookieExpiredRestart": {
+    "message": "Pulizia parziale a causa di cookie scaduti da $hostname$ al riavvio.",
+    "description": "Partial clean because of expired cookies from $hostname$ on restart. Found in Activity Log Detailed Entries.",
     "placeholders": {
       "hostname": {
         "content": "$1",
@@ -1024,6 +1048,10 @@
   "showNumberOfCookiesInIconText": {
     "message": "Mostra il numero di cookie per quel dominio sopra l'icona",
     "description": "Show Number of Cookies for that Domain over the Icon"
+  },
+  "siteDataEmptyOnEnable": {
+    "message": "Pulisci i dati esistenti per tutte la categorie di dati di navigazione abilitati di recente",
+    "description": "Clean Existing Data for Newly Enabled Browsing Data Types"
   },
   "siteDataText": {
     "message": "Dati Sito",

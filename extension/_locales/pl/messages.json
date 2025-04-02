@@ -831,6 +831,16 @@
       }
     }
   },
+  "reasonCleanCookieExpiredRestart": {
+    "message": "Częściowo oczyszczone z powodu wygasłych ciasteczek z $hostname$ przy restarcie.",
+    "description": "Partial clean because of expired cookies from $hostname$ on restart. Found in Activity Log Detailed Entries.",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "placeholder": "sub.domain.com"
+      }
+    }
+  },
   "reasonCleanCookieName": {
     "message": "Częściowo wyczyszczone z powodu obecności $matchedExpression$ na $listType$",
     "description": "Partial clean because of matched $matchedExpression$ in the $listType$. Used in cleanup logs.",

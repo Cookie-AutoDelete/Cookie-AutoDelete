@@ -108,7 +108,7 @@
     "description": "Cleanup Log"
   },
   "clearLogsText": {
-    "message": "Protokolle leeren",
+    "message": "Protokolle löschen",
     "description": "Clear Logs"
   },
   "consoleDebugMode": {
