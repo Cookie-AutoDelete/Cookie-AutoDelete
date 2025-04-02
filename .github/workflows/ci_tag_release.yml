@@ -31,12 +31,12 @@ jobs:
           echo "ffxpi=$(ls builds/*Firefox.xpi)" >> $GITHUB_OUTPUT
       - name: Archive Production Build Artifacts
         if: success()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: builds
           path: builds
       - name: Archive Code Coverage Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage
