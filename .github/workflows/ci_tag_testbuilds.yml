@@ -30,7 +30,7 @@ jobs:
         env:
           GITSHA: ${{ github.event.after }}
       - name: Codecov.io Coverage upload
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           directory: ./coverage/
