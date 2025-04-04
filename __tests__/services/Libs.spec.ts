@@ -797,7 +797,7 @@ describe('Library Functions', () => {
         },
         {
           ...defaultExpression,
-          expression: 'fd12:3456:789a:1::1',
+          expression: '[fd12:3456:789a:1::1]',
         },
         {
           ...defaultExpression,
@@ -805,7 +805,7 @@ describe('Library Functions', () => {
         },
         {
           ...defaultExpression,
-          expression: 'fd12:3456:7890:1::/64',
+          expression: '[fd12:3456:7890:1::]/64',
         },
         {
           ...defaultExpression,
@@ -839,7 +839,7 @@ describe('Library Functions', () => {
     });
     it('should return expressions with matching IPv6 Address', () => {
       expect(
-        getMatchedExpressions(lists, 'default', 'fd12:3456:789a:1::1'),
+        getMatchedExpressions(lists, 'default', '[fd12:3456:789a:1::1]'),
       ).toEqual([lists['default'][2]]);
     });
     it('should return expressions with matching IPv4 Address with CIDR', () => {
@@ -849,7 +849,7 @@ describe('Library Functions', () => {
     });
     it('should return expressions with matching IPv6 Address with CIDR', () => {
       expect(
-        getMatchedExpressions(lists, 'default', 'fd12:3456:7890:1:5555::'),
+        getMatchedExpressions(lists, 'default', '[fd12:3456:7890:1:5555::]'),
       ).toEqual([lists['default'][4]]);
     });
     it('should return partial matched expressions when searching', () => {
@@ -1338,12 +1338,12 @@ describe('Library Functions', () => {
       ]);
     });
     it('should return proper IPv6 address', () => {
-      expect(prepareCleanupDomains('::1', browserName.Firefox)).toEqual([
+      expect(prepareCleanupDomains('[::1]', browserName.Firefox)).toEqual([
         '[::1]',
       ]);
     });
     it('should return proper IPv6 address for Chrome', () => {
-      expect(prepareCleanupDomains('::1', browserName.Chrome)).toEqual([
+      expect(prepareCleanupDomains('[::1]', browserName.Chrome)).toEqual([
         'http://[::1]',
         'https://[::1]',
       ]);
@@ -1377,7 +1377,7 @@ describe('Library Functions', () => {
       expect(
         prepareCookieDomain({
           ...mockCookie,
-          domain: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+          domain: '[2001:0db8:85a3:0000:0000:8a2e:0370:7334]',
           path: '/',
           secure: true,
         }),

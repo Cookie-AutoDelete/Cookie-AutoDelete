@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { updateExpressionUI } from '../../redux/Actions';
 import {
+  ipv6Prep,
   isChrome,
   isFirefox,
   isFirefoxNotAndroid,
@@ -116,7 +117,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       let allCookies;
       try {
         // Check if expression was a CIDR Notation
-        cidrEXP = ipaddr.parseCIDR(exp);
+        cidrEXP = ipaddr.parseCIDR(ipv6Prep(exp) || exp);
         allCookies = await browser.cookies.getAll(
           returnOptionalCookieAPIAttributes(this.props.state, {
             storeId: this.toPublicStoreId(expression.storeId),
@@ -136,7 +137,9 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
           try {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore Union types of IPv4 and IPv6 not compatible.
-            return ipaddr.parse(cookie.domain).match(cidrEXP);
+            return ipaddr
+              .parse(ipv6Prep(cookie.domain) || cookie.domain)
+              .match(cidrEXP);
           } catch {
             // Cookie domain is not an IP Address
             return false;
@@ -172,8 +175,8 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                 ...expression,
                 cookieNames: checked
                   ? originalCookieNames.filter(
-                    (cookieName) => cookieName !== name,
-                  )
+                      (cookieName) => cookieName !== name,
+                    )
                   : [...originalCookieNames, name],
               });
             }}
@@ -279,28 +282,23 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     return (
       <div>
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 78) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.CACHE)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 77) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.INDEXEDDB)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 58) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 58) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.LOCALSTORAGE)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 78) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.PLUGINDATA)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 77) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.SERVICEWORKERS)}
         <div className={'checkbox'}>
@@ -322,7 +320,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               icon={[
                 'far',
                 expression.cleanAllCookies === undefined ||
-                  expression.cleanAllCookies
+                expression.cleanAllCookies
                   ? 'check-square'
                   : 'square',
               ]}
@@ -337,7 +335,8 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               aria-labelledby={keyCleanAllCookies}
             >
               {browser.i18n.getMessage(
-                `keepAllCookies${expression.listType === ListType.GREY ? 'Grey' : ''
+                `keepAllCookies${
+                  expression.listType === ListType.GREY ? 'Grey' : ''
                 }Text`,
               )}
             </label>
