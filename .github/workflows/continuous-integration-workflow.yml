@@ -68,10 +68,10 @@ jobs:
     steps:
       - name: Checkout Default Commit
         if: github.event_name != 'pull_request_target'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Checkout Specific REF Commit
         if: github.event_name == 'pull_request_target'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.pre_info.outputs.gitSHA }}
       - name: Use Node.js LTS 22.x
