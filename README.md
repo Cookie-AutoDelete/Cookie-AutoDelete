@@ -79,7 +79,9 @@ If there are any bugs that only a certain browser has, and you have the fix for 
 
 1. Run `npm install` (if you haven't already)
 2. Run `npm run dev`
-3. Load the extension in the browser
+3. Load the extension in the browser. The project now targets Manifest V3,
+   so the background scripts are handled by a service worker defined in
+   `extension/background.js`.
 
 - Firefox
 

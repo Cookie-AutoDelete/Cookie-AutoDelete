@@ -33,6 +33,10 @@ import { ReduxAction, ReduxConstants } from './typings/ReduxConstants';
 import ContextualIdentitiesEvents from './services/ContextualIdentitiesEvents';
 import SettingService from './services/SettingService';
 
+const browserAction: typeof browser.browserAction =
+  (browser as unknown as { action?: typeof browser.browserAction }).action ||
+  browser.browserAction;
+
 let store: Store<State, ReduxAction>;
 
 // Delay saving to disk to queue up actions
@@ -51,7 +55,7 @@ const saveToStorage = () => {
 
 const onStartUp = async () => {
   const mf = browser.runtime.getManifest();
-  browser.browserAction.setTitle({
+  browserAction.setTitle({
     title: `${mf.name} ${mf.version} [STARTING UP...] (0)`,
   });
   const storage = await browser.storage.local.get();
@@ -146,7 +150,7 @@ const onStartUp = async () => {
   if (browser.contextualIdentities) {
     await ContextualIdentitiesEvents.init();
   }
-  browser.browserAction.setTitle({
+  browserAction.setTitle({
     title: `${mf.name} ${mf.version} [READY] (0)`,
   });
 };

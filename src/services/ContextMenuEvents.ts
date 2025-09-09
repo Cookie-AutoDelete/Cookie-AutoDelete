@@ -285,7 +285,7 @@ export default class ContextMenuEvents extends StoreUser {
         ...createProperties,
         contexts: createProperties.contexts
           ? createProperties.contexts
-          : ['browser_action', 'page'],
+          : (['action', 'browser_action', 'page'] as unknown as browser.menus.ContextType[]),
       },
       ContextMenuEvents.onCreatedOrUpdated,
     );
