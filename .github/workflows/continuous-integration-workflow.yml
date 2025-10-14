@@ -76,7 +76,7 @@ jobs:
           ref: ${{ needs.pre_info.outputs.gitSHA }}
       - name: Use Node.js LTS 22.x
         id: node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '22.x'
       - name: Cache Node Modules
