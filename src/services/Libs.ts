@@ -13,6 +13,23 @@
 
 import ipaddr from 'ipaddr.js';
 import shortid from 'shortid';
+import browser from 'webextension-polyfill';
+import type { CookiePropertiesCleanup } from '../typings/Cleanup';
+import type {
+  CacheMap,
+  CADLogItem,
+  Expression,
+  StoreIdToExpressionList,
+} from '../typings/Global';
+import {
+  BrowserName,
+  EventListenerAction,
+  ListType,
+  SettingID,
+  SiteDataType,
+} from '../typings/Enums';
+import type { State } from '../redux/Store';
+import { browserDetect } from '../utils/BrowserDetect';
 
 /* --- CONSTANTS --- */
 export const CADCOOKIENAME = 'CookieAutoDeleteBrowsingDataCleanup';
@@ -83,8 +100,8 @@ export const cadLog = (x: CADLogItem, output: boolean): void => {
  * Create Partial Cookie info for debug
  */
 export const createPartialTabInfo = (
-  tab: Partial<browser.tabs.Tab>,
-): Partial<browser.tabs.Tab> => {
+  tab: Partial<browser.Tabs.Tab>,
+): Partial<browser.Tabs.Tab> => {
   return {
     cookieStoreId: tab.cookieStoreId,
     discarded: tab.discarded,
@@ -111,7 +128,7 @@ export const convertVersionToNumber = (version?: string): number => {
  * @param action The EventListenerAction (add/remove).
  */
 export const eventListenerActions = (
-  event: EvListener<any>,
+  event: browser.Events.Event<any>,
   listener: (...args: any[]) => void,
   action: EventListenerAction,
 ): void => {
@@ -180,11 +197,12 @@ export const extractMainDomain = (domain: string): string => {
  */
 export const getAllCookiesForDomain = async (
   state: State,
-  tab: browser.tabs.Tab,
-): Promise<browser.cookies.Cookie[] | undefined> => {
+  tab: browser.Tabs.Tab,
+): Promise<browser.Cookies.Cookie[] | undefined> => {
   if (!tab.url || tab.url === '') return;
   if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
   const debug = getSetting(state, SettingID.DEBUG_MODE) as boolean;
+  const firefox = isFirefox(state.cache);
   const partialTabInfo = createPartialTabInfo(tab);
   const { cookieStoreId, url } = tab;
   const hostname = getHostname(url);
@@ -198,12 +216,12 @@ export const getAllCookiesForDomain = async (
     );
     return;
   }
-  const cookies: browser.cookies.Cookie[] = [];
+  const cookies: browser.Cookies.Cookie[] = [];
   const mainDomain = extractMainDomain(hostname);
 
   if (hostname.startsWith('file:')) {
     const allCookies = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
+      returnOptionalCookieAPIAttributes(firefox, {
         storeId: cookieStoreId,
       }),
     );
@@ -232,7 +250,7 @@ export const getAllCookiesForDomain = async (
       debug,
     );
     const cookiesFPI = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
+      returnOptionalCookieAPIAttributes(firefox, {
         domain: hostname,
         firstPartyDomain: mainDomain,
         storeId: cookieStoreId,
@@ -256,7 +274,7 @@ export const getAllCookiesForDomain = async (
       debug,
     );
     const cookiesFPIUseSite = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
+      returnOptionalCookieAPIAttributes(firefox, {
         domain: hostname,
         firstPartyDomain: `(${proto},${mainDomain})`,
         storeId: cookieStoreId,
@@ -278,7 +296,7 @@ export const getAllCookiesForDomain = async (
         debug,
       );
       const cookiesFPIUseSitePort = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(state, {
+        returnOptionalCookieAPIAttributes(firefox, {
           domain: hostname,
           firstPartyDomain: `(${proto},${mainDomain},${siteURL.port})`,
           storeId: cookieStoreId,
@@ -299,7 +317,7 @@ export const getAllCookiesForDomain = async (
       debug,
     );
     const cookiesDomain = await browser.cookies.getAll(
-      returnOptionalCookieAPIAttributes(state, {
+      returnOptionalCookieAPIAttributes(firefox, {
         domain: hostname,
         storeId: cookieStoreId,
       }),
@@ -386,7 +404,7 @@ export const getHostname = (urlToGetHostName: string | undefined): string => {
       return hostname.slice(1, -1);
     }
     return hostname;
-  } catch (e) {
+  } catch (err) {
     return '';
   }
 };
@@ -482,7 +500,7 @@ export const getStoreId = (state: State, storeId: string): string => {
       storeId !== 'firefox-private' &&
       isFirefox(state.cache)) ||
     (isChrome(state.cache) && storeId === '0') ||
-    (state.cache.browserDetect === browserName.Opera && storeId === '0')
+    (state.cache.browserDetect === BrowserName.Opera && storeId === '0')
   ) {
     return 'default';
   }
@@ -542,7 +560,7 @@ export const isAWebpage = (URL: string | undefined): boolean => {
 export const isChrome = (cache: CacheMap): boolean => {
   return (
     Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
-    cache.browserDetect === browserName.Chrome
+    cache.browserDetect === BrowserName.Chrome
   );
 };
 
@@ -553,7 +571,7 @@ export const isChrome = (cache: CacheMap): boolean => {
 export const isFirefox = (cache: CacheMap): boolean => {
   return (
     Object.prototype.hasOwnProperty.call(cache, 'browserDetect') &&
-    cache.browserDetect === browserName.Firefox
+    cache.browserDetect === BrowserName.Firefox
   );
 };
 
@@ -680,7 +698,7 @@ export const parseCookieStoreId = (
  */
 export const prepareCleanupDomains = (
   domain: string,
-  bName: browserName = browserDetect() as browserName,
+  bName = browserDetect(),
 ): string[] => {
   if (domain.trim() === '') return [];
   let d: string = domain.trim();
@@ -707,7 +725,7 @@ export const prepareCleanupDomains = (
     }
   }
 
-  if (bName === browserName.Chrome || bName === browserName.Opera) {
+  if (bName === BrowserName.Chrome || bName === BrowserName.Opera) {
     const origins: string[] = [];
     for (const d of domains) {
       origins.push(`http://${d}`);
@@ -722,7 +740,7 @@ export const prepareCleanupDomains = (
 /**
  * Puts the domain in the right format for browser.cookies.remove()
  */
-export const prepareCookieDomain = (cookie: browser.cookies.Cookie): string => {
+export const prepareCookieDomain = (cookie: browser.Cookies.Cookie): string => {
   let cookieDomain = cookie.domain.trim();
   if (cookieDomain.length === 0 && cookie.path.trim().length !== 0) {
     // No Domain - presuming local file (file:// protocol)
@@ -760,16 +778,16 @@ export const returnMatchedExpressionObject = (
  * Return optional attributes for the Cookie API calls
  */
 export const returnOptionalCookieAPIAttributes = (
-  state: State | CacheMap,
+  isFirefox: boolean,
   cookieAPIAttributes: Partial<CookiePropertiesCleanup> & {
-    [x: string]: any;
+    [x: string]: unknown;
   },
 ): Partial<CookiePropertiesCleanup> => {
   // Add optional firstPartyDomain attribute
   // To fetch firstPartyIsolation cookies even if FPI is off,
   // set firstPartyDomain to null.
   if (
-    isFirefox(state.cache) &&
+    isFirefox &&
     !Object.prototype.hasOwnProperty.call(
       cookieAPIAttributes,
       'firstPartyDomain',
@@ -781,7 +799,7 @@ export const returnOptionalCookieAPIAttributes = (
     };
   }
   // Only remove FPI Property if it is NOT firefox.
-  if (!isFirefox(state.cache)) {
+  if (!isFirefox) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { firstPartyDomain, ...rest } = cookieAPIAttributes;
     return rest;
@@ -815,9 +833,9 @@ export const showNotification = (
     }`,
     type: 'basic',
   });
-  setTimeout(() => {
-    browser.notifications.clear(sid);
-  }, x.duration * 1000);
+  void waitUntil(sleep(x.duration * 1000)).then(() =>
+    browser.notifications.clear(sid),
+  );
 };
 
 /**
@@ -833,10 +851,23 @@ export const siteDataToBrowser = (siteData: SiteDataType): string =>
  * Ensures no 0 second setTimeout otherwise side effects.
  * Ensures we don't go over max signed 32-bit Int of 2,147,483,647
  */
-export const sleep = (ms: number): Promise<any> => {
+export const sleep = (ms: number): Promise<void> => {
   return new Promise((r) =>
     setTimeout(r, ms < 250 ? 250 : ms > 2147483500 ? 2147483500 : ms),
   );
+};
+
+/**
+ * Waits until the promise resolves, while keeping the extension alive.
+ */
+export const waitUntil = async (promise: Promise<unknown>) => {
+  browser.runtime.getPlatformInfo(); // Refresh SW lifecycle immediately.
+  const keepAlive = setInterval(browser.runtime.getPlatformInfo, 25 * 1000);
+  try {
+    await promise;
+  } finally {
+    clearInterval(keepAlive);
+  }
 };
 
 /**
@@ -847,14 +878,14 @@ export const sleep = (ms: number): Promise<any> => {
 export const throwErrorNotification = (e: Error, duration: number): void => {
   const nid = `CAD-notification-failed-${shortid.generate()}`;
   browser.notifications.create(nid, {
-    iconUrl: browser.runtime.getURL('icons/icon_red_48.png'),
+    iconUrl: browser.runtime.getURL('icons/icon_48_red.png'),
     message: e.message,
     title: browser.i18n.getMessage('errorText'),
     type: 'basic',
   });
-  setTimeout(() => {
-    browser.notifications.clear(nid);
-  }, duration * 1000);
+  void waitUntil(sleep(duration * 1000)).then(() =>
+    browser.notifications.clear(nid),
+  );
 };
 
 /**

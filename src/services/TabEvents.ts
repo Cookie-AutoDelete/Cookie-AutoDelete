@@ -12,11 +12,14 @@
  */
 
 import shortid from 'shortid';
+import browser from 'webextension-polyfill';
+import { SettingID } from '../typings/Enums';
 import AlarmEvents from './AlarmEvents';
 import {
   checkIfProtected,
   showNumberOfCookiesInIcon,
 } from './BrowserActionService';
+import type { CookieChangeInfo } from './CookieEvents';
 import {
   CADCOOKIENAME,
   cadLog,
@@ -26,16 +29,18 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
+  isFirefox,
   isFirstPartyIsolate,
   returnOptionalCookieAPIAttributes,
 } from './Libs';
 import StoreUser from './StoreUser';
+import { selectSettingValues } from '../redux/SettingsSlice';
 
 export default class TabEvents extends StoreUser {
   public static onTabDiscarded(
     tabId: number,
-    changeInfo: browser.tabs.TabChangeInfo,
-    tab: browser.tabs.Tab,
+    changeInfo: browser.Tabs.OnUpdatedChangeInfoType,
+    tab: browser.Tabs.Tab,
   ): void {
     if (getSetting(StoreUser.store.getState(), SettingID.CLEAN_DISCARDED)) {
       const debug = getSetting(
@@ -69,8 +74,10 @@ export default class TabEvents extends StoreUser {
   }
   public static onTabUpdate(
     tabId: number,
-    changeInfo: browser.tabs.TabChangeInfo,
-    tab: browser.tabs.Tab,
+    changeInfo: browser.Tabs.OnUpdatedChangeInfoType & {
+      cookieChanged?: CookieChangeInfo;
+    },
+    tab: browser.Tabs.Tab,
   ): void {
     if (tab.status === 'complete') {
       const debug = getSetting(
@@ -99,14 +106,30 @@ export default class TabEvents extends StoreUser {
             },
             debug,
           );
-          TabEvents.getAllCookieActions(tab);
-          TabEvents.onTabUpdateDelay = false;
-          cadLog(
-            {
-              msg: 'TabEvents.onTabUpdate: actions have been processed and flag cleared.',
-            },
-            debug,
-          );
+          // Need to check if the tab is still valid.
+          browser.tabs
+            .get(tabId)
+            .then(() => {
+              TabEvents.getAllCookieActions(tab);
+              cadLog(
+                {
+                  msg: 'TabEvents.onTabUpdate: actions have been processed and flag cleared.',
+                },
+                debug,
+              );
+            })
+            .catch(() => {
+              cadLog(
+                {
+                  msg: 'TabEvents.onTabUpdate: Tab is no longer valid.  Skipping actions.',
+                  x: { tabId, changeInfo, partialTabInfo },
+                },
+                debug,
+              );
+            })
+            .finally(() => {
+              TabEvents.onTabUpdateDelay = false;
+            });
         }, 750);
       } else {
         cadLog(
@@ -122,8 +145,8 @@ export default class TabEvents extends StoreUser {
 
   public static onDomainChange(
     tabId: number,
-    changeInfo: browser.tabs.TabChangeInfo,
-    tab: browser.tabs.Tab,
+    changeInfo: browser.Tabs.OnUpdatedChangeInfoType,
+    tab: browser.Tabs.Tab,
   ): void {
     const debug = getSetting(
       StoreUser.store.getState(),
@@ -223,10 +246,11 @@ export default class TabEvents extends StoreUser {
       },
       getSetting(StoreUser.store.getState(), SettingID.DEBUG_MODE) as boolean,
     );
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete TabEvents.tabToDomain[tabId];
   }
 
-  public static cleanFromTabEvents = async (): Promise<void> => {
+  public static cleanFromTabEvents = async () => {
     const debug = getSetting(
       StoreUser.store.getState(),
       SettingID.DEBUG_MODE,
@@ -240,7 +264,7 @@ export default class TabEvents extends StoreUser {
           },
           debug,
         );
-        await AlarmEvents.createActiveModeAlarm();
+        AlarmEvents.createActiveModeAlarm();
       } else {
         cadLog(
           {
@@ -254,7 +278,7 @@ export default class TabEvents extends StoreUser {
   };
 
   public static getAllCookieActions = async (
-    tab: browser.tabs.Tab,
+    tab: browser.Tabs.Tab,
   ): Promise<void> => {
     if (!tab.url || tab.url === '') return;
     if (tab.url.startsWith('about:') || tab.url.startsWith('chrome:')) return;
@@ -266,6 +290,16 @@ export default class TabEvents extends StoreUser {
     const cookies = await getAllCookiesForDomain(
       StoreUser.store.getState(),
       tab,
+    );
+    const settings = selectSettingValues(
+      StoreUser.store.getState().settings,
+      SettingID.DEBUG_MODE,
+      SettingID.CLEANUP_CACHE,
+      SettingID.CLEANUP_INDEXEDDB,
+      SettingID.CLEANUP_LOCALSTORAGE,
+      SettingID.CLEANUP_PLUGINDATA,
+      SettingID.CLEANUP_SERVICEWORKERS,
+      SettingID.NUM_COOKIES_ICON,
     );
 
     if (!cookies) {
@@ -285,22 +319,16 @@ export default class TabEvents extends StoreUser {
 
     if (
       internalCookies.length === 0 &&
-      (getSetting(StoreUser.store.getState(), SettingID.CLEANUP_CACHE) ||
-        getSetting(StoreUser.store.getState(), SettingID.CLEANUP_INDEXEDDB) ||
-        getSetting(
-          StoreUser.store.getState(),
-          SettingID.CLEANUP_LOCALSTORAGE,
-        ) ||
-        getSetting(StoreUser.store.getState(), SettingID.CLEANUP_PLUGINDATA) ||
-        getSetting(
-          StoreUser.store.getState(),
-          SettingID.CLEANUP_SERVICEWORKERS,
-        )) &&
+      (settings.cacheCleanup ||
+        settings.indexedDBCleanup ||
+        settings.localStorageCleanup ||
+        settings.pluginDataCleanup ||
+        settings.serviceWorkersCleanup) &&
       isAWebpage(tab.url) &&
       !tab.url.startsWith('file:')
     ) {
       const cookiesAttributes = returnOptionalCookieAPIAttributes(
-        StoreUser.store.getState(),
+        isFirefox(StoreUser.store.getState().cache),
         {
           expirationDate: Math.floor(Date.now() / 1000 + 31557600),
           firstPartyDomain: (await isFirstPartyIsolate())
@@ -343,7 +371,7 @@ export default class TabEvents extends StoreUser {
 
     // Exclude Firefox Android for browser icons and badge texts
     if (
-      getSetting(StoreUser.store.getState(), SettingID.NUM_COOKIES_ICON) &&
+      settings.showNumOfCookiesInIcon &&
       (StoreUser.store.getState().cache.platformOs || '') !== 'android'
     ) {
       cadLog(

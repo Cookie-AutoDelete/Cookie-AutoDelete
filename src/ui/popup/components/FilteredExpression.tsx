@@ -11,24 +11,26 @@
  * SOFTWARE.
  */
 import * as React from 'react';
-import { connect } from 'react-redux';
+import browser from 'webextension-polyfill';
 
 import { getMatchedExpressions } from '../../../services/Libs';
 import ExpressionTable from '../../common_components/ExpressionTable';
+import { useUISelector } from '../../hooks';
+import { shallowEqual } from 'react-redux';
 
 interface OwnProps {
   url: string;
   storeId: string;
 }
 
-interface ReduxState {
-  expressions: ReadonlyArray<Expression>;
-}
+const FilteredExpression: React.FunctionComponent<OwnProps> = (props) => {
+  const { storeId, url } = props;
 
-const FilteredExpression: React.FunctionComponent<OwnProps & ReduxState> = (
-  props,
-) => {
-  const { expressions, storeId } = props;
+  const expressions = useUISelector(
+    (state) => getMatchedExpressions(state.lists, storeId, url),
+    shallowEqual,
+  );
+
   return (
     <ExpressionTable
       expressionColumnTitle={browser.i18n.getMessage(
@@ -37,29 +39,12 @@ const FilteredExpression: React.FunctionComponent<OwnProps & ReduxState> = (
       expressions={expressions}
       storeId={storeId}
       emptyElement={
-        <span
-          style={{
-            fontStyle: 'italic',
-            width: '100%',
-          }}
-        >
-          <div
-            className="alert alert-primary"
-            role="alert"
-            style={{
-              marginBottom: 0,
-            }}
-          >
-            <i>{browser.i18n.getMessage('noRulesText')}</i>
-          </div>
-        </span>
+        <div className="alert alert-primary col mb-0" role="alert">
+          <i>{browser.i18n.getMessage('noRulesText')}</i>
+        </div>
       }
     />
   );
 };
 
-const mapStateToProps = (state: State, props: OwnProps) => ({
-  expressions: getMatchedExpressions(state.lists, props.storeId, props.url),
-});
-
-export default connect(mapStateToProps)(FilteredExpression);
+export default FilteredExpression;

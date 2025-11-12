@@ -16,11 +16,11 @@ import { when } from 'jest-when';
 import CookieEvents from '../../src/services/CookieEvents';
 import * as Lib from '../../src/services/Libs';
 import TabEvents from '../../src/services/TabEvents';
+import type * as browser from 'webextension-polyfill';
 
-jest.requireActual('../../src/services/Libs');
-const spyLib: JestSpyObject = global.generateSpies(Lib);
+const spyLib = global.generateSpies(Lib);
 
-const defaultCookie: browser.cookies.Cookie = {
+const defaultCookie: browser.Cookies.Cookie = {
   domain: 'domain.com',
   hostOnly: false,
   httpOnly: false,
@@ -31,9 +31,10 @@ const defaultCookie: browser.cookies.Cookie = {
   session: true,
   storeId: 'firefox-default',
   value: 'CookieValue',
+  firstPartyDomain: '',
 };
 
-const defaultTab: browser.tabs.Tab = {
+const defaultTab: browser.Tabs.Tab = {
   active: true,
   cookieStoreId: 'firefox-container-00',
   hidden: false,
@@ -45,7 +46,6 @@ const defaultTab: browser.tabs.Tab = {
   isInReaderMode: false,
   lastAccessed: 12345678,
   pinned: false,
-  selected: true,
   url: 'https://domain.com',
   windowId: 1,
 };

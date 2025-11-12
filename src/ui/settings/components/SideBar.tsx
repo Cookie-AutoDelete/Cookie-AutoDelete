@@ -12,6 +12,8 @@
  */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
+import browser from "webextension-polyfill";
+
 const styles = {
   hamburger: {
     color: 'white',

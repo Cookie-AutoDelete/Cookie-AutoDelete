@@ -11,6 +11,8 @@
  * SOFTWARE.
  */
 import * as React from 'react';
+import type { Setting } from '../../typings/Global';
+
 interface OwnProps {
   numSize?: number;
   numStart?: number;
@@ -38,7 +40,7 @@ const SelectInput: React.FunctionComponent<OwnProps> = ({
       <select
         name={name}
         id={name}
-        className={'selectOptions custom-select '}
+        className={'selectOptions form-select w-auto'}
         onChange={(e) => {
           const newValue = options.includes(e.target.value as string)
             ? e.target.value
@@ -48,13 +50,10 @@ const SelectInput: React.FunctionComponent<OwnProps> = ({
             value: newValue,
           });
         }}
-        style={{ minWidth: '5em', width: 'auto' }}
         value={value as string}
       >
         {options.map((opt) => (
-          <option key={`${name}-${opt}`} selected={opt === value}>
-            {opt}
-          </option>
+          <option key={`${name}-${opt}`}>{opt}</option>
         ))}
       </select>
       <label htmlFor={name} aria-labelledby={name}>

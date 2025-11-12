@@ -11,32 +11,57 @@
  * SOFTWARE.
  */
 
-import { cookieCleanup } from '../redux/Actions';
-import { getSetting, sleep } from './Libs';
+import { cookieCleanup } from '../redux/BackgroundActions';
+import { SettingID } from '../typings/Enums';
+import { getSetting, sleep, waitUntil } from './Libs';
 import StoreUser from './StoreUser';
+import browser from 'webextension-polyfill';
 
 export default class AlarmEvents extends StoreUser {
-  public static createActiveModeAlarm = async (): Promise<void> => {
-    const seconds = parseInt(
-      getSetting(StoreUser.store.getState(), SettingID.CLEAN_DELAY) as string,
-      10,
-    );
-    const milliseconds = (seconds > 0 ? seconds : 0.5) * 1000;
-    if (AlarmEvents.alarmFlag) {
-      return;
-    }
-    AlarmEvents.alarmFlag = true;
-    await sleep(milliseconds);
+  public static handleAlarmEvent = async () => {
     if (getSetting(StoreUser.store.getState(), SettingID.ACTIVE_MODE)) {
-      StoreUser.store.dispatch<any>(
+      StoreUser.store.dispatch(
         cookieCleanup({
           greyCleanup: false,
           ignoreOpenTabs: false,
         }),
       );
     }
-    AlarmEvents.alarmFlag = false;
+    await AlarmEvents.setAlarmFlag(false);
   };
-  // Create an alarm delay or use setTimeout before cookie cleanup
-  private static alarmFlag = false;
+
+  public static createActiveModeAlarm = async () => {
+    const seconds = parseInt(
+      getSetting(StoreUser.store.getState(), SettingID.CLEAN_DELAY) as string,
+      10,
+    );
+    const milliseconds = (seconds > 0 ? seconds : 0.5) * 1000;
+
+    const alarmFlag = await AlarmEvents.getAlarmFlag();
+    if (alarmFlag) {
+      return;
+    }
+    await AlarmEvents.setAlarmFlag(true);
+
+    // Create an alarm delay or use setTimeout before cookie cleanup
+    if (milliseconds < 60_000) {
+      void waitUntil(sleep(milliseconds).then(AlarmEvents.handleAlarmEvent));
+    } else {
+      browser.alarms.create('activeModeAlarm', {
+        delayInMinutes: milliseconds / 60_000,
+      });
+    }
+  };
+
+  private static setAlarmFlag = async (flag: boolean) =>
+    browser.storage.session.set({
+      alarms: {
+        alarm: flag,
+      },
+    });
+
+  private static getAlarmFlag = () =>
+    browser.storage.session
+      .get('alarms')
+      .then((result) => Boolean(result.alarm));
 }

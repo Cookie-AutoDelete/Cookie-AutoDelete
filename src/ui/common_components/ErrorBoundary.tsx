@@ -9,15 +9,16 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- */
+*/
+
+import browser from 'webextension-polyfill';
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { resetAll } from '../../redux/Actions';
 import { cadLog } from '../../services/Libs';
-import { ReduxAction } from '../../typings/ReduxConstants';
 import { downloadObjectAsJSON } from '../UILibs';
 import IconButton from './IconButton';
+import { connect } from 'react-redux';
+import type { Dispatch, State } from '../../redux/Store';
+import { resetAll } from '../../redux/SharedActions';
 
 // This fixes the error thrown when upgrading react-redux from 7.1.7 to 7.1.8
 interface ChildrenProps {
@@ -127,7 +128,7 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onResetButtonClick() {
     dispatch(resetAll());
   },

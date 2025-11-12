@@ -12,41 +12,34 @@
  */
 
 import { when } from 'jest-when';
-import { Store } from 'redux';
+import type { Store } from 'redux';
+import type * as browser from 'webextension-polyfill';
 
-import { resetSettings, updateSetting } from '../../src/redux/Actions';
-import { initialState } from '../../src/redux/State';
-// tslint:disable-next-line: import-name
-import createStore from '../../src/redux/Store';
-import { ReduxAction, ReduxConstants } from '../../src/typings/ReduxConstants';
+import { configureWrapStore, State } from '../../src/redux/Store';
 import AlarmEvents from '../../src/services/AlarmEvents';
 import * as BrowserActionService from '../../src/services/BrowserActionService';
 import * as Lib from '../../src/services/Libs';
-import TabEvents from '../../src/services/TabEvents';
 import StoreUser from '../../src/services/StoreUser';
+import TabEvents from '../../src/services/TabEvents';
+import { addCache } from '../../src/redux/CacheSlice';
+import { BrowserName, SettingID } from '../../src/typings/Enums';
+import { resetSettings, updateSetting } from '../../src/redux/SettingsSlice';
 
-jest.requireActual('../../src/services/AlarmEvents');
-const spyAlarmEvents: JestSpyObject = global.generateSpies(AlarmEvents);
-const spyBrowserActions: JestSpyObject =
-  global.generateSpies(BrowserActionService);
-jest.requireActual('../../src/services/Libs');
-const spyLib: JestSpyObject = global.generateSpies(Lib);
-jest.requireActual('../../src/services/TabEvents');
-const spyTabEvents: JestSpyObject = global.generateSpies(TabEvents);
+import { initialState } from '../__mock__/initialState';
 
-jest.requireActual('../../src/services/StoreUser');
+const spyAlarmEvents = global.generateSpies(AlarmEvents);
+const spyBrowserActions = global.generateSpies(BrowserActionService);
+const spyLib = global.generateSpies(Lib);
+const spyTabEvents = global.generateSpies(TabEvents);
 
 jest.useFakeTimers();
 
-const store: Store<State, ReduxAction> = createStore(initialState);
+const store: Store<State> = configureWrapStore(initialState);
 StoreUser.init(store);
 
 class TestStore extends StoreUser {
   public static addCache(payload: any) {
-    StoreUser.store.dispatch({
-      payload,
-      type: ReduxConstants.ADD_CACHE,
-    });
+    StoreUser.store.dispatch(addCache(payload));
   }
 
   public static changeSetting(
@@ -70,7 +63,7 @@ class TestTabEvents extends TabEvents {
   }
 }
 
-const sampleChangeInfo: browser.tabs.TabChangeInfo = {
+const sampleChangeInfo: browser.Tabs.OnUpdatedChangeInfoType = {
   discarded: false,
   favIconUrl: 'sample',
   status: 'loading|complete',
@@ -78,7 +71,7 @@ const sampleChangeInfo: browser.tabs.TabChangeInfo = {
   url: 'sampleURL',
 };
 
-const sampleTab: browser.tabs.Tab = {
+const sampleTab: browser.Tabs.Tab = {
   active: true,
   cookieStoreId: 'firefox-default',
   discarded: false,
@@ -90,7 +83,6 @@ const sampleTab: browser.tabs.Tab = {
   isInReaderMode: false,
   lastAccessed: 12345678,
   pinned: false,
-  selected: true,
   url: 'https://www.example.com',
   windowId: 1,
 };
@@ -100,13 +92,13 @@ describe('TabEvents', () => {
     when(global.browser.runtime.getManifest)
       .calledWith()
       .mockReturnValue({ version: '0.12.34' } as never);
-    when(global.browser.cookies.getAll)
-      .calledWith(expect.any(Object))
-      .mockResolvedValue([] as never);
+    // Use default value rather then asymmetric matchers.
+    // Otherwise, the matcher added later will overwrite it.
+    when(global.browser.cookies.getAll).defaultResolvedValue([]);
     // Required so the actual cleaning functions being awaited won't run.
     when(spyAlarmEvents.createActiveModeAlarm)
       .calledWith()
-      .mockResolvedValue(undefined as never);
+      .mockReturnValue(undefined as never);
   });
 
   afterEach(() => {
@@ -125,7 +117,7 @@ describe('TabEvents', () => {
         .mockResolvedValue([testCookie] as never);
     });
 
-    const testCookie: browser.cookies.Cookie = {
+    const testCookie: browser.Cookies.Cookie = {
       domain: 'domain.com',
       hostOnly: true,
       httpOnly: true,
@@ -136,6 +128,7 @@ describe('TabEvents', () => {
       session: true,
       storeId: 'firefox-default',
       value: 'test value',
+      firstPartyDomain: '',
     };
 
     it('should do nothing if url is undefined', async () => {
@@ -263,7 +256,7 @@ describe('TabEvents', () => {
         .mockResolvedValueOnce([] as never)
         .mockRejectedValue(new Error('firstPartyDomain') as never);
       TestStore.changeSetting(SettingID.CLEANUP_CACHE, true);
-      TestStore.addCache({ key: 'browserDetect', value: browserName.Firefox });
+      TestStore.addCache({ key: 'browserDetect', value: BrowserName.Firefox });
 
       await TabEvents.getAllCookieActions({
         ...sampleTab,
@@ -313,8 +306,11 @@ describe('TabEvents', () => {
   describe('onTabUpdate', () => {
     beforeAll(() => {
       when(spyTabEvents.getAllCookieActions)
-        .calledWith()
-        .mockResolvedValue(undefined as any);
+        .calledWith({} as browser.Tabs.Tab)
+        .mockResolvedValue(undefined);
+      when(global.browser.tabs.get)
+        .calledWith(0)
+        .mockResolvedValue({} as browser.Tabs.Tab);
     });
     afterAll(() => {
       spyTabEvents.getAllCookieActions.mockRestore();
@@ -328,12 +324,14 @@ describe('TabEvents', () => {
       expect(spyTabEvents.getAllCookieActions).not.toHaveBeenCalled();
     });
 
-    it('should trigger getAllCookieActions', () => {
+    it('should trigger getAllCookieActions', async () => {
       TabEvents.onTabUpdate(0, sampleChangeInfo, {
         ...sampleTab,
         status: 'complete',
       });
       jest.runAllTimers();
+      // wait for the promise in setTimeout to resolve
+      await Promise.resolve();
       expect(spyTabEvents.getAllCookieActions).toHaveBeenCalledTimes(1);
     });
 
@@ -348,7 +346,7 @@ describe('TabEvents', () => {
       );
     });
 
-    it('should not queue getAllCookieActions if one is pending already', () => {
+    it('should not queue getAllCookieActions if one is pending already', async () => {
       TestStore.changeSetting(SettingID.DEBUG_MODE, true);
       expect(TestTabEvents.getOnTabUpdateDelay()).toBe(false);
       TabEvents.onTabUpdate(0, sampleChangeInfo, {
@@ -361,7 +359,21 @@ describe('TabEvents', () => {
         status: 'complete',
       });
       jest.runAllTimers();
+      await Promise.resolve();
       expect(spyTabEvents.getAllCookieActions).toHaveBeenCalledTimes(1);
+    });
+
+    it('should do nothing if the tab is no longer valid (e.g., has been removed)', async () => {
+      when(global.browser.tabs.get)
+        .calledWith(1)
+        .mockRejectedValue(new Error());
+      TabEvents.onTabUpdate(1, sampleChangeInfo, {
+        ...sampleTab,
+        status: 'complete',
+      });
+      jest.runAllTimers();
+      await Promise.resolve();
+      expect(spyTabEvents.getAllCookieActions).not.toHaveBeenCalled();
     });
   });
 

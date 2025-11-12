@@ -11,13 +11,16 @@
  * SOFTWARE.
  */
 import * as React from 'react';
-import { connect } from 'react-redux';
+import browser from 'webextension-polyfill';
 import {
   clearCookiesForThisDomain,
   clearLocalStorageForThisDomain,
   clearSiteDataForThisDomain,
 } from '../../../services/CleanupService';
+import type { SiteDataType } from '../../../typings/Enums';
+import { useUIDispatch } from '../../hooks';
 import { animateFlash } from '../popupLib';
+import { useCallback } from 'react';
 
 interface OwnProps {
   altColor?: boolean;
@@ -25,65 +28,72 @@ interface OwnProps {
   hostname?: string;
   onClick?: () => Promise<boolean>;
   siteData?: SiteDataType | 'All';
-  tab?: browser.tabs.Tab;
+  tab?: browser.Tabs.Tab;
   title?: string;
   text?: string;
 }
 
-interface StateProps {
-  state: State;
-}
-
-const cleanSiteDataUI = async (
-  state: State,
-  siteData: SiteDataType | 'All',
-  hostname: string,
-  tab?: browser.tabs.Tab,
-): Promise<boolean> => {
-  if (!hostname) return false;
-  let result = await clearSiteDataForThisDomain(state, siteData, hostname);
-  if (siteData === 'All') {
-    if (!tab) return false;
-    const cookieSuccess = await clearCookiesForThisDomain(state, tab);
-    const localStorageSuccess = await clearLocalStorageForThisDomain(
-      state,
-      tab,
-    );
-    result = result || cookieSuccess || localStorageSuccess;
-  }
-  return result;
-};
-
-const CleanDataButton: React.FunctionComponent<OwnProps & StateProps> = (
-  props,
-) => {
+const CleanDataButton: React.FunctionComponent<OwnProps> = (props) => {
   const {
     altColor,
     btnColor,
     hostname,
     onClick,
     siteData,
-    state,
     tab,
     title,
     text,
     ...nativeProps
   } = props;
+
+  const dispath = useUIDispatch();
+
+  const cleanSiteDataUI = useCallback(
+    async (
+      siteData: SiteDataType | 'All',
+      hostname: string,
+      tab?: browser.Tabs.Tab,
+    ): Promise<boolean> => {
+      if (!hostname) return false;
+
+      let result = await dispath(
+        clearSiteDataForThisDomain({ siteData, hostname }),
+      ).unwrap();
+
+      if (siteData === 'All') {
+        if (!tab) return false;
+
+        const cookieSuccess = await dispath(
+          clearCookiesForThisDomain(tab),
+        ).unwrap();
+
+        const localStorageSuccess = await dispath(
+          clearLocalStorageForThisDomain(tab),
+        ).unwrap();
+
+        result = result || cookieSuccess || localStorageSuccess;
+      }
+      
+      return result;
+    },
+    [dispath],
+  );
+
   return (
     <button
       aria-controls="cleanCollapse"
       aria-expanded="false"
       className={`btn ${
         btnColor || `btn-${altColor ? 'secondary' : 'primary'}`
-      } btn-block px-2 mt-1`}
+      } px-2 mt-1`}
       data-target="#cleanCollapse"
       data-toggle="collapse"
       onClick={async () => {
         let result = true;
         if (onClick) {
           result = await onClick.apply(this);
-        } else if (state && siteData && hostname) {
-          result = await cleanSiteDataUI(state, siteData, hostname, tab);
+        } else if (siteData && hostname) {
+          result = await cleanSiteDataUI(siteData, hostname, tab);
         }
         animateFlash(document.getElementById('cleanButtonContainer'), result);
       }}
@@ -104,10 +114,4 @@ const CleanDataButton: React.FunctionComponent<OwnProps & StateProps> = (
   );
 };
 
-const mapStateToProps = (state: State) => {
-  return {
-    state,
-  };
-};
-
-export default connect(mapStateToProps)(CleanDataButton);
+export default CleanDataButton;

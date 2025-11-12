@@ -12,16 +12,26 @@
  */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { resetSettings, updateSetting } from '../../../redux/Actions';
-import { initialState } from '../../../redux/State';
+
+import browser from 'webextension-polyfill';
+import {
+  initialState as initialSettings,
+  resetSettings,
+  updateSetting,
+} from '../../../redux/SettingsSlice';
+import type { Dispatch, State } from '../../../redux/Store';
 import {
   cadLog,
   isChrome,
   isFirefox,
   isFirefoxNotAndroid,
 } from '../../../services/Libs';
-import { ReduxAction } from '../../../typings/ReduxConstants';
+import { SettingID } from '../../../typings/Enums';
+import type {
+  CacheMap,
+  MapToSettingObject,
+  Setting,
+} from '../../../typings/Global';
 import CheckboxSetting from '../../common_components/CheckboxSetting';
 import IconButton from '../../common_components/IconButton';
 import SelectInput from '../../common_components/SelectInput';
@@ -91,7 +101,7 @@ class Settings extends React.Component<SettingProps> {
       return;
     }
     const { onUpdateSetting } = this.props;
-    const initialSettingKeys = Object.keys(initialState.settings);
+    const initialSettingKeys = Object.keys(initialSettings);
     const reader = new FileReader();
     reader.onload = (file) => {
       try {
@@ -211,15 +221,15 @@ class Settings extends React.Component<SettingProps> {
     const { cache, onResetButtonClick, onUpdateSetting, settings, style } =
       this.props;
     const { error, success } = this.state;
-    const ffVersion = Number.parseInt(cache.browserVersion);
+    const ffVersion = Number.parseInt(cache.browserVersion as string);
     return (
       <div style={style}>
         <h1>{browser.i18n.getMessage('settingsText')}</h1>
         <br />
-        <div className="row no-gutters justify-content-between justify-content-md-start">
+        <div className="row g-0 gap-1 justify-content-between justify-content-md-start">
           <div className="col-7 col-md-auto">
             <IconButton
-              className="btn-primary"
+              className="btn btn-primary"
               iconName="download"
               role="button"
               onClick={() => this.exportCoreSettings()}
@@ -231,11 +241,11 @@ class Settings extends React.Component<SettingProps> {
           <div className="col-7 col-md-auto">
             <IconButton
               tag="input"
-              className="btn-info"
+              className="btn btn-info"
               iconName="upload"
               type="file"
               accept="application/json, .json"
-              onChange={(e) => this.importCoreSettings(e.target.files[0])}
+              onChange={(e) => this.importCoreSettings(e.target.files![0])}
               title={browser.i18n.getMessage('importCoreSettingsText')}
               text={browser.i18n.getMessage('importCoreSettingsText')}
               styleReact={styles.buttonStyle}
@@ -243,7 +253,7 @@ class Settings extends React.Component<SettingProps> {
           </div>
           <div className="col-7 col-md-auto">
             <IconButton
-              className="btn-danger"
+              className="btn btn-danger"
               role="button"
               onClick={() => {
                 onResetButtonClick();
@@ -263,7 +273,7 @@ class Settings extends React.Component<SettingProps> {
         {error !== '' ? (
           <div
             onClick={() => this.setState({ error: '' })}
-            className="row alert alert-danger alertPreWrap"
+            className="row g-0 alert alert-danger alertPreWrap"
           >
             {error}
           </div>
@@ -273,7 +283,7 @@ class Settings extends React.Component<SettingProps> {
         {success !== '' ? (
           <div
             onClick={() => this.setState({ success: '' })}
-            className="row alert alert-success alertPreWrap"
+            className="row ms-0 alert alert-success alertPreWrap"
           >
             {browser.i18n.getMessage('successText')} {success}
           </div>
@@ -705,7 +715,7 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onUpdateSetting(newSetting: Setting) {
     dispatch(updateSetting(newSetting));
   },

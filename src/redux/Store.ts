@@ -12,55 +12,100 @@
  */
 /* istanbul ignore file: Redux stuff.*/
 
-import { applyMiddleware, createStore } from 'redux';
-// tslint:disable-next-line:import-name
-import thunk from 'redux-thunk';
-import { createBackgroundStore } from 'redux-webext';
-import { ReduxConstants } from '../typings/ReduxConstants';
+import {
+  configureStore,
+  type ActionCreator,
+  type PayloadAction,
+  type ThunkAction,
+  type UnknownAction,
+} from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import { alias, createWrapStore } from 'webext-redux';
+
+// slices
+import type { ActivityLog } from '../typings/Cleanup';
+import type {
+  CacheMap,
+  MapToSettingObject,
+  StoreIdToExpressionList,
+} from '../typings/Global';
+import activityLog from './ActivityLogSlice';
 import {
   addExpression,
-  clearActivities,
   clearExpressions,
   cookieCleanup,
-  removeActivity,
   removeExpression,
   removeList,
-  resetAll,
-  resetCookieDeletedCounter,
-  resetSettings,
   updateExpression,
-  updateSetting,
-} from './Actions';
-import reducer from './Reducers';
+} from './BackgroundActions';
+import cache from './CacheSlice';
+import cookieDeletedCounterReducers from './CookieDeletedCounterSlices';
+import lists from './ListsSlice';
+import settings from './SettingsSlice';
+import {
+  addExpressionUI,
+  clearExpressionsUI,
+  cookieCleanupUI,
+  removeExpressionUI,
+  removeListUI,
+  updateExpressionUI,
+} from './UIActions';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const consoleMessages = (store: any) => (next: any) => (action: any) => {
-  // console.log(
-  //   `dispatching action => ${action.type}
-  // payload => ${JSON.stringify(action.payload)}`,
-  // );
+const wrapStore = createWrapStore();
 
-  return next(action);
+// The webext-redux will invoke those action creators when the ui actions are dispatched
+// to the proxy store. And the payload will be the **action object** that ui created.
+// So we need use the wrapper to extract the payload from the action object.
+const createPayloadWrapper =
+  <P, A extends UnknownAction | ThunkAction<void, State, any, UnknownAction>>(
+    actionCreator: ActionCreator<A, [P]>,
+  ): ActionCreator<A, [PayloadAction<P>]> =>
+  ({ payload }) =>
+    actionCreator(payload);
+
+// Corresponds to Action Type in UIActions
+const aliases = {
+  [addExpressionUI.type]: createPayloadWrapper(addExpression),
+  [clearExpressionsUI.type]: createPayloadWrapper(clearExpressions),
+  [removeExpressionUI.type]: createPayloadWrapper(removeExpression),
+  [updateExpressionUI.type]: createPayloadWrapper(updateExpression),
+  [removeListUI.type]: createPayloadWrapper(removeList),
+  [cookieCleanupUI.type]: createPayloadWrapper(cookieCleanup),
 };
 
-const actions: { [key in ReduxConstants]?: any } = {
-  ADD_EXPRESSION: addExpression,
-  CLEAR_ACTIVITY_LOG: clearActivities,
-  CLEAR_EXPRESSIONS: clearExpressions,
-  COOKIE_CLEANUP: cookieCleanup,
-  REMOVE_ACTIVITY_LOG: removeActivity,
-  REMOVE_EXPRESSION: removeExpression,
-  REMOVE_LIST: removeList,
-  RESET_ALL: resetAll,
-  RESET_COOKIE_DELETED_COUNTER: resetCookieDeletedCounter,
-  RESET_SETTINGS: resetSettings,
-  UPDATE_EXPRESSION: updateExpression,
-  UPDATE_SETTING: updateSetting,
-};
+export const configureWrapStore = (state: State) => {
+  const store = configureStore({
+    preloadedState: state,
+    reducer: {
+      activityLog,
+      cache,
+      ...cookieDeletedCounterReducers,
+      lists,
+      settings,
+    },
+    middleware: (getDefaultMiddleware) => {
+      const middleware = getDefaultMiddleware();
 
-export default (state = {}): any => {
-  return createBackgroundStore({
-    actions,
-    store: createStore(reducer, state, applyMiddleware(thunk, consoleMessages)),
+      // Conditionally add another middleware in dev
+      if (process.env.NODE_ENV !== 'production') {
+        middleware.push(logger);
+      }
+
+      return middleware.prepend(alias(aliases));
+    },
   });
+  wrapStore(store);
+  return store;
 };
+
+export type State = Readonly<{
+  lists: StoreIdToExpressionList;
+  cookieDeletedCounterTotal: number;
+  cookieDeletedCounterSession: number;
+  settings: MapToSettingObject;
+  activityLog: ReadonlyArray<ActivityLog>;
+  cache: CacheMap;
+}>;
+
+export type Dispatch = ReturnType<typeof configureWrapStore>['dispatch'];
+export type GetState = ReturnType<typeof configureWrapStore>['getState'];

@@ -10,9 +10,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-.addHover:hover {
-  cursor: pointer;
-}
+@import 'bootstrap/scss/bootstrap';
 
 .alertPreWrap {
   white-space: pre-wrap;
@@ -63,4 +61,8 @@ label:hover {
 
 .table {
   margin-bottom: 0;
+}
+
+#cadPopup .btn {
+  white-space: nowrap;
 }

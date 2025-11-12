@@ -11,16 +11,19 @@
  * SOFTWARE.
  */
 
+import browser from 'webextension-polyfill';
 import { extractMainDomain, getHostname } from './Libs';
 import StoreUser from './StoreUser';
 import TabEvents from './TabEvents';
 
+export type CookieChangeInfo = {
+  removed: boolean;
+  cookie: browser.Cookies.Cookie;
+  cause: browser.Cookies.OnChangedCause;
+};
+
 export default class CookieEvents extends StoreUser {
-  public static async onCookieChanged(changeInfo: {
-    removed: boolean;
-    cookie: browser.cookies.Cookie;
-    cause: browser.cookies.OnChangedCause;
-  }): Promise<void> {
+  public static async onCookieChanged(changeInfo: CookieChangeInfo) {
     // Truncate cookie value (purely for debug)
     changeInfo.cookie.value = '***';
     // Get the current active tab(s)

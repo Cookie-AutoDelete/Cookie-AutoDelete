@@ -11,36 +11,36 @@
  * SOFTWARE.
  */
 
+import type { State } from '../redux/Store';
+import { ListType, SettingID } from '../typings/Enums';
 import { getHostname, returnMatchedExpressionObject } from './Libs';
+import browser from 'webextension-polyfill';
 
 // Show the # of cookies in icon
-export const showNumberOfCookiesInIcon = (
-  tab: browser.tabs.Tab,
+export const showNumberOfCookiesInIcon = async (
+  tab: browser.Tabs.Tab,
   cookieLength: number,
-): void => {
-  if (browser.browserAction.setBadgeText) {
-    browser.browserAction.setBadgeText({
-      tabId: tab.id,
-      text: `${cookieLength === 0 ? '' : cookieLength.toString()}`,
-    });
-  }
-  if (browser.browserAction.setBadgeTextColor) {
-    browser.browserAction.setBadgeTextColor({
-      color: 'white',
-      tabId: tab.id,
-    });
-  }
+) => {
+  await browser.action?.setBadgeText({
+    tabId: tab.id,
+    text: `${cookieLength === 0 ? '' : cookieLength.toString()}`,
+  });
+
+  await browser.action?.setBadgeTextColor({
+    color: 'white',
+    tabId: tab.id,
+  });
 };
 
 // Set BrowserAction Title with number of cookies in square brackets.
 export const showNumberOfCookiesInTitle = async (
-  tab: browser.tabs.Tab,
+  tab: browser.Tabs.Tab,
   otherInfo: {
     cookieLength?: number;
     listType?: string;
     platformOS?: string;
   },
-): Promise<void> => {
+) => {
   const mf = browser.runtime.getManifest();
   // Use Shortened Extension name for mobile.
   const tabTitle = `${otherInfo.platformOS === 'android' ? 'CAD' : mf.name} ${
@@ -48,7 +48,7 @@ export const showNumberOfCookiesInTitle = async (
   }`;
 
   const curData = /\[(.*)] \((\d*)\)/.exec(
-    await browser.browserAction.getTitle({
+    await browser.action.getTitle({
       tabId: tab.id,
     }),
   );
@@ -57,53 +57,50 @@ export const showNumberOfCookiesInTitle = async (
     list: otherInfo.listType || (curData && curData[1]) || 'NO LIST',
   };
 
-  browser.browserAction.setTitle({
+  await browser.action.setTitle({
     tabId: tab.id,
     title: `${tabTitle} [${newData.list}] (${newData.cookies})`,
   });
 };
 
 // Set Badge Color accordingly (to matching list)
-const setBadgeColor = (tab: browser.tabs.Tab, color = 'default') => {
+const setBadgeColor = async (tab: browser.Tabs.Tab, color = 'default') => {
   const badgeBackgroundColor: { [key: string]: string } = {
     default: 'blue',
     red: 'red',
     yellow: '#e6a32e',
   };
-  if (browser.browserAction.setBadgeBackgroundColor) {
-    browser.browserAction.setBadgeBackgroundColor({
-      color: badgeBackgroundColor[color],
-      tabId: tab.id,
-    });
-  }
+
+  await browser.action?.setBadgeBackgroundColor({
+    color: badgeBackgroundColor[color],
+    tabId: tab.id,
+  });
 };
 
 // Set Background icon color and badgeBackgroundColor accordingly.
-const setIconColor = (
-  tab: browser.tabs.Tab,
+const setIconColor = async (
+  tab: browser.Tabs.Tab,
   keepDefault = false,
   color = 'default',
 ) => {
-  if (browser.browserAction.setIcon) {
-    browser.browserAction.setIcon({
-      path: {
-        48: `icons/icon_48${
-          keepDefault || color === 'default' ? '' : `_${color}`
-        }.png`,
-      },
-      tabId: tab.id,
-    });
-  }
+  await browser.action?.setIcon({
+    path: {
+      48: `icons/icon_48${
+        keepDefault || color === 'default' ? '' : `_${color}`
+      }.png`,
+    },
+    tabId: tab.id,
+  });
 
-  setBadgeColor(tab, color);
+  await setBadgeColor(tab, color);
 };
 
 // Set background icon for browser.
-export const setGlobalIcon = async (enabled: boolean): Promise<void> => {
+export const setGlobalIcon = async (enabled: boolean) => {
   // This sets global icon
-  if (browser.browserAction.setIcon) {
+  if (browser.action.setIcon) {
     // Set Global Icon
-    await browser.browserAction.setIcon({
+    await browser.action.setIcon({
       path: {
         48: `icons/icon_48${enabled ? '' : '_greyscale'}.png`,
       },
@@ -114,7 +111,7 @@ export const setGlobalIcon = async (enabled: boolean): Promise<void> => {
     });
     for (const tab of tabAwait) {
       if (tab.id !== browser.tabs.TAB_ID_NONE) {
-        await browser.browserAction.setIcon({
+        await browser.action.setIcon({
           path: {
             48: `icons/icon_48${enabled ? '' : '_greyscale'}.png`,
           },
@@ -128,11 +125,11 @@ export const setGlobalIcon = async (enabled: boolean): Promise<void> => {
 // Check if the site is protected and adjust the icon and titles appropriately
 export const checkIfProtected = async (
   state: State,
-  tab: browser.tabs.Tab | undefined = undefined,
+  tab: browser.Tabs.Tab | undefined = undefined,
   cookieLength?: number,
-): Promise<void> => {
+) => {
   const active = state.settings[SettingID.ACTIVE_MODE].value as boolean;
-  let activeTabs: browser.tabs.Tab[] = [];
+  let activeTabs: browser.Tabs.Tab[] = [];
 
   if (tab) {
     activeTabs.push(tab);
@@ -153,13 +150,13 @@ export const checkIfProtected = async (
 
     if (matchedExpression) {
       showNumberOfCookiesInTitle(aTab, {
-        platformOS: state.cache.platformOs,
+        platformOS: state.cache.platformOs as string,
         listType: matchedExpression.listType,
         cookieLength,
       });
     } else {
       showNumberOfCookiesInTitle(aTab, {
-        platformOS: state.cache.platformOs,
+        platformOS: state.cache.platformOs as string,
         listType: 'NO LIST',
         cookieLength,
       });
@@ -179,7 +176,7 @@ export const checkIfProtected = async (
           break;
         case ListType.GREY:
           if (active) {
-            setIconColor(
+            void setIconColor(
               aTab,
               state.settings[SettingID.KEEP_DEFAULT_ICON].value as boolean,
               'yellow',
@@ -190,7 +187,7 @@ export const checkIfProtected = async (
           break;
         default:
           if (active) {
-            setIconColor(
+            void setIconColor(
               aTab,
               state.settings[SettingID.KEEP_DEFAULT_ICON].value as boolean,
               'red',
@@ -203,19 +200,19 @@ export const checkIfProtected = async (
     } else {
       if (cookieLength !== undefined && cookieLength === 0) {
         if (active) {
-          setIconColor(aTab);
+          void setIconColor(aTab);
         } else {
-          setBadgeColor(aTab);
+          void setBadgeColor(aTab);
         }
       } else {
         if (active) {
-          setIconColor(
+          void setIconColor(
             aTab,
             state.settings[SettingID.KEEP_DEFAULT_ICON].value as boolean,
             'red',
           );
         } else {
-          setBadgeColor(aTab, 'red');
+          void setBadgeColor(aTab, 'red');
         }
       }
     }

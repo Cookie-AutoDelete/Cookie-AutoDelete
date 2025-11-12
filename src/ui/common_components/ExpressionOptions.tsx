@@ -11,18 +11,20 @@
  * SOFTWARE.
  */
 import ipaddr from 'ipaddr.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { updateExpressionUI } from '../../redux/Actions';
+import browser from 'webextension-polyfill';
 import {
   isChrome,
   isFirefox,
   isFirefoxNotAndroid,
   returnOptionalCookieAPIAttributes,
 } from '../../services/Libs';
-import { ReduxAction } from '../../typings/ReduxConstants';
+import { ListType, SiteDataType } from '../../typings/Enums';
+import type { Expression } from '../../typings/Global';
+import type { Dispatch, State } from '../../redux/Store';
+import { updateExpressionUI } from '../../redux/UIActions';
+
 interface DispatchProps {
   onUpdateExpression: (payload: Expression) => void;
 }
@@ -34,16 +36,10 @@ interface OwnProps {
 }
 
 class InitialState {
-  public cookies: browser.cookies.CookieProperties[] = [];
+  public cookies: browser.Cookies.Cookie[] = [];
 }
 
 type ExpressionOptionsProps = OwnProps & DispatchProps & StateProps;
-
-const styles = {
-  checkbox: {
-    marginRight: '5px',
-  } as React.CSSProperties,
-};
 
 const trimDotAndStar = (str: string) => {
   const trimmed = str.replace(/^[.*]+|[.*]+$/g, '');
@@ -82,12 +78,13 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
 
   public async getAllCookies() {
     const { expression } = this.props;
+    const firefox = isFirefox(this.props.state.cache);
     const exp = expression.expression;
-    let cookies: browser.cookies.CookieProperties[] = [];
+    let cookies: browser.Cookies.Cookie[] = [];
     if (exp.startsWith('/') && exp.endsWith('/')) {
       // Treat expression as regular expression.  Get all cookies then regex domain.
       const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(this.props.state, {
+        returnOptionalCookieAPIAttributes(firefox, {
           storeId: this.toPublicStoreId(expression.storeId),
         }),
       );
@@ -103,7 +100,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       }
     } else if (exp.startsWith('file:')) {
       const allCookies = await browser.cookies.getAll(
-        returnOptionalCookieAPIAttributes(this.props.state, {
+        returnOptionalCookieAPIAttributes(firefox, {
           storeId: this.toPublicStoreId(expression.storeId),
         }),
       );
@@ -118,14 +115,14 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
         // Check if expression was a CIDR Notation
         cidrEXP = ipaddr.parseCIDR(exp);
         allCookies = await browser.cookies.getAll(
-          returnOptionalCookieAPIAttributes(this.props.state, {
+          returnOptionalCookieAPIAttributes(firefox, {
             storeId: this.toPublicStoreId(expression.storeId),
           }),
         );
       } catch {
         // Not valid CIDR.  Proceed with default fetch.  Also applies to IP Addresses with no CIDR.
         cookies = await browser.cookies.getAll(
-          returnOptionalCookieAPIAttributes(this.props.state, {
+          returnOptionalCookieAPIAttributes(firefox, {
             domain: `${trimDotAndStar(exp)}${exp.endsWith('.') ? '.' : ''}`,
             storeId: this.toPublicStoreId(expression.storeId),
           }),
@@ -148,7 +145,7 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
   }
 
   public createCookieList(
-    cookies: browser.cookies.CookieProperties[],
+    cookies: browser.Cookies.Cookie[],
     expression: Expression,
   ) {
     const { onUpdateExpression } = this.props;
@@ -164,32 +161,31 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       const checked = cookieNamesSet.has(name);
       const key = `${checked}-${expression.id}-${name}`;
       return (
-        <div style={{ marginLeft: '20px' }} key={key} className={'checkbox'}>
-          <span
-            className={'addHover'}
-            onClick={() => {
+        <div style={{ marginLeft: '20px' }} key={key} className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            checked={checked}
+            aria-checked={checked}
+            id={key}
+            onChange={() => {
               onUpdateExpression({
                 ...expression,
                 cookieNames: checked
                   ? originalCookieNames.filter(
-                    (cookieName) => cookieName !== name,
-                  )
+                      (cookieName) => cookieName !== name,
+                    )
                   : [...originalCookieNames, name],
               });
             }}
+          />
+          <label
+            className="form-check-label"
+            htmlFor={key}
+            aria-labelledby={key}
           >
-            <FontAwesomeIcon
-              id={key}
-              style={styles.checkbox}
-              size={'lg'}
-              icon={['far', checked ? 'check-square' : 'square']}
-              role="checkbox"
-              aria-checked={checked as boolean}
-            />
-            <label htmlFor={key} aria-labelledby={key}>
-              {name}
-            </label>
-          </span>
+            {name}
+          </label>
         </div>
       );
     });
@@ -246,25 +242,20 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
       }
     })(expression.listType);
     return (
-      <div className={'checkbox'}>
-        <span
-          className={'addHover'}
-          onClick={() => {
+      <div className="form-check">
+        <input
+          id={keyID}
+          className={'form-check-input'}
+          type="checkbox"
+          checked={!checked}
+          aria-checked={!checked}
+          onChange={() => {
             this.toggleCleanSiteData(cleanData, !checked);
           }}
-        >
-          <FontAwesomeIcon
-            icon={['far', checked ? 'square' : 'check-square']}
-            id={keyID}
-            style={styles.checkbox}
-            size={'lg'}
-            role={'checkbox'}
-            aria-checked={!checked}
-          />
-          <label htmlFor={keyID} aria-labelledby={keyID}>
-            {browser.i18n.getMessage(localeText)}
-          </label>
-        </span>
+        />
+        <label htmlFor={keyID} aria-labelledby={keyID}>
+          {browser.i18n.getMessage(localeText)}
+        </label>
       </div>
     );
   }
@@ -273,40 +264,46 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const { cookies } = this.state;
     const { expression, state } = this.props;
     const keyCleanAllCookies = `${expression.id}-cleanAllCookies`;
-    const ffVersion = Number.parseInt(state.cache.browserVersion);
+    const ffVersion = Number.parseInt(state.cache.browserVersion as string);
 
     const dropList = coerceBoolean(expression.cleanAllCookies);
     return (
       <div>
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 78) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.CACHE)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 77) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.INDEXEDDB)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 58) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 58) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.LOCALSTORAGE)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 78) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.PLUGINDATA)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 77) ||
+          ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) ||
             isChrome(state.cache)) &&
           this.createSiteDataCheckbox(SiteDataType.SERVICEWORKERS)}
-        <div className={'checkbox'}>
-          <span
-            className={'addHover'}
-            onClick={() =>
+        <div className="form-check">
+          <input
+            id={keyCleanAllCookies}
+            className="form-check-input"
+            type="checkbox"
+            role="checkbox"
+            checked={
+              (expression.cleanAllCookies === undefined ||
+                expression.cleanAllCookies) as boolean
+            }
+            aria-checked={
+              (expression.cleanAllCookies === undefined ||
+                expression.cleanAllCookies) as boolean
+            }
+            onChange={() =>
               this.toggleCleanAllCookies(
                 !(
                   expression.cleanAllCookies === undefined ||
@@ -314,34 +311,17 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
                 ),
               )
             }
+          />
+          <label
+            htmlFor={keyCleanAllCookies}
+            aria-labelledby={keyCleanAllCookies}
           >
-            <FontAwesomeIcon
-              id={keyCleanAllCookies}
-              style={styles.checkbox}
-              size={'lg'}
-              icon={[
-                'far',
-                expression.cleanAllCookies === undefined ||
-                  expression.cleanAllCookies
-                  ? 'check-square'
-                  : 'square',
-              ]}
-              role="checkbox"
-              aria-checked={
-                (expression.cleanAllCookies === undefined ||
-                  expression.cleanAllCookies) as boolean
-              }
-            />
-            <label
-              htmlFor={keyCleanAllCookies}
-              aria-labelledby={keyCleanAllCookies}
-            >
-              {browser.i18n.getMessage(
-                `keepAllCookies${expression.listType === ListType.GREY ? 'Grey' : ''
-                }Text`,
-              )}
-            </label>
-          </span>
+            {browser.i18n.getMessage(
+              `keepAllCookies${
+                expression.listType === ListType.GREY ? 'Grey' : ''
+              }Text`,
+            )}
+          </label>
         </div>
         {dropList && (
           <div style={{ maxHeight: '150px', overflow: 'auto' }}>
@@ -359,7 +339,7 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onUpdateExpression(payload: Expression) {
     dispatch(updateExpressionUI(payload));
   },

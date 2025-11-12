@@ -12,12 +12,15 @@
  */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-// tslint:disable-next-line: import-name
-import ReleaseNotes from '../ReleaseNotes.json';
+import browser from 'webextension-polyfill';
+
+import { BrowserName } from '../../../typings/Enums';
+import type { ReleaseNote } from '../../../typings/Global';
 import IconButton from '../../common_components/IconButton';
-import { ReduxAction } from '../../../typings/ReduxConstants';
-import { resetCookieDeletedCounter } from '../../../redux/Actions';
+import ReleaseNotes from '../ReleaseNotes.json';
+import { resetCookieDeletedCounter } from '../../../redux/CookieDeletedCounterSlices';
+import type { Dispatch, State } from '../../../redux/Store';
+import { browserDetect } from '../../../utils/BrowserDetect';
 
 const displayReleaseNotes = (releases: ReleaseNote[]) => {
   return (
@@ -43,13 +46,13 @@ const displayReleaseNotes = (releases: ReleaseNote[]) => {
 };
 
 // Get the review link for different browsers
-const getReviewLink = (bName: browserName = browserDetect() as browserName) => {
+const getReviewLink = (bName = browserDetect()) => {
   switch (bName) {
-    case browserName.Chrome:
+    case BrowserName.Chrome:
       return 'https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews';
-    case browserName.EdgeChromium:
+    case BrowserName.EdgeChromium:
       return 'https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo#reviewList';
-    case browserName.Firefox:
+    case BrowserName.Firefox:
       return 'https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/';
     default:
       return '';
@@ -60,7 +63,7 @@ interface OwnProps {
   style?: React.CSSProperties;
   cookieDeletedCounterSession: number;
   cookieDeletedCounterTotal: number;
-  bName: browserName;
+  bName: BrowserName;
 }
 
 interface DispatchProps {
@@ -128,7 +131,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onResetCounterButtonClick() {
     dispatch(resetCookieDeletedCounter());
   },
@@ -138,7 +141,7 @@ const mapStateToProps = (state: State) => {
   const { cookieDeletedCounterTotal, cookieDeletedCounterSession, cache } =
     state;
   return {
-    bName: cache.browserDetect || (browserDetect() as browserName),
+    bName: cache.browserDetect || browserDetect(),
     cookieDeletedCounterSession,
     cookieDeletedCounterTotal,
   };

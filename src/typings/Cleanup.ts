@@ -11,12 +11,21 @@
  * SOFTWARE.
  */
 
-interface CleanupProperties {
+import type { Cookies } from 'webextension-polyfill';
+import type { Expression } from './Global';
+import type {
+  OpenTabStatus,
+  ReasonClean,
+  ReasonKeep,
+  SiteDataType,
+} from './Enums';
+
+export interface CleanupProperties {
   greyCleanup: boolean;
   ignoreOpenTabs: boolean;
 }
 
-type ActivityLog = {
+export type ActivityLog = {
   dateTime: string;
   recentlyCleaned: number;
   storeIds: {
@@ -28,32 +37,11 @@ type ActivityLog = {
   siteDataCleaned: boolean;
 };
 
-interface CleanupPropertiesInternal extends CleanupProperties {
+export interface CleanupPropertiesInternal extends CleanupProperties {
   openTabDomains: { [k: string]: string[] };
 }
 
-declare const enum ReasonKeep {
-  OpenTabs = 'reasonKeepOpenTab',
-  MatchedExpression = 'reasonKeep',
-}
-
-declare const enum ReasonClean {
-  StartupNoMatchedExpression = 'reasonCleanStartupNoList',
-  StartupCleanupAndGreyList = 'reasonCleanGreyList',
-  NoMatchedExpression = 'reasonCleanNoList',
-  MatchedExpressionButNoCookieName = 'reasonCleanCookieName',
-  ExpiredCookie = 'reasonCleanCookieExpired',
-  ExpiredCookieRestart = 'reasonCleanCookieExpiredRestart',
-  CADSiteDataCookie = 'reasonCADSiteDataCookie',
-  CADSiteDataCookieRestart = 'reasonCADSiteDataCookieRestart'
-}
-
-declare const enum OpenTabStatus {
-  TabsWasNotIgnored = 'reasonTabsWereNotIgnored',
-  TabsWereIgnored = 'reasonTabsWereIgnored',
-}
-
-interface CleanReasonObject {
+export interface CleanReasonObject {
   cached: boolean;
   cleanCookie: boolean;
   reason: ReasonKeep | ReasonClean;
@@ -62,7 +50,7 @@ interface CleanReasonObject {
   cookie: CookiePropertiesCleanup;
 }
 
-interface CookiePropertiesCleanup extends browser.cookies.CookieProperties {
+export interface CookiePropertiesCleanup extends Cookies.Cookie {
   mainDomain: string;
   hostname: string;
   preparedCookieDomain: string;

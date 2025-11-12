@@ -12,6 +12,7 @@
  */
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import browser from 'webextension-polyfill';
 import ErrorBoundary from '../common_components/ErrorBoundary';
 import About from './components/About';
 import ActivityLog from './components/ActivityLog';
@@ -19,6 +20,8 @@ import Expressions from './components/Expressions';
 import Settings from './components/Settings';
 import SideBar from './components/SideBar';
 import Welcome from './components/Welcome';
+import { SettingID } from '../../typings/Enums';
+import type { State } from '../../redux/Store';
 
 interface OwnProps {
   sizeSetting: number;

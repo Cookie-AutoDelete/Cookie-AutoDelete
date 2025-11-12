@@ -45,7 +45,7 @@ const apis = {
   alarms: {
     fn: ['clear', 'clearAll', 'create', 'get', 'getAll'],
   },
-  browserAction: {
+  action: {
     fn: [
       'getBadgeText',
       'getTitle',
@@ -115,6 +115,9 @@ const apis = {
       'sendMessage',
     ],
     events: ['onConnect', 'onInstalled', 'onMessage', 'onStartup'],
+  },
+  scripting: {
+    fn: ['executeScript'],
   },
   tabs: {
     fn: [
@@ -191,17 +194,17 @@ global.chrome = browser;
 function browserDetect() {
   return 'UnknownBrowser';
 }
-global.browserDetect = browserDetect;
+global.browserDetect = jest.fn(browserDetect);
 
 /**
  * This hides the test console debug logs from jest results.
  */
 global.console = {
-  _error: console.error, // eslint-disable-line no-console
-  _debug: console.debug, // eslint-disable-line no-console
-  _info: console.info, // eslint-disable-line no-console
-  _log: console.log, // eslint-disable-line no-console
-  _warn: console.warn, // eslint-disable-line no-console
+  _error: console.error,
+  _debug: console.debug,
+  _info: console.info,
+  _log: console.log,
+  _warn: console.warn,
   error: jest.fn(),
   debug: jest.fn(),
   info: jest.fn(),
@@ -216,7 +219,7 @@ global.console = {
  */
 function generateSpies(parent) {
   const spyParent = {};
-  for (const k of Object.keys(parent)) {
+  for (const k of Reflect.ownKeys(parent)) {
     try {
       if (!spyParent[k]) spyParent[k] = jest.spyOn(parent, k);
     } catch {
@@ -226,3 +229,8 @@ function generateSpies(parent) {
   return spyParent;
 }
 global.generateSpies = generateSpies;
+
+jest.mock('webextension-polyfill', () => browser);
+jest.mock('../src/utils/BrowserDetect', () => ({
+  browserDetect: global.browserDetect,
+}));

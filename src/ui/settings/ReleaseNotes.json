@@ -1,6 +1,21 @@
 {
   "releases": [
     {
+      "version": "3.8.3",
+      "notes": [
+        "Updated:  Use Redux Toolkit",
+        "Toolchain:  Replace Webpack with CRXJS, improve build process",
+        "Updated:  Upgrade to Bootstrap 5",
+        "Updated:  Update other dependencies",
+        "Fixed:  Check tabId on TabUpdated event",
+        "Fixed:  Check menu item availability before changing active mode",
+        "Updated:  Migrate to Manifest V3",
+        "Fixed:  Ensure the timeout is now always triggered in the Service Worker environment",
+        "Fixed:  Fix duplicate menu creation errors",
+        "Updated:  Register event listeners synchronously in the background script"
+      ]
+    },
+    {
       "version": "3.8.2",
       "notes": [
         "Fixed:  Passing IP Addresses to browsingData / site data cleanups. Fixes #983 via PR#1451, with thanks to Rob W.",

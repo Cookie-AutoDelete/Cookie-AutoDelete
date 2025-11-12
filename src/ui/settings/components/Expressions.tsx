@@ -12,23 +12,30 @@
  */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import browser from 'webextension-polyfill';
 import {
   addExpressionUI,
   clearExpressionsUI,
   removeListUI,
-} from '../../../redux/Actions';
+} from '../../../redux/UIActions';
 import {
   cadLog,
   getMatchedExpressions,
   getSetting,
   validateExpressionDomain,
 } from '../../../services/Libs';
-import { ReduxAction } from '../../../typings/ReduxConstants';
+import { BrowserName, ListType, SettingID } from '../../../typings/Enums';
+import type {
+  Expression,
+  StoreIdToExpressionList,
+} from '../../../typings/Global';
 import ExpressionTable from '../../common_components/ExpressionTable';
 import IconButton from '../../common_components/IconButton';
 import { downloadObjectAsJSON } from '../../UILibs';
 import SettingsTooltip from './SettingsTooltip';
+import type { Dispatch, State } from '../../../redux/Store';
+import { browserDetect } from '../../../utils/BrowserDetect';
+
 const styles = {
   buttonStyle: {
     height: 'max-content',
@@ -36,7 +43,7 @@ const styles = {
     width: 'max-content',
   },
   tableContainer: {
-    height: `${window.innerHeight - 210}px`,
+    height: `calc(100vh - 210px)`,
     overflow: 'auto',
   },
 };
@@ -46,7 +53,7 @@ interface OwnProps {
 }
 
 interface StateProps {
-  bName: browserName;
+  bName: BrowserName;
   contextualIdentities: boolean;
   debug: boolean;
   lists: StoreIdToExpressionList;
@@ -55,13 +62,13 @@ interface StateProps {
 interface DispatchProps {
   onClearExpressions: (lists: StoreIdToExpressionList) => void;
   onNewExpression: (expression: Expression) => void;
-  onRemoveList: (list: keyof StoreIdToExpressionList) => void;
+  onRemoveList: (list: string) => void;
 }
 
 type ExpressionProps = OwnProps & StateProps & DispatchProps;
 
 class InitialState {
-  public contextualIdentitiesObjects: browser.contextualIdentities.ContextualIdentity[] =
+  public contextualIdentitiesObjects: browser.ContextualIdentities.ContextualIdentity[] =
     [];
   public error = '';
   public expressionInput = '';
@@ -269,7 +276,7 @@ class Expressions extends React.Component<ExpressionProps> {
   }
 
   public removeListConfirmation(
-    list: keyof StoreIdToExpressionList,
+    list: string,
     expressions: ReadonlyArray<Expression>,
   ) {
     const { debug, onRemoveList } = this.props;
@@ -313,10 +320,10 @@ class Expressions extends React.Component<ExpressionProps> {
     containers.add(
       ((browser) => {
         switch (browser) {
-          case browserName.Chrome:
-          case browserName.Opera:
+          case BrowserName.Chrome:
+          case BrowserName.Opera:
             return '0';
-          case browserName.Firefox:
+          case BrowserName.Firefox:
           default:
             return 'firefox-default';
         }
@@ -333,10 +340,11 @@ class Expressions extends React.Component<ExpressionProps> {
     });
   }
 
-  public getDerivedStateFromProps(nextProps: ExpressionProps) {
+  static getDerivedStateFromProps(nextProps: ExpressionProps) {
     if (!nextProps.contextualIdentities) {
-      this.changeStoreIdTab('default');
+      return { default: 'default' };
     }
+    return null;
   }
 
   // Change the id of the storeId for the container tabs
@@ -376,10 +384,9 @@ class Expressions extends React.Component<ExpressionProps> {
     }
 
     return (
-      <div className="col" style={style}>
+      <div style={style}>
         <h1>{browser.i18n.getMessage('expressionListText')}</h1>
-
-        <div className="row">
+        <div className="row g-0">
           <input
             style={{
               display: 'inline',
@@ -409,118 +416,92 @@ class Expressions extends React.Component<ExpressionProps> {
           />
         </div>
         <div className="row">
-          <a
-            target="_blank"
-            rel="help noreferrer noopener"
-            href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enter-expression"
-          >
-            {browser.i18n.getMessage('questionExpression')}
+          <div className="col">
+            <a
+              target="_blank"
+              rel="help noreferrer noopener"
+              href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation#enter-expression"
+            >
+              {browser.i18n.getMessage('questionExpression')}
+            </a>
             <SettingsTooltip hrefURL="#enter-expression" />
-          </a>
-        </div>
-        <div
-          className="row"
-          style={{
-            columnGap: '0.5em',
-            justifyContent: 'space-between',
-            paddingBottom: '8px',
-            paddingTop: '8px',
-          }}
-        >
-          <div className="col-sm col-md-auto">
-            <div
-              className="row justify-content-sm-center justify-content-md-start"
-              style={{
-                paddingLeft: 0,
-                paddingRight: 0,
-              }}
-            >
-              <IconButton
-                className="btn-primary"
-                iconName="download"
-                role="button"
-                onClick={() =>
-                  downloadObjectAsJSON(this.props.lists, 'Expressions')
-                }
-                title={browser.i18n.getMessage('exportTitleTimestamp')}
-                text={browser.i18n.getMessage('exportURLSText')}
-                styleReact={styles.buttonStyle}
-              />
-              <IconButton
-                tag="input"
-                className="btn-info"
-                iconName="upload"
-                type="file"
-                accept="application/json"
-                onChange={(e) => this.importExpressions(e.target.files[0])}
-                text={browser.i18n.getMessage('importURLSText')}
-                title={browser.i18n.getMessage('importURLSText')}
-                styleReact={styles.buttonStyle}
-              />
-            </div>
-            <div className="w-100" />
-            <div
-              className="row justify-content-sm-center justify-content-md-start"
-              style={{
-                marginTop: '5px',
-                marginBottom: '5px',
-                paddingLeft: 0,
-                paddingRight: 0,
-              }}
-            >
-              <IconButton
-                tag="button"
-                className="btn-danger"
-                iconName="trash"
-                role="button"
-                onClick={() => this.clearListsConfirmation(this.props.lists)}
-                text={browser.i18n.getMessage('removeAllExpressions')}
-                title={browser.i18n.getMessage('removeAllExpressions')}
-                styleReact={styles.buttonStyle}
-              />
-              <IconButton
-                tag="button"
-                className="btn-dark"
-                iconName="list-alt"
-                role="button"
-                onClick={() => this.createDefaultOptions()}
-                text={browser.i18n.getMessage(
-                  'createDefaultExpressionOptionsText',
-                )}
-                title={browser.i18n.getMessage(
-                  'createDefaultExpressionOptionsText',
-                )}
-                styleReact={styles.buttonStyle}
-              />
-              {contextualIdentities && (
-                <IconButton
-                  tag="button"
-                  className="btn-danger"
-                  iconName="trash"
-                  role="button"
-                  onClick={() => {
-                    this.removeListConfirmation(
-                      storeId,
-                      this.props.lists[storeId],
-                    );
-                  }}
-                  text={browser.i18n.getMessage('removeListText')}
-                  title={browser.i18n.getMessage('removeListText')}
-                  styleReact={styles.buttonStyle}
-                />
-              )}
-            </div>
           </div>
+        </div>
+        <div className="row g-0 py-2 justify-content-sm-center justify-content-md-between gy-2">
           <div
-            className="col-sm col-md-auto"
+            className="col-sm col-md-auto d-flex justify-content-start gap-1 flex-wrap"
             style={{
-              justifyContent: 'flex-end',
-              paddingLeft: 0,
-              paddingRight: 0,
+              flex: '1 0 0%',
             }}
           >
             <IconButton
-              className="btn-secondary"
+              className="btn btn-primary"
+              iconName="download"
+              role="button"
+              onClick={() =>
+                downloadObjectAsJSON(this.props.lists, 'Expressions')
+              }
+              title={browser.i18n.getMessage('exportTitleTimestamp')}
+              text={browser.i18n.getMessage('exportURLSText')}
+              styleReact={styles.buttonStyle}
+            />
+            <IconButton
+              tag="input"
+              className="btn btn-info"
+              iconName="upload"
+              type="file"
+              accept="application/json"
+              onChange={(e) => this.importExpressions(e.target.files![0])}
+              text={browser.i18n.getMessage('importURLSText')}
+              title={browser.i18n.getMessage('importURLSText')}
+              styleReact={styles.buttonStyle}
+            />
+
+            <IconButton
+              tag="button"
+              className="btn btn-danger"
+              iconName="trash"
+              role="button"
+              onClick={() => this.clearListsConfirmation(this.props.lists)}
+              text={browser.i18n.getMessage('removeAllExpressions')}
+              title={browser.i18n.getMessage('removeAllExpressions')}
+              styleReact={styles.buttonStyle}
+            />
+            <IconButton
+              tag="button"
+              className="btn btn-dark"
+              iconName="list-alt"
+              role="button"
+              onClick={() => this.createDefaultOptions()}
+              text={browser.i18n.getMessage(
+                'createDefaultExpressionOptionsText',
+              )}
+              title={browser.i18n.getMessage(
+                'createDefaultExpressionOptionsText',
+              )}
+              styleReact={styles.buttonStyle}
+            />
+            {contextualIdentities && (
+              <IconButton
+                tag="button"
+                className="btn btn-danger"
+                iconName="trash"
+                role="button"
+                onClick={() => {
+                  this.removeListConfirmation(
+                    storeId,
+                    this.props.lists[storeId],
+                  );
+                }}
+                text={browser.i18n.getMessage('removeListText')}
+                title={browser.i18n.getMessage('removeListText')}
+                styleReact={styles.buttonStyle}
+              />
+            )}
+          </div>
+          <div className="col-sm col-md-auto d-flex justify-content-end gap-1">
+            <IconButton
+              className="btn btn-secondary"
               onClick={() => {
                 this.addExpressionByInput({
                   expression: this.state.expressionInput,
@@ -535,7 +516,7 @@ class Expressions extends React.Component<ExpressionProps> {
             />
 
             <IconButton
-              className="btn-primary"
+              className="btn btn-primary"
               onClick={() => {
                 this.addExpressionByInput({
                   expression: this.state.expressionInput,
@@ -554,7 +535,7 @@ class Expressions extends React.Component<ExpressionProps> {
         {error !== '' ? (
           <div
             onClick={() => this.setState({ error: '' })}
-            className="row alert alert-danger alertPreWrap"
+            className="row g-0 alert alert-danger alertPreWrap"
           >
             {error}
           </div>
@@ -564,7 +545,7 @@ class Expressions extends React.Component<ExpressionProps> {
         {success !== '' ? (
           <div
             onClick={() => this.setState({ success: '' })}
-            className="row alert alert-success alertPreWrap"
+            className="row g-0 alert alert-success alertPreWrap"
           >
             {success}
           </div>
@@ -587,7 +568,7 @@ class Expressions extends React.Component<ExpressionProps> {
           </h5>
         )}
         {contextualIdentities && (
-          <ul className="row nav nav-tabs flex-column flex-sm-row">
+          <ul className="row g-0 nav nav-tabs flex-column flex-sm-row">
             <li
               onClick={() => {
                 this.changeStoreIdTab('default');
@@ -622,7 +603,7 @@ class Expressions extends React.Component<ExpressionProps> {
           </ul>
         )}
 
-        <div className="row" style={styles.tableContainer}>
+        <div className="row g-0" style={styles.tableContainer}>
           <ExpressionTable
             expressionColumnTitle={browser.i18n.getMessage(
               'domainExpressionsText',
@@ -660,7 +641,7 @@ class Expressions extends React.Component<ExpressionProps> {
 const mapStateToProps = (state: State) => {
   const { cache, lists } = state;
   return {
-    bName: cache.browserDetect || (browserDetect() as browserName),
+    bName: cache.browserDetect || browserDetect(),
     cache,
     contextualIdentities: getSetting(
       state,
@@ -671,14 +652,14 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   onClearExpressions(payload: StoreIdToExpressionList) {
     dispatch(clearExpressionsUI(payload));
   },
   onNewExpression(payload: Expression) {
     dispatch(addExpressionUI(payload));
   },
-  onRemoveList(payload: keyof StoreIdToExpressionList) {
+  onRemoveList(payload: string) {
     dispatch(removeListUI(payload));
   },
 });

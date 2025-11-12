@@ -12,118 +12,111 @@
  */
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { cookieCleanupUI } from '../../../redux/Actions';
+import { useCallback } from 'react';
+import browser from 'webextension-polyfill';
+import { cookieCleanupUI } from '../../../redux/UIActions';
 import {
   clearCookiesForThisDomain,
   clearLocalStorageForThisDomain,
 } from '../../../services/CleanupService';
-import { ReduxAction } from '../../../typings/ReduxConstants';
+import type { CleanupProperties } from '../../../typings/Cleanup';
+import { SiteDataType } from '../../../typings/Enums';
+import { useUIDispatch } from '../../hooks';
 import CleanDataButton from './CleanDataButton';
-
-interface DispatchProps {
-  onCookieCleanup: (payload: CleanupProperties) => void;
-}
 
 interface OwnProps {
   hostname: string;
-  tab: browser.tabs.Tab;
+  tab: browser.Tabs.Tab;
 }
 
-interface StateProps {
-  state: State;
-}
+type CleanCollapseComponentProps = OwnProps;
 
-type CleanCollapseComponentProps = DispatchProps & OwnProps & StateProps;
+const CleanCollapseGroup: React.FunctionComponent<
+  CleanCollapseComponentProps
+> = (props) => {
+  const { hostname, tab } = props;
 
-const CleanCollapseGroup: React.FunctionComponent<CleanCollapseComponentProps> =
-  (props) => {
-    const { hostname, tab, state, onCookieCleanup } = props;
-    return (
-      <div
-        className="row justify-content-center collapse"
-        id="cleanCollapse"
-        role="group"
-        style={{
-          alignItems: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.05)',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-          padding: '4px 4px 8px 4px',
-        }}
-      >
-        <div className="btn-group-vertical">
-          <CleanDataButton
-            btnColor="btn-warning"
-            onClick={async () => {
-              onCookieCleanup({
-                greyCleanup: false,
-                ignoreOpenTabs: true,
-              });
-              return true;
-            }}
-            title={browser.i18n.getMessage('cookieCleanupIgnoreOpenTabsText')}
-            text={browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
-          />
-          <button
-            aria-disabled={true}
-            className="px-2 btn btn-light btn-block text-danger font-weight-bold"
-            disabled={true}
-            type="button"
-          >
-            {browser.i18n.getMessage('cleanupActionsBypass')}
-          </button>
-          <CleanDataButton siteData="All" hostname={hostname} tab={tab} />
-          <CleanDataButton
-            altColor
-            siteData={SiteDataType.CACHE}
-            hostname={hostname}
-          />
-          <CleanDataButton
-            onClick={async () => {
-              return await clearCookiesForThisDomain(state, tab);
-            }}
-            title={browser.i18n.getMessage('manualCleanSiteDataCookiesDomain', [
-              hostname,
-            ])}
-            text={browser.i18n.getMessage('manualCleanSiteDataCookies')}
-          />
-          <CleanDataButton
-            altColor
-            siteData={SiteDataType.INDEXEDDB}
-            hostname={hostname}
-          />
-          <CleanDataButton
-            onClick={async () => {
-              return await clearLocalStorageForThisDomain(state, tab);
-            }}
-            siteData={SiteDataType.LOCALSTORAGE}
-            hostname={hostname}
-          />
-          <CleanDataButton
-            altColor
-            siteData={SiteDataType.PLUGINDATA}
-            hostname={hostname}
-          />
-          <CleanDataButton
-            siteData={SiteDataType.SERVICEWORKERS}
-            hostname={hostname}
-          />
-        </div>
+  const dispatch = useUIDispatch();
+
+  const handleCookieCleanup = useCallback(
+    (payload: CleanupProperties) => {
+      dispatch(cookieCleanupUI(payload));
+    },
+    [dispatch],
+  );
+
+  return (
+    <div
+      className="row justify-content-center collapse"
+      id="cleanCollapse"
+      role="group"
+      style={{
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+        padding: '4px 4px 8px 4px',
+      }}
+    >
+      <div className="btn-group-vertical">
+        <CleanDataButton
+          btnColor="btn-warning"
+          onClick={async () => {
+            handleCookieCleanup({
+              greyCleanup: false,
+              ignoreOpenTabs: true,
+            });
+            return true;
+          }}
+          title={browser.i18n.getMessage('cookieCleanupIgnoreOpenTabsText')}
+          text={browser.i18n.getMessage('cleanIgnoringOpenTabsText')}
+        />
+        <button
+          aria-disabled={true}
+          className="px-2 btn btn-light text-danger font-weight-bold"
+          disabled={true}
+          type="button"
+        >
+          {browser.i18n.getMessage('cleanupActionsBypass')}
+        </button>
+        <CleanDataButton siteData="All" hostname={hostname} tab={tab} />
+        <CleanDataButton
+          altColor
+          siteData={SiteDataType.CACHE}
+          hostname={hostname}
+        />
+        <CleanDataButton
+          onClick={async () => {
+            return dispatch(clearCookiesForThisDomain(tab)).unwrap();
+          }}
+          title={browser.i18n.getMessage('manualCleanSiteDataCookiesDomain', [
+            hostname,
+          ])}
+          text={browser.i18n.getMessage('manualCleanSiteDataCookies')}
+        />
+        <CleanDataButton
+          altColor
+          siteData={SiteDataType.INDEXEDDB}
+          hostname={hostname}
+        />
+        <CleanDataButton
+          onClick={async () => {
+            return dispatch(clearLocalStorageForThisDomain(tab)).unwrap();
+          }}
+          siteData={SiteDataType.LOCALSTORAGE}
+          hostname={hostname}
+        />
+        <CleanDataButton
+          altColor
+          siteData={SiteDataType.PLUGINDATA}
+          hostname={hostname}
+        />
+        <CleanDataButton
+          siteData={SiteDataType.SERVICEWORKERS}
+          hostname={hostname}
+        />
       </div>
-    );
-  };
-
-const mapDispatchToProps = (dispatch: Dispatch<ReduxAction>) => ({
-  onCookieCleanup(payload: CleanupProperties) {
-    dispatch(cookieCleanupUI(payload));
-  },
-});
-
-const mapStateToProps = (state: State) => {
-  return {
-    state,
-  };
+    </div>
+  );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CleanCollapseGroup);
+export default CleanCollapseGroup;

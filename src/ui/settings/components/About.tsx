@@ -14,6 +14,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { cadLog, isFirefox } from '../../../services/Libs';
 import IconButton from '../../common_components/IconButton';
+import { BrowserName, SettingID } from '../../../typings/Enums';
+import type { CacheMap, MapToSettingObject } from '../../../typings/Global';
+import browser from 'webextension-polyfill';
+import type { State } from '../../../redux/Store';
+import { browserDetect } from '../../../utils/BrowserDetect';
 
 const styles = {
   buttonStyle: {
@@ -27,9 +32,9 @@ interface OwnProps {
 }
 
 interface StateProps {
-  bName: browserName;
+  bName: BrowserName;
   cache: CacheMap;
-  platformInfo: browser.runtime.PlatformInfo;
+  platformInfo: browser.Runtime.PlatformInfo;
   settings: MapToSettingObject;
 }
 enum platformOS {
@@ -89,26 +94,26 @@ class About extends React.Component<AboutProps> {
         </h5>
         <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/issues">
           {browser.i18n.getMessage('reportIssuesText')}
-        </a>{' '}
+        </a>
         <br />
         <br />
         <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation">
-          <span>{`${browser.i18n.getMessage('documentationText')}`}</span>
+          <span>{browser.i18n.getMessage('documentationText')}</span>
         </a>
         <br />
         <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues">
-          <span>{`${browser.i18n.getMessage('faqText')}`}</span>
+          <span>{browser.i18n.getMessage('faqText')}</span>
         </a>
         <br />
-        <br />{' '}
+        <br />
         <a
           href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh"
           target="_blank"
           rel="noreferrer"
         >
-          <span>{`${browser.i18n.getMessage('versionText', [
-            'Google Chrome',
-          ])}`}</span>{' '}
+          <span>
+            {browser.i18n.getMessage('versionText', ['Google Chrome'])}
+          </span>
         </a>
         <br />
         <a
@@ -116,23 +121,25 @@ class About extends React.Component<AboutProps> {
           target="_blank"
           rel="noreferrer"
         >
-          <span>{`${browser.i18n.getMessage('versionText', [
-            'Microsoft Edge Chromium',
-          ])}`}</span>{' '}
-        </a>{' '}
+          <span>
+            {browser.i18n.getMessage('versionText', [
+              'Microsoft Edge Chromium',
+            ])}
+          </span>
+        </a>
         <br />
         <a
           href="https://addons.mozilla.org/firefox/addon/cookie-autodelete/"
           target="_blank"
           rel="noreferrer"
         >
-          <span>{`${browser.i18n.getMessage('versionText', [
-            'Mozilla Firefox',
-          ])}`}</span>{' '}
-        </a>{' '}
+          <span>
+            {browser.i18n.getMessage('versionText', ['Mozilla Firefox'])}
+          </span>
+        </a>
         <br />
         <br />
-        <span>{`${browser.i18n.getMessage('contributorsText')}`}:</span>
+        <span>{browser.i18n.getMessage('contributorsText')}:</span>
         <ul>
           <li>Kenny Do (Creator)</li>
           <li>
@@ -159,20 +166,19 @@ class About extends React.Component<AboutProps> {
           cols={40}
           readOnly={true}
           style={{ resize: 'none' }}
-        >
-          {`- OS: ${platformInfo.arch} ${
+          value={`- OS: ${platformInfo.arch} ${
             platformOS[platformInfo.os]
           } (Please add OS version on paste)\n- Browser Info: ${bName} ${
             isFirefox(cache)
-              ? `${cache.browserVersion} (${cache.browserInfo.buildID})`
+              ? `${cache.browserVersion} (${(cache.browserInfo as { buildID: string }).buildID})`
               : `(Please add version number on paste)`
           }\n- CookieAutoDelete Version: ${
             browser.runtime.getManifest().version
           }`}
-        </textarea>
+        />
         <br />
         <IconButton
-          className="btn-primary"
+          className="btn btn-primary"
           role="button"
           onClick={() => {
             const textDebug = document.getElementById('debugInfo');
@@ -216,7 +222,7 @@ class About extends React.Component<AboutProps> {
           title={browser.i18n.getMessage('copyToClipboardText')}
           text={browser.i18n.getMessage('copyToClipboardText')}
           styleReact={styles.buttonStyle}
-        />{' '}
+        />
         <span id="copy-debugInfo">&nbsp;</span>
         <br />
         <br />
@@ -227,10 +233,11 @@ class About extends React.Component<AboutProps> {
           cols={40}
           readOnly={true}
           style={{ resize: 'none' }}
-        >{`${settingSlim.join('\n')}`}</textarea>
+          value={`${settingSlim.join('\n')}`}
+        />
         <br />
         <IconButton
-          className="btn-primary"
+          className="btn btn-primary"
           role="button"
           onClick={() => {
             const textDebug = document.getElementById('debugSettings');
@@ -274,7 +281,7 @@ class About extends React.Component<AboutProps> {
           title={browser.i18n.getMessage('copyToClipboardText')}
           text={browser.i18n.getMessage('copyToClipboardText')}
           styleReact={styles.buttonStyle}
-        />{' '}
+        />
         <span id="copy-debugSettings">&nbsp;</span>
         <br />
         <br />
@@ -286,9 +293,9 @@ class About extends React.Component<AboutProps> {
 const mapStateToProps = (state: State) => {
   const { cache, settings } = state;
   return {
-    bName: cache.browserDetect || (browserDetect() as browserName),
+    bName: cache.browserDetect || browserDetect(),
     cache,
-    platformInfo: cache.platformInfo,
+    platformInfo: cache.platformInfo as browser.Runtime.PlatformInfo,
     settings,
   };
 };

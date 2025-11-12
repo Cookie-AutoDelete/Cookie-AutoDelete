@@ -12,64 +12,66 @@
  */
 
 import { when } from 'jest-when';
-import { Store } from 'redux';
+import type { Store } from 'redux';
 
-import * as Actions from '../../src/redux/Actions';
-import { initialState } from '../../src/redux/State';
-// tslint:disable-next-line: import-name
-import createStore from '../../src/redux/Store';
-import { ReduxAction, ReduxConstants } from '../../src/typings/ReduxConstants';
 import * as CleanupService from '../../src/services/CleanupService';
 import ContextMenuEvents from '../../src/services/ContextMenuEvents';
 import * as Lib from '../../src/services/Libs';
 import StoreUser from '../../src/services/StoreUser';
+import { SettingID, ListType } from '../../src/typings/Enums';
 
-jest.requireActual('../../src/redux/Actions');
-const spyActions: JestSpyObject = global.generateSpies(Actions);
+import type * as browser from 'webextension-polyfill';
+import { configureWrapStore, State } from '../../src/redux/Store';
+import { addCache } from '../../src/redux/CacheSlice';
+import { resetSettings, updateSetting } from '../../src/redux/SettingsSlice';
 
-jest.requireMock('../../src/services/CleanupService');
-const spyCleanupService: JestSpyObject = global.generateSpies(CleanupService);
+import { initialState } from '../__mock__/initialState';
 
-jest.requireActual('../../src/services/Libs');
-const spyLib: JestSpyObject = global.generateSpies(Lib);
+// Actions
+// Use namespace import to ensure generateSpies works correctly
+import * as SettingsSlice from '../../src/redux/SettingsSlice';
+import * as UIActions from '../../src/redux/UIActions';
 
-const store: Store<State, ReduxAction> = createStore(initialState);
+const spySettingsSlice = global.generateSpies(SettingsSlice);
+const spyUIActions = global.generateSpies(UIActions);
+
+const spyActions = {
+  ...spyUIActions,
+  ...spySettingsSlice,
+};
+
+const spyCleanupService = global.generateSpies(CleanupService);
+
+const spyLib = global.generateSpies(Lib);
+
+const store: Store<State> = configureWrapStore(initialState);
 StoreUser.init(store);
 
 class TestStore extends StoreUser {
   public static addCache(payload: any) {
-    StoreUser.store.dispatch({
-      payload,
-      type: ReduxConstants.ADD_CACHE,
-    });
+    StoreUser.store.dispatch(addCache(payload));
   }
 
   public static changeSetting(
     name: SettingID,
     value: string | boolean | number,
   ) {
-    StoreUser.store.dispatch(Actions.updateSetting({ name, value }));
+    StoreUser.store.dispatch(updateSetting({ name, value }));
   }
 
   public static resetSetting() {
-    StoreUser.store.dispatch(Actions.resetSettings());
+    StoreUser.store.dispatch(resetSettings());
   }
 }
 
 class TestContextMenuEvents extends ContextMenuEvents {
-  public static getIsInitialized() {
-    return ContextMenuEvents.isInitialized;
-  }
-  public static setIsInitialized(value: boolean) {
-    ContextMenuEvents.isInitialized = value;
-  }
   public static spyAddNewExpression = jest.spyOn(
     ContextMenuEvents,
     'addNewExpression' as never,
   );
 }
 
-const sampleTab: browser.tabs.Tab = {
+const sampleTab: browser.Tabs.Tab = {
   active: true,
   cookieStoreId: 'firefox-default',
   discarded: false,
@@ -81,33 +83,32 @@ const sampleTab: browser.tabs.Tab = {
   isInReaderMode: false,
   lastAccessed: 12345678,
   pinned: false,
-  selected: true,
   url: 'https://www.example.com',
   windowId: 1,
 };
 
-const defaultOnClickData: browser.contextMenus.OnClickData = {
+const defaultOnClickData: browser.Menus.OnClickData = {
   editable: false,
   menuItemId: 'replaceMe',
   modifiers: [],
 };
 
-const sampleClickLink: browser.contextMenus.OnClickData = {
+const sampleClickLink: browser.Menus.OnClickData = {
   ...defaultOnClickData,
   linkUrl: 'https://link.cad',
 };
 
-const sampleClickPage: browser.contextMenus.OnClickData = {
+const sampleClickPage: browser.Menus.OnClickData = {
   ...defaultOnClickData,
   pageUrl: 'https://page.cad',
 };
 
-const sampleClickText: browser.contextMenus.OnClickData = {
+const sampleClickText: browser.Menus.OnClickData = {
   ...defaultOnClickData,
   selectionText: 'selectedText',
 };
 
-const sampleClickTextMultiple: browser.contextMenus.OnClickData = {
+const sampleClickTextMultiple: browser.Menus.OnClickData = {
   ...defaultOnClickData,
   selectionText: 'selectedText, MultipleText, ThirdText',
 };
@@ -126,11 +127,11 @@ describe('ContextMenuEvents', () => {
     it('should do nothing if browser.contextMenus do not exist', () => {
       // Override setup of browser.contextMenus
       const jestContextMenus = global.browser.contextMenus;
-      global.browser.contextMenus = undefined;
+      (global.browser as any).contextMenus = undefined;
       ContextMenuEvents.menuInit();
       expect(spyLib.getSetting).not.toHaveBeenCalled();
       // Restore browser.contextMenus for future tests
-      global.browser.contextMenus = jestContextMenus;
+      (global.browser as any).contextMenus = jestContextMenus;
     });
     it('should do nothing if contextMenus setting is disabled', () => {
       TestStore.changeSetting(SettingID.CONTEXT_MENUS, false);
@@ -143,7 +144,6 @@ describe('ContextMenuEvents', () => {
         .mockReturnValue(false);
       TestStore.changeSetting(SettingID.CONTEXT_MENUS, true);
       ContextMenuEvents.menuInit();
-      expect(TestContextMenuEvents.getIsInitialized()).toBe(true);
       expect(global.browser.contextMenus.create).toHaveBeenCalledTimes(35);
       expect(
         global.browser.contextMenus.onClicked.addListener,
@@ -154,33 +154,30 @@ describe('ContextMenuEvents', () => {
         .calledWith(expect.any(Function))
         .mockReturnValue(true);
       TestStore.changeSetting(SettingID.CONTEXT_MENUS, true);
-      TestContextMenuEvents.setIsInitialized(false);
       ContextMenuEvents.menuInit();
       expect(
         global.browser.contextMenus.onClicked.addListener,
       ).not.toHaveBeenCalled();
     });
-    it('should do nothing if contextMenus setting is enabled and menus were already created', () => {
-      TestStore.changeSetting(SettingID.CONTEXT_MENUS, true);
-      TestContextMenuEvents.setIsInitialized(true);
-      ContextMenuEvents.menuInit();
-      expect(global.browser.contextMenus.create).not.toHaveBeenCalled();
-    });
   });
 
   describe('menuClear', () => {
     it('should work', async () => {
-      TestContextMenuEvents.setIsInitialized(true);
       await ContextMenuEvents.menuClear();
       expect(
         global.browser.contextMenus.onClicked.removeListener,
       ).toHaveBeenCalledTimes(1);
-      expect(TestContextMenuEvents.getIsInitialized()).toBe(false);
     });
   });
 
   describe('updateMenuItemCheckbox', () => {
+    it('should do nothing if contextMenus setting is disabled', () => {
+      TestStore.changeSetting(SettingID.CONTEXT_MENUS, false);
+      ContextMenuEvents.updateMenuItemCheckbox('test', true);
+      expect(global.browser.contextMenus.update).not.toHaveBeenCalled();
+    });
     it('should work', () => {
+      TestStore.changeSetting(SettingID.CONTEXT_MENUS, true);
       when(global.browser.contextMenus.update)
         .calledWith(expect.any(String), expect.any(Object))
         .mockResolvedValue(true as never);
@@ -192,10 +189,10 @@ describe('ContextMenuEvents', () => {
   // While the above test does also call onCreatedOrUpdated, we need a fail catch
   describe('onCreatedOrUpdated', () => {
     it('should show error if failed', () => {
-      global.browser.runtime.lastError = 'testError';
+      (global.browser.runtime as any).lastError = 'testError';
       ContextMenuEvents.onCreatedOrUpdated();
       // The if statements both perform cadLog, so we need to check for the error one.
-      expect(spyLib.cadLog.mock.calls[0][0].msg.indexOf('testError')).not.toBe(
+      expect(spyLib.cadLog.mock.calls[0][0].msg?.indexOf('testError')).not.toBe(
         -1,
       );
       expect(spyLib.cadLog.mock.calls[0][0].type).toBe('error');
@@ -206,21 +203,24 @@ describe('ContextMenuEvents', () => {
   // This test block will also consume coverage for addNewExpression
   describe('onContextMenuClicked - aka the big switch statement', () => {
     beforeAll(() => {
+      when(global.browser.tabs.query)
+        .calledWith({
+          active: true,
+          windowType: 'normal',
+        })
+        .mockResolvedValue([sampleTab]);
+
+      when(global.browser.cookies.getAll).mockResolvedValue([]);
+
       // Required otherwise NodeJS will complain about unhandledPromiseRejects
       when(spyCleanupService.cleanCookiesOperation)
         .calledWith(expect.any(Object), expect.any(Object))
         .mockResolvedValue(undefined as never);
-      when(spyCleanupService.clearCookiesForThisDomain)
-        .calledWith(expect.any(Object), expect.any(Object))
-        .mockResolvedValue(true as never);
-      when(spyCleanupService.clearLocalStorageForThisDomain)
-        .calledWith(expect.any(Object), expect.any(Object))
-        .mockResolvedValue(true as never);
     });
     it('should show warning through cadLog if menuId given is unknown', () => {
       ContextMenuEvents.onContextMenuClicked(defaultOnClickData, sampleTab);
       expect(
-        spyLib.cadLog.mock.calls[1][0].msg.indexOf('unknown menu id'),
+        spyLib.cadLog.mock.calls[1][0].msg?.indexOf('unknown menu id'),
       ).not.toBe(-1);
       expect(spyLib.cadLog.mock.calls[1][0].type).toBe('warn');
     });
@@ -266,9 +266,10 @@ describe('ContextMenuEvents', () => {
         sampleTab,
       );
       expect(spyCleanupService.clearSiteDataForThisDomain).toHaveBeenCalledWith(
-        expect.any(Object),
-        'All',
-        expect.any(String),
+        expect.objectContaining({
+          siteData: 'All',
+          hostname: expect.any(String),
+        }),
       );
     });
     it('Clear Site Data For This Domain was clicked, but hostname was blank', () => {
@@ -292,9 +293,10 @@ describe('ContextMenuEvents', () => {
         sampleTab,
       );
       expect(spyCleanupService.clearSiteDataForThisDomain).toHaveBeenCalledWith(
-        expect.any(Object),
-        'Cache',
-        expect.any(String),
+        expect.objectContaining({
+          siteData: 'Cache',
+          hostname: expect.any(String),
+        }),
       );
     });
     it('Trigger Clear Cookies For This Domain', () => {
@@ -316,9 +318,10 @@ describe('ContextMenuEvents', () => {
         sampleTab,
       );
       expect(spyCleanupService.clearSiteDataForThisDomain).toHaveBeenCalledWith(
-        expect.any(Object),
-        'IndexedDB',
-        expect.any(String),
+        expect.objectContaining({
+          siteData: 'IndexedDB',
+          hostname: expect.any(String),
+        }),
       );
     });
     it('Trigger Clear LocalStorage For This Domain', () => {
@@ -342,9 +345,10 @@ describe('ContextMenuEvents', () => {
         sampleTab,
       );
       expect(spyCleanupService.clearSiteDataForThisDomain).toHaveBeenCalledWith(
-        expect.any(Object),
-        'PluginData',
-        expect.any(String),
+        expect.objectContaining({
+          siteData: 'PluginData',
+          hostname: expect.any(String),
+        }),
       );
     });
     it('Trigger Clear Service Workers For This Domain', () => {
@@ -356,9 +360,10 @@ describe('ContextMenuEvents', () => {
         sampleTab,
       );
       expect(spyCleanupService.clearSiteDataForThisDomain).toHaveBeenCalledWith(
-        expect.any(Object),
-        'ServiceWorkers',
-        expect.any(String),
+        expect.objectContaining({
+          siteData: 'ServiceWorkers',
+          hostname: expect.any(String),
+        }),
       );
     });
     it('Unknown Site Data Type was pass in.  Extreme case.', () => {
@@ -668,7 +673,8 @@ describe('ContextMenuEvents', () => {
         },
         sampleTab,
       );
-      expect(global.browser.tabs.create).toHaveBeenCalledTimes(1);
+      expect(global.browser.runtime.openOptionsPage).toHaveBeenCalledTimes(1);
     });
+
   });
 });

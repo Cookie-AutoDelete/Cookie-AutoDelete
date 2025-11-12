@@ -12,31 +12,34 @@
  */
 
 import { when } from 'jest-when';
-import { Store } from 'redux';
+import type { Store } from 'redux';
 
-import * as Actions from '../../src/redux/Actions';
-import { initialState } from '../../src/redux/State';
-// tslint:disable-next-line: import-name
-import createStore from '../../src/redux/Store';
-import { ReduxAction, ReduxConstants } from '../../src/typings/ReduxConstants';
+import { addCache } from '../../src/redux/CacheSlice';
+import { configureWrapStore, State } from '../../src/redux/Store';
 import ContextualIdentitiesEvents from '../../src/services/ContextualIdentitiesEvents';
 import * as Lib from '../../src/services/Libs';
 import StoreUser from '../../src/services/StoreUser';
+import { ListType, SettingID } from '../../src/typings/Enums';
+import type { Expression } from '../../src/typings/Global';
 
-jest.requireActual('../../src/services/Libs');
-const spyLib: JestSpyObject = global.generateSpies(Lib);
+import type * as browser from 'webextension-polyfill';
+import { initialState } from '../__mock__/initialState';
 
-const store: Store<State, ReduxAction> = createStore(initialState);
+// Actions
+import { resetSettings, updateSetting } from '../../src/redux/SettingsSlice';
+
+import { ReduxConstants } from '../../src/redux/ReduxConstants';
+
+const spyLib = global.generateSpies(Lib);
+
+const store: Store<State> = configureWrapStore(initialState);
 StoreUser.init(store);
 
 class TestStore extends StoreUser {
   public static addCache(payload: any) {
-    StoreUser.store.dispatch({
-      payload,
-      type: ReduxConstants.ADD_CACHE,
-    });
+    StoreUser.store.dispatch(addCache(payload));
   }
-  public static dispatch(payload: any, type: ReduxConstants) {
+  public static dispatch(payload: unknown, type: ReduxConstants) {
     StoreUser.store.dispatch({
       payload,
       type,
@@ -55,20 +58,20 @@ class TestStore extends StoreUser {
     name: SettingID,
     value: string | boolean | number,
   ) {
-    StoreUser.store.dispatch(Actions.updateSetting({ name, value }));
+    StoreUser.store.dispatch(updateSetting({ name, value }));
   }
 
   public static resetSetting() {
-    StoreUser.store.dispatch(Actions.resetSettings());
+    StoreUser.store.dispatch(resetSettings());
   }
 }
 
-const wildCardWhiteListGoogle: Expression = {
+const wildCardWhiteListGoogle = {
   expression: '*.google.com',
   id: '1',
   listType: ListType.GREY,
   storeId: 'remove-container-1',
-};
+} as const satisfies Expression;
 
 class TestContextualIdentitiesEvents extends ContextualIdentitiesEvents {
   public static getIsInitialized() {
@@ -79,12 +82,14 @@ class TestContextualIdentitiesEvents extends ContextualIdentitiesEvents {
   }
 }
 
-const defaultContextualIdentity: browser.contextualIdentities.ContextualIdentity =
+const defaultContextualIdentity: browser.ContextualIdentities.ContextualIdentity =
   {
     cookieStoreId: 'firefox-container-0',
     color: 'blue',
     icon: 'fingerprint',
     name: 'Testing Container',
+    iconUrl: 'https://example.com/icon.png',
+    colorCode: '#000000',
   };
 
 describe('ContextualIdentitiesEvents', () => {
@@ -108,7 +113,7 @@ describe('ContextualIdentitiesEvents', () => {
     it('should do nothing if browser.contextualIdentities do not exist', () => {
       // Override setup of browser.contextualIdentities
       const jestContextualIdentities = global.browser.contextualIdentities;
-      global.browser.contextualIdentities = undefined;
+      (global.browser.contextualIdentities as any) = undefined;
       ContextualIdentitiesEvents.init();
       expect(spyLib.getSetting).not.toHaveBeenCalled();
       // Restore browser.contextualIdentities for future tests

@@ -11,11 +11,13 @@
  * SOFTWARE.
  */
 
+import browser from 'webextension-polyfill';
 import {
-  addExpressionUI,
-  cookieCleanup,
-  updateSetting,
-} from '../redux/Actions';
+  EventListenerAction,
+  ListType,
+  SettingID,
+  SiteDataType,
+} from '../typings/Enums';
 import {
   clearCookiesForThisDomain,
   clearLocalStorageForThisDomain,
@@ -34,11 +36,16 @@ import {
 } from './Libs';
 import StoreUser from './StoreUser';
 
+import { cookieCleanup } from '../redux/BackgroundActions';
+import { updateSetting } from '../redux/SettingsSlice';
+import { addExpressionUI } from '../redux/UIActions';
+
 export default class ContextMenuEvents extends StoreUser {
   public static MenuID = {
     ACTIVE_MODE: 'cad-active-mode',
     CLEAN: 'cad-clean',
     CLEAN_OPEN: 'cad-clean-open',
+    CLEANUP_WARNING: 'cad-cleanup-warning',
     LINK_ADD_GREY_DOMAIN: 'cad-link-add-grey-domain',
     LINK_ADD_GREY_SUBS: 'cad-link-add-grey-subs',
     LINK_ADD_WHITE_DOMAIN: 'cad-link-add-white-domain',
@@ -64,16 +71,10 @@ export default class ContextMenuEvents extends StoreUser {
   };
 
   public static menuInit(): void {
+    let separatorId = 0;
     if (!browser.contextMenus) return;
-    if (
-      !getSetting(
-        StoreUser.store.getState(),
-        SettingID.CONTEXT_MENUS,
-      ) as boolean
-    )
+    if (!getSetting(StoreUser.store.getState(), SettingID.CONTEXT_MENUS))
       return;
-    if (ContextMenuEvents.isInitialized) return;
-    ContextMenuEvents.isInitialized = true;
     // Clean Option Group
     ContextMenuEvents.menuCreate({
       id: ContextMenuEvents.MenuID.PARENT_CLEAN,
@@ -95,10 +96,12 @@ export default class ContextMenuEvents extends StoreUser {
     ContextMenuEvents.menuCreate({
       parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
       type: 'separator',
+      id: `s${separatorId++}`,
     });
     // Cleanup Warning
     ContextMenuEvents.menuCreate({
       enabled: false,
+      id: ContextMenuEvents.MenuID.CLEANUP_WARNING,
       parentId: ContextMenuEvents.MenuID.PARENT_CLEAN,
       title: browser.i18n.getMessage('cleanupActionsBypass'),
     });
@@ -114,6 +117,7 @@ export default class ContextMenuEvents extends StoreUser {
     // Separator
     ContextMenuEvents.menuCreate({
       type: 'separator',
+      id: `s${separatorId++}`,
     });
     // Add Expression Option Group - page
     ContextMenuEvents.menuCreate({
@@ -237,6 +241,7 @@ export default class ContextMenuEvents extends StoreUser {
     // Separator
     ContextMenuEvents.menuCreate({
       type: 'separator',
+      id: `s${separatorId++}`,
     });
     // Active Mode
     ContextMenuEvents.menuCreate({
@@ -268,7 +273,6 @@ export default class ContextMenuEvents extends StoreUser {
       ContextMenuEvents.onContextMenuClicked,
       EventListenerAction.REMOVE,
     );
-    ContextMenuEvents.isInitialized = false;
     cadLog(
       {
         msg: `ContextMenuEvents.menuClear:  Context Menu has been removed.`,
@@ -292,6 +296,8 @@ export default class ContextMenuEvents extends StoreUser {
   }
 
   public static updateMenuItemCheckbox(id: string, checked: boolean): void {
+    if (!getSetting(StoreUser.store.getState(), SettingID.CONTEXT_MENUS))
+      return;
     browser.contextMenus
       .update(id, {
         checked,
@@ -314,7 +320,7 @@ export default class ContextMenuEvents extends StoreUser {
     if (browser.runtime.lastError) {
       cadLog(
         {
-          msg: `ContextMenuEvents.onCreatedOrUpdated received an error: ${browser.runtime.lastError}`,
+          msg: `ContextMenuEvents.onCreatedOrUpdated received an error: ${JSON.stringify(browser.runtime.lastError)}`,
           type: 'error',
         },
         true,
@@ -330,8 +336,8 @@ export default class ContextMenuEvents extends StoreUser {
   }
 
   public static async onContextMenuClicked(
-    info: browser.contextMenus.OnClickData,
-    tab: browser.tabs.Tab,
+    info: browser.Menus.OnClickData,
+    tab: browser.Tabs.Tab,
   ): Promise<void> {
     const debug = getSetting(
       StoreUser.store.getState(),
@@ -349,7 +355,7 @@ export default class ContextMenuEvents extends StoreUser {
       debug,
     );
     const cookieStoreId = (tab && tab.cookieStoreId) || '';
-    const selectionText = (info && info.selectionText) || '';
+    const selectionText: string = (info && info.selectionText) || '';
     if (
       info.menuItemId
         .toString()
@@ -391,7 +397,7 @@ export default class ContextMenuEvents extends StoreUser {
         debug,
       );
       if (siteData === 'Cookies') {
-        await clearCookiesForThisDomain(StoreUser.store.getState(), tab);
+        await StoreUser.store.dispatch(clearCookiesForThisDomain(tab)).unwrap();
         return;
       }
       switch (siteData) {
@@ -400,14 +406,17 @@ export default class ContextMenuEvents extends StoreUser {
         case SiteDataType.INDEXEDDB:
         case SiteDataType.PLUGINDATA:
         case SiteDataType.SERVICEWORKERS:
-          await clearSiteDataForThisDomain(
-            StoreUser.store.getState(),
-            siteData,
-            hostname,
+          await StoreUser.store.dispatch(
+            clearSiteDataForThisDomain({
+              siteData,
+              hostname,
+            }),
           );
           break;
         case SiteDataType.LOCALSTORAGE:
-          await clearLocalStorageForThisDomain(StoreUser.store.getState(), tab);
+          await StoreUser.store
+            .dispatch(clearLocalStorageForThisDomain(tab))
+            .unwrap();
           break;
         default:
           cadLog(
@@ -431,7 +440,7 @@ export default class ContextMenuEvents extends StoreUser {
           },
           debug,
         );
-        StoreUser.store.dispatch<any>(
+        StoreUser.store.dispatch(
           cookieCleanup({
             greyCleanup: false,
             ignoreOpenTabs: false,
@@ -445,7 +454,7 @@ export default class ContextMenuEvents extends StoreUser {
           },
           debug,
         );
-        StoreUser.store.dispatch<any>(
+        StoreUser.store.dispatch(
           cookieCleanup({
             greyCleanup: false,
             ignoreOpenTabs: true,
@@ -773,10 +782,9 @@ export default class ContextMenuEvents extends StoreUser {
             debug,
           );
           // Setting Updated.
-          StoreUser.store.dispatch<any>(
+          StoreUser.store.dispatch(
             updateSetting({
               name: SettingID.ACTIVE_MODE,
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               value: info.checked!,
             }),
           );
@@ -789,10 +797,7 @@ export default class ContextMenuEvents extends StoreUser {
           },
           debug,
         );
-        await browser.tabs.create({
-          index: tab.index + 1,
-          url: '/settings/settings.html#tabSettings',
-        });
+        await browser.runtime.openOptionsPage();
         break;
       default:
         cadLog(
@@ -861,8 +866,6 @@ export default class ContextMenuEvents extends StoreUser {
         }`,
       ])}\n${browser.i18n.getMessage('addNewExpressionNotificationIgnore')}`,
     });
-    StoreUser.store.dispatch<any>(addExpressionUI(payload));
+    StoreUser.store.dispatch(addExpressionUI(payload));
   }
-
-  protected static isInitialized = false;
 }

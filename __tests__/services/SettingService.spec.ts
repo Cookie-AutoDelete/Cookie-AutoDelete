@@ -13,37 +13,29 @@
 
 import { when } from 'jest-when';
 import { Store } from 'redux';
-import { initialState } from '../../src/redux/State';
-// tslint:disable-next-line: import-name
-import createStore from '../../src/redux/Store';
+import type * as browser from 'webextension-polyfill';
+
 import * as BrowserActionService from '../../src/services/BrowserActionService';
 import ContextualIdentitiesEvents from '../../src/services/ContextualIdentitiesEvents';
 import SettingService from '../../src/services/SettingService';
 import StoreUser from '../../src/services/StoreUser';
-import { ReduxAction } from '../../src/typings/ReduxConstants';
-import { resetSettings, updateSetting } from '../../src/redux/Actions';
 import ContextMenuEvents from '../../src/services/ContextMenuEvents';
+import { updateSetting, resetSettings } from '../../src/redux/SettingsSlice';
+import { State, configureWrapStore } from '../../src/redux/Store';
+import { SettingID } from '../../src/typings/Enums';
 
-const spyBrowserActions: JestSpyObject = global.generateSpies(
-  BrowserActionService,
-);
+import { initialState } from '../__mock__/initialState';
 
-jest.requireActual('../../src/services/ContextMenuEvents');
-class TestContextMenus extends ContextMenuEvents {
-  public static isInit(): boolean {
-    return ContextMenuEvents.isInitialized;
-  }
-}
+const spyBrowserActions = global.generateSpies(BrowserActionService);
+const spyContextMenuEvents = global.generateSpies(ContextMenuEvents);
 
-jest.requireActual('../../src/services/ContextualIdentitiesEvents');
 class TestContextualIdentities extends ContextualIdentitiesEvents {
   public static isInit(): boolean {
     return ContextualIdentitiesEvents.isInitialized;
   }
 }
 
-jest.requireActual('../../src/services/StoreUser');
-const store: Store<State, ReduxAction> = createStore(initialState);
+const store: Store<State> = configureWrapStore(initialState);
 StoreUser.init(store);
 
 class TestStore extends StoreUser {
@@ -73,7 +65,7 @@ class TestSettingService extends SettingService {
   }
 }
 
-const defaultTab: browser.tabs.Tab = {
+const defaultTab: browser.Tabs.Tab = {
   active: true,
   cookieStoreId: 'firefox-container-5',
   hidden: false,
@@ -85,7 +77,6 @@ const defaultTab: browser.tabs.Tab = {
   isInReaderMode: false,
   lastAccessed: 12345678,
   pinned: false,
-  selected: true,
   url: 'https://domain.com',
   windowId: 1,
 };
@@ -177,12 +168,12 @@ describe('SettingService', () => {
     it('should clear contextMenus if recently disabled', async () => {
       TestStore.changeSetting(SettingID.CONTEXT_MENUS, false);
       await SettingService.onSettingsChange();
-      expect(TestContextMenus.isInit()).toEqual(false);
+      expect(spyContextMenuEvents.menuClear).toHaveBeenCalled();
     });
     it('should init contextMenu items if recently enabled', async () => {
       TestStore.changeSetting(SettingID.CONTEXT_MENUS, true);
       await SettingService.onSettingsChange();
-      expect(TestContextMenus.isInit()).toEqual(true);
+      expect(spyContextMenuEvents.menuInit).toHaveBeenCalled();
     });
   });
 });

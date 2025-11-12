@@ -11,29 +11,42 @@
  * SOFTWARE.
  */
 /* istanbul ignore file: React-redux init */
-import ReactDOM from 'react-dom';
+import { configureStore } from '@reduxjs/toolkit';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createUIStore } from 'redux-webext';
-import { sleep } from '../../services/Libs';
+import { Store, applyMiddleware } from 'webext-redux';
+import type { State } from '../../redux/Store';
 import fontAwesomeImports from '../font-awesome-imports';
 import App from './App';
 
+import 'bootstrap';
+import './scss/settings.scss';
+import './scss/side-menu.scss';
+
 fontAwesomeImports();
 
+let store: Store<State>;
+
+// Just for middleware registration
+configureStore({
+  reducer: () => {},
+  middleware(getDefaultMiddleware) {
+    const middleware = getDefaultMiddleware();
+    store = applyMiddleware(new Store(), ...middleware);
+    return middleware;
+  },
+});
+
 async function initApp() {
-  let store = await createUIStore();
-  while (!store.getState()) {
-    await sleep(250);
-    store = await createUIStore();
-  }
+  await store.ready();
+
   const mountNode = document.createElement('div');
   document.body.appendChild(mountNode);
 
-  ReactDOM.render(
+  createRoot(mountNode).render(
     <Provider store={store}>
       <App />
     </Provider>,
-    mountNode,
   );
 }
 
