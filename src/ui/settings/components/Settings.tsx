@@ -20,6 +20,7 @@ import {
   isChrome,
   isFirefox,
   isFirefoxNotAndroid,
+  supportedStorageTypes,
 } from '../../../services/Libs';
 import { ReduxAction } from '../../../typings/ReduxConstants';
 import CheckboxSetting from '../../common_components/CheckboxSetting';
@@ -211,7 +212,7 @@ class Settings extends React.Component<SettingProps> {
     const { cache, onResetButtonClick, onUpdateSetting, settings, style } =
       this.props;
     const { error, success } = this.state;
-    const ffVersion = Number.parseInt(cache.browserVersion);
+    const supportedDataStorage = supportedStorageTypes(cache);
     return (
       <div style={style}>
         <h1>{browser.i18n.getMessage('settingsText')}</h1>
@@ -381,7 +382,7 @@ class Settings extends React.Component<SettingProps> {
           </div>
         </fieldset>
         <hr />
-        {(isFirefoxNotAndroid(cache) || isChrome(cache)) && (
+        {supportedDataStorage.localStorage && (
           <fieldset>
             <legend>
               {browser.i18n.getMessage('settingGroupOtherBrowsing')}
@@ -414,8 +415,7 @@ class Settings extends React.Component<SettingProps> {
                 }Warning`,
               )}
             </div>
-            {((isFirefoxNotAndroid(cache) && ffVersion >= 78) ||
-              isChrome(cache)) && (
+            {supportedDataStorage.cache && (
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('cacheCleanupText')}
@@ -428,8 +428,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && ffVersion >= 77) ||
-              isChrome(cache)) && (
+            {supportedDataStorage.indexedDb && (
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('indexedDBCleanupText')}
@@ -442,8 +441,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && ffVersion >= 58) ||
-              isChrome(cache)) && (
+            {supportedDataStorage.localStorage && (
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('localStorageCleanupText')}
@@ -456,8 +454,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && ffVersion >= 78) ||
-              isChrome(cache)) && (
+            {supportedDataStorage.pluginData && (
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('pluginDataCleanupText')}
@@ -470,8 +467,7 @@ class Settings extends React.Component<SettingProps> {
                 />
               </div>
             )}
-            {((isFirefoxNotAndroid(cache) && ffVersion >= 77) ||
-              isChrome(cache)) && (
+            {supportedDataStorage.serviceWorkers && (
               <div className="form-group">
                 <CheckboxSetting
                   text={browser.i18n.getMessage('serviceWorkersCleanupText')}

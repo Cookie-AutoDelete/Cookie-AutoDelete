@@ -557,6 +557,52 @@ export const isFirefox = (cache: CacheMap): boolean => {
   );
 };
 
+export const supportedStorageTypes = (
+  cache: CacheMap
+): StorageTypeSupportMap => {
+  if (isChrome(cache)) {
+    return {
+      cache: true,
+      indexedDb: true,
+      localStorage: true,
+      pluginData: true,
+      serviceWorkers: true,
+    };
+  }
+  // Can't verify support outside of FF and Chrome for now.
+  if (!isFirefox(cache)) {
+    return {
+      cache: false,
+      indexedDb: false,
+      localStorage: false,
+      pluginData: false,
+      serviceWorkers: false,
+    }
+  }
+
+  const ffVersion = Number.parseInt(cache.browserVersion);
+  // Firefox got support for different times in Android.
+  if (Object.prototype.hasOwnProperty.call(cache, 'platformOs') &&
+      cache.platformOs === 'android') {
+    return {
+      cache: (ffVersion >= 85),
+      indexedDb: (ffVersion >= 85),
+      localStorage: (ffVersion >= 85),
+      pluginData: (ffVersion >= 85),
+      serviceWorkers: (ffVersion >= 85),
+    };
+  }
+
+  // Desktop Firefox.
+  return {
+    cache: (ffVersion >= 78),
+    indexedDb: (ffVersion >= 77),
+    localStorage: (ffVersion >= 58),
+    pluginData: (ffVersion >= 78),
+    serviceWorkers: (ffVersion >= 77),
+  };
+};
+
 /**
  * Test if browser is Firefox Mobile/Android
  * @param cache Cache containing browserDetect and platformOs

@@ -19,8 +19,8 @@ import { updateExpressionUI } from '../../redux/Actions';
 import {
   isChrome,
   isFirefox,
-  isFirefoxNotAndroid,
   returnOptionalCookieAPIAttributes,
+  supportedStorageTypes,
 } from '../../services/Libs';
 import { ReduxAction } from '../../typings/ReduxConstants';
 interface DispatchProps {
@@ -276,32 +276,23 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     const ffVersion = Number.parseInt(state.cache.browserVersion);
 
     const dropList = coerceBoolean(expression.cleanAllCookies);
+    const supportedDataStorage = supportedStorageTypes(state.cache);
     return (
       <div>
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 78) ||
-            isChrome(state.cache)) &&
+          supportedDataStorage.cache &&
           this.createSiteDataCheckbox(SiteDataType.CACHE)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 77) ||
-            isChrome(state.cache)) &&
+          supportedDataStorage.indexedDb &&
           this.createSiteDataCheckbox(SiteDataType.INDEXEDDB)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 58) ||
-            isChrome(state.cache)) &&
+          supportedDataStorage.localStorage &&
           this.createSiteDataCheckbox(SiteDataType.LOCALSTORAGE)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 78) ||
-            isChrome(state.cache)) &&
+          supportedDataStorage.pluginData &&
           this.createSiteDataCheckbox(SiteDataType.PLUGINDATA)}
         {!expression.expression.startsWith('file:') &&
-          ((isFirefoxNotAndroid(state.cache) &&
-            ffVersion >= 77) ||
-            isChrome(state.cache)) &&
+          supportedDataStorage.serviceWorkers &&
           this.createSiteDataCheckbox(SiteDataType.SERVICEWORKERS)}
         <div className={'checkbox'}>
           <span
