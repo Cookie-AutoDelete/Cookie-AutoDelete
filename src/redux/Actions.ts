@@ -23,6 +23,7 @@ import {
   isFirefoxAndroid,
   showNotification,
   sleep,
+  supportedStorageTypes,
 } from '../services/Libs';
 import {
   ADD_ACTIVITY_LOG,
@@ -290,10 +291,13 @@ export const validateSettings: ActionCreator<ThunkAction<
   // Disable unusable setting in Firefox Android
   if (isFirefoxAndroid(cache)) {
     disableSettingIfTrue(settings[SettingID.NUM_COOKIES_ICON]);
-    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE_OLD]);
-    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE]);
     disableSettingIfTrue(settings[SettingID.CONTEXTUAL_IDENTITIES]);
     disableSettingIfTrue(settings[SettingID.CONTEXT_MENUS]);
+  }
+
+  if (!supportedStorageTypes(cache).localStorage) {
+    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE_OLD]);
+    disableSettingIfTrue(settings[SettingID.CLEANUP_LOCALSTORAGE]);
   }
 
   // Minimum 1 second autoclean delay.

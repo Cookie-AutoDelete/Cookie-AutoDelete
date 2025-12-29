@@ -73,6 +73,14 @@ declare const enum SiteDataType {
   SERVICEWORKERS = 'ServiceWorkers',
 }
 
+type StorageTypeSupportMap = Readonly<{
+  cache: boolean;
+  indexedDb: boolean;
+  localStorage: boolean;
+  pluginData: boolean;
+  serviceWorkers: boolean;
+}>;
+
 type Setting = Readonly<{
   id?: string | number;
   name: string;

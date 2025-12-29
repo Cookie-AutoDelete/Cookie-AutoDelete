@@ -43,6 +43,7 @@ import {
   returnOptionalCookieAPIAttributes,
   showNotification,
   sleep,
+  supportedStorageTypes,
   throwErrorNotification,
   trimDot,
   undefinedIsTrue,
@@ -1205,6 +1206,110 @@ describe('Library Functions', () => {
           platformOs: 'android',
         }),
       ).toBe(false);
+    });
+  });
+
+  describe('supportedStorageTypes', () => {
+    it('should return all false for undefined browser', () => {
+      expect(supportedStorageTypes(
+        { browserDetect: browserName.Unknown })
+      ).toStrictEqual({
+        cache: false,
+        indexedDb: false,
+        localStorage: false,
+        pluginData: false,
+        serviceWorkers: false,
+      });
+    });
+    it('should return all true for Chrome', () => {
+      expect(supportedStorageTypes(
+        { browserDetect: browserName.Chrome })
+      ).toStrictEqual({
+        cache: true,
+        indexedDb: true,
+        localStorage: true,
+        pluginData: true,
+        serviceWorkers: true,
+      });
+    });
+    it('should return all true for modern desktop Firefox', () => {
+      expect(supportedStorageTypes({
+        browserDetect: browserName.Firefox,
+        platformOs: 'linux',
+        browserVersion: '78.0.1'
+      })).toStrictEqual({
+        cache: true,
+        indexedDb: true,
+        localStorage: true,
+        pluginData: true,
+        serviceWorkers: true,
+      });
+    });
+    it('should return all true for old desktop Firefox', () => {
+      expect(supportedStorageTypes({
+        browserDetect: browserName.Firefox,
+        platformOs: 'linux',
+        browserVersion: '57.0.2'
+      })).toStrictEqual({
+        cache: false,
+        indexedDb: false,
+        localStorage: false,
+        pluginData: false,
+        serviceWorkers: false,
+      });
+    });
+    it('should only support local storage in FF 58 desktop', () => {
+      expect(supportedStorageTypes({
+        browserDetect: browserName.Firefox,
+        platformOs: 'linux',
+        browserVersion: '58.0.0'
+      })).toStrictEqual({
+        cache: false,
+        indexedDb: false,
+        localStorage: true,
+        pluginData: false,
+        serviceWorkers: false,
+      });
+    });
+    it('should support all but cache and plugin data in FF 77 desktop', () => {
+      expect(supportedStorageTypes({
+        browserDetect: browserName.Firefox,
+        platformOs: 'linux',
+        browserVersion: '77.0.0'
+      })).toStrictEqual({
+        cache: false,
+        indexedDb: true,
+        localStorage: true,
+        pluginData: false,
+        serviceWorkers: true,
+      });
+    });
+    it('should return all true for modern android Firefox', () => {
+      expect(supportedStorageTypes({
+        browserDetect: browserName.Firefox,
+        platformOs: 'android',
+        browserVersion: '85.0.0'
+      })).toStrictEqual({
+        cache: true,
+        indexedDb: true,
+        localStorage: true,
+        pluginData: true,
+        serviceWorkers: true,
+      });
+    });
+    it('should return all false for old android Firefox', () => {
+      expect(supportedStorageTypes({
+        browserDetect: browserName.Firefox,
+        platformOs: 'android',
+        // Notably produces different results for FF desktop above.
+        browserVersion: '77.0.0'
+      })).toStrictEqual({
+        cache: false,
+        indexedDb: false,
+        localStorage: false,
+        pluginData: false,
+        serviceWorkers: false,
+      });
     });
   });
 

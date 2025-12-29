@@ -18,8 +18,6 @@ import {
   getHostname,
   getSetting,
   isAWebpage,
-  isChrome,
-  isFirefoxNotAndroid,
   prepareCleanupDomains,
   prepareCookieDomain,
   returnMatchedExpressionObject,
@@ -28,6 +26,7 @@ import {
   siteDataToBrowser,
   SITEDATATYPES,
   sleep,
+  supportedStorageTypes,
   throwErrorNotification,
   trimDot,
   undefinedIsTrue,
@@ -566,13 +565,12 @@ export const otherBrowsingDataCleanup = async (
   state: State,
   isSafeToCleanObjects: CleanReasonObject[],
 ): Promise<ActivityLog['browsingDataCleanup']> => {
-  const chrome = isChrome(state.cache);
   const debug = getSetting(state, SettingID.DEBUG_MODE) as boolean;
   const browsingDataResult: ActivityLog['browsingDataCleanup'] = {};
-  const ffVersion = Number.parseInt(state.cache.browserVersion);
+  const supportedDataStorage = supportedStorageTypes(state.cache);
   if (
     getSetting(state, SettingID.CLEANUP_CACHE) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) || chrome)
+    supportedDataStorage.cache
   ) {
     browsingDataResult[SiteDataType.CACHE] = await cleanSiteData(
       state,
@@ -584,7 +582,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_INDEXEDDB) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) || chrome)
+    supportedDataStorage.indexedDb
   ) {
     browsingDataResult[SiteDataType.INDEXEDDB] = await cleanSiteData(
       state,
@@ -596,7 +594,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_LOCALSTORAGE) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 58) || chrome)
+    supportedDataStorage.localStorage
   ) {
     browsingDataResult[SiteDataType.LOCALSTORAGE] = await cleanSiteData(
       state,
@@ -608,7 +606,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_PLUGINDATA) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 78) || chrome)
+    supportedDataStorage.pluginData
   ) {
     browsingDataResult[SiteDataType.PLUGINDATA] = await cleanSiteData(
       state,
@@ -620,7 +618,7 @@ export const otherBrowsingDataCleanup = async (
   }
   if (
     getSetting(state, SettingID.CLEANUP_SERVICEWORKERS) &&
-    ((isFirefoxNotAndroid(state.cache) && ffVersion >= 77) || chrome)
+    supportedDataStorage.serviceWorkers
   ) {
     browsingDataResult[SiteDataType.SERVICEWORKERS] = await cleanSiteData(
       state,
