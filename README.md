@@ -1,5 +1,5 @@
 [link-amo]: https://addons.mozilla.org/firefox/addon/cookie-autodelete/
-[link-cws]: https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh
+[link-cws]: https://chromewebstore.google.com/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh
 [link-edge]: https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo
 
 | Latest Release Tests ![Latest Release](https://img.shields.io/github/v/release/Cookie-AutoDelete/Cookie-AutoDelete) | Development Tests | Localization | Coverage |
