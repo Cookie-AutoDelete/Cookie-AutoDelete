@@ -1,6 +1,12 @@
 {
   "releases": [
     {
+      "version": "4.0.0",
+      "notes": [
+        "Version: Begin the 4.0 release series for Cookie AutoDelete Next Edition."
+      ]
+    },
+    {
       "version": "3.8.3",
       "notes": [
         "Updated:  Use Redux Toolkit",
