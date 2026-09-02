@@ -69,10 +69,15 @@
     }
   },
   "scripts": {
-    "dev:chrome": "cross-env VITE_BROWSER=chrome vite",
-    "dev:firefox": "cross-env VITE_BROWSER=firefox vite",
-    "build": "npm run compile && node ./tools/buildFilesDev.js",
-    "compile": "vite build",
+    "dev:chrome": "cross-env BROWSER=chrome vite",
+    "dev:firefox": "cross-env BROWSER=firefox vite",
+    "compile:chrome": "cross-env BROWSER=chrome vite build",
+    "compile:firefox": "cross-env BROWSER=firefox vite build",
+    "package:chrome": "node ./tools/packageExtension.js chrome",
+    "package:firefox": "node ./tools/packageExtension.js firefox",
+    "build:chrome": "npm run compile:chrome && npm run package:chrome",
+    "build:firefox": "npm run compile:firefox && npm run package:firefox",
+    "build": "npm run build:chrome && npm run build:firefox",
     "lint": "eslint -c eslint.config.js --ext .ts,.tsx src/",
     "test": "jest --coverage",
     "test-all": "npm run test && npm run lint"

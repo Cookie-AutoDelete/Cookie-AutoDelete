@@ -7,49 +7,53 @@ on:
 
 jobs:
   all_jobs:
-    name: Tests, Builds, Coverage, Release Uploads
+    name: Tests, Builds, Coverage, Artifacts
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Commit
-        uses: actions/checkout@v4
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v7
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v7
         with:
-          node-version: '18.x'
+          node-version: '22.x'
       - name: Install Dependencies (npm ci)
         run: npm ci --no-fund
       - name: Run Tests
         run: npm run test -- --verbose
       - name: Run Lint
         run: npm run lint
-      - name: Ensure Version is Updated
-        run: node ./tools/replaceVersionNumber.js
-      - name: Run Build
-        id: runbuild
+      - name: Validate Tag Version
+        shell: bash
         run: |
-          npm run build
-          echo "ffxpi=$(ls builds/*Firefox.xpi)" >> $GITHUB_OUTPUT
+          package_version=$(node -p "require('./package.json').version")
+          tag_version="${GITHUB_REF_NAME#v}"
+          if [[ "$tag_version" != "$package_version" ]]; then
+            echo "Tag version $tag_version does not match package version $package_version." >&2
+            exit 1
+          fi
+      - name: Run Build
+        run: npm run build
+      - name: Generate SHA-256 Checksums
+        shell: bash
+        run: |
+          cd builds
+          sha256sum \
+            Cookie-AutoDelete-Next-Edition_*_Chrome.zip \
+            Cookie-AutoDelete-Next-Edition_*_Firefox-unsigned.zip \
+            > SHA256SUMS.txt
       - name: Archive Production Build Artifacts
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: builds
-          path: builds
+          path: |
+            builds/Cookie-AutoDelete-Next-Edition_*_Chrome.zip
+            builds/Cookie-AutoDelete-Next-Edition_*_Firefox-unsigned.zip
+            builds/SHA256SUMS.txt
+          if-no-files-found: error
       - name: Archive Code Coverage Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: coverage
           path: coverage
-      - name: GitHub Releases
-        id: github_releases
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: |
-            builds/Cookie-AutoDelete_*_Chrome.zip
-            builds/Cookie-AutoDelete_*_Firefox.xpi
-          body: This is an auto-generated tagged release - Change log will be manually inserted soon!  Latest versions have been submitted to the relevant browser extension store for review.
-          prerelease: ${{ endsWith(github.ref, 'alpha') || endsWith(github.ref, 'beta') }}
-          draft: true
+          if-no-files-found: error

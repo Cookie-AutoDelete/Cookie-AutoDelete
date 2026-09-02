@@ -73,7 +73,7 @@ If there are any bugs that only a certain browser has, and you have the fix for 
 - `npm run dev` - This will run the webpack watcher and automatically pack `/src/background.ts`, popup, and setting items and its dependencies to `/extension`
 - `npm run lint` - Runs the eslinter for JS files
 - `npm test` - Runs the test suite located in `/test`
-- `npm run build` - Builds the Firefox (.xpi/.zip) and Chrome (.zip) builds
+- `npm run build` - Builds the Chrome ZIP and unsigned Firefox ZIP test artifacts
 
 #### Testing
 
