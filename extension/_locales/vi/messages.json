@@ -131,10 +131,6 @@
     "message": "Kiểm soát các cookies! Tự động Xoá sạch các cookies không dùng tới từ các trang đã đóng đồng thời giữ lại các cookies bạn cần.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
-  "extensionName": {
-    "message": "Tự động Xoá sạch Cookie",
-    "description": "Name of the extension."
-  },
   "faqText": {
     "message": "Câu hỏi thường gặp, vấn đề thường gặp và giải pháp",
     "description": "Frequently Asked Questions, Common issues and solutions"

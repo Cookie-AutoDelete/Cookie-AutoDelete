@@ -1,14 +1,19 @@
-[link-amo]: https://addons.mozilla.org/firefox/addon/cookie-autodelete/
-[link-cws]: https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh
-[link-edge]: https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo
+| CI                                                                                                                                                                                                                                                  | Security                                                                                                                                                                                                                | License                                                                                            | Platform                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [![CI](https://github.com/median-dxz/Cookie-AutoDelete-MV3/actions/workflows/continuous-integration-workflow.yml/badge.svg?branch=main)](https://github.com/median-dxz/Cookie-AutoDelete-MV3/actions/workflows/continuous-integration-workflow.yml) | [![CodeQL](https://github.com/median-dxz/Cookie-AutoDelete-MV3/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/median-dxz/Cookie-AutoDelete-MV3/actions/workflows/codeql-analysis.yml) | [![License: MIT](https://img.shields.io/github/license/median-dxz/Cookie-AutoDelete-MV3)](LICENSE) | ![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue)      |
+| ![Release](https://img.shields.io/badge/Release-Pending-lightgrey)                                                                                                                                                                                  | ![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Preparing-yellow)                                                                                                                                     | ![Coverage](https://img.shields.io/badge/Coverage-Pending-lightgrey)                               | ![Firefox](https://img.shields.io/badge/Firefox-Planned-lightgrey) |
 
-| Latest Release Tests ![Latest Release](https://img.shields.io/github/v/release/Cookie-AutoDelete/Cookie-AutoDelete)                        | Development Tests                                                                                                      | Localization                                                                                                                       | Coverage                                                                                                                                                                                                                                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![Tagged Release Distribution](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/Tagged%20Release%20Distribution/badge.svg) | ![Node.js CI Tests](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/workflows/CI/badge.svg?branch=3.X.X-Branch) | [![Crowdin](https://d322cqt584bo4o.cloudfront.net/cookie-autodelete/localized.svg)](https://crowdin.com/project/cookie-autodelete) | [![Coverage Status](https://coveralls.io/repos/github/Cookie-AutoDelete/Cookie-AutoDelete/badge.svg?branch=3.X.X-Branch)](https://coveralls.io/github/Cookie-AutoDelete/Cookie-AutoDelete?branch=3.X.X-Branch) [![codecov](https://codecov.io/gh/Cookie-AutoDelete/Cookie-AutoDelete/branch/3.X.X-Branch/graph/badge.svg)](https://codecov.io/gh/Cookie-AutoDelete/Cookie-AutoDelete) |
-
-# Cookie AutoDelete
+# Cookie AutoDelete Next Edition
 
 Control your cookies! This extension is inspired by [Self-Destructing Cookies](https://addons.mozilla.org/firefox/addon/self-destructing-cookies/). When a tab closes, any cookies not being used are automatically deleted. Prevent tracking by other cookies and add only the ones you trust. Easily import and export your cookie whitelist.
+
+Cookie AutoDelete Next Edition is an independently maintained community fork of [Cookie AutoDelete](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete), distributed under the MIT License.
+
+Independent community-maintained fork; not affiliated with or endorsed by the original Cookie AutoDelete maintainers.
+
+> ## About This Fork
+>
+> The main purpose of this fork is to **help migrate the original repository to Manifest V3 (Google Manifest v3) and adopt a more modern JavaScript build toolchain**, though reasonable feature requests and bug fixes will still be supported.
 
 ## Main features
 
@@ -26,34 +31,33 @@ Control your cookies! This extension is inspired by [Self-Destructing Cookies](h
 2. Enable "Automatic Cleaning" in settings or "Auto-Clean" in popup
 3. Watch those unused cookies disappear :)
 
-## About This Fork
-
-The main purpose of this fork is to **help migrate the original repository to Manifest V3 (Google Manifest v3) and adopt a more modern JavaScript build toolchain**. As the creator of this fork, I have limited time available, so I won't be spending much time on this fork, nor will I be uploading its build to the Chrome Web Store. Therefore, until the primary goal is achieved, this project will not accept requests for new features.
-
-**Please note that you need to load the build from Release into your browser via developer mode.**
-
-Once this main objective is accomplished, I will open a PR and follow up on its progress, then decide on the next steps for this fork repository.
-
 ## Installation
+
+> Please keep in mind that at this time only Mozilla Firefox and Google Chrome (as well as its development branches e.g. Developer Edition, Canary) will be supported.
+>
+> Microsoft Edge Chromium will be considered partially official as it is using the same code as Google Chrome for now.
+>
+> While you may be able to install this extension on other browsers (i.e. Varations of Edge, Chrome, Firefox, Android), there will be no official support from the authors and maintainers through Github Discussions and/or Issues.
 
 ### via Self Installation
 
 - [Github Releases](https://github.com/median-dxz/Cookie-AutoDelete-MV3/releases)
 
-> Please keep in mind that at this time only Mozilla Firefox and Google Chrome (as well as its development branches e.g. Developer Edition, Canary) will be supported.  
-> Microsoft Edge Chromium will be considered partially official as it is using the same code as Google Chrome for now.
-> While you may be able to install this extension on other browsers (i.e. Varations of Edge, Chrome, Firefox, Android), there will be no official support from the authors and maintainers through Github Discussions and/or Issues.
-
 ## Contributing
 
-### Donations
+## Support
 
-Please check the original repository for instructions on how to donate to the original authors.
+Report bugs, ask for support, or suggest features through the [issue forms](https://github.com/median-dxz/Cookie-AutoDelete-MV3/issues/new/choose). See [SUPPORT.md](SUPPORT.md) for the information to include.
+
+Do not report security vulnerabilities in a public issue; see [SECURITY.md](SECURITY.md).
 
 ### Internationalization (i18n)
 
-[Translate Cookie AutoDelete in your language or help fix a translation on Crowdin!](https://crowdin.com/project/cookie-autodelete)
+~~[Translate Cookie AutoDelete in your language or help fix a translation on Crowdin!](https://crowdin.com/project/cookie-autodelete)~~
+
 Some translations were taken from Machine Translations - if you believe there is a better translation for them, please submit an updated translation and raise an issue through CrowdIn.
+
+Since the original Crowdin setup isn't really maintained at the moment, it's probably best to just submit PRs modifying the locale files directly for now.
 
 ### Contributing code
 
@@ -92,4 +96,4 @@ If there are any bugs that only a certain browser has, and you have the fix for 
 
 ## Documentation
 
-Full documentation can be found in the [wiki](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation).
+Full documentation can be found in the upstream [wiki](https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/Documentation).

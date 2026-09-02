@@ -187,10 +187,6 @@
     "message": "Поемете контрола над бисквитките! Автоматично изтрива неизползваните бисквитки от затворените подпрозорци и запазва тези, които искате.",
     "description": "Control your cookies! Automatically delete unwanted cookies from your closed tabs while keeping the ones you want."
   },
-  "extensionName": {
-    "message": "Самоизтриване на бисквитките",
-    "description": "Name of the extension."
-  },
   "faqText": {
     "message": "Често задавани въпроси, трудности и техните решения",
     "description": "Frequently Asked Questions, Common issues and solutions"

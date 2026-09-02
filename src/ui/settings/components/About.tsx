@@ -92,7 +92,7 @@ class About extends React.Component<AboutProps> {
           <br />
           <b>{browser.runtime.getManifest().version}</b>
         </h5>
-        <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/issues">
+        <a href="https://github.com/median-dxz/Cookie-AutoDelete-MV3/issues">
           {browser.i18n.getMessage('reportIssuesText')}
         </a>
         <br />
@@ -104,7 +104,7 @@ class About extends React.Component<AboutProps> {
         <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/wiki/FAQ:-Common-Questions-and-Issues">
           <span>{browser.i18n.getMessage('faqText')}</span>
         </a>
-        <br />
+        {/*<br />
         <br />
         <a
           href="https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh"
@@ -136,7 +136,7 @@ class About extends React.Component<AboutProps> {
           <span>
             {browser.i18n.getMessage('versionText', ['Mozilla Firefox'])}
           </span>
-        </a>
+        </a> */}
         <br />
         <br />
         <span>{browser.i18n.getMessage('contributorsText')}:</span>
@@ -146,6 +146,7 @@ class About extends React.Component<AboutProps> {
             seansfkelley (UI Redesign of Expression Table Settings and Popup)
           </li>
           <li>kennethtran93 (UI bug fixes and then some)</li>
+          <li>median-dxz (Migration to MV3)</li>
           <li>
             <a href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/graphs/contributors">
               GitHub Contributors

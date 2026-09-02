@@ -48,14 +48,14 @@ const displayReleaseNotes = (releases: ReleaseNote[]) => {
 // Get the review link for different browsers
 const getReviewLink = (bName = browserDetect()) => {
   switch (bName) {
-    case BrowserName.Chrome:
-      return 'https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews';
-    case BrowserName.EdgeChromium:
-      return 'https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo#reviewList';
-    case BrowserName.Firefox:
-      return 'https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/';
+    // case BrowserName.Chrome:
+    //   return 'https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh/reviews';
+    // case BrowserName.EdgeChromium:
+    //   return 'https://microsoftedge.microsoft.com/addons/detail/djkjpnciiommncecmdefpdllknjdmmmo#reviewList';
+    // case BrowserName.Firefox:
+    //   return 'https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/reviews/';
     default:
-      return '';
+      return '#';
   }
 };
 
@@ -120,7 +120,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({
       <p>
         {browser.i18n.getMessage('oldReleasesText')}{' '}
         <a
-          href="https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/releases"
+          href="https://github.com/median-dxz/Cookie-AutoDelete-MV3/releases"
           target="_blank"
           rel="noreferrer"
         >

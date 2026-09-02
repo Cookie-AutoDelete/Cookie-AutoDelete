@@ -79,9 +79,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Cookie-AutoDelete/Cookie-AutoDelete.git"
+    "url": "https://github.com/median-dxz/Cookie-AutoDelete-MV3.git"
   },
-  "author": "Kenny Do",
+  "author": "median-dxz",
   "contributors": [
     {
       "name": "CAD Team",
@@ -90,7 +90,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Cookie-AutoDelete/Cookie-AutoDelete/issues"
+    "url": "https://github.com/median-dxz/Cookie-AutoDelete-MV3/issues"
   },
-  "homepage": "https://github.com/Cookie-AutoDelete/Cookie-AutoDelete#readme"
+  "homepage": "https://github.com/median-dxz/Cookie-AutoDelete-MV3#readme"
 }

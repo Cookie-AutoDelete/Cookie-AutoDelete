@@ -4,14 +4,15 @@
     "type": "module"
   },
   "description": "__MSG_extensionDescription__",
-  "homepage_url": "https://github.com/Cookie-AutoDelete/Cookie-AutoDelete",
-  "author": "CAD Team",
+  "homepage_url": "https://github.com/median-dxz/Cookie-AutoDelete-MV3",
+  "author": "median-dxz",
+  "short_name": "CAD NE",
   "default_locale": "en",
   "action": {
     "default_icon": {
       "48": "icons/icon_48.png"
     },
-    "default_title": "Cookie AutoDelete",
+    "default_title": "Cookie AutoDelete Next Edition",
     "default_popup": "ui/popup/popup.html"
   },
   "icons": {
@@ -26,9 +27,7 @@
   },
   "minimum_chrome_version": "92",
   "options_page": "ui/settings/settings.html",
-  "host_permissions": [
-    "<all_urls>"
-  ],
+  "host_permissions": ["<all_urls>"],
   "permissions": [
     "activeTab",
     "alarms",

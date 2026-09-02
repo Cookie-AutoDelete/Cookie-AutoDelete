@@ -16,8 +16,6 @@ body:
         - Issues that have an answer in the Documentation and/or FAQ WILL get closed and be pointed into the right direction
 
         - Please ensure that the bug report title starts with `[BUG] `.
-
-        Stale issues without any relevant activity WILL get closed after a reasonable amount of time.
   - type: checkboxes
     attributes:
       label: Acknowledgements
@@ -71,9 +69,9 @@ body:
       required: true
   - type: input
     attributes:
-      label: System Info - CookieAutoDelete Version
+      label: System Info - CAD NE Version
       description: 'DO NOT PUT "LATEST"'
-      placeholder: e.g. 3.6.0
+      placeholder: e.g. 4.0.0
     validations:
       required: true
   - type: textarea
